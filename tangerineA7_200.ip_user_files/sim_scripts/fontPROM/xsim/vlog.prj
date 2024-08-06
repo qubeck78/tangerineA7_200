@@ -1,0 +1,7 @@
+verilog xil_defaultlib  \
+"../../../../tangerineA7_200.gen/sources_1/ip/fontPROM/sim/fontPROM.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

@@ -1,0 +1,86 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
+| Date         : Tue Aug  6 13:10:37 2024
+| Host         : Desktop-qUBECk running 64-bit major release  (build 9200)
+| Command      : report_drc -file A7BoardTop_drc_routed.rpt -pb A7BoardTop_drc_routed.pb -rpx A7BoardTop_drc_routed.rpx
+| Design       : A7BoardTop
+| Device       : xc7a200tfbg676-1
+| Speed File   : -1
+| Design State : Fully Routed
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Report DRC
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+           Ruledeck: default
+             Max violations: <unlimited>
+             Violations found: 8
++-----------+----------+-------------------------+------------+
+| Rule      | Severity | Description             | Violations |
++-----------+----------+-------------------------+------------+
+| DPOP-1    | Warning  | PREG Output pipelining  | 2          |
+| DPOP-2    | Warning  | MREG Output pipelining  | 4          |
+| PDCN-1569 | Warning  | LUT equation term check | 1          |
+| RTSTAT-10 | Warning  | No routable loads       | 1          |
++-----------+----------+-------------------------+------------+
+
+2. REPORT DETAILS
+-----------------
+DPOP-1#1 Warning
+PREG Output pipelining  
+DSP tangerineSOCInst/picorv32Inst/pcpi_mul/rd0 output tangerineSOCInst/picorv32Inst/pcpi_mul/rd0/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-1#2 Warning
+PREG Output pipelining  
+DSP tangerineSOCInst/picorv32Inst/pcpi_mul/rd0__0 output tangerineSOCInst/picorv32Inst/pcpi_mul/rd0__0/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-2#1 Warning
+MREG Output pipelining  
+DSP tangerineSOCInst/picorv32Inst/pcpi_mul/rd0 multiplier stage tangerineSOCInst/picorv32Inst/pcpi_mul/rd0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#2 Warning
+MREG Output pipelining  
+DSP tangerineSOCInst/picorv32Inst/pcpi_mul/rd0__0 multiplier stage tangerineSOCInst/picorv32Inst/pcpi_mul/rd0__0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#3 Warning
+MREG Output pipelining  
+DSP tangerineSOCInst/picorv32Inst/pcpi_mul/rd_reg multiplier stage tangerineSOCInst/picorv32Inst/pcpi_mul/rd_reg/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#4 Warning
+MREG Output pipelining  
+DSP tangerineSOCInst/picorv32Inst/pcpi_mul/rd_reg__0 multiplier stage tangerineSOCInst/picorv32Inst/pcpi_mul/rd_reg__0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+PDCN-1569#1 Warning
+LUT equation term check  
+Used physical LUT pin 'A5' of cell tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1 (pin tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1/I1) is not included in the LUT equation: 'O6=(A6)+((~A6)*(~A1)*A3)'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+Related violations: <none>
+
+RTSTAT-10#1 Warning
+No routable loads  
+12 net(s) have no routable loads. The problem bus(es) and/or net(s) are tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i,
+tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/user_valid,
+tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i,
+tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_afull_fb,
+tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_afull_i,
+tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i,
+tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg[2:0]
+tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.wr_rst_reg[2:0].
+Related violations: <none>
+
+
