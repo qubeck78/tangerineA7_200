@@ -98,6 +98,7 @@ read_vhdl -library xil_defaultlib {
 read_vhdl -vhdl2019 -library xil_defaultlib {
   C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/InputSync.vhd
   C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/pixelGenTxt.vhd
+  C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/sdramDMA.vhd
   C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd
   C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/uart.vhd
   C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/A7BoardTop.vhd
@@ -110,11 +111,11 @@ set_property used_in_implementation false [get_files -all c:/Users/qubec/Documen
 read_ip -quiet C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/fontPROM/fontPROM.xci
 set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/fontPROM/fontPROM_ooc.xdc]
 
-read_ip -quiet c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/uartFiFo/uartFiFo.xci
+read_ip -quiet C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/uartFiFo/uartFiFo.xci
 set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/uartFiFo/uartFiFo.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/uartFiFo/uartFiFo_ooc.xdc]
 
-read_ip -quiet c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/systemRam/systemRam.xci
+read_ip -quiet C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/systemRam/systemRam.xci
 set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/systemRam/systemRam_ooc.xdc]
 
 OPTRACE "Adding files" END { }

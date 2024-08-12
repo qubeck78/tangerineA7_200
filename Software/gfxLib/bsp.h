@@ -237,6 +237,15 @@ typedef struct __AUDIO_REGISTERS_T
 
 extern _AUDIO_REGISTERS_T *aud;
 
+typedef struct __SDRAMDMA_REGISTERS_T
+{
+    volatile ulong id;
+    volatile ulong version;
+
+}_SDRAMDMA_REGISTERS_T;
+
+extern _SDRAMDMA_REGISTERS_T *sdrdma;
+
 
 int     bspInit( void );
 int     randomNumber( void );
