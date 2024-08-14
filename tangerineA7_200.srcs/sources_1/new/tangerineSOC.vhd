@@ -134,6 +134,39 @@ component pixelGenTxt
         pgVideoMode:      in  std_logic_vector( 1 downto 0 )
     );
 end component;
+
+-- gfx pixel gen
+component pixelGenGfx is
+port(
+   reset:            in  std_logic;
+   pggClock:         in  std_logic;
+   pggR:             out std_logic_vector( 7 downto 0 );
+   pggG:             out std_logic_vector( 7 downto 0 );
+   pggB:             out std_logic_vector( 7 downto 0 );
+
+    --gfx buffer ram
+   gfxBufRamDOut:    in  std_logic_vector( 31 downto 0 );
+   gfxBufRamRdA:     out std_logic_vector( 8 downto 0 );
+
+   --2 dma requests
+   pggDMARequest:    out std_logic_vector( 1 downto 0 );
+   
+   --sync gen outputs
+   pgVSync:          in  std_logic;
+   pgHSync:          in  std_logic;
+   pgDe:             in  std_logic;
+   pgXCount:         in  std_logic_vector( 11 downto 0 );
+   pgYCount:         in  std_logic_vector( 11 downto 0 );
+   pgDeX:            in  std_logic;
+   pgDeY:            in  std_logic;
+   pgPreFetchLine:   in  std_logic;
+   pgFetchEnable:    in  std_logic;
+
+   pgVideoMode:      in  std_logic_vector( 1 downto 0 );
+   pgEnabled:        in  std_logic
+
+   );
+end component; 
  
 -- riscv cpu
 component picorv32 is   
@@ -242,7 +275,13 @@ port(
     --ch2 - audio, priority: 2
     
     --ch3 - gfx display, highest priority: 3
-
+    
+    ch3DmaRequest:      in      std_logic_vector( 1 downto 0 );
+    ch3DmaPointerReset: in      std_logic;
+    
+    ch3BufClk:          in      std_logic;
+    ch3BufDout:         out     std_logic_vector( 31 downto 0 );
+    ch3BufA:            in      std_logic_vector( 8 downto 0 );
 
     --sdram
     sdramA:         out     std_logic_vector( 12 downto 0 );
@@ -373,10 +412,18 @@ signal  sdramDmaRegsDoutForCPU: std_logic_vector( 31 downto 0 );
 
 --ch0 CPU
 
-signal sdramDMACE:              std_logic;
-signal sdramDMADoutForCPU:      std_logic_vector( 31 downto 0 );
-signal sdramDMAReady:           std_logic;
+signal  sdramDMACE:              std_logic;
+signal  sdramDMADoutForCPU:      std_logic_vector( 31 downto 0 );
+signal  sdramDMAReady:           std_logic;
 
+--ch1
+
+--ch2 
+
+--ch3 gfx pixel gen
+
+signal  gfxBufRamDOut:          std_logic_vector( 31 downto 0 );
+signal  gfxBufRamRdA:           std_logic_vector( 8 downto 0 );
 
 begin
 
@@ -387,6 +434,12 @@ pgClock             <= pixelClock;
 registersClock      <= chipsetClock;
 uartClock           <= chipsetClock;
 tickTimerClock      <= cpuClock;
+
+
+--no need to sync now
+
+pgVSyncClkD2        <= pgVSync;
+pggDMARequestClkD2  <= pggDMARequest;
 
 -- fill unused ports, signals
 
@@ -460,6 +513,41 @@ port map(
         
 );   
 
+
+-- place gfx pixel gen
+
+pgEnabled   <= '1' when vmMode( 1 downto 0 ) /= "00" else '0';
+
+pixelGenGfxInst: pixelGenGfx
+port map(
+    reset             => reset,
+    pggClock          => pgClock,
+
+    pggR              => pggR,
+    pggG              => pggG,
+    pggB              => pggB,
+
+    --gfx buffer ram
+    gfxBufRamDOut     => gfxBufRamDOut,
+    gfxBufRamRdA      => gfxBufRamRdA,
+
+    --2 dma requests
+    pggDMARequest     => pggDMARequest,
+
+    --sync gen outputs
+    pgVSync           => pgVSync,
+    pgHSync           => pgHSync,
+    pgDe              => pgDe,
+    pgXCount          => pgXCount,
+    pgYCount          => pgYCount,
+    pgDeX             => pgDeX,
+    pgDeY             => pgDeY,
+    pgPreFetchLine    => pgPreFetchLine,
+    pgFetchEnable     => pgFetchEnable,
+
+    pgVideoMode       => vmMode( 5 downto 4 ),
+    pgEnabled         => pgEnabled
+); 
 
 --VideoMux process ( mix text with gfx )
 
@@ -883,7 +971,15 @@ port map(
     
     --ch3 - gfx display, highest priority: 3
 
-
+    --ch3 - gfx display, highest priority: 3
+    
+    ch3DmaRequest       => pggDmaRequestClkD2,
+    ch3DmaPointerReset  => pgVSyncClkD2,
+    
+    ch3BufClk           => pixelClockPs,
+    ch3BufDout          => gfxBufRamDOut,
+    ch3BufA             => gfxBufRamRdA,
+    
     --sdram
     sdramA          => sdramA,
     sdramBA         => sdramBA,

@@ -141,7 +141,7 @@ ulong testSDRAM()
    sdram = ( ulong * ) 0x20000000;
 
 
-   length = 32;
+   length = 1048576;
 
    print( ( char* ) "Fill 0x0: " );
 
@@ -194,7 +194,7 @@ ulong testSDRAM()
 
    for( i = 0 ; i < length; i++ )
    {
-      sdram[i] = i;  //randomNumber();
+      sdram[i] = randomNumber();
    }
 
 
@@ -203,7 +203,7 @@ ulong testSDRAM()
    for( i = 0 ; i < length; i++ )
    {
       rvl = sdram[i];
-      cvl = i; //randomNumber();
+      cvl = randomNumber();
 
       if ( rvl != cvl )
       {
@@ -233,9 +233,12 @@ int main()
    int            k;
    char           buf[256];
 
-   
+
    //80 column txt mode only
-   bsp->videoMuxMode = 0x04; 
+   //bsp->videoMuxMode = 0x04; 
+
+   //80 column txt over gfx 320x240
+   bsp->videoMuxMode = _VIDEOMODE_320_TEXT80_OVER_GFX;
 
    displayRam = ( unsigned short * )0x6d40;
    
@@ -254,6 +257,11 @@ int main()
    print( (char*) "   |  tangerine A7_200 | \n" );
    print( (char*) "   |  sdramDMA test    | \n" );
    print( (char*) "   `-------------------` \n" );
+
+   print( (char*) "Main is located at 0x" );
+   itoaHex8Digits( (int)main, buf );
+   print( buf );
+   print( (char*) "\n" );
 
    print( (char*) "Checking sdramDMA version: " );
 
@@ -282,7 +290,7 @@ int main()
    }
 
 
-//   testSDRAM();
+   testSDRAM();
    
    do
    {

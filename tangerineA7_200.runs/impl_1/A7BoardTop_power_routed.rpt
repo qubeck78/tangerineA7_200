@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date             : Wed Aug 14 12:28:31 2024
+| Date             : Wed Aug 14 16:46:44 2024
 | Host             : Desktop-qUBECk running 64-bit major release  (build 9200)
 | Command          : report_power -file A7BoardTop_power_routed.rpt -pb A7BoardTop_power_summary_routed.pb -rpx A7BoardTop_power_routed.rpx
 | Design           : A7BoardTop
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.425        |
+| Total On-Chip Power (W)  | 0.424        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.286        |
+| Dynamic (W)              | 0.285        |
 | Device Static (W)        | 0.139        |
 | Effective TJA (C/W)      | 1.9          |
 | Max Ambient (C)          | 84.2         |
@@ -53,22 +53,22 @@ Table of Contents
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |     0.010 |        9 |       --- |             --- |
-| Slice Logic              |     0.003 |     4696 |       --- |             --- |
-|   LUT as Logic           |     0.002 |     2327 |    133800 |            1.74 |
+| Slice Logic              |     0.003 |     4637 |       --- |             --- |
+|   LUT as Logic           |     0.002 |     2278 |    133800 |            1.70 |
 |   CARRY4                 |    <0.001 |      207 |     33450 |            0.62 |
-|   Register               |    <0.001 |     1544 |    269200 |            0.57 |
-|   F7/F8 Muxes            |    <0.001 |       43 |    133800 |            0.03 |
+|   Register               |    <0.001 |     1543 |    269200 |            0.57 |
+|   F7/F8 Muxes            |    <0.001 |       41 |    133800 |            0.03 |
 |   LUT as Distributed RAM |    <0.001 |       44 |     46200 |            0.10 |
 |   Others                 |     0.000 |       73 |       --- |             --- |
 |   BUFG                   |     0.000 |        1 |        32 |            3.13 |
 |   LUT as Shift Register  |     0.000 |        1 |     46200 |           <0.01 |
-| Signals                  |     0.003 |     3859 |       --- |             --- |
+| Signals                  |     0.003 |     3812 |       --- |             --- |
 | Block RAM                |     0.006 |        9 |       365 |            2.47 |
 | MMCM                     |     0.106 |        1 |        10 |           10.00 |
 | DSPs                     |    <0.001 |        4 |       740 |            0.54 |
-| I/O                      |     0.157 |       73 |       400 |           18.25 |
+| I/O                      |     0.156 |       73 |       400 |           18.25 |
 | Static Power             |     0.139 |          |           |                 |
-| Total                    |     0.425 |          |           |                 |
+| Total                    |     0.424 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -153,13 +153,15 @@ Table of Contents
 +--------------------+-----------+
 | Name               | Power (W) |
 +--------------------+-----------+
-| A7BoardTop         |     0.286 |
+| A7BoardTop         |     0.285 |
 |   clk_wiz_0Inst    |     0.108 |
 |     inst           |     0.108 |
-|   dvidInst         |     0.002 |
+|   dvidInst         |     0.001 |
 |   tangerineSOCInst |     0.018 |
 |     UARTInst       |     0.002 |
-|     picorv32Inst   |     0.004 |
+|     picorv32Inst   |     0.005 |
+|       pcpi_mul     |     0.002 |
+|     pixelGenInst   |     0.001 |
 |     sdramDMAInst   |     0.002 |
 |     systemRamInst  |     0.006 |
 |       U0           |     0.006 |

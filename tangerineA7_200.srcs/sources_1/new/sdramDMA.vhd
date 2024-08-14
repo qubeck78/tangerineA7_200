@@ -32,54 +32,60 @@ entity sdramDMA is
 port(
     
     --reset, clocks
-    reset:          in      std_logic;
+    reset:              in      std_logic;
     
-    cpuClock:       in      std_logic;
-    sdramClock:     in      std_logic;
-    sdramClockPs:   in      std_logic;
+    cpuClock:           in      std_logic;
+    sdramClock:         in      std_logic;
+    sdramClockPs:       in      std_logic;
 
 
    --bus interface ( registers )
 
-    a:              in      std_logic_vector( 15 downto 0 );
-    din:            in      std_logic_vector( 31 downto 0 );
-    dout:           out     std_logic_vector( 31 downto 0 );
-    ce:             in      std_logic;
-    wr:             in      std_logic;
-    dataMask:       in      std_logic_vector( 3 downto 0 );
-    ready:          out     std_logic;
+    a:                  in      std_logic_vector( 15 downto 0 );
+    din:                in      std_logic_vector( 31 downto 0 );
+    dout:               out     std_logic_vector( 31 downto 0 );
+    ce:                 in      std_logic;
+    wr:                 in      std_logic;
+    dataMask:           in      std_logic_vector( 3 downto 0 );
+    ready:              out     std_logic;
     
     --ch0 - CPU, lowest priority: 0
     
-    ch0A:           in  std_logic_vector( 23 downto 0 );
-    ch0Din:         in  std_logic_vector( 31 downto 0 );
-    ch0Dout:        out std_logic_vector( 31 downto 0 );
+    ch0A:               in      std_logic_vector( 23 downto 0 );
+    ch0Din:             in      std_logic_vector( 31 downto 0 );
+    ch0Dout:            out     std_logic_vector( 31 downto 0 );
    
-    ch0Ce:          in  std_logic;
-    ch0Wr:          in  std_logic;
-    ch0DataMask:    in  std_logic_vector( 3 downto 0 );
-    ch0InstrCycle:  in  std_logic;
+    ch0Ce:              in      std_logic;
+    ch0Wr:              in      std_logic;
+    ch0DataMask:        in      std_logic_vector( 3 downto 0 );
+    ch0InstrCycle:      in      std_logic;
 
-    ch0Ready:       out std_logic; 
+    ch0Ready:           out     std_logic; 
     
     --ch1 - blitter, priority: 1
     
     --ch2 - audio, priority: 2
     
     --ch3 - gfx display, highest priority: 3
-
+    
+    ch3DmaRequest:      in      std_logic_vector( 1 downto 0 );
+    ch3DmaPointerReset: in      std_logic;
+    
+    ch3BufClk:          in      std_logic;
+    ch3BufDout:         out     std_logic_vector( 31 downto 0 );
+    ch3BufA:            in      std_logic_vector( 8 downto 0 );
 
     --sdram
-    sdramA:         out     std_logic_vector( 12 downto 0 );
-    sdramBA:        out     std_logic_vector( 1 downto 0 );
-    sdramD:         inout   std_logic_vector( 31 downto 0 );
-    sdramCKE:       out     std_logic;
-    sdramCLK:       out     std_logic;
-    sdramDQM:       out     std_logic_vector( 3 downto 0 );
-    sdramCAS:       out     std_logic;
-    sdramRAS:       out     std_logic;
-    sdramWE:        out     std_logic;
-    sdramCS:        out     std_logic  
+    sdramA:             out     std_logic_vector( 12 downto 0 );
+    sdramBA:            out     std_logic_vector( 1 downto 0 );
+    sdramD:             inout   std_logic_vector( 31 downto 0 );
+    sdramCKE:           out     std_logic;
+    sdramCLK:           out     std_logic;
+    sdramDQM:           out     std_logic_vector( 3 downto 0 );
+    sdramCAS:           out     std_logic;
+    sdramRAS:           out     std_logic;
+    sdramWE:            out     std_logic;
+    sdramCS:            out     std_logic  
 
 );
 end sdramDMA;
@@ -146,7 +152,7 @@ begin
                      --0x04 r- component version                       
                      when x"01" =>
                      
-                        dout  <= x"20240813";
+                        dout  <= x"20240814";
                         
                         ready <= '1';
 
