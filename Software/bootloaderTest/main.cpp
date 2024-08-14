@@ -88,7 +88,7 @@ int main()
    print( (char*) "      _.|  T   |_   ( (  \n" );   
    print( (char*) "   .-- ((---- ((-------. \n" );
    print( (char*) "   |  RISC-V           | \n" );
-   print( (char*) "   |  tangerineSOC     | \n" );
+   print( (char*) "   |  tangerine A7_200 | \n" );
    print( (char*) "   |                   | \n" );
    print( (char*) "   |  Bootloader test  | \n" );
    print( (char*) "   `-------------------` \n" );

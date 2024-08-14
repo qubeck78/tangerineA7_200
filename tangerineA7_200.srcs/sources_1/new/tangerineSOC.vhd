@@ -201,6 +201,63 @@ component UART
     );
 end component; 
 
+--SDRAM controller and DMA
+
+component sdramDMA is
+port(
+    
+    --reset, clocks
+    reset:          in      std_logic;
+    
+    cpuClock:       in      std_logic;
+    sdramClock:     in      std_logic;
+    sdramClockPs:   in      std_logic;
+
+
+   --bus interface ( registers )
+
+    a:              in      std_logic_vector( 15 downto 0 );
+    din:            in      std_logic_vector( 31 downto 0 );
+    dout:           out     std_logic_vector( 31 downto 0 );
+    ce:             in      std_logic;
+    wr:             in      std_logic;
+    dataMask:       in      std_logic_vector( 3 downto 0 );
+    ready:          out     std_logic;
+    
+    --ch0 - CPU, lowest priority: 0
+    
+    ch0A:           in  std_logic_vector( 23 downto 0 );
+    ch0Din:         in  std_logic_vector( 31 downto 0 );
+    ch0Dout:        out std_logic_vector( 31 downto 0 );
+   
+    ch0Ce:          in  std_logic;
+    ch0Wr:          in  std_logic;
+    ch0DataMask:    in  std_logic_vector( 3 downto 0 );
+    ch0InstrCycle:  in  std_logic;
+
+    ch0Ready:       out std_logic; 
+    
+    --ch1 - blitter, priority: 1
+    
+    --ch2 - audio, priority: 2
+    
+    --ch3 - gfx display, highest priority: 3
+
+
+    --sdram
+    sdramA:         out     std_logic_vector( 12 downto 0 );
+    sdramBA:        out     std_logic_vector( 1 downto 0 );
+    sdramD:         inout   std_logic_vector( 31 downto 0 );
+    sdramCKE:       out     std_logic;
+    sdramCLK:       out     std_logic;
+    sdramDQM:       out     std_logic_vector( 3 downto 0 );
+    sdramCAS:       out     std_logic;
+    sdramRAS:       out     std_logic;
+    sdramWE:        out     std_logic;
+    sdramCS:        out     std_logic  
+
+);
+end component;
 
 
 --signals
@@ -306,15 +363,30 @@ signal   uartReady:           std_logic;
 signal   uartTxd:             std_logic;
 signal   uartRxd:             std_logic; 
 
- 
+-- sdram DMA signals
+
+--registers
+
+signal  sdramDmaRegsCE:         std_logic;
+signal  sdramDmaRegsReady:      std_logic;
+signal  sdramDmaRegsDoutForCPU: std_logic_vector( 31 downto 0 );
+
+--ch0 CPU
+
+signal sdramDMACE:              std_logic;
+signal sdramDMADoutForCPU:      std_logic_vector( 31 downto 0 );
+signal sdramDMAReady:           std_logic;
+
 
 begin
 
+-- assign clocks
 
 fpgaCpuMemoryClock  <= not cpuClock;
 pgClock             <= pixelClock;
 registersClock      <= chipsetClock;
 uartClock           <= chipsetClock;
+tickTimerClock      <= cpuClock;
 
 -- fill unused ports, signals
 
@@ -505,11 +577,11 @@ end process;
 
 
 -- chip selects
-    systemRAMCE       <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"000" else '0';
+    systemRAMCE     <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"000" else '0';
 
---    dmaMemoryCE       <= '1' when ( cpuMemValid = '1'  ) and cpuAOutFull( 31 downto 24 ) = x"20" else '0';
+    sdramDMACE      <= '1' when ( cpuMemValid = '1'  ) and cpuAOutFull( 31 downto 28 ) = x"2" else '0';
          
-    registersCE       <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f00" else '0';
+    registersCE     <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f00" else '0';
 
 --    fpAluCE           <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f01" else '0';
    
@@ -525,32 +597,35 @@ end process;
 
 --    flashSpiCE        <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f07" else '0';
     
-
+    sdramDmaRegsCE      <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f08" else '0';
+    
 -- bus slaves ready signals mux
    cpuMemReady       <= systemRamReady when systemRAMCE = '1'
                         else uartReady when uartCE = '1' 
 --                        else spiReady when spiCE = '1' 
 --                        else usbHostReady when usbHostCE = '1' 
                         else '1' when registersCE = '1' 
---                        else cpuDmaReady when dmaMemoryCE = '1' 
+                        else sdramDMAReady when sdramDMACE = '1' 
 --                        else blitterReady when blitterCE = '1' 
 --                        else fpAluReady when fpAluCE = '1' 
 --                        else i2sReady when i2sCE = '1' 
---                        else flashSpiReady when flashSpiCE = '1' 
+--                        else flashSpiReady when flashSpiCE = '1'
+                        else sdramDmaRegsReady when sdramDmaRegsCE = '1'  
                         else '1';
 
 
 -- bus slaves data outputs mux
    cpuDin            <= systemRamDoutForCPU                       when cpuAOutFull( 31 downto 20 ) = x"000" else 
+                        registersDoutForCPU                       when cpuAOutFull( 31 downto 20 ) = x"f00" else
+                        sdramDMADoutForCPU                        when cpuAOutFull( 31 downto 28 ) = x"2"  else
+--                        fpAluDoutForCPU                           when cpuAOutFull( 31 downto 20 ) = x"f01" else
+--                        blitterDoutForCPU                         when cpuAOutFull( 31 downto 20 ) = x"f02" else
+--                        usbHostDoutForCPU                         when cpuAOutFull( 31 downto 20 ) = x"f03" else 
                         uartDoutForCPU                            when cpuAOutFull( 31 downto 20 ) = x"f04" else
 --                        spiDoutForCPU                             when cpuAOutFull( 31 downto 20 ) = x"f05" else
---                        usbHostDoutForCPU                         when cpuAOutFull( 31 downto 20 ) = x"f03" else 
-                        registersDoutForCPU                       when cpuAOutFull( 31 downto 20 ) = x"f00" else
---                        dmaDoutForCPU                             when cpuAOutFull( 31 downto 24 ) = x"20"  else
---                        blitterDoutForCPU                         when cpuAOutFull( 31 downto 20 ) = x"f02" else
---                        fpAluDoutForCPU                           when cpuAOutFull( 31 downto 20 ) = x"f01" else
 --                        i2sDoutForCPU                             when cpuAOutFull( 31 downto 20 ) = x"f06" else 
---                        flashSpiDoutForCPU                        when cpuAOutFull( 31 downto 20 ) = x"f07" else                        
+--                        flashSpiDoutForCPU                        when cpuAOutFull( 31 downto 20 ) = x"f07" else  
+                        sdramDmaRegsDoutForCPU                      when cpuAOutFull( 31 downto 20 ) = x"f08" else                        
                         x"00000000";
 
                      
@@ -764,6 +839,104 @@ port map(
   uartRXD  => uartRXD
   
 );  
-  
+
+
+-- place sdram DMA controller
+
+sdramDMAInst:sdramDMA
+port map(
+    
+    --reset, clocks
+    reset           => reset,
+    
+    cpuClock        => cpuClock,
+    sdramClock      => chipsetClock,
+    sdramClockPs    => chipsetClockPs,
+
+
+   --bus interface ( registers )
+
+    a               => cpuAOut( 15 downto 0 ),
+    din             => cpuDOut,
+    dout            => sdramDmaRegsDoutForCPU,
+    ce              => sdramDmaRegsCE,
+    wr              => cpuWr,
+    dataMask        => cpuDataMask,
+    ready           => sdramDmaRegsReady,
+    
+    --ch0 - CPU, lowest priority: 0
+    
+    ch0A            => cpuAOut( 23 downto 0 ),
+    ch0Din          => cpuDOut,
+    ch0Dout         => sdramDMADoutForCPU,
+   
+    ch0Ce           => sdramDMACE,
+    ch0Wr           => cpuWr,
+    ch0DataMask     => cpuDataMask,
+    ch0InstrCycle   => cpuMemInstr,
+
+    ch0Ready        => sdramDMAReady,
+    
+    --ch1 - blitter, priority: 1
+    
+    --ch2 - audio, priority: 2
+    
+    --ch3 - gfx display, highest priority: 3
+
+
+    --sdram
+    sdramA          => sdramA,
+    sdramBA         => sdramBA,
+    sdramD          => sdramD,
+    sdramCKE        => sdramCKE,
+    sdramCLK        => sdramCLK,
+    sdramDQM        => sdramDQM,
+    sdramCAS        => sdramCAS,
+    sdramRAS        => sdramRAS,
+    sdramWE         => sdramWE,
+    sdramCS         => sdramCS  
+);
+
+
+-- tick timer process
+tickTimer: process( all )
+begin
+
+   if rising_edge( tickTimerClock ) then
+   
+      if reset = '1' then
+         
+         tickTimerPrescalerCounter  <= ( others => '0' );
+         tickTimerCounter           <= ( others => '0' );
+         
+      
+      else
+      
+         if tickTimerPrescalerCounter /= x"00000000" then
+            
+            tickTimerPrescalerCounter <= tickTimerPrescalerCounter - 1;
+            
+         else
+         
+            tickTimerPrescalerCounter <= conv_std_logic_vector( tickTimerPrescalerValue, tickTimerPrescalerCounter'length );
+            
+            tickTimerCounter <= tickTimerCounter + 1;
+         
+         end if;
+      
+         if tickTimerReset = '1' then
+
+            tickTimerPrescalerCounter  <= ( others => '0' );
+            tickTimerCounter           <= ( others => '0' );
+         
+         end if;
+         
+      
+      end if;  --reset = '1'
+   
+   
+   end if; --rising_edge( tickTimerClock )
+
+end process;   
 
 end Behavioral;

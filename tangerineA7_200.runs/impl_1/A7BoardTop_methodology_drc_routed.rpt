@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Tue Aug  6 13:10:38 2024
+| Date         : Wed Aug 14 12:28:30 2024
 | Host         : Desktop-qUBECk running 64-bit major release  (build 9200)
 | Command      : report_methodology -file A7BoardTop_methodology_drc_routed.rpt -pb A7BoardTop_methodology_drc_routed.pb -rpx A7BoardTop_methodology_drc_routed.rpx
 | Design       : A7BoardTop
@@ -23,12 +23,14 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 4
-+----------+----------+-----------------+------------+
-| Rule     | Severity | Description     | Violations |
-+----------+----------+-----------------+------------+
-| SYNTH-10 | Warning  | Wide multiplier | 4          |
-+----------+----------+-----------------+------------+
+             Violations found: 6
++-----------+----------+--------------------------------+------------+
+| Rule      | Severity | Description                    | Violations |
++-----------+----------+--------------------------------+------------+
+| SYNTH-10  | Warning  | Wide multiplier                | 4          |
+| TIMING-20 | Warning  | Non-clocked latch              | 1          |
+| LATCH-1   | Advisory | Existing latches in the design | 1          |
++-----------+----------+--------------------------------+------------+
 
 2. REPORT DETAILS
 -----------------
@@ -50,6 +52,16 @@ Related violations: <none>
 SYNTH-10#4 Warning
 Wide multiplier  
 Detected multiplier at tangerineSOCInst/picorv32Inst/pcpi_mul/rd_reg__0 of size 18x16, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+TIMING-20#1 Warning
+Non-clocked latch  
+The latch tangerineSOCInst/sdramDMAInst/sdramCKE_reg cannot be properly analyzed as its control pin tangerineSOCInst/sdramDMAInst/sdramCKE_reg/G is not reached by a timing clock
+Related violations: <none>
+
+LATCH-1#1 Advisory
+Existing latches in the design  
+There are 1 latches found in the design. Inferred latches are often the result of HDL coding mistakes, such as incomplete if or case statements.
 Related violations: <none>
 
 

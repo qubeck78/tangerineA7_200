@@ -223,18 +223,7 @@ chipsetClockps      <= clk100ps;
 
 --drive unused pins
 
---sdram
 
-sdramA      <= ( others => '0' );
-sdramD      <= ( others => 'Z' );
-sdramBA     <= ( others => '0' );
-sdramCKE    <= '0';
-sdramCLK    <= '0';
-sdramDQM    <= ( others => '1' );
-sdramCAS    <= '1';
-sdramRAS    <= '1';
-sdramWE     <= '1';
-sdramCS     <= '1';
 
 
 --place pll
@@ -314,7 +303,19 @@ port map(
     --uart
     uartTX              => rs232Txd,
     uartRX              => rs232Rxd,
-    
+
+    --sdram
+    sdramA              => sdramA,
+    sdramBA             => sdramBA,
+    sdramD              => sdramD,
+    sdramCKE            => sdramCKE,
+    sdramCLK            => sdramCLK,
+    sdramDQM            => sdramDQM,
+    sdramCAS            => sdramCAS,
+    sdramRAS            => sdramRAS,
+    sdramWE             => sdramWE,
+    sdramCS             => sdramCS,
+        
     --buttons
     buttons             => buttons,
     
