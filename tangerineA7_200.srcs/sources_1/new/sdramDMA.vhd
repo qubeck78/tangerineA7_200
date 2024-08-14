@@ -51,7 +51,7 @@ port(
     
     --ch0 - CPU, lowest priority: 0
     
-    ch0A:           in  std_logic_vector( 20 downto 0 );
+    ch0A:           in  std_logic_vector( 23 downto 0 );
     ch0Din:         in  std_logic_vector( 31 downto 0 );
     ch0Dout:        out std_logic_vector( 31 downto 0 );
    
@@ -91,8 +91,8 @@ type regState_T is ( rsWaitForRegAccess, rsWaitForBusCycleEnd );
 signal regState:    regState_T;
 
 type sdcState_T is ( sdcIdle, sdcInit0, sdcInit1, sdcInit2, sdcInit3, sdcInit4, sdcInit5, sdcInit6,
-	sdcCpuRead0, sdcCpuRead1, sdcCpuRead2, sdcCpuRead3, sdcCpuRead4, sdcCpuRead5, sdcCpuRead6, sdcCpuRead7, sdcCpuRead8, 
-	sdcCpuWrite0, sdcCpuWrite1, sdcCpuWrite2, sdcCpuWrite3, sdcCpuWrite4, sdcCpuWrite5, sdcCpuWrite6, sdcCpuWrite7, sdcCpuWrite8,
+	sdcCh0Read0, sdcCh0Read1, sdcCh0Read2, sdcCh0Read3, sdcCh0Read4, sdcCh0Read5, sdcCh0Read6, sdcCh0Read7, sdcCh0Read8, 
+	sdcCh0Write0, sdcCh0Write1, sdcCh0Write2, sdcCh0Write3, sdcCh0Write4, sdcCh0Write5, sdcCh0Write6, sdcCh0Write7, sdcCh0Write8,
 	sdcSubRefresh0, sdcSubRefresh1, sdcSubRefresh2, sdcSubRefresh3, sdcSubRefresh4, sdcSubRefresh5, sdcSubRefresh6
 	);
 	
@@ -146,7 +146,7 @@ begin
                      --0x04 r- component version                       
                      when x"01" =>
                      
-                        dout  <= x"20240808";
+                        dout  <= x"20240813";
                         
                         ready <= '1';
 
@@ -249,7 +249,8 @@ begin
         sdramWe         <= '1';
 		
         ch0Ready        <= '0';
-    
+        ch0Dout         <= ( others => '0' );
+        
     else
         
         if rising_edge( sdramClock ) then
@@ -282,29 +283,273 @@ begin
 
                         --check ch0 access
 					
---					if cpuSdramCE = '1' then
+                        if ch0Ce = '1' then
 
---						cpuSdramReady	<= '0';
+                            ch0Ready	<= '0';
 
---						if cpuWr = '1' then
+                            --
 
---							--write
-							
---							sdcState		<= sdcCpuWrite0;
---						else
+
+                            if ch0Wr = '1' then
+
+                                --write
+
+                                sdcState    <= sdcCh0Write0;
+
+                            else --ch0Wr = '0'
+ 
+                                --read
 						
---							--read
-														
---							sdcState		<= sdcCpuRead0;
-							
---						end if;
-					
---					end if; 
-			
-				end if; -- refreshRequest = '1' or '0'
+                                sdcState    <= sdcCh0Read0;
+                            
+                            end if; --ch0Wr = '1' or '0'
+                    
+                        end if; --ch0Ce = '1'
+                    
+                    end if; -- refreshRequest = '1' or '0'
 
-            
-            
+
+                when sdcCh0Read0 =>
+                
+
+                    --bank/row activation
+    
+                    sdramDQM    <= ( others => '0' );
+    
+                    --sdram data bus in
+                    sdramD      <= ( others => 'Z' );
+    
+                    --row select, read, auto precharge
+                    
+                    --row / bank address ( cpu adr max downto 8 )
+    
+                    --todo, adjust for 32bit sdram
+                    sdramBA     <= ch0A( 23 downto 22 );
+                    sdramA      <= ch0A( 21 downto 9 );
+    
+                    sdramCS     <= '0';
+                    sdramRAS    <= '0';
+                    sdramCAS    <= '1';
+                    sdramWE     <= '1';
+    
+                    sdcState <= sdcCh0Read1;        
+
+                when sdcCh0Read1 =>
+                
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+
+                    sdcState <= sdcCh0Read2;        
+
+                when sdcCh0Read2 =>
+                
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+
+                    sdcState <= sdcCh0Read3;        
+
+                when sdcCh0Read3 =>
+
+                    --column select, read
+
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS    <= '0';
+                    sdramWE     <= '1';
+
+                    --auto precharge
+
+                    sdramA( 12 downto 9 )   <= "0010";
+
+                    --column address ( both cpu and sdram addresses are in longwords )
+                    --a0-a8 - column address (word)
+                    --cpu addresses in longwords
+
+                    sdramA( 8 downto 0 )    <= ch0A( 8 downto 0 );
+                    
+                    sdcState                <= sdcCh0Read4;
+				
+                when sdcCh0Read4 =>
+                
+                    -- cas latency 1
+                
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS    <= '1';
+                    sdramWE     <= '1';
+
+                    sdcState    <= sdcCh0Read5;
+
+               when sdcCh0Read5 =>
+                
+                    -- cas latency 2
+                
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS    <= '1';
+                    sdramWE     <= '1';
+
+                    sdcState    <= sdcCh0Read6;
+
+                when sdcCh0Read6 =>
+
+                    ch0Dout     <= sdramD;
+                    
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS    <= '1';
+                    sdramWE     <= '1';
+
+                    --notify CPU, data is ready
+                    ch0Ready    <= '1';
+                    
+                    sdcState    <= sdcCh0Read7;
+
+                when sdcCh0Read7 =>
+                
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS    <= '1';
+                    sdramWE     <= '1';
+
+                    if ch0CE = '0' then
+                    
+                        ch0Ready    <= '0';
+                        sdcState    <= sdcIdle;
+                        
+                    end if;
+
+                when sdcCh0Write0 =>
+                
+--    ch0A:           in  std_logic_vector( 23 downto 0 );
+--    ch0Din:         in  std_logic_vector( 31 downto 0 );
+--    ch0Dout:        out std_logic_vector( 31 downto 0 );
+   
+--    ch0Ce:          in  std_logic;
+--    ch0Wr:          in  std_logic;
+--    ch0DataMask:    in  std_logic_vector( 3 downto 0 );
+--    ch0InstrCycle:  in  std_logic;
+
+--    ch0Ready:       out std_logic; 
+
+                    --bank/row activation
+    
+                    sdramDQM    <= ( others => '0' );
+    
+                    --sdram data bus in
+ --                   sdramD      <= ( others => 'Z' );
+                    
+                    --put data on bus
+                    sdramD      <= ch0Din;
+                     
+                    --row select, read, auto precharge
+                    
+                    --row / bank address ( cpu adr max downto 8 )
+    
+                  
+                    sdramBA     <= ch0A( 23 downto 22 );
+                    sdramA      <= ch0A( 21 downto 9 );
+    
+                    sdramCS     <= '0';
+                    sdramRAS    <= '0';
+                    sdramCAS    <= '1';
+                    sdramWE     <= '1';
+    
+                    sdcState <= sdcCh0Write1;        
+
+                when sdcCh0Write1 =>
+                
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+
+                    sdcState <= sdcCh0Write2;        
+
+                when sdcCh0Write2 =>
+                
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+
+                    sdcState <= sdcCh0Write3;        
+
+                when sdcCh0Write3 =>
+                
+                    --write
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '0';
+                    sdramWE 	<= '0';
+
+                    --auto precharge
+
+                    sdramA( 12 downto 9 )   <= "0010";
+
+                    --column address ( both cpu and sdram addresses are in longwords )
+                    --a0-a8 - column address (word)
+                    --cpu addresses in longwords
+
+                    sdramA( 8 downto 0 )    <= ch0A( 8 downto 0 );
+                    
+
+                    sdramDQM( 0 ) <= not ch0DataMask( 0 );
+                    sdramDQM( 1 ) <= not ch0DataMask( 1 );
+                    sdramDQM( 2 ) <= not ch0DataMask( 2 );
+                    sdramDQM( 3 ) <= not ch0DataMask( 3 );
+                    
+                    sdcState <= sdcCh0Write4;        
+                    
+                when sdcCh0Write4 =>
+
+                    --notify cpu that data has been written
+                    ch0Ready    <= '1';
+                    
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+
+                    sdcState <= sdcCh0Write5;        
+
+                when sdcCh0Write5 =>
+
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+
+                    sdcState <= sdcCh0Write6;        
+
+                when sdcCh0Write6 =>
+
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+
+                    if ch0CE = '0' then
+                        
+                        sdcState    <= sdcIdle;
+                        
+                    end if;
+                    
                 when sdcInit0 =>
 
                     if resetCounter /= x"0000" then

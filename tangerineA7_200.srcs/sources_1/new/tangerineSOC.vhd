@@ -226,7 +226,7 @@ port(
     
     --ch0 - CPU, lowest priority: 0
     
-    ch0A:           in  std_logic_vector( 20 downto 0 );
+    ch0A:           in  std_logic_vector( 23 downto 0 );
     ch0Din:         in  std_logic_vector( 31 downto 0 );
     ch0Dout:        out std_logic_vector( 31 downto 0 );
    
@@ -866,7 +866,7 @@ port map(
     
     --ch0 - CPU, lowest priority: 0
     
-    ch0A            => cpuAOut( 20 downto 0 ),
+    ch0A            => cpuAOut( 23 downto 0 ),
     ch0Din          => cpuDOut,
     ch0Dout         => sdramDMADoutForCPU,
    

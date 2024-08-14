@@ -47,16 +47,19 @@ int print( char *buf )
       {
          screenIndex -= screenIndex % 80;
          screenIndex += 80;
-         if( screenIndex >= 2400 )
-         {
-            screenIndex = 0;
-         }  
       }
       else
       {
          displayRam[ screenIndex++ ] = TEXTATTR | c;
       }
+
+      if( screenIndex >= 2400 )
+      {
+         screenIndex = 0;
+      }  
+
    }
+
 
    return 0;
 }
@@ -124,6 +127,105 @@ void delayMs( unsigned long delay )
     
 }
  
+
+ulong testSDRAM()
+{
+   char            buf[256];
+
+   ulong           i;
+   ulong          *sdram;
+   ulong           length;
+   ulong           rvl;
+   ulong           cvl;
+
+   sdram = ( ulong * ) 0x20000000;
+
+
+   length = 32;
+
+   print( ( char* ) "Fill 0x0: " );
+
+   for( i = 0 ; i < length; i++ )
+   {
+      sdram[i] = 0;
+   }
+
+   for( i = 0 ; i < length; i++ )
+   {
+      rvl = sdram[i];
+
+      if ( rvl != 0 )
+      {
+         itoaHex8Digits( i, buf );
+         print( buf );
+         print( (char*) "V" );
+         itoaHex8Digits( rvl, buf );
+         print( buf );
+         print( (char*) " " );      
+      }
+   }
+
+   print( ( char* ) "\nFill 0xffffffff: " );
+
+   for( i = 0 ; i < length; i++ )
+   {
+      sdram[i] = 0xffffffff;
+   }
+
+   for( i = 0 ; i < length; i++ )
+   {
+      rvl = sdram[i];
+
+      if ( rvl != 0xffffffff )
+      {
+         itoaHex8Digits( i, buf );
+         print( buf );
+         print( (char*) "V" );
+         itoaHex8Digits( rvl, buf );
+         print( buf );
+         print( (char*) " " );      
+      }
+   }
+
+
+   print( ( char* ) "\nFill random: " );
+
+   random_state = 0x12ad91;
+
+   for( i = 0 ; i < length; i++ )
+   {
+      sdram[i] = i;  //randomNumber();
+   }
+
+
+   random_state = 0x12ad91;
+
+   for( i = 0 ; i < length; i++ )
+   {
+      rvl = sdram[i];
+      cvl = i; //randomNumber();
+
+      if ( rvl != cvl )
+      {
+         itoaHex8Digits( i, buf );
+         print( buf );
+         print( (char*) "V" );
+         itoaHex8Digits( rvl, buf );
+         print( buf );
+         print( (char*) "C" );
+         itoaHex8Digits( cvl, buf );
+         print( buf );
+         print( (char*) " " );      
+      }
+   }
+
+   print( (char*)"done\n" );
+
+
+   return 0;
+}
+
+
 int main()
 {
    int            i;
@@ -161,6 +263,7 @@ int main()
 
    print( (char*)"." );
 
+
    itoaHex8Digits( sdrdma->version, buf );
    
    print( buf );
@@ -179,21 +282,25 @@ int main()
    }
 
 
+//   testSDRAM();
+   
    do
    {
       for( i = 0; i < 80; i++ )
       {
-         screenIndex = 80 * 10 + i;
+
+
+         screenIndex = 80 * 29 + i;
          
          print( (char*)"*" );
 
          if( i == 0 )
          {
-            screenIndex = 80 * 10 + 79;            
+            screenIndex = 80 * 29 + 79;            
          }
          else
          {
-            screenIndex = 80 * 10 + i - 1;                        
+            screenIndex = 80 * 29 + i - 1;                        
          }
 
          print( (char*)" " );
