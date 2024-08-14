@@ -388,8 +388,8 @@ begin
                     --nop
                     sdramCS     <= '0';
                     sdramRAS    <= '1';
-                    sdramCAS    <= '1';
-                    sdramWE     <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
 
                     sdcState    <= sdcCh0Read5;
 
@@ -550,6 +550,16 @@ begin
                     sdramCAS	<= '1';
                     sdramWE 	<= '1';
 
+                    sdcState <= sdcCh0Write7;        
+
+                when sdcCh0Write7 =>
+
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+
                     if ch0CE = '0' then
                         
                         sdcState    <= sdcIdle;
@@ -620,7 +630,7 @@ begin
                     --burst lenght = 1
                     --addressing mode = sequential
                     --cas latency = 2
-                    --burst read and burst write
+                    
     
                     sdramA      <=  "000" & '0' & "00" & "010" & '0' & "000";
                     sdcState    <= sdcInit5;
