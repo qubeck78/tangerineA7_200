@@ -244,6 +244,7 @@ int main()
    
    screenIndex = 0;  
    
+
    for( i = 0; i < 2400 ; i++ )
    {
      displayRam[i] = TEXTATTR;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="clk_wiz_0_synth_1" LaunchPart="xc7a200tfbg676-1" LaunchTime="1723659333">
+<GenRun Id="clk_wiz_0_synth_1" LaunchPart="xc7a200tfbg676-1" LaunchTime="1723670354">
   <File Type="PA-TCL" Name="clk_wiz_0.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="clk_wiz_0_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="clk_wiz_0_reports.tcl"/>
@@ -50,7 +50,9 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023"/>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023">
+      <Desc>Vivado Synthesis Defaults</Desc>
+    </StratHandle>
     <Step Id="synth_design"/>
   </Strategy>
 </GenRun>
