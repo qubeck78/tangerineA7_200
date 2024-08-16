@@ -2,7 +2,7 @@
 -- Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
--- Date        : Wed Aug 14 12:24:37 2024
+-- Date        : Wed Aug 14 23:19:58 2024
 -- Host        : Desktop-qUBECk running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_sim_netlist.vhdl
@@ -144,7 +144,7 @@ mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
       CLKOUT5_USE_FINE_PS => false,
       CLKOUT6_DIVIDE => 10,
       CLKOUT6_DUTY_CYCLE => 0.500000,
-      CLKOUT6_PHASE => 193.500000,
+      CLKOUT6_PHASE => 207.000000,
       CLKOUT6_USE_FINE_PS => false,
       COMPENSATION => "BUF_IN",
       DIVCLK_DIVIDE => 1,

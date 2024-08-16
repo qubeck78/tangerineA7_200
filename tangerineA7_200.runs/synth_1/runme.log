@@ -12,7 +12,7 @@
     ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source A7BoardTop.tcl -notrace
-create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 533.789 ; gain = 183.293
+create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 534.289 ; gain = 182.363
 Command: read_checkpoint -auto_incremental -incremental C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/utils_1/imports/synth_1/A7BoardTop.dcp
 INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/utils_1/imports/synth_1/A7BoardTop.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
@@ -25,13 +25,13 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 6184
+INFO: [Synth 8-7075] Helper process launched with PID 12856
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1437.520 ; gain = 439.969
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1437.355 ; gain = 439.199
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'A7BoardTop' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/A7BoardTop.vhd:72]
-INFO: [Synth 8-3491] module 'clk_wiz_0' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-22392-Desktop-qUBECk/realtime/clk_wiz_0_stub.vhdl:6' bound to instance 'clk_wiz_0Inst' of component 'clk_wiz_0' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/A7BoardTop.vhd:230]
-INFO: [Synth 8-638] synthesizing module 'clk_wiz_0' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-22392-Desktop-qUBECk/realtime/clk_wiz_0_stub.vhdl:22]
+INFO: [Synth 8-3491] module 'clk_wiz_0' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17968-Desktop-qUBECk/realtime/clk_wiz_0_stub.vhdl:6' bound to instance 'clk_wiz_0Inst' of component 'clk_wiz_0' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/A7BoardTop.vhd:230]
+INFO: [Synth 8-638] synthesizing module 'clk_wiz_0' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17968-Desktop-qUBECk/realtime/clk_wiz_0_stub.vhdl:22]
 INFO: [Synth 8-113] binding component instance 'OBUFDS_blue' to cell 'OBUFDS' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/A7BoardTop.vhd:252]
 INFO: [Synth 8-113] binding component instance 'OBUFDS_green' to cell 'OBUFDS' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/A7BoardTop.vhd:253]
 INFO: [Synth 8-113] binding component instance 'OBUFDS_red' to cell 'OBUFDS' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/A7BoardTop.vhd:254]
@@ -62,17 +62,20 @@ INFO: [Synth 8-113] binding component instance 'ODDR2_clock' to cell 'ODDR2' [C:
 INFO: [Synth 8-256] done synthesizing module 'dvid' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/dvid.vhd:31]
 INFO: [Synth 8-3491] module 'tangerineSOC' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:34' bound to instance 'tangerineSOCInst' of component 'tangerineSOC' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/A7BoardTop.vhd:282]
 INFO: [Synth 8-638] synthesizing module 'tangerineSOC' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:79]
-INFO: [Synth 8-3491] module 'fontPROM' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-22392-Desktop-qUBECk/realtime/fontPROM_stub.vhdl:6' bound to instance 'fontPromInst' of component 'fontPROM' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:399]
-INFO: [Synth 8-638] synthesizing module 'fontPROM' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-22392-Desktop-qUBECk/realtime/fontPROM_stub.vhdl:15]
-INFO: [Synth 8-3491] module 'systemRam' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-22392-Desktop-qUBECk/realtime/systemRam_stub.vhdl:6' bound to instance 'systemRamInst' of component 'systemRam' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:408]
-INFO: [Synth 8-638] synthesizing module 'systemRam' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-22392-Desktop-qUBECk/realtime/systemRam_stub.vhdl:22]
-INFO: [Synth 8-3491] module 'pixelGenTxt' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/pixelGenTxt.vhd:9' bound to instance 'pixelGenInst' of component 'pixelGenTxt' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:434]
+INFO: [Synth 8-3491] module 'fontPROM' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17968-Desktop-qUBECk/realtime/fontPROM_stub.vhdl:6' bound to instance 'fontPromInst' of component 'fontPROM' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:452]
+INFO: [Synth 8-638] synthesizing module 'fontPROM' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17968-Desktop-qUBECk/realtime/fontPROM_stub.vhdl:15]
+INFO: [Synth 8-3491] module 'systemRam' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17968-Desktop-qUBECk/realtime/systemRam_stub.vhdl:6' bound to instance 'systemRamInst' of component 'systemRam' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:461]
+INFO: [Synth 8-638] synthesizing module 'systemRam' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17968-Desktop-qUBECk/realtime/systemRam_stub.vhdl:22]
+INFO: [Synth 8-3491] module 'pixelGenTxt' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/pixelGenTxt.vhd:9' bound to instance 'pixelGenInst' of component 'pixelGenTxt' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:487]
 INFO: [Synth 8-638] synthesizing module 'pixelGenTxt' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/pixelGenTxt.vhd:58]
 INFO: [Synth 8-226] default block is never used [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/pixelGenTxt.vhd:94]
 INFO: [Synth 8-226] default block is never used [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/pixelGenTxt.vhd:149]
 INFO: [Synth 8-256] done synthesizing module 'pixelGenTxt' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/pixelGenTxt.vhd:58]
-INFO: [Synth 8-226] default block is never used [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:484]
-INFO: [Synth 8-3491] module 'picorv32' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/picorv32.v:62' bound to instance 'picorv32Inst' of component 'picorv32' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:633]
+INFO: [Synth 8-3491] module 'pixelGenGfx' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/pixelGenGfx.vhd:7' bound to instance 'pixelGenGfxInst' of component 'pixelGenGfx' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:521]
+INFO: [Synth 8-638] synthesizing module 'pixelGenGfx' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/pixelGenGfx.vhd:43]
+INFO: [Synth 8-256] done synthesizing module 'pixelGenGfx' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/pixelGenGfx.vhd:43]
+INFO: [Synth 8-226] default block is never used [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:572]
+INFO: [Synth 8-3491] module 'picorv32' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/picorv32.v:62' bound to instance 'picorv32Inst' of component 'picorv32' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:721]
 INFO: [Synth 8-6157] synthesizing module 'picorv32' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/picorv32.v:62]
 INFO: [Synth 8-6157] synthesizing module 'picorv32_pcpi_fast_mul' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/picorv32.v:2313]
 INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/picorv32.v:2350]
@@ -91,8 +94,8 @@ WARNING: [Synth 8-151] case item 1'b0 is unreachable [C:/Users/qubec/Documents/D
 WARNING: [Synth 8-151] case item 1'b0 is unreachable [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/picorv32.v:1578]
 WARNING: [Synth 8-151] case item 1'b0 is unreachable [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/picorv32.v:1578]
 INFO: [Synth 8-6155] done synthesizing module 'picorv32' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/picorv32.v:62]
-INFO: [Synth 8-226] default block is never used [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:713]
-INFO: [Synth 8-3491] module 'UART' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/uart.vhd:7' bound to instance 'UARTInst' of component 'UART' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:825]
+INFO: [Synth 8-226] default block is never used [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:801]
+INFO: [Synth 8-3491] module 'UART' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/uart.vhd:7' bound to instance 'UARTInst' of component 'UART' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:913]
 INFO: [Synth 8-638] synthesizing module 'UART' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/uart.vhd:39]
 INFO: [Synth 8-226] default block is never used [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/uart.vhd:153]
 	Parameter inputWidth bound to: 1 - type: integer 
@@ -100,13 +103,15 @@ INFO: [Synth 8-3491] module 'inputSync' declared at 'C:/Users/qubec/Documents/De
 INFO: [Synth 8-638] synthesizing module 'inputSync' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/InputSync.vhd:26]
 	Parameter inputWidth bound to: 1 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'inputSync' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/InputSync.vhd:26]
-INFO: [Synth 8-3491] module 'uartFiFo' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-22392-Desktop-qUBECk/realtime/uartFiFo_stub.vhdl:6' bound to instance 'rxFiFoInst' of component 'uartFiFo' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/uart.vhd:242]
-INFO: [Synth 8-638] synthesizing module 'uartFiFo' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-22392-Desktop-qUBECk/realtime/uartFiFo_stub.vhdl:22]
+INFO: [Synth 8-3491] module 'uartFiFo' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17968-Desktop-qUBECk/realtime/uartFiFo_stub.vhdl:6' bound to instance 'rxFiFoInst' of component 'uartFiFo' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/uart.vhd:242]
+INFO: [Synth 8-638] synthesizing module 'uartFiFo' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17968-Desktop-qUBECk/realtime/uartFiFo_stub.vhdl:22]
 INFO: [Synth 8-256] done synthesizing module 'UART' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/uart.vhd:39]
-INFO: [Synth 8-3491] module 'sdramDMA' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/sdramDMA.vhd:31' bound to instance 'sdramDMAInst' of component 'sdramDMA' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:846]
-INFO: [Synth 8-638] synthesizing module 'sdramDMA' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/sdramDMA.vhd:87]
-INFO: [Synth 8-226] default block is never used [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/sdramDMA.vhd:127]
-INFO: [Synth 8-256] done synthesizing module 'sdramDMA' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/sdramDMA.vhd:87]
+INFO: [Synth 8-3491] module 'sdramDMA' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/sdramDMA.vhd:31' bound to instance 'sdramDMAInst' of component 'sdramDMA' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:934]
+INFO: [Synth 8-638] synthesizing module 'sdramDMA' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/sdramDMA.vhd:93]
+INFO: [Synth 8-226] default block is never used [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/sdramDMA.vhd:167]
+INFO: [Synth 8-3491] module 'gfxBufRam' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17968-Desktop-qUBECk/realtime/gfxBufRam_stub.vhdl:6' bound to instance 'gfxBufRamInst' of component 'gfxBufRam' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/sdramDMA.vhd:980]
+INFO: [Synth 8-638] synthesizing module 'gfxBufRam' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17968-Desktop-qUBECk/realtime/gfxBufRam_stub.vhdl:22]
+INFO: [Synth 8-256] done synthesizing module 'sdramDMA' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/sdramDMA.vhd:93]
 INFO: [Synth 8-256] done synthesizing module 'tangerineSOC' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:79]
 INFO: [Synth 8-256] done synthesizing module 'A7BoardTop' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/A7BoardTop.vhd:72]
 WARNING: [Synth 8-6014] Unused sequential element pcpi_insn_valid_q_reg was removed.  [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/picorv32.v:2360]
@@ -158,11 +163,8 @@ WARNING: [Synth 8-6014] Unused sequential element timer_reg was removed.  [C:/Us
 WARNING: [Synth 8-6014] Unused sequential element current_pc_reg was removed.  [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/picorv32.v:1490]
 WARNING: [Synth 8-6014] Unused sequential element irq_pending_reg was removed.  [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/picorv32.v:1958]
 WARNING: [Synth 8-6014] Unused sequential element trace_valid_reg was removed.  [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/picorv32.v:1447]
-WARNING: [Synth 8-6014] Unused sequential element frameTimerReset_reg was removed.  [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:711]
-WARNING: [Synth 8-3848] Net pggR in module/entity tangerineSOC does not have driver. [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:290]
-WARNING: [Synth 8-3848] Net pggG in module/entity tangerineSOC does not have driver. [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:291]
-WARNING: [Synth 8-3848] Net pggB in module/entity tangerineSOC does not have driver. [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:292]
-WARNING: [Synth 8-3848] Net frameTimerValue in module/entity tangerineSOC does not have driver. [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:354]
+WARNING: [Synth 8-6014] Unused sequential element frameTimerReset_reg was removed.  [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:799]
+WARNING: [Synth 8-3848] Net frameTimerValue in module/entity tangerineSOC does not have driver. [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:393]
 WARNING: [Synth 8-3848] Net sdCardCmd in module/entity A7BoardTop does not have driver. [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/A7BoardTop.vhd:54]
 WARNING: [Synth 8-3848] Net sdCardClk in module/entity A7BoardTop does not have driver. [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/A7BoardTop.vhd:55]
 WARNING: [Synth 8-7129] Port a[15] in module sdramDMA is either unconnected or has no load
@@ -181,31 +183,6 @@ WARNING: [Synth 8-7129] Port din[27] in module sdramDMA is either unconnected or
 WARNING: [Synth 8-7129] Port din[26] in module sdramDMA is either unconnected or has no load
 WARNING: [Synth 8-7129] Port din[25] in module sdramDMA is either unconnected or has no load
 WARNING: [Synth 8-7129] Port din[24] in module sdramDMA is either unconnected or has no load
-WARNING: [Synth 8-7129] Port din[23] in module sdramDMA is either unconnected or has no load
-WARNING: [Synth 8-7129] Port din[22] in module sdramDMA is either unconnected or has no load
-WARNING: [Synth 8-7129] Port din[21] in module sdramDMA is either unconnected or has no load
-WARNING: [Synth 8-7129] Port din[20] in module sdramDMA is either unconnected or has no load
-WARNING: [Synth 8-7129] Port din[19] in module sdramDMA is either unconnected or has no load
-WARNING: [Synth 8-7129] Port din[18] in module sdramDMA is either unconnected or has no load
-WARNING: [Synth 8-7129] Port din[17] in module sdramDMA is either unconnected or has no load
-WARNING: [Synth 8-7129] Port din[16] in module sdramDMA is either unconnected or has no load
-WARNING: [Synth 8-7129] Port din[15] in module sdramDMA is either unconnected or has no load
-WARNING: [Synth 8-7129] Port din[14] in module sdramDMA is either unconnected or has no load
-WARNING: [Synth 8-7129] Port din[13] in module sdramDMA is either unconnected or has no load
-WARNING: [Synth 8-7129] Port din[12] in module sdramDMA is either unconnected or has no load
-WARNING: [Synth 8-7129] Port din[11] in module sdramDMA is either unconnected or has no load
-WARNING: [Synth 8-7129] Port din[10] in module sdramDMA is either unconnected or has no load
-WARNING: [Synth 8-7129] Port din[9] in module sdramDMA is either unconnected or has no load
-WARNING: [Synth 8-7129] Port din[8] in module sdramDMA is either unconnected or has no load
-WARNING: [Synth 8-7129] Port din[7] in module sdramDMA is either unconnected or has no load
-WARNING: [Synth 8-7129] Port din[6] in module sdramDMA is either unconnected or has no load
-WARNING: [Synth 8-7129] Port din[5] in module sdramDMA is either unconnected or has no load
-WARNING: [Synth 8-7129] Port din[4] in module sdramDMA is either unconnected or has no load
-WARNING: [Synth 8-7129] Port din[3] in module sdramDMA is either unconnected or has no load
-WARNING: [Synth 8-7129] Port din[2] in module sdramDMA is either unconnected or has no load
-WARNING: [Synth 8-7129] Port din[1] in module sdramDMA is either unconnected or has no load
-WARNING: [Synth 8-7129] Port din[0] in module sdramDMA is either unconnected or has no load
-WARNING: [Synth 8-7129] Port wr in module sdramDMA is either unconnected or has no load
 WARNING: [Synth 8-7129] Port dataMask[3] in module sdramDMA is either unconnected or has no load
 WARNING: [Synth 8-7129] Port dataMask[2] in module sdramDMA is either unconnected or has no load
 WARNING: [Synth 8-7129] Port dataMask[1] in module sdramDMA is either unconnected or has no load
@@ -265,20 +242,45 @@ WARNING: [Synth 8-7129] Port pcpi_insn[7] in module picorv32_pcpi_div is either 
 WARNING: [Synth 8-7129] Port pcpi_insn[24] in module picorv32_pcpi_fast_mul is either unconnected or has no load
 WARNING: [Synth 8-7129] Port pcpi_insn[23] in module picorv32_pcpi_fast_mul is either unconnected or has no load
 WARNING: [Synth 8-7129] Port pcpi_insn[22] in module picorv32_pcpi_fast_mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pcpi_insn[21] in module picorv32_pcpi_fast_mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pcpi_insn[20] in module picorv32_pcpi_fast_mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pcpi_insn[19] in module picorv32_pcpi_fast_mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pcpi_insn[18] in module picorv32_pcpi_fast_mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pcpi_insn[17] in module picorv32_pcpi_fast_mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pcpi_insn[16] in module picorv32_pcpi_fast_mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pcpi_insn[15] in module picorv32_pcpi_fast_mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pcpi_insn[11] in module picorv32_pcpi_fast_mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pcpi_insn[10] in module picorv32_pcpi_fast_mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pcpi_insn[9] in module picorv32_pcpi_fast_mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pcpi_insn[8] in module picorv32_pcpi_fast_mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pcpi_insn[7] in module picorv32_pcpi_fast_mul is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pcpi_wr in module picorv32 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pcpi_rd[31] in module picorv32 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pcpi_rd[30] in module picorv32 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pcpi_rd[29] in module picorv32 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pcpi_rd[28] in module picorv32 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pcpi_rd[27] in module picorv32 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pcpi_rd[26] in module picorv32 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pcpi_rd[25] in module picorv32 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pcpi_rd[24] in module picorv32 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pcpi_rd[23] in module picorv32 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pcpi_rd[22] in module picorv32 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pcpi_rd[21] in module picorv32 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port pcpi_rd[20] in module picorv32 is either unconnected or has no load
 INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1583.590 ; gain = 586.039
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1589.371 ; gain = 591.215
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1583.590 ; gain = 586.039
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1589.371 ; gain = 591.215
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1583.590 ; gain = 586.039
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1589.371 ; gain = 591.215
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.062 . Memory (MB): peak = 1583.590 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.067 . Memory (MB): peak = 1589.371 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 8 Unisim elements for replacement
 WARNING: [Netlist 29-151] Pin 'C1' on instance 'dvidInst/ODDR2_blue' of cell type 'ODDR2' does not have an equivalent function on the new cell type 'ODDR'. Net 'clk_n' that is connected to this pin will not be connected to the replacement instance.
 WARNING: [Netlist 29-151] Pin 'C1' on instance 'dvidInst/ODDR2_clock' of cell type 'ODDR2' does not have an equivalent function on the new cell type 'ODDR'. Net 'clk_n' that is connected to this pin will not be connected to the replacement instance.
@@ -289,51 +291,56 @@ INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'clk_wiz_0Inst'
-Finished Parsing XDC File [c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'clk_wiz_0Inst'
 Parsing XDC File [c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/fontPROM/fontPROM/fontPROM_in_context.xdc] for cell 'tangerineSOCInst/fontPromInst'
 Finished Parsing XDC File [c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/fontPROM/fontPROM/fontPROM_in_context.xdc] for cell 'tangerineSOCInst/fontPromInst'
 Parsing XDC File [c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/uartFiFo/uartFiFo/uartFiFo_in_context.xdc] for cell 'tangerineSOCInst/UARTInst/rxFiFoInst'
 Finished Parsing XDC File [c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/uartFiFo/uartFiFo/uartFiFo_in_context.xdc] for cell 'tangerineSOCInst/UARTInst/rxFiFoInst'
 Parsing XDC File [c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/systemRam/systemRam/systemRam_in_context.xdc] for cell 'tangerineSOCInst/systemRamInst'
 Finished Parsing XDC File [c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/systemRam/systemRam/systemRam_in_context.xdc] for cell 'tangerineSOCInst/systemRamInst'
+Parsing XDC File [c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/gfxBufRam/gfxBufRam/gfxBufRam_in_context.xdc] for cell 'tangerineSOCInst/sdramDMAInst/gfxBufRamInst'
+Finished Parsing XDC File [c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/gfxBufRam/gfxBufRam/gfxBufRam_in_context.xdc] for cell 'tangerineSOCInst/sdramDMAInst/gfxBufRamInst'
+Parsing XDC File [c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'clk_wiz_0Inst'
+Finished Parsing XDC File [c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'clk_wiz_0Inst'
 Parsing XDC File [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/constrs_1/new/A7BoardTop.xdc]
 Finished Parsing XDC File [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/constrs_1/new/A7BoardTop.xdc]
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/constrs_1/new/A7BoardTop.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/A7BoardTop_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/A7BoardTop_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1687.004 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1678.055 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 8 instances were transformed.
   OBUFDS => OBUFDS: 4 instances
   ODDR2 => ODDR: 4 instances
 
 The system cannot find the path specified.
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.015 . Memory (MB): peak = 1687.004 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.016 . Memory (MB): peak = 1678.055 ; gain = 0.000
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'tangerineSOCInst/sdramDMAInst/gfxBufRamInst' at clock pin 'clkb' is different from the actual clock period '10.000', this can lead to different synthesis results.
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1687.004 ; gain = 689.453
+Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1681.605 ; gain = 683.449
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a200tfbg676-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1687.004 ; gain = 689.453
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1681.605 ; gain = 683.449
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property KEEP_HIERARCHY = SOFT for clk_wiz_0Inst. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for tangerineSOCInst/fontPromInst. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for tangerineSOCInst/UARTInst/rxFiFoInst. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for tangerineSOCInst/systemRamInst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for tangerineSOCInst/sdramDMAInst/gfxBufRamInst. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for clk_wiz_0Inst. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1687.004 ; gain = 689.453
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1681.605 ; gain = 683.449
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'pgState_reg' in module 'pixelGenTxt'
+INFO: [Synth 8-802] inferred FSM for state register 'pggState_reg' in module 'pixelGenGfx'
 INFO: [Synth 8-802] inferred FSM for state register 'mem_state_reg' in module 'picorv32'
 INFO: [Synth 8-802] inferred FSM for state register 'rxState_reg' in module 'UART'
 INFO: [Synth 8-802] inferred FSM for state register 'txState_reg' in module 'UART'
@@ -385,6 +392,38 @@ INFO: [Synth 8-3354] encoded FSM with state register 'pgState_reg' using encodin
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
+                  m1pre0 |                            00000 |                            00001
+                  m2pre0 |                            00001 |                            10001
+               mdisabled |                            00010 |                            00000
+                  m2pre1 |                            00011 |                            10010
+                  m2pre2 |                            00100 |                            10011
+                  m2pre3 |                            00101 |                            10100
+                  m2pre4 |                            00110 |                            10101
+                  m2pre5 |                            00111 |                            10110
+                  m2pre6 |                            01000 |                            10111
+                    m2p0 |                            01001 |                            11000
+                    m2p1 |                            01010 |                            11001
+                m2hblank |                            01011 |                            11010
+                  m1pre1 |                            01100 |                            00010
+                  m1pre2 |                            01101 |                            00011
+                  m1pre3 |                            01110 |                            00100
+                  m1pre4 |                            01111 |                            00101
+                  m1pre5 |                            10000 |                            00110
+                  m1pre6 |                            10001 |                            00111
+                    m1p0 |                            10010 |                            01000
+                    m1p1 |                            10011 |                            01001
+                    m1p2 |                            10100 |                            01010
+                    m1p3 |                            10101 |                            01011
+                 m1post0 |                            10110 |                            01100
+                 m1post1 |                            10111 |                            01101
+                 m1post2 |                            11000 |                            01110
+                 m1post3 |                            11001 |                            01111
+                m1hblank |                            11010 |                            10000
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'pggState_reg' using encoding 'sequential' in module 'pixelGenGfx'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
                  iSTATE2 |                               00 |                               00
                  iSTATE0 |                               01 |                               10
                   iSTATE |                               10 |                               01
@@ -423,9 +462,9 @@ INFO: [Synth 8-3354] encoded FSM with state register 'txState_reg' using encodin
               rxsstopbit |                             1001 |                             1001
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'rxState_reg' using encoding 'sequential' in module 'UART'
-WARNING: [Synth 8-327] inferring latch for variable 'sdramCKE_reg' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/sdramDMA.vhd:239]
+WARNING: [Synth 8-327] inferring latch for variable 'sdramCKE_reg' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/sdramDMA.vhd:292]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 1687.004 ; gain = 689.453
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:17 ; elapsed = 00:00:20 . Memory (MB): peak = 1681.605 ; gain = 683.449
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -435,8 +474,11 @@ Detailed RTL Component Info :
 	   2 Input   63 Bit       Adders := 1     
 	   2 Input   32 Bit       Adders := 8     
 	   3 Input   32 Bit       Adders := 1     
+	   2 Input   24 Bit       Adders := 2     
 	   2 Input   16 Bit       Adders := 2     
 	   2 Input   14 Bit       Adders := 1     
+	   2 Input    9 Bit       Adders := 2     
+	   2 Input    8 Bit       Adders := 1     
 	   2 Input    5 Bit       Adders := 2     
 	   8 Input    4 Bit       Adders := 3     
 	   9 Input    4 Bit       Adders := 3     
@@ -445,6 +487,7 @@ Detailed RTL Component Info :
 	   3 Input    4 Bit       Adders := 3     
 	  10 Input    4 Bit       Adders := 3     
 	   2 Input    4 Bit       Adders := 2     
+	   2 Input    2 Bit       Adders := 1     
 +---XORs : 
 	   2 Input     32 Bit         XORs := 1     
 	   2 Input      1 Bit         XORs := 42    
@@ -453,19 +496,20 @@ Detailed RTL Component Info :
 	               63 Bit    Registers := 1     
 	               36 Bit    Registers := 1     
 	               33 Bit    Registers := 2     
-	               32 Bit    Registers := 23    
-	               24 Bit    Registers := 4     
+	               32 Bit    Registers := 25    
+	               24 Bit    Registers := 6     
 	               16 Bit    Registers := 3     
 	               14 Bit    Registers := 3     
 	               13 Bit    Registers := 1     
 	               11 Bit    Registers := 1     
 	               10 Bit    Registers := 10    
-	                8 Bit    Registers := 11    
+	                9 Bit    Registers := 4     
+	                8 Bit    Registers := 15    
 	                6 Bit    Registers := 2     
 	                5 Bit    Registers := 6     
 	                4 Bit    Registers := 8     
-	                2 Bit    Registers := 2     
-	                1 Bit    Registers := 116   
+	                2 Bit    Registers := 5     
+	                1 Bit    Registers := 117   
 +---Multipliers : 
 	              33x33  Multipliers := 1     
 +---RAMs : 
@@ -473,60 +517,64 @@ Detailed RTL Component Info :
 +---Muxes : 
 	   2 Input   63 Bit        Muxes := 2     
 	   2 Input   33 Bit        Muxes := 2     
-	   2 Input   32 Bit        Muxes := 37    
+	   2 Input   32 Bit        Muxes := 35    
 	   6 Input   32 Bit        Muxes := 4     
 	   9 Input   32 Bit        Muxes := 2     
-	   3 Input   32 Bit        Muxes := 4     
+	   3 Input   32 Bit        Muxes := 5     
 	   5 Input   32 Bit        Muxes := 1     
-	   4 Input   32 Bit        Muxes := 5     
+	   4 Input   32 Bit        Muxes := 6     
 	   8 Input   32 Bit        Muxes := 1     
-	  30 Input   32 Bit        Muxes := 1     
+	   3 Input   24 Bit        Muxes := 1     
 	   2 Input   16 Bit        Muxes := 5     
 	  12 Input   16 Bit        Muxes := 1     
 	  10 Input   16 Bit        Muxes := 1     
 	   2 Input   14 Bit        Muxes := 3     
 	  40 Input   14 Bit        Muxes := 2     
-	   2 Input   13 Bit        Muxes := 1     
-	  30 Input   13 Bit        Muxes := 2     
+	  39 Input   13 Bit        Muxes := 2     
 	   5 Input   10 Bit        Muxes := 6     
 	   4 Input   10 Bit        Muxes := 3     
 	   2 Input   10 Bit        Muxes := 9     
-	   2 Input    9 Bit        Muxes := 6     
+	   2 Input    9 Bit        Muxes := 9     
+	  27 Input    9 Bit        Muxes := 2     
 	   2 Input    8 Bit        Muxes := 36    
 	  40 Input    8 Bit        Muxes := 3     
+	  27 Input    8 Bit        Muxes := 3     
 	   4 Input    8 Bit        Muxes := 4     
 	   6 Input    8 Bit        Muxes := 1     
 	   3 Input    8 Bit        Muxes := 1     
 	   9 Input    8 Bit        Muxes := 1     
 	  10 Input    8 Bit        Muxes := 2     
 	  40 Input    6 Bit        Muxes := 1     
-	   2 Input    6 Bit        Muxes := 6     
-	  30 Input    6 Bit        Muxes := 1     
-	   2 Input    5 Bit        Muxes := 1     
+	   2 Input    6 Bit        Muxes := 5     
+	   5 Input    6 Bit        Muxes := 1     
+	  39 Input    6 Bit        Muxes := 1     
+	  27 Input    5 Bit        Muxes := 1     
+	   2 Input    5 Bit        Muxes := 8     
 	   9 Input    5 Bit        Muxes := 2     
-	   3 Input    5 Bit        Muxes := 1     
-	   2 Input    4 Bit        Muxes := 13    
+	   2 Input    4 Bit        Muxes := 12    
 	  40 Input    4 Bit        Muxes := 1     
 	   5 Input    4 Bit        Muxes := 1     
 	   4 Input    4 Bit        Muxes := 1     
 	  12 Input    4 Bit        Muxes := 1     
 	  10 Input    4 Bit        Muxes := 1     
-	  30 Input    4 Bit        Muxes := 1     
+	  39 Input    4 Bit        Muxes := 1     
 	   2 Input    3 Bit        Muxes := 2     
+	   2 Input    2 Bit        Muxes := 4     
+	  27 Input    2 Bit        Muxes := 2     
 	   9 Input    2 Bit        Muxes := 1     
 	   4 Input    2 Bit        Muxes := 1     
-	   2 Input    2 Bit        Muxes := 3     
-	  30 Input    2 Bit        Muxes := 1     
-	   2 Input    1 Bit        Muxes := 92    
+	  39 Input    2 Bit        Muxes := 4     
+	   2 Input    1 Bit        Muxes := 79    
 	  40 Input    1 Bit        Muxes := 9     
-	   4 Input    1 Bit        Muxes := 13    
+	  27 Input    1 Bit        Muxes := 7     
+	   4 Input    1 Bit        Muxes := 14    
 	   9 Input    1 Bit        Muxes := 26    
 	   7 Input    1 Bit        Muxes := 1     
 	   3 Input    1 Bit        Muxes := 6     
 	   6 Input    1 Bit        Muxes := 5     
 	  12 Input    1 Bit        Muxes := 6     
 	  10 Input    1 Bit        Muxes := 4     
-	  30 Input    1 Bit        Muxes := 17    
+	  39 Input    1 Bit        Muxes := 22    
 	   8 Input    1 Bit        Muxes := 4     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
@@ -629,7 +677,7 @@ WARNING: [Synth 8-3332] Sequential element (rd_reg[19]__0) is unused and will be
 WARNING: [Synth 8-3332] Sequential element (rd_reg[18]__0) is unused and will be removed from module picorv32_pcpi_fast_mul.
 WARNING: [Synth 8-3332] Sequential element (rd_reg[17]__0) is unused and will be removed from module picorv32_pcpi_fast_mul.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:32 ; elapsed = 00:00:34 . Memory (MB): peak = 1687.004 ; gain = 689.453
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:32 ; elapsed = 00:00:37 . Memory (MB): peak = 1681.605 ; gain = 683.449
 ---------------------------------------------------------------------------------
  Sort Area is  rd0_0 : 0 0 : 2737 5129 : Used 1 time 0
  Sort Area is  rd0_0 : 0 1 : 2392 5129 : Used 1 time 0
@@ -666,13 +714,13 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:40 ; elapsed = 00:00:41 . Memory (MB): peak = 1687.004 ; gain = 689.453
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:40 ; elapsed = 00:00:45 . Memory (MB): peak = 1681.605 ; gain = 683.449
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 1687.004 ; gain = 689.453
+Finished Timing Optimization : Time (s): cpu = 00:00:45 ; elapsed = 00:00:52 . Memory (MB): peak = 1681.605 ; gain = 683.449
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -692,7 +740,7 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:42 ; elapsed = 00:00:44 . Memory (MB): peak = 1687.004 ; gain = 689.453
+Finished Technology Mapping : Time (s): cpu = 00:00:47 ; elapsed = 00:00:53 . Memory (MB): peak = 1692.945 ; gain = 694.789
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -710,37 +758,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:46 ; elapsed = 00:00:48 . Memory (MB): peak = 1687.004 ; gain = 689.453
+Finished IO Insertion : Time (s): cpu = 00:00:51 ; elapsed = 00:00:58 . Memory (MB): peak = 1697.723 ; gain = 699.566
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:46 ; elapsed = 00:00:48 . Memory (MB): peak = 1687.004 ; gain = 689.453
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:51 ; elapsed = 00:00:58 . Memory (MB): peak = 1697.723 ; gain = 699.566
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:47 ; elapsed = 00:00:49 . Memory (MB): peak = 1687.004 ; gain = 689.453
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:52 ; elapsed = 00:00:59 . Memory (MB): peak = 1697.723 ; gain = 699.566
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:47 ; elapsed = 00:00:49 . Memory (MB): peak = 1687.004 ; gain = 689.453
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:52 ; elapsed = 00:00:59 . Memory (MB): peak = 1697.723 ; gain = 699.566
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:47 ; elapsed = 00:00:49 . Memory (MB): peak = 1687.004 ; gain = 689.453
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:52 ; elapsed = 00:00:59 . Memory (MB): peak = 1697.723 ; gain = 699.566
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:47 ; elapsed = 00:00:49 . Memory (MB): peak = 1687.004 ; gain = 689.453
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:52 ; elapsed = 00:00:59 . Memory (MB): peak = 1697.723 ; gain = 699.566
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -765,6 +813,7 @@ Report BlackBoxes:
 |2     |fontPROM      |         1|
 |3     |systemRam     |         1|
 |4     |uartFiFo      |         1|
+|5     |gfxBufRam     |         1|
 +------+--------------+----------+
 
 Report Cell Usage: 
@@ -773,42 +822,43 @@ Report Cell Usage:
 +------+---------------+------+
 |1     |clk_wiz_0_bbox |     1|
 |2     |fontPROM_bbox  |     1|
-|3     |systemRam_bbox |     1|
-|4     |uartFiFo_bbox  |     1|
-|5     |BUFG           |     1|
-|6     |CARRY4         |   207|
-|7     |DSP48E1        |     4|
-|11    |LUT1           |   258|
-|12    |LUT2           |   341|
-|13    |LUT3           |   305|
-|14    |LUT4           |   362|
-|15    |LUT5           |   404|
-|16    |LUT6           |   950|
-|17    |MUXF7          |    42|
-|18    |MUXF8          |     1|
-|19    |ODDR2          |     4|
-|20    |RAM32M         |    10|
-|21    |RAM32X1D       |     4|
-|22    |FDCE           |    69|
-|23    |FDPE           |    43|
-|24    |FDRE           |  1297|
-|25    |FDSE           |    60|
-|26    |LD             |     1|
-|27    |IBUF           |     3|
-|28    |IOBUF          |    32|
-|29    |OBUF           |    28|
-|30    |OBUFDS         |     4|
-|31    |OBUFT          |     2|
+|3     |gfxBufRam_bbox |     1|
+|4     |systemRam_bbox |     1|
+|5     |uartFiFo_bbox  |     1|
+|6     |BUFG           |     1|
+|7     |CARRY4         |   218|
+|8     |DSP48E1        |     4|
+|12    |LUT1           |   259|
+|13    |LUT2           |   364|
+|14    |LUT3           |   302|
+|15    |LUT4           |   400|
+|16    |LUT5           |   390|
+|17    |LUT6           |  1003|
+|18    |MUXF7          |     9|
+|19    |MUXF8          |     1|
+|20    |ODDR2          |     4|
+|21    |RAM32M         |    10|
+|22    |RAM32X1D       |     4|
+|23    |FDCE           |   154|
+|24    |FDPE           |    43|
+|25    |FDRE           |  1433|
+|26    |FDSE           |    61|
+|27    |LD             |     1|
+|28    |IBUF           |     3|
+|29    |IOBUF          |    32|
+|30    |OBUF           |    28|
+|31    |OBUFDS         |     4|
+|32    |OBUFT          |     2|
 +------+---------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:47 ; elapsed = 00:00:49 . Memory (MB): peak = 1687.004 ; gain = 689.453
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:52 ; elapsed = 00:00:59 . Memory (MB): peak = 1697.723 ; gain = 699.566
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 222 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:37 ; elapsed = 00:00:46 . Memory (MB): peak = 1687.004 ; gain = 586.039
-Synthesis Optimization Complete : Time (s): cpu = 00:00:47 ; elapsed = 00:00:49 . Memory (MB): peak = 1687.004 ; gain = 689.453
+Synthesis finished with 0 errors, 0 critical warnings and 213 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:42 ; elapsed = 00:00:56 . Memory (MB): peak = 1697.723 ; gain = 607.332
+Synthesis Optimization Complete : Time (s): cpu = 00:00:52 ; elapsed = 00:00:59 . Memory (MB): peak = 1697.723 ; gain = 699.566
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.039 . Memory (MB): peak = 1687.004 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 309 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.051 . Memory (MB): peak = 1706.797 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 287 Unisim elements for replacement
 WARNING: [Netlist 29-151] Pin 'C1' on instance 'dvidInst/ODDR2_blue' of cell type 'ODDR2' does not have an equivalent function on the new cell type 'ODDR'. Net 'clk125ps' that is connected to this pin will not be connected to the replacement instance.
 WARNING: [Netlist 29-151] Pin 'C1' on instance 'dvidInst/ODDR2_clock' of cell type 'ODDR2' does not have an equivalent function on the new cell type 'ODDR'. Net 'clk125ps' that is connected to this pin will not be connected to the replacement instance.
 WARNING: [Netlist 29-151] Pin 'C1' on instance 'dvidInst/ODDR2_green' of cell type 'ODDR2' does not have an equivalent function on the new cell type 'ODDR'. Net 'clk125ps' that is connected to this pin will not be connected to the replacement instance.
@@ -816,7 +866,7 @@ WARNING: [Netlist 29-151] Pin 'C1' on instance 'dvidInst/ODDR2_red' of cell type
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1687.004 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1726.906 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 55 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 32 instances
@@ -827,12 +877,12 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   RAM32X1D => RAM32X1D (RAMD32(x2)): 4 instances
 
 The system cannot find the path specified.
-Synth Design complete | Checksum: b04cd97a
+Synth Design complete | Checksum: e73cb122
 INFO: [Common 17-83] Releasing license: Synthesis
-91 Infos, 235 Warnings, 0 Critical Warnings and 0 Errors encountered.
+98 Infos, 233 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:51 ; elapsed = 00:00:54 . Memory (MB): peak = 1687.004 ; gain = 1140.730
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1687.004 ; gain = 0.000
+synth_design: Time (s): cpu = 00:00:56 ; elapsed = 00:01:05 . Memory (MB): peak = 1726.906 ; gain = 1180.688
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1726.906 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/A7BoardTop.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file A7BoardTop_utilization_synth.rpt -pb A7BoardTop_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Wed Aug 14 12:26:22 2024...
+INFO: [Common 17-206] Exiting Vivado at Fri Aug 16 10:39:18 2024...

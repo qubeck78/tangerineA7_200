@@ -32,59 +32,85 @@ entity sdramDMA is
 port(
     
     --reset, clocks
-    reset:          in      std_logic;
+    reset:              in      std_logic;
     
-    cpuClock:       in      std_logic;
-    sdramClock:     in      std_logic;
-    sdramClockPs:   in      std_logic;
+    cpuClock:           in      std_logic;
+    sdramClock:         in      std_logic;
+    sdramClockPs:       in      std_logic;
 
 
    --bus interface ( registers )
 
-    a:              in      std_logic_vector( 15 downto 0 );
-    din:            in      std_logic_vector( 31 downto 0 );
-    dout:           out     std_logic_vector( 31 downto 0 );
-    ce:             in      std_logic;
-    wr:             in      std_logic;
-    dataMask:       in      std_logic_vector( 3 downto 0 );
-    ready:          out     std_logic;
+    a:                  in      std_logic_vector( 15 downto 0 );
+    din:                in      std_logic_vector( 31 downto 0 );
+    dout:               out     std_logic_vector( 31 downto 0 );
+    ce:                 in      std_logic;
+    wr:                 in      std_logic;
+    dataMask:           in      std_logic_vector( 3 downto 0 );
+    ready:              out     std_logic;
     
     --ch0 - CPU, lowest priority: 0
     
-    ch0A:           in  std_logic_vector( 23 downto 0 );
-    ch0Din:         in  std_logic_vector( 31 downto 0 );
-    ch0Dout:        out std_logic_vector( 31 downto 0 );
+    ch0A:               in      std_logic_vector( 23 downto 0 );
+    ch0Din:             in      std_logic_vector( 31 downto 0 );
+    ch0Dout:            out     std_logic_vector( 31 downto 0 );
    
-    ch0Ce:          in  std_logic;
-    ch0Wr:          in  std_logic;
-    ch0DataMask:    in  std_logic_vector( 3 downto 0 );
-    ch0InstrCycle:  in  std_logic;
+    ch0Ce:              in      std_logic;
+    ch0Wr:              in      std_logic;
+    ch0DataMask:        in      std_logic_vector( 3 downto 0 );
+    ch0InstrCycle:      in      std_logic;
 
-    ch0Ready:       out std_logic; 
+    ch0Ready:           out     std_logic; 
     
     --ch1 - blitter, priority: 1
     
     --ch2 - audio, priority: 2
     
     --ch3 - gfx display, highest priority: 3
-
+    
+    ch3DmaRequest:      in      std_logic_vector( 1 downto 0 );
+    ch3DmaPointerReset: in      std_logic;
+    
+    ch3BufClk:          in      std_logic;
+    ch3BufDout:         out     std_logic_vector( 31 downto 0 );
+    ch3BufA:            in      std_logic_vector( 8 downto 0 );
 
     --sdram
-    sdramA:         out     std_logic_vector( 12 downto 0 );
-    sdramBA:        out     std_logic_vector( 1 downto 0 );
-    sdramD:         inout   std_logic_vector( 31 downto 0 );
-    sdramCKE:       out     std_logic;
-    sdramCLK:       out     std_logic;
-    sdramDQM:       out     std_logic_vector( 3 downto 0 );
-    sdramCAS:       out     std_logic;
-    sdramRAS:       out     std_logic;
-    sdramWE:        out     std_logic;
-    sdramCS:        out     std_logic  
+    sdramA:             out     std_logic_vector( 12 downto 0 );
+    sdramBA:            out     std_logic_vector( 1 downto 0 );
+    sdramD:             inout   std_logic_vector( 31 downto 0 );
+    sdramCKE:           out     std_logic;
+    sdramCLK:           out     std_logic;
+    sdramDQM:           out     std_logic_vector( 3 downto 0 );
+    sdramCAS:           out     std_logic;
+    sdramRAS:           out     std_logic;
+    sdramWE:            out     std_logic;
+    sdramCS:            out     std_logic  
 
 );
 end sdramDMA;
 
 architecture Behavioral of sdramDMA is
+
+--components
+
+component gfxBufRam is
+  Port ( 
+    clka : in STD_LOGIC;
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    addra : in STD_LOGIC_VECTOR ( 8 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    douta : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    clkb : in STD_LOGIC;
+    web : in STD_LOGIC_VECTOR ( 0 to 0 );
+    addrb : in STD_LOGIC_VECTOR ( 8 downto 0 );
+    dinb : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    doutb : out STD_LOGIC_VECTOR ( 31 downto 0 )
+  );
+end component;
+
+
+--signals
 
 type regState_T is ( rsWaitForRegAccess, rsWaitForBusCycleEnd );
 
@@ -93,7 +119,8 @@ signal regState:    regState_T;
 type sdcState_T is ( sdcIdle, sdcInit0, sdcInit1, sdcInit2, sdcInit3, sdcInit4, sdcInit5, sdcInit6,
 	sdcCh0Read0, sdcCh0Read1, sdcCh0Read2, sdcCh0Read3, sdcCh0Read4, sdcCh0Read5, sdcCh0Read6, sdcCh0Read7, sdcCh0Read8, 
 	sdcCh0Write0, sdcCh0Write1, sdcCh0Write2, sdcCh0Write3, sdcCh0Write4, sdcCh0Write5, sdcCh0Write6, sdcCh0Write7, sdcCh0Write8,
-	sdcSubRefresh0, sdcSubRefresh1, sdcSubRefresh2, sdcSubRefresh3, sdcSubRefresh4, sdcSubRefresh5, sdcSubRefresh6
+	sdcSubRefresh0, sdcSubRefresh1, sdcSubRefresh2, sdcSubRefresh3, sdcSubRefresh4, sdcSubRefresh5, sdcSubRefresh6,
+	sdcCh3Read0, sdcCh3Read1, sdcCh3Read2, sdcCh3Read3, sdcCh3Read4, sdcCh3Read5, sdcCh3Read6, sdcCh3Read7, sdcCh3Read8 
 	);
 	
 signal sdcState:        sdcState_T;
@@ -103,6 +130,18 @@ signal resetCounter:    std_logic_vector( 15 downto 0 );
 signal refreshCounter:	std_logic_vector( 11 downto 0 );
 signal refreshRequest:	std_logic;
 signal refreshDone:		std_logic;
+
+--ch3 signals
+signal ch3DmaRequestLatched:    std_logic_vector( 1 downto 0 );
+signal ch3DmaPointerStart:      std_logic_vector( 23 downto 0 );
+signal ch3DmaPointer:           std_logic_vector( 23 downto 0 );
+
+signal ch3BufRamDin:            std_logic_vector( 31 downto 0 );
+signal ch3BufRamWrA:            std_logic_vector( 8 downto 0 );
+signal ch3BufRamWr:             std_logic;
+signal ch3TransferCounter:      std_logic_vector( 7 downto 0 );
+signal ch3DmaBufPointer:        std_logic_vector( 8 downto 0 );
+
 
 begin
 
@@ -118,8 +157,9 @@ begin
    
       if reset = '1' then
             
-         ready                <= '0';  
-         regState             <= rsWaitForRegAccess;
+         ready                  <= '0';  
+         regState               <= rsWaitForRegAccess;
+         ch3DmaPointerStart     <= ( others => '0' );
          
       else
       
@@ -146,7 +186,20 @@ begin
                      --0x04 r- component version                       
                      when x"01" =>
                      
-                        dout  <= x"20240813";
+                        dout  <= x"20240814";
+                        
+                        ready <= '1';
+
+                     --0x08 rw ch3 dma pointer start                       
+                     when x"02" =>
+                     
+                        dout  <= x"00" & ch3DmaPointerStart;
+                        
+                        if wr = '1' then
+                        
+                            ch3DmaPointerStart  <= din( 23 downto 0 );
+                            
+                        end if;
                         
                         ready <= '1';
 
@@ -250,14 +303,46 @@ begin
 		
         ch0Ready        <= '0';
         ch0Dout         <= ( others => '0' );
+   
+        ch3DmaRequestLatched    <= ( others => '0' );
+        ch3DmaPointer           <= ( others => '0' );
+
+        ch3BufRamDin            <= ( others => '0' );
+        ch3BufRamWrA            <= ( others => '0' );
+        ch3BufRamWr             <= '0';
+        ch3TransferCounter      <= ( others => '0' );
+        ch3DmaBufPointer        <= ( others => '0' );
+
         
     else
         
         if rising_edge( sdramClock ) then
+
+            --latch ch3 dma requests
+            if ch3DmaRequest( 0 ) = '1' then
+             
+                ch3DmaRequestLatched( 0 ) <= '1';
+        
+            end if;
+  
+            if ch3DmaRequest( 1 ) = '1' then
+             
+                ch3DmaRequestLatched( 1 ) <= '1';
+                
+            end if;
+     
+             --reset ch3 dma pointer if requested
+            if ch3DmaPointerReset = '1' then
+             
+                ch3DmaPointer  <= ch3DmaPointerStart;
+                
+            end if;
         
             case sdcState is
 
                 when sdcIdle =>
+
+                    ch0Ready	<= '0';
 
                     --nop
                     sdramCS     <= '0';
@@ -281,13 +366,25 @@ begin
 
                         --normal operation
 
+                        --check ch3 access
+                        if ch3DmaRequestLatched( 0 ) = '1' then
+
+                            ch3DmaBufPointer    <= "000000000";                       
+                            ch3TransferCounter  <= x"a0";           --160 long words
+                            
+                            sdcState            <= sdcCh3Read0;
+                        
+                        elsif ch3DmaRequestLatched( 1 ) = '1' then
+
+                            ch3DmaBufPointer    <= "100000000";                       
+                            ch3TransferCounter  <= x"a0";           --160 long words
+                            
+                            sdcState            <= sdcCh3Read0;
+                            
+
                         --check ch0 access
 					
-                        if ch0Ce = '1' then
-
-                            ch0Ready	<= '0';
-
-                            --
+                        elsif ch0Ce = '1' then
 
 
                             if ch0Wr = '1' then
@@ -308,6 +405,156 @@ begin
                     
                     end if; -- refreshRequest = '1' or '0'
 
+                --ch3 pixelGenGfx buffer fetch ( 160 32-bit words )
+
+                when sdcCh3Read0 =>
+                
+                    --bank/row activation
+    
+                    sdramDQM    <= ( others => '0' );
+    
+                    --sdram data bus in
+                    sdramD      <= ( others => 'Z' );
+    
+                    --row select, read, auto precharge
+                    
+                    --row / bank address ( cpu adr max downto 8 )
+    
+                    --todo, adjust for 32bit sdram
+                    sdramBA     <= ch3DmaPointer( 23 downto 22 );
+                    sdramA      <= ch3DmaPointer( 21 downto 9 );
+    
+                    sdramCS     <= '0';
+                    sdramRAS    <= '0';
+                    sdramCAS    <= '1';
+                    sdramWE     <= '1';     
+                               
+                    sdcState    <= sdcCh3Read1;
+
+                when sdcCh3Read1 =>
+ 
+                     --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+                                   
+                    sdcState    <= sdcCh3Read2;
+
+                when sdcCh3Read2 =>
+
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+                                    
+                    sdcState    <= sdcCh3Read3;
+
+                when sdcCh3Read3 =>
+                
+                     --column select, read
+
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS    <= '0';
+                    sdramWE     <= '1';
+
+                     if ch3TransferCounter /= 0 then
+                        
+                        --leave row open 
+                        
+                        sdramA( 12 downto 9 )   <= "0000";
+                    
+                    else --ch3TransfterCounter == 0 
+                    
+                        --auto precharge
+
+                        sdramA( 12 downto 9 )   <= "0010";
+                    
+                    end if;
+                    
+                        
+                    --column address ( both cpu and sdram addresses are in longwords )
+                    --a0-a8 - column address (word)
+                    --cpu addresses in longwords
+
+                    sdramA( 8 downto 0 )    <= ch3DmaPointer( 8 downto 0 );
+
+                    ch3DmaPointer           <= ch3DmaPointer + 1;
+
+                    --prepare ch3 buf address
+                    
+                    ch3BufRamWrA            <= ch3DmaBufPointer;
+                    ch3DmaBufPointer        <= ch3DmaBufPointer + 1;
+
+                    ch3BufRamWr             <= '0';
+                    
+                    sdcState    <= sdcCh3Read4;
+
+                when sdcCh3Read4 =>
+
+                    --cas latency 1
+                    
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+                                    
+                    sdcState    <= sdcCh3Read5;
+
+                when sdcCh3Read5 =>
+
+                    --cas latency 2
+                    
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+                                    
+                    sdcState    <= sdcCh3Read6;
+
+                when sdcCh3Read6 =>
+
+                    ch3BufRamDin    <= sdramD;
+                    ch3BufRamWr     <= '1';
+                    
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+
+                    
+                    if ch3TransferCounter /= 0 then
+                    
+                        ch3TransferCounter  <= ch3TransferCounter - 1;
+                        
+                        sdcState    <= sdcCh3Read3;
+                        
+                    else
+                    
+                        sdcState    <= sdcCh3Read7;
+                       
+                   end if;
+                   
+                when sdcCh3Read7 =>
+                    
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+                          
+                    ch3DmaPointer           <= ch3DmaPointer + 96;
+                                     
+                    ch3DmaRequestLatched( 0 )   <= '0';
+                    ch3DmaRequestLatched( 1 )   <= '0';
+
+                    sdcState    <= sdcIdle;
+
 
                 when sdcCh0Read0 =>
                 
@@ -322,8 +569,7 @@ begin
                     --row select, read, auto precharge
                     
                     --row / bank address ( cpu adr max downto 8 )
-    
-                    --todo, adjust for 32bit sdram
+                    
                     sdramBA     <= ch0A( 23 downto 22 );
                     sdramA      <= ch0A( 21 downto 9 );
     
@@ -382,14 +628,14 @@ begin
                     --nop
                     sdramCS     <= '0';
                     sdramRAS    <= '1';
-                    sdramCAS    <= '1';
-                    sdramWE     <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
 
                     sdcState    <= sdcCh0Read5;
 
                when sdcCh0Read5 =>
                 
-                    -- cas latency 2
+                    -- cas latency 2 
                 
                     --nop
                     sdramCS     <= '0';
@@ -514,9 +760,6 @@ begin
                     sdcState <= sdcCh0Write4;        
                     
                 when sdcCh0Write4 =>
-
-                    --notify cpu that data has been written
-                    ch0Ready    <= '1';
                     
                     --nop
                     sdramCS     <= '0';
@@ -528,7 +771,9 @@ begin
 
                 when sdcCh0Write5 =>
 
-                    --nop
+                    --sdram data bus in
+                    sdramD      <= ( others => 'Z' );
+                                        --nop
                     sdramCS     <= '0';
                     sdramRAS    <= '1';
                     sdramCAS	<= '1';
@@ -538,6 +783,19 @@ begin
 
                 when sdcCh0Write6 =>
 
+                    --notify cpu that data has been written
+                    ch0Ready    <= '1';
+                    
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+
+                    sdcState <= sdcCh0Write7;        
+
+                when sdcCh0Write7 =>
+
                     --nop
                     sdramCS     <= '0';
                     sdramRAS    <= '1';
@@ -546,6 +804,7 @@ begin
 
                     if ch0CE = '0' then
                         
+                        ch0Ready    <= '0';
                         sdcState    <= sdcIdle;
                         
                     end if;
@@ -614,7 +873,7 @@ begin
                     --burst lenght = 1
                     --addressing mode = sequential
                     --cas latency = 2
-                    --burst read and burst write
+                    
     
                     sdramA      <=  "000" & '0' & "00" & "010" & '0' & "000";
                     sdcState    <= sdcInit5;
@@ -716,6 +975,22 @@ begin
 
 end process;
 
+
+--place gfx buf ram ( ch3 )
+gfxBufRamInst:gfxBufRam
+port map( 
+    clka    => ch3BufClk,
+    wea(0)  => '0',
+    addra   => ch3BufA,
+    dina    => ( others => '0' ),
+    douta   => ch3BufDout,
+
+    clkb    => sdramClock,
+    web(0)  => ch3BufRamWr,
+    addrb   => ch3BufRamWrA,
+    dinb    => ch3BufRamDin
+    --doutb   => 
+  );
 
 
 end Behavioral;

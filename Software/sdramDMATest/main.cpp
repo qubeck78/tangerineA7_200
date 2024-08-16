@@ -7,7 +7,7 @@
 BSP_T                   *bsp     = ( BSP_T *)                  0xf0000000; //registers base address 
 _SDRAMDMA_REGISTERS_T   *sdrdma  = ( _SDRAMDMA_REGISTERS_T * ) 0xf0800000;
 
-#define TEXTATTR 0x0a00
+ushort   textAttr = 0x8f00;
 
 unsigned short *displayRam;
 int screenIndex;
@@ -50,7 +50,7 @@ int print( char *buf )
       }
       else
       {
-         displayRam[ screenIndex++ ] = TEXTATTR | c;
+         displayRam[ screenIndex++ ] = textAttr | c;
       }
 
       if( screenIndex >= 2400 )
@@ -141,7 +141,7 @@ ulong testSDRAM()
    sdram = ( ulong * ) 0x20000000;
 
 
-   length = 32;
+   length = 512 * 240 / 2;
 
    print( ( char* ) "Fill 0x0: " );
 
@@ -194,7 +194,7 @@ ulong testSDRAM()
 
    for( i = 0 ; i < length; i++ )
    {
-      sdram[i] = i;  //randomNumber();
+      sdram[i] = randomNumber();
    }
 
 
@@ -203,7 +203,7 @@ ulong testSDRAM()
    for( i = 0 ; i < length; i++ )
    {
       rvl = sdram[i];
-      cvl = i; //randomNumber();
+      cvl = randomNumber();
 
       if ( rvl != cvl )
       {
@@ -233,17 +233,21 @@ int main()
    int            k;
    char           buf[256];
 
-   
+
    //80 column txt mode only
-   bsp->videoMuxMode = 0x04; 
+   //bsp->videoMuxMode = 0x04; 
+
+   //80 column txt over gfx 320x240
+   bsp->videoMuxMode = _VIDEOMODE_320_TEXT80_OVER_GFX;
 
    displayRam = ( unsigned short * )0x6d40;
    
    screenIndex = 0;  
    
+
    for( i = 0; i < 2400 ; i++ )
    {
-     displayRam[i] = TEXTATTR;
+     displayRam[i] = 0;
    }
 
    print( (char*) "\n" );   
@@ -254,6 +258,11 @@ int main()
    print( (char*) "   |  tangerine A7_200 | \n" );
    print( (char*) "   |  sdramDMA test    | \n" );
    print( (char*) "   `-------------------` \n" );
+
+   print( (char*) "Main is located at 0x" );
+   itoaHex8Digits( (int)main, buf );
+   print( buf );
+   print( (char*) "\n" );
 
    print( (char*) "Checking sdramDMA version: " );
 
@@ -282,13 +291,19 @@ int main()
    }
 
 
-//   testSDRAM();
+   do
+   {
+      screenIndex = 80 * 10;
+
+      testSDRAM();
+
+   }while( 1 );
+
    
    do
    {
       for( i = 0; i < 80; i++ )
       {
-
 
          screenIndex = 80 * 29 + i;
          
