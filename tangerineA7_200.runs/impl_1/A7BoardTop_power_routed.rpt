@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date             : Wed Aug 14 23:25:47 2024
+| Date             : Fri Aug 16 10:41:33 2024
 | Host             : Desktop-qUBECk running 64-bit major release  (build 9200)
 | Command          : report_power -file A7BoardTop_power_routed.rpt -pb A7BoardTop_power_summary_routed.pb -rpx A7BoardTop_power_routed.rpx
 | Design           : A7BoardTop
@@ -30,11 +30,11 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.423        |
+| Total On-Chip Power (W)  | 0.426        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.283        |
-| Device Static (W)        | 0.139        |
+| Dynamic (W)              | 0.286        |
+| Device Static (W)        | 0.140        |
 | Effective TJA (C/W)      | 1.9          |
 | Max Ambient (C)          | 84.2         |
 | Junction Temperature (C) | 25.8         |
@@ -53,22 +53,22 @@ Table of Contents
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |     0.010 |       10 |       --- |             --- |
-| Slice Logic              |     0.003 |     4955 |       --- |             --- |
-|   LUT as Logic           |     0.002 |     2408 |    133800 |            1.80 |
-|   CARRY4                 |    <0.001 |      207 |     33450 |            0.62 |
-|   Register               |    <0.001 |     1683 |    269200 |            0.63 |
-|   F7/F8 Muxes            |    <0.001 |       43 |    133800 |            0.03 |
+| Slice Logic              |     0.003 |     4999 |       --- |             --- |
+|   LUT as Logic           |     0.002 |     2399 |    133800 |            1.79 |
+|   CARRY4                 |    <0.001 |      218 |     33450 |            0.65 |
+|   Register               |    <0.001 |     1766 |    269200 |            0.66 |
+|   F7/F8 Muxes            |    <0.001 |       10 |    133800 |           <0.01 |
 |   LUT as Distributed RAM |    <0.001 |       44 |     46200 |            0.10 |
 |   Others                 |     0.000 |       77 |       --- |             --- |
 |   BUFG                   |     0.000 |        1 |        32 |            3.13 |
 |   LUT as Shift Register  |     0.000 |        1 |     46200 |           <0.01 |
-| Signals                  |     0.003 |     4104 |       --- |             --- |
-| Block RAM                |     0.006 |       10 |       365 |            2.74 |
+| Signals                  |     0.003 |     4201 |       --- |             --- |
+| Block RAM                |     0.007 |       10 |       365 |            2.74 |
 | MMCM                     |     0.106 |        1 |        10 |           10.00 |
 | DSPs                     |    <0.001 |        4 |       740 |            0.54 |
-| I/O                      |     0.155 |       73 |       400 |           18.25 |
-| Static Power             |     0.139 |          |           |                 |
-| Total                    |     0.423 |          |           |                 |
+| I/O                      |     0.156 |       73 |       400 |           18.25 |
+| Static Power             |     0.140 |          |           |                 |
+| Total                    |     0.426 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -78,9 +78,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.054 |       0.023 |      0.031 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.056 |       0.025 |      0.031 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.090 |       0.060 |      0.031 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.051 |       0.046 |      0.005 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.052 |       0.047 |      0.005 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -151,20 +151,20 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+--------------------+-----------+
-| Name               | Power (W) |
-+--------------------+-----------+
-| A7BoardTop         |     0.283 |
-|   clk_wiz_0Inst    |     0.108 |
-|     inst           |     0.108 |
-|   dvidInst         |     0.001 |
-|   tangerineSOCInst |     0.018 |
-|     UARTInst       |     0.002 |
-|     picorv32Inst   |     0.004 |
-|     pixelGenInst   |     0.001 |
-|     sdramDMAInst   |     0.003 |
-|     systemRamInst  |     0.006 |
-|       U0           |     0.006 |
-+--------------------+-----------+
++---------------------+-----------+
+| Name                | Power (W) |
++---------------------+-----------+
+| A7BoardTop          |     0.286 |
+|   clk_wiz_0Inst     |     0.108 |
+|     inst            |     0.108 |
+|   dvidInst          |     0.001 |
+|   tangerineSOCInst  |     0.020 |
+|     UARTInst        |     0.002 |
+|     picorv32Inst    |     0.004 |
+|     sdramDMAInst    |     0.005 |
+|       gfxBufRamInst |     0.002 |
+|     systemRamInst   |     0.006 |
+|       U0            |     0.006 |
++---------------------+-----------+
 
 

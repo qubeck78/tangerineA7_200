@@ -7,7 +7,7 @@
 BSP_T                   *bsp     = ( BSP_T *)                  0xf0000000; //registers base address 
 _SDRAMDMA_REGISTERS_T   *sdrdma  = ( _SDRAMDMA_REGISTERS_T * ) 0xf0800000;
 
-#define TEXTATTR 0x0a00
+ushort   textAttr = 0x8f00;
 
 unsigned short *displayRam;
 int screenIndex;
@@ -50,7 +50,7 @@ int print( char *buf )
       }
       else
       {
-         displayRam[ screenIndex++ ] = TEXTATTR | c;
+         displayRam[ screenIndex++ ] = textAttr | c;
       }
 
       if( screenIndex >= 2400 )
@@ -141,7 +141,7 @@ ulong testSDRAM()
    sdram = ( ulong * ) 0x20000000;
 
 
-   length = 1048576;
+   length = 512 * 240 / 2;
 
    print( ( char* ) "Fill 0x0: " );
 
@@ -247,7 +247,7 @@ int main()
 
    for( i = 0; i < 2400 ; i++ )
    {
-     displayRam[i] = TEXTATTR;
+     displayRam[i] = 0;
    }
 
    print( (char*) "\n" );   
@@ -291,13 +291,19 @@ int main()
    }
 
 
-   testSDRAM();
+   do
+   {
+      screenIndex = 80 * 10;
+
+      testSDRAM();
+
+   }while( 1 );
+
    
    do
    {
       for( i = 0; i < 80; i++ )
       {
-
 
          screenIndex = 80 * 29 + i;
          

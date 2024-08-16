@@ -409,24 +409,151 @@ begin
 
                 when sdcCh3Read0 =>
                 
+                    --bank/row activation
+    
+                    sdramDQM    <= ( others => '0' );
+    
+                    --sdram data bus in
+                    sdramD      <= ( others => 'Z' );
+    
+                    --row select, read, auto precharge
+                    
+                    --row / bank address ( cpu adr max downto 8 )
+    
+                    --todo, adjust for 32bit sdram
+                    sdramBA     <= ch3DmaPointer( 23 downto 22 );
+                    sdramA      <= ch3DmaPointer( 21 downto 9 );
+    
+                    sdramCS     <= '0';
+                    sdramRAS    <= '0';
+                    sdramCAS    <= '1';
+                    sdramWE     <= '1';     
+                               
                     sdcState    <= sdcCh3Read1;
 
                 when sdcCh3Read1 =>
-                
+ 
+                     --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+                                   
                     sdcState    <= sdcCh3Read2;
 
                 when sdcCh3Read2 =>
-                
+
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+                                    
                     sdcState    <= sdcCh3Read3;
 
                 when sdcCh3Read3 =>
                 
+                     --column select, read
+
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS    <= '0';
+                    sdramWE     <= '1';
+
+                     if ch3TransferCounter /= 0 then
+                        
+                        --leave row open 
+                        
+                        sdramA( 12 downto 9 )   <= "0000";
+                    
+                    else --ch3TransfterCounter == 0 
+                    
+                        --auto precharge
+
+                        sdramA( 12 downto 9 )   <= "0010";
+                    
+                    end if;
+                    
+                        
+                    --column address ( both cpu and sdram addresses are in longwords )
+                    --a0-a8 - column address (word)
+                    --cpu addresses in longwords
+
+                    sdramA( 8 downto 0 )    <= ch3DmaPointer( 8 downto 0 );
+
+                    ch3DmaPointer           <= ch3DmaPointer + 1;
+
+                    --prepare ch3 buf address
+                    
+                    ch3BufRamWrA            <= ch3DmaBufPointer;
+                    ch3DmaBufPointer        <= ch3DmaBufPointer + 1;
+
+                    ch3BufRamWr             <= '0';
+                    
+                    sdcState    <= sdcCh3Read4;
+
+                when sdcCh3Read4 =>
+
+                    --cas latency 1
+                    
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+                                    
+                    sdcState    <= sdcCh3Read5;
+
+                when sdcCh3Read5 =>
+
+                    --cas latency 2
+                    
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+                                    
+                    sdcState    <= sdcCh3Read6;
+
+                when sdcCh3Read6 =>
+
+                    ch3BufRamDin    <= sdramD;
+                    ch3BufRamWr     <= '1';
+                    
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+
+                    
+                    if ch3TransferCounter /= 0 then
+                    
+                        ch3TransferCounter  <= ch3TransferCounter - 1;
+                        
+                        sdcState    <= sdcCh3Read3;
+                        
+                    else
+                    
+                        sdcState    <= sdcCh3Read7;
+                       
+                   end if;
+                   
+                when sdcCh3Read7 =>
+                    
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+                          
+                    ch3DmaPointer           <= ch3DmaPointer + 96;
+                                     
                     ch3DmaRequestLatched( 0 )   <= '0';
                     ch3DmaRequestLatched( 1 )   <= '0';
 
                     sdcState    <= sdcIdle;
-
-
 
 
                 when sdcCh0Read0 =>
@@ -442,8 +569,7 @@ begin
                     --row select, read, auto precharge
                     
                     --row / bank address ( cpu adr max downto 8 )
-    
-                    --todo, adjust for 32bit sdram
+                    
                     sdramBA     <= ch0A( 23 downto 22 );
                     sdramA      <= ch0A( 21 downto 9 );
     
@@ -509,7 +635,7 @@ begin
 
                when sdcCh0Read5 =>
                 
-                    -- cas latency 2
+                    -- cas latency 2 
                 
                     --nop
                     sdramCS     <= '0';
@@ -634,9 +760,6 @@ begin
                     sdcState <= sdcCh0Write4;        
                     
                 when sdcCh0Write4 =>
-
-                    --notify cpu that data has been written
-                    ch0Ready    <= '1';
                     
                     --nop
                     sdramCS     <= '0';
@@ -648,7 +771,9 @@ begin
 
                 when sdcCh0Write5 =>
 
-                    --nop
+                    --sdram data bus in
+                    sdramD      <= ( others => 'Z' );
+                                        --nop
                     sdramCS     <= '0';
                     sdramRAS    <= '1';
                     sdramCAS	<= '1';
@@ -658,6 +783,9 @@ begin
 
                 when sdcCh0Write6 =>
 
+                    --notify cpu that data has been written
+                    ch0Ready    <= '1';
+                    
                     --nop
                     sdramCS     <= '0';
                     sdramRAS    <= '1';
