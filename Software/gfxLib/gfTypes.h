@@ -11,8 +11,8 @@
 
 
 #define _GFXLIB_RISCV_FATFS
-#define _GFXLIB_HW_BLITTER_2D
-#define _GFXLIB_HW_BLITTER_3D
+//#define _GFXLIB_HW_BLITTER_2D
+//#define _GFXLIB_HW_BLITTER_3D
 //#define _GFXLIB_FPALU
 
 

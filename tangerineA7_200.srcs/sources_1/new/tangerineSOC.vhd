@@ -56,6 +56,11 @@ Port (
     uartTX:         out std_logic;
     uartRX:         in  std_logic;
     
+    --sd card
+    sdMciDat:       inout   std_logic_vector( 3 downto 0 );	
+    sdMciCmd:	    out  std_logic;	
+    sdMciClk:	    out  std_logic;	 
+        
     --sdram
     sdramA:     out     std_logic_vector( 12 downto 0 );
     sdramBA:    out     std_logic_vector( 1 downto 0 );
@@ -234,6 +239,32 @@ component UART
     );
 end component; 
 
+-- SPI
+component SPI is
+port(
+
+   --cpu interface
+   reset:      in  std_logic;
+   clock:      in  std_logic;
+
+   a:          in    std_logic_vector( 15 downto 0 );
+   din:        in    std_logic_vector( 31 downto 0 );
+   dout:       out   std_logic_vector( 31 downto 0 );
+   
+   ce:         in    std_logic;
+   wr:         in    std_logic;
+   dataMask:   in    std_logic_vector( 3 downto 0 );
+   
+   ready:      out   std_logic;
+   
+   --spi interface
+   sclk:       out std_logic;
+   mosi:       out std_logic;
+   miso:       in  std_logic
+   
+);
+end component;
+
 --SDRAM controller and DMA
 
 component sdramDMA is
@@ -402,6 +433,16 @@ signal   uartReady:           std_logic;
 signal   uartTxd:             std_logic;
 signal   uartRxd:             std_logic; 
 
+-- SPI signals
+signal   spiClock:         std_logic;
+signal   spiCE:            std_logic;
+signal   spiDoutForCPU:    std_logic_vector( 31 downto 0 );
+signal   spiReady:         std_logic;
+
+signal   spiSClk:          std_logic;
+signal   spiMOSI:          std_logic;
+signal   spiMISO:          std_logic; 
+
 -- sdram DMA signals
 
 --registers
@@ -434,7 +475,7 @@ pgClock             <= pixelClock;
 registersClock      <= chipsetClock;
 uartClock           <= chipsetClock;
 tickTimerClock      <= cpuClock;
-
+spiClock            <= cpuClock;
 
 --no need to sync now
 
@@ -679,7 +720,7 @@ end process;
 
     uartCE            <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f04" else '0';
 
---    spiCE             <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f05" else '0';
+    spiCE             <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f05" else '0';
 
 --    i2sCE             <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f06" else '0';
 
@@ -690,7 +731,7 @@ end process;
 -- bus slaves ready signals mux
    cpuMemReady       <= systemRamReady when systemRAMCE = '1'
                         else uartReady when uartCE = '1' 
---                        else spiReady when spiCE = '1' 
+                        else spiReady when spiCE = '1' 
 --                        else usbHostReady when usbHostCE = '1' 
                         else '1' when registersCE = '1' 
                         else sdramDMAReady when sdramDMACE = '1' 
@@ -710,7 +751,7 @@ end process;
 --                        blitterDoutForCPU                         when cpuAOutFull( 31 downto 20 ) = x"f02" else
 --                        usbHostDoutForCPU                         when cpuAOutFull( 31 downto 20 ) = x"f03" else 
                         uartDoutForCPU                            when cpuAOutFull( 31 downto 20 ) = x"f04" else
---                        spiDoutForCPU                             when cpuAOutFull( 31 downto 20 ) = x"f05" else
+                        spiDoutForCPU                             when cpuAOutFull( 31 downto 20 ) = x"f05" else
 --                        i2sDoutForCPU                             when cpuAOutFull( 31 downto 20 ) = x"f06" else 
 --                        flashSpiDoutForCPU                        when cpuAOutFull( 31 downto 20 ) = x"f07" else  
                         sdramDmaRegsDoutForCPU                      when cpuAOutFull( 31 downto 20 ) = x"f08" else                        
@@ -928,6 +969,40 @@ port map(
   
 );  
 
+-- place SD card SPI   
+
+sdMciClk    <= spiSClk;
+sdMciDat(3) <= gpoRegister( 0 ); --cs
+sdMciCmd    <= spiMOSI;
+spiMISO     <= sdMciDat( 0 );
+
+
+sdMciDat(2 downto 0 )   <= "ZZZ";
+
+   
+SPIInst:SPI
+port map(
+
+   --cpu interface
+   reset       => reset,
+   clock       => spiClock,
+
+   a           => cpuAOut( 15 downto 0 ),
+   din         => cpuDOut,
+   dout        => spiDoutForCPU,
+   
+   ce          => spiCE,
+   wr          => cpuWr,
+   dataMask    => cpuDataMask,
+   
+   ready       => spiReady,
+   
+   --spi interface
+   sclk        => spiSClk,
+   mosi        => spiMOSI,
+   miso        => spiMISO
+   
+); 
 
 -- place sdram DMA controller
 

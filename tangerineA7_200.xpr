@@ -134,6 +134,12 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PSRCDIR/sources_1/new/spi.vhd">
+        <FileInfo SFType="VHDL2019">
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PSRCDIR/sources_1/new/tangerineSOC.vhd">
         <FileInfo SFType="VHDL2019">
           <Attr Name="UsedIn" Val="synthesis"/>

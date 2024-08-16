@@ -140,6 +140,11 @@ Port (
     uartTX:         out std_logic;
     uartRX:         in  std_logic;
 
+    --sd card
+    sdMciDat:       inout   std_logic_vector( 3 downto 0 );	
+    sdMciCmd:	    out  std_logic;	
+    sdMciClk:	    out  std_logic;	 
+
     --sdram
     sdramA:     out     std_logic_vector( 12 downto 0 );
     sdramBA:    out     std_logic_vector( 1 downto 0 );
@@ -205,25 +210,23 @@ begin
 
 --global reset ( from clk_wiz_0 )
 
-reset   <= not resetn;
+    reset   <= not resetn;
 
 --assign clocks
 
-vgaPixelClockx5     <= clk125;
-vgaPixelClockx5ps   <= clk125ps;
-vgaPixelClock       <= clk25;
-vgaPixelClockps     <= clk25ps;
+    vgaPixelClockx5     <= clk125;
+    vgaPixelClockx5ps   <= clk125ps;
+    vgaPixelClock       <= clk25;
+    vgaPixelClockps     <= clk25ps;
 
-cpuClock            <= clk50;
-chipsetClock        <= clk100;
-chipsetClockps      <= clk100ps;
+    cpuClock            <= clk50;
+    chipsetClock        <= clk100;
+    chipsetClockps      <= clk100ps;
 
 --drive unassigned signals
 
 
 --drive unused pins
-
-
 
 
 --place pll
@@ -303,6 +306,11 @@ port map(
     --uart
     uartTX              => rs232Txd,
     uartRX              => rs232Rxd,
+
+    --sd card
+    sdMciDat            => sdCardDat,
+    sdMciCmd            => sdCardCmd,
+    sdMciClk            => sdCardClk,
 
     --sdram
     sdramA              => sdramA,

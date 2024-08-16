@@ -655,13 +655,14 @@ begin
                     sdramCAS    <= '1';
                     sdramWE     <= '1';
 
-                    --notify CPU, data is ready
-                    ch0Ready    <= '1';
                     
                     sdcState    <= sdcCh0Read7;
 
                 when sdcCh0Read7 =>
                 
+                    --notify CPU, data is ready
+                    ch0Ready    <= '1';
+
                     --nop
                     sdramCS     <= '0';
                     sdramRAS    <= '1';
@@ -783,8 +784,6 @@ begin
 
                 when sdcCh0Write6 =>
 
-                    --notify cpu that data has been written
-                    ch0Ready    <= '1';
                     
                     --nop
                     sdramCS     <= '0';
@@ -795,6 +794,9 @@ begin
                     sdcState <= sdcCh0Write7;        
 
                 when sdcCh0Write7 =>
+
+                    --notify cpu that data has been written
+                    ch0Ready    <= '1';
 
                     --nop
                     sdramCS     <= '0';

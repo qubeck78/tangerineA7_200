@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Fri Aug 16 10:41:32 2024
+| Date         : Fri Aug 16 23:06:36 2024
 | Host         : Desktop-qUBECk running 64-bit major release  (build 9200)
 | Command      : report_methodology -file A7BoardTop_methodology_drc_routed.rpt -pb A7BoardTop_methodology_drc_routed.pb -rpx A7BoardTop_methodology_drc_routed.rpx
 | Design       : A7BoardTop
@@ -23,17 +23,24 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 6
-+-----------+----------+--------------------------------+------------+
-| Rule      | Severity | Description                    | Violations |
-+-----------+----------+--------------------------------+------------+
-| SYNTH-10  | Warning  | Wide multiplier                | 4          |
-| TIMING-20 | Warning  | Non-clocked latch              | 1          |
-| LATCH-1   | Advisory | Existing latches in the design | 1          |
-+-----------+----------+--------------------------------+------------+
+             Violations found: 13
++-----------+----------+----------------------------------+------------+
+| Rule      | Severity | Description                      | Violations |
++-----------+----------+----------------------------------+------------+
+| HPDR-1    | Warning  | Port pin direction inconsistency | 1          |
+| SYNTH-10  | Warning  | Wide multiplier                  | 4          |
+| TIMING-18 | Warning  | Missing input or output delay    | 6          |
+| TIMING-20 | Warning  | Non-clocked latch                | 1          |
+| LATCH-1   | Advisory | Existing latches in the design   | 1          |
++-----------+----------+----------------------------------+------------+
 
 2. REPORT DETAILS
 -----------------
+HPDR-1#1 Warning
+Port pin direction inconsistency  
+Hierarchical port(pin) sdCardDat[3] direction INOUT is not consistent with the directions of the cell pins/ports found at that level of the netlist hierarchy. Please review the design and consider changing the port(pin) direction. Both drivers and loads were expected for the net (sdCardDat[3]) connected to this Port, but both were not found.
+Related violations: <none>
+
 SYNTH-10#1 Warning
 Wide multiplier  
 Detected multiplier at tangerineSOCInst/picorv32Inst/pcpi_mul/rd0 of size 16x18, it is decomposed from a wide multipler into 4 DSP blocks.
@@ -52,6 +59,36 @@ Related violations: <none>
 SYNTH-10#4 Warning
 Wide multiplier  
 Detected multiplier at tangerineSOCInst/picorv32Inst/pcpi_mul/rd_reg__0 of size 18x16, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+TIMING-18#1 Warning
+Missing input or output delay  
+An input delay is missing on sdCardDat[0] relative to the rising and/or falling clock edge(s) of sysClk50.
+Related violations: <none>
+
+TIMING-18#2 Warning
+Missing input or output delay  
+An input delay is missing on sdCardDat[1] relative to the rising and/or falling clock edge(s) of sysClk50.
+Related violations: <none>
+
+TIMING-18#3 Warning
+Missing input or output delay  
+An input delay is missing on sdCardDat[2] relative to the rising and/or falling clock edge(s) of sysClk50.
+Related violations: <none>
+
+TIMING-18#4 Warning
+Missing input or output delay  
+An input delay is missing on sdCardDat[3] relative to the rising and/or falling clock edge(s) of sysClk50.
+Related violations: <none>
+
+TIMING-18#5 Warning
+Missing input or output delay  
+An output delay is missing on sdCardClk relative to the rising and/or falling clock edge(s) of sysClk50.
+Related violations: <none>
+
+TIMING-18#6 Warning
+Missing input or output delay  
+An output delay is missing on sdCardCmd relative to the rising and/or falling clock edge(s) of sysClk50.
 Related violations: <none>
 
 TIMING-20#1 Warning

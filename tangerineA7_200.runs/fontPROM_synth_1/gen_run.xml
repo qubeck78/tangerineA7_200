@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="fontPROM_synth_1" LaunchPart="xc7a200tfbg676-1" LaunchTime="1722938471">
+<GenRun Id="fontPROM_synth_1" LaunchPart="xc7a200tfbg676-1" LaunchTime="1723825078">
   <File Type="PA-TCL" Name="fontPROM.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="fontPROM_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="fontPROM_reports.tcl"/>
   <File Type="RDS-RDS" Name="fontPROM.vds"/>
   <File Type="RDS-UTIL" Name="fontPROM_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="fontPROM_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="fontPROM.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="fontPROM_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="fontPROM_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/fontPROM" RelGenDir="$PGENDIR/fontPROM">
     <File Path="$PSRCDIR/sources_1/ip/fontPROM/fontPROM.xci">
       <FileInfo>
