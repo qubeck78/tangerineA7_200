@@ -1,19 +1,25 @@
 #ifndef _GFTYPES_H
 #define _GFTYPES_H
 
-#define _GFXLIB_VERSION 20240214
+//Version
 
+#define _GFXLIB_VERSION 20240817
+
+
+//Platform
 
 //#define _GFXLIB_SDL
 //#define _GFXLIB_STM32_FATFS
 //#define _GFXLIB_ESP32_FFAT
-//#define _GFXLIB_BIG_ENDIAN
-
-
 #define _GFXLIB_RISCV_FATFS
-#define _GFXLIB_HW_BLITTER_2D
-#define _GFXLIB_HW_BLITTER_3D
+
+//Features
+
+//#define _GFXLIB_BIG_ENDIAN
+//#define _GFXLIB_HW_BLITTER_2D
+//#define _GFXLIB_HW_BLITTER_3D
 //#define _GFXLIB_FPALU
+//#define _GFXLIB_USB_HOST
 
 
 typedef unsigned char	uchar;

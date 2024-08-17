@@ -8,11 +8,6 @@
 #define _SYSTEM_MEMORY_SIZE 	( 7864320 - 16)
 #define _SYSTEM_MEMORY_BASE		0x20000000
 
-//31.5 MB
-//#define _SDRAM_MEMORY_SIZE		0x01F80000
-//#define _SDRAM_MEMORY_BASE		0x40000000
-
-
 
 #define _VIDEOMODE_TEXT40_ONLY              0x00
 #define _VIDEOMODE_TEXT80_ONLY              0x04
@@ -241,6 +236,7 @@ typedef struct __SDRAMDMA_REGISTERS_T
 {
     volatile ulong id;
     volatile ulong version;
+    volatile ulong ch3DmaPointerStart;
 
 }_SDRAMDMA_REGISTERS_T;
 

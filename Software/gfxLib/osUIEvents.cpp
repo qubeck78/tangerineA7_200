@@ -26,8 +26,12 @@ ulong osUIEventsInit()
 
 	#ifdef _GFXLIB_RISCV_FATFS
 
+	#ifdef _GFXLIB_USB_HOST
+
 	rv = usbHIDInit();
 
+	#endif
+	
 	#endif
 
 
@@ -84,9 +88,13 @@ ulong osGetUIEvent( tosUIEvent *event )
 
 	#ifdef _GFXLIB_RISCV_FATFS
 
+	#ifdef _GFXLIB_USB_HOST
+
 	//poll USB HID
 
 	usbHIDHandleEvents();
+
+	#endif
 
 	#endif
 

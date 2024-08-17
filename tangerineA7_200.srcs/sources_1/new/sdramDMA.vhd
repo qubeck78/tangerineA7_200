@@ -370,14 +370,14 @@ begin
                         if ch3DmaRequestLatched( 0 ) = '1' then
 
                             ch3DmaBufPointer    <= "000000000";                       
-                            ch3TransferCounter  <= x"a0";           --160 long words
+                            ch3TransferCounter  <= x"9f";           --160 long words
                             
                             sdcState            <= sdcCh3Read0;
                         
                         elsif ch3DmaRequestLatched( 1 ) = '1' then
 
                             ch3DmaBufPointer    <= "100000000";                       
-                            ch3TransferCounter  <= x"a0";           --160 long words
+                            ch3TransferCounter  <= x"9f";           --160 long words
                             
                             sdcState            <= sdcCh3Read0;
                             
@@ -655,13 +655,18 @@ begin
                     sdramCAS    <= '1';
                     sdramWE     <= '1';
 
-                    --notify CPU, data is ready
-                    ch0Ready    <= '1';
                     
                     sdcState    <= sdcCh0Read7;
 
                 when sdcCh0Read7 =>
                 
+                    if cpuClock = '1' then
+                    
+                        --notify CPU, data is ready
+                        ch0Ready    <= '1';
+                    
+                    end if;
+                    
                     --nop
                     sdramCS     <= '0';
                     sdramRAS    <= '1';
@@ -783,8 +788,6 @@ begin
 
                 when sdcCh0Write6 =>
 
-                    --notify cpu that data has been written
-                    ch0Ready    <= '1';
                     
                     --nop
                     sdramCS     <= '0';
@@ -795,6 +798,9 @@ begin
                     sdcState <= sdcCh0Write7;        
 
                 when sdcCh0Write7 =>
+
+                    --notify cpu that data has been written
+                    ch0Ready    <= '1';
 
                     --nop
                     sdramCS     <= '0';

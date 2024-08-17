@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Fri Aug 16 10:41:30 2024
+| Date         : Sat Aug 17 19:52:52 2024
 | Host         : Desktop-qUBECk running 64-bit major release  (build 9200)
 | Command      : report_drc -file A7BoardTop_drc_routed.rpt -pb A7BoardTop_drc_routed.pb -rpx A7BoardTop_drc_routed.rpx
 | Design       : A7BoardTop
@@ -24,16 +24,17 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 21
-+-----------+----------+----------------------------+------------+
-| Rule      | Severity | Description                | Violations |
-+-----------+----------+----------------------------+------------+
-| DPOP-1    | Warning  | PREG Output pipelining     | 2          |
-| DPOP-2    | Warning  | MREG Output pipelining     | 4          |
-| PDCN-1569 | Warning  | LUT equation term check    | 1          |
-| REQP-1839 | Warning  | RAMB36 async control check | 13         |
-| RTSTAT-10 | Warning  | No routable loads          | 1          |
-+-----------+----------+----------------------------+------------+
+             Violations found: 23
++-----------+----------+---------------------------------+------------+
+| Rule      | Severity | Description                     | Violations |
++-----------+----------+---------------------------------+------------+
+| DPOP-1    | Warning  | PREG Output pipelining          | 2          |
+| DPOP-2    | Warning  | MREG Output pipelining          | 4          |
+| PDCN-1569 | Warning  | LUT equation term check         | 1          |
+| REQP-1839 | Warning  | RAMB36 async control check      | 13         |
+| RPBF-3    | Warning  | IO port buffering is incomplete | 2          |
+| RTSTAT-10 | Warning  | No routable loads               | 1          |
++-----------+----------+---------------------------------+------------+
 
 2. REPORT DETAILS
 -----------------
@@ -69,7 +70,7 @@ Related violations: <none>
 
 PDCN-1569#1 Warning
 LUT equation term check  
-Used physical LUT pin 'A3' of cell tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1 (pin tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1/I1) is not included in the LUT equation: 'O6=(A4)+((~A4)*(~A1)*A5)'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+Used physical LUT pin 'A3' of cell tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1 (pin tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1/I1) is not included in the LUT equation: 'O6=(A5)+((~A5)*(~A1)*A4)'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
 Related violations: <none>
 
 REQP-1839#1 Warning
@@ -135,6 +136,16 @@ Related violations: <none>
 REQP-1839#13 Warning
 RAMB36 async control check  
 The RAMB36E1 tangerineSOCInst/sdramDMAInst/gfxBufRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram has an input control pin tangerineSOCInst/sdramDMAInst/gfxBufRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram/WEBWE[2] (net: tangerineSOCInst/sdramDMAInst/gfxBufRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/web[0]) which is driven by a register (tangerineSOCInst/sdramDMAInst/ch3BufRamWr_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+RPBF-3#1 Warning
+IO port buffering is incomplete  
+Device port sdCardDat[0] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#2 Warning
+IO port buffering is incomplete  
+Device port sdCardDat[3] expects both input and output buffering but the buffers are incomplete.
 Related violations: <none>
 
 RTSTAT-10#1 Warning
