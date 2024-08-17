@@ -42,7 +42,7 @@ Port (
     cpuClock:       in  std_logic;
     chipsetClock:   in  std_logic;
     chipsetClockPs: in  std_logic;
-    
+    usbClock:       in  std_logic;    
     
     --vga
     vgaRed:         out std_logic_vector( 7 downto 0 );
@@ -56,6 +56,14 @@ Port (
     uartTX:         out std_logic;
     uartRX:         in  std_logic;
     
+    --usb 1 - keyboard
+    usb1dm:     inout   std_logic;
+    usb1dp:     inout   std_logic;
+    
+    --usb2 - mouse
+    usb2dm:     inout   std_logic;
+    usb2dp:     inout   std_logic;
+
     --sd card
     sdMciDat:       inout   std_logic_vector( 3 downto 0 );	
     sdMciCmd:	    out  std_logic;	
@@ -486,7 +494,13 @@ pggDMARequestClkD2  <= pggDMARequest;
 
 leds        <= "00";
 
-
+-- usb 1 - keyboard
+usb1dm      <= 'Z';
+usb1dp      <= 'Z';
+    
+-- usb2 - mouse
+usb2dm      <= 'Z';
+usb2dp      <= 'Z';
 
 -- place text mode font rom ( 2048 x 8 )
 

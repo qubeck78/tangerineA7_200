@@ -49,6 +49,14 @@ port(
     rs232Txd:   out     std_logic;
     rs232Rxd:   in      std_logic;
     
+    --usb 1 - keyboard
+    usb1dm:     inout   std_logic;
+    usb1dp:     inout   std_logic;
+    
+    --usb2 - mouse
+    usb2dm:     inout   std_logic;
+    usb2dp:     inout   std_logic;
+    
     --sd
     sdCardDat:  inout   std_logic_vector( 3 downto 0 );
     sdCardCmd:  out     std_logic;
@@ -127,6 +135,7 @@ Port (
     cpuClock:       in  std_logic;
     chipsetClock:   in  std_logic;
     chipsetClockPs: in  std_logic;
+    usbClock:       in  std_logic;    
     
     --vga
     vgaRed:         out std_logic_vector( 7 downto 0 );
@@ -139,6 +148,14 @@ Port (
     --uart
     uartTX:         out std_logic;
     uartRX:         in  std_logic;
+
+    --usb 1 - keyboard
+    usb1dm:     inout   std_logic;
+    usb1dp:     inout   std_logic;
+    
+    --usb2 - mouse
+    usb2dm:     inout   std_logic;
+    usb2dp:     inout   std_logic;
 
     --sd card
     sdMciDat:       inout   std_logic_vector( 3 downto 0 );	
@@ -293,6 +310,7 @@ port map(
     cpuClock            => cpuClock,
     chipsetClock        => chipsetClock,
     chipsetClockPs      => chipsetClockps,
+    usbClock            => '0',
     
     
     --vga
@@ -311,6 +329,14 @@ port map(
     sdMciDat            => sdCardDat,
     sdMciCmd            => sdCardCmd,
     sdMciClk            => sdCardClk,
+
+    --usb 1 - keyboard
+    usb1dm              => usb1dm,
+    usb1dp              => usb1dp,
+    
+    --usb2 - mouse
+    usb2dm              => usb2dm,
+    usb2dp              => usb2dp,
 
     --sdram
     sdramA              => sdramA,
