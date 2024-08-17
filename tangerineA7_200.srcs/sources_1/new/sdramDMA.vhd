@@ -370,14 +370,14 @@ begin
                         if ch3DmaRequestLatched( 0 ) = '1' then
 
                             ch3DmaBufPointer    <= "000000000";                       
-                            ch3TransferCounter  <= x"a0";           --160 long words
+                            ch3TransferCounter  <= x"9f";           --160 long words
                             
                             sdcState            <= sdcCh3Read0;
                         
                         elsif ch3DmaRequestLatched( 1 ) = '1' then
 
                             ch3DmaBufPointer    <= "100000000";                       
-                            ch3TransferCounter  <= x"a0";           --160 long words
+                            ch3TransferCounter  <= x"9f";           --160 long words
                             
                             sdcState            <= sdcCh3Read0;
                             
@@ -660,9 +660,13 @@ begin
 
                 when sdcCh0Read7 =>
                 
-                    --notify CPU, data is ready
-                    ch0Ready    <= '1';
-
+                    if cpuClock = '1' then
+                    
+                        --notify CPU, data is ready
+                        ch0Ready    <= '1';
+                    
+                    end if;
+                    
                     --nop
                     sdramCS     <= '0';
                     sdramRAS    <= '1';

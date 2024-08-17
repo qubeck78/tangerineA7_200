@@ -14,7 +14,6 @@
 #include "../gfxLib/usbHID.h" 
 #include "../gfxLib/ff.h" 
 
-//#define _MODE640
 
 extern BSP_T                *bsp;
 
@@ -176,35 +175,6 @@ int slideshow()
 
                                         case _KEYCODE_F1:
 
-                                            /*if( screen.width == 320 )
-                                            {
-                                                //switch to 640x480
-                                                screen.width    = 640;
-                                                screen.rowWidth = 640;
-                                                screen.height   = 480;
-
-                                                setVideoMode( _VIDEOMODE_640_TEXT80_OVER_GFX );
-                                            
-                                                gfFillRect( &screen, 0, 0, screen.width - 1, screen.height - 1 , gfColor( 0, 0, 0 ) ); 
-
-                                                //exit delay loop
-                                                i = 100;
-                                            }
-                                            else
-                                            {
-                                                //switch to 320x240
-                                                screen.width    = 320;
-                                                screen.rowWidth = 512;
-                                                screen.height   = 240;
-
-                                                setVideoMode( _VIDEOMODE_320_TEXT80_OVER_GFX );
-
-                                                gfFillRect( &screen, 0, 0, screen.width - 1, screen.height - 1 , gfColor( 0, 0, 0 ) ); 
-
-                                                //exit delay loop
-                                                i = 100;
-                                            }
-                                            */
                                             break;
 
                                         default:
@@ -241,16 +211,6 @@ int main()
     bspInit();
         
 
-    #ifdef _MODE640
-    
-    setVideoMode( _VIDEOMODE_640_TEXT80_OVER_GFX );
-
-    //alloc screen buffers
-    screen.width            = 640;  
-    screen.rowWidth         = 640;  
-    screen.height           = 480;  
-    
-    #else
     
     setVideoMode( _VIDEOMODE_320_TEXT80_OVER_GFX );
 
@@ -259,7 +219,6 @@ int main()
     screen.rowWidth         = 512;
     screen.height           = 240;
     
-    #endif
 
     toCls( &con );
     toPrint( &con, (char*)"Slideshow\n" );

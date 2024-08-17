@@ -162,6 +162,17 @@ ulong testSDRAM()
          print( (char*) "V" );
          itoaHex8Digits( rvl, buf );
          print( buf );
+
+         rvl = sdram[i];
+         if ( rvl != 0 )
+         {
+
+            print( (char*) "V2" );
+            itoaHex8Digits( rvl, buf );
+            print( buf );
+
+         }
+
          print( (char*) " " );      
 
          break;
@@ -188,6 +199,19 @@ ulong testSDRAM()
          print( (char*) "V" );
          itoaHex8Digits( rvl, buf );
          print( buf );
+
+         rvl = sdram[i];
+
+         if ( rvl != 0xffffffff )
+         {
+
+            print( (char*) "V2" );
+            itoaHex8Digits( rvl, buf );
+            print( buf );
+
+         }
+
+         print( (char*) " " );      
          print( (char*) " " );      
 
          break;
