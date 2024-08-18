@@ -38,11 +38,10 @@ Port (
     reset:          in  std_logic;
     
     pixelClock:     in  std_logic;
-    pixelClockPs:   in  std_logic;
     cpuClock:       in  std_logic;
     chipsetClock:   in  std_logic;
     chipsetClockPs: in  std_logic;
-    
+    usbClock:       in  std_logic;    
     
     --vga
     vgaRed:         out std_logic_vector( 7 downto 0 );
@@ -56,6 +55,14 @@ Port (
     uartTX:         out std_logic;
     uartRX:         in  std_logic;
     
+    --usb 1 - keyboard
+    usb1dm:     inout   std_logic;
+    usb1dp:     inout   std_logic;
+    
+    --usb2 - mouse
+    usb2dm:     inout   std_logic;
+    usb2dp:     inout   std_logic;
+
     --sd card
     sdMciDat:       inout   std_logic_vector( 3 downto 0 );	
     sdMciCmd:	    out  std_logic;	
@@ -265,6 +272,33 @@ port(
 );
 end component;
 
+-- usb host
+component usbHost is
+port(
+
+   --cpu interface
+   reset:            in    std_logic;
+   clock:            in    std_logic;
+   a:                in    std_logic_vector( 15 downto 0 );
+   din:              in    std_logic_vector( 31 downto 0 );
+   dout:             out   std_logic_vector( 31 downto 0 );
+   
+   ce:               in    std_logic;
+   wr:               in    std_logic;
+   dataMask:         in    std_logic_vector( 3 downto 0 );
+   
+   ready:            out   std_logic;
+   
+   --usb phy clock (12MHz)
+   usbHClk:          in    std_logic;
+   
+   --usb host interfaces
+   usbH0Dp:          inout std_logic;     
+   usbH0Dm:          inout std_logic      
+
+);
+end component; 
+
 --SDRAM controller and DMA
 
 component sdramDMA is
@@ -466,6 +500,15 @@ signal  sdramDMAReady:           std_logic;
 signal  gfxBufRamDOut:          std_logic_vector( 31 downto 0 );
 signal  gfxBufRamRdA:           std_logic_vector( 8 downto 0 );
 
+-- usb host signals
+signal   usbHostClock:           std_logic;
+signal   usbHostCE:              std_logic;
+signal   usbHostReady:           std_logic;
+signal   usbHostDoutForCPU:      std_logic_vector( 31 downto 0 );
+
+-- usb phy clock ( 12 MHz )
+signal   usbHClk:                std_logic; 
+
 begin
 
 -- assign clocks
@@ -476,6 +519,9 @@ registersClock      <= chipsetClock;
 uartClock           <= chipsetClock;
 tickTimerClock      <= cpuClock;
 spiClock            <= cpuClock;
+usbHostClock        <= chipsetClock;
+usbHClk             <= usbClock;
+
 
 --no need to sync now
 
@@ -485,8 +531,10 @@ pggDMARequestClkD2  <= pggDMARequest;
 -- fill unused ports, signals
 
 leds        <= "00";
-
-
+    
+-- usb2 - mouse
+usb2dm      <= 'Z';
+usb2dp      <= 'Z';
 
 -- place text mode font rom ( 2048 x 8 )
 
@@ -716,7 +764,7 @@ end process;
    
 --    blitterCE         <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f02" else '0';
     
---    usbHostCE         <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f03" else '0';
+    usbHostCE         <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f03" else '0';
 
     uartCE            <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f04" else '0';
 
@@ -732,7 +780,7 @@ end process;
    cpuMemReady       <= systemRamReady when systemRAMCE = '1'
                         else uartReady when uartCE = '1' 
                         else spiReady when spiCE = '1' 
---                        else usbHostReady when usbHostCE = '1' 
+                        else usbHostReady when usbHostCE = '1' 
                         else '1' when registersCE = '1' 
                         else sdramDMAReady when sdramDMACE = '1' 
 --                        else blitterReady when blitterCE = '1' 
@@ -749,7 +797,7 @@ end process;
                         sdramDMADoutForCPU                        when cpuAOutFull( 31 downto 28 ) = x"2"  else
 --                        fpAluDoutForCPU                           when cpuAOutFull( 31 downto 20 ) = x"f01" else
 --                        blitterDoutForCPU                         when cpuAOutFull( 31 downto 20 ) = x"f02" else
---                        usbHostDoutForCPU                         when cpuAOutFull( 31 downto 20 ) = x"f03" else 
+                        usbHostDoutForCPU                         when cpuAOutFull( 31 downto 20 ) = x"f03" else 
                         uartDoutForCPU                            when cpuAOutFull( 31 downto 20 ) = x"f04" else
                         spiDoutForCPU                             when cpuAOutFull( 31 downto 20 ) = x"f05" else
 --                        i2sDoutForCPU                             when cpuAOutFull( 31 downto 20 ) = x"f06" else 
@@ -1004,6 +1052,35 @@ port map(
    
 ); 
 
+-- place usb host
+-- usb 1 - keyboard
+
+usbHostInst: usbHost
+port map(
+
+  --cpu interface
+  reset          => reset,
+  clock          => usbHostClock,
+  a              => cpuAOut( 15 downto 0 ),
+  din            => cpuDOut,
+  dout           => usbHostDoutForCpu,
+  
+  ce             => usbHostCE,
+  wr             => cpuWr,
+  dataMask       => cpuDataMask,
+  
+  ready          => usbHostReady,
+  
+  --usb phy clock (12MHz)
+  usbHClk        => usbHClk,
+  
+  --usb interfaces
+  usbH0Dp        => usb1dp,
+  usbH0Dm        => usb1dm   
+
+);
+
+
 -- place sdram DMA controller
 
 sdramDMAInst:sdramDMA
@@ -1051,7 +1128,7 @@ port map(
     ch3DmaRequest       => pggDmaRequestClkD2,
     ch3DmaPointerReset  => pgVSyncClkD2,
     
-    ch3BufClk           => pixelClockPs,
+    ch3BufClk           => not pixelClock,
     ch3BufDout          => gfxBufRamDOut,
     ch3BufA             => gfxBufRamRdA,
     

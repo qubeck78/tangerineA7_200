@@ -660,25 +660,27 @@ begin
 
                 when sdcCh0Read7 =>
                 
-                    if cpuClock = '1' then
-                    
-                        --notify CPU, data is ready
-                        ch0Ready    <= '1';
-                    
-                    end if;
-                    
                     --nop
                     sdramCS     <= '0';
                     sdramRAS    <= '1';
                     sdramCAS    <= '1';
                     sdramWE     <= '1';
 
-                    if ch0CE = '0' then
+                    if cpuClock = '1' then
                     
-                        ch0Ready    <= '0';
-                        sdcState    <= sdcIdle;
+                        --notify CPU, data is ready
+                        ch0Ready    <= '1';
+
+                        if ch0CE = '0' then
+                    
+                            ch0Ready    <= '0';
+                            sdcState    <= sdcIdle;
                         
+                        end if;
+                    
                     end if;
+                    
+
 
                 when sdcCh0Write0 =>
                 

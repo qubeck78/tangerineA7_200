@@ -49,6 +49,14 @@ port(
     rs232Txd:   out     std_logic;
     rs232Rxd:   in      std_logic;
     
+    --usb 1 - keyboard
+    usb1dm:     inout   std_logic;
+    usb1dp:     inout   std_logic;
+    
+    --usb2 - mouse
+    usb2dm:     inout   std_logic;
+    usb2dp:     inout   std_logic;
+    
     --sd
     sdCardDat:  inout   std_logic_vector( 3 downto 0 );
     sdCardCmd:  out     std_logic;
@@ -96,6 +104,20 @@ port
  );
 end component; 
 
+--usb pll
+component clk_wiz_1
+port
+ (
+  -- Clock out ports
+  clk12          : out    std_logic;
+  -- Status and control signals
+  resetn             : in     std_logic;
+  locked            : out    std_logic;
+ -- Clock in ports
+  clk_in1           : in     std_logic
+ );
+end component; 
+
 --dvi encoder
 component dvid
 port(
@@ -123,10 +145,10 @@ Port (
     reset:          in  std_logic;
     
     pixelClock:     in  std_logic;
-    pixelClockPs:   in  std_logic;
     cpuClock:       in  std_logic;
     chipsetClock:   in  std_logic;
     chipsetClockPs: in  std_logic;
+    usbClock:       in  std_logic;    
     
     --vga
     vgaRed:         out std_logic_vector( 7 downto 0 );
@@ -139,6 +161,14 @@ Port (
     --uart
     uartTX:         out std_logic;
     uartRX:         in  std_logic;
+
+    --usb 1 - keyboard
+    usb1dm:     inout   std_logic;
+    usb1dp:     inout   std_logic;
+    
+    --usb2 - mouse
+    usb2dm:     inout   std_logic;
+    usb2dp:     inout   std_logic;
 
     --sd card
     sdMciDat:       inout   std_logic_vector( 3 downto 0 );	
@@ -173,6 +203,7 @@ signal  reset:              std_logic;
 signal  resetn:             std_logic;
 
 --clocks
+signal  clk12:               std_logic;
 signal  clk25:              std_logic;
 signal  clk25ps:            std_logic;
 signal  clk125:             std_logic;
@@ -193,10 +224,9 @@ signal  cpuClock:           std_logic;
 signal  chipsetClock:       std_logic;
 signal  chipsetClockps:     std_logic;
 signal  vgaPixelClock:      std_logic;
-signal  vgaPixelClockps:    std_logic;
 signal  vgaPixelClockx5:    std_logic;
 signal  vgaPixelClockx5ps:  std_logic;
-
+signal  usbClock:           std_logic;
 
 --vga
 signal  vgaRed:             std_logic_vector( 7 downto 0 );
@@ -217,25 +247,26 @@ begin
     vgaPixelClockx5     <= clk125;
     vgaPixelClockx5ps   <= clk125ps;
     vgaPixelClock       <= clk25;
-    vgaPixelClockps     <= clk25ps;
 
     cpuClock            <= clk50;
     chipsetClock        <= clk100;
     chipsetClockps      <= clk100ps;
 
+    usbClock            <= clk12;
+    
 --drive unassigned signals
 
 
 --drive unused pins
 
 
---place pll
+--place main pll
 clk_wiz_0Inst:clk_wiz_0
 port map
  (
   -- Clock out ports
   clk25             => clk25,
-  clk25ps           => clk25ps,
+  clk25ps           => clk25ps, --clk25ps unused for now
   clk125            => clk125,
   clk125ps          => clk125ps,
   clk50             => clk50,
@@ -249,6 +280,22 @@ port map
  -- Clock in ports
   clk_in1           =>  sysClk50
  );
+
+--place usb pll
+clk_wiz_1Inst:clk_wiz_1
+port map
+(
+    -- Clock out ports
+    clk12           => clk12,
+  
+    -- Status and control signals
+    resetn          => buttons( 0 ),
+    --locked            : out    std_logic;
+
+    -- Clock in ports
+    clk_in1         => sysClk50
+ );
+
 
 --place diff buffers
 
@@ -289,10 +336,10 @@ port map(
     reset               => reset,
     
     pixelClock          => vgaPixelClock,
-    pixelClockPs        => vgaPixelClockps,
     cpuClock            => cpuClock,
     chipsetClock        => chipsetClock,
     chipsetClockPs      => chipsetClockps,
+    usbClock            => usbClock,
     
     
     --vga
@@ -311,6 +358,14 @@ port map(
     sdMciDat            => sdCardDat,
     sdMciCmd            => sdCardCmd,
     sdMciClk            => sdCardClk,
+
+    --usb 1 - keyboard
+    usb1dm              => usb1dm,
+    usb1dp              => usb1dp,
+    
+    --usb2 - mouse
+    usb2dm              => usb2dm,
+    usb2dp              => usb2dp,
 
     --sdram
     sdramA              => sdramA,

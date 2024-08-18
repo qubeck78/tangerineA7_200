@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version              : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date                      : Sat Aug 17 19:51:42 2024
+| Date                      : Sun Aug 18 21:43:40 2024
 | Host                      : Desktop-qUBECk running 64-bit major release  (build 9200)
 | Command                   : report_io -file A7BoardTop_io_placed.rpt
 | Design                    : A7BoardTop
@@ -25,7 +25,7 @@ Table of Contents
 +---------------+
 | Total User IO |
 +---------------+
-|            78 |
+|            82 |
 +---------------+
 
 
@@ -218,7 +218,7 @@ Table of Contents
 | AF25       |              | High Range | IO_L3N_T0_DQS_12             | User IO       |             |      12 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
 | AF26       |              | High Range | VCCO_12                      | VCCO          |             |      12 |            |      |                     |                      |   any** |            |           |          |      |                  |              |                   |              |
 | B1         | sdramD[17]   | High Range | IO_L21N_T3_DQS_35            | BIDIR         | LVCMOS33    |      35 |         12 | SLOW |                     |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |
-| B2         |              | High Range | IO_L19N_T3_VREF_35           | User IO       |             |      35 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
+| B2         | usb1dm       | High Range | IO_L19N_T3_VREF_35           | BIDIR         | LVCMOS33    |      35 |         12 | SLOW |                     |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | B3         |              |            | GND                          | GND           |             |         |            |      |                     |                      |     0.0 |            |           |          |      |                  |              |                   |              |
 | B4         | sdCardCmd    | High Range | IO_L16P_T2_35                | OUTPUT        | LVCMOS33    |      35 |         12 | SLOW |                     |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | B5         | sdCardDat[2] | High Range | IO_L15P_T2_DQS_35            | BIDIR         | LVCMOS33    |      35 |         12 | SLOW |                     |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |
@@ -244,9 +244,9 @@ Table of Contents
 | B25        |              | High Range | IO_L20P_T3_16                | User IO       |             |      16 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
 | B26        |              | High Range | IO_L22N_T3_16                | User IO       |             |      16 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
 | C1         | sdramD[18]   | High Range | IO_L21P_T3_DQS_35            | BIDIR         | LVCMOS33    |      35 |         12 | SLOW |                     |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |
-| C2         |              | High Range | IO_L19P_T3_35                | User IO       |             |      35 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
+| C2         | usb1dp       | High Range | IO_L19P_T3_35                | BIDIR         | LVCMOS33    |      35 |         12 | SLOW |                     |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | C3         |              | High Range | IO_L17N_T2_35                | User IO       |             |      35 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
-| C4         |              | High Range | IO_L14N_T2_SRCC_35           | User IO       |             |      35 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
+| C4         | usb2dm       | High Range | IO_L14N_T2_SRCC_35           | BIDIR         | LVCMOS33    |      35 |         12 | SLOW |                     |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | C5         |              | High Range | VCCO_35                      | VCCO          |             |      35 |            |      |                     |                      |    3.30 |            |           |          |      |                  |              |                   |              |
 | C6         |              |            | GND                          | GND           |             |         |            |      |                     |                      |     0.0 |            |           |          |      |                  |              |                   |              |
 | C7         |              |            | MGTAVTT_G11                  | Gigabit Power |             |         |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
@@ -272,7 +272,7 @@ Table of Contents
 | D1         | sdramD[19]   | High Range | IO_L23N_T3_35                | BIDIR         | LVCMOS33    |      35 |         12 | SLOW |                     |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | D2         |              | High Range | VCCO_35                      | VCCO          |             |      35 |            |      |                     |                      |    3.30 |            |           |          |      |                  |              |                   |              |
 | D3         |              | High Range | IO_L17P_T2_35                | User IO       |             |      35 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
-| D4         |              | High Range | IO_L14P_T2_SRCC_35           | User IO       |             |      35 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
+| D4         | usb2dp       | High Range | IO_L14P_T2_SRCC_35           | BIDIR         | LVCMOS33    |      35 |         12 | SLOW |                     |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | D5         |              | High Range | IO_L13N_T2_MRCC_35           | User IO       |             |      35 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
 | D6         |              | High Range | IO_L1N_T0_AD4N_35            | User IO       |             |      35 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
 | D7         |              |            | GND                          | GND           |             |         |            |      |                     |                      |     0.0 |            |           |          |      |                  |              |                   |              |
