@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Sat Aug 17 20:20:50 2024
+| Date         : Sun Aug 18 09:26:21 2024
 | Host         : Desktop-qUBECk running 64-bit major release  (build 9200)
 | Command      : report_methodology -file A7BoardTop_methodology_drc_routed.rpt -pb A7BoardTop_methodology_drc_routed.pb -rpx A7BoardTop_methodology_drc_routed.rpx
 | Design       : A7BoardTop
@@ -23,12 +23,13 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 13
+             Violations found: 14
 +-----------+----------+----------------------------------+------------+
 | Rule      | Severity | Description                      | Violations |
 +-----------+----------+----------------------------------+------------+
 | HPDR-1    | Warning  | Port pin direction inconsistency | 1          |
 | SYNTH-10  | Warning  | Wide multiplier                  | 4          |
+| TIMING-16 | Warning  | Large setup violation            | 1          |
 | TIMING-18 | Warning  | Missing input or output delay    | 6          |
 | TIMING-20 | Warning  | Non-clocked latch                | 1          |
 | LATCH-1   | Advisory | Existing latches in the design   | 1          |
@@ -59,6 +60,11 @@ Related violations: <none>
 SYNTH-10#4 Warning
 Wide multiplier  
 Detected multiplier at tangerineSOCInst/picorv32Inst/pcpi_mul/rd_reg__0 of size 18x16, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+TIMING-16#1 Warning
+Large setup violation  
+There is a large setup violation of -1.615 ns between tangerineSOCInst/usbHostInst/usb_hid_host0Inst/typ_reg[0]/C (clocked by clk12_clk_wiz_1) and tangerineSOCInst/usbHostInst/fifoHidKeyboardWrEn_reg/D (clocked by clk100_clk_wiz_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
 Related violations: <none>
 
 TIMING-18#1 Warning

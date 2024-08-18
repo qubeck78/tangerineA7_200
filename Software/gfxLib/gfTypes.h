@@ -19,7 +19,7 @@
 //#define _GFXLIB_HW_BLITTER_2D
 //#define _GFXLIB_HW_BLITTER_3D
 //#define _GFXLIB_FPALU
-//#define _GFXLIB_USB_HOST
+#define _GFXLIB_USB_HOST
 
 
 typedef unsigned char	uchar;

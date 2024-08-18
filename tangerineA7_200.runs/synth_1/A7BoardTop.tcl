@@ -70,8 +70,6 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 3
-set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a200tfbg676-1
 
@@ -90,6 +88,10 @@ OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 add_files C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/font.coe
 add_files C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/Software/bootloader/boot.coe
+read_verilog -library xil_defaultlib -sv {
+  C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host.v
+  C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host_rom.v
+}
 read_verilog -library xil_defaultlib C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/picorv32.v
 read_vhdl -library xil_defaultlib {
   C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/TMDS_encoder.vhd
@@ -103,6 +105,7 @@ read_vhdl -vhdl2019 -library xil_defaultlib {
   C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/spi.vhd
   C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd
   C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/uart.vhd
+  C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usbHost.vhd
   C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/A7BoardTop.vhd
 }
 read_ip -quiet C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/fontPROM/fontPROM.xci
@@ -122,6 +125,16 @@ read_ip -quiet C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tan
 set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_board.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_ooc.xdc]
+
+read_ip -quiet C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1.xci
+set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/clk_wiz_1/clk_wiz_1_board.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/clk_wiz_1/clk_wiz_1.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/clk_wiz_1/clk_wiz_1_ooc.xdc]
+
+read_ip -quiet C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/keyboardFifo/keyboardFifo.xci
+set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/keyboardFifo/keyboardFifo.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/keyboardFifo/keyboardFifo_clocks.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/keyboardFifo/keyboardFifo_ooc.xdc]
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date             : Sat Aug 17 20:20:52 2024
+| Date             : Sun Aug 18 09:26:23 2024
 | Host             : Desktop-qUBECk running 64-bit major release  (build 9200)
 | Command          : report_power -file A7BoardTop_power_routed.rpt -pb A7BoardTop_power_summary_routed.pb -rpx A7BoardTop_power_routed.rpx
 | Design           : A7BoardTop
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.428        |
+| Total On-Chip Power (W)  | 0.553        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.288        |
+| Dynamic (W)              | 0.413        |
 | Device Static (W)        | 0.140        |
 | Effective TJA (C/W)      | 1.9          |
-| Max Ambient (C)          | 84.2         |
-| Junction Temperature (C) | 25.8         |
+| Max Ambient (C)          | 84.0         |
+| Junction Temperature (C) | 26.0         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,23 +52,23 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.010 |       10 |       --- |             --- |
-| Slice Logic              |     0.003 |     5101 |       --- |             --- |
-|   LUT as Logic           |     0.002 |     2439 |    133800 |            1.82 |
-|   CARRY4                 |    <0.001 |      218 |     33450 |            0.65 |
-|   Register               |    <0.001 |     1816 |    269200 |            0.67 |
-|   F7/F8 Muxes            |    <0.001 |       10 |    133800 |           <0.01 |
+| Clocks                   |     0.013 |       11 |       --- |             --- |
+| Slice Logic              |     0.003 |     6143 |       --- |             --- |
+|   LUT as Logic           |     0.002 |     2793 |    133800 |            2.09 |
+|   CARRY4                 |    <0.001 |      234 |     33450 |            0.70 |
+|   Register               |    <0.001 |     2353 |    269200 |            0.87 |
+|   F7/F8 Muxes            |    <0.001 |       19 |    133800 |            0.01 |
 |   LUT as Distributed RAM |    <0.001 |       44 |     46200 |            0.10 |
-|   Others                 |     0.000 |       79 |       --- |             --- |
+|   Others                 |     0.000 |      112 |       --- |             --- |
 |   BUFG                   |     0.000 |        1 |        32 |            3.13 |
-|   LUT as Shift Register  |     0.000 |        1 |     46200 |           <0.01 |
-| Signals                  |     0.003 |     4295 |       --- |             --- |
-| Block RAM                |     0.007 |       10 |       365 |            2.74 |
-| MMCM                     |     0.106 |        1 |        10 |           10.00 |
+|   LUT as Shift Register  |     0.000 |        4 |     46200 |           <0.01 |
+| Signals                  |     0.003 |     5191 |       --- |             --- |
+| Block RAM                |     0.007 |       11 |       365 |            3.01 |
+| MMCM                     |     0.229 |        2 |        10 |           20.00 |
 | DSPs                     |    <0.001 |        4 |       740 |            0.54 |
-| I/O                      |     0.159 |       75 |       400 |           18.75 |
+| I/O                      |     0.159 |       77 |       400 |           19.25 |
 | Static Power             |     0.140 |          |           |                 |
-| Total                    |     0.428 |          |           |                 |
+| Total                    |     0.553 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -78,8 +78,8 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.055 |       0.024 |      0.031 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.090 |       0.060 |      0.031 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.058 |       0.027 |      0.031 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.158 |       0.128 |      0.031 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.052 |       0.047 |      0.005 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -137,10 +137,11 @@ Table of Contents
 | clk100_clk_wiz_0   | clk_wiz_0Inst/inst/clk100_clk_wiz_0   |            10.0 |
 | clk100ps_clk_wiz_0 | clk_wiz_0Inst/inst/clk100ps_clk_wiz_0 |            10.0 |
 | clk125_clk_wiz_0   | clk_wiz_0Inst/inst/clk125_clk_wiz_0   |             8.0 |
+| clk12_clk_wiz_1    | clk_wiz_1Inst/inst/clk12_clk_wiz_1    |            83.3 |
 | clk25_clk_wiz_0    | clk_wiz_0Inst/inst/clk25_clk_wiz_0    |            40.0 |
-| clk25ps_clk_wiz_0  | clk_wiz_0Inst/inst/clk25ps_clk_wiz_0  |            40.0 |
 | clk50_clk_wiz_0    | clk_wiz_0Inst/inst/clk50_clk_wiz_0    |            20.0 |
 | clkfbout_clk_wiz_0 | clk_wiz_0Inst/inst/clkfbout_clk_wiz_0 |            20.0 |
+| clkfbout_clk_wiz_1 | clk_wiz_1Inst/inst/clkfbout_clk_wiz_1 |            20.0 |
 | sysClk50           | sysClk50                              |            20.0 |
 +--------------------+---------------------------------------+-----------------+
 
@@ -151,20 +152,24 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+---------------------+-----------+
-| Name                | Power (W) |
-+---------------------+-----------+
-| A7BoardTop          |     0.288 |
-|   clk_wiz_0Inst     |     0.108 |
-|     inst            |     0.108 |
-|   dvidInst          |     0.001 |
-|   tangerineSOCInst  |     0.020 |
-|     UARTInst        |     0.002 |
-|     picorv32Inst    |     0.004 |
-|     sdramDMAInst    |     0.005 |
-|       gfxBufRamInst |     0.002 |
-|     systemRamInst   |     0.006 |
-|       U0            |     0.006 |
-+---------------------+-----------+
++------------------------+-----------+
+| Name                   | Power (W) |
++------------------------+-----------+
+| A7BoardTop             |     0.413 |
+|   clk_wiz_0Inst        |     0.107 |
+|     inst               |     0.107 |
+|   clk_wiz_1Inst        |     0.123 |
+|     inst               |     0.123 |
+|   dvidInst             |     0.002 |
+|   tangerineSOCInst     |     0.021 |
+|     UARTInst           |     0.002 |
+|     picorv32Inst       |     0.004 |
+|     sdramDMAInst       |     0.004 |
+|       gfxBufRamInst    |     0.001 |
+|     systemRamInst      |     0.006 |
+|       U0               |     0.006 |
+|     usbHostInst        |     0.002 |
+|       keyboardFifoinst |     0.001 |
++------------------------+-----------+
 
 
