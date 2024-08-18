@@ -37,10 +37,10 @@ Port (
     --reset, clocks 
     reset:          in  std_logic;
     
+    mainClock:      in  std_logic;
+    mainClockPs:    in  std_logic;
+    mainClockD2:    in  std_logic;    
     pixelClock:     in  std_logic;
-    cpuClock:       in  std_logic;
-    chipsetClock:   in  std_logic;
-    chipsetClockPs: in  std_logic;
     usbClock:       in  std_logic;    
     
     --vga
@@ -414,6 +414,7 @@ signal  systemRamDataIn:            std_logic_vector( 31 downto 0 );
 signal  systemRamWr:                std_logic; 
 
 --cpu signals
+signal cpuClock:        std_logic;
 signal cpuResetn:       std_logic;
 signal cpuAOut:         std_logic_vector( 29 downto 0 );
 signal cpuDOut:         std_logic_vector( 31 downto 0 );
@@ -513,13 +514,16 @@ begin
 
 -- assign clocks
 
+cpuClock            <= mainClockD2;
 fpgaCpuMemoryClock  <= not cpuClock;
 pgClock             <= pixelClock;
-registersClock      <= chipsetClock;
-uartClock           <= chipsetClock;
-tickTimerClock      <= cpuClock;
-spiClock            <= cpuClock;
-usbHostClock        <= chipsetClock;
+
+registersClock      <= mainClock;
+uartClock           <= mainClock;
+tickTimerClock      <= mainClockD2;
+spiClock            <= mainClockD2;
+usbHostClock        <= mainClock;
+
 usbHClk             <= usbClock;
 
 
@@ -1090,8 +1094,8 @@ port map(
     reset           => reset,
     
     cpuClock        => cpuClock,
-    sdramClock      => chipsetClock,
-    sdramClockPs    => chipsetClockPs,
+    sdramClock      => mainClock,
+    sdramClockPs    => mainClockPs,
 
 
    --bus interface ( registers )

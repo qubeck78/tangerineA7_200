@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Sun Aug 18 21:45:05 2024
+| Date         : Sun Aug 18 22:04:47 2024
 | Host         : Desktop-qUBECk running 64-bit major release  (build 9200)
 | Command      : report_timing_summary -max_paths 10 -report_unconstrained -file A7BoardTop_timing_summary_routed.rpt -pb A7BoardTop_timing_summary_routed.pb -rpx A7BoardTop_timing_summary_routed.rpx -warn_on_violation
 | Design       : A7BoardTop
@@ -16052,7 +16052,7 @@ Slack:                    inf
                                                      -3.701     2.115 r  clk_wiz_0Inst/inst/mmcm_adv_inst/CLKOUT5
                          net (fo=1, routed)           1.843     3.959    clk_wiz_0Inst/inst/clk100_clk_wiz_0
     BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.096     4.055 r  clk_wiz_0Inst/inst/clkout6_buf/O
-                         net (fo=711, routed)         1.753     5.808    chipsetClock
+                         net (fo=711, routed)         1.753     5.808    clk100
     SLICE_X8Y123         FDPE                                         r  sdramD_IOBUF[31]_inst_i_1/C
   -------------------------------------------------------------------    -------------------
     SLICE_X8Y123         FDPE (Prop_fdpe_C_Q)         0.478     6.286 f  sdramD_IOBUF[31]_inst_i_1/Q
@@ -16091,7 +16091,7 @@ Slack:                    inf
                                                      -3.701     2.115 r  clk_wiz_0Inst/inst/mmcm_adv_inst/CLKOUT5
                          net (fo=1, routed)           1.843     3.959    clk_wiz_0Inst/inst/clk100_clk_wiz_0
     BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.096     4.055 r  clk_wiz_0Inst/inst/clkout6_buf/O
-                         net (fo=711, routed)         1.753     5.808    chipsetClock
+                         net (fo=711, routed)         1.753     5.808    clk100
     SLICE_X8Y123         FDPE                                         r  sdramD_IOBUF[31]_inst_i_1/C
   -------------------------------------------------------------------    -------------------
     SLICE_X8Y123         FDPE (Prop_fdpe_C_Q)         0.478     6.286 f  sdramD_IOBUF[31]_inst_i_1/Q
@@ -16130,7 +16130,7 @@ Slack:                    inf
                                                      -3.701     2.115 r  clk_wiz_0Inst/inst/mmcm_adv_inst/CLKOUT5
                          net (fo=1, routed)           1.843     3.959    clk_wiz_0Inst/inst/clk100_clk_wiz_0
     BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.096     4.055 r  clk_wiz_0Inst/inst/clkout6_buf/O
-                         net (fo=711, routed)         1.753     5.808    chipsetClock
+                         net (fo=711, routed)         1.753     5.808    clk100
     SLICE_X8Y123         FDPE                                         r  sdramD_IOBUF[31]_inst_i_1/C
   -------------------------------------------------------------------    -------------------
     SLICE_X8Y123         FDPE (Prop_fdpe_C_Q)         0.478     6.286 f  sdramD_IOBUF[31]_inst_i_1/Q
@@ -16169,7 +16169,7 @@ Slack:                    inf
                                                      -3.701     2.115 r  clk_wiz_0Inst/inst/mmcm_adv_inst/CLKOUT5
                          net (fo=1, routed)           1.843     3.959    clk_wiz_0Inst/inst/clk100_clk_wiz_0
     BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.096     4.055 r  clk_wiz_0Inst/inst/clkout6_buf/O
-                         net (fo=711, routed)         1.753     5.808    chipsetClock
+                         net (fo=711, routed)         1.753     5.808    clk100
     SLICE_X8Y123         FDPE                                         r  sdramD_IOBUF[31]_inst_i_1/C
   -------------------------------------------------------------------    -------------------
     SLICE_X8Y123         FDPE (Prop_fdpe_C_Q)         0.478     6.286 f  sdramD_IOBUF[31]_inst_i_1/Q
@@ -16208,7 +16208,7 @@ Slack:                    inf
                                                      -3.701     2.115 r  clk_wiz_0Inst/inst/mmcm_adv_inst/CLKOUT5
                          net (fo=1, routed)           1.843     3.959    clk_wiz_0Inst/inst/clk100_clk_wiz_0
     BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.096     4.055 r  clk_wiz_0Inst/inst/clkout6_buf/O
-                         net (fo=711, routed)         1.753     5.808    chipsetClock
+                         net (fo=711, routed)         1.753     5.808    clk100
     SLICE_X8Y123         FDPE                                         r  sdramD_IOBUF[31]_inst_i_1/C
   -------------------------------------------------------------------    -------------------
     SLICE_X8Y123         FDPE (Prop_fdpe_C_Q)         0.478     6.286 f  sdramD_IOBUF[31]_inst_i_1/Q
@@ -16247,7 +16247,7 @@ Slack:                    inf
                                                      -3.701     2.115 r  clk_wiz_0Inst/inst/mmcm_adv_inst/CLKOUT5
                          net (fo=1, routed)           1.843     3.959    clk_wiz_0Inst/inst/clk100_clk_wiz_0
     BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.096     4.055 r  clk_wiz_0Inst/inst/clkout6_buf/O
-                         net (fo=711, routed)         1.753     5.808    chipsetClock
+                         net (fo=711, routed)         1.753     5.808    clk100
     SLICE_X8Y123         FDPE                                         r  sdramD_IOBUF[31]_inst_i_1/C
   -------------------------------------------------------------------    -------------------
     SLICE_X8Y123         FDPE (Prop_fdpe_C_Q)         0.478     6.286 f  sdramD_IOBUF[31]_inst_i_1/Q
@@ -16286,7 +16286,7 @@ Slack:                    inf
                                                      -3.701     2.115 r  clk_wiz_0Inst/inst/mmcm_adv_inst/CLKOUT5
                          net (fo=1, routed)           1.843     3.959    clk_wiz_0Inst/inst/clk100_clk_wiz_0
     BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.096     4.055 r  clk_wiz_0Inst/inst/clkout6_buf/O
-                         net (fo=711, routed)         1.753     5.808    chipsetClock
+                         net (fo=711, routed)         1.753     5.808    clk100
     SLICE_X8Y123         FDPE                                         r  sdramD_IOBUF[31]_inst_i_1/C
   -------------------------------------------------------------------    -------------------
     SLICE_X8Y123         FDPE (Prop_fdpe_C_Q)         0.478     6.286 f  sdramD_IOBUF[31]_inst_i_1/Q
@@ -16325,7 +16325,7 @@ Slack:                    inf
                                                      -3.701     2.115 r  clk_wiz_0Inst/inst/mmcm_adv_inst/CLKOUT5
                          net (fo=1, routed)           1.843     3.959    clk_wiz_0Inst/inst/clk100_clk_wiz_0
     BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.096     4.055 r  clk_wiz_0Inst/inst/clkout6_buf/O
-                         net (fo=711, routed)         1.753     5.808    chipsetClock
+                         net (fo=711, routed)         1.753     5.808    clk100
     SLICE_X8Y123         FDPE                                         r  sdramD_IOBUF[31]_inst_i_1/C
   -------------------------------------------------------------------    -------------------
     SLICE_X8Y123         FDPE (Prop_fdpe_C_Q)         0.478     6.286 f  sdramD_IOBUF[31]_inst_i_1/Q
@@ -16364,7 +16364,7 @@ Slack:                    inf
                                                      -3.701     2.115 r  clk_wiz_0Inst/inst/mmcm_adv_inst/CLKOUT5
                          net (fo=1, routed)           1.843     3.959    clk_wiz_0Inst/inst/clk100_clk_wiz_0
     BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.096     4.055 r  clk_wiz_0Inst/inst/clkout6_buf/O
-                         net (fo=711, routed)         1.753     5.808    chipsetClock
+                         net (fo=711, routed)         1.753     5.808    clk100
     SLICE_X8Y123         FDPE                                         r  sdramD_IOBUF[31]_inst_i_1/C
   -------------------------------------------------------------------    -------------------
     SLICE_X8Y123         FDPE (Prop_fdpe_C_Q)         0.478     6.286 f  sdramD_IOBUF[31]_inst_i_1/Q
@@ -16403,7 +16403,7 @@ Slack:                    inf
                                                      -3.701     2.115 r  clk_wiz_0Inst/inst/mmcm_adv_inst/CLKOUT5
                          net (fo=1, routed)           1.843     3.959    clk_wiz_0Inst/inst/clk100_clk_wiz_0
     BUFGCTRL_X0Y3        BUFG (Prop_bufg_I_O)         0.096     4.055 r  clk_wiz_0Inst/inst/clkout6_buf/O
-                         net (fo=711, routed)         1.753     5.808    chipsetClock
+                         net (fo=711, routed)         1.753     5.808    clk100
     SLICE_X8Y123         FDPE                                         r  sdramD_IOBUF[31]_inst_i_1/C
   -------------------------------------------------------------------    -------------------
     SLICE_X8Y123         FDPE (Prop_fdpe_C_Q)         0.478     6.286 f  sdramD_IOBUF[31]_inst_i_1/Q

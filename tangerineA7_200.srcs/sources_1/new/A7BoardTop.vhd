@@ -144,11 +144,11 @@ Port (
     --reset, clocks 
     reset:          in  std_logic;
     
+    mainClock:      in  std_logic;
+    mainClockPs:    in  std_logic;
+    mainClockD2:    in  std_logic;    
     pixelClock:     in  std_logic;
-    cpuClock:       in  std_logic;
-    chipsetClock:   in  std_logic;
-    chipsetClockPs: in  std_logic;
-    usbClock:       in  std_logic;    
+    usbClock:       in  std_logic;
     
     --vga
     vgaRed:         out std_logic_vector( 7 downto 0 );
@@ -220,13 +220,9 @@ signal  hdmiEncodedData:    std_logic_vector( 2 downto 0 );
 --tangerine SOC signals
 
 --clocks
-signal  cpuClock:           std_logic;
-signal  chipsetClock:       std_logic;
-signal  chipsetClockps:     std_logic;
 signal  vgaPixelClock:      std_logic;
 signal  vgaPixelClockx5:    std_logic;
 signal  vgaPixelClockx5ps:  std_logic;
-signal  usbClock:           std_logic;
 
 --vga
 signal  vgaRed:             std_logic_vector( 7 downto 0 );
@@ -248,11 +244,6 @@ begin
     vgaPixelClockx5ps   <= clk125ps;
     vgaPixelClock       <= clk25;
 
-    cpuClock            <= clk50;
-    chipsetClock        <= clk100;
-    chipsetClockps      <= clk100ps;
-
-    usbClock            <= clk12;
     
 --drive unassigned signals
 
@@ -335,12 +326,12 @@ port map(
     --reset, clocks 
     reset               => reset,
     
-    pixelClock          => vgaPixelClock,
-    cpuClock            => cpuClock,
-    chipsetClock        => chipsetClock,
-    chipsetClockPs      => chipsetClockps,
-    usbClock            => usbClock,
-    
+    mainClock           => clk100,
+    mainClockPs         => clk100ps,
+    mainClockD2         => clk50,
+    pixelClock          => clk25,
+    usbClock            => clk12,
+      
     
     --vga
     vgaRed              => vgaRed,
