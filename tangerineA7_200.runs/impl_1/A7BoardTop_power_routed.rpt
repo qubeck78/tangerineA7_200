@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date             : Mon Aug 19 11:00:05 2024
+| Date             : Mon Aug 19 12:08:11 2024
 | Host             : Desktop-qUBECk running 64-bit major release  (build 9200)
 | Command          : report_power -file A7BoardTop_power_routed.rpt -pb A7BoardTop_power_summary_routed.pb -rpx A7BoardTop_power_routed.rpx
 | Design           : A7BoardTop
@@ -52,21 +52,21 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.016 |       11 |       --- |             --- |
-| Slice Logic              |     0.004 |     6386 |       --- |             --- |
-|   LUT as Logic           |     0.004 |     2988 |    133800 |            2.23 |
+| Clocks                   |     0.015 |       11 |       --- |             --- |
+| Slice Logic              |     0.004 |     6328 |       --- |             --- |
+|   LUT as Logic           |     0.003 |     2918 |    133800 |            2.18 |
 |   CARRY4                 |    <0.001 |      242 |     33450 |            0.72 |
 |   Register               |    <0.001 |     2421 |    269200 |            0.90 |
+|   F7/F8 Muxes            |    <0.001 |       23 |    133800 |            0.02 |
 |   LUT as Distributed RAM |    <0.001 |       44 |     46200 |            0.10 |
-|   F7/F8 Muxes            |    <0.001 |       18 |    133800 |            0.01 |
 |   Others                 |     0.000 |      112 |       --- |             --- |
 |   BUFG                   |     0.000 |        1 |        32 |            3.13 |
 |   LUT as Shift Register  |     0.000 |        4 |     46200 |           <0.01 |
-| Signals                  |     0.005 |     5426 |       --- |             --- |
+| Signals                  |     0.005 |     5345 |       --- |             --- |
 | Block RAM                |     0.011 |       11 |       365 |            3.01 |
 | MMCM                     |     0.229 |        2 |        10 |           20.00 |
 | DSPs                     |    <0.001 |        4 |       740 |            0.54 |
-| I/O                      |     0.159 |       77 |       400 |           19.25 |
+| I/O                      |     0.160 |       77 |       400 |           19.25 |
 | Static Power             |     0.140 |          |           |                 |
 | Total                    |     0.564 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
@@ -78,9 +78,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.068 |       0.037 |      0.031 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.067 |       0.035 |      0.031 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.158 |       0.128 |      0.031 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.052 |       0.047 |      0.005 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.053 |       0.048 |      0.005 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -160,11 +160,11 @@ Table of Contents
 |     inst            |     0.107 |
 |   clk_wiz_1Inst     |     0.123 |
 |     inst            |     0.123 |
-|   dvidInst          |     0.002 |
+|   dvidInst          |     0.001 |
 |   tangerineSOCInst  |     0.032 |
 |     UARTInst        |     0.002 |
-|     picorv32Inst    |     0.009 |
-|       pcpi_div      |     0.002 |
+|     picorv32Inst    |     0.008 |
+|       pcpi_div      |     0.001 |
 |       pcpi_mul      |     0.001 |
 |     sdramDMAInst    |     0.006 |
 |       gfxBufRamInst |     0.001 |

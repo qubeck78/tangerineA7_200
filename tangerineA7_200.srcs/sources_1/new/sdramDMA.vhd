@@ -729,22 +729,22 @@ begin
 
                 when sdcCh0Read7 =>
                 
-                    --nop
-                    sdramCS     <= '0';
-                    sdramRAS    <= '1';
-                    sdramCAS    <= '1';
-                    sdramWE     <= '1';
+--                    --nop
+--                    sdramCS     <= '0';
+--                    sdramRAS    <= '1';
+--                    sdramCAS    <= '1';
+--                    sdramWE     <= '1';
 
                     
-                    --notify CPU, data is ready
-                    ch0Ready    <= '1';
+--                    --notify CPU, data is ready
+--                    ch0Ready    <= '1';
 
-                    if ch0CE = '0' then
+--                    if ch0CE = '0' then
                 
-                        ch0Ready    <= '0';
-                        sdcState    <= sdcIdle;
+--                        ch0Ready    <= '0';
+--                        sdcState    <= sdcIdle;
                     
-                    end if;
+--                    end if;
                 
                     
 
