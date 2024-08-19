@@ -473,7 +473,7 @@ begin
                     
                     --row / bank address ( cpu adr max downto 8 )
     
-                    --todo, adjust for 32bit sdram
+                    
                     sdramBA     <= ch3DmaPointer( 23 downto 22 );
                     sdramA      <= ch3DmaPointer( 21 downto 9 );
     
@@ -689,7 +689,7 @@ begin
 
                when sdcCh0Read5 =>
                 
-                    
+                    --data latch latency 
                     --nop
                     sdramCS     <= '0';
                     sdramRAS    <= '1';
@@ -701,7 +701,7 @@ begin
 
                 when sdcCh0Read6 =>
 
-                    ch0Dout     <= sdramDInLatched; --sdramD;
+                    ch0Dout     <= sdramDInLatched;
 
                     --nop
                     sdramCS     <= '0';
@@ -723,44 +723,10 @@ begin
                         sdcState    <= sdcCh0Read6;
                     
                     end if;
-     
-                    
---                    sdcState    <= sdcCh0Read7;
-
-                when sdcCh0Read7 =>
-                
---                    --nop
---                    sdramCS     <= '0';
---                    sdramRAS    <= '1';
---                    sdramCAS    <= '1';
---                    sdramWE     <= '1';
-
-                    
---                    --notify CPU, data is ready
---                    ch0Ready    <= '1';
-
---                    if ch0CE = '0' then
-                
---                        ch0Ready    <= '0';
---                        sdcState    <= sdcIdle;
-                    
---                    end if;
-                
-                    
+                                   
 
                 when sdcCh0Write0 =>
                 
---    ch0A:           in  std_logic_vector( 23 downto 0 );
---    ch0Din:         in  std_logic_vector( 31 downto 0 );
---    ch0Dout:        out std_logic_vector( 31 downto 0 );
-   
---    ch0Ce:          in  std_logic;
---    ch0Wr:          in  std_logic;
---    ch0DataMask:    in  std_logic_vector( 3 downto 0 );
---    ch0InstrCycle:  in  std_logic;
-
---    ch0Ready:       out std_logic; 
-
                     --nop
                     sdramCS     <= '0';
                     sdramRAS    <= '1';
@@ -780,16 +746,6 @@ begin
                     sdcState <= sdcCh0Write2;        
 
                 when sdcCh0Write2 =>
-                
-                    --nop
-                    sdramCS     <= '0';
-                    sdramRAS    <= '1';
-                    sdramCAS	<= '1';
-                    sdramWE 	<= '1';
-
-                    sdcState <= sdcCh0Write3;        
-
-                when sdcCh0Write3 =>
                 
                     --write
                     sdramCS     <= '0';
@@ -812,12 +768,24 @@ begin
                     sdramDQM( 1 ) <= not ch0DataMask( 1 );
                     sdramDQM( 2 ) <= not ch0DataMask( 2 );
                     sdramDQM( 3 ) <= not ch0DataMask( 3 );
+
+                    sdcState <= sdcCh0Write3;        
+
+                when sdcCh0Write3 =>
+                
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
                     
                     sdcState <= sdcCh0Write4;        
                     
                 when sdcCh0Write4 =>
                     
-                    --nop
+                    --sdram data bus in
+                    sdramD      <= ( others => 'Z' );
+                                        --nop
                     sdramCS     <= '0';
                     sdramRAS    <= '1';
                     sdramCAS	<= '1';
@@ -827,28 +795,16 @@ begin
 
                 when sdcCh0Write5 =>
 
-                    --sdram data bus in
-                    sdramD      <= ( others => 'Z' );
-                                        --nop
-                    sdramCS     <= '0';
-                    sdramRAS    <= '1';
-                    sdramCAS	<= '1';
-                    sdramWE 	<= '1';
-
-                    sdcState <= sdcCh0Write6;        
-
-                when sdcCh0Write6 =>
-
-                    
                     --nop
                     sdramCS     <= '0';
                     sdramRAS    <= '1';
                     sdramCAS	<= '1';
                     sdramWE 	<= '1';
 
-                    sdcState <= sdcCh0Write7;        
 
-                when sdcCh0Write7 =>
+                    sdcState <= sdcCh0Write6;        
+
+                when sdcCh0Write6 =>
 
                     --notify cpu that data has been written
                     ch0Ready    <= '1';
@@ -865,6 +821,7 @@ begin
                         sdcState    <= sdcIdle;
                         
                     end if;
+
                     
                 when sdcInit0 =>
 

@@ -117,6 +117,7 @@ component systemRam
   );
 end component; 
 
+
 -- text mode pixel and sync gen
 component pixelGenTxt
     port(
@@ -413,6 +414,12 @@ signal  systemRamDoutForPixelGen:   std_logic_vector( 31 downto 0 );
 signal  systemRamDataIn:            std_logic_vector( 31 downto 0 );
 signal  systemRamWr:                std_logic; 
 
+--fast ram signals
+signal  fastRAMCE:                std_logic;
+signal  fastRamReady:             std_logic;
+signal  fastRamDoutForCPU:        std_logic_vector( 31 downto 0 );
+
+
 --cpu signals
 signal cpuClock:        std_logic;
 signal cpuResetn:       std_logic;
@@ -576,6 +583,11 @@ port map(
 systemRamReady  <= '1';
    
 videoRamBDout   <= systemRamDoutForPixelGen( 15 downto 0 ) when videoRamBA( 0 ) = '0' else systemRamDoutForPixelGen( 31 downto 16 ); 
+
+
+
+ 
+ fastRamReady   <= '1';
  
 --Place txt pixel gen
 
@@ -763,6 +775,7 @@ end process;
     systemRAMCE     <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"000" else '0';
 
     sdramDMACE      <= '1' when ( cpuMemValid = '1'  ) and cpuAOutFull( 31 downto 28 ) = x"2" else '0';
+    fastRamCE      <= '1' when ( cpuMemValid = '1'  ) and cpuAOutFull( 31 downto 28 ) = x"3" else '0';
          
     registersCE     <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f00" else '0';
 
@@ -789,6 +802,7 @@ end process;
                         else usbHostReady when usbHostCE = '1' 
                         else registersReady when registersCE = '1' 
                         else sdramDMAReady when sdramDMACE = '1' 
+                        else fastRamReady when fastRamCE = '1' 
 --                        else blitterReady when blitterCE = '1' 
 --                        else fpAluReady when fpAluCE = '1' 
 --                        else i2sReady when i2sCE = '1' 
@@ -801,6 +815,7 @@ end process;
    cpuDin            <= systemRamDoutForCPU                       when cpuAOutFull( 31 downto 20 ) = x"000" else 
                         registersDoutForCPU                       when cpuAOutFull( 31 downto 20 ) = x"f00" else
                         sdramDMADoutForCPU                        when cpuAOutFull( 31 downto 28 ) = x"2"  else
+                        fastRamDoutForCPU                         when cpuAOutFull( 31 downto 28 ) = x"3"  else
 --                        fpAluDoutForCPU                           when cpuAOutFull( 31 downto 20 ) = x"f01" else
 --                        blitterDoutForCPU                         when cpuAOutFull( 31 downto 20 ) = x"f02" else
                         usbHostDoutForCPU                         when cpuAOutFull( 31 downto 20 ) = x"f03" else 
