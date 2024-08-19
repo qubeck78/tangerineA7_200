@@ -131,6 +131,9 @@ signal refreshCounter:	std_logic_vector( 11 downto 0 );
 signal refreshRequest:	std_logic;
 signal refreshDone:		std_logic;
 
+signal sdramDInLatched: std_logic_vector( 31 downto 0 );
+
+
 --ch3 signals
 signal ch3DmaRequestLatched:    std_logic_vector( 1 downto 0 );
 signal ch3DmaPointerStart:      std_logic_vector( 23 downto 0 );
@@ -277,6 +280,17 @@ begin
 
 end process;
 
+sdramDataLatcher: process( all )
+begin
+
+    if rising_edge( sdramClockPs ) then
+    
+        sdramDInLatched <= sdramD;
+        
+    end if;
+
+end process;
+
 
 sdramDMAMain: process( all )
 begin
@@ -390,13 +404,52 @@ begin
                             if ch0Wr = '1' then
 
                                 --write
-
+                                --bank/row activation
+                
+                                sdramDQM    <= ( others => '0' );
+                                               
+                                --put data on bus
+                                sdramD      <= ch0Din;
+                                 
+                                --row select, read, auto precharge
+                                
+                                --row / bank address ( cpu adr max downto 8 )
+                
+                              
+                                sdramBA     <= ch0A( 23 downto 22 );
+                                sdramA      <= ch0A( 21 downto 9 );
+                
+                                sdramCS     <= '0';
+                                sdramRAS    <= '0';
+                                sdramCAS    <= '1';
+                                sdramWE     <= '1';
+            
                                 sdcState    <= sdcCh0Write0;
 
                             else --ch0Wr = '0'
  
                                 --read
-						
+ 
+                                --bank/row activation
+                
+                                sdramDQM    <= ( others => '0' );
+                
+                                --sdram data bus in
+                                sdramD      <= ( others => 'Z' );
+                
+                                --row select, read, auto precharge
+                                
+                                --row / bank address ( cpu adr max downto 8 )
+                                
+                                sdramBA     <= ch0A( 23 downto 22 );
+                                sdramA      <= ch0A( 21 downto 9 );
+                
+                                sdramCS     <= '0';
+                                sdramRAS    <= '0';
+                                sdramCAS    <= '1';
+                                sdramWE     <= '1';
+            
+                                   
                                 sdcState    <= sdcCh0Read0;
                             
                             end if; --ch0Wr = '1' or '0'
@@ -553,30 +606,27 @@ begin
                     ch3DmaRequestLatched( 0 )   <= '0';
                     ch3DmaRequestLatched( 1 )   <= '0';
 
+                    sdcState    <= sdcCh3Read8;
+
+                when sdcCh3Read8 =>
+                    
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+                          
                     sdcState    <= sdcIdle;
 
 
                 when sdcCh0Read0 =>
                 
-
-                    --bank/row activation
-    
-                    sdramDQM    <= ( others => '0' );
-    
-                    --sdram data bus in
-                    sdramD      <= ( others => 'Z' );
-    
-                    --row select, read, auto precharge
-                    
-                    --row / bank address ( cpu adr max downto 8 )
-                    
-                    sdramBA     <= ch0A( 23 downto 22 );
-                    sdramA      <= ch0A( 21 downto 9 );
-    
+                    --nop
                     sdramCS     <= '0';
-                    sdramRAS    <= '0';
-                    sdramCAS    <= '1';
-                    sdramWE     <= '1';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+
     
                     sdcState <= sdcCh0Read1;        
 
@@ -592,16 +642,6 @@ begin
 
                 when sdcCh0Read2 =>
                 
-                    --nop
-                    sdramCS     <= '0';
-                    sdramRAS    <= '1';
-                    sdramCAS	<= '1';
-                    sdramWE 	<= '1';
-
-                    sdcState <= sdcCh0Read3;        
-
-                when sdcCh0Read3 =>
-
                     --column select, read
 
                     sdramCS     <= '0';
@@ -618,11 +658,11 @@ begin
                     --cpu addresses in longwords
 
                     sdramA( 8 downto 0 )    <= ch0A( 8 downto 0 );
-                    
-                    sdcState                <= sdcCh0Read4;
-				
-                when sdcCh0Read4 =>
-                
+
+                    sdcState <= sdcCh0Read3;        
+
+                when sdcCh0Read3 =>
+
                     -- cas latency 1
                 
                     --nop
@@ -631,9 +671,10 @@ begin
                     sdramCAS	<= '1';
                     sdramWE 	<= '1';
 
-                    sdcState    <= sdcCh0Read5;
-
-               when sdcCh0Read5 =>
+                    
+                    sdcState                <= sdcCh0Read4;
+				
+                when sdcCh0Read4 =>
                 
                     -- cas latency 2 
                 
@@ -643,10 +684,11 @@ begin
                     sdramCAS    <= '1';
                     sdramWE     <= '1';
 
-                    sdcState    <= sdcCh0Read6;
 
-                when sdcCh0Read6 =>
+                    sdcState    <= sdcCh0Read5;
 
+               when sdcCh0Read5 =>
+                
                     ch0Dout     <= sdramD;
                     
                     --nop
@@ -656,7 +698,33 @@ begin
                     sdramWE     <= '1';
 
                     
-                    sdcState    <= sdcCh0Read7;
+                    sdcState    <= sdcCh0Read6;
+
+                when sdcCh0Read6 =>
+
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS    <= '1';
+                    sdramWE     <= '1';
+
+               --notify CPU, data is ready
+                    
+                    ch0Ready    <= '1';
+
+                    if ch0CE = '0' then
+                
+                        ch0Ready    <= '0';
+                        sdcState    <= sdcIdle;
+                    
+                    else
+                    
+                        sdcState    <= sdcCh0Read6;
+                    
+                    end if;
+     
+                    
+--                    sdcState    <= sdcCh0Read7;
 
                 when sdcCh0Read7 =>
                 
@@ -666,21 +734,18 @@ begin
                     sdramCAS    <= '1';
                     sdramWE     <= '1';
 
-                    if cpuClock = '1' then
                     
-                        --notify CPU, data is ready
-                        ch0Ready    <= '1';
+                    --notify CPU, data is ready
+                    ch0Ready    <= '1';
 
-                        if ch0CE = '0' then
-                    
-                            ch0Ready    <= '0';
-                            sdcState    <= sdcIdle;
-                        
-                        end if;
+                    if ch0CE = '0' then
+                
+                        ch0Ready    <= '0';
+                        sdcState    <= sdcIdle;
                     
                     end if;
+                
                     
-
 
                 when sdcCh0Write0 =>
                 
@@ -695,28 +760,11 @@ begin
 
 --    ch0Ready:       out std_logic; 
 
-                    --bank/row activation
-    
-                    sdramDQM    <= ( others => '0' );
-    
-                    --sdram data bus in
- --                   sdramD      <= ( others => 'Z' );
-                    
-                    --put data on bus
-                    sdramD      <= ch0Din;
-                     
-                    --row select, read, auto precharge
-                    
-                    --row / bank address ( cpu adr max downto 8 )
-    
-                  
-                    sdramBA     <= ch0A( 23 downto 22 );
-                    sdramA      <= ch0A( 21 downto 9 );
-    
+                    --nop
                     sdramCS     <= '0';
-                    sdramRAS    <= '0';
-                    sdramCAS    <= '1';
-                    sdramWE     <= '1';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
     
                     sdcState <= sdcCh0Write1;        
 

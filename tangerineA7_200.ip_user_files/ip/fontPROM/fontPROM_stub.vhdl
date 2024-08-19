@@ -2,10 +2,10 @@
 -- Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
--- Date        : Fri Aug 16 18:18:55 2024
+-- Date        : Fri Aug 16 18:18:54 2024
 -- Host        : Desktop-qUBECk running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode synth_stub
---               c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/fontPROM/fontPROM_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub -rename_top fontPROM -prefix
+--               fontPROM_ fontPROM_stub.vhdl
 -- Design      : fontPROM
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7a200tfbg676-1
