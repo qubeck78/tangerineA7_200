@@ -122,7 +122,7 @@ ulong init()
    #ifdef _GFXLIB_RISCV_FATFS
    
    //init usb HID stack
-   rv = usbHIDInit();
+   //rv = usbHIDInit();
 
    #endif
 

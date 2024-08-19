@@ -514,7 +514,7 @@ begin
 
 -- assign clocks
 
-cpuClock            <= mainClockD2;
+cpuClock            <= mainClock;
 fpgaCpuMemoryClock  <= not cpuClock;
 pgClock             <= pixelClock;
 
