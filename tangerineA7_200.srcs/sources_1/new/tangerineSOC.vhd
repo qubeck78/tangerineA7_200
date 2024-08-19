@@ -443,6 +443,7 @@ signal   registerState:       regState_T;
 
 signal   registersCE:         std_logic;
 signal   registersDoutForCPU: std_logic_vector( 31 downto 0 ); 
+signal   registersReady:      std_logic;
 
 -- tick timer signals
 signal   tickTimerClock:            std_logic;
@@ -521,6 +522,7 @@ pgClock             <= pixelClock;
 registersClock      <= mainClock;
 uartClock           <= mainClock;
 tickTimerClock      <= mainClockD2;
+frameTimerClock     <= mainClock;
 spiClock            <= mainClockD2;
 usbHostClock        <= mainClock;
 
@@ -785,7 +787,7 @@ end process;
                         else uartReady when uartCE = '1' 
                         else spiReady when spiCE = '1' 
                         else usbHostReady when usbHostCE = '1' 
-                        else '1' when registersCE = '1' 
+                        else registersReady when registersCE = '1' 
                         else sdramDMAReady when sdramDMACE = '1' 
 --                        else blitterReady when blitterCE = '1' 
 --                        else fpAluReady when fpAluCE = '1' 
@@ -875,17 +877,18 @@ begin
    
       if reset = '1' then
       
-         registersDoutForCPU  <= ( others => '0' );
+        registersDoutForCPU  <= ( others => '0' );
          
          --default register values
-         vmMode                  <= x"0000";
---         dmaDisplayPointerStart  <= ( others => '0' );
-         gpoRegister             <= x"0000" & "0000000101111111";             --turn on last LED, tang flash CS high by default
+        vmMode          <= x"0000";
+        gpoRegister     <= x"0000" & "0000000101111111";             --turn on last LED, tang flash CS high by default
          
-         tickTimerReset             <= '0';
+        tickTimerReset  <= '0';
                   
-         registerState              <= rsWaitForRegAccess;
-
+        registerState   <= rsWaitForRegAccess;
+        frameTimerReset <= '0';
+        registersReady  <= '0';
+        
       else
       
          tickTimerReset             <= '0';
@@ -894,9 +897,13 @@ begin
          case registerState is
          
             when rsWaitForRegAccess =>
-         
-               if registersCE = '1' then
                   
+               registersReady <= '0';
+               
+               if registersCE = '1' then
+        
+                  registersReady <= '1';
+                            
                   case cpuAOut( 7 downto 0 ) is
                
                
@@ -919,13 +926,8 @@ begin
                      --rw 0xf0000008 - dmaDisplayPointerStart
                      when x"02" =>
                
---                        registersDoutForCPU  <= "00000000000" & dmaDisplayPointerStart;
+                        registersDoutForCPU  <= ( others => '0' );
                         
-                        if cpuWr = '1' then
-                        
---                           dmaDisplayPointerStart  <= cpuDOut( 20 downto 0 );
-                        
-                        end if;
                                        
                      --rw 0xf000000c - gpoPort
                      when x"03" =>
@@ -980,6 +982,8 @@ begin
                      
                --wait for bus cycle to end
                if registersCE = '0' then
+
+                  registersReady <= '0';
                
                   registerState <= rsWaitForRegAccess;
                   
@@ -1190,5 +1194,31 @@ begin
    end if; --rising_edge( tickTimerClock )
 
 end process;   
+
+-- frame timer process
+frameTimerProcess: process( all )
+begin
+   
+   if rising_edge( frameTimerClock ) then
+
+      if frameTimerReset = '1' then
+      
+         frameTimerValue <= ( others => '0' );
+         
+      else
+      
+         frameTimerPgPrvVSync <= pgVSyncClkD2;
+         
+         
+         if frameTimerPgPrvVSync = '0' and pgVSyncClkD2 = '1' then
+      
+            frameTimerValue <= frameTimerValue + '1';
+            
+         end if;
+      
+      end if;
+   
+   end if; -- rising_edge( frameTimerClock )
+end process; 
 
 end Behavioral;

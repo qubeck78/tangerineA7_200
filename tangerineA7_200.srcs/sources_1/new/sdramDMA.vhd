@@ -689,7 +689,6 @@ begin
 
                when sdcCh0Read5 =>
                 
-                    ch0Dout     <= sdramD;
                     
                     --nop
                     sdramCS     <= '0';
@@ -701,6 +700,8 @@ begin
                     sdcState    <= sdcCh0Read6;
 
                 when sdcCh0Read6 =>
+
+                    ch0Dout     <= sdramDInLatched; --sdramD;
 
                     --nop
                     sdramCS     <= '0';

@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a200tfbg676-1" LaunchTime="1724051586" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/A7BoardTop.dcp">
+<GenRun Id="synth_1" LaunchPart="xc7a200tfbg676-1" LaunchTime="1724057698" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/A7BoardTop.dcp">
   <File Type="PA-TCL" Name="A7BoardTop.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="A7BoardTop_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="A7BoardTop_reports.tcl"/>
   <File Type="RDS-RDS" Name="A7BoardTop.vds"/>
   <File Type="RDS-UTIL" Name="A7BoardTop_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="A7BoardTop_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="A7BoardTop.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="A7BoardTop_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="A7BoardTop_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/picorv32.v">
@@ -147,11 +144,11 @@
     <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023"/>
     <Step Id="synth_design"/>
   </Strategy>
-  <BlockFileSet Type="BlockSrcs" Name="systemRam"/>
   <BlockFileSet Type="BlockSrcs" Name="fontPROM"/>
+  <BlockFileSet Type="BlockSrcs" Name="systemRam"/>
   <BlockFileSet Type="BlockSrcs" Name="uartFiFo"/>
-  <BlockFileSet Type="BlockSrcs" Name="clk_wiz_0"/>
   <BlockFileSet Type="BlockSrcs" Name="gfxBufRam"/>
+  <BlockFileSet Type="BlockSrcs" Name="clk_wiz_0"/>
   <BlockFileSet Type="BlockSrcs" Name="clk_wiz_1"/>
   <BlockFileSet Type="BlockSrcs" Name="keyboardFifo"/>
 </GenRun>

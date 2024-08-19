@@ -1,48 +1,40 @@
-+====================+===================+==================================================================+
-| Launch Setup Clock | Launch Hold Clock | Pin                                                              |
-+====================+===================+==================================================================+
-| clk100_clk_wiz_0   | clk100_clk_wiz_0  | tangerineSOCInst/picorv32Inst/decoded_imm_j_reg[2]/D             |
-| clk100_clk_wiz_0   | clk100_clk_wiz_0  | tangerineSOCInst/picorv32Inst/decoded_rs2_reg_rep[2]/D           |
-| clk100_clk_wiz_0   | clk100_clk_wiz_0  | tangerineSOCInst/picorv32Inst/decoded_imm_j_reg[8]/D             |
-| clk100_clk_wiz_0   | clk100_clk_wiz_0  | tangerineSOCInst/picorv32Inst/decoded_rd_reg[3]/D                |
-| clk100_clk_wiz_0   | clk100_clk_wiz_0  | tangerineSOCInst/picorv32Inst/is_beq_bne_blt_bge_bltu_bgeu_reg/D |
-| clk100_clk_wiz_0   | clk100_clk_wiz_0  | tangerineSOCInst/picorv32Inst/decoded_rd_reg[1]/D                |
-| clk100_clk_wiz_0   | clk100_clk_wiz_0  | tangerineSOCInst/picorv32Inst/decoded_rs1_reg_rep[1]/D           |
-| clk100_clk_wiz_0   | clk100_clk_wiz_0  | tangerineSOCInst/picorv32Inst/mem_rdata_q_reg[1]/D               |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardSyncState_reg_inv/D  |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardWrEn_reg/D           |
-| clk100_clk_wiz_0   | clk100_clk_wiz_0  | tangerineSOCInst/picorv32Inst/decoded_imm_j_reg[6]/D             |
-| clk100_clk_wiz_0   | clk100_clk_wiz_0  | tangerineSOCInst/picorv32Inst/decoded_imm_j_reg[10]/D            |
-| clk100_clk_wiz_0   | clk100_clk_wiz_0  | tangerineSOCInst/picorv32Inst/decoded_imm_j_reg[9]/D             |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[7]/D      |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[4]/D      |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[22]/D     |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[8]/D      |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[21]/D     |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[30]/D     |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[17]/D     |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[10]/D     |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[14]/D     |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[27]/D     |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[13]/D     |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[12]/D     |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[15]/D     |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[18]/D     |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[9]/D      |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[5]/D      |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[2]/D      |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[31]/D     |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[3]/D      |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[23]/D     |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[20]/D     |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[25]/D     |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[6]/D      |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[29]/D     |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[16]/D     |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[24]/D     |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[1]/D      |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[19]/D     |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[0]/D      |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[28]/D     |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[26]/D     |
-+--------------------+-------------------+------------------------------------------------------------------+
++====================+===================+=================================================================+
+| Launch Setup Clock | Launch Hold Clock | Pin                                                             |
++====================+===================+=================================================================+
+| clk100_clk_wiz_0   | clk50_clk_wiz_0   | tangerineSOCInst/picorv32Inst/mem_rdata_q_reg[0]/D              |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardSyncState_reg_inv/D |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardWrEn_reg/D          |
+| clk100_clk_wiz_0   | clk100_clk_wiz_0  | tangerineSOCInst/picorv32Inst/mem_rdata_q_reg[1]/D              |
+| clk100_clk_wiz_0   | clk100_clk_wiz_0  | tangerineSOCInst/picorv32Inst/decoded_rs1_reg_rep[2]/D          |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[30]/D    |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[15]/D    |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[6]/D     |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[16]/D    |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[1]/D     |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[23]/D    |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[17]/D    |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[3]/D     |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[12]/D    |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[24]/D    |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[20]/D    |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[19]/D    |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[21]/D    |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[2]/D     |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[8]/D     |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[9]/D     |
+| clk100_clk_wiz_0   | clk100_clk_wiz_0  | tangerineSOCInst/picorv32Inst/decoded_rd_reg[4]/D               |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[13]/D    |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[14]/D    |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[22]/D    |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[28]/D    |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[11]/D    |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[0]/D     |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[29]/D    |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[26]/D    |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[25]/D    |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[7]/D     |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[31]/D    |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[18]/D    |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[4]/D     |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[27]/D    |
++--------------------+-------------------+-----------------------------------------------------------------+
