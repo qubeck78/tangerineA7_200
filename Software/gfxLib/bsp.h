@@ -185,6 +185,9 @@ extern _BLITTER_REGISTERS_T *blt;
 typedef struct __USBHOST_REGISTERS_T
 {
     //usb HID host
+    volatile ulong id;
+    volatile ulong version;
+
     volatile unsigned long usbHidKeyboardStatus;
     volatile unsigned long usbHidKeyboardData;
 
@@ -206,6 +209,9 @@ extern _UART_REGISTERS_T *uart0;
 
 typedef struct __SPI_REGISTERS_T
 {
+    volatile ulong id;
+    volatile ulong version;
+
     //wr - send data via spi, rd - read received data
     volatile unsigned long spiData;
     

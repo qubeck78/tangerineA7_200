@@ -85,8 +85,22 @@ begin
                   
                   case a( 7 downto 0 ) is
                   
-                     --0x00 rw spiData                      
-                     when x"00" =>
+                    --0x00 r- id                      
+                    when x"00" =>
+                 
+                        dout  <= x"80000002";   -- spi id
+                    
+                        ready <= '1';
+                    
+                    --0x04 r- component version                       
+                    when x"01" =>
+                 
+                        dout  <= x"20240820";
+                    
+                        ready <= '1';
+
+                     --0x08 rw spiData                      
+                     when x"02" =>
                      
                         dout  <= x"0000" &  x"00" & dataReceived;
                         
@@ -99,8 +113,8 @@ begin
 
                         ready <= '1';
                         
-                     --0x04 r- spiStatus                       
-                     when x"01" =>
+                     --0x0c r- spiStatus                       
+                     when x"03" =>
                      
                         dout  <= x"0000" & "000000000000000" & spiReady;
                         

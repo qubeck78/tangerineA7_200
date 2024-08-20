@@ -18,6 +18,8 @@
 -- 
 ----------------------------------------------------------------------------------
 
+--default sdram clock phase shift - 205
+
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -189,7 +191,7 @@ begin
                      --0x04 r- component version                       
                      when x"01" =>
                      
-                        dout  <= x"20240814";
+                        dout  <= x"20240820";
                         
                         ready <= '1';
 

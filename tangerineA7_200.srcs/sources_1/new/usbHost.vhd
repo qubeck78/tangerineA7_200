@@ -163,25 +163,39 @@ registers: process( all )
             
             case usbhRegState is
       
-               when usbhrWaitForRegAccess =>
+                when usbhrWaitForRegAccess =>
             
-                  if ce = '1' then
+                    if ce = '1' then
                   
-                     --cpu wants to access registers
+                    --cpu wants to access registers
                   
-                     ready <= '0';
+                    ready <= '0';
                      
-                     case a( 7 downto 0 ) is
+                    case a( 7 downto 0 ) is
                      
-                        --0x00 r- usbHidKeyboardStatus                     
+                        --0x00 r- id                      
                         when x"00" =>
+                     
+                            dout  <= x"80000004";   -- usb hid host id
+                        
+                            ready <= '1';
+                        
+                        --0x04 r- component version                       
+                        when x"01" =>
+                     
+                            dout  <= x"20240820";
+                        
+                            ready <= '1';
+                            
+                        --0x08 r- usbHidKeyboardStatus                     
+                        when x"02" =>
                         
                            dout <= x"0000000" & "00" & fifoHidKeyboardFull & fifoHidKeyboardEmpty;
 
                            ready <= '1';
 
-                        --0x04 r- usbHidKeyboardData                    
-                        when x"01" =>
+                        --0x0c r- usbHidKeyboardData                    
+                        when x"03" =>
                         
                            dout                 <= fifoHidKeyboardDataOut;
                            fifoHidKeyboardRdEn  <= '1'; 

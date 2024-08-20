@@ -143,10 +143,10 @@ OPTRACE "add files" START { }
   read_ip -quiet C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/uartFiFo/uartFiFo.xci
   read_ip -quiet C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/systemRam/systemRam.xci
   read_ip -quiet C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/gfxBufRam/gfxBufRam.xci
-  read_ip -quiet C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
   read_ip -quiet C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1.xci
   read_ip -quiet C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/keyboardFifo/keyboardFifo.xci
-  read_ip -quiet c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/fastRam/fastRam.xci
+  read_ip -quiet C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/fastRam/fastRam.xci
+  read_ip -quiet C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
 OPTRACE "read constraints: implementation" START { }
   read_xdc C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/constrs_1/new/A7BoardTop.xdc
 OPTRACE "read constraints: implementation" END { }
