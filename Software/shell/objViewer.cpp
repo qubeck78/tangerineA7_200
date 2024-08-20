@@ -785,20 +785,23 @@ int objvView( char* fileName )
 	rendererType = 2;
 	#endif
 
+	
 	do
 	{
-			
+					
 		gfDisplayBitmap( &screen2 );
 		do{}while( ! bsp->videoVSync );
-		
-		rotation = bsp->frameTimer;
+
+		rotation = (int)bsp->frameTimer;		
+
 		objvDisplayObj( &screen );
 
 
 		gfDisplayBitmap( &screen );
 		do{}while( ! bsp->videoVSync );
-		
-		rotation = bsp->frameTimer;
+
+		rotation = (int)bsp->frameTimer;		
+
 		objvDisplayObj( &screen2 );	 
 
 		

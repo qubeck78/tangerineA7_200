@@ -3,8 +3,8 @@
 # SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Mon Aug 19 09:13:10 2024
-# Process ID: 11252
+# Start of session at: Mon Aug 19 19:47:22 2024
+# Process ID: 20488
 # Current directory: C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1
 # Command line: vivado.exe -log A7BoardTop.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source A7BoardTop.tcl
 # Log file: C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/A7BoardTop.vds

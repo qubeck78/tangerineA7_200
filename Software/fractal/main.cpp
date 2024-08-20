@@ -15,6 +15,7 @@
 extern tgfTextOverlay   con;
 tgfBitmap               screen;
 
+int rotation;
 
 int animLeds( int j )
 {   
@@ -282,10 +283,17 @@ int main()
 
     gfFillRect( &screen, 0, 0, screen.width - 1, screen.height - 1 , gfColor( 0, 0, 0 ) ); 
     
+    bsp->frameTimer = 0;
 
     //init events queue
     osUIEventsInit();   
     
+/*    do
+    {
+            rotation = bsp->frameTimer;
+        toPrintF( &con, "%d\n", rotation );
+    }while( 1 );
+*/
     startTicks = getTicks();
 
     ffMandelbrot( &screen, 7, -2.0f, -1.0f, 0.0085f, 0.0085f );
@@ -301,7 +309,9 @@ int main()
     toCls( &con );
 
     con.textAttributes = 0x8f;
-        
+      
+
+
     do
     {
         ffMandelbrot( &screen, ( randomNumber() >> 7 ) & 7, -1.7f + ((ulong)randomNumber() ) / 3294967296.0f ,  -1.7f + ((ulong)randomNumber() ) / 3294967296.0f , 0.001f, 0.001f );

@@ -221,14 +221,13 @@ int main()
     
 
     toCls( &con );
-    toPrint( &con, (char*)"Slideshow\n" );
+    toPrint( &con, (char*)"tangerineSOC Slideshow\n" );
 
     
     screen.flags            = 0;
     screen.transparentColor = 0;
 
-    //always alloc 640x480 to allow screenmode switching
-    screen.buffer           = osAlloc( 640 * 480 * 2, OS_ALLOC_MEMF_CHIP ); 
+    screen.buffer           = osAlloc( screen.rowWidth * screen.height * 2, OS_ALLOC_MEMF_CHIP ); 
     
     if( screen.buffer == NULL )
     {

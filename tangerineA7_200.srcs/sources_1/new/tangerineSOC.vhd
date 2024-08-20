@@ -117,6 +117,16 @@ component systemRam
   );
 end component; 
 
+COMPONENT fastRam
+  PORT (
+    clka : IN STD_LOGIC;
+    wea : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    addra : IN STD_LOGIC_VECTOR(17 DOWNTO 0);
+    dina : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+    douta : OUT STD_LOGIC_VECTOR(31 DOWNTO 0) 
+  );
+END COMPONENT;
+
 -- text mode pixel and sync gen
 component pixelGenTxt
     port(
@@ -413,6 +423,12 @@ signal  systemRamDoutForPixelGen:   std_logic_vector( 31 downto 0 );
 signal  systemRamDataIn:            std_logic_vector( 31 downto 0 );
 signal  systemRamWr:                std_logic; 
 
+--fast ram signals
+signal  fastRAMCE:                std_logic;
+signal  fastRamReady:             std_logic;
+signal  fastRamDoutForCPU:        std_logic_vector( 31 downto 0 );
+
+
 --cpu signals
 signal cpuClock:        std_logic;
 signal cpuResetn:       std_logic;
@@ -443,6 +459,7 @@ signal   registerState:       regState_T;
 
 signal   registersCE:         std_logic;
 signal   registersDoutForCPU: std_logic_vector( 31 downto 0 ); 
+signal   registersReady:      std_logic;
 
 -- tick timer signals
 signal   tickTimerClock:            std_logic;
@@ -521,6 +538,7 @@ pgClock             <= pixelClock;
 registersClock      <= mainClock;
 uartClock           <= mainClock;
 tickTimerClock      <= mainClockD2;
+frameTimerClock     <= mainClock;
 spiClock            <= mainClockD2;
 usbHostClock        <= mainClock;
 
@@ -574,6 +592,35 @@ port map(
 systemRamReady  <= '1';
    
 videoRamBDout   <= systemRamDoutForPixelGen( 15 downto 0 ) when videoRamBA( 0 ) = '0' else systemRamDoutForPixelGen( 31 downto 16 ); 
+
+fastRamInst:fastRam 
+port map(
+    clka        => cpuClock,
+    wea(0)      => cpuWrStrobe(0) and fastRamCE,
+    wea(1)      => cpuWrStrobe(1) and fastRamCE,
+    wea(2)      => cpuWrStrobe(2) and fastRamCE,
+    wea(3)      => cpuWrStrobe(3) and fastRamCE,
+    addra       => cpuAOut( 17 downto 0 ),
+    dina        => cpuDOut,
+    douta       => fastRamDoutForCpu 
+);
+
+fastRamAccess:process( all )
+begin
+
+    if reset = '1' then
+    
+        fastRamReady <= '0';
+        
+    elsif rising_edge( cpuClock ) then
+    
+        fastRamReady <= fastRamCE;
+    
+    end if;
+
+end process;
+
+ 
  
 --Place txt pixel gen
 
@@ -761,6 +808,7 @@ end process;
     systemRAMCE     <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"000" else '0';
 
     sdramDMACE      <= '1' when ( cpuMemValid = '1'  ) and cpuAOutFull( 31 downto 28 ) = x"2" else '0';
+    fastRamCE      <= '1' when ( cpuMemValid = '1'  ) and cpuAOutFull( 31 downto 28 ) = x"3" else '0';
          
     registersCE     <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f00" else '0';
 
@@ -785,8 +833,9 @@ end process;
                         else uartReady when uartCE = '1' 
                         else spiReady when spiCE = '1' 
                         else usbHostReady when usbHostCE = '1' 
-                        else '1' when registersCE = '1' 
+                        else registersReady when registersCE = '1' 
                         else sdramDMAReady when sdramDMACE = '1' 
+                        else fastRamReady when fastRamCE = '1' 
 --                        else blitterReady when blitterCE = '1' 
 --                        else fpAluReady when fpAluCE = '1' 
 --                        else i2sReady when i2sCE = '1' 
@@ -799,6 +848,7 @@ end process;
    cpuDin            <= systemRamDoutForCPU                       when cpuAOutFull( 31 downto 20 ) = x"000" else 
                         registersDoutForCPU                       when cpuAOutFull( 31 downto 20 ) = x"f00" else
                         sdramDMADoutForCPU                        when cpuAOutFull( 31 downto 28 ) = x"2"  else
+                        fastRamDoutForCPU                         when cpuAOutFull( 31 downto 28 ) = x"3"  else
 --                        fpAluDoutForCPU                           when cpuAOutFull( 31 downto 20 ) = x"f01" else
 --                        blitterDoutForCPU                         when cpuAOutFull( 31 downto 20 ) = x"f02" else
                         usbHostDoutForCPU                         when cpuAOutFull( 31 downto 20 ) = x"f03" else 
@@ -875,17 +925,18 @@ begin
    
       if reset = '1' then
       
-         registersDoutForCPU  <= ( others => '0' );
+        registersDoutForCPU  <= ( others => '0' );
          
          --default register values
-         vmMode                  <= x"0000";
---         dmaDisplayPointerStart  <= ( others => '0' );
-         gpoRegister             <= x"0000" & "0000000101111111";             --turn on last LED, tang flash CS high by default
+        vmMode          <= x"0000";
+        gpoRegister     <= x"0000" & "0000000101111111";             --turn on last LED, tang flash CS high by default
          
-         tickTimerReset             <= '0';
+        tickTimerReset  <= '0';
                   
-         registerState              <= rsWaitForRegAccess;
-
+        registerState   <= rsWaitForRegAccess;
+        frameTimerReset <= '0';
+        registersReady  <= '0';
+        
       else
       
          tickTimerReset             <= '0';
@@ -894,9 +945,13 @@ begin
          case registerState is
          
             when rsWaitForRegAccess =>
-         
-               if registersCE = '1' then
                   
+               registersReady <= '0';
+               
+               if registersCE = '1' then
+        
+                  registersReady <= '1';
+                            
                   case cpuAOut( 7 downto 0 ) is
                
                
@@ -919,13 +974,8 @@ begin
                      --rw 0xf0000008 - dmaDisplayPointerStart
                      when x"02" =>
                
---                        registersDoutForCPU  <= "00000000000" & dmaDisplayPointerStart;
+                        registersDoutForCPU  <= ( others => '0' );
                         
-                        if cpuWr = '1' then
-                        
---                           dmaDisplayPointerStart  <= cpuDOut( 20 downto 0 );
-                        
-                        end if;
                                        
                      --rw 0xf000000c - gpoPort
                      when x"03" =>
@@ -980,6 +1030,8 @@ begin
                      
                --wait for bus cycle to end
                if registersCE = '0' then
+
+                  registersReady <= '0';
                
                   registerState <= rsWaitForRegAccess;
                   
@@ -1190,5 +1242,31 @@ begin
    end if; --rising_edge( tickTimerClock )
 
 end process;   
+
+-- frame timer process
+frameTimerProcess: process( all )
+begin
+   
+   if rising_edge( frameTimerClock ) then
+
+      if frameTimerReset = '1' then
+      
+         frameTimerValue <= ( others => '0' );
+         
+      else
+      
+         frameTimerPgPrvVSync <= pgVSyncClkD2;
+         
+         
+         if frameTimerPgPrvVSync = '0' and pgVSyncClkD2 = '1' then
+      
+            frameTimerValue <= frameTimerValue + '1';
+            
+         end if;
+      
+      end if;
+   
+   end if; -- rising_edge( frameTimerClock )
+end process; 
 
 end Behavioral;
