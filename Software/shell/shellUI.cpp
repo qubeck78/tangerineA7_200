@@ -26,7 +26,7 @@ ulong uiDrawStatusBar()
    toSetCursorPos( &con, 0, 0 );
    con.textAttributes   = 0xf0;
 
-   toPrintF( &con, ( char* )"tangyRiscVSOC Shell B20240410                                                    " );
+   toPrintF( &con, ( char* )"tangerineSOC Shell B20240819                                                     " );
 
 
    toSetCursorPos( &con, 0, 28 );

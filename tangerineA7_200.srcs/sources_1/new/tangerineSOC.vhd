@@ -117,6 +117,15 @@ component systemRam
   );
 end component; 
 
+COMPONENT fastRam
+  PORT (
+    clka : IN STD_LOGIC;
+    wea : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    addra : IN STD_LOGIC_VECTOR(17 DOWNTO 0);
+    dina : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+    douta : OUT STD_LOGIC_VECTOR(31 DOWNTO 0) 
+  );
+END COMPONENT;
 
 -- text mode pixel and sync gen
 component pixelGenTxt
@@ -584,10 +593,34 @@ systemRamReady  <= '1';
    
 videoRamBDout   <= systemRamDoutForPixelGen( 15 downto 0 ) when videoRamBA( 0 ) = '0' else systemRamDoutForPixelGen( 31 downto 16 ); 
 
+fastRamInst:fastRam 
+port map(
+    clka        => cpuClock,
+    wea(0)      => cpuWrStrobe(0) and fastRamCE,
+    wea(1)      => cpuWrStrobe(1) and fastRamCE,
+    wea(2)      => cpuWrStrobe(2) and fastRamCE,
+    wea(3)      => cpuWrStrobe(3) and fastRamCE,
+    addra       => cpuAOut( 17 downto 0 ),
+    dina        => cpuDOut,
+    douta       => fastRamDoutForCpu 
+);
 
+fastRamAccess:process( all )
+begin
+
+    if reset = '1' then
+    
+        fastRamReady <= '0';
+        
+    elsif rising_edge( cpuClock ) then
+    
+        fastRamReady <= fastRamCE;
+    
+    end if;
+
+end process;
 
  
- fastRamReady   <= '1';
  
 --Place txt pixel gen
 

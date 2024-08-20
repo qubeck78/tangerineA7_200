@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Mon Aug 19 15:56:30 2024
+| Date         : Mon Aug 19 19:48:34 2024
 | Host         : Desktop-qUBECk running 64-bit major release  (build 9200)
 | Command      : report_utilization -file A7BoardTop_utilization_synth.rpt -pb A7BoardTop_utilization_synth.pb
 | Design       : A7BoardTop
@@ -31,13 +31,13 @@ Table of Contents
 +----------------------------+------+-------+------------+-----------+-------+
 |          Site Type         | Used | Fixed | Prohibited | Available | Util% |
 +----------------------------+------+-------+------------+-----------+-------+
-| Slice LUTs*                | 2778 |     0 |          0 |    134600 |  2.06 |
-|   LUT as Logic             | 2730 |     0 |          0 |    134600 |  2.03 |
+| Slice LUTs*                | 2808 |     0 |          0 |    134600 |  2.09 |
+|   LUT as Logic             | 2760 |     0 |          0 |    134600 |  2.05 |
 |   LUT as Memory            |   48 |     0 |          0 |     46200 |  0.10 |
 |     LUT as Distributed RAM |   48 |     0 |            |           |       |
 |     LUT as Shift Register  |    0 |     0 |            |           |       |
-| Slice Registers            | 2157 |     0 |          0 |    269200 |  0.80 |
-|   Register as Flip Flop    | 2156 |     0 |          0 |    269200 |  0.80 |
+| Slice Registers            | 2158 |     0 |          0 |    269200 |  0.80 |
+|   Register as Flip Flop    | 2157 |     0 |          0 |    269200 |  0.80 |
 |   Register as Latch        |    1 |     0 |          0 |    269200 | <0.01 |
 | F7 Muxes                   |   18 |     0 |          0 |     67300 |  0.03 |
 | F8 Muxes                   |    0 |     0 |          0 |     33650 |  0.00 |
@@ -59,7 +59,7 @@ Warning! LUT value is adjusted to account for LUT combining.
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
 | 43    |          Yes |           - |          Set |
-| 155   |          Yes |           - |        Reset |
+| 156   |          Yes |           - |        Reset |
 | 65    |          Yes |         Set |            - |
 | 1894  |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
@@ -157,14 +157,14 @@ Warning! LUT value is adjusted to account for LUT combining.
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
 | FDRE     | 1894 |        Flop & Latch |
-| LUT6     | 1245 |                 LUT |
-| LUT2     |  441 |                 LUT |
-| LUT5     |  435 |                 LUT |
+| LUT6     | 1260 |                 LUT |
+| LUT5     |  462 |                 LUT |
+| LUT2     |  439 |                 LUT |
 | LUT4     |  429 |                 LUT |
-| LUT3     |  359 |                 LUT |
+| LUT3     |  351 |                 LUT |
 | LUT1     |  256 |                 LUT |
 | CARRY4   |  242 |          CarryLogic |
-| FDCE     |  154 |        Flop & Latch |
+| FDCE     |  155 |        Flop & Latch |
 | RAMD32   |   68 |  Distributed Memory |
 | FDSE     |   65 |        Flop & Latch |
 | FDPE     |   43 |        Flop & Latch |
@@ -194,6 +194,7 @@ Warning! LUT value is adjusted to account for LUT combining.
 | keyboardFifo |    1 |
 | gfxBufRam    |    1 |
 | fontPROM     |    1 |
+| fastRam      |    1 |
 | clk_wiz_1    |    1 |
 | clk_wiz_0    |    1 |
 +--------------+------+
