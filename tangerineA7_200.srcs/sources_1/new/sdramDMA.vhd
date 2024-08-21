@@ -586,7 +586,8 @@ begin
                     end if; -- refreshRequest = '1' or '0'
 
                 --ch1 blitter ( 16 / 32 bit )
-                
+               
+                                
                 when sdcCh1Read0 =>
                 
                     --nop
@@ -718,6 +719,127 @@ begin
                         
                     end if;
                     
+                when sdcCh1Write0 =>
+                
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+
+                    sdcState    <= sdcCh1Write1;
+                    
+                when sdcCh1Write1 =>
+                
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+
+                    sdcState    <= sdcCh1Write2;
+                
+                when sdcCh1Write2 =>
+
+                    --write
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '0';
+                    sdramWE 	<= '0';
+
+                    --auto precharge
+
+                    sdramA( 12 downto 9 )   <= "0010";
+
+                    if ch1DmaWordSize = '0' then
+                    
+                        --16 bit
+                        
+                        --column address ( ch1 addr in words, sdram addresses in longwords )
+                        --a0-a8 - column address ( long word)
+                        --ch1 addresses in words
+    
+                        sdramA( 8 downto 0 )    <= ch1A( 9 downto 1 );
+                        
+                        if ch1A( 0 ) = '0' then
+
+                            sdramDQM    <= "1100";      --d15 downto d0
+                        
+                        else
+                        
+                            sdramDQM    <= "0011";      --d31 downto d16
+
+                        end if;
+
+                    else
+                    
+                        --32 bit
+
+                        --column address ( both ch1 and sdram addresses are in longwords )
+                        --a0-a8 - column address ( long word)
+                        --ch1 addresses in longwords
+    
+                        sdramA( 8 downto 0 )    <= ch1A( 8 downto 0 );
+                        sdramDQM                <= ( others => '0' );
+    
+                    end if;
+                    
+                    sdcState    <= sdcCh1Write3;
+                    
+               when sdcCh1Write3 =>
+                
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+                    
+                    sdcState <= sdcCh1Write4;        
+                    
+                when sdcCh1Write4 =>
+                    
+                    --sdram data bus in
+                    sdramD      <= ( others => 'Z' );
+                                        --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+
+                    sdcState <= sdcCh1Write5;        
+
+                when sdcCh1Write5 =>
+
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+
+
+                    sdcState <= sdcCh1Write6;        
+
+                when sdcCh1Write6 =>
+
+                    --notify blitter that data has been written
+                    ch1DmaReady <= '1';
+
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+
+                    sdcState <= sdcCh1Write7;        
+
+                when sdcCh1Write7 =>           
+                    
+                    if ch1DmaRequest = '0' then
+                    
+                        sdcState <= sdcIdle;
+                        
+                    end if;
+
                     
                 --ch3 pixelGenGfx buffer fetch ( 160 32-bit words )
 
