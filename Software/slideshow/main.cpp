@@ -185,7 +185,7 @@ int slideshow()
                         y = ( screen.height / 2 ) - ( fileBmp.height / 2 );
                     }
 
-                    for( i = 0; i < 256; i += 16 )
+                    for( i = 0; i < 256; i += 32 )
                     {       
                         do{}while( ! bsp->videoVSync ); 
                         gfBlitBitmapA( &screen, &fileBmp, x, y, i );

@@ -332,7 +332,7 @@ port(
     dataMask:       in      std_logic_vector( 3 downto 0 );
     ready:          out     std_logic;
     
-    --ch0 - CPU, lowest priority: 0
+    --ch0 - CPU, lowest priority: 3
     
     ch0A:           in  std_logic_vector( 23 downto 0 );
     ch0Din:         in  std_logic_vector( 31 downto 0 );
@@ -345,11 +345,22 @@ port(
 
     ch0Ready:       out std_logic; 
     
-    --ch1 - blitter, priority: 1
+    --ch1 - blitter, priority: 2
+    ch1DmaRequest:      in      std_logic;
+    ch1DmaReady:        out     std_logic;
+    ch1DmaWordSize:     in      std_logic;
+    ch1A:               in      std_logic_vector( 24 downto 0 );
+    ch1Din:             in      std_logic_vector( 31 downto 0 );
+    ch1Dout:            out     std_logic_vector( 31 downto 0 );
+    ch1Wr:              in      std_logic;
     
-    --ch2 - audio, priority: 2
+    --ch2 - audio, read only priority: 1
+    ch2DmaRequest:      in      std_logic;
+    ch2DmaReady:        out     std_logic;
+    ch2A:               in      std_logic_vector( 23 downto 0 );
+    ch2Dout:            out     std_logic_vector( 31 downto 0 );
     
-    --ch3 - gfx display, highest priority: 3
+    --ch3 - gfx display, highest priority: 0
     
     ch3DmaRequest:      in      std_logic_vector( 1 downto 0 );
     ch3DmaPointerReset: in      std_logic;
@@ -1160,7 +1171,7 @@ port map(
     dataMask        => cpuDataMask,
     ready           => sdramDmaRegsReady,
     
-    --ch0 - CPU, lowest priority: 0
+    --ch0 - CPU, lowest priority: 3
     
     ch0A            => cpuAOut( 23 downto 0 ),
     ch0Din          => cpuDOut,
@@ -1173,13 +1184,23 @@ port map(
 
     ch0Ready        => sdramDMAReady,
     
-    --ch1 - blitter, priority: 1
+    --ch1 - blitter, priority: 2
+    ch1DmaRequest   => '0',
+    --ch1DmaReady:        out     std_logic;
+    ch1DmaWordSize  => '0',
+    ch1A            => ( others => '0' ),
+    ch1Din          => ( others => '0' ),
+    --ch1Dout:            out     std_logic_vector( 31 downto 0 );
+    ch1Wr           => '0',
     
-    --ch2 - audio, priority: 2
-    
-    --ch3 - gfx display, highest priority: 3
+    --ch2 - audio, priority: 1
 
-    --ch3 - gfx display, highest priority: 3
+    ch2DmaRequest   => '0',
+    --ch2DmaReady:        out     std_logic;
+    ch2A            => ( others => '0' ),
+    --ch2Dout:            out     std_logic_vector( 31 downto 0 );
+    
+    --ch3 - gfx display, highest priority: 0
     
     ch3DmaRequest       => pggDmaRequestClkD2,
     ch3DmaPointerReset  => pgVSyncClkD2,
