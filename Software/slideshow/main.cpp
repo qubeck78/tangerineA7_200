@@ -30,6 +30,8 @@ char                         lfnBuf[ 512 + 16];
 tosDir                       dir;
 tosDirItem                   dirItem;
 
+ulong                        numDirEntries;
+
 int animLeds( int j )
 {   
         switch( j % 2 )
@@ -52,6 +54,68 @@ int animLeds( int j )
     return 0;
 } 
 
+ulong getNumEntries()
+{
+    ulong rv;
+    ulong numEntries;
+
+    #ifdef _GFXLIB_SDL
+
+    rv = osDirOpen( &dir, (char*)"./img" );
+
+    #else
+
+    rv = osDirOpen( &dir, (char*)"0:img" );
+
+    #endif
+
+    numEntries = 0;
+
+    do
+    {
+        rv = osDirRead( &dir, &dirItem );
+
+        if( rv ) 
+        {
+            break; // Error or end of dir
+        }
+
+        numEntries++;
+
+    }while( 1 );
+
+    osDirClose( &dir );
+
+    return numEntries;
+}
+
+ulong getEntry( ulong entryNumber )
+{
+    ulong i;
+    ulong rv;
+    
+    #ifdef _GFXLIB_SDL
+
+    rv = osDirOpen( &dir, (char*)"./img" );
+
+    #else
+
+    rv = osDirOpen( &dir, (char*)"0:img" );
+
+    #endif
+
+
+    for( i = 0; i < entryNumber; i++ )
+    {
+
+        osDirRead( &dir, &dirItem );
+
+    }
+
+    osDirClose( &dir );
+
+    return 0;
+}
 
 
 int slideshow()
@@ -69,132 +133,111 @@ int slideshow()
     
     do{
         
-        #ifdef _GFXLIB_SDL
+        getEntry( randomNumber() % numDirEntries );
 
-        rv = osDirOpen( &dir, (char*)"./img" );
-
-        #else
-
-        rv = osDirOpen( &dir, (char*)"0:img" );
-
-        #endif
-
-        do
+            
+        if ( dirItem.type != OS_DIRITEM_DIR )
         {
-            rv = osDirRead( &dir, &dirItem );
 
-            if( rv ) 
+            i = strlen( dirItem.name );
+        
+            if( i >= 4 )
             {
-                break; // Error or end of dir
-            }
-
-            
-            if ( dirItem.type != OS_DIRITEM_DIR )
-            {
-
-                i = strlen( dirItem.name );
-            
-                if( i >= 4 )
+                extension[0] = dirItem.name[ i - 4 ];
+                extension[1] = dirItem.name[ i - 3 ];
+                extension[2] = dirItem.name[ i - 2 ];
+                extension[3] = dirItem.name[ i - 1 ];
+                extension[4] = 0;
+                
+                if( ( strcmp( extension, ".jpg" ) == 0 ) || ( strcmp( extension, ".gbm" ) == 0 ) )
                 {
-                    extension[0] = dirItem.name[ i - 4 ];
-                    extension[1] = dirItem.name[ i - 3 ];
-                    extension[2] = dirItem.name[ i - 2 ];
-                    extension[3] = dirItem.name[ i - 1 ];
-                    extension[4] = 0;
+                
+                    animLeds( led++ );
                     
-                    if( ( strcmp( extension, ".jpg" ) == 0 ) || ( strcmp( extension, ".gbm" ) == 0 ) )
+                    strcpy( buf, "img/" );
+                    strcat( buf, dirItem.name );
+
+                    con.textAttributes = 0x0f;
+                    toCls( &con );
+                    con.textAttributes  = 0x8f;
+
+                    toPrintF( &con, (char*)"Loading:%s", dirItem.name );
+
+                    if( dirItem.name[ i - 3 ] == 'g' )
+                    {
+                        gfLoadBitmapFS( &fileBmp, buf );
+                    }
+                    else
+                    {
+                        gfLoadJPEGFS( &fileBmp, buf );                      
+                    }
+                    
+                    if( screen.width > 512 )
+                    {                       
+                        x  = ((ulong)randomNumber() ) % 320;
+                        y  = ((ulong)randomNumber() ) % 240;
+                        
+                    }
+                    else
                     {
                     
-                        animLeds( led++ );
-                        
-                        strcpy( buf, "img/" );
-                        strcat( buf, dirItem.name );
+                        x = ( screen.width / 2 ) - ( fileBmp.width / 2);
+                        y = ( screen.height / 2 ) - ( fileBmp.height / 2 );
+                    }
 
-                        con.textAttributes = 0x0f;
-                        toCls( &con );
-                        con.textAttributes  = 0x8f;
+                    for( i = 0; i < 256; i += 32 )
+                    {       
+                        do{}while( ! bsp->videoVSync ); 
+                        gfBlitBitmapA( &screen, &fileBmp, x, y, i );
+                    }
+                    
+                    
+                    gfBlitBitmap( &screen, &fileBmp, x, y );
 
-                        toPrintF( &con, (char*)"Loading:%s", dirItem.name );
-
-                        if( dirItem.name[ i - 3 ] == 'g' )
-                        {
-                            gfLoadBitmapFS( &fileBmp, buf );
-                        }
-                        else
-                        {
-                            gfLoadJPEGFS( &fileBmp, buf );                      
-                        }
-                        
-                        if( screen.width > 512 )
-                        {                       
-                            x  = ((ulong)randomNumber() ) % 320;
-                            y  = ((ulong)randomNumber() ) % 240;
-                            
-                        }
-                        else
-                        {
-                        
-                            x = ( screen.width / 2 ) - ( fileBmp.width / 2);
-                            y = ( screen.height / 2 ) - ( fileBmp.height / 2 );
-                        }
-
-                        for( i = 0; i < 256; i += 16 )
-                        {       
-                            do{}while( ! bsp->videoVSync ); 
-                            gfBlitBitmapA( &screen, &fileBmp, x, y, i );
-                        }
-                        
-                        
-                        gfBlitBitmap( &screen, &fileBmp, x, y );
-
-                        osFree( fileBmp.buffer );
-                        
-                        fileBmp.buffer          = NULL;
-                        con.textAttributes      = 0x0f;
-                        
-                        toCls( &con );
-                        con.textAttributes      = 0x8f;
-                        
-                        toPrintF( &con, (char*)"%s %d\n", dirItem.name, dirItem.size );
-                        
-                        for( i = 0; i < 100; i++ )
-                        {
-                            delayMs( 100 );
-                                            
-                            if( !osGetUIEvent( &event ) )
-                            { 
-                                if( event.type == OS_EVENT_TYPE_KEYBOARD_KEYPRESS )
+                    osFree( fileBmp.buffer );
+                    
+                    fileBmp.buffer          = NULL;
+                    con.textAttributes      = 0x0f;
+                    
+                    toCls( &con );
+                    con.textAttributes      = 0x8f;
+                    
+                    toPrintF( &con, (char*)"%s %d\n", dirItem.name, dirItem.size );
+                    
+                    for( i = 0; i < 100; i++ )
+                    {
+                        delayMs( 100 );
+                                        
+                        if( !osGetUIEvent( &event ) )
+                        { 
+                            if( event.type == OS_EVENT_TYPE_KEYBOARD_KEYPRESS )
+                            {
+                                switch( event.arg1 )
                                 {
-                                    switch( event.arg1 )
-                                    {
-                                    
-                                        case _KEYCODE_PAUSE:
+                                
+                                    case _KEYCODE_PAUSE:
 
-                                            reboot();
-                                            break; 
+                                        reboot();
+                                        break; 
 
-                                        case _KEYCODE_F1:
+                                    case _KEYCODE_F1:
 
-                                            break;
+                                        break;
 
-                                        default:
+                                    default:
 
-                                            //exit delay loop
-                                            i = 100;
-                                            break;
-                                    }
+                                        //exit delay loop
+                                        i = 100;
+                                        break;
                                 }
-
                             }
+
                         }
                     }
                 }
             }
+        }
             
-        }while( 1 );
-    
-        osDirClose( &dir );
-
     }while( 1 );
 
 }
@@ -212,16 +255,16 @@ int main()
         
 
     
-    setVideoMode( _VIDEOMODE_320_TEXT80_OVER_GFX );
+    setVideoMode( _VIDEOMODE_640_TEXT80_OVER_GFX );
 
     //alloc screen buffers
-    screen.width            = 320;
-    screen.rowWidth         = 512;
-    screen.height           = 240;
-    
+    screen.width            = 640;
+    screen.rowWidth         = 1024;
+    screen.height           = 480;
+
 
     toCls( &con );
-    toPrint( &con, (char*)"tangerineSOC Slideshow\n" );
+    toPrint( &con, (char*)"tangerineSOC Slideshow B20240820\n\n" );
 
     
     screen.flags            = 0;
@@ -262,6 +305,9 @@ int main()
     }
         
 
+    toPrint( &con, (char*)"Scanning /img directory\n" );
+
+    numDirEntries = getNumEntries();
 
     slideshow();
 

@@ -18,6 +18,7 @@
 #define _VIDEOMODE_640_TEXT40_OVER_GFX      0x12
 #define _VIDEOMODE_640_TEXT80_OVER_GFX      0x16
 
+
 #include "gfTypes.h"
 
 
@@ -185,6 +186,9 @@ extern _BLITTER_REGISTERS_T *blt;
 typedef struct __USBHOST_REGISTERS_T
 {
     //usb HID host
+    volatile ulong id;
+    volatile ulong version;
+
     volatile unsigned long usbHidKeyboardStatus;
     volatile unsigned long usbHidKeyboardData;
 
@@ -206,6 +210,9 @@ extern _UART_REGISTERS_T *uart0;
 
 typedef struct __SPI_REGISTERS_T
 {
+    volatile ulong id;
+    volatile ulong version;
+
     //wr - send data via spi, rd - read received data
     volatile unsigned long spiData;
     
@@ -237,6 +244,8 @@ typedef struct __SDRAMDMA_REGISTERS_T
     volatile ulong id;
     volatile ulong version;
     volatile ulong ch3DmaPointerStart;
+    volatile ulong ch3DmaRequest0Modulo;
+    volatile ulong ch3DmaRequest1Modulo;
 
 }_SDRAMDMA_REGISTERS_T;
 

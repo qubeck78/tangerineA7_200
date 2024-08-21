@@ -144,6 +144,27 @@ int setVideoMode( ulong videoMode )
         con.width = 40;     
     }
 
+    if( videoMode & 0x10 )
+    {
+        
+        //640
+
+        //adjust dma request modulos to achieve continuous data throughout x scan line
+        //line size: 1024 pixels, 512 longwords
+        sdrdma->ch3DmaRequest0Modulo = 0;
+        sdrdma->ch3DmaRequest1Modulo = 192;   
+    }
+    else
+    {
+        //320
+
+        //adjust dma request modulos to have 512 pixels, 256 longwords odd & even scan lines
+        sdrdma->ch3DmaRequest0Modulo = 96;
+        sdrdma->ch3DmaRequest1Modulo = 96;   
+
+    }
+
+
     return 0;
 }
 

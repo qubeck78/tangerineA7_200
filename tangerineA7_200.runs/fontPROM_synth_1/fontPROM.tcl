@@ -70,7 +70,7 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "fontPROM_synth_1" START { ROLLUP_AUTO }
-set_param xicom.use_bs_reader 1
+set_param chipscope.maxJobs 3
 set_param project.vivado.isBlockSynthRun true
 set_msg_config -msgmgr_mode ooc_run
 OPTRACE "Creating in-memory project" START { }
