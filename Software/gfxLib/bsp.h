@@ -18,6 +18,7 @@
 #define _VIDEOMODE_640_TEXT40_OVER_GFX      0x12
 #define _VIDEOMODE_640_TEXT80_OVER_GFX      0x16
 
+
 #include "gfTypes.h"
 
 
@@ -243,6 +244,8 @@ typedef struct __SDRAMDMA_REGISTERS_T
     volatile ulong id;
     volatile ulong version;
     volatile ulong ch3DmaPointerStart;
+    volatile ulong ch3DmaRequest0Modulo;
+    volatile ulong ch3DmaRequest1Modulo;
 
 }_SDRAMDMA_REGISTERS_T;
 

@@ -147,6 +147,9 @@ signal ch3BufRamWr:             std_logic;
 signal ch3TransferCounter:      std_logic_vector( 7 downto 0 );
 signal ch3DmaBufPointer:        std_logic_vector( 8 downto 0 );
 
+signal ch3DmaRequest0Modulo:    std_logic_vector( 7 downto 0 );
+signal ch3DmaRequest1Modulo:    std_logic_vector( 7 downto 0 );
+
 
 begin
 
@@ -165,6 +168,8 @@ begin
          ready                  <= '0';  
          regState               <= rsWaitForRegAccess;
          ch3DmaPointerStart     <= ( others => '0' );
+         ch3DmaRequest0Modulo   <= x"60";
+         ch3DmaRequest1Modulo   <= x"60";
          
       else
       
@@ -207,7 +212,33 @@ begin
                         end if;
                         
                         ready <= '1';
+                    
+                    --0x0c rw ch3 dma request 0 modulo
+                    when x"03" =>
+                    
+                        dout <= x"000000" & ch3DmaRequest0Modulo;
 
+                        if wr = '1' then
+                            
+                            ch3DmaRequest0Modulo <= din( 7 downto 0 );
+                            
+                        end if;
+                       
+                        ready <= '1';
+
+                    --0x10 rw ch3 dma request 1 modulo
+                    when x"04" =>
+                    
+                        dout <= x"000000" & ch3DmaRequest1Modulo;
+
+                        if wr = '1' then
+                            
+                            ch3DmaRequest1Modulo <= din( 7 downto 0 );
+                            
+                        end if;
+                       
+                        ready <= '1';
+                        
                      when others =>
                      
                         dout  <= ( others =>'0' );
@@ -602,9 +633,19 @@ begin
                     sdramRAS    <= '1';
                     sdramCAS	<= '1';
                     sdramWE 	<= '1';
-                          
-                    ch3DmaPointer           <= ch3DmaPointer + 96;
-                                     
+                         
+                     
+                    --ch3DmaPointer           <= ch3DmaPointer + 96;
+                    if ch3DmaRequestLatched( 0 ) = '1' then
+                    
+                        ch3DmaPointer <= ch3DmaPointer + ch3DmaRequest0Modulo;
+                    
+                    else
+
+                        ch3DmaPointer <= ch3DmaPointer + ch3DmaRequest1Modulo;
+                        
+                    end if;
+                                   
                     ch3DmaRequestLatched( 0 )   <= '0';
                     ch3DmaRequestLatched( 1 )   <= '0';
 
