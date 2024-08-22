@@ -1,6 +1,7 @@
 #include "main.h"
 #include <cstring>
 #include <climits>
+#include <cstdio>
 
 #include "../gfxLib/bsp.h"
 #include "../gfxLib/osAlloc.h"
@@ -15,14 +16,19 @@
 extern tgfTextOverlay   con;
 tgfBitmap               screen;
 dsContext_t             dctx;
-char                    disasmOutputBuffer[256];
-
+char                    disasmOutputBuffer[80];
+char                    lineBuffer[81];
 
 int main()
 {
     ulong       i;
+    ulong       j;
+    ulong       disasmLineLength;
+
     int         rv;
     tosUIEvent  event; 
+    ulong       disasmIdx;
+    ulong       refresh;
 
     bspInit();
 
@@ -58,18 +64,42 @@ int main()
     //init events queue
     osUIEventsInit();   
 
-    dctx.codeBuf        = (ulong*) 0x0;
-    dctx.codeBufIdx     = 0;
-    dctx.codeBufStartPc = 0;
+    disasmIdx           = 0;
+    refresh             = 1;
 
-    for( i = 0; i < 29; i++ )
-    {
-        dsDisassemble( &dctx, disasmOutputBuffer );
-        toPrintF( &con, (char*)"0x%08x 0x%08x    %s\n", dctx.pc, dctx.instruction, disasmOutputBuffer );
-    }
+
 
     do
     {
+
+        if( refresh )
+        {
+            refresh = 0;
+
+            dctx.codeBuf        = (ulong*) 0x0;
+            dctx.codeBufIdx     = disasmIdx;
+            dctx.codeBufStartPc = 0;
+
+            toSetCursorPos( &con, 0, 0 );
+
+            for( i = 0; i < 30; i++ )
+            {
+                dsDisassemble( &dctx, disasmOutputBuffer );
+
+                toSetCursorPos( &con, 0, i );
+
+                sprintf( lineBuffer, (char*)"0x%08x 0x%08x    %s", dctx.pc, dctx.instruction, disasmOutputBuffer );
+                disasmLineLength = strlen( lineBuffer );
+
+                for( j = disasmLineLength + 1; j < 80; j++ )
+                {
+                    strcat( lineBuffer, " " );
+                }
+
+                toPrint( &con, lineBuffer );
+
+            }
+        }
 
         while( !osGetUIEvent( &event ) )
         { 
@@ -81,6 +111,22 @@ int main()
 
                         reboot();
                         break;  
+
+                    case _KEYCODE_DOWN:
+
+                        disasmIdx++;
+
+                        refresh = 1;
+
+                        break;
+
+                    case _KEYCODE_UP:
+
+                        disasmIdx--;
+
+                        refresh = 1;
+
+                        break;
                 }
             }
         }
