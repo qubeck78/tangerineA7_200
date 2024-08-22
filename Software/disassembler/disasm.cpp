@@ -235,12 +235,12 @@ ulong dsDisassemble( dsContext_t *ctx, char *outputBuffer )
 
             case 0x0:
 
-               sprintf( outputBuffer, "mul %s, %s, %s", regDName, regS1Name, regS2Name );
+               sprintf( outputBuffer, "mul   %s, %s, %s", regDName, regS1Name, regS2Name );
                break;
 
             case 0x1:
 
-               sprintf( outputBuffer, "mulh %s, %s, %s", regDName, regS1Name, regS2Name );
+               sprintf( outputBuffer, "mulh  %s, %s, %s", regDName, regS1Name, regS2Name );
                break;
 
             case 0x2:
@@ -250,27 +250,27 @@ ulong dsDisassemble( dsContext_t *ctx, char *outputBuffer )
 
             case 0x3:
 
-               sprintf( outputBuffer, "mulu %s, %s, %s", regDName, regS1Name, regS2Name );
+               sprintf( outputBuffer, "mulu  %s, %s, %s", regDName, regS1Name, regS2Name );
                break;
 
             case 0x4:
 
-               sprintf( outputBuffer, "div %s, %s, %s", regDName, regS1Name, regS2Name );
+               sprintf( outputBuffer, "div   %s, %s, %s", regDName, regS1Name, regS2Name );
                break;
 
             case 0x5:
 
-               sprintf( outputBuffer, "divu %s, %s, %s", regDName, regS1Name, regS2Name );
+               sprintf( outputBuffer, "divu  %s, %s, %s", regDName, regS1Name, regS2Name );
                break;
 
             case 0x6:
 
-               sprintf( outputBuffer, "rem %s, %s, %s", regDName, regS1Name, regS2Name );
+               sprintf( outputBuffer, "rem   %s, %s, %s", regDName, regS1Name, regS2Name );
                break;
  
              case 0x7:
 
-               sprintf( outputBuffer, "remu %s, %s, %s", regDName, regS1Name, regS2Name );
+               sprintf( outputBuffer, "remu  %s, %s, %s", regDName, regS1Name, regS2Name );
                break;
 
            }
@@ -286,12 +286,12 @@ ulong dsDisassemble( dsContext_t *ctx, char *outputBuffer )
                   if( ctx->rtFunct7 == 0x00 )
                   {
 
-                     sprintf( outputBuffer, "add %s, %s, %s", regDName, regS1Name, regS2Name );
+                     sprintf( outputBuffer, "add   %s, %s, %s", regDName, regS1Name, regS2Name );
 
                   }else if( ctx->rtFunct7 == 0x20 )
                   {
 
-                     sprintf( outputBuffer, "sub %s, %s, %s", regDName, regS1Name, regS2Name );
+                     sprintf( outputBuffer, "sub   %s, %s, %s", regDName, regS1Name, regS2Name );
 
                   }
 
@@ -302,7 +302,7 @@ ulong dsDisassemble( dsContext_t *ctx, char *outputBuffer )
                   if( ctx->rtFunct7 == 0x00 )
                   {
 
-                     sprintf( outputBuffer, "xor %s, %s, %s", regDName, regS1Name, regS2Name );
+                     sprintf( outputBuffer, "xor   %s, %s, %s", regDName, regS1Name, regS2Name );
 
                   }
 
@@ -313,7 +313,7 @@ ulong dsDisassemble( dsContext_t *ctx, char *outputBuffer )
                   if( ctx->rtFunct7 == 0x00 )
                   {
 
-                     sprintf( outputBuffer, "or %s, %s, %s", regDName, regS1Name, regS2Name );
+                     sprintf( outputBuffer, "or    %s, %s, %s", regDName, regS1Name, regS2Name );
 
                   }
 
@@ -324,7 +324,7 @@ ulong dsDisassemble( dsContext_t *ctx, char *outputBuffer )
                   if( ctx->rtFunct7 == 0x00 )
                   {
 
-                     sprintf( outputBuffer, "and %s, %s, %s", regDName, regS1Name, regS2Name );
+                     sprintf( outputBuffer, "and   %s, %s, %s", regDName, regS1Name, regS2Name );
 
                   }
 
@@ -335,7 +335,7 @@ ulong dsDisassemble( dsContext_t *ctx, char *outputBuffer )
                   if( ctx->rtFunct7 == 0x00 )
                   {
 
-                     sprintf( outputBuffer, "sll %s, %s, %s", regDName, regS1Name, regS2Name );
+                     sprintf( outputBuffer, "sll   %s, %s, %s", regDName, regS1Name, regS2Name );
 
                   }
 
@@ -346,12 +346,12 @@ ulong dsDisassemble( dsContext_t *ctx, char *outputBuffer )
                   if( ctx->rtFunct7 == 0x00 )
                   {
 
-                     sprintf( outputBuffer, "srl %s, %s, %s", regDName, regS1Name, regS2Name );
+                     sprintf( outputBuffer, "srl   %s, %s, %s", regDName, regS1Name, regS2Name );
 
                   }else if( ctx->rtFunct7 == 0x20 )
                   {
 
-                     sprintf( outputBuffer, "sra %s, %s, %s", regDName, regS1Name, regS2Name );
+                     sprintf( outputBuffer, "sra   %s, %s, %s", regDName, regS1Name, regS2Name );
 
                   }
 
@@ -362,7 +362,7 @@ ulong dsDisassemble( dsContext_t *ctx, char *outputBuffer )
                   if( ctx->rtFunct7 == 0x00 )
                   {
 
-                     sprintf( outputBuffer, "slt %s, %s, %s", regDName, regS1Name, regS2Name );
+                     sprintf( outputBuffer, "slt   %s, %s, %s", regDName, regS1Name, regS2Name );
 
                   }
 
@@ -373,7 +373,7 @@ ulong dsDisassemble( dsContext_t *ctx, char *outputBuffer )
                   if( ctx->rtFunct7 == 0x00 )
                   {
 
-                     sprintf( outputBuffer, "sltu %s, %s, %s", regDName, regS1Name, regS2Name );
+                     sprintf( outputBuffer, "sltu  %s, %s, %s", regDName, regS1Name, regS2Name );
 
                   }
             
@@ -395,25 +395,25 @@ ulong dsDisassemble( dsContext_t *ctx, char *outputBuffer )
          {
             case 0x0:
 
-                  sprintf( outputBuffer, "addi %s, %s, %s", regDName, regS1Name, immValue );
+                  sprintf( outputBuffer, "addi  %s, %s, %s", regDName, regS1Name, immValue );
 
                break;
 
             case 0x4:
 
-                  sprintf( outputBuffer, "xori %s, %s, %s", regDName, regS1Name, immValue );
+                  sprintf( outputBuffer, "xori  %s, %s, %s", regDName, regS1Name, immValue );
 
                break;
 
             case 0x6:
 
-                  sprintf( outputBuffer, "ori %s, %s, %s", regDName, regS1Name, immValue );
+                  sprintf( outputBuffer, "ori   %s, %s, %s", regDName, regS1Name, immValue );
 
                break;
 
             case 0x7:
 
-                  sprintf( outputBuffer, "andi %s, %s, %s", regDName, regS1Name, immValue );
+                  sprintf( outputBuffer, "andi  %s, %s, %s", regDName, regS1Name, immValue );
 
                break;
 
@@ -421,7 +421,7 @@ ulong dsDisassemble( dsContext_t *ctx, char *outputBuffer )
 
                   //todo: check if itImm(11 downto 5) are zeroes
 
-                  sprintf( outputBuffer, "slli %s, %s, %d", regDName, regS1Name, ctx->itImm & 0xf );
+                  sprintf( outputBuffer, "slli  %s, %s, %d", regDName, regS1Name, ctx->itImm & 0xf );
 
                break;
 
@@ -430,18 +430,18 @@ ulong dsDisassemble( dsContext_t *ctx, char *outputBuffer )
                   //todo: do a proper check
                   if( ctx->itImm & 0xfff0 )
                   {
-                     sprintf( outputBuffer, "srai %s, %s, %d", regDName, regS1Name, ctx->itImm & 0xf );
+                     sprintf( outputBuffer, "srai  %s, %s, %d", regDName, regS1Name, ctx->itImm & 0xf );
                   }
                   else
                   {
-                     sprintf( outputBuffer, "srli %s, %s, %d", regDName, regS1Name, ctx->itImm & 0xf );
+                     sprintf( outputBuffer, "srli  %s, %s, %d", regDName, regS1Name, ctx->itImm & 0xf );
                   }
 
                break;
 
             case 0x2:
 
-                  sprintf( outputBuffer, "slti %s, %s, %s", regDName, regS1Name, immValue );
+                  sprintf( outputBuffer, "slti  %s, %s, %s", regDName, regS1Name, immValue );
 
                break;
 
@@ -467,31 +467,31 @@ ulong dsDisassemble( dsContext_t *ctx, char *outputBuffer )
 
             case 0x0:
 
-                  sprintf( outputBuffer, "lb %s, %s( %s )", regDName, immValue, regS1Name );
+                  sprintf( outputBuffer, "lb    %s, %s( %s )", regDName, immValue, regS1Name );
 
                   break;
 
             case 0x1:
 
-                  sprintf( outputBuffer, "lh %s, %s( %s )", regDName, immValue, regS1Name );
+                  sprintf( outputBuffer, "lh    %s, %s( %s )", regDName, immValue, regS1Name );
 
                   break;
 
             case 0x2:
 
-                  sprintf( outputBuffer, "lw %s, %s( %s )", regDName, immValue, regS1Name );
+                  sprintf( outputBuffer, "lw    %s, %s( %s )", regDName, immValue, regS1Name );
 
                   break;
 
             case 0x4:
 
-                  sprintf( outputBuffer, "lbu %s, %s( %s )", regDName, immValue, regS1Name );
+                  sprintf( outputBuffer, "lbu   %s, %s( %s )", regDName, immValue, regS1Name );
 
                   break;
 
             case 0x5:
 
-                  sprintf( outputBuffer, "lhu %s, %s( %s )", regDName, immValue, regS1Name );
+                  sprintf( outputBuffer, "lhu   %s, %s( %s )", regDName, immValue, regS1Name );
 
                   break;
          }
@@ -510,19 +510,19 @@ ulong dsDisassemble( dsContext_t *ctx, char *outputBuffer )
 
             case 0x0:
 
-                  sprintf( outputBuffer, "sb %s, %s( %s )", regS2Name, immValue, regS1Name );
+                  sprintf( outputBuffer, "sb    %s, %s( %s )", regS2Name, immValue, regS1Name );
 
                   break;
 
             case 0x1:
 
-                  sprintf( outputBuffer, "sh %s, %s( %s )", regS2Name, immValue, regS1Name );
+                  sprintf( outputBuffer, "sh    %s, %s( %s )", regS2Name, immValue, regS1Name );
 
                   break;
 
             case 0x2:
 
-                  sprintf( outputBuffer, "sw %s, %s( %s )", regS2Name, immValue, regS1Name );
+                  sprintf( outputBuffer, "sw    %s, %s( %s )", regS2Name, immValue, regS1Name );
 
                   break;
          }
@@ -541,38 +541,38 @@ ulong dsDisassemble( dsContext_t *ctx, char *outputBuffer )
 
             case 0x0:
 
-                  sprintf( outputBuffer, "beq %s, %s, %s", regS1Name, regS2Name, immValue );
+                  sprintf( outputBuffer, "beq   %s, %s, %s", regS1Name, regS2Name, immValue );
 
                   break;
 
             case 0x1:
 
-                  sprintf( outputBuffer, "bne %s, %s, %s", regS1Name, regS2Name, immValue );
+                  sprintf( outputBuffer, "bne   %s, %s, %s", regS1Name, regS2Name, immValue );
 
                   break;
 
             case 0x4:
 
-                  sprintf( outputBuffer, "blt %s, %s, %s", regS1Name, regS2Name, immValue );
+                  sprintf( outputBuffer, "blt   %s, %s, %s", regS1Name, regS2Name, immValue );
 
                   break;
 
             case 0x5:
 
-                  sprintf( outputBuffer, "bge %s, %s, %s", regS1Name, regS2Name, immValue );
+                  sprintf( outputBuffer, "bge   %s, %s, %s", regS1Name, regS2Name, immValue );
 
                   break;
 
             case 0x6:
 
                   //todo, check if imm is decoded properly for 'u' versions
-                  sprintf( outputBuffer, "bltu %s, %s, %s", regS1Name, regS2Name, immValue );
+                  sprintf( outputBuffer, "bltu  %s, %s, %s", regS1Name, regS2Name, immValue );
 
                   break;
 
             case 0x7:
 
-                  sprintf( outputBuffer, "bgeu %s, %s, %s", regS1Name, regS2Name, immValue );
+                  sprintf( outputBuffer, "bgeu  %s, %s, %s", regS1Name, regS2Name, immValue );
 
                   break;
          }
@@ -585,7 +585,7 @@ ulong dsDisassemble( dsContext_t *ctx, char *outputBuffer )
          nameRegister( ctx->rd,  regDName );
          decodeJtypeImm( ctx->jtImm, ctx->pc, immValue );
 
-         sprintf( outputBuffer, "jal %s, %s", regDName, immValue );
+         sprintf( outputBuffer, "jal   %s, %s", regDName, immValue );
 
          break;
 
@@ -600,7 +600,7 @@ ulong dsDisassemble( dsContext_t *ctx, char *outputBuffer )
          if( ctx->funct3 == 0x0 )
          {
          
-            sprintf( outputBuffer, "jalr %s, %s, %s", regDName, regS1Name, immValue );
+            sprintf( outputBuffer, "jalr  %s, %s, %s", regDName, regS1Name, immValue );
 
          }
          break;
@@ -610,7 +610,7 @@ ulong dsDisassemble( dsContext_t *ctx, char *outputBuffer )
 
          nameRegister( ctx->rd,  regDName );
 
-         sprintf( outputBuffer, "lui %s, %d [ 0x%x ]", regDName, ctx->utImm >> 12, ctx->utImm );
+         sprintf( outputBuffer, "lui   %s, %d [ 0x%x ]", regDName, ctx->utImm >> 12, ctx->utImm );
 
          break;
 

@@ -120,11 +120,27 @@ int main()
 
                         break;
 
+                    case _KEYCODE_PGDOWN:
+
+                        disasmIdx   += 30;
+
+                        refresh     = 1;
+
+                        break;
+
                     case _KEYCODE_UP:
 
                         disasmIdx--;
 
                         refresh = 1;
+
+                        break;
+
+                    case _KEYCODE_PGUP:
+
+                        disasmIdx   -= 30;
+
+                        refresh     = 1;
 
                         break;
                 }
