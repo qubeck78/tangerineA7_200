@@ -144,6 +144,37 @@ int hexToIByte( char *buf, int position )
    return ( d1 << 4 ) | d2;
 }
 
+void hexDigit(char *string,char digit)
+{
+    digit &= 0x0f;
+    
+    if( digit<10 )
+    {
+        string[0] = digit + '0';
+        string[1] = 0;
+    }
+    else
+    {
+        string[0] = digit + 'a' - 10;
+        string[1] = 0;
+    }
+}
+
+void itoaHex8Digits( int value, char* str )
+{
+    hexDigit(&str[0], ( value >> 28 ) & 0x0f );
+    hexDigit(&str[1], ( value >> 24 ) & 0x0f );
+
+    hexDigit(&str[2], ( value >> 20 ) & 0x0f );
+    hexDigit(&str[3], ( value >> 16 ) & 0x0f );
+
+    hexDigit(&str[4], ( value >> 12 ) & 0x0f );
+    hexDigit(&str[5], ( value >> 8 ) & 0x0f );
+
+    hexDigit(&str[6], ( value >> 4) & 0x0f );
+    hexDigit(&str[7], ( value ) & 0x0f );
+}
+
 int decodeAndDisplayS0Record( char *buf )
 {
    int idx;
@@ -410,6 +441,8 @@ int main()
 
    print( (char*) "\n" );  
 
+   itoaHex8Digits( bsp->version, buf );
+
    spaceDistance( 40 - 13 ); print( (char*) "        |.\\__/.|    (~\\ \n" );
    spaceDistance( 40 - 13 ); print( (char*) "        | O O  |     ) ) \n" );
    spaceDistance( 40 - 13 ); print( (char*) "      _.|  T   |_   ( (  \n" );   
@@ -418,8 +451,14 @@ int main()
    spaceDistance( 40 - 13 ); print( (char*) "   |   tangerineSOC    | \n" );
    spaceDistance( 40 - 13 ); print( (char*) "   |   A7_200 board    | \n" );
    spaceDistance( 40 - 13 ); print( (char*) "   |                   | \n" );
-   spaceDistance( 40 - 13 ); print( (char*) "   |    Bootloader     | \n" );
-   spaceDistance( 40 - 13 ); print( (char*) "   |     B20240806     | \n" );
+   spaceDistance( 40 - 13 ); print( (char*) "   |   Bootloader      | \n" );
+   spaceDistance( 40 - 13 ); print( (char*) "   |   B20240824       | \n" );
+   spaceDistance( 40 - 13 ); print( (char*) "   |                   | \n" );
+   spaceDistance( 40 - 13 ); print( (char*) "   |   SOC             | \n" );
+   spaceDistance( 40 - 13 ); print( (char*) "   |   B" );
+   print( buf);
+   print( (char*)"       | \n" );
+
    spaceDistance( 40 - 13 ); print( (char*) "   |                   | \n" );
    spaceDistance( 40 - 13 ); print( (char*) "   `-------------------` \n\n" );
    
@@ -435,7 +474,7 @@ int main()
    do
    {
       
-      screenIndex = 80 * 15 + 10;
+      screenIndex = 80 * 18 + 10;
 
       for( i = 0; i < 60; i++ )
       {

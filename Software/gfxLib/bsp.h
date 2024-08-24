@@ -25,14 +25,16 @@
 
 typedef struct _BSP_T
 {
+    volatile ulong id;
+    volatile ulong version;
+
     //
     volatile unsigned long videoMuxMode;
     
     //b0 - vsync (positive)
     volatile unsigned long videoVSync;
     
-    //pointer of gfx data to display (within DMA address space, address divided by 4)
-    volatile unsigned long  dmaDisplayPointerStart;
+    volatile unsigned long  unused0;
         
     //wr b7, b6, b5, b4 - LEDS, b0 - spi0SSel
     volatile unsigned long gpoPort;

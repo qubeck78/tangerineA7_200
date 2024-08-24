@@ -705,7 +705,7 @@ begin
                     sdramCAS    <= '1';
                     sdramWE     <= '1';
 
-               --notify blitter, data is ready
+                    --notify blitter, data is ready
                     
                     ch1DmaReady <= '1';
 
