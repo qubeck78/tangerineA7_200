@@ -384,6 +384,38 @@ port(
 );
 end component;
 
+--blitter
+component blitter is
+port( 
+    
+    --reset, clocks
+
+    reset:              in      std_logic;
+    blitterClock:       in      std_logic;
+
+   --bus interface ( registers )
+
+    a:                  in      std_logic_vector( 15 downto 0 );
+    din:                in      std_logic_vector( 31 downto 0 );
+    dout:               out     std_logic_vector( 31 downto 0 );
+    ce:                 in      std_logic;
+    wr:                 in      std_logic;
+    dataMask:           in      std_logic_vector( 3 downto 0 );
+    ready:              out     std_logic;
+
+    --dma interface
+    
+    bltDmaRequest:      out     std_logic;
+    bltDmaReady:        in      std_logic;
+    bltDmaWordSize:     out     std_logic;
+    bltA:               out     std_logic_vector( 24 downto 0 );
+    bltDin:             in      std_logic_vector( 31 downto 0 );
+    bltDout:            out     std_logic_vector( 31 downto 0 );
+    bltWr:              out     std_logic
+    
+);
+end component;
+
 
 --signals
 
@@ -520,7 +552,15 @@ signal  sdramDMACE:              std_logic;
 signal  sdramDMADoutForCPU:      std_logic_vector( 31 downto 0 );
 signal  sdramDMAReady:           std_logic;
 
---ch1
+--ch1 blitter
+
+signal  ch1DmaRequest:          std_logic;
+signal  ch1DmaReady:            std_logic;
+signal  ch1DmaWordSize:         std_logic;
+signal  ch1A:                   std_logic_vector( 24 downto 0 );
+signal  ch1Din:                 std_logic_vector( 31 downto 0 );
+signal  ch1Dout:                std_logic_vector( 31 downto 0 );
+signal  ch1Wr:                  std_logic;
 
 --ch2 
 
@@ -537,6 +577,14 @@ signal   usbHostDoutForCPU:      std_logic_vector( 31 downto 0 );
 
 -- usb phy clock ( 12 MHz )
 signal   usbHClk:                std_logic; 
+
+
+-- blitter signals
+
+signal  blitterClock:           std_logic;
+signal  blitterRegsDoutForCPU:  std_logic_vector( 31 downto 0 );
+signal  blitterRegsCE:          std_logic;
+signal  blitterRegsReady:       std_logic;
 
 begin
 
@@ -555,6 +603,8 @@ usbHostClock        <= mainClock;
 
 usbHClk             <= usbClock;
 
+blitterClock        <= mainClock;
+
 
 --no need to sync now
 
@@ -568,6 +618,14 @@ leds        <= "00";
 -- usb2 - mouse
 usb2dm      <= 'Z';
 usb2dp      <= 'Z';
+
+--ch1 dma - blitter
+ch1DmaRequest   <= '0';
+ch1DmaWordSize  <= '0';
+ch1A            <= ( others => '0' );
+ch1Din          <= ( others => '0' );
+ch1Wr           <= '0';
+
 
 -- place text mode font rom ( 2048 x 8 )
 
@@ -819,15 +877,15 @@ end process;
     systemRAMCE     <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"000" else '0';
 
     sdramDMACE      <= '1' when ( cpuMemValid = '1'  ) and cpuAOutFull( 31 downto 28 ) = x"2" else '0';
-    fastRamCE      <= '1' when ( cpuMemValid = '1'  ) and cpuAOutFull( 31 downto 28 ) = x"3" else '0';
+    fastRamCE       <= '1' when ( cpuMemValid = '1'  ) and cpuAOutFull( 31 downto 28 ) = x"3" else '0';
          
     registersCE     <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f00" else '0';
 
 --    fpAluCE           <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f01" else '0';
    
---    blitterCE         <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f02" else '0';
+    blitterRegsCE   <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f02" else '0';
     
-    usbHostCE         <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f03" else '0';
+    usbHostCE       <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f03" else '0';
 
     uartCE            <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f04" else '0';
 
@@ -847,7 +905,7 @@ end process;
                         else registersReady when registersCE = '1' 
                         else sdramDMAReady when sdramDMACE = '1' 
                         else fastRamReady when fastRamCE = '1' 
---                        else blitterReady when blitterCE = '1' 
+                        else blitterRegsReady when blitterRegsCE = '1' 
 --                        else fpAluReady when fpAluCE = '1' 
 --                        else i2sReady when i2sCE = '1' 
 --                        else flashSpiReady when flashSpiCE = '1'
@@ -861,7 +919,7 @@ end process;
                         sdramDMADoutForCPU                        when cpuAOutFull( 31 downto 28 ) = x"2"  else
                         fastRamDoutForCPU                         when cpuAOutFull( 31 downto 28 ) = x"3"  else
 --                        fpAluDoutForCPU                           when cpuAOutFull( 31 downto 20 ) = x"f01" else
---                        blitterDoutForCPU                         when cpuAOutFull( 31 downto 20 ) = x"f02" else
+                        blitterRegsDoutForCPU                     when cpuAOutFull( 31 downto 20 ) = x"f02" else
                         usbHostDoutForCPU                         when cpuAOutFull( 31 downto 20 ) = x"f03" else 
                         uartDoutForCPU                            when cpuAOutFull( 31 downto 20 ) = x"f04" else
                         spiDoutForCPU                             when cpuAOutFull( 31 downto 20 ) = x"f05" else
@@ -965,9 +1023,18 @@ begin
                             
                   case cpuAOut( 7 downto 0 ) is
                
-               
-                     --rw 0xf0000000 - videoMuxMode
+                     --0x00 r- id                      
                      when x"00" =>
+                     
+                        registersDoutForCPU  <= x"80000000";   -- root regs id
+                                                
+                     --0x04 r- component version                       
+                     when x"01" =>
+                     
+                        registersDoutForCPU  <= x"20240824";
+                        
+                     --rw 0xf0000008 - videoMuxMode
+                     when x"02" =>
                
                         registersDoutForCPU  <= x"0000" & vmMode;
                         
@@ -977,19 +1044,18 @@ begin
                         
                         end if;
                
-                     --rw 0xf0000004 - videoVSync
-                     when x"01" =>
+                     --rw 0xf000000c - videoVSync
+                     when x"03" =>
                
                         registersDoutForCPU  <= x"0000" & x"000" & "000" & pgVSync;
 
-                     --rw 0xf0000008 - dmaDisplayPointerStart
-                     when x"02" =>
+                     --rw 0xf0000010 
+                     when x"04" =>
                
                         registersDoutForCPU  <= ( others => '0' );
-                        
-                                       
-                     --rw 0xf000000c - gpoPort
-                     when x"03" =>
+                                 
+                     --rw 0xf0000014 - gpoPort
+                     when x"05" =>
                
                         registersDoutForCPU  <= gpoRegister;
                         
@@ -999,8 +1065,8 @@ begin
                         
                         end if;
                         
-                     ---w 0xf0000010 - tickTimerConfig
-                     when x"04" =>
+                     ---w 0xf0000018 - tickTimerConfig
+                     when x"06" =>
                                  
                         if cpuWr = '1' then
                         
@@ -1008,15 +1074,15 @@ begin
                         
                         end if;  
                         
-                     --r- 0xf0000014 - tickTimerValue
-                     when x"05" =>
+                     --r- 0xf000001c - tickTimerValue
+                     when x"07" =>
                               
                         registersDoutForCPU  <= tickTimerCounter;
                            
                               
                               
-                     --rw 0xf0000018 - frameTimer (write resets timer)
-                     when x"06" =>
+                     --rw 0xf0000020 - frameTimer (write resets timer)
+                     when x"08" =>
                      
                         registersDoutForCPU  <= frameTimerValue;
                      
@@ -1183,15 +1249,16 @@ port map(
     ch0InstrCycle   => cpuMemInstr,
 
     ch0Ready        => sdramDMAReady,
-    
+        
     --ch1 - blitter, priority: 2
-    ch1DmaRequest   => '0',
-    --ch1DmaReady:        out     std_logic;
-    ch1DmaWordSize  => '0',
-    ch1A            => ( others => '0' ),
-    ch1Din          => ( others => '0' ),
-    --ch1Dout:            out     std_logic_vector( 31 downto 0 );
-    ch1Wr           => '0',
+    
+    ch1DmaRequest   => ch1DmaRequest,
+    ch1DmaReady     => ch1DmaReady,
+    ch1DmaWordSize  => ch1DmaWordSize,
+    ch1A            => ch1A,
+    ch1Din          => ch1Din,
+    ch1Dout         => ch1Dout,
+    ch1Wr           => ch1Wr,
     
     --ch2 - audio, priority: 1
 
@@ -1222,6 +1289,37 @@ port map(
     sdramCS         => sdramCS  
 );
 
+-- place blitter
+
+blitterInst:blitter
+port map( 
+    
+    --reset, clocks
+
+    reset           => reset,
+    blitterClock    => blitterClock,
+
+   --bus interface ( registers )
+
+    a               => cpuAOut( 15 downto 0 ),
+    din             => cpuDOut,
+    dout            => blitterRegsDoutForCPU,
+    ce              => blitterRegsCE,
+    wr              => cpuWr,
+    dataMask        => cpuDataMask,
+    ready           => blitterRegsReady,
+
+    --dma interface ( ch1 )
+    
+    bltDmaRequest   => ch1DmaRequest,
+    bltDmaReady     => ch1DmaReady,
+    bltDmaWordSize  => ch1DmaWordSize,
+    bltA            => ch1A,
+    bltDin          => ch1DOut,
+    bltDout         => ch1DIn,
+    bltWr           => ch1Wr
+    
+);
 
 -- tick timer process
 tickTimer: process( all )
