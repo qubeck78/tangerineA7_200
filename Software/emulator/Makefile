@@ -8,8 +8,7 @@
 #https://github.com/qubeck78/srecsend
 #
 
-
-TARGET = slideshow
+TARGET = emulator
 AS = riscv-none-embed-as -march=rv32im 
 CC = riscv-none-embed-gcc -march=rv32im -c -O3 
 LD = riscv-none-embed-ld -T ram.ld
@@ -29,8 +28,8 @@ $(TARGET).disasm: $(TARGET).elf
 $(TARGET).rec: $(TARGET).elf
 	$(OBJCOPY) -O srec $(TARGET).elf $(TARGET).rec
 
-$(TARGET).elf: main.o bsp.o startup.o osAlloc.o osFile.o gfBitmap.o gfDrawing.o gfFont.o gfGouraud.o gfJPEG.o picojpeg.o diskio.o ccsbcs.o ff.o osUIEvents.o usbHID.o
-	$(LD) startup.o main.o ../gfxLib/bsp.o ../gfxLib/diskio.o ../gfxLib/ccsbcs.o ../gfxLib/ff.o ../gfxLib/osAlloc.o ../gfxLib/osFile.o ../gfxLib/gfBitmap.o ../gfxLib/gfDrawing.o ../gfxLib/gfFont.o ../gfxLib/gfGouraud.o ../gfxLib/gfJPEG.o ../gfxLib/picojpeg.o ../gfxLib/osUIEvents.o ../gfxLib/usbHID.o $(LIBC) $(LIBNOSYS) $(LIBM) $(LIBGCC)  -o $(TARGET).elf
+$(TARGET).elf: main.o bsp.o disasm.o memio.o emul.o startup.o osAlloc.o osFile.o gfBitmap.o gfDrawing.o gfFont.o diskio.o ccsbcs.o ff.o osUIEvents.o usbHID.o
+	$(LD) startup.o main.o disasm.o memio.o emul.o ../gfxLib/bsp.o ../gfxLib/diskio.o ../gfxLib/ccsbcs.o ../gfxLib/ff.o ../gfxLib/osAlloc.o ../gfxLib/osFile.o ../gfxLib/gfBitmap.o ../gfxLib/gfDrawing.o ../gfxLib/gfFont.o ../gfxLib/osUIEvents.o ../gfxLib/usbHID.o $(LIBC) $(LIBNOSYS) $(LIBM) $(LIBGCC)  -o $(TARGET).elf
 
 $(TARGET).bin: $(TARGET).elf
 	$(OBJCOPY) -O binary $(TARGET).elf $(TARGET).bin
@@ -44,6 +43,15 @@ main.o: main.cpp
 bsp.o: ../gfxLib/bsp.cpp
 	$(CC) -o ../gfxLib/bsp.o ../gfxLib/bsp.cpp 
 
+disasm.o: disasm.cpp
+	$(CC) -o disasm.o disasm.cpp 
+
+emul.o: emul.cpp
+	$(CC) -o emul.o emul.cpp 
+
+memio.o: memio.cpp
+	$(CC) -o memio.o memio.cpp 
+
 startup.o: startup.s
 	$(AS) -o startup.o startup.s
 
@@ -53,8 +61,6 @@ gfBitmap.o: ../gfxLib/gfBitmap.cpp
 gfDrawing.o: ../gfxLib/gfDrawing.cpp
 	$(CC) -o ../gfxLib/gfDrawing.o ../gfxLib/gfDrawing.cpp 
 
-gfGouraud.o: ../gfxLib/gfGouraud.cpp
-	$(CC) -o ../gfxLib/gfGouraud.o ../gfxLib/gfGouraud.cpp 
 
 gfFont.o: ../gfxLib/gfFont.cpp
 	$(CC) -o ../gfxLib/gfFont.o ../gfxLib/gfFont.cpp 
@@ -84,7 +90,7 @@ osUIEvents.o: ../gfxLib/osUIEvents.cpp
 	$(CC) -o ../gfxLib/osUIEvents.o ../gfxLib/osUIEvents.cpp  
 
 usbHID.o: ../gfxLib/usbHID.cpp
-	$(CC) -o ../gfxLib/usbHID.o ../gfxLib/usbHID.cpp 
+	$(CC) -o ../gfxLib/usbHID.o ../gfxLib/usbHID.cpp
 
 clean:
 	rm -f *.o *.rec *.disasm *.elf *.mif *.mi *.bin *.map
@@ -92,6 +98,4 @@ clean:
 
 send: $(TARGET).rec
 	srecsend $(TARGET).rec com3 460800
-	riscv-none-embed-size $(TARGET).elf
-	
 	
