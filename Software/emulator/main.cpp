@@ -142,6 +142,7 @@ int main()
     do
     {
 
+
         if( refresh )
         {
             refresh = 0;
@@ -245,7 +246,7 @@ int main()
         }
 
 
-        delayMs( 100 );
+        //delayMs( 100 );
         
     }while( 1 );
     

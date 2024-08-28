@@ -57,12 +57,12 @@ ulong rvStep( emContext_t *ctx )
    ulong jtImm;
    long  jtsImm;
 
-   ulong rv;
-
    ulong iDecAux;
    ulong instruction;
    ulong i;
    ulong j;
+
+   ulong rv;
 
 
    //fetch instruction

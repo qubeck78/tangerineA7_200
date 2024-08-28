@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="systemRam_synth_1" LaunchPart="xc7a200tfbg676-1" LaunchTime="1724523990">
+<GenRun Id="systemRam_synth_1" LaunchPart="xc7a200tfbg676-1" LaunchTime="1724849879">
   <File Type="PA-TCL" Name="systemRam.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="systemRam_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="systemRam_reports.tcl"/>
@@ -50,9 +50,7 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023">
-      <Desc>Vivado Synthesis Defaults</Desc>
-    </StratHandle>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023"/>
     <Step Id="synth_design"/>
   </Strategy>
 </GenRun>
