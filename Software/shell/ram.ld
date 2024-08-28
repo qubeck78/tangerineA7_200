@@ -5,6 +5,7 @@ MEMORY
 /*		 ram 	: ORIGIN = 0x20780000, LENGTH = 0x0007ffff
 		 eram   : ORIGIN = 0x20800000, LENGTH = 0
 */
+
 /* fast ram - 1MB */
 		 ram 	: ORIGIN = 0x30000000, LENGTH = 0x000fffff
 		 eram   : ORIGIN = 0x30100000, LENGTH = 0

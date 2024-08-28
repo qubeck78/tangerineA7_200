@@ -1,0 +1,773 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/C/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/Software/emulator/tests/02/Makefile",
+			"settings":
+			{
+				"buffer_size": 2936,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			},
+			"undo_stack":
+			[
+				[
+					11,
+					7,
+					"right_delete",
+					null,
+					"BwAAAMsEAAAAAAAAywQAAAAAAAAHAAAAb3NBbGxvY8sEAAAAAAAAywQAAAAAAAABAAAALssEAAAAAAAAywQAAAAAAAABAAAAb8sEAAAAAAAAywQAAAAAAAABAAAAIMsEAAAAAAAAywQAAAAAAAABAAAAb8sEAAAAAAAAywQAAAAAAAABAAAAc8sEAAAAAAAAywQAAAAAAAABAAAARg",
+					"AQAAAAAAAAABAAAAywQAAAAAAADSBAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					12,
+					29,
+					"right_delete",
+					null,
+					"HQAAAMsEAAAAAAAAywQAAAAAAAABAAAAacsEAAAAAAAAywQAAAAAAAABAAAAbMsEAAAAAAAAywQAAAAAAAABAAAAZcsEAAAAAAAAywQAAAAAAAABAAAALssEAAAAAAAAywQAAAAAAAABAAAAb8sEAAAAAAAAywQAAAAAAAABAAAAIMsEAAAAAAAAywQAAAAAAAABAAAAZ8sEAAAAAAAAywQAAAAAAAABAAAAZssEAAAAAAAAywQAAAAAAAABAAAAQssEAAAAAAAAywQAAAAAAAABAAAAacsEAAAAAAAAywQAAAAAAAABAAAAdMsEAAAAAAAAywQAAAAAAAABAAAAbcsEAAAAAAAAywQAAAAAAAABAAAAYcsEAAAAAAAAywQAAAAAAAABAAAAcMsEAAAAAAAAywQAAAAAAAABAAAALssEAAAAAAAAywQAAAAAAAABAAAAb8sEAAAAAAAAywQAAAAAAAABAAAAIMsEAAAAAAAAywQAAAAAAAABAAAAZ8sEAAAAAAAAywQAAAAAAAABAAAAZssEAAAAAAAAywQAAAAAAAABAAAARMsEAAAAAAAAywQAAAAAAAABAAAAcssEAAAAAAAAywQAAAAAAAABAAAAYcsEAAAAAAAAywQAAAAAAAABAAAAd8sEAAAAAAAAywQAAAAAAAABAAAAacsEAAAAAAAAywQAAAAAAAABAAAAbssEAAAAAAAAywQAAAAAAAABAAAAZ8sEAAAAAAAAywQAAAAAAAABAAAALssEAAAAAAAAywQAAAAAAAABAAAAb8sEAAAAAAAAywQAAAAAAAABAAAAIA",
+					"AQAAAAAAAAABAAAAywQAAAAAAADLBAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					14,
+					41,
+					"right_delete",
+					null,
+					"KQAAANQEAAAAAAAA1AQAAAAAAAABAAAAZNQEAAAAAAAA1AQAAAAAAAABAAAAadQEAAAAAAAA1AQAAAAAAAABAAAAc9QEAAAAAAAA1AQAAAAAAAABAAAAa9QEAAAAAAAA1AQAAAAAAAABAAAAadQEAAAAAAAA1AQAAAAAAAABAAAAb9QEAAAAAAAA1AQAAAAAAAABAAAALtQEAAAAAAAA1AQAAAAAAAABAAAAb9QEAAAAAAAA1AQAAAAAAAABAAAAINQEAAAAAAAA1AQAAAAAAAABAAAAY9QEAAAAAAAA1AQAAAAAAAABAAAAY9QEAAAAAAAA1AQAAAAAAAABAAAAc9QEAAAAAAAA1AQAAAAAAAABAAAAYtQEAAAAAAAA1AQAAAAAAAABAAAAY9QEAAAAAAAA1AQAAAAAAAABAAAAc9QEAAAAAAAA1AQAAAAAAAABAAAALtQEAAAAAAAA1AQAAAAAAAABAAAAb9QEAAAAAAAA1AQAAAAAAAABAAAAINQEAAAAAAAA1AQAAAAAAAABAAAAZtQEAAAAAAAA1AQAAAAAAAABAAAAZtQEAAAAAAAA1AQAAAAAAAABAAAALtQEAAAAAAAA1AQAAAAAAAABAAAAb9QEAAAAAAAA1AQAAAAAAAABAAAAINQEAAAAAAAA1AQAAAAAAAABAAAAb9QEAAAAAAAA1AQAAAAAAAABAAAAc9QEAAAAAAAA1AQAAAAAAAABAAAAVdQEAAAAAAAA1AQAAAAAAAABAAAASdQEAAAAAAAA1AQAAAAAAAABAAAARdQEAAAAAAAA1AQAAAAAAAABAAAAdtQEAAAAAAAA1AQAAAAAAAABAAAAZdQEAAAAAAAA1AQAAAAAAAABAAAAbtQEAAAAAAAA1AQAAAAAAAABAAAAdNQEAAAAAAAA1AQAAAAAAAABAAAAc9QEAAAAAAAA1AQAAAAAAAABAAAALtQEAAAAAAAA1AQAAAAAAAABAAAAb9QEAAAAAAAA1AQAAAAAAAABAAAAINQEAAAAAAAA1AQAAAAAAAABAAAAddQEAAAAAAAA1AQAAAAAAAABAAAAc9QEAAAAAAAA1AQAAAAAAAABAAAAYtQEAAAAAAAA1AQAAAAAAAABAAAASNQEAAAAAAAA1AQAAAAAAAABAAAASQ",
+					"AQAAAAAAAAABAAAA1AQAAAAAAADUBAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					15,
+					3,
+					"right_delete",
+					null,
+					"AwAAANQEAAAAAAAA1AQAAAAAAAABAAAARNQEAAAAAAAA1AQAAAAAAAABAAAALtQEAAAAAAAA1AQAAAAAAAABAAAAbw",
+					"AQAAAAAAAAABAAAA1AQAAAAAAADUBAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					16,
+					1,
+					"left_delete",
+					null,
+					"AQAAANMEAAAAAAAA0wQAAAAAAAABAAAAIA",
+					"AQAAAAAAAAABAAAA1AQAAAAAAADUBAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					20,
+					22,
+					"right_delete",
+					null,
+					"FgAAAPwEAAAAAAAA/AQAAAAAAAABAAAALvwEAAAAAAAA/AQAAAAAAAABAAAALvwEAAAAAAAA/AQAAAAAAAABAAAAL/wEAAAAAAAA/AQAAAAAAAABAAAAZ/wEAAAAAAAA/AQAAAAAAAABAAAAZvwEAAAAAAAA/AQAAAAAAAABAAAAePwEAAAAAAAA/AQAAAAAAAABAAAATPwEAAAAAAAA/AQAAAAAAAABAAAAafwEAAAAAAAA/AQAAAAAAAABAAAAYvwEAAAAAAAA/AQAAAAAAAABAAAAL/wEAAAAAAAA/AQAAAAAAAABAAAAZPwEAAAAAAAA/AQAAAAAAAABAAAAafwEAAAAAAAA/AQAAAAAAAABAAAAc/wEAAAAAAAA/AQAAAAAAAABAAAAa/wEAAAAAAAA/AQAAAAAAAABAAAAafwEAAAAAAAA/AQAAAAAAAABAAAAb/wEAAAAAAAA/AQAAAAAAAABAAAALvwEAAAAAAAA/AQAAAAAAAABAAAAb/wEAAAAAAAA/AQAAAAAAAABAAAAIPwEAAAAAAAA/AQAAAAAAAABAAAALvwEAAAAAAAA/AQAAAAAAAABAAAALvwEAAAAAAAA/AQAAAAAAAABAAAALw",
+					"AQAAAAAAAAABAAAA/AQAAAAAAAD8BAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					21,
+					62,
+					"right_delete",
+					null,
+					"PgAAAPwEAAAAAAAA/AQAAAAAAAABAAAAZ/wEAAAAAAAA/AQAAAAAAAABAAAAZvwEAAAAAAAA/AQAAAAAAAABAAAAePwEAAAAAAAA/AQAAAAAAAABAAAATPwEAAAAAAAA/AQAAAAAAAABAAAAafwEAAAAAAAA/AQAAAAAAAABAAAAYvwEAAAAAAAA/AQAAAAAAAABAAAAL/wEAAAAAAAA/AQAAAAAAAABAAAAY/wEAAAAAAAA/AQAAAAAAAABAAAAY/wEAAAAAAAA/AQAAAAAAAABAAAAc/wEAAAAAAAA/AQAAAAAAAABAAAAYvwEAAAAAAAA/AQAAAAAAAABAAAAY/wEAAAAAAAA/AQAAAAAAAABAAAAc/wEAAAAAAAA/AQAAAAAAAABAAAALvwEAAAAAAAA/AQAAAAAAAABAAAAb/wEAAAAAAAA/AQAAAAAAAABAAAAIPwEAAAAAAAA/AQAAAAAAAABAAAALvwEAAAAAAAA/AQAAAAAAAABAAAALvwEAAAAAAAA/AQAAAAAAAABAAAAL/wEAAAAAAAA/AQAAAAAAAABAAAAZ/wEAAAAAAAA/AQAAAAAAAABAAAAZvwEAAAAAAAA/AQAAAAAAAABAAAAePwEAAAAAAAA/AQAAAAAAAABAAAATPwEAAAAAAAA/AQAAAAAAAABAAAAafwEAAAAAAAA/AQAAAAAAAABAAAAYvwEAAAAAAAA/AQAAAAAAAABAAAAL/wEAAAAAAAA/AQAAAAAAAABAAAAZvwEAAAAAAAA/AQAAAAAAAABAAAAZvwEAAAAAAAA/AQAAAAAAAABAAAALvwEAAAAAAAA/AQAAAAAAAABAAAAb/wEAAAAAAAA/AQAAAAAAAABAAAAIPwEAAAAAAAA/AQAAAAAAAABAAAALvwEAAAAAAAA/AQAAAAAAAABAAAALvwEAAAAAAAA/AQAAAAAAAABAAAAL/wEAAAAAAAA/AQAAAAAAAABAAAAZ/wEAAAAAAAA/AQAAAAAAAABAAAAZvwEAAAAAAAA/AQAAAAAAAABAAAAePwEAAAAAAAA/AQAAAAAAAABAAAATPwEAAAAAAAA/AQAAAAAAAABAAAAafwEAAAAAAAA/AQAAAAAAAABAAAAYvwEAAAAAAAA/AQAAAAAAAABAAAAL/wEAAAAAAAA/AQAAAAAAAABAAAAb/wEAAAAAAAA/AQAAAAAAAABAAAAc/wEAAAAAAAA/AQAAAAAAAABAAAAQfwEAAAAAAAA/AQAAAAAAAABAAAAbPwEAAAAAAAA/AQAAAAAAAABAAAAbPwEAAAAAAAA/AQAAAAAAAABAAAAb/wEAAAAAAAA/AQAAAAAAAABAAAAY/wEAAAAAAAA/AQAAAAAAAABAAAALvwEAAAAAAAA/AQAAAAAAAABAAAAb/wEAAAAAAAA/AQAAAAAAAABAAAAIPwEAAAAAAAA/AQAAAAAAAABAAAALvwEAAAAAAAA/AQAAAAAAAABAAAALvwEAAAAAAAA/AQAAAAAAAABAAAAL/wEAAAAAAAA/AQAAAAAAAABAAAAZ/wEAAAAAAAA/AQAAAAAAAABAAAAZvwEAAAAAAAA/AQAAAAAAAABAAAAePwEAAAAAAAA/AQAAAAAAAABAAAATPwEAAAAAAAA/AQAAAAAAAABAAAAafwEAAAAAAAA/AQAAAAAAAABAAAAYvwEAAAAAAAA/AQAAAAAAAABAAAAL/wEAAAAAAAA/AQAAAAAAAABAAAAbw",
+					"AQAAAAAAAAABAAAA/AQAAAAAAAD8BAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					22,
+					53,
+					"right_delete",
+					null,
+					"NQAAAPwEAAAAAAAA/AQAAAAAAAABAAAAc/wEAAAAAAAA/AQAAAAAAAABAAAARvwEAAAAAAAA/AQAAAAAAAABAAAAafwEAAAAAAAA/AQAAAAAAAABAAAAbPwEAAAAAAAA/AQAAAAAAAABAAAAZfwEAAAAAAAA/AQAAAAAAAABAAAALvwEAAAAAAAA/AQAAAAAAAABAAAAb/wEAAAAAAAA/AQAAAAAAAABAAAAIPwEAAAAAAAA/AQAAAAAAAABAAAALvwEAAAAAAAA/AQAAAAAAAABAAAALvwEAAAAAAAA/AQAAAAAAAABAAAAL/wEAAAAAAAA/AQAAAAAAAABAAAAZ/wEAAAAAAAA/AQAAAAAAAABAAAAZvwEAAAAAAAA/AQAAAAAAAABAAAAePwEAAAAAAAA/AQAAAAAAAABAAAATPwEAAAAAAAA/AQAAAAAAAABAAAAafwEAAAAAAAA/AQAAAAAAAABAAAAYvwEAAAAAAAA/AQAAAAAAAABAAAAL/wEAAAAAAAA/AQAAAAAAAABAAAAZ/wEAAAAAAAA/AQAAAAAAAABAAAAZvwEAAAAAAAA/AQAAAAAAAABAAAAQvwEAAAAAAAA/AQAAAAAAAABAAAAafwEAAAAAAAA/AQAAAAAAAABAAAAdPwEAAAAAAAA/AQAAAAAAAABAAAAbfwEAAAAAAAA/AQAAAAAAAABAAAAYfwEAAAAAAAA/AQAAAAAAAABAAAAcPwEAAAAAAAA/AQAAAAAAAABAAAALvwEAAAAAAAA/AQAAAAAAAABAAAAb/wEAAAAAAAA/AQAAAAAAAABAAAAIPwEAAAAAAAA/AQAAAAAAAABAAAALvwEAAAAAAAA/AQAAAAAAAABAAAALvwEAAAAAAAA/AQAAAAAAAABAAAAL/wEAAAAAAAA/AQAAAAAAAABAAAAZ/wEAAAAAAAA/AQAAAAAAAABAAAAZvwEAAAAAAAA/AQAAAAAAAABAAAAePwEAAAAAAAA/AQAAAAAAAABAAAATPwEAAAAAAAA/AQAAAAAAAABAAAAafwEAAAAAAAA/AQAAAAAAAABAAAAYvwEAAAAAAAA/AQAAAAAAAABAAAAL/wEAAAAAAAA/AQAAAAAAAABAAAAZ/wEAAAAAAAA/AQAAAAAAAABAAAAZvwEAAAAAAAA/AQAAAAAAAABAAAARPwEAAAAAAAA/AQAAAAAAAABAAAAcvwEAAAAAAAA/AQAAAAAAAABAAAAYfwEAAAAAAAA/AQAAAAAAAABAAAAd/wEAAAAAAAA/AQAAAAAAAABAAAAafwEAAAAAAAA/AQAAAAAAAABAAAAbvwEAAAAAAAA/AQAAAAAAAABAAAAZ/wEAAAAAAAA/AQAAAAAAAABAAAALvwEAAAAAAAA/AQAAAAAAAABAAAAb/wEAAAAAAAA/AQAAAAAAAABAAAAIPwEAAAAAAAA/AQAAAAAAAABAAAALvwEAAAAAAAA/AQAAAAAAAABAAAALg",
+					"AQAAAAAAAAABAAAA/AQAAAAAAAD8BAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					23,
+					1,
+					"insert",
+					{
+						"characters": ".."
+					},
+					"AgAAAPwEAAAAAAAA/QQAAAAAAAAAAAAA/QQAAAAAAAD+BAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA/AQAAAAAAAD8BAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					26,
+					22,
+					"right_delete",
+					null,
+					"FgAAAA8FAAAAAAAADwUAAAAAAAABAAAALg8FAAAAAAAADwUAAAAAAAABAAAALg8FAAAAAAAADwUAAAAAAAABAAAALw8FAAAAAAAADwUAAAAAAAABAAAAZw8FAAAAAAAADwUAAAAAAAABAAAAZg8FAAAAAAAADwUAAAAAAAABAAAAeA8FAAAAAAAADwUAAAAAAAABAAAATA8FAAAAAAAADwUAAAAAAAABAAAAaQ8FAAAAAAAADwUAAAAAAAABAAAAYg8FAAAAAAAADwUAAAAAAAABAAAALw8FAAAAAAAADwUAAAAAAAABAAAAbw8FAAAAAAAADwUAAAAAAAABAAAAcw8FAAAAAAAADwUAAAAAAAABAAAAVQ8FAAAAAAAADwUAAAAAAAABAAAASQ8FAAAAAAAADwUAAAAAAAABAAAARQ8FAAAAAAAADwUAAAAAAAABAAAAdg8FAAAAAAAADwUAAAAAAAABAAAAZQ8FAAAAAAAADwUAAAAAAAABAAAAbg8FAAAAAAAADwUAAAAAAAABAAAAdA8FAAAAAAAADwUAAAAAAAABAAAAcw8FAAAAAAAADwUAAAAAAAABAAAALg8FAAAAAAAADwUAAAAAAAABAAAAbw",
+					"AQAAAAAAAAABAAAADwUAAAAAAAAPBQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					27,
+					12,
+					"right_delete",
+					null,
+					"DAAAAA8FAAAAAAAADwUAAAAAAAABAAAAIA8FAAAAAAAADwUAAAAAAAABAAAALg8FAAAAAAAADwUAAAAAAAABAAAALg8FAAAAAAAADwUAAAAAAAABAAAALw8FAAAAAAAADwUAAAAAAAABAAAAZw8FAAAAAAAADwUAAAAAAAABAAAAZg8FAAAAAAAADwUAAAAAAAABAAAAeA8FAAAAAAAADwUAAAAAAAABAAAATA8FAAAAAAAADwUAAAAAAAABAAAAaQ8FAAAAAAAADwUAAAAAAAABAAAAYg8FAAAAAAAADwUAAAAAAAABAAAALw8FAAAAAAAADwUAAAAAAAABAAAAdQ",
+					"AQAAAAAAAAABAAAADwUAAAAAAAAPBQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					28,
+					8,
+					"right_delete",
+					null,
+					"CAAAAA8FAAAAAAAADwUAAAAAAAABAAAAcw8FAAAAAAAADwUAAAAAAAABAAAAYg8FAAAAAAAADwUAAAAAAAABAAAASA8FAAAAAAAADwUAAAAAAAABAAAASQ8FAAAAAAAADwUAAAAAAAABAAAARA8FAAAAAAAADwUAAAAAAAABAAAALg8FAAAAAAAADwUAAAAAAAABAAAAbw8FAAAAAAAADwUAAAAAAAABAAAAIA",
+					"AQAAAAAAAAABAAAADwUAAAAAAAAPBQAAAAAAAAAAAAAAAPC/"
+				]
+			]
+		},
+		{
+			"file": "/C/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/Software/emulator/tests/02/main.cpp",
+			"settings":
+			{
+				"buffer_size": 480,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			},
+			"undo_stack":
+			[
+				[
+					4,
+					1,
+					"insert",
+					{
+						"characters": "\ttoPtr"
+					},
+					"BgAAAKMBAAAAAAAApwEAAAAAAAAAAAAApwEAAAAAAACoAQAAAAAAAAAAAACoAQAAAAAAAKkBAAAAAAAAAAAAAKkBAAAAAAAAqgEAAAAAAAAAAAAAqgEAAAAAAACrAQAAAAAAAAAAAACrAQAAAAAAAKwBAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAowEAAAAAAACjAQAAAAAAAAAAAAAAAAAA"
+				],
+				[
+					5,
+					2,
+					"left_delete",
+					null,
+					"AgAAAKsBAAAAAAAAqwEAAAAAAAABAAAAcqoBAAAAAAAAqgEAAAAAAAABAAAAdA",
+					"AQAAAAAAAAABAAAArAEAAAAAAACsAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					6,
+					1,
+					"insert",
+					{
+						"characters": "riny"
+					},
+					"BAAAAKoBAAAAAAAAqwEAAAAAAAAAAAAAqwEAAAAAAACsAQAAAAAAAAAAAACsAQAAAAAAAK0BAAAAAAAAAAAAAK0BAAAAAAAArgEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAqgEAAAAAAACqAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					7,
+					1,
+					"left_delete",
+					null,
+					"AQAAAK0BAAAAAAAArQEAAAAAAAABAAAAeQ",
+					"AQAAAAAAAAABAAAArgEAAAAAAACuAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					8,
+					1,
+					"insert",
+					{
+						"characters": "tFG"
+					},
+					"AwAAAK0BAAAAAAAArgEAAAAAAAAAAAAArgEAAAAAAACvAQAAAAAAAAAAAACvAQAAAAAAALABAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAArQEAAAAAAACtAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					9,
+					1,
+					"left_delete",
+					null,
+					"AQAAAK8BAAAAAAAArwEAAAAAAAABAAAARw",
+					"AQAAAAAAAAABAAAAsAEAAAAAAACwAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					10,
+					1,
+					"insert_snippet",
+					{
+						"contents": "($0)"
+					},
+					"AQAAAK8BAAAAAAAAsQEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAArwEAAAAAAACvAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					11,
+					1,
+					"insert",
+					{
+						"characters": " &conm"
+					},
+					"BgAAALABAAAAAAAAsQEAAAAAAAAAAAAAsQEAAAAAAACyAQAAAAAAAAAAAACyAQAAAAAAALMBAAAAAAAAAAAAALMBAAAAAAAAtAEAAAAAAAAAAAAAtAEAAAAAAAC1AQAAAAAAAAAAAAC1AQAAAAAAALYBAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAsAEAAAAAAACwAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					12,
+					1,
+					"left_delete",
+					null,
+					"AQAAALUBAAAAAAAAtQEAAAAAAAABAAAAbQ",
+					"AQAAAAAAAAABAAAAtgEAAAAAAAC2AQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					13,
+					1,
+					"insert",
+					{
+						"characters": ","
+					},
+					"AQAAALUBAAAAAAAAtgEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAtQEAAAAAAAC1AQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					14,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAALYBAAAAAAAAtwEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAtgEAAAAAAAC2AQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					15,
+					1,
+					"insert_snippet",
+					{
+						"contents": "\"$0\""
+					},
+					"AQAAALcBAAAAAAAAuQEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAtwEAAAAAAAC3AQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					16,
+					1,
+					"insert",
+					{
+						"characters": "BSP"
+					},
+					"AwAAALgBAAAAAAAAuQEAAAAAAAAAAAAAuQEAAAAAAAC6AQAAAAAAAAAAAAC6AQAAAAAAALsBAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAuAEAAAAAAAC4AQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					17,
+					1,
+					"insert",
+					{
+						"characters": " test"
+					},
+					"BQAAALsBAAAAAAAAvAEAAAAAAAAAAAAAvAEAAAAAAAC9AQAAAAAAAAAAAAC9AQAAAAAAAL4BAAAAAAAAAAAAAL4BAAAAAAAAvwEAAAAAAAAAAAAAvwEAAAAAAADAAQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAuwEAAAAAAAC7AQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					18,
+					1,
+					"insert",
+					{
+						"characters": "\\n"
+					},
+					"AgAAAMABAAAAAAAAwQEAAAAAAAAAAAAAwQEAAAAAAADCAQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAwAEAAAAAAADAAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					20,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAAMMBAAAAAAAAxAEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAwwEAAAAAAADDAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					22,
+					1,
+					"insert",
+					{
+						"characters": ";"
+					},
+					"AQAAAMUBAAAAAAAAxgEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAxQEAAAAAAADFAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					23,
+					1,
+					"insert",
+					{
+						"characters": "\n\ndo"
+					},
+					"BwAAAMYBAAAAAAAAxwEAAAAAAAAAAAAAxwEAAAAAAADLAQAAAAAAAAAAAADLAQAAAAAAAMwBAAAAAAAAAAAAAMwBAAAAAAAA0AEAAAAAAAAAAAAAxwEAAAAAAADHAQAAAAAAAAQAAAAgICAgzAEAAAAAAADNAQAAAAAAAAAAAADNAQAAAAAAAM4BAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAxgEAAAAAAADGAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					24,
+					1,
+					"insert_snippet",
+					{
+						"contents": "{$0}"
+					},
+					"AQAAAM4BAAAAAAAA0AEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAzgEAAAAAAADOAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					26,
+					1,
+					"insert",
+					{
+						"characters": "while"
+					},
+					"BQAAANABAAAAAAAA0QEAAAAAAAAAAAAA0QEAAAAAAADSAQAAAAAAAAAAAADSAQAAAAAAANMBAAAAAAAAAAAAANMBAAAAAAAA1AEAAAAAAAAAAAAA1AEAAAAAAADVAQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA0AEAAAAAAADQAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					27,
+					1,
+					"insert_snippet",
+					{
+						"contents": "($0)"
+					},
+					"AQAAANUBAAAAAAAA1wEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA1QEAAAAAAADVAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					28,
+					1,
+					"insert",
+					{
+						"characters": " 1"
+					},
+					"AgAAANYBAAAAAAAA1wEAAAAAAAAAAAAA1wEAAAAAAADYAQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA1gEAAAAAAADWAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					29,
+					1,
+					"insert",
+					{
+						"characters": " "
+					},
+					"AQAAANgBAAAAAAAA2QEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA2AEAAAAAAADYAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					31,
+					1,
+					"insert",
+					{
+						"characters": ";"
+					},
+					"AQAAANoBAAAAAAAA2wEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA2gEAAAAAAADaAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					32,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AgAAANsBAAAAAAAA3AEAAAAAAAAAAAAA3AEAAAAAAADgAQAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA2wEAAAAAAADbAQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					34,
+					3,
+					"left_delete",
+					null,
+					"BAAAAOwBAAAAAAAA7AEAAAAAAAAEAAAAICAgINwBAAAAAAAA3AEAAAAAAAAOAAAAICAgICAgICAgICAgICDdAQAAAAAAAN0BAAAAAAAAAQAAAArcAQAAAAAAANwBAAAAAAAAAQAAAAo",
+					"AQAAAAAAAAABAAAA8AEAAAAAAADwAQAAAAAAAAAAAAAAgEFA"
+				]
+			]
+		}
+	],
+	"build_system": "Packages/User/make send.sublime-build",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/C++/C++ Single File.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					""
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					"Clean"
+				]
+			],
+			[
+				"Packages/Makefile/Make.sublime-build",
+				"Clean"
+			]
+		],
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					""
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					"Clean"
+				],
+				[
+					"Packages/User/make run.sublime-build",
+					""
+				],
+				[
+					"Packages/User/make send.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/User/make send.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					""
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					"Clean"
+				],
+				[
+					"Packages/User/make send.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/User/make send.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/Makefile/Make.sublime-build",
+					""
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					"Clean"
+				],
+				[
+					"Packages/User/make send.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/User/make send.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Enable Package"
+			],
+			[
+				"package control: install package",
+				"Package Control: Install Package"
+			],
+			[
+				"install package control",
+				"Install Package Control"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 141.0,
+		"history":
+		[
+			"help",
+			"dir",
+			"dire"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/Software/emulator/tests/02"
+	],
+	"file_history":
+	[
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/Software/fractal/main.cpp",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/Software/fractal/ram.ld",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/TangNano20K/tangyRiscVSOC/tangyRiscVSOC/src/software/gfxLib/bsp.h",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/Software/fractal/Makefile",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/TangNano20K/tangyRiscVSOC/tangyRiscVSOC/src/software/gfxLib/gfTypes.h",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/TangNano20K/tangyRiscVSOC/tangyRiscVSOC/src/software/fractal/Makefile",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscVSOCQ13/software/gfxLib/gfTypes.h",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscVSOCQ13/software/gfxLib/bsp.h",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/gfxLib/bsp.h",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/gfxLib/bsp.cpp",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/fractal/ram.ld",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/memoryTest/main.cpp",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/gfxLib/gfTypes.h",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/memoryTest/Makefile",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/gfxLibSlideshow/main.cpp",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/gfxLibSlideshow/ram.ld",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/gfxLibSlideshow/startup.S",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/gfxLibSlideshow/main.h",
+		"/C/Users/qubec/AppData/Roaming/Sublime Text/Packages/User/make send.sublime-build",
+		"/C/Users/qubec/AppData/Roaming/Sublime Text/Packages/User/Preferences.sublime-settings",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/gfxLibSlideshow/slideshowProject.sublime-project",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/gfxLibSlideshow/Makefile",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/usbHidTest/main.cpp",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscVSOCQ13/C4RiscVSOCTop.vhd"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"_SDRAM_MEMORY_BASE"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/C/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/Software/emulator/tests/02/Makefile",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2936,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1183,
+								1183
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Makefile/Makefile.sublime-syntax",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 114.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/Software/emulator/tests/02/main.cpp",
+					"selected": true,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 480,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								299,
+								299
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"stack_multiselect": false,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 191.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "bsptest.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\Users\\qubec\\Documents\\Development\\ProjektyVHDL\\A7BaseBoard\\tangerineA7_200\\Software\\slideshow\\slideshowProject.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 211.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
