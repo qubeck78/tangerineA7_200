@@ -243,7 +243,6 @@ int slideshow()
 }
 
 
-
 int main()
 {
     int i;

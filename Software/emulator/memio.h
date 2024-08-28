@@ -3,6 +3,7 @@
 
 #include "../gfxLib/gftypes.h"
 
+ulong mioInit( void );
 
 ulong fetchInstruction( ulong addr );
 ulong fetchData( ulong addr );

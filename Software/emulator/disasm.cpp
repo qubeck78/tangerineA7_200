@@ -2,8 +2,9 @@
 #include <cstdio>
 #include <cstring>
 #include "disasm.h"
+#include "memio.h"
 
-static ulong nameRegister( ulong r, char *outputBuffer )
+ulong nameRegister( ulong r, char *outputBuffer )
 {
 
    outputBuffer[0] = 0;
@@ -108,7 +109,7 @@ static ulong decodeJtypeImm( ulong imm, ulong pc, char *outputBuffer )
 
    outputBuffer[0] = 0;
 
-   if( imm &               0b100000000000000000000 )
+   if( imm & 0b100000000000000000000 )
    {
       extImm =  0b11111111111100000000000000000000 | imm;
    }
@@ -148,7 +149,9 @@ ulong dsDisassemble( dsContext_t *ctx, char *outputBuffer )
 
 
    ctx->pc           = ctx->codeBufStartPc + ( ctx->codeBufIdx * 4 );   
-   instruction       = ctx->codeBuf[ ctx->codeBufIdx ];
+
+   instruction       = fetchData( ctx->pc );
+
    ctx->instruction  = instruction;
    ctx->codeBufIdx   += 1;
 
@@ -428,7 +431,7 @@ ulong dsDisassemble( dsContext_t *ctx, char *outputBuffer )
             case 0x5:
 
                   //todo: do a proper check
-                  if( ctx->itImm & 0xfff0 )
+                  if( ctx->itImm & 0xffe0 )
                   {
                      sprintf( outputBuffer, "srai  %s, %s, %d", regDName, regS1Name, ctx->itImm & 0xf );
                   }

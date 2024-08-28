@@ -15,7 +15,6 @@
 extern tgfTextOverlay   con;
 tgfBitmap               screen;
 
-int rotation;
 
 int animLeds( int j )
 {   
@@ -288,19 +287,22 @@ int main()
     //init events queue
     osUIEventsInit();   
     
-/*    do
-    {
-            rotation = bsp->frameTimer;
-        toPrintF( &con, "%d\n", rotation );
-    }while( 1 );
-*/
+    toPrintF( &con, (char*)"Mandelbrot set example\n" );
+
     startTicks = getTicks();
 
     ffMandelbrot( &screen, 7, -2.0f, -1.0f, 0.0085f, 0.0085f );
 
     endTicks = getTicks();
 
-    toPrintF( &con, (char*)"Time: %d ms", endTicks - startTicks );
+//    toPrintF( &con, (char*)"Time: %d ms", endTicks - startTicks );
+
+    asm
+    (
+        "ebreak\n"
+    );
+
+    
 
     delayMs( 30000 );
 

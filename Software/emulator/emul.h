@@ -27,37 +27,15 @@ typedef struct _emContext_t
    ulong    regs[32];
    long     *sregs;
 
+   //instruction counter;
+
+   ulong    instrCounter;
 
    //instruction decoder
 
    ulong     instruction;
 
-   //Common
-   uchar    opcode;
-   uchar    rd;
-   uchar    funct3;
-   uchar    rs1;
-   uchar    rs2;
-
-   //R-type
-   uchar    rtFunct7;
-
-   //I-type
-   ulong    itImm;
-   long     itsImm;
-
-   //S-type
-   ulong    stImm;
-
-   //B-type
-   ulong    btImm;
-
-   //U-type
-   ulong    utImm;
-
-   //J-type
-   ulong    jtImm;
-
+   
 }emContext_t;
 
 

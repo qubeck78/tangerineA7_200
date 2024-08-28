@@ -41,6 +41,7 @@ typedef struct _dsContext_t
 
 }dsContext_t;
 
+ulong nameRegister( ulong r, char *outputBuffer );
 ulong dsDisassemble( dsContext_t *ctx, char *outputBuffer );
 
 #endif

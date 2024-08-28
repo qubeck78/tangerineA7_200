@@ -141,8 +141,49 @@ ulong testSDRAM()
    sdram = ( ulong * ) 0x20000000;
 
 
-//   length = 512 * 240 / 2;
-   length = 262144;
+   length = 512 * 240 / 2;
+//   length = 262144;
+//   length = 8192;
+
+   print( ( char* ) "\nFill 0xffffffff: " );
+
+   for( i = 0 ; i < length; i++ )
+   {
+      sdram[i] = 0xffffffff;
+   }
+   
+   for( i = 0 ; i < length; i++ )
+   {
+      rvl = sdram[i];
+
+      if ( rvl != 0xffffffff )
+      {
+         itoaHex8Digits( i, buf );
+         print( buf );
+         print( (char*) "V" );
+         itoaHex8Digits( rvl, buf );
+         print( buf );
+
+         rvl = sdram[i];
+
+         if ( rvl != 0xffffffff )
+         {
+
+            print( (char*) "V2" );
+            itoaHex8Digits( rvl, buf );
+            print( buf );
+
+         }
+
+         print( (char*) " " );      
+         print( (char*) " " );      
+
+         break;
+      }
+   }
+
+   delayMs( 1000 );
+
 
    print( ( char* ) "Fill 0x0: " );
 
@@ -182,44 +223,6 @@ ulong testSDRAM()
 
    delayMs( 1000 );
 
-   print( ( char* ) "\nFill 0xffffffff: " );
-
-   for( i = 0 ; i < length; i++ )
-   {
-      sdram[i] = 0xffffffff;
-   }
-
-   for( i = 0 ; i < length; i++ )
-   {
-      rvl = sdram[i];
-
-      if ( rvl != 0xffffffff )
-      {
-         itoaHex8Digits( i, buf );
-         print( buf );
-         print( (char*) "V" );
-         itoaHex8Digits( rvl, buf );
-         print( buf );
-
-         rvl = sdram[i];
-
-         if ( rvl != 0xffffffff )
-         {
-
-            print( (char*) "V2" );
-            itoaHex8Digits( rvl, buf );
-            print( buf );
-
-         }
-
-         print( (char*) " " );      
-         print( (char*) " " );      
-
-         break;
-      }
-   }
-
-   delayMs( 1000 );
 
    print( ( char* ) "\nFill random: " );
 

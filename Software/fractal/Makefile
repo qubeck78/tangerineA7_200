@@ -11,6 +11,7 @@
 TARGET = fractal
 AS = riscv-none-embed-as -march=rv32im 
 CC = riscv-none-embed-gcc -march=rv32im -c -O3 
+#CC = riscv-none-embed-gcc -march=rv32im -c 
 LD = riscv-none-embed-ld -T ram.ld
 OBJCOPY = riscv-none-embed-objcopy
 OBJDUMP = riscv-none-embed-objdump 
