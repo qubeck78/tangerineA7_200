@@ -234,6 +234,28 @@ component picorv32 is
 );
 end component; 
 
+-- cpu :)
+
+component nekoRv is
+port( 
+    
+    clk:                in  std_logic;
+    reset:              in  std_logic;
+    
+    a:                  out std_logic_vector( 31 downto 0 );
+    din:                in  std_logic_vector( 31 downto 0 );
+    dout:               out std_logic_vector( 31 downto 0 );
+    
+    be:                 out std_logic;
+    ready:              in  std_logic;
+    wr:                 out std_logic;
+    dataMask:           out std_logic_vector( 3 downto 0 );
+    
+    instrFetchCycle:    out std_logic
+    
+);
+end component;
+
 -- UART
 component UART
     port(
@@ -1031,7 +1053,7 @@ begin
                      --0x04 r- component version                       
                      when x"01" =>
                      
-                        registersDoutForCPU  <= x"20240824";
+                        registersDoutForCPU  <= x"20240828";
                         
                      --rw 0xf0000008 - videoMuxMode
                      when x"02" =>
