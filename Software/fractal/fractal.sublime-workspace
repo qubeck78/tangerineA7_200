@@ -8,10 +8,13 @@
 	"buffers":
 	[
 		{
+			"contents": "#ifndef _MAIN_H\n#define _MAIN_H\n\nint main( void );\n\n\n#endif\n\ne",
 			"file": "main.h",
+			"file_size": 69,
+			"file_write_time": 133693285483882273,
 			"settings":
 			{
-				"buffer_size": 61,
+				"buffer_size": 62,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			},
@@ -23,7 +26,7 @@
 					"paste",
 					null,
 					"AgAAACEAAAAAAAAAKwAAAAAAAAAAAAAAKwAAAAAAAAArAAAAAAAAAA0AAAB2b2lkIF9tYWluKCk7",
-					"AQAAAAAAAAABAAAALgAAAAAAAAAhAAAAAAAAAAAAAAAAAPC/"
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAuAAAAAAAAACEAAAAAAAAAAAAAAAAA8L8"
 				],
 				[
 					6,
@@ -33,7 +36,7 @@
 						"characters": "void"
 					},
 					"BAAAACoAAAAAAAAAKwAAAAAAAAAAAAAAKwAAAAAAAAAsAAAAAAAAAAAAAAAsAAAAAAAAAC0AAAAAAAAAAAAAAC0AAAAAAAAALgAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAKgAAAAAAAAAqAAAAAAAAAAAAAAAAAPC/"
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAqAAAAAAAAACoAAAAAAAAAAAAAAAAA8L8"
 				],
 				[
 					8,
@@ -43,7 +46,7 @@
 						"characters": ";"
 					},
 					"AQAAAC8AAAAAAAAAMAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAALwAAAAAAAAAvAAAAAAAAAAAAAAAAAPC/"
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAvAAAAAAAAAC8AAAAAAAAAAAAAAAAA8L8"
 				],
 				[
 					9,
@@ -53,7 +56,7 @@
 						"characters": "\n"
 					},
 					"AQAAADAAAAAAAAAAMQAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAMAAAAAAAAAAwAAAAAAAAAAAAAAAAAPC/"
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAwAAAAAAAAADAAAAAAAAAAAAAAAAAA8L8"
 				],
 				[
 					11,
@@ -63,7 +66,7 @@
 						"characters": " "
 					},
 					"AQAAACoAAAAAAAAAKwAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAKgAAAAAAAAAqAAAAAAAAAAAAAAAAAPC/"
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAqAAAAAAAAACoAAAAAAAAAAAAAAAAA8L8"
 				],
 				[
 					13,
@@ -73,7 +76,17 @@
 						"characters": " "
 					},
 					"AQAAAC8AAAAAAAAAMAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAALwAAAAAAAAAvAAAAAAAAAAAAAAAAAPC/"
+					"AgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAvAAAAAAAAAC8AAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					1,
+					1,
+					"insert",
+					{
+						"characters": "e"
+					},
+					"AQAAAD0AAAAAAAAAPgAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAPQAAAAAAAAA9AAAAAAAAAAAAAAAAAPC/"
 				]
 			]
 		}
@@ -319,15 +332,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 61,
+						"buffer_size": 62,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								61,
-								61
+								62,
+								62
 							]
 						],
 						"settings":

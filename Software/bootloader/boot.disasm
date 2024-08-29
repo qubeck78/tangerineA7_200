@@ -100,14 +100,14 @@ Disassembly of section .text:
      154:	02010413          	addi	s0,sp,32
      158:	000017b7          	lui	a5,0x1
      15c:	5b47a783          	lw	a5,1460(a5) # 15b4 <uart0>
-     160:	0047a783          	lw	a5,4(a5)
+     160:	00c7a783          	lw	a5,12(a5)
      164:	0017f793          	andi	a5,a5,1
      168:	00f037b3          	snez	a5,a5
      16c:	0ff7f793          	andi	a5,a5,255
      170:	00078a63          	beqz	a5,184 <_Z8uartGetCv+0x38>
      174:	000017b7          	lui	a5,0x1
      178:	5b47a783          	lw	a5,1460(a5) # 15b4 <uart0>
-     17c:	0007a783          	lw	a5,0(a5)
+     17c:	0087a783          	lw	a5,8(a5)
      180:	0080006f          	j	188 <_Z8uartGetCv+0x3c>
      184:	fff00793          	li	a5,-1
      188:	00078513          	mv	a0,a5
@@ -123,7 +123,7 @@ Disassembly of section .text:
      1a8:	fef407a3          	sb	a5,-17(s0)
      1ac:	000017b7          	lui	a5,0x1
      1b0:	5b47a783          	lw	a5,1460(a5) # 15b4 <uart0>
-     1b4:	0047a783          	lw	a5,4(a5)
+     1b4:	00c7a783          	lw	a5,12(a5)
      1b8:	0027f793          	andi	a5,a5,2
      1bc:	0017b793          	seqz	a5,a5
      1c0:	0ff7f793          	andi	a5,a5,255
@@ -132,7 +132,7 @@ Disassembly of section .text:
      1cc:	000017b7          	lui	a5,0x1
      1d0:	5b47a783          	lw	a5,1460(a5) # 15b4 <uart0>
      1d4:	fef44703          	lbu	a4,-17(s0)
-     1d8:	00e7a023          	sw	a4,0(a5)
+     1d8:	00e7a423          	sw	a4,8(a5)
      1dc:	00000793          	li	a5,0
      1e0:	00078513          	mv	a0,a5
      1e4:	01c12403          	lw	s0,28(sp)

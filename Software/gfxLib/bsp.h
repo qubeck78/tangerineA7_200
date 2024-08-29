@@ -200,6 +200,9 @@ extern _USBHOST_REGISTERS_T *usbhost;
 
 typedef struct __UART_REGISTERS_T
 {
+    volatile ulong id;
+    volatile ulong version;
+
     //wr - send data via uart, rd - read received data from fifo
     volatile unsigned long uartData;
 

@@ -161,9 +161,23 @@ begin
                   ready <= '0';
                   
                   case a( 7 downto 0 ) is
-                  
-                  --0x00 rw - uartData
+                 
+                    --0x00 r- id                      
                   when x"00" =>
+                 
+                      dout  <= x"80000001";   -- serial id
+                    
+                      ready <= '1';
+                    
+                    --0x04 r- component version                       
+                  when x"01" =>
+                 
+                      dout  <= x"20240829";
+                    
+                      ready <= '1';
+              
+                  --0x08 rw - uartData
+                  when x"02" =>
                   
                         if wr = '0' then
                            
@@ -181,8 +195,8 @@ begin
 
                         ready <= '1';
 
-                     --0x04 r- uartStatus                   
-                     when x"01" =>
+                     --0x0c r- uartStatus                   
+                     when x"03" =>
                      
                         dout                 <= x"000000" & "000000" & dataSenderReady & dataReceivedReady;
 
