@@ -145,7 +145,7 @@ ulong rvStep( emContext_t *ctx )
 
                if( rd )
                {
-                  ctx->regs[ rd ] = (long long int)( ( (long long int)ctx->sregs[rs1] * (long long unsigned int)ctx->sregs[rs2] ) ) >> 32;
+                  ctx->regs[ rd ] = (long long int)( ( (long long int)ctx->sregs[rs1] * (long long unsigned int)ctx->regs[rs2] ) ) >> 32;
                }
                break;
  
@@ -157,7 +157,7 @@ ulong rvStep( emContext_t *ctx )
 
                if( rd )
                {
-                  ctx->regs[ rd ] = (long long unsigned int)( ( (long long unsigned int)ctx->sregs[rs1] * (long long unsigned int)ctx->sregs[rs2] ) ) >> 32;
+                  ctx->regs[ rd ] = (long long unsigned int)( ( (long long unsigned int)ctx->regs[rs1] * (long long unsigned int)ctx->regs[rs2] ) ) >> 32;
                }
                break;
 
@@ -169,7 +169,7 @@ ulong rvStep( emContext_t *ctx )
 
                if( rd )
                {
-                  ctx->sregs[ rd ] = ctx->sregs[rs1] * ctx->sregs[rs2];
+                  ctx->sregs[ rd ] = ctx->sregs[rs1] / ctx->sregs[rs2];
                }
                break;
 
@@ -181,7 +181,7 @@ ulong rvStep( emContext_t *ctx )
 
                if( rd )
                {
-                  ctx->regs[ rd ] = ctx->regs[rs1] * ctx->regs[rs2];
+                  ctx->regs[ rd ] = ctx->regs[rs1] / ctx->regs[rs2];
                }
                break;
 
@@ -1109,7 +1109,7 @@ ulong rvStep( emContext_t *ctx )
                ctx->regs[rd] = ctx->pc + 4;
             }
 
-            ctx->pc = ctx->sregs[ rs1 ];
+            ctx->pc = ctx->regs[ rs1 ];
             ctx->pc += itsImm;
 
             ctx->pc -= 4; 

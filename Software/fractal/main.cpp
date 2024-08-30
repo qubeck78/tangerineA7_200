@@ -1,6 +1,7 @@
 #include "main.h"
 #include <cstring>
 #include <climits>
+#include <cstdio>
 
 #include "../gfxLib/bsp.h"
 #include "../gfxLib/osAlloc.h"
@@ -14,6 +15,8 @@
 
 extern tgfTextOverlay   con;
 tgfBitmap               screen;
+
+char buf[256];
 
 
 int animLeds( int j )
@@ -154,7 +157,7 @@ int ffMandelbrot( tgfBitmap *bmp, ushort colorMask, float xmin, float ymin, floa
     
     for( y = 0; y < bmp->height; y++ )
     {
-        animLeds( y );
+        //animLeds( y );
         
         cr = xmin;
         
@@ -256,7 +259,6 @@ int main()
     tosUIEvent  event; 
 
     bspInit();
-
     
     setVideoMode( _VIDEOMODE_320_TEXT80_OVER_GFX );
     
@@ -285,9 +287,9 @@ int main()
     bsp->frameTimer = 0;
 
     //init events queue
-    osUIEventsInit();   
+   // osUIEventsInit();   
     
-    toPrintF( &con, (char*)"Mandelbrot set example\n" );
+    toPrintF( &con, (char*)"Mandelbrot set example.\n" );
 
     startTicks = getTicks();
 
@@ -295,13 +297,14 @@ int main()
 
     endTicks = getTicks();
 
-//    toPrintF( &con, (char*)"Time: %d ms", endTicks - startTicks );
+    toPrintF( &con,  (char*)"Time: %d ms\n", (ulong)( endTicks - startTicks ) );
 
-    asm
+
+/*    asm
     (
         "ebreak\n"
     );
-
+*/
     
 
     delayMs( 30000 );
@@ -313,12 +316,11 @@ int main()
     con.textAttributes = 0x8f;
       
 
-
     do
     {
         ffMandelbrot( &screen, ( randomNumber() >> 7 ) & 7, -1.7f + ((ulong)randomNumber() ) / 3294967296.0f ,  -1.7f + ((ulong)randomNumber() ) / 3294967296.0f , 0.001f, 0.001f );
 
-        while( !osGetUIEvent( &event ) )
+/*        while( !osGetUIEvent( &event ) )
         { 
             if( event.type == OS_EVENT_TYPE_KEYBOARD_KEYPRESS )
             {
@@ -331,7 +333,7 @@ int main()
                 }
             }
         }
-
+*/
 
         delayMs( 1000 );
         
