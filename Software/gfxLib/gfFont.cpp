@@ -791,7 +791,8 @@ ulong toPrintF( tgfTextOverlay *overlay, char *format, ... )
         /* Get an argument and put it in numeral */
         
         value = (flag & 4) ? (ulong) va_arg( arp, long ) : ( ( d == 'D' ) ? (ulong)(long) va_arg( arp, int ) : (ulong) va_arg( arp, unsigned int ) );
-            
+        
+        
         if( d == 'D' && ( value & 0x80000000) ) 
         {
             value = 0 - value;
@@ -802,8 +803,10 @@ ulong toPrintF( tgfTextOverlay *overlay, char *format, ... )
         
         do 
         {
+            
             d = (char)( value % radix ); 
             value /= radix;
+
 
             if ( d > 9 ) d += ( c == 'x' ) ? 0x27 : 0x07;
 

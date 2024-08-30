@@ -77,14 +77,14 @@ Disassembly of section .text.startup:
 
 000020f0 <main>:
     20f0:	000027b7          	lui	a5,0x2
-    20f4:	43c7a783          	lw	a5,1084(a5) # 243c <bsp>
+    20f4:	43c7a703          	lw	a4,1084(a5) # 243c <bsp>
     20f8:	fe010113          	addi	sp,sp,-32
     20fc:	00812c23          	sw	s0,24(sp)
-    2100:	00400713          	li	a4,4
+    2100:	00400693          	li	a3,4
     2104:	00112e23          	sw	ra,28(sp)
-    2108:	00e7a023          	sw	a4,0(a5)
-    210c:	00002737          	lui	a4,0x2
-    2110:	000077b7          	lui	a5,0x7
+    2108:	00d72423          	sw	a3,8(a4)
+    210c:	000077b7          	lui	a5,0x7
+    2110:	00002737          	lui	a4,0x2
     2114:	d4078793          	addi	a5,a5,-704 # 6d40 <displayRam+0x487c>
     2118:	00002437          	lui	s0,0x2
     211c:	4c072023          	sw	zero,1216(a4) # 24c0 <screenIndex>
