@@ -81,7 +81,7 @@ ulong init()
    con.textAttributes = 0x0f;
 
    toCls( &con );
-
+   toPrintF( &con, (char*)"Shell init\n" );
 
    //alloc screen buffer
    screen.width            = 320;
@@ -128,10 +128,13 @@ ulong init()
 
    //init events queue
    rv = osUIEventsInit(); 
+   toPrintF( &con, (char*)"osUIEventsInit\n" );
 
 
    //init filesystem
    rv = osFInit();
+
+   toPrintF( &con, (char*)"osFInit\n" );
 
    rv = gfLoadBitmapFS( &background, ( char* )"0:/shell/background.gbm" );
 
@@ -141,8 +144,12 @@ ulong init()
    //3d obj viewer init
    rv = objvInit();
 
+   toPrintF( &con, (char*)"objvInit\n" );
+
    //Amiga module player init
    rv = mpInit();
+
+   toPrintF( &con, (char*)"mpInit\n" );
 
    return rv;
 }
