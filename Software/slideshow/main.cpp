@@ -66,8 +66,10 @@ ulong getNumEntries()
     #else
 
     rv = osDirOpen( &dir, (char*)"0:img" );
-
+    
     #endif
+
+    toPrintF( &con, (char*)"Dir open\n" );
 
     numEntries = 0;
 
@@ -80,11 +82,15 @@ ulong getNumEntries()
             break; // Error or end of dir
         }
 
+        toPrintF( &con, (char*)"%s\n", dirItem.name );
+
         numEntries++;
 
     }while( 1 );
 
     osDirClose( &dir );
+
+    toPrintF( &con, (char*)"%d entries\n", numEntries );
 
     return numEntries;
 }
@@ -101,7 +107,7 @@ ulong getEntry( ulong entryNumber )
     #else
 
     rv = osDirOpen( &dir, (char*)"0:img" );
-
+    
     #endif
 
 
@@ -263,7 +269,7 @@ int main()
 
 
     toCls( &con );
-    toPrint( &con, (char*)"tangerineSOC Slideshow B20240820\n\n" );
+    toPrint( &con, (char*)"tangerineSOC Slideshow B20240906\n\n" );
 
     
     screen.flags            = 0;
@@ -308,6 +314,9 @@ int main()
 
     numDirEntries = getNumEntries();
 
-    slideshow();
 
+    if( numDirEntries )
+    {
+        slideshow();
+    }
 } 

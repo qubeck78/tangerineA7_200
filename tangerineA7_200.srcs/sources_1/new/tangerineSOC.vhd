@@ -642,11 +642,11 @@ usb2dm      <= 'Z';
 usb2dp      <= 'Z';
 
 --ch1 dma - blitter
-ch1DmaRequest   <= '0';
-ch1DmaWordSize  <= '0';
-ch1A            <= ( others => '0' );
-ch1Din          <= ( others => '0' );
-ch1Wr           <= '0';
+--ch1DmaRequest   <= '0';
+--ch1DmaWordSize  <= '0';
+--ch1A            <= ( others => '0' );
+--ch1Din          <= ( others => '0' );
+--ch1Wr           <= '0';
 
 
 -- place text mode font rom ( 2048 x 8 )
@@ -1053,7 +1053,7 @@ begin
                      --0x04 r- component version                       
                      when x"01" =>
                      
-                        registersDoutForCPU  <= x"20240828";
+                        registersDoutForCPU  <= x"20240910";
                         
                      --rw 0xf0000008 - videoMuxMode
                      when x"02" =>

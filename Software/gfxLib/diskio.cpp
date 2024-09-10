@@ -32,6 +32,8 @@
 //#include "system.h"
 #include "unistd.h"
 #include "bsp.h"
+#include "gfFont.h"
+extern tgfTextOverlay   con;
 
 /*-------------------------------------------------------------------------*/
 /* Platform dependent macros and functions needed to be modified           */
@@ -407,9 +409,12 @@ DSTATUS disk_initialize (
         if (send_cmd(CMD8, 0x1AA) == 1) {   /* SDv2? */
             rcvr_mmc(buf, 4);                           /* Get trailing return value of R7 resp */
             if (buf[2] == 0x01 && buf[3] == 0xAA) {     /* The card can work at vdd range of 2.7-3.6V */
+                
                 for (tmr = 1000; tmr; tmr--) {          /* Wait for leaving idle state (ACMD41 with HCS bit) */
-                    if (send_cmd(ACMD41, 1UL << 30) == 0) break;
-                    
+                    if (send_cmd(ACMD41, 1UL << 30) == 0) 
+                    {
+                        break;
+                    }
                     for( j = 0; j < DELAYCNT100US * 10; j++ );
                     //dly_us(1000);
                 }
@@ -441,6 +446,7 @@ DSTATUS disk_initialize (
     Stat = s;
 
     deselect();
+
 
     return s;
 }
