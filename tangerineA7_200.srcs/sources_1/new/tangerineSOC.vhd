@@ -890,9 +890,6 @@ end process;
 -- bus signals
     cpuAOut           <= cpuAOutFull( 31 downto 2 );
 
-    cpuWr             <= cpuWrStrobe( 3 ) or cpuWrStrobe( 2 ) or cpuWrStrobe( 1 ) or cpuWrStrobe( 0 );
-
-    cpuDataMask       <= cpuWrStrobe when cpuWr = '1' else "1111";
 
 
 -- chip selects
@@ -950,34 +947,59 @@ end process;
                         sdramDmaRegsDoutForCPU                      when cpuAOutFull( 31 downto 20 ) = x"f08" else                        
                         x"00000000";
 
+
+--    cpuWr             <= cpuWrStrobe( 3 ) or cpuWrStrobe( 2 ) or cpuWrStrobe( 1 ) or cpuWrStrobe( 0 );
+--    cpuDataMask       <= cpuWrStrobe when cpuWr = '1' else "1111";
                      
--- the cpu
-   picorv32Inst: picorv32 
-   port map
-   (
-      clk               => cpuClock,
-      resetn            => cpuResetn,
+-- --the cpu
 
-      mem_valid         => cpuMemValid,
-      mem_instr         => cpuMemInstr,
-      mem_ready         => cpuMemReady,
+--   picorv32Inst: picorv32 
+--   port map
+--   (
+--      clk               => cpuClock,
+--      resetn            => cpuResetn,
 
-      mem_addr          => cpuAOutFull,
-      mem_wdata         => cpuDOut,
-      mem_wstrb         => cpuWrStrobe,
-      mem_rdata         => cpuDin,
+--      mem_valid         => cpuMemValid,
+--      mem_instr         => cpuMemInstr,
+--      mem_ready         => cpuMemReady,
 
-      pcpi_wr           => '0',
-      pcpi_rd           => ( others => '0' ),
-      pcpi_wait         => '0',
-      pcpi_ready        => '0',
+--      mem_addr          => cpuAOutFull,
+--      mem_wdata         => cpuDOut,
+--      mem_wstrb         => cpuWrStrobe,
+--      mem_rdata         => cpuDin,
 
-      --IRQ Interface
-      irq               => ( others => '0' )
-      --eoi:            out std_logic_vector( 31 downto 0 );
+--      pcpi_wr           => '0',
+--      pcpi_rd           => ( others => '0' ),
+--      pcpi_wait         => '0',
+--      pcpi_ready        => '0',
+
+--      --IRQ Interface
+--      irq               => ( others => '0' )
+--      --eoi:            out std_logic_vector( 31 downto 0 );
+--);
+  
+nekoRvInst:nekoRv 
+port map( 
+    
+    clk             => cpuClock,
+    reset           => not cpuResetn,
+    
+    a               => cpuAOutFull,
+    din             => cpuDin,
+    dout            => cpuDOut,
+    
+    be              => cpuMemValid,
+    ready           => cpuMemReady,
+    wr              => cpuWr,
+    dataMask        => cpuDataMask,
+    
+    instrFetchCycle => cpuMemInstr
 );
   
-  
+--emulate cpuWrStrobe
+cpuWrStrobe       <=  cpuDataMask when cpuWr = '1' else "0000";
+
+
 --cpu resetgen process
 cpuResetGen: process( all )
 

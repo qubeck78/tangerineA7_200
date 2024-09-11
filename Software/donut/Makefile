@@ -9,17 +9,15 @@
 #
 
 TARGET = donut
-AS = riscv-none-embed-as -march=rv32im 
-CC = riscv-none-embed-gcc -march=rv32im -c -O3 
-#CC = riscv-none-embed-gcc -march=rv32im -c 
+CC = riscv-none-embed-gcc -march=rv32i -c -O3 
 LD = riscv-none-embed-ld -T ram.ld
 OBJCOPY = riscv-none-embed-objcopy
 OBJDUMP = riscv-none-embed-objdump 
-LIBGCC =   "c:\Program Files\riscv-none-gcc\lib\gcc\riscv-none-embed\8.2.0\rv32im\ilp32\libgcc.a"
-LIBSTDCC = "c:\Program Files\riscv-none-gcc\riscv-none-embed\lib\rv32im\ilp32\libstdc++.a"
-LIBC     = "c:\Program Files\riscv-none-gcc\riscv-none-embed\lib\rv32im\ilp32\libc.a"
-LIBM     = "c:\Program Files\riscv-none-gcc\riscv-none-embed\lib\rv32im\ilp32\libm.a" 
-LIBNOSYS = "c:\Program Files\riscv-none-gcc\riscv-none-embed\lib\rv32im\ilp32\libnosys.a"
+LIBGCC =   "c:\Program Files\riscv-none-gcc\lib\gcc\riscv-none-embed\8.2.0\rv32i\ilp32\libgcc.a"
+LIBSTDCC = "c:\Program Files\riscv-none-gcc\riscv-none-embed\lib\rv32i\ilp32\libstdc++.a"
+LIBC     = "c:\Program Files\riscv-none-gcc\riscv-none-embed\lib\rv32i\ilp32\libc.a"
+LIBM     = "c:\Program Files\riscv-none-gcc\riscv-none-embed\lib\rv32i\ilp32\libm.a" 
+LIBNOSYS = "c:\Program Files\riscv-none-gcc\riscv-none-embed\lib\rv32i\ilp32\libnosys.a"
 
 all: $(TARGET).bin $(TARGET).rec $(TARGET).disasm 
 
@@ -44,8 +42,8 @@ main.o: main.cpp
 bsp.o: ../gfxLib/bsp.cpp
 	$(CC) -o ../gfxLib/bsp.o ../gfxLib/bsp.cpp 
 
-startup.o: startup.s
-	$(AS) -o startup.o startup.s
+startup.o: startup.S
+	$(CC) -o startup.o startup.S
 
 gfBitmap.o: ../gfxLib/gfBitmap.cpp
 	$(CC) -o ../gfxLib/gfBitmap.o ../gfxLib/gfBitmap.cpp 

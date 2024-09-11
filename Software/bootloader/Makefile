@@ -1,12 +1,18 @@
 
 TARGET = boot 
 
-AS = riscv-none-embed-as -march=rv32im 
-CC = riscv-none-embed-gcc -march=rv32im  -c 
+AS = riscv-none-embed-as -march=rv32i 
+CC = riscv-none-embed-gcc -march=rv32i  -c 
+LIBGCC = "c:\Program Files\riscv-none-gcc\lib\gcc\riscv-none-embed\8.2.0\rv32i\ilp32\libgcc.a"
+
+#AS = riscv-none-embed-as -march=rv32im 
+#CC = riscv-none-embed-gcc -march=rv32im  -c 
+#LIBGCC = "c:\Program Files\riscv-none-gcc\lib\gcc\riscv-none-embed\8.2.0\rv32im\ilp32\libgcc.a"
+
 LD = riscv-none-embed-ld -T ram.ld
 OBJCOPY = riscv-none-embed-objcopy
 OBJDUMP = riscv-none-embed-objdump 
-LIBGCC = "c:\Program Files\riscv-none-gcc\lib\gcc\riscv-none-embed\8.2.0\rv32im\ilp32\libgcc.a"
+
 
 
 all: $(TARGET).bin $(TARGET).rec $(TARGET).disasm $(TARGET).coe
@@ -35,8 +41,8 @@ $(TARGET).coe: $(TARGET).bin
 main.o: main.cpp
 	$(CC) -o main.o main.cpp 
 
-startup.o: startup.s
-	$(AS) -o startup.o startup.s
+startup.o: startup.S
+	$(CC) -o startup.o startup.S
 
 clean:
 	rm -f *.o *.rec *.disasm *.elf *.bin *.mif *.mi *.coe

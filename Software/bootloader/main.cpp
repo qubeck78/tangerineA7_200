@@ -451,8 +451,8 @@ int main()
    spaceDistance( 40 - 13 ); print( (char*) "   |   tangerineSOC    | \n" );
    spaceDistance( 40 - 13 ); print( (char*) "   |   A7_200 board    | \n" );
    spaceDistance( 40 - 13 ); print( (char*) "   |                   | \n" );
-   spaceDistance( 40 - 13 ); print( (char*) "   |   Bootloader      | \n" );
-   spaceDistance( 40 - 13 ); print( (char*) "   |   B20240829       | \n" );
+   spaceDistance( 40 - 13 ); print( (char*) "   |   Bootloader32I   | \n" );
+   spaceDistance( 40 - 13 ); print( (char*) "   |   B20240911       | \n" );
    spaceDistance( 40 - 13 ); print( (char*) "   |                   | \n" );
    spaceDistance( 40 - 13 ); print( (char*) "   |   SOC             | \n" );
    spaceDistance( 40 - 13 ); print( (char*) "   |   B" );
