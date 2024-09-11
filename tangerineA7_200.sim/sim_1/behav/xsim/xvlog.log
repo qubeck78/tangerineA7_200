@@ -1,0 +1,41 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/gfxBufRam/sim/gfxBufRam.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module gfxBufRam
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/keyboardFifo/sim/keyboardFifo.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module keyboardFifo
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/uartFiFo/sim/uartFiFo.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module uartFiFo
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/fastRam/sim/fastRam.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fastRam
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/systemRam/sim/systemRam.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module systemRam
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/fontPROM/sim/fontPROM.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fontPROM
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/clk_wiz_1/clk_wiz_1_clk_wiz.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clk_wiz_1_clk_wiz
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/clk_wiz_1/clk_wiz_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clk_wiz_1
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_clk_wiz.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clk_wiz_0_clk_wiz
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clk_wiz_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module usb_hid_host
+INFO: [VRFC 10-311] analyzing module ukp
+WARNING: [VRFC 10-3380] identifier 'dmi' is used before its declaration [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host.v:217]
+WARNING: [VRFC 10-3380] identifier 'dpi' is used before its declaration [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host.v:219]
+WARNING: [VRFC 10-3380] identifier 'dpi' is used before its declaration [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host.v:238]
+WARNING: [VRFC 10-3380] identifier 'dmi' is used before its declaration [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host.v:253]
+WARNING: [VRFC 10-3380] identifier 'dmi' is used before its declaration [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host.v:321]
+WARNING: [VRFC 10-3380] identifier 'dmi' is used before its declaration [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host.v:325]
+WARNING: [VRFC 10-3380] identifier 'dmi' is used before its declaration [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host.v:329]
+WARNING: [VRFC 10-3380] identifier 'dmi' is used before its declaration [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host.v:332]
+WARNING: [VRFC 10-3380] identifier 'dmi' is used before its declaration [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host.v:335]
+WARNING: [VRFC 10-3380] identifier 'dmi' is used before its declaration [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host.v:336]
+WARNING: [VRFC 10-3380] identifier 'dmi' is used before its declaration [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host.v:338]
+WARNING: [VRFC 10-3380] identifier 'ukprdyd' is used before its declaration [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host.v:350]
+WARNING: [VRFC 10-3380] identifier 'nakd' is used before its declaration [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host.v:351]
+WARNING: [VRFC 10-3380] identifier 'ukprdyd' is used before its declaration [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host.v:352]
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host_rom.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module usb_hid_host_rom
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl

@@ -14,6 +14,7 @@
 #include "../gfxLib/usbHID.h" 
 #include "../gfxLib/ff.h" 
 
+//#define SLIDESHOW_ALPHA_ANIMATION
 
 extern BSP_T                *bsp;
 
@@ -66,8 +67,10 @@ ulong getNumEntries()
     #else
 
     rv = osDirOpen( &dir, (char*)"0:img" );
-
+    
     #endif
+
+    toPrintF( &con, (char*)"Dir open\n" );
 
     numEntries = 0;
 
@@ -80,11 +83,15 @@ ulong getNumEntries()
             break; // Error or end of dir
         }
 
+        toPrintF( &con, (char*)"%s\n", dirItem.name );
+
         numEntries++;
 
     }while( 1 );
 
     osDirClose( &dir );
+
+    toPrintF( &con, (char*)"%d entries\n", numEntries );
 
     return numEntries;
 }
@@ -101,7 +108,7 @@ ulong getEntry( ulong entryNumber )
     #else
 
     rv = osDirOpen( &dir, (char*)"0:img" );
-
+    
     #endif
 
 
@@ -185,12 +192,15 @@ int slideshow()
                         y = ( screen.height / 2 ) - ( fileBmp.height / 2 );
                     }
 
+                    #ifdef SLIDESHOW_ALPHA_ANIMATION
+
                     for( i = 0; i < 256; i += 32 )
                     {       
                         do{}while( ! bsp->videoVSync ); 
                         gfBlitBitmapA( &screen, &fileBmp, x, y, i );
                     }
-                    
+
+                    #endif
                     
                     gfBlitBitmap( &screen, &fileBmp, x, y );
 
@@ -263,7 +273,7 @@ int main()
 
 
     toCls( &con );
-    toPrint( &con, (char*)"tangerineSOC Slideshow B20240820\n\n" );
+    toPrint( &con, (char*)"tangerineSOC Slideshow B20240911\n\n" );
 
     
     screen.flags            = 0;
@@ -308,6 +318,9 @@ int main()
 
     numDirEntries = getNumEntries();
 
-    slideshow();
 
+    if( numDirEntries )
+    {
+        slideshow();
+    }
 } 

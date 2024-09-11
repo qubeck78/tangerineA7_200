@@ -8,12 +8,11 @@
 #https://github.com/qubeck78/srecsend
 #
 
-AS = riscv-none-embed-as -march=rv32im 
-CC = riscv-none-embed-gcc -march=rv32im -c 
+CC = riscv-none-embed-gcc -march=rv32i -c 
 LD = riscv-none-embed-ld -T ram.ld
 OBJCOPY = riscv-none-embed-objcopy
 OBJDUMP = riscv-none-embed-objdump 
-LIBGCC = "c:\Program Files\riscv-none-gcc\lib\gcc\riscv-none-embed\8.2.0\rv32im\ilp32\libgcc.a"
+LIBGCC = "c:\Program Files\riscv-none-gcc\lib\gcc\riscv-none-embed\8.2.0\rv32i\ilp32\libgcc.a"
 
 
 all: prog.bin prog.rec prog.disasm
@@ -37,8 +36,8 @@ main.o: main.cpp
 	$(CC) -o main.o main.cpp 
 
 
-startup.o: startup.s
-	$(AS) -o startup.o startup.s
+startup.o: startup.S
+	$(CC) -o startup.o startup.S
 
 clean:
 	rm -f *.o *.rec *.disasm *.elf *.mif *.bin

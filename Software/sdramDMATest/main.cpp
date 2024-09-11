@@ -117,14 +117,21 @@ ulong getTicks()
     return bsp->tickTimerValue;
 }
 
-void delayMs( unsigned long delay )
+void delayMsTest( unsigned long delay )
 {
+/*    long startMs;
+    
+    startMs = bsp->tickTimerValue;
+
+    
+    while(  ( startMs + delay ) > bsp->tickTimerValue  );
+*/
     unsigned long startMs;
     
     startMs = bsp->tickTimerValue;
     
     while( bsp->tickTimerValue < ( startMs + delay ) );
-    
+
 }
  
 
@@ -151,7 +158,8 @@ ulong testSDRAM()
    {
       sdram[i] = 0xffffffff;
    }
-   
+
+
    for( i = 0 ; i < length; i++ )
    {
       rvl = sdram[i];
@@ -182,10 +190,10 @@ ulong testSDRAM()
       }
    }
 
-   delayMs( 1000 );
+   //delayMs( 1000 );
 
 
-   print( ( char* ) "Fill 0x0: " );
+   print( ( char* ) "\nFill 0x0: " );
 
    for( i = 0 ; i < length; i++ )
    {
@@ -221,7 +229,7 @@ ulong testSDRAM()
       }
    }
 
-   delayMs( 1000 );
+   //delayMs( 1000 );
 
 
    print( ( char* ) "\nFill random: " );
@@ -259,7 +267,7 @@ ulong testSDRAM()
 
    print( (char*)"\ndone\n" );
 
-   delayMs( 1000 );
+   delayMsTest( 10000 );
 
    return 0;
 }
@@ -359,7 +367,7 @@ int main()
 
          print( (char*)" " );
 
-         delayMs( 1000 );
+         delayMs( 10000 );
       }
 
    }while( 1 );

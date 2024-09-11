@@ -1,5 +1,30 @@
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="qubec" Host="DESKTOP-QUBECK" Pid="20212" HostCore="12" HostMemory="034266247168">
+    <Process Command="vivado.bat" Owner="qubec" Host="DESKTOP-QUBECK" Pid="1108" HostCore="12" HostMemory="034266247168">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="qubec" Host="DESKTOP-QUBECK" Pid="19616" HostCore="12" HostMemory="034266247168">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="qubec" Host="DESKTOP-QUBECK" Pid="17332" HostCore="12" HostMemory="034266247168">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="qubec" Host="DESKTOP-QUBECK" Pid="20376" HostCore="12" HostMemory="034266247168">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="qubec" Host="DESKTOP-QUBECK" Pid="11864" HostCore="12" HostMemory="034266247168">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="qubec" Host="DESKTOP-QUBECK" Pid="26280" HostCore="12" HostMemory="034266247168">
     </Process>
 </ProcessHandle>
