@@ -1,5 +1,19 @@
 
 
+--  nekoRV32I
+
+--  Risc-V 32I core
+
+--  Copyright (c) 2024, Michal‚ Kubecki - qubeck78@wp.pl
+
+--  Supplied under BSD-3 Clause license ( see LICENSE file )
+
+
+--  Note: While not enforced by the license, I kindly request that any application 
+--  using this software includes "Michal Kubecki - qubeck78@wp.pl" in its about 
+--  or credits section as a token of appreciation for the open-source contribution.
+
+
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;

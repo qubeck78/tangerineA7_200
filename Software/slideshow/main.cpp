@@ -14,6 +14,7 @@
 #include "../gfxLib/usbHID.h" 
 #include "../gfxLib/ff.h" 
 
+//#define SLIDESHOW_ALPHA_ANIMATION
 
 extern BSP_T                *bsp;
 
@@ -191,12 +192,15 @@ int slideshow()
                         y = ( screen.height / 2 ) - ( fileBmp.height / 2 );
                     }
 
+                    #ifdef SLIDESHOW_ALPHA_ANIMATION
+
                     for( i = 0; i < 256; i += 32 )
                     {       
                         do{}while( ! bsp->videoVSync ); 
                         gfBlitBitmapA( &screen, &fileBmp, x, y, i );
                     }
-                    
+
+                    #endif
                     
                     gfBlitBitmap( &screen, &fileBmp, x, y );
 
@@ -269,7 +273,7 @@ int main()
 
 
     toCls( &con );
-    toPrint( &con, (char*)"tangerineSOC Slideshow B20240906\n\n" );
+    toPrint( &con, (char*)"tangerineSOC Slideshow B20240911\n\n" );
 
     
     screen.flags            = 0;
