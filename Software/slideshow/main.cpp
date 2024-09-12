@@ -14,7 +14,7 @@
 #include "../gfxLib/usbHID.h" 
 #include "../gfxLib/ff.h" 
 
-//#define SLIDESHOW_ALPHA_ANIMATION
+#define SLIDESHOW_ALPHA_ANIMATION
 
 extern BSP_T                *bsp;
 

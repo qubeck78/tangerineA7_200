@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a200tfbg676-1" LaunchTime="1726081474" LaunchWriteIncrSynthDcp="true">
+<GenRun Id="synth_1" LaunchPart="xc7a200tfbg676-1" LaunchTime="1726164279" LaunchWriteIncrSynthDcp="true">
   <File Type="PA-TCL" Name="A7BoardTop.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="A7BoardTop_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="A7BoardTop_reports.tcl"/>
@@ -100,14 +100,6 @@
     <File Path="$PSRCDIR/sources_1/new/A7BoardTop.vhd">
       <FileInfo SFType="VHDL2019">
         <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/picorv32.v">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>

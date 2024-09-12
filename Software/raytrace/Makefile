@@ -9,15 +9,15 @@
 #
 
 TARGET = raytrace
-CC = riscv-none-embed-gcc -march=rv32i -c -O3 
+CC = riscv-none-embed-gcc -march=rv32im -c -O3 
 LD = riscv-none-embed-ld -T ram.ld
 OBJCOPY = riscv-none-embed-objcopy
 OBJDUMP = riscv-none-embed-objdump 
-LIBGCC =   "c:\Program Files\riscv-none-gcc\lib\gcc\riscv-none-embed\8.2.0\rv32i\ilp32\libgcc.a"
-LIBSTDCC = "c:\Program Files\riscv-none-gcc\riscv-none-embed\lib\rv32i\ilp32\libstdc++.a"
-LIBC     = "c:\Program Files\riscv-none-gcc\riscv-none-embed\lib\rv32i\ilp32\libc.a"
-LIBM     = "c:\Program Files\riscv-none-gcc\riscv-none-embed\lib\rv32i\ilp32\libm.a" 
-LIBNOSYS = "c:\Program Files\riscv-none-gcc\riscv-none-embed\lib\rv32i\ilp32\libnosys.a"
+LIBGCC =   "c:\Program Files\riscv-none-gcc\lib\gcc\riscv-none-embed\8.2.0\rv32im\ilp32\libgcc.a"
+LIBSTDCC = "c:\Program Files\riscv-none-gcc\riscv-none-embed\lib\rv32im\ilp32\libstdc++.a"
+LIBC     = "c:\Program Files\riscv-none-gcc\riscv-none-embed\lib\rv32im\ilp32\libc.a"
+LIBM     = "c:\Program Files\riscv-none-gcc\riscv-none-embed\lib\rv32im\ilp32\libm.a" 
+LIBNOSYS = "c:\Program Files\riscv-none-gcc\riscv-none-embed\lib\rv32im\ilp32\libnosys.a"
 
 all: $(TARGET).bin $(TARGET).rec $(TARGET).disasm 
 
