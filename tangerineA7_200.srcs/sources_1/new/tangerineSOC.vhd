@@ -190,51 +190,51 @@ port(
    );
 end component; 
  
--- riscv cpu
-component picorv32 is   
-   port
-   (
-      clk:           in  std_logic;
-      resetn:        in  std_logic;
-      trap:          out std_logic;
-      mem_valid:     out std_logic;
-      mem_instr:     out std_logic;
-      mem_ready:     in  std_logic;
+-- risc-v cpu
+--component picorv32 is   
+--   port
+--   (
+--      clk:           in  std_logic;
+--      resetn:        in  std_logic;
+--      trap:          out std_logic;
+--      mem_valid:     out std_logic;
+--      mem_instr:     out std_logic;
+--      mem_ready:     in  std_logic;
 
-      mem_addr:      out std_logic_vector( 31 downto 0 );
-      mem_wdata:     out std_logic_vector( 31 downto 0 );
-      mem_wstrb:     out std_logic_vector( 3 downto 0 );
-      mem_rdata:     in  std_logic_vector( 31 downto 0 );
+--      mem_addr:      out std_logic_vector( 31 downto 0 );
+--      mem_wdata:     out std_logic_vector( 31 downto 0 );
+--      mem_wstrb:     out std_logic_vector( 3 downto 0 );
+--      mem_rdata:     in  std_logic_vector( 31 downto 0 );
 
-      --Look-Ahead Interface
-      mem_la_read:   out std_logic;
-      mem_la_write:  out std_logic;
-      mem_la_addr:   out std_logic_vector( 31 downto 0 );
-      mem_la_wdata:  out std_logic_vector( 31 downto 0 );
-      mem_la_wstrb:  out std_logic_vector( 3 downto 0 );
+--      --Look-Ahead Interface
+--      mem_la_read:   out std_logic;
+--      mem_la_write:  out std_logic;
+--      mem_la_addr:   out std_logic_vector( 31 downto 0 );
+--      mem_la_wdata:  out std_logic_vector( 31 downto 0 );
+--      mem_la_wstrb:  out std_logic_vector( 3 downto 0 );
 
-      --Pico Co-Processor Interface (PCPI)
-      pcpi_valid:    out std_logic;
-      pcpi_insn:     out std_logic_vector( 31 downto 0 );
-      pcpi_rs1:      out std_logic_vector( 31 downto 0 );
-      pcpi_rs2:      out std_logic_vector( 31 downto 0 );
-      pcpi_wr:       in  std_logic;
-      pcpi_rd:       in  std_logic_vector( 31 downto 0 );
-      pcpi_wait:     in  std_logic;
-      pcpi_ready:    in  std_logic;
+--      --Pico Co-Processor Interface (PCPI)
+--      pcpi_valid:    out std_logic;
+--      pcpi_insn:     out std_logic_vector( 31 downto 0 );
+--      pcpi_rs1:      out std_logic_vector( 31 downto 0 );
+--      pcpi_rs2:      out std_logic_vector( 31 downto 0 );
+--      pcpi_wr:       in  std_logic;
+--      pcpi_rd:       in  std_logic_vector( 31 downto 0 );
+--      pcpi_wait:     in  std_logic;
+--      pcpi_ready:    in  std_logic;
 
-      --IRQ Interface
-      irq:           in  std_logic_vector( 31 downto 0 );
-      eoi:           out std_logic_vector( 31 downto 0 );
+--      --IRQ Interface
+--      irq:           in  std_logic_vector( 31 downto 0 );
+--      eoi:           out std_logic_vector( 31 downto 0 );
 
-      --Trace Interface
-      trace_valid:   out std_logic;
-      trace_data:    out std_logic_vector( 35 downto 0 )
+--      --Trace Interface
+--      trace_valid:   out std_logic;
+--      trace_data:    out std_logic_vector( 35 downto 0 )
 
-);
-end component; 
+--);
+--end component; 
 
--- cpu :)
+-- risc-v cpu :)
 
 component nekoRv is
 port( 
@@ -1075,7 +1075,7 @@ begin
                      --0x04 r- component version                       
                      when x"01" =>
                      
-                        registersDoutForCPU  <= x"20240911";
+                        registersDoutForCPU  <= x"20240912";
                         
                      --rw 0xf0000008 - videoMuxMode
                      when x"02" =>

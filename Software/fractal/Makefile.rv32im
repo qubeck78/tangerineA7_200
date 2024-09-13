@@ -9,9 +9,8 @@
 #
 
 TARGET = fractal
-AS = riscv-none-embed-as -march=rv32im 
+#CC = riscv-none-embed-gcc -march=rv32im -mno-div -c -O3 
 CC = riscv-none-embed-gcc -march=rv32im -c -O3 
-#CC = riscv-none-embed-gcc -march=rv32im -c 
 LD = riscv-none-embed-ld -T ram.ld
 OBJCOPY = riscv-none-embed-objcopy
 OBJDUMP = riscv-none-embed-objdump 
@@ -44,8 +43,8 @@ main.o: main.cpp
 bsp.o: ../gfxLib/bsp.cpp
 	$(CC) -o ../gfxLib/bsp.o ../gfxLib/bsp.cpp 
 
-startup.o: startup.s
-	$(AS) -o startup.o startup.s
+startup.o: startup.S
+	$(CC) -o startup.o startup.S
 
 gfBitmap.o: ../gfxLib/gfBitmap.cpp
 	$(CC) -o ../gfxLib/gfBitmap.o ../gfxLib/gfBitmap.cpp 

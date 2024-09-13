@@ -2,7 +2,7 @@
 
 --  nekoRV32I
 
---  Risc-V 32I core
+--  Risc-V32IM core
 
 --  Copyright (c) 2024, Michal‚ Kubecki - qubeck78@wp.pl
 
@@ -18,8 +18,6 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
---library UNISIM;
---use UNISIM.VComponents.all;
 
 entity nekoRv is
 port( 
@@ -43,7 +41,9 @@ end nekoRv;
 
 architecture Behavioral of nekoRv is
 
-type    rvState_T is ( rvsIFetch0, rvsIFetch1Decode, rvsMemRead0, rvsMemRead1, rvsMemWrite0, rvsMemWrite1, rvsIExecute0, rvsIExecute1, rvsIExecute2 );
+type    rvState_T is ( rvsIFetch0, rvsIFetch1Decode, rvsMemRead0, rvsMemRead1, rvsMemWrite0, rvsMemWrite1, rvsIExecute0, 
+                        rvsIExecute1Mul, rvsIExecute1Div, rvsIExecute2Div );
+
 signal  rvState:        rvState_T;
 
 type    rvRegisters_T is array( 0 to 31 ) of std_logic_vector( 31 downto 0 );
@@ -78,6 +78,20 @@ signal  rdWrite:        std_logic;
 signal  dataFetchAddr:  std_logic_vector( 31 downto 0 );
 signal  dataStoreAddr:  std_logic_vector( 31 downto 0 );
 
+--multiplier
+
+signal  resultMul:      std_logic_vector( 63 downto 0 );
+signal  resultMulsu:    std_logic_vector( 65 downto 0 );
+signal  resultMuluu:    std_logic_vector( 63 downto 0 );
+
+--divider
+signal  divI:           std_logic_vector( 7 downto 0 );
+signal  divN:           std_logic_vector( 31 downto 0 );
+signal  divD:           std_logic_vector( 31 downto 0 );
+signal  divQ:           std_logic_vector( 31 downto 0 );
+signal  divR:           std_logic_vector( 31 downto 0 );
+signal  divQSign:       std_logic;
+signal  divRSign:       std_logic;
 
 begin
 
@@ -108,8 +122,13 @@ end process;
 
 rvMain: process( all )
 
+--shifter variables
+
 variable    shiftCount: std_logic_vector( 4 downto 0 );
 variable    shiftLV:    std_logic;
+
+--divider variables
+variable    divRVar:    std_logic_vector( 31 downto 0 );
 
 begin
 
@@ -129,6 +148,10 @@ begin
             be              <= '0';
             InstrFetchCycle <= '0';
 
+            resultMul       <= ( others => '0' );
+            resultMulsu     <= ( others => '0' );
+            resultMuluu     <= ( others => '0' );
+            
         elsif rising_edge( clk ) then
 
         
@@ -699,10 +722,80 @@ begin
                             
                                 end case;   --funct3 is
                     
-                            else
+                            elsif funct7 = "0000001" then
                             
+                                --funct7 = 0x01
+
+                                case funct3 is 
+
+                                    when "000" | "001" | "010" | "011" =>
+                                        
+                                        
+                                        --0     1       2       3
+                                        --mul   mulh    mulsu   mulu
+                                        resultMul       <= std_logic_vector( signed( rs1Val ) * signed( rs2Val ) );
+                                        resultMulsu     <= std_logic_vector( signed( rs1Val(31) & rs1Val ) * signed( '0' & rs2Val ) );
+                                        resultMuluu     <= std_logic_vector( unsigned( rs1Val ) * unsigned( rs2Val ) );
+
+                                        rvState         <= rvsIExecute1Mul;
+                                        
+                                    when "100" | "101" | "110" | "111" =>
+
+                                        --4     5       6       7
+                                        --div   divu    rem     remu
+                                        
+                                        divQ    <= ( others => '0' );
+                                        divR    <= ( others => '0' );
+    
+                                        divI    <= x"1f"; --31
+
+                                        if funct3 = "101" or funct3 = "111" then
+                                        
+                                            --divu/remu
+                                        
+                                            divN        <= rs1Val;
+                                            divD        <= rs2Val;
+                                            
+                                            divQSign    <= '0';
+                                            divRSign    <= '0';
+                                            
+                                        else
+                                        
+                                            --div/rem
+            
+                                            if rs1Val( 31 ) = '1' then
+                                            
+                                                divN    <= std_logic_vector( unsigned ( -signed( rs1Val ) ) );
+                                                
+                                            else
+                                                
+                                                divN    <= rs1Val;
+                                                
+                                            end if;
+                                            
+                                            if rs2Val( 31 ) = '1' then
+                                            
+                                                divD    <= std_logic_vector( unsigned ( -signed( rs2Val ) ) );
+                                                
+                                            else
+                                                
+                                                divD    <= rs2Val;
+                                                
+                                            end if;
+                                            
+                                            divQSign <= rs1Val( 31 ) xor rs2Val( 31 );
+                                            divRSign <= rs1Val( 31 );                        
+                                        
+                                        end if;
+                        
+                                        rvState         <= rvsIExecute1Div;
+
+                                    when others =>
+
+
+                                end case; --funct3 is
                     
-                            end if; --funct7 = 0x00 or 0x20
+                            end if; --funct7 = 0x00 0x01 or 0x20
 
                         when "0010011" =>
                         
@@ -1199,7 +1292,133 @@ begin
                         rvState <= rvsIFetch0;
                         
                     end if;                
+                
+                when rvsIExecute1Mul =>
+                
+                    case funct3 is 
+
+                        when "000"  =>
+                                        
+                            --0
+                            --mul
+                            
+                            rdVal   <= resultMul( 31 downto 0 );
+                            rdWrite <= '1';
+                            
+                        when "001" =>
+                        
+                            --1
+                            --mulh
+
+                            rdVal   <= resultMul( 63 downto 32 );
+                            rdWrite <= '1';
+                            
+                        when "010" =>
+                        
+                            --2
+                            --mulsu
+
+                            rdVal   <= resultMulsu( 63 downto 32 );
+                            rdWrite <= '1';
+                            
+                            
+                        when "011" =>
+                        
+                            --3
+                            --mulu
+
+                            rdVal   <= resultMuluu( 63 downto 32 );
+                            rdWrite <= '1';
+                                        
+                        when others =>
+                        
+                    end case;   --funct3 is
+                                                          
+                    rvState <= rvsIFetch0;
+                
+                when rvsIExecute1Div =>
+
+                    divRVar := divR( 30 downto 0 ) & divN( to_integer( unsigned( divI ) ) );
+        
+                    if signed( divRvar ) >= signed( divD ) then
+          
+                        divRVar := std_logic_vector( unsigned( divRVar ) - unsigned( divD ) );
+                        
+                        divQ( to_integer( unsigned( divI ) ) ) <= '1';
+            
+                    end if;
+        
+                    divR <= divRVar;
+        
+                    if divI = x"00" then
+          
+                        rvState <= rvsIExecute2Div;
+            
+                    else
+          
+                        divI <= std_logic_vector( unsigned( divI ) - 1 );
+           
+                    end if;
                     
+                when rvsIExecute2Div =>
+                    
+                    
+                    case funct3 is
+                    
+                        when "100" =>
+                        --4
+                        --div
+
+                            if divQSign = '1' then
+                            
+                                rdVal   <= std_logic_vector( unsigned( -signed( divQ ) ) );
+                                rdWrite <= '1';
+                            
+                            else
+                            
+                                rdVal   <= divQ;
+                                rdWrite <= '1';
+                            
+                            end if;                        
+                        
+                        
+                        when "101" =>
+                            --5
+                            --divu
+                            
+                            rdVal   <= divQ;
+                            rdWrite <= '1';
+                            
+                        when "110" =>
+                            --6
+                            --rem
+                               
+                            if divRSign = '1' then
+                            
+                                rdVal   <= std_logic_vector( unsigned( -signed( divR ) ) );
+                                rdWrite <= '1';
+                            
+                            else
+                            
+                                rdVal   <= divR;
+                                rdWrite <= '1';
+                                
+                            end if;
+                                                 
+                        when "111" =>
+                            --7
+                            --remu
+                            
+                            rdVal   <= divR;
+                            rdWrite <= '1';
+
+                        when others =>
+                                            
+                    end case;
+                    
+
+                    rvState <= rvsIFetch0;
+
                 when others => --rvState is
                 
                     rvState <= rvsIFetch0;

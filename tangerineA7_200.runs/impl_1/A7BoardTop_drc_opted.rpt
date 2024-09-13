@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Wed Sep 11 21:07:00 2024
+| Date         : Fri Sep 13 08:10:23 2024
 | Host         : Desktop-qUBECk running 64-bit major release  (build 9200)
 | Command      : report_drc -file A7BoardTop_drc_opted.rpt -pb A7BoardTop_drc_opted.pb -rpx A7BoardTop_drc_opted.rpx
 | Design       : A7BoardTop
@@ -24,11 +24,14 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 24
+             Violations found: 112
 +-----------+----------+---------------------------------+------------+
 | Rule      | Severity | Description                     | Violations |
 +-----------+----------+---------------------------------+------------+
 | CHECK-3   | Warning  | Report rule limit reached       | 1          |
+| DPOP-1    | Warning  | PREG Output pipelining          | 6          |
+| DPOP-2    | Warning  | MREG Output pipelining          | 12         |
+| DPOR-1    | Warning  | Asynchronous load check         | 70         |
 | REQP-1839 | Warning  | RAMB36 async control check      | 20         |
 | RPBF-3    | Warning  | IO port buffering is incomplete | 2          |
 | REQP-165  | Advisory | writefirst                      | 1          |
@@ -39,6 +42,446 @@ Table of Contents
 CHECK-3#1 Warning
 Report rule limit reached  
 REQP-1839 rule limit reached: 20 violations have been found.
+Related violations: <none>
+
+DPOP-1#1 Warning
+PREG Output pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMul0 output tangerineSOCInst/nekoRvInst/resultMul0/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-1#2 Warning
+PREG Output pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMul0__1 output tangerineSOCInst/nekoRvInst/resultMul0__1/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-1#3 Warning
+PREG Output pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0 output tangerineSOCInst/nekoRvInst/resultMulsu0/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-1#4 Warning
+PREG Output pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0__1 output tangerineSOCInst/nekoRvInst/resultMulsu0__1/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-1#5 Warning
+PREG Output pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0 output tangerineSOCInst/nekoRvInst/resultMuluu0/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-1#6 Warning
+PREG Output pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0__1 output tangerineSOCInst/nekoRvInst/resultMuluu0__1/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-2#1 Warning
+MREG Output pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMul0 multiplier stage tangerineSOCInst/nekoRvInst/resultMul0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#2 Warning
+MREG Output pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMul0__0 multiplier stage tangerineSOCInst/nekoRvInst/resultMul0__0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#3 Warning
+MREG Output pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMul0__1 multiplier stage tangerineSOCInst/nekoRvInst/resultMul0__1/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#4 Warning
+MREG Output pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMul0__2 multiplier stage tangerineSOCInst/nekoRvInst/resultMul0__2/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#5 Warning
+MREG Output pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0 multiplier stage tangerineSOCInst/nekoRvInst/resultMulsu0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#6 Warning
+MREG Output pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0__0 multiplier stage tangerineSOCInst/nekoRvInst/resultMulsu0__0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#7 Warning
+MREG Output pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0__1 multiplier stage tangerineSOCInst/nekoRvInst/resultMulsu0__1/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#8 Warning
+MREG Output pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0__2 multiplier stage tangerineSOCInst/nekoRvInst/resultMulsu0__2/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#9 Warning
+MREG Output pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0 multiplier stage tangerineSOCInst/nekoRvInst/resultMuluu0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#10 Warning
+MREG Output pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0__0 multiplier stage tangerineSOCInst/nekoRvInst/resultMuluu0__0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#11 Warning
+MREG Output pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0__1 multiplier stage tangerineSOCInst/nekoRvInst/resultMuluu0__1/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#12 Warning
+MREG Output pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0__2 multiplier stage tangerineSOCInst/nekoRvInst/resultMuluu0__2/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOR-1#1 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[0]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#2 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[10]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#3 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[11]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#4 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[12]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#5 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[13]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#6 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[14]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#7 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[15]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#8 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[16]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#9 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[1]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#10 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[2]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#11 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[3]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#12 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[4]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#13 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[5]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#14 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[6]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#15 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[7]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#16 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[8]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#17 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[9]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#18 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0__1 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[0]__1). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#19 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0__1 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[10]__1). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#20 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0__1 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[11]__1). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#21 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0__1 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[12]__1). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#22 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0__1 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[13]__1). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#23 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0__1 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[14]__1). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#24 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0__1 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[15]__1). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#25 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0__1 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[16]__1). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#26 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0__1 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[1]__1). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#27 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0__1 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[2]__1). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#28 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0__1 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[3]__1). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#29 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0__1 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[4]__1). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#30 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0__1 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[5]__1). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#31 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0__1 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[6]__1). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#32 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0__1 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[7]__1). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#33 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0__1 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[8]__1). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#34 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMul0__1 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMul_reg[9]__1). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#35 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMulsu_reg[0]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#36 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMulsu_reg[10]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#37 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMulsu_reg[11]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#38 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMulsu_reg[12]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#39 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMulsu_reg[13]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#40 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMulsu_reg[14]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#41 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMulsu_reg[15]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#42 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMulsu_reg[16]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#43 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMulsu_reg[1]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#44 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMulsu_reg[2]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#45 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMulsu_reg[3]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#46 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMulsu_reg[4]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#47 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMulsu_reg[5]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#48 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMulsu_reg[6]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#49 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMulsu_reg[7]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#50 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMulsu_reg[8]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#51 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMulsu_reg[9]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#52 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0__1 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMulsu_reg[16]__1). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#53 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMuluu_reg[0]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#54 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMuluu_reg[10]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#55 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMuluu_reg[11]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#56 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMuluu_reg[12]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#57 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMuluu_reg[13]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#58 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMuluu_reg[14]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#59 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMuluu_reg[15]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#60 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMuluu_reg[16]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#61 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMuluu_reg[1]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#62 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMuluu_reg[2]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#63 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMuluu_reg[3]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#64 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMuluu_reg[4]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#65 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMuluu_reg[5]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#66 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMuluu_reg[6]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#67 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMuluu_reg[7]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#68 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMuluu_reg[8]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#69 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMuluu_reg[9]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPOR-1#70 Warning
+Asynchronous load check  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0__1 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMuluu_reg[16]__1). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
 Related violations: <none>
 
 REQP-1839#1 Warning
