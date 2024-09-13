@@ -32,7 +32,7 @@
                  //  if using 0 or 1)
 
 #define GL_width  (320 >> SHRINK)
-#define GL_height (200 >> SHRINK)
+#define GL_height (240 >> SHRINK)
 
 #include "sine_table.h"
 #include <stdint.h>
@@ -213,8 +213,8 @@ v3f intersectScene(const t_ray *r, t_hit *h, int max_bounce, int shadow)
   }
   // spheres
   for (int i = 0; i < 3 ; ++i) {
-    stdi rd     = 6 + i*2;
-    v3f c       = {to_fixed(15),to_fixed(rd - 14),to_fixed(0)};
+    stdi rd     = 6 + i*4;
+    v3f c       = {to_fixed(25),to_fixed(rd - 14),to_fixed(0)};
     int   a     = (g_time<<3) + (i*1365);
     stdi cs     = sine_table[(a+1024)&4095]<<(FP-12);
     stdi ss     = sine_table[(a     )&4095]<<(FP-12);
@@ -305,7 +305,7 @@ int main()
       
    screen.flags            = 0;
    screen.transparentColor = 0;
-   screen.buffer           = osAlloc( screen.rowWidth * screen.height * 2, OS_ALLOC_MEMF_CHIP );   //osAlloc( 320 * 240 * 2 );
+   screen.buffer           = osAlloc( screen.rowWidth * screen.height * 2, OS_ALLOC_MEMF_CHIP );
    
    if( screen.buffer == NULL )
    {
@@ -327,10 +327,10 @@ int main()
    do
    {
 
-      for( y = 0; y < 200; y++ )
+      for( y = 0; y < GL_height; y++ )
       {
 
-         for( x = 0; x < 320; x++ )
+         for( x = 0; x < GL_width; x++ )
          {
 
             tracePixel( x, y, &r, &g, &b );

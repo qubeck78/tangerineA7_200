@@ -2,7 +2,7 @@
 
 --  nekoRV32I
 
---  Risc-V 32I core
+--  Risc-V32IM core
 
 --  Copyright (c) 2024, Michal‚ Kubecki - qubeck78@wp.pl
 
@@ -18,8 +18,6 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
---library UNISIM;
---use UNISIM.VComponents.all;
 
 entity nekoRv is
 port( 
