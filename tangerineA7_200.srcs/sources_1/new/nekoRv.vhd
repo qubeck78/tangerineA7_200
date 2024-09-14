@@ -1,6 +1,6 @@
 
 
---  nekoRV32I
+--  nekoRV32IM
 
 --  Risc-V32IM core
 

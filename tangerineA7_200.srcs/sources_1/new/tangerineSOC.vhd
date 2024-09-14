@@ -190,50 +190,6 @@ port(
    );
 end component; 
  
--- risc-v cpu
---component picorv32 is   
---   port
---   (
---      clk:           in  std_logic;
---      resetn:        in  std_logic;
---      trap:          out std_logic;
---      mem_valid:     out std_logic;
---      mem_instr:     out std_logic;
---      mem_ready:     in  std_logic;
-
---      mem_addr:      out std_logic_vector( 31 downto 0 );
---      mem_wdata:     out std_logic_vector( 31 downto 0 );
---      mem_wstrb:     out std_logic_vector( 3 downto 0 );
---      mem_rdata:     in  std_logic_vector( 31 downto 0 );
-
---      --Look-Ahead Interface
---      mem_la_read:   out std_logic;
---      mem_la_write:  out std_logic;
---      mem_la_addr:   out std_logic_vector( 31 downto 0 );
---      mem_la_wdata:  out std_logic_vector( 31 downto 0 );
---      mem_la_wstrb:  out std_logic_vector( 3 downto 0 );
-
---      --Pico Co-Processor Interface (PCPI)
---      pcpi_valid:    out std_logic;
---      pcpi_insn:     out std_logic_vector( 31 downto 0 );
---      pcpi_rs1:      out std_logic_vector( 31 downto 0 );
---      pcpi_rs2:      out std_logic_vector( 31 downto 0 );
---      pcpi_wr:       in  std_logic;
---      pcpi_rd:       in  std_logic_vector( 31 downto 0 );
---      pcpi_wait:     in  std_logic;
---      pcpi_ready:    in  std_logic;
-
---      --IRQ Interface
---      irq:           in  std_logic_vector( 31 downto 0 );
---      eoi:           out std_logic_vector( 31 downto 0 );
-
---      --Trace Interface
---      trace_valid:   out std_logic;
---      trace_data:    out std_logic_vector( 35 downto 0 )
-
---);
---end component; 
-
 -- risc-v cpu :)
 
 component nekoRv is
@@ -479,7 +435,6 @@ signal fontRomDout:     std_logic_vector( 7 downto 0 );
 
 
 --system ram signals
-signal  fpgaCpuMemoryClock:         std_logic;
 
 signal  systemRAMCE:                std_logic;
 signal  systemRamReady:             std_logic;
@@ -613,7 +568,6 @@ begin
 -- assign clocks
 
 cpuClock            <= mainClock;
-fpgaCpuMemoryClock  <= not cpuClock;
 pgClock             <= pixelClock;
 
 registersClock      <= mainClock;
@@ -633,20 +587,15 @@ blitterClock        <= mainClock;
 pgVSyncClkD2        <= pgVSync;
 pggDMARequestClkD2  <= pggDMARequest;
 
+-- leds
+
+ leds    <=  gpoRegister( 7 downto 6 );       
+
 -- fill unused ports, signals
 
-leds        <= "00";
-    
 -- usb2 - mouse
 usb2dm      <= 'Z';
 usb2dp      <= 'Z';
-
---ch1 dma - blitter
---ch1DmaRequest   <= '0';
---ch1DmaWordSize  <= '0';
---ch1A            <= ( others => '0' );
---ch1Din          <= ( others => '0' );
---ch1Wr           <= '0';
 
 
 -- place text mode font rom ( 2048 x 8 )
@@ -663,7 +612,7 @@ port map(
 systemRamInst: systemRam
 port map(
 
-    clka        => fpgaCpuMemoryClock,
+    clka        => cpuClock,    --fpgaCpuMemoryClock,
     wea(0)      => cpuWrStrobe(0) and systemRAMCE,
     wea(1)      => cpuWrStrobe(1) and systemRAMCE,
     wea(2)      => cpuWrStrobe(2) and systemRAMCE,
@@ -680,7 +629,21 @@ port map(
 
 );
 
-systemRamReady  <= '1';
+systemRamAccess:process( all )
+begin
+
+    if reset = '1' then
+    
+        systemRamReady <= '0';
+        
+    elsif rising_edge( cpuClock ) then
+    
+        systemRamReady <= systemRamCE;
+    
+    end if;
+
+end process;
+
    
 videoRamBDout   <= systemRamDoutForPixelGen( 15 downto 0 ) when videoRamBA( 0 ) = '0' else systemRamDoutForPixelGen( 31 downto 16 ); 
 
@@ -885,7 +848,7 @@ end if;
 end process;  
 
 
--- place picorv32
+-- place nekoRv
    
 -- bus signals
     cpuAOut           <= cpuAOutFull( 31 downto 2 );
@@ -947,36 +910,7 @@ end process;
                         sdramDmaRegsDoutForCPU                      when cpuAOutFull( 31 downto 20 ) = x"f08" else                        
                         x"00000000";
 
-
---    cpuWr             <= cpuWrStrobe( 3 ) or cpuWrStrobe( 2 ) or cpuWrStrobe( 1 ) or cpuWrStrobe( 0 );
---    cpuDataMask       <= cpuWrStrobe when cpuWr = '1' else "1111";
-                     
--- --the cpu
-
---   picorv32Inst: picorv32 
---   port map
---   (
---      clk               => cpuClock,
---      resetn            => cpuResetn,
-
---      mem_valid         => cpuMemValid,
---      mem_instr         => cpuMemInstr,
---      mem_ready         => cpuMemReady,
-
---      mem_addr          => cpuAOutFull,
---      mem_wdata         => cpuDOut,
---      mem_wstrb         => cpuWrStrobe,
---      mem_rdata         => cpuDin,
-
---      pcpi_wr           => '0',
---      pcpi_rd           => ( others => '0' ),
---      pcpi_wait         => '0',
---      pcpi_ready        => '0',
-
---      --IRQ Interface
---      irq               => ( others => '0' )
---      --eoi:            out std_logic_vector( 31 downto 0 );
---);
+-- the CPU
   
 nekoRvInst:nekoRv 
 port map( 
@@ -1075,7 +1009,7 @@ begin
                      --0x04 r- component version                       
                      when x"01" =>
                      
-                        registersDoutForCPU  <= x"20240912";
+                        registersDoutForCPU  <= x"20240914";
                         
                      --rw 0xf0000008 - videoMuxMode
                      when x"02" =>
