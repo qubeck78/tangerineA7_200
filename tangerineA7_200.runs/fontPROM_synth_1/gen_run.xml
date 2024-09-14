@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="fontPROM_synth_1" LaunchPart="xc7a200tfbg676-1" LaunchTime="1724234785">
+<GenRun Id="fontPROM_synth_1" LaunchPart="xc7a200tfbg676-1" LaunchTime="1726209240">
   <File Type="PA-TCL" Name="fontPROM.tcl"/>
   <File Type="REPORTS-TCL" Name="fontPROM_reports.tcl"/>
   <File Type="RDS-RDS" Name="fontPROM.vds"/>
@@ -34,14 +34,6 @@
   </FileSet>
   <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1" RelGenDir="$PGENDIR/utils_1">
     <Filter Type="Utils"/>
-    <File Path="$PSRCDIR/utils_1/imports/synth_1/A7BoardTop.dcp">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedInSteps" Val="synth_1"/>
-        <Attr Name="AutoDcp" Val="1"/>
-      </FileInfo>
-    </File>
     <Config>
       <Option Name="TopAutoSet" Val="TRUE"/>
     </Config>

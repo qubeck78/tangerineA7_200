@@ -289,7 +289,7 @@ int main()
     //init events queue
    // osUIEventsInit();   
     
-    toPrintF( &con, (char*)"Mandelbrot set example.\n" );
+    toPrintF( &con, (char*)"Mandelbrot set example\n" );
 
     startTicks = getTicks();
 
