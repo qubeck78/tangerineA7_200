@@ -106,9 +106,9 @@ int main()
 
     rvReset( &ectx );
     
-/*    srecLoadFile( (char*)"0:emul\\shell.rec" );
+    srecLoadFile( (char*)"0:emul\\shell.rec" );
     ectx.pc = 0x20780000;
-*/
+
     
     do
     {

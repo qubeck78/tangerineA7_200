@@ -21,6 +21,13 @@
 
 #include "gfTypes.h"
 
+//x"80000000";   -- root id
+//x"80000001";   -- serial id
+//x"80000002";   -- spi id
+//x"80000003";   -- sdram DMA id
+//x"80000004";   -- usb hid host id
+//x"80000005";   -- blitter2d id
+
 
 
 typedef struct _BSP_T
@@ -70,116 +77,28 @@ extern _FPALU_REGISTERS_T *fpalu;
 
 typedef struct __BLITTER_REGISTERS_T
 {
-    //gouraud
-    volatile signed short   c0AX;
-    volatile unsigned short unused0;
-    volatile signed short   c0AY;
-    volatile unsigned short unused1;
-    volatile signed short   c0BX;
-    volatile unsigned short unused2;
-    volatile signed short   c0BY;
-    volatile unsigned short unused3;
-    volatile signed short   c0CX;
-    volatile unsigned short unused4;
-    volatile signed short   c0CY;
-    volatile unsigned short unused5;
-    volatile signed short   c0Px;
-    volatile unsigned short unused6;
-    volatile signed short   c0Py;
-    volatile unsigned short unused7;
+    volatile ulong id;
+    volatile ulong version;
 
-    volatile signed long    c0EdgeEBA;
-    volatile signed long    c0EdgeECB;
-    volatile signed long    c0EdgeEAC;
-
-    volatile unsigned short c0PInside;
-    volatile unsigned short unused8;
-
-    volatile signed long    c0Area;
-    volatile signed long    c0weightWBA;    
-    volatile signed long    c0weightWCB;
-    volatile signed long    c0weightWAC;
-
-    volatile unsigned short c0it0A;
-    volatile unsigned short unused9;
-    volatile unsigned short c0it0B;
-    volatile unsigned short unused10;
-    volatile unsigned short c0it0C;
-    volatile unsigned short unused11;
-    volatile unsigned short c0it0Out;
-    volatile unsigned short unused12;
-    volatile unsigned short c0it1A;
-    volatile unsigned short unused13;
-    volatile unsigned short c0it1B;
-    volatile unsigned short unused14;
-    volatile unsigned short c0it1C;
-    volatile unsigned short unused15;
-    volatile unsigned short c0it1Out;
-    volatile unsigned short unused16;
-    volatile unsigned short c0it2A;
-    volatile unsigned short unused17;
-    volatile unsigned short c0it2B;
-    volatile unsigned short unused18;
-    volatile unsigned short c0it2C;
-    volatile unsigned short unused19;
-    volatile unsigned short c0it2Out;
-    volatile unsigned short unused20;
-
-    //blitter
-    volatile unsigned long bltStatus;
-    
-    //bits 7 downto 0 - blitter mode: 
-    //0 - fill with value, 
-    //1 - copy, 
-    //2 - copy with transparent color (mask), 
-    //3 - gouraud triangle, 
-    //4 - textured triangle, 
-    //5 - textured triangle with light
-    //6 - copy with alpha
-    //7 - copy with alpha and transparent color (mask)
-    //8 - scale copy
-    //9 - scale copy with transparent color (mask)
-    
-    //bits 11 downto 8 - texture size
-    //0 - 16  x 16 
-    //1 - 32  x 32
-    //2 - 64  x 64
-    //3 - 128 x 128
-    //4 - 256 x 256
-    
-    //bit 12 - enable zBuffer
-    //bit 13 - enable 32 bit transfer ( valid only for modes 0 and 1 )
-    volatile unsigned long  bltConfig0;
-
-    volatile unsigned long  bltValue;
-
-    volatile unsigned long  bltSrcAddress;
-    volatile unsigned long  bltDstAddress;
-    volatile unsigned short bltSrcModulo;
-    volatile unsigned short unused21;
-    volatile unsigned short bltDstModulo;
-    volatile unsigned short unused22;
-    volatile unsigned short bltTransferWidth;
-    volatile unsigned short unused23;
-    volatile unsigned short bltTransferHeight;
-    volatile unsigned short unused24;
-
-    volatile unsigned short bltAlpha;
-    volatile unsigned short unused25;
-
-    volatile unsigned short c0AZ;
-    volatile unsigned short unused26;
-    volatile unsigned short c0BZ;
-    volatile unsigned short unused27;
-    volatile unsigned short c0CZ;
-    volatile unsigned short unused28;
-    volatile unsigned long  bltGouraudZBufferAddress;
-
-    //blitter bitmap scaler
-    volatile unsigned long bltScalerDeltaX;
-    volatile unsigned long bltScalerDeltaY;
-    volatile unsigned long bltScalerSourceWidth;
-    volatile unsigned long bltScalerSourceHeight;
+    volatile ulong command;
+    volatile ulong input0;
+    volatile ulong input1;
+    volatile ulong input2;
+    volatile ulong input3;
+    volatile ulong saAddress;
+    volatile ulong saRowWidth;
+    volatile ulong saWidth;
+    volatile ulong saHeight;
+    volatile ulong sbAddress;
+    volatile ulong sbRowWidth;
+    volatile ulong scAddress;
+    volatile ulong scRowWidth;
+    volatile ulong daAddress;
+    volatile ulong daRowWidth;
+    volatile ulong daWidth;
+    volatile ulong daHeight;
+    volatile ulong dbAddress;
+    volatile ulong dbRowWidth;
 
 }_BLITTER_REGISTERS_T;
 
@@ -187,7 +106,6 @@ extern _BLITTER_REGISTERS_T *blt;
 
 typedef struct __USBHOST_REGISTERS_T
 {
-    //usb HID host
     volatile ulong id;
     volatile ulong version;
 

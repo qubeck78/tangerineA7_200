@@ -2,9 +2,12 @@ library ieee;
 use ieee.std_logic_1164.all;
 use IEEE.std_logic_arith.all;
 use IEEE.std_logic_unsigned.all;
-use ieee.numeric_std.all;
+--use ieee.numeric_std.all;
 
 --https://tomverbeure.github.io/video_timings_calculator
+--https://projectf.io/posts/video-timings-vga-720p-1080p/#vga-640x480-60-hz
+--https://www.improwis.com/tables/video.webt
+--http://tinyvga.com/vga-timing
 
 entity pixelGenTxt is
 
@@ -15,10 +18,24 @@ generic(
     hFrontPorch : integer := 16;
     hSyncPulse  : integer := 96;
 
+--  640 x 480
     vBackPorch  : integer := 33;
     vActive     : integer := 480;
     vFrontPorch : integer := 10;
     vSyncPulse  : integer := 2
+
+--  640 x 400
+--    vBackPorch  : integer := 35;
+--    vActive     : integer := 400;
+--    vFrontPorch : integer := 12;
+--    vSyncPulse  : integer := 2
+
+
+--    640 x 350
+--    vBackPorch  : integer := 60;
+--    vActive     : integer := 350;
+--    vFrontPorch : integer := 37;
+--    vSyncPulse  : integer := 2
 
 );
 

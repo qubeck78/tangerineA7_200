@@ -490,58 +490,16 @@ int objvDisplayObj( tgfBitmap *pscr )
 	tgfTriangle3D	*triangle;
 
 	
-	#ifdef _GFXLIB_HW_BLITTER_2D
+
 	//copy background to screen buffer
-
-	blt->bltConfig0			= 0x2001;	//32 bit copy
-	blt->bltSrcAddress 		= ( ulong )(( ( ulong )background.buffer - _SYSTEM_MEMORY_BASE ) / 4);
-	blt->bltDstAddress 		= ( ulong )(( ( ulong )pscr->buffer - _SYSTEM_MEMORY_BASE ) / 4);
-	blt->bltTransferHeight	= 239;
-	blt->bltTransferWidth	= 160;
-	blt->bltSrcModulo		= 0;
-	blt->bltDstModulo		= 96;
-	blt->bltValue			= 0x00000000;	
-	
-	//run blitter
-	blt->bltStatus			= 0x1;
-		
-	//calc point cloud
-	objvCalc3d( pscr );
-	
-	//wait for blitter to complete operation
-	do{}while( ! ( blt->bltStatus & 1 ) );
-
-	#else
-
 	gfBlitBitmap( pscr, &background, 0, 0 );
 
 	//calc point cloud
 	objvCalc3d( pscr );
 
-	#endif
-
-
-	#ifdef _GFXLIB_HW_BLITTER_2D
-
 	//clear zbuffer
-
-	blt->bltConfig0			= 0x2000;	//32 bit fill value
-	blt->bltDstAddress 		= ( ulong )(( ( ulong )zBuffer.buffer - _SYSTEM_MEMORY_BASE ) / 4);
-	blt->bltTransferHeight	= 239;
-	blt->bltTransferWidth	= 160;
-	blt->bltSrcModulo		= 0;
-	blt->bltDstModulo		= 96;
-	blt->bltValue			= 0xffffffff;	
-	
-	blt->bltStatus			= 0x1;
-
-	do{}while( ! ( blt->bltStatus & 1 ) );
-
-	#else
-
 	gfFillRect( &zBuffer, 0, 0, 319, 239, 0xffff );
 
-	#endif
 
 	//draw scene
 
@@ -550,7 +508,7 @@ int objvDisplayObj( tgfBitmap *pscr )
 		
 		case 0:
 
-			#ifdef _GFXLIB_HW_BLITTER_2D
+			#ifdef _GFXLIB_HW_BLITTER_3D
 
 			//bounding box calculated in hw
 
@@ -631,6 +589,8 @@ int objvDisplayObj( tgfBitmap *pscr )
 
 		case 1:
 
+			#ifdef _GFXLIB_HW_BLITTER_3D
+
 			for( i = 0 ; i < numTriangles; i++ )
 			{
 				//clip offscreen (Z) triangles
@@ -639,7 +599,8 @@ int objvDisplayObj( tgfBitmap *pscr )
 					gfGouraudDrawTriangleZBufferBlt( pscr, &zBuffer, &triangles[i] );
 				}
 			}
-			
+
+			#endif			
 			break;
 
 		case 2:

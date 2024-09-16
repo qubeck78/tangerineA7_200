@@ -33,27 +33,7 @@ tosDirItem                   dirItem;
 
 ulong                        numDirEntries;
 
-int animLeds( int j )
-{   
-        switch( j % 2 )
-        {
-            case 0:
-                bsp->gpoPort |= 0x00f0;
-                bsp->gpoPort ^= 0x0010;
-            
-                break;
 
-            case 1:
-
-                bsp->gpoPort |= 0x00f0;
-                bsp->gpoPort ^= 0x0020;
-            
-                break;
-
-        }
-        
-    return 0;
-} 
 
 ulong getNumEntries()
 {
@@ -129,15 +109,13 @@ int slideshow()
 {
     int             rv;
     int             i;
-    int             led;
     volatile ulong  j;
     short           x;
     short           y;
     char            extension[8];
     tosUIEvent      event;
 
-    led = 0;
-    
+
     do{
         
         getEntry( randomNumber() % numDirEntries );
@@ -159,7 +137,6 @@ int slideshow()
                 if( ( strcmp( extension, ".jpg" ) == 0 ) || ( strcmp( extension, ".gbm" ) == 0 ) )
                 {
                 
-                    animLeds( led++ );
                     
                     strcpy( buf, "img/" );
                     strcat( buf, dirItem.name );
@@ -191,6 +168,8 @@ int slideshow()
                         x = ( screen.width / 2 ) - ( fileBmp.width / 2);
                         y = ( screen.height / 2 ) - ( fileBmp.height / 2 );
                     }
+
+
 
                     #ifdef SLIDESHOW_ALPHA_ANIMATION
 
