@@ -47,7 +47,7 @@ long inline gfGouraudEdge( tgfPoint3D *e1, tgfPoint3D *e2, tgfPoint3D *p )
 
 ulong  gfGouraudDrawTriangleBlt( tgfBitmap *bmp, tgfTriangle3D *triangle )
 {
-	#if defined( _GFXLIB_RISCV_FATFS )
+	#if defined( _GFXLIB_RISCV_FATFS ) && defined( _GFXLIB_HW_BLITTER_3D )
 
 	//bounding box calculated in hw
 
@@ -109,7 +109,7 @@ ulong  gfGouraudDrawTriangleBlt( tgfBitmap *bmp, tgfTriangle3D *triangle )
 ulong  gfGouraudDrawTexturedTriangleBlt( tgfBitmap *bmp, tgfTriangle3D *triangle )
 {
 
-	#if defined( _GFXLIB_RISCV_FATFS )
+	#if defined( _GFXLIB_RISCV_FATFS ) && defined( _GFXLIB_HW_BLITTER_3D )
 
 	//bounding box calculated in hw
 
@@ -179,7 +179,7 @@ ulong  gfGouraudDrawTexturedTriangleBlt( tgfBitmap *bmp, tgfTriangle3D *triangle
 ulong gfGouraudDrawTexturedTriangleZBufferBlt( tgfBitmap *bmp, tgfBitmap *zBuffer, tgfTriangle3D *triangle )
 {
 
-	#if defined( _GFXLIB_RISCV_FATFS )
+	#if defined( _GFXLIB_RISCV_FATFS ) && defined( _GFXLIB_HW_BLITTER_3D )
 
 	//bounding box calculated in hw
 
@@ -253,7 +253,7 @@ ulong gfGouraudDrawTexturedTriangleZBufferBlt( tgfBitmap *bmp, tgfBitmap *zBuffe
 ulong gfGouraudDrawTriangleZBufferBlt( tgfBitmap *bmp, tgfBitmap *zBuffer, tgfTriangle3D *triangle )
 {
 
-	#if defined( _GFXLIB_RISCV_FATFS )
+	#if defined( _GFXLIB_RISCV_FATFS ) && defined( _GFXLIB_HW_BLITTER_3D )
 
 	//bounding box calculated in hw
 

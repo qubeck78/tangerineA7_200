@@ -18,15 +18,12 @@
 -- 
 ----------------------------------------------------------------------------------
 
+--https://nandland.com/common-vhdl-conversions/#Numeric-Integer-To-Std_Logic_Vector
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.std_logic_arith.all;
-use IEEE.std_logic_unsigned.all;    
+use IEEE.NUMERIC_STD.ALL;   
 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
 
 library UNISIM;
 use UNISIM.VComponents.all;
@@ -369,7 +366,7 @@ port(
     --reset, clocks
 
     reset:              in      std_logic;
-    blitterClock:       in      std_logic;
+    clock:              in      std_logic;
 
    --bus interface ( registers )
 
@@ -575,8 +572,8 @@ uartClock           <= mainClock;
 tickTimerClock      <= mainClockD2;
 frameTimerClock     <= mainClock;
 spiClock            <= mainClockD2;
-usbHostClock        <= mainClock;
 
+usbHostClock        <= mainClock;
 usbHClk             <= usbClock;
 
 blitterClock        <= mainClock;
@@ -853,8 +850,6 @@ end process;
 -- bus signals
     cpuAOut           <= cpuAOutFull( 31 downto 2 );
 
-
-
 -- chip selects
     systemRAMCE     <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"000" else '0';
 
@@ -951,7 +946,7 @@ begin
             if cpuResetGenCounter /= x"0000" then
 
                 cpuResetn           <= '0';
-                cpuResetGenCounter  <= cpuResetGenCounter - 1;
+                cpuResetGenCounter  <= std_logic_vector( unsigned( cpuResetGenCounter ) - 1 );
                 
             else
 
@@ -1009,7 +1004,7 @@ begin
                      --0x04 r- component version                       
                      when x"01" =>
                      
-                        registersDoutForCPU  <= x"20240914";
+                        registersDoutForCPU  <= x"20240916";
                         
                      --rw 0xf0000008 - videoMuxMode
                      when x"02" =>
@@ -1275,7 +1270,7 @@ port map(
     --reset, clocks
 
     reset           => reset,
-    blitterClock    => blitterClock,
+    clock           => blitterClock,
 
    --bus interface ( registers )
 
@@ -1315,13 +1310,14 @@ begin
       
          if tickTimerPrescalerCounter /= x"00000000" then
             
-            tickTimerPrescalerCounter <= tickTimerPrescalerCounter - 1;
+            tickTimerPrescalerCounter <= std_logic_vector( unsigned( tickTimerPrescalerCounter ) - 1 );
             
          else
          
-            tickTimerPrescalerCounter <= conv_std_logic_vector( tickTimerPrescalerValue, tickTimerPrescalerCounter'length );
+            --tickTimerPrescalerCounter <= conv_std_logic_vector( tickTimerPrescalerValue, tickTimerPrescalerCounter'length );
+            tickTimerPrescalerCounter <= std_logic_vector( to_unsigned( tickTimerPrescalerValue, tickTimerPrescalerCounter'length ) );
             
-            tickTimerCounter <= tickTimerCounter + 1;
+            tickTimerCounter <= std_logic_vector( unsigned( tickTimerCounter ) + 1 );
          
          end if;
       
@@ -1357,7 +1353,7 @@ begin
          
          if frameTimerPgPrvVSync = '0' and pgVSyncClkD2 = '1' then
       
-            frameTimerValue <= frameTimerValue + '1';
+            frameTimerValue <= std_logic_vector( unsigned( frameTimerValue ) + 1 );
             
          end if;
       

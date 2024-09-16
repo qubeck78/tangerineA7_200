@@ -23,8 +23,6 @@
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.std_logic_arith.all;
-use IEEE.std_logic_unsigned.all;
 use IEEE.NUMERIC_STD.ALL;
 
 library UNISIM;
@@ -137,7 +135,7 @@ type sdcState_T is ( sdcIdle, sdcInit0, sdcInit1, sdcInit2, sdcInit3, sdcInit4, 
 	sdcCh1Read0, sdcCh1Read1, sdcCh1Read2, sdcCh1Read3, sdcCh1Read4, sdcCh1Read5, sdcCh1Read6, sdcCh1Read7, sdcCh1Read8, 
 	sdcCh1Write0, sdcCh1Write1, sdcCh1Write2, sdcCh1Write3, sdcCh1Write4, sdcCh1Write5, sdcCh1Write6, sdcCh1Write7, sdcCh1Write8,
 
-	sdcCh3Read0, sdcCh3Read1, sdcCh3Read2, sdcCh3Read3, sdcCh3Read4, sdcCh3Read5, sdcCh3Read6, sdcCh3Read7, sdcCh3Read8, 
+	sdcCh3Read0, sdcCh3Read1, sdcCh3Read2, sdcCh3Read3, sdcCh3Read4, sdcCh3Read5, sdcCh3Read6, sdcCh3Read7, sdcCh3Read8, sdcCh3Read9, 
 
 	sdcSubRefresh0, sdcSubRefresh1, sdcSubRefresh2, sdcSubRefresh3, sdcSubRefresh4, sdcSubRefresh5, sdcSubRefresh6
 
@@ -313,7 +311,7 @@ begin
 		
 				else
 		
-					refreshCounter	<= refreshCounter - 1;
+					refreshCounter	<= std_logic_vector( unsigned( refreshCounter ) - 1 );
 		
 				end if;
 	
@@ -896,7 +894,7 @@ begin
                     sdramCAS    <= '0';
                     sdramWE     <= '1';
 
-                     if ch3TransferCounter /= 0 then
+                     if ch3TransferCounter /= x"00" then
                         
                         --leave row open 
                         
@@ -917,12 +915,12 @@ begin
 
                     sdramA( 8 downto 0 )    <= ch3DmaPointer( 8 downto 0 );
 
-                    ch3DmaPointer           <= ch3DmaPointer + 1;
+                    ch3DmaPointer           <= std_logic_vector( unsigned( ch3DmaPointer ) + 1 );
 
                     --prepare ch3 buf address
                     
                     ch3BufRamWrA            <= ch3DmaBufPointer;
-                    ch3DmaBufPointer        <= ch3DmaBufPointer + 1;
+                    ch3DmaBufPointer        <= std_logic_vector( unsigned( ch3DmaBufPointer ) + 1 );
 
                     ch3BufRamWr             <= '0';
                     
@@ -954,7 +952,19 @@ begin
 
                 when sdcCh3Read6 =>
 
-                    ch3BufRamDin    <= sdramD;
+                    --latch latency
+                    
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+                                    
+                    sdcState    <= sdcCh3Read7;
+
+                when sdcCh3Read7 =>
+
+                    ch3BufRamDin    <= sdramDInLatched;
                     ch3BufRamWr     <= '1';
                     
                     --nop
@@ -964,19 +974,19 @@ begin
                     sdramWE 	<= '1';
 
                     
-                    if ch3TransferCounter /= 0 then
+                    if ch3TransferCounter /= x"00" then
                     
-                        ch3TransferCounter  <= ch3TransferCounter - 1;
+                        ch3TransferCounter  <= std_logic_vector( unsigned( ch3TransferCounter ) - 1 );
                         
                         sdcState    <= sdcCh3Read3;
                         
                     else
                     
-                        sdcState    <= sdcCh3Read7;
+                        sdcState    <= sdcCh3Read8;
                        
                    end if;
                    
-                when sdcCh3Read7 =>
+                when sdcCh3Read8 =>
                     
                     --nop
                     sdramCS     <= '0';
@@ -985,23 +995,23 @@ begin
                     sdramWE 	<= '1';
                          
                      
-                    --ch3DmaPointer           <= ch3DmaPointer + 96;
+                    
                     if ch3DmaRequestLatched( 0 ) = '1' then
                     
-                        ch3DmaPointer <= ch3DmaPointer + ch3DmaRequest0Modulo;
+                        ch3DmaPointer <= std_logic_vector( unsigned( ch3DmaPointer ) + unsigned( ch3DmaRequest0Modulo ) );
                     
                     else
 
-                        ch3DmaPointer <= ch3DmaPointer + ch3DmaRequest1Modulo;
+                        ch3DmaPointer <= std_logic_vector( unsigned( ch3DmaPointer ) + unsigned( ch3DmaRequest1Modulo ) );
                         
                     end if;
                                    
                     ch3DmaRequestLatched( 0 )   <= '0';
                     ch3DmaRequestLatched( 1 )   <= '0';
 
-                    sdcState    <= sdcCh3Read8;
+                    sdcState    <= sdcCh3Read9;
 
-                when sdcCh3Read8 =>
+                when sdcCh3Read9 =>
                     
                     --nop
                     sdramCS     <= '0';
@@ -1220,7 +1230,7 @@ begin
 
                     if resetCounter /= x"0000" then
                     
-                        resetCounter <= resetCounter - 1;
+                        resetCounter <= std_logic_vector( unsigned( resetCounter ) - 1 );
                     
                     else
                     

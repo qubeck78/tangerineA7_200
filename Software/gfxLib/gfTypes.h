@@ -3,7 +3,7 @@
 
 //Version
 
-#define _GFXLIB_VERSION 20240817
+#define _GFXLIB_VERSION 20240914
 
 
 //Platform
@@ -16,7 +16,7 @@
 //Features
 
 //#define _GFXLIB_BIG_ENDIAN
-//#define _GFXLIB_HW_BLITTER_2D
+#define _GFXLIB_HW_BLITTER_2D
 //#define _GFXLIB_HW_BLITTER_3D
 //#define _GFXLIB_FPALU
 #define _GFXLIB_USB_HOST
@@ -30,20 +30,6 @@ typedef unsigned long	ulong;
 #ifndef NULL
 #define NULL 0
 #endif
-
-
-typedef union _fixed_t
-{
-	signed long l;
-	
-	struct
-	{
-		signed short dec;
-		unsigned short fract;
-	}v;
-
-}fixed_t;
-
 
 
 #define gfAbs(x) ((x)>0?(x):-(x))
