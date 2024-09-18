@@ -25,7 +25,7 @@ tgfBitmap                    background;
 tgfBitmap                    fileBmp;
 
 
-char                         buf[128];
+char                         buf[ 128 ];
 char                         lfnBuf[ 512 + 16];
 
 tosDir                       dir;
@@ -114,7 +114,7 @@ int slideshow()
     short           y;
     char            extension[8];
     tosUIEvent      event;
-
+    
 
     do{
         
@@ -156,6 +156,7 @@ int slideshow()
                         gfLoadJPEGFS( &fileBmp, buf );                      
                     }
                     
+
                     if( screen.width > 512 )
                     {                       
                         x  = ((ulong)randomNumber() ) % 320;
@@ -173,11 +174,23 @@ int slideshow()
 
                     #ifdef SLIDESHOW_ALPHA_ANIMATION
 
-                    for( i = 0; i < 256; i += 32 )
+                    background.width            = fileBmp.width;
+                    background.height           = fileBmp.height;
+                    background.rowWidth         = background.width;
+                    background.flags            = 0;
+                    background.transparentColor = 0;
+                    background.buffer           = osAlloc( background.rowWidth * background.height * 2, OS_ALLOC_MEMF_CHIP );
+
+                    gfBlitBitmapSrcRect( &background, &screen, x, y, background.width, background.height, 0, 0 );
+  
+                    for( i = 0; i < 256; i += 8 )
                     {       
                         do{}while( ! bsp->videoVSync ); 
-                        gfBlitBitmapA( &screen, &fileBmp, x, y, i );
+                        gfBlitBitmapA2Src( &screen, &fileBmp, &background, x, y, i );
                     }
+
+                    osFree( background.buffer );                    
+                    background.buffer   = NULL;
 
                     #endif
                     
@@ -234,11 +247,11 @@ int slideshow()
 
 int main()
 {
-    int i;
-    int rv;
-    
+    int         i;
+    int         rv;
     volatile int j;
-        
+
+
     bspInit();
         
 
@@ -272,7 +285,8 @@ int main()
     gfDisplayBitmap( &screen );
 
     gfFillRect( &screen, 0, 0, screen.width - 1, screen.height - 1 , gfColor( 0, 0, 0 ) ); 
-    
+
+
     //init events queue
     osUIEventsInit();  
 
@@ -302,4 +316,6 @@ int main()
     {
         slideshow();
     }
+
+    reboot();
 } 

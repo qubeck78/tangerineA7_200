@@ -30,6 +30,7 @@
 ulong gfPlot( tgfBitmap *bmp, short x, short y, ushort color );
 #define gfPlotF( bmp, x, y, color) (( ushort* ) bmp->buffer )[ x + ( bmp->rowWidth * y ) ] = color;
 ulong gfPlotA( tgfBitmap *bmp, short x, short y, ushort color, uchar alpha );
+ulong gfPlotA2C( tgfBitmap *bmp, short x, short y, ushort color1, ushort color2, uchar alpha );
 
 ushort gfGetPixel( tgfBitmap *bmp, short x, short y );
 

@@ -35,7 +35,9 @@ ulong gfDisplayBitmap( tgfBitmap *bmp );
 ulong gfLoadBitmapFS( tgfBitmap *dest, char *fileName );
 
 ulong gfBlitBitmap( tgfBitmap *dest, tgfBitmap *src, short x, short y );
+ulong gfBlitBitmapSrcRect( tgfBitmap *dest, tgfBitmap *src, short sx, short sy, short bw, short bh, short x, short y );
 ulong gfBlitBitmapA( tgfBitmap *dest, tgfBitmap *src, short x, short y, uchar alpha );
+ulong gfBlitBitmapA2Src( tgfBitmap *dest, tgfBitmap *src1, tgfBitmap *src2, short x, short y, uchar alpha );
 ulong gfBlitScaledBitmap( tgfBitmap *dest, tgfBitmap *src, short x, short y, short w, short h );
 
 

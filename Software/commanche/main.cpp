@@ -12,58 +12,43 @@
 #include "../gfxLib/osUIEvents.h"
 
 
-extern BSP_T        *bsp;
-
-
 extern tgfTextOverlay        con;
+
+extern BSP_T        *bsp;
 tgfBitmap            screen1;
 tgfBitmap            screen2;
 tgfBitmap            textureMap;
 uchar               *heightMap;
+tosFile              in;
 
-tosFile in;
 
-
-struct {
+struct 
+{
       float x;       // x position on the map
       float y;       // y position on the map
       short height;  // height of the camera
       float angle;   // direction of the camera
       short horizon; // horizon position (look up and down)
       float distance; // distance of map
-   } camera = { 256, 256, 40, 0.1, 50, 180 };
+} camera = { 256, 256, 40, 0.1, 50, 100 };
 
 char buf[128];
 
 int animLeds( int j )
 {   
-      switch( j % 4 )
+      switch( j % 2 )
       {
          case 0:
             bsp->gpoPort |= 0x00f0;
-            bsp->gpoPort ^= 0x0010;
+            bsp->gpoPort ^= 0x0040;
          
             break;
 
          case 1:
 
             bsp->gpoPort |= 0x00f0;
-            bsp->gpoPort ^= 0x0020;
-         
-            break;
-
-         case 2:
-         
-            bsp->gpoPort |= 0x00f0;
-            bsp->gpoPort ^= 0x0040;
-
-            break;
-
-         case 3:
-      
-            bsp->gpoPort |= 0x00f0;
             bsp->gpoPort ^= 0x0080;
-
+         
             break;
       }
       
@@ -74,10 +59,10 @@ int animLeds( int j )
 int commanche( tgfBitmap *screen )
 {
 
-   int     screenwidth = 160;
+   int     screenwidth = 320;
    float   screenwidthf = screenwidth;
    
-   int     screenheight = 120;
+   int     screenheight = 200;
 
    int     mapwidthperiod = 512 - 1;
    int     mapheightperiod = 512 - 1;
@@ -113,34 +98,12 @@ int commanche( tgfBitmap *screen )
    float   cosangz;
    float   sinangz;
    
-//    gfFillRect( screen, 80, 60, 80 + screenwidth, 60 + screenheight, 0 );
-//    gfFillRect( screen, 0, 60, 319, 60 + screenheight, 0 );
+   gfFillRect( screen, 0, 0, screenwidth, screenheight, 0 );
 
-   //clear screen
-   #ifdef _GFXLIB_HW_BLITTER_2D
-
-   do{}while( ! ( blt->bltStatus & 1 ) );
-
-   blt->bltConfig0         = 0x2000;   //32 bit fill value
-   blt->bltDstAddress      = ( ulong )(( ( ulong )screen->buffer + ( 512 * 60 ) - _SYSTEM_MEMORY_BASE ) / 4);
-   blt->bltTransferHeight  = 120;
-   blt->bltTransferWidth   = 160;
-   blt->bltSrcModulo       = 0;
-   blt->bltDstModulo       = 96;
-   blt->bltValue           = 0x00000000;   
-   
-   blt->bltStatus          = 0x1;
-
-   #else
-
-   gfFillRect( screen, 80, 60, 80 + screenwidth, 60 + screenheight, 0 );
-
-   #endif
-
-   
    sinang      = (float)sin( camera.angle );
    cosang      = (float)cos( camera.angle );
    cameraoffs  = ( ( ((int)camera.y) & mapwidthperiod ) << mapshift ) + ( ((int)camera.x) & mapheightperiod );
+
    // Collision detection. Don't fly below the surface.
    if( ( heightMap[ cameraoffs ] + 10.0f ) > camera.height )
    {
@@ -151,50 +114,33 @@ int commanche( tgfBitmap *screen )
    {
       hiddeny[ x ] = screenheight;
    }
+
    // Draw from front to back
    for( z = 1.0f; z < camera.distance; z += deltaz )
    {
       // 90 degree field of view
       
-      //cosangz = cosang * z;
-      cosangz = ffMul( cosang, z );
-
-      //sinangz   = sinang * z;
-      sinangz = ffMul( sinang, z );
+      cosangz  = cosang * z;
+      sinangz  = sinang * z;
 
       
-      //plx =  ( -cosangz ) - sinangz;
-      plx = ffSub( ffMul( cosangz, -1.0f ), sinangz );
-
-      //ply =   sinangz - cosangz;
-      ply = ffSub( sinangz, cosangz );
-
-      //prx =   cosangz - sinangz;
-      prx = ffSub( cosangz, sinangz );
-
-      //pry =  ( -sinangz ) - cosangz;
-      pry = ffSub( ffMul( sinangz, -1.0f ), cosangz );
-
-
-/*      plx =  -cosang * z - sinang * z;
+/*    plx =  -cosang * z - sinang * z;
       ply =   sinang * z - cosang * z;
       prx =   cosang * z - sinang * z;
       pry =  -sinang * z - cosang * z;
 */      
+
+      plx =  ( -cosangz ) - sinangz;
+      ply =   sinangz - cosangz;
+      prx =   cosangz - sinangz;
+      pry =  ( -sinangz ) - cosangz;
       
-      //dx = ( prx - plx ) / screenwidth;
-
-      dx = ffDiv( ffSub( prx, plx ), (float)screenwidth );
-
-      //dy = ( pry - ply ) / screenwidth;
-      dy = ffDiv( ffSub( pry, ply ), (float)screenheight );
+      dx = ( prx - plx ) / screenwidth;
+      dy = ( pry - ply ) / screenheight;
 
       
-      //plx += camera.x;
-      plx = ffAdd( plx, camera.x );
-
-      //ply += camera.y;
-      ply = ffAdd( ply, camera.y );
+      plx += camera.x;
+      ply += camera.y;
 
 //      invz = 1.0f / z * 100.0f;
 //      invz = 100.0f / z;
@@ -204,21 +150,16 @@ int commanche( tgfBitmap *screen )
       linvz = 12800 / (long)z;
    
    
+      lplx  = plx * 256;
+      lply  = ply * 256;
+      ldx   = dx * 256;
+      ldy   = dy * 256;
       
-      lplx    = (long)ffMul( plx, 256.0f );
-      lply    = (long)ffMul( ply, 256.0f );
-      ldx = (long)ffMul( dx, 256.0f );
-      ldy = (long)ffMul( dy, 256.0f );
-
-      /*lplx  = plx * 256;
-      lply    = ply * 256;
-      ldx     = dx * 256;
-      ldy     = dy * 256;
-      */
       
       for( x = 0; x < screenwidth; x++ )
       {
 //          mapoffset = ( ( ((long)ply) & mapwidthperiod ) << mapshift ) + ( ((long)plx) & mapheightperiod );
+
          mapoffset = ( ( ( lply >> 8 ) & mapwidthperiod ) << mapshift ) + ( ( lplx >> 8 ) & mapheightperiod );
          
          heightonscreen = (short)( ( ( ( camera.height - heightMap[ mapoffset ] ) * linvz ) >> 8 ) + camera.horizon );
@@ -227,41 +168,20 @@ int commanche( tgfBitmap *screen )
          {
             heightonscreen = 0;
          }
+
          color = ((ushort *)textureMap.buffer)[ mapoffset ];
          
          if( heightonscreen < hiddeny[x] )
          {                
-
-            #ifdef _GFXLIB_HW_BLITTER_2D
-
-            //draw strip
-            do{}while( ! ( blt->bltStatus & 1 ) ); 
             
-            bh = hiddeny[ x ] - heightonscreen;
-   
-            blt->bltConfig0         = 0x0000;   //fill with value
-         
-            blt->bltDstAddress      = ( ulong )(( ( ulong ) &(( ushort* )screen->buffer)[ ( ( heightonscreen + 60 ) * 512 ) + ( x << 1 ) ] - _SYSTEM_MEMORY_BASE ) / 2);
-            blt->bltDstModulo       = 510;
+            //draw strip
 
-            blt->bltTransferWidth   = 2;
-            blt->bltTransferHeight  = bh - 1;
-         
-            blt->bltValue           = color;
-   
-            blt->bltStatus          = 0x1;  
-   
-            #else
+            gfFillRect( screen, x, heightonscreen, x, hiddeny[x], color );
 
-            gfFillRect( screen, 80 + x,  60 + heightonscreen , 80 + x , 60 + hiddeny[ x ] , color );
-
-            #endif
-         }
-         
-         if( heightonscreen < hiddeny[ x ] )
-         {
             hiddeny[ x ] = heightonscreen;
+ 
          }
+         
 
          //plx += dx;
          //ply += dy;
@@ -272,8 +192,7 @@ int commanche( tgfBitmap *screen )
       }
 
       
-      //deltaz += 0.005f;
-      deltaz = ffAdd( deltaz, 0.0025f );
+      deltaz += 0.0025f;
 
    }
 
@@ -286,12 +205,13 @@ int main()
    ulong           rv;
    
    tosUIEvent      event;
+   ulong           keyStatus;
 
    bspInit();
       
    setVideoMode( _VIDEOMODE_320_TEXT80_OVER_GFX );
 
-   toPrint( &con, (char*)"tangerineSOC Commanche B20240819\n" );
+   toPrint( &con, (char*)"tangyRiscVSOC Commanche B20240917\n" );
    toPrint( &con, (char*)"Map loading..." );
 
    //alloc screen buffers
@@ -359,51 +279,117 @@ int main()
 
    toPrint( &con, (char*)"done\n" );
       
+   keyStatus = 0;
+
    do
    {   
       animLeds( i++ );
       
-      while( !osGetUIEvent( &event ) )
-      { 
+if( !osGetUIEvent( &event ) )
+      {
+
          if( event.type == OS_EVENT_TYPE_KEYBOARD_KEYPRESS )
          {
             switch( event.arg1 )
             {
-               case _KEYCODE_PAUSE:
+               case _KEYCODE_UP:
+               
+                  keyStatus |= 1;
 
-                  reboot();
-                  break;  
+               break;
 
-               case _KEYCODE_LEFT:
+               case _KEYCODE_DOWN:
 
-                  camera.angle += 0.1;
+                  keyStatus |= 2;
 
                   break;
 
                case _KEYCODE_RIGHT:
 
-                  camera.angle -= 0.1;
+                  keyStatus |= 4;
+
+               break;
+
+               case _KEYCODE_LEFT:
+
+                  keyStatus |= 8;
+
+               break;
+         
+               case _KEYCODE_PGUP:
 
                   break;
 
+               case _KEYCODE_PGDOWN:
+
+                  break;
+
+          case _KEYCODE_PAUSE:
+
+              reboot();
+              break;
+
+            }
+         }else if( event.type == OS_EVENT_TYPE_KEYBOARD_KEYRELEASE )
+         {
+            switch( event.arg1 )
+            {
                case _KEYCODE_UP:
+               
+                  keyStatus &= 1 ^ 0xffffffff;
 
-                  camera.height += 1;
-
-                  break;
+               break;
 
                case _KEYCODE_DOWN:
 
-                  if( camera.height > 0 )
-                  {
-                     camera.height -= 1;
-                  }
+                  keyStatus &= 2 ^ 0xffffffff;
 
                   break;
+
+               case _KEYCODE_RIGHT:
+
+                  keyStatus &= 4 ^ 0xffffffff;
+
+               break;
+
+               case _KEYCODE_LEFT:
+
+                  keyStatus &= 8 ^ 0xffffffff;
+
+               break;
             }
-         }
+         }  
       }
 
+
+
+      if( keyStatus & 8 )
+      {
+         //left
+         camera.angle += 0.1;
+
+      }else if( keyStatus & 4 )
+      {
+         //right
+         camera.angle -= 0.1;
+
+      }
+
+      if( keyStatus & 1 )
+      {
+         //up
+         camera.height += 1;
+
+      }else if( keyStatus & 2 )
+      {
+         //down
+
+         if( camera.height > 0 )
+         {
+            camera.height -= 1;
+         }
+
+      }
 
       camera.x -= (float)sin( camera.angle ) * 1.1f;
       camera.y -= (float)cos( camera.angle ) * 1.1f;

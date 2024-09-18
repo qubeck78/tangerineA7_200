@@ -3,7 +3,7 @@
 
 //Version
 
-#define _GFXLIB_VERSION 20240914
+#define _GFXLIB_VERSION 20240917
 
 
 //Platform
@@ -16,6 +16,7 @@
 //Features
 
 //#define _GFXLIB_BIG_ENDIAN
+
 #define _GFXLIB_HW_BLITTER_2D
 //#define _GFXLIB_HW_BLITTER_3D
 //#define _GFXLIB_FPALU

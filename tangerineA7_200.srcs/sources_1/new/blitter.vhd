@@ -134,6 +134,7 @@ type    bltState_t is ( bsIdle,
                         bsFill0, bsFill1,
                         bsCopy0, bsCopy1, bsCopy2, 
                         bsAlphaCopy0, bsAlphaCopy1, bsAlphaCopy2, bsAlphaCopy3, bsAlphaCopy4, bsAlphaCopy5,  
+                        bsScaleCopy0, bsScaleCopy1, bsScaleCopy2, bsScaleCopy3, bsScaleCopy4, bsScaleCopy5,
                         bsSubRead0, bsSubRead1, bsSubRead2, bsSubWrite0, bsSubWrite1, bsSubWrite2, bsSubWrite3 );
 
 signal  bltState:       bltState_t;
@@ -171,6 +172,11 @@ signal paColorInA:      std_logic_vector( 15 downto 0 );
 signal paColorInB:      std_logic_vector( 15 downto 0 );
 signal paAlpha:         std_logic_vector( 4 downto 0 );
 signal paColorOut:      std_logic_vector( 15 downto 0 );
+
+
+--scaler
+signal scSx:            std_logic_vector( 31 downto 0 );
+signal scSy:            std_logic_vector( 31 downto 0 );
 
 begin  
         
@@ -240,7 +246,7 @@ begin
 
                             ready   <= '1';
                  
-                            dout    <= x"20240916";
+                            dout    <= x"20240918";
                     
                         --0x08 rw commandReg
                         when x"02" =>
@@ -533,6 +539,8 @@ end process;
 
 blitterMain: process( all )
 
+variable scRowAddressVar: unsigned( 31 downto 0 );
+
 begin
 
     if reset = '1' then
@@ -648,6 +656,29 @@ begin
                             
                             bltState        <= bsAlphaCopy0; 
 
+                        --scale copy rectangle ( sa scale => da )
+                        --input0Reg - sourceDeltaX
+                        --input1Reg - sourceDeltaY
+                        
+                        when x"04" =>
+
+                            --translate addresses to word based, omit high address bits
+                            dmaReadAddr     <= saAddressReg( 25 downto 1 );
+                            dmaWriteAddr    <= daAddressReg( 25 downto 1 );
+
+                            --calc transfer size
+                            counterXMax     <= daWidthReg;
+                            counterX        <= daWidthReg;
+        
+                            counterY        <= std_logic_vector( unsigned( daHeightReg ) - 1 );
+
+                            --row address
+                            dpSa            <= saAddressReg( 25 downto 1 );
+                            scSx            <= ( others => '0' );
+                            scSy            <= input1Reg;   --delta y 
+                            
+                            bltState        <= bsScaleCopy0;
+                            
                         when others =>
                     
                     end case;
@@ -763,7 +794,111 @@ begin
                 dmaWriteAddr    <= std_logic_vector( unsigned( dmaWriteAddr ) + 1 );
                 
                 bltState        <= bsCopy0;
+
+
+            when bsScaleCopy0 =>
+                                
+                if counterX /= x"0000" then
+                
+                    --scSc += deltaX
+                    scSx            <= std_logic_vector( unsigned( scSx ) + unsigned( input0Reg ) );
+                
+                    bltReturnState  <= bsScaleCopy4;
+                    bltState        <= bsSubRead0;
+                    
+                else
+                
+                    --end of row
+                    if counterY /= x"0000" then
+                    
+                        counterY        <= std_logic_vector( unsigned( counterY ) - 1 );
+                        counterX        <= counterXMax;
+
+                        scRowAddressVar := unsigned( saAddressReg( 25 downto 1 ) ) + ( unsigned( saWidthReg ) * unsigned( scSy( 31 downto 16 ) ) ) ;
+                        dpSa            <= std_logic_vector( scRowAddressVar( 24 downto 0 ) );
+                        
+                        scSx            <= ( others => '0' );
+                        
+                        
+                        dmaWriteAddr    <= std_logic_vector( unsigned( dmaWriteAddr ) + unsigned( daColAdd ) );
+                    
+                        bltState        <= bsScaleCopy1;    --waitstates
+                    else
+                    
+                        bltState        <= bsIdle;
+                    
+                    end if;              
+                
+                end if;
+
+            when bsScaleCopy1 =>
+
+                bltState    <= bsScaleCopy2;
+                
+            when bsScaleCopy2 =>
             
+                bltState    <= bsScaleCopy3;
+
+            when bsScaleCopy3 =>
+            
+                --scSy += deltaY
+                scSy        <= std_logic_vector( unsigned( scSy ) + unsigned( input1Reg ) );
+                
+                dmaReadAddr <=  dpSa;
+                
+                --read data
+                bltState    <= bsScaleCopy0;
+                
+             when bsScaleCopy4 =>
+             
+                --scale copy mode
+                case commandReg( 7 downto 0 ) is
+                    
+                    
+                    --scale copy
+                    when x"00" =>
+                    
+                        dmaWriteData    <= dmaReadData;
+                
+                        bltReturnState  <= bsScaleCopy5;
+                        bltState        <= bsSubWrite0;
+                        
+                    --masked scale copy
+                    when x"01" =>
+                               
+                        --check if color matches mask
+                        if dmaReadData( 15 downto 0 ) = input2Reg( 15 downto 0 ) then
+
+                            --skip write
+                            bltState        <= bsScaleCopy5;
+                            
+                        else
+
+                            --write
+                            dmaWriteData    <= dmaReadData;
+                            
+                            bltReturnState  <= bsScaleCopy5;
+                            bltState        <= bsSubWrite0;
+                            
+                        end if;       
+                    
+                    when others =>
+
+                        dmaWriteData    <= dmaReadData;
+                
+                        bltReturnState  <= bsScaleCopy5;
+                        bltState        <= bsSubWrite0;
+                    
+                
+                end case;
+                                      
+            when bsScaleCopy5 =>
+            
+                dmaReadAddr     <= std_logic_vector( unsigned( dpSa ) + unsigned( scSx( 31 downto 16 ) ) );
+                dmaWriteAddr    <= std_logic_vector( unsigned( dmaWriteAddr ) + 1 );
+                counterX        <= std_logic_vector( unsigned( counterX ) - 1 );
+                
+                bltState        <= bsScaleCopy0;            
             
             when bsAlphaCopy0 =>
             
