@@ -12,7 +12,7 @@
     ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source A7BoardTop.tcl -notrace
-create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 534.500 ; gain = 181.203
+create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 532.668 ; gain = 177.719
 Command: link_design -top A7BoardTop -part xc7a200tfbg676-1
 Design is defaulting to srcset: sources_1
 Design is defaulting to constrset: constrs_1
@@ -25,7 +25,7 @@ INFO: [Project 1-454] Reading design checkpoint 'c:/Users/qubec/Documents/Develo
 INFO: [Project 1-454] Reading design checkpoint 'c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/uartFiFo/uartFiFo.dcp' for cell 'tangerineSOCInst/UARTInst/rxFiFoInst'
 INFO: [Project 1-454] Reading design checkpoint 'c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/gfxBufRam/gfxBufRam.dcp' for cell 'tangerineSOCInst/sdramDMAInst/gfxBufRamInst'
 INFO: [Project 1-454] Reading design checkpoint 'c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/keyboardFifo/keyboardFifo.dcp' for cell 'tangerineSOCInst/usbHostInst/keyboardFifoinst'
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.133 . Memory (MB): peak = 1064.852 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.138 . Memory (MB): peak = 1066.039 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 1318 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-479] Netlist was created with Vivado 2023.2
@@ -60,7 +60,7 @@ WARNING: [XPM_CDC_GRAY: TCL-1000] The source and destination clocks are the same
  [F:/Xilinx/Vivado/2023.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_gray.tcl:16]
 INFO: [Project 1-1714] 7 XPM XDC files have been applied to the design.
 INFO: [Opt 31-138] Pushed 1 inverter(s) to 1 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1813.387 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1815.172 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 38 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 34 instances
@@ -69,7 +69,7 @@ INFO: [Project 1-111] Unisim Transformation Summary:
 The system cannot find the path specified.
 16 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
 link_design completed successfully
-link_design: Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1813.387 ; gain = 1265.047
+link_design: Time (s): cpu = 00:00:15 ; elapsed = 00:00:18 . Memory (MB): peak = 1815.172 ; gain = 1268.109
 Command: opt_design
 Attempting to get a license for feature 'Implementation' and/or device 'xc7a200t'
 INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a200t'
@@ -80,115 +80,115 @@ INFO: [DRC 23-27] Running DRC with 2 threads
 INFO: [Project 1-461] DRC finished with 0 Errors, 2 Warnings
 INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
 
-Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 1813.387 ; gain = 0.000
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 1815.172 ; gain = 0.000
 
 Starting Cache Timing Information Task
 INFO: [Timing 38-35] Done setting XDC timing constraints.
-Ending Cache Timing Information Task | Checksum: 14131ef93
+Ending Cache Timing Information Task | Checksum: 1e791d445
 
-Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.570 . Memory (MB): peak = 1813.387 ; gain = 0.000
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.616 . Memory (MB): peak = 1815.172 ; gain = 0.000
 
 Starting Logic Optimization Task
 
 Phase 1 Initialization
 
 Phase 1.1 Core Generation And Design Setup
-Phase 1.1 Core Generation And Design Setup | Checksum: 14131ef93
+Phase 1.1 Core Generation And Design Setup | Checksum: 1e791d445
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 2152.496 ; gain = 0.000
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 2145.992 ; gain = 0.000
 
 Phase 1.2 Setup Constraints And Sort Netlist
-Phase 1.2 Setup Constraints And Sort Netlist | Checksum: 14131ef93
+Phase 1.2 Setup Constraints And Sort Netlist | Checksum: 1e791d445
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.010 . Memory (MB): peak = 2152.496 ; gain = 0.000
-Phase 1 Initialization | Checksum: 14131ef93
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.012 . Memory (MB): peak = 2145.992 ; gain = 0.000
+Phase 1 Initialization | Checksum: 1e791d445
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.011 . Memory (MB): peak = 2152.496 ; gain = 0.000
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.014 . Memory (MB): peak = 2145.992 ; gain = 0.000
 
 Phase 2 Timer Update And Timing Data Collection
 
 Phase 2.1 Timer Update
-Phase 2.1 Timer Update | Checksum: 14131ef93
+Phase 2.1 Timer Update | Checksum: 1e791d445
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.239 . Memory (MB): peak = 2152.496 ; gain = 0.000
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.252 . Memory (MB): peak = 2145.992 ; gain = 0.000
 
 Phase 2.2 Timing Data Collection
-Phase 2.2 Timing Data Collection | Checksum: 14131ef93
+Phase 2.2 Timing Data Collection | Checksum: 1e791d445
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.260 . Memory (MB): peak = 2152.496 ; gain = 0.000
-Phase 2 Timer Update And Timing Data Collection | Checksum: 14131ef93
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.273 . Memory (MB): peak = 2145.992 ; gain = 0.000
+Phase 2 Timer Update And Timing Data Collection | Checksum: 1e791d445
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.262 . Memory (MB): peak = 2152.496 ; gain = 0.000
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.274 . Memory (MB): peak = 2145.992 ; gain = 0.000
 
 Phase 3 Retarget
 INFO: [Opt 31-1566] Pulled 2 inverters resulting in an inversion of 15 pins
 INFO: [Opt 31-138] Pushed 4 inverter(s) to 10 load pin(s).
 INFO: [Opt 31-49] Retargeted 0 cell(s).
-Phase 3 Retarget | Checksum: 1a1df876a
+Phase 3 Retarget | Checksum: f8406abc
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.436 . Memory (MB): peak = 2152.496 ; gain = 0.000
-Retarget | Checksum: 1a1df876a
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.460 . Memory (MB): peak = 2145.992 ; gain = 0.000
+Retarget | Checksum: f8406abc
 INFO: [Opt 31-389] Phase Retarget created 0 cells and removed 20 cells
 INFO: [Opt 31-1021] In phase Retarget, 18 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
 
 Phase 4 Constant propagation
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Phase 4 Constant propagation | Checksum: 1d5253eed
+Phase 4 Constant propagation | Checksum: 176a8fa41
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.507 . Memory (MB): peak = 2152.496 ; gain = 0.000
-Constant propagation | Checksum: 1d5253eed
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.531 . Memory (MB): peak = 2145.992 ; gain = 0.000
+Constant propagation | Checksum: 176a8fa41
 INFO: [Opt 31-389] Phase Constant propagation created 0 cells and removed 0 cells
 INFO: [Opt 31-1021] In phase Constant propagation, 16 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
 
 Phase 5 Sweep
-Phase 5 Sweep | Checksum: f48c4d07
+Phase 5 Sweep | Checksum: 187c6fe1b
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.756 . Memory (MB): peak = 2152.496 ; gain = 0.000
-Sweep | Checksum: f48c4d07
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.794 . Memory (MB): peak = 2145.992 ; gain = 0.000
+Sweep | Checksum: 187c6fe1b
 INFO: [Opt 31-389] Phase Sweep created 3 cells and removed 4 cells
 INFO: [Opt 31-1021] In phase Sweep, 62 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
 
 Phase 6 BUFG optimization
-Phase 6 BUFG optimization | Checksum: f48c4d07
+Phase 6 BUFG optimization | Checksum: 187c6fe1b
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.873 . Memory (MB): peak = 2152.496 ; gain = 0.000
-BUFG optimization | Checksum: f48c4d07
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.910 . Memory (MB): peak = 2145.992 ; gain = 0.000
+BUFG optimization | Checksum: 187c6fe1b
 INFO: [Opt 31-662] Phase BUFG optimization created 0 cells of which 0 are BUFGs and removed 0 cells.
 
 Phase 7 Shift Register Optimization
 INFO: [Opt 31-1064] SRL Remap converted 0 SRLs to 0 registers and converted 0 registers of register chains to 0 SRLs
-Phase 7 Shift Register Optimization | Checksum: f48c4d07
+Phase 7 Shift Register Optimization | Checksum: 187c6fe1b
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.881 . Memory (MB): peak = 2152.496 ; gain = 0.000
-Shift Register Optimization | Checksum: f48c4d07
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.919 . Memory (MB): peak = 2145.992 ; gain = 0.000
+Shift Register Optimization | Checksum: 187c6fe1b
 INFO: [Opt 31-389] Phase Shift Register Optimization created 0 cells and removed 0 cells
 
 Phase 8 Post Processing Netlist
-Phase 8 Post Processing Netlist | Checksum: 146847280
+Phase 8 Post Processing Netlist | Checksum: 1b9bf199c
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.912 . Memory (MB): peak = 2152.496 ; gain = 0.000
-Post Processing Netlist | Checksum: 146847280
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.953 . Memory (MB): peak = 2145.992 ; gain = 0.000
+Post Processing Netlist | Checksum: 1b9bf199c
 INFO: [Opt 31-389] Phase Post Processing Netlist created 0 cells and removed 0 cells
 INFO: [Opt 31-1021] In phase Post Processing Netlist, 21 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
 
 Phase 9 Finalization
 
 Phase 9.1 Finalizing Design Cores and Updating Shapes
-Phase 9.1 Finalizing Design Cores and Updating Shapes | Checksum: 1ed19edba
+Phase 9.1 Finalizing Design Cores and Updating Shapes | Checksum: 1e3e89e01
 
-Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 2152.496 ; gain = 0.000
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 2145.992 ; gain = 0.000
 
 Phase 9.2 Verifying Netlist Connectivity
 
 Starting Connectivity Check Task
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.017 . Memory (MB): peak = 2152.496 ; gain = 0.000
-Phase 9.2 Verifying Netlist Connectivity | Checksum: 1ed19edba
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.018 . Memory (MB): peak = 2145.992 ; gain = 0.000
+Phase 9.2 Verifying Netlist Connectivity | Checksum: 1e3e89e01
 
-Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 2152.496 ; gain = 0.000
-Phase 9 Finalization | Checksum: 1ed19edba
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 2145.992 ; gain = 0.000
+Phase 9 Finalization | Checksum: 1e3e89e01
 
-Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 2152.496 ; gain = 0.000
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 2145.992 ; gain = 0.000
 Opt_design Change Summary
 =========================
 
@@ -205,11 +205,11 @@ Opt_design Change Summary
 -------------------------------------------------------------------------------------------------------------------------
 
 
-Ending Logic Optimization Task | Checksum: 1ed19edba
+Ending Logic Optimization Task | Checksum: 1e3e89e01
 
-Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 2152.496 ; gain = 0.000
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 2145.992 ; gain = 0.000
 INFO: [Constraints 18-11670] Building netlist checker database with flags, 0x8
-Done building netlist checker database: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2152.496 ; gain = 0.000
+Done building netlist checker database: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2145.992 ; gain = 0.000
 
 Starting Power Optimization Task
 INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
@@ -227,35 +227,35 @@ INFO: [Pwropt 34-201] Structural ODC has moved 1 WE to EN ports
 Number of BRAM Ports augmented: 2 newly gated: 3 Total Ports: 538
 Number of Flops added for Enable Generation: 2
 
-Ending PowerOpt Patch Enables Task | Checksum: 164981393
+Ending PowerOpt Patch Enables Task | Checksum: 15e0ec3ac
 
-Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.813 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Ending Power Optimization Task | Checksum: 164981393
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.809 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Ending Power Optimization Task | Checksum: 15e0ec3ac
 
-Time (s): cpu = 00:00:20 ; elapsed = 00:00:19 . Memory (MB): peak = 2635.551 ; gain = 483.055
+Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2639.297 ; gain = 493.305
 
 Starting Final Cleanup Task
 
 Starting Logic Optimization Task
 INFO: [Timing 38-35] Done setting XDC timing constraints.
-Ending Logic Optimization Task | Checksum: 115334532
+Ending Logic Optimization Task | Checksum: 10e857609
 
-Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.935 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 2639.297 ; gain = 0.000
 INFO: [Constraints 18-11670] Building netlist checker database with flags, 0x8
-Done building netlist checker database: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Ending Final Cleanup Task | Checksum: 115334532
+Done building netlist checker database: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Ending Final Cleanup Task | Checksum: 10e857609
 
-Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2639.297 ; gain = 0.000
 
 Starting Netlist Obfuscation Task
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Ending Netlist Obfuscation Task | Checksum: 115334532
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Ending Netlist Obfuscation Task | Checksum: 10e857609
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 2639.297 ; gain = 0.000
 INFO: [Common 17-83] Releasing license: Implementation
 46 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
 opt_design completed successfully
-opt_design: Time (s): cpu = 00:00:30 ; elapsed = 00:00:28 . Memory (MB): peak = 2635.551 ; gain = 822.164
+opt_design: Time (s): cpu = 00:00:31 ; elapsed = 00:00:30 . Memory (MB): peak = 2639.297 ; gain = 824.125
 INFO: [runtcl-4] Executing : report_drc -file A7BoardTop_drc_opted.rpt -pb A7BoardTop_drc_opted.pb -rpx A7BoardTop_drc_opted.rpx
 Command: report_drc -file A7BoardTop_drc_opted.rpt -pb A7BoardTop_drc_opted.pb -rpx A7BoardTop_drc_opted.rpx
 INFO: [IP_Flow 19-1839] IP Catalog is up to date.
@@ -264,16 +264,16 @@ WARNING: [DRC 23-804] Only the first 20 REQP-1839 messages were issued by report
 INFO: [Vivado_Tcl 2-168] The results of DRC are in file C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/impl_1/A7BoardTop_drc_opted.rpt.
 report_drc completed successfully
 INFO: [Timing 38-480] Writing timing data to binary archive.
-Wrote PlaceDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Wrote PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Wrote PlaceDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Wrote PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2639.297 ; gain = 0.000
 Writing XDEF routing.
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.020 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.021 . Memory (MB): peak = 2639.297 ; gain = 0.000
 Writing XDEF routing logical nets.
 Writing XDEF routing special nets.
-Wrote RouteStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.024 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Wrote Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Wrote Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Write Physdb Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.044 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Wrote RouteStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.024 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Wrote Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Wrote Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Write Physdb Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.047 . Memory (MB): peak = 2639.297 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/impl_1/A7BoardTop_opt.dcp' has been generated.
 Command: place_design
 Attempting to get a license for feature 'Implementation' and/or device 'xc7a200t'
@@ -293,89 +293,89 @@ Starting Placer Task
 Phase 1 Placer Initialization
 
 Phase 1.1 Placer Initialization Netlist Sorting
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 2639.297 ; gain = 0.000
 Phase 1.1 Placer Initialization Netlist Sorting | Checksum: d897f51d
 
-Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.009 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 2639.297 ; gain = 0.000
 
 Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device
 INFO: [Timing 38-35] Done setting XDC timing constraints.
 Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device | Checksum: 1440eff6d
 
-Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 2639.297 ; gain = 0.000
 
 Phase 1.3 Build Placer Netlist Model
-Phase 1.3 Build Placer Netlist Model | Checksum: 18f7c44a1
+Phase 1.3 Build Placer Netlist Model | Checksum: 1cbfcc7d7
 
-Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2639.297 ; gain = 0.000
 
 Phase 1.4 Constrain Clocks/Macros
-Phase 1.4 Constrain Clocks/Macros | Checksum: 18f7c44a1
+Phase 1.4 Constrain Clocks/Macros | Checksum: 1cbfcc7d7
 
-Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Phase 1 Placer Initialization | Checksum: 18f7c44a1
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Phase 1 Placer Initialization | Checksum: 1cbfcc7d7
 
-Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2639.297 ; gain = 0.000
 
 Phase 2 Global Placement
 
 Phase 2.1 Floorplanning
-Phase 2.1 Floorplanning | Checksum: 219e18d25
+Phase 2.1 Floorplanning | Checksum: 16d662266
 
-Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2639.297 ; gain = 0.000
 
 Phase 2.2 Update Timing before SLR Path Opt
-Phase 2.2 Update Timing before SLR Path Opt | Checksum: 16bcd50a8
+Phase 2.2 Update Timing before SLR Path Opt | Checksum: 208d5d74b
 
-Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2639.297 ; gain = 0.000
 
 Phase 2.3 Post-Processing in Floorplanning
-Phase 2.3 Post-Processing in Floorplanning | Checksum: 16bcd50a8
+Phase 2.3 Post-Processing in Floorplanning | Checksum: 208d5d74b
 
-Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2639.297 ; gain = 0.000
 
 Phase 2.4 Global Placement Core
 
 Phase 2.4.1 UpdateTiming Before Physical Synthesis
-Phase 2.4.1 UpdateTiming Before Physical Synthesis | Checksum: 1ae34cf61
+Phase 2.4.1 UpdateTiming Before Physical Synthesis | Checksum: 1ca0ea81f
 
-Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:12 ; elapsed = 00:00:16 . Memory (MB): peak = 2639.297 ; gain = 0.000
 
 Phase 2.4.2 Physical Synthesis In Placer
-INFO: [Physopt 32-1035] Found 67 LUTNM shape to break, 109 LUT instances to create LUTNM shape
-INFO: [Physopt 32-1044] Break lutnm for timing: one critical 33, two critical 34, total 67, new lutff created 1
-INFO: [Physopt 32-1138] End 1 Pass. Optimized 109 nets or LUTs. Breaked 67 LUTs, combined 42 existing LUTs and moved 0 existing LUT
+INFO: [Physopt 32-1035] Found 62 LUTNM shape to break, 102 LUT instances to create LUTNM shape
+INFO: [Physopt 32-1044] Break lutnm for timing: one critical 36, two critical 26, total 62, new lutff created 1
+INFO: [Physopt 32-1138] End 1 Pass. Optimized 104 nets or LUTs. Breaked 62 LUTs, combined 42 existing LUTs and moved 0 existing LUT
 INFO: [Physopt 32-65] No nets found for high-fanout optimization.
 INFO: [Physopt 32-232] Optimized 0 net. Created 0 new instance.
 INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
 INFO: [Physopt 32-457] Pass 1. Identified 24 candidate cells for DSP register optimization.
-INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMuluu0__2. 15 registers were pushed out.
-INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMul0__2. 17 registers were pushed out.
-INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMul0__1. 17 registers were pushed out.
-INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMulsu0__0. 15 registers were pushed out.
-INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMulsu0__2. 15 registers were pushed out.
-INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMuluu0. 15 registers were pushed out.
-INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMuluu0__1. 17 registers were pushed out.
-INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMul0__2. 15 registers were pushed out.
-INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMuluu0__0. 15 registers were pushed out.
 INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMuluu0__1. 17 registers were pushed out.
 INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMuluu0__2. 17 registers were pushed out.
+INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMul0__2. 17 registers were pushed out.
 INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMul0__1. 17 registers were pushed out.
-INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMulsu0. 17 registers were pushed out.
-INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMulsu0__1. 17 registers were pushed out.
 INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMulsu0__2. 17 registers were pushed out.
-INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMuluu0__0. 15 registers were pushed out.
 INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMulsu0__1. 17 registers were pushed out.
-INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMul0__0. 15 registers were pushed out.
 INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMul0. 15 registers were pushed out.
+INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMuluu0. 15 registers were pushed out.
+INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMul0__0. 15 registers were pushed out.
 INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMulsu0__0. 15 registers were pushed out.
 INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMulsu0. 15 registers were pushed out.
-INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMul0__0. 15 registers were pushed out.
-INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMul0. 17 registers were pushed out.
+INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMuluu0__0. 15 registers were pushed out.
+INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMuluu0__1. 17 registers were pushed out.
 INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMuluu0. 17 registers were pushed out.
+INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMulsu0. 17 registers were pushed out.
+INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMul0__1. 17 registers were pushed out.
+INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMulsu0__1. 17 registers were pushed out.
+INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMuluu0__2. 15 registers were pushed out.
+INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMulsu0__2. 15 registers were pushed out.
+INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMul0. 17 registers were pushed out.
+INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMuluu0__0. 15 registers were pushed out.
+INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMulsu0__0. 15 registers were pushed out.
+INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMul0__0. 15 registers were pushed out.
+INFO: [Physopt 32-665] Processed cell tangerineSOCInst/nekoRvInst/resultMul0__2. 15 registers were pushed out.
 INFO: [Physopt 32-775] End 2 Pass. Optimized 24 nets or cells. Created 384 new cells, deleted 0 existing cell and moved 0 existing cell
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.029 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.032 . Memory (MB): peak = 2639.297 ; gain = 0.000
 INFO: [Physopt 32-1123] No candidate cells found for Shift Register to Pipeline optimization
 INFO: [Physopt 32-775] End 2 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
 INFO: [Physopt 32-1401] No candidate cells found for Shift Register optimization.
@@ -389,7 +389,7 @@ INFO: [Physopt 32-846] No candidate cells for URAM register optimization found i
 INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
 INFO: [Physopt 32-949] No candidate nets found for dynamic/static region interface net replication
 INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2639.297 ; gain = 0.000
 
 Summary of Physical Synthesis Optimizations
 ============================================
@@ -398,78 +398,78 @@ Summary of Physical Synthesis Optimizations
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 |  Optimization                                     |  Added Cells  |  Removed Cells  |  Optimized Cells/Nets  |  Dont Touch  |  Iterations  |  Elapsed   |
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
-|  LUT Combining                                    |           67  |             42  |                   109  |           0  |           1  |  00:00:00  |
+|  LUT Combining                                    |           62  |             42  |                   104  |           0  |           1  |  00:00:00  |
 |  Retime                                           |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
 |  Very High Fanout                                 |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
-|  DSP Register                                     |          384  |              0  |                    24  |           0  |           1  |  00:00:02  |
+|  DSP Register                                     |          384  |              0  |                    24  |           0  |           1  |  00:00:03  |
 |  Shift Register to Pipeline                       |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
 |  Shift Register                                   |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
 |  BRAM Register                                    |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
 |  URAM Register                                    |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
 |  Dynamic/Static Region Interface Net Replication  |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
-|  Total                                            |          451  |             42  |                   133  |           0  |           9  |  00:00:03  |
+|  Total                                            |          446  |             42  |                   128  |           0  |           9  |  00:00:03  |
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-Phase 2.4.2 Physical Synthesis In Placer | Checksum: 1d3d2e522
+Phase 2.4.2 Physical Synthesis In Placer | Checksum: 20e85cab8
 
-Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Phase 2.4 Global Placement Core | Checksum: 25af36f57
+Time (s): cpu = 00:00:16 ; elapsed = 00:00:20 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Phase 2.4 Global Placement Core | Checksum: 1381da43d
 
-Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Phase 2 Global Placement | Checksum: 25af36f57
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:21 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Phase 2 Global Placement | Checksum: 1381da43d
 
-Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:21 . Memory (MB): peak = 2639.297 ; gain = 0.000
 
 Phase 3 Detail Placement
 
 Phase 3.1 Commit Multi Column Macros
-Phase 3.1 Commit Multi Column Macros | Checksum: 22a477698
+Phase 3.1 Commit Multi Column Macros | Checksum: 1a20f0698
 
-Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:18 ; elapsed = 00:00:22 . Memory (MB): peak = 2639.297 ; gain = 0.000
 
 Phase 3.2 Commit Most Macros & LUTRAMs
-Phase 3.2 Commit Most Macros & LUTRAMs | Checksum: 118d7b344
+Phase 3.2 Commit Most Macros & LUTRAMs | Checksum: 27acaa56d
 
-Time (s): cpu = 00:00:18 ; elapsed = 00:00:22 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:18 ; elapsed = 00:00:24 . Memory (MB): peak = 2639.297 ; gain = 0.000
 
 Phase 3.3 Area Swap Optimization
-Phase 3.3 Area Swap Optimization | Checksum: 18fe6e9fe
+Phase 3.3 Area Swap Optimization | Checksum: 262290567
 
-Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:18 ; elapsed = 00:00:24 . Memory (MB): peak = 2639.297 ; gain = 0.000
 
 Phase 3.4 Pipeline Register Optimization
-Phase 3.4 Pipeline Register Optimization | Checksum: 13ec1ad46
+Phase 3.4 Pipeline Register Optimization | Checksum: 212bb9587
 
-Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:18 ; elapsed = 00:00:24 . Memory (MB): peak = 2639.297 ; gain = 0.000
 
 Phase 3.5 Fast Optimization
-Phase 3.5 Fast Optimization | Checksum: 10612d3c5
+Phase 3.5 Fast Optimization | Checksum: 27c2e3869
 
-Time (s): cpu = 00:00:21 ; elapsed = 00:00:27 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:22 ; elapsed = 00:00:34 . Memory (MB): peak = 2639.297 ; gain = 0.000
 
 Phase 3.6 Small Shape Detail Placement
-Phase 3.6 Small Shape Detail Placement | Checksum: ceadcd4d
+Phase 3.6 Small Shape Detail Placement | Checksum: 1d45b9bfc
 
-Time (s): cpu = 00:00:24 ; elapsed = 00:00:31 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:25 ; elapsed = 00:00:38 . Memory (MB): peak = 2639.297 ; gain = 0.000
 
 Phase 3.7 Re-assign LUT pins
-Phase 3.7 Re-assign LUT pins | Checksum: bfb3abcb
+Phase 3.7 Re-assign LUT pins | Checksum: 19ee5e75d
 
-Time (s): cpu = 00:00:24 ; elapsed = 00:00:32 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:25 ; elapsed = 00:00:39 . Memory (MB): peak = 2639.297 ; gain = 0.000
 
 Phase 3.8 Pipeline Register Optimization
-Phase 3.8 Pipeline Register Optimization | Checksum: df3776de
+Phase 3.8 Pipeline Register Optimization | Checksum: 156600323
 
-Time (s): cpu = 00:00:24 ; elapsed = 00:00:32 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:25 ; elapsed = 00:00:39 . Memory (MB): peak = 2639.297 ; gain = 0.000
 
 Phase 3.9 Fast Optimization
-Phase 3.9 Fast Optimization | Checksum: 185436f7e
+Phase 3.9 Fast Optimization | Checksum: 213843a6b
 
-Time (s): cpu = 00:00:28 ; elapsed = 00:00:38 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Phase 3 Detail Placement | Checksum: 185436f7e
+Time (s): cpu = 00:00:29 ; elapsed = 00:00:47 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Phase 3 Detail Placement | Checksum: 213843a6b
 
-Time (s): cpu = 00:00:28 ; elapsed = 00:00:38 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:29 ; elapsed = 00:00:47 . Memory (MB): peak = 2639.297 ; gain = 0.000
 
 Phase 4 Post Placement Optimization and Clean-Up
 
@@ -477,7 +477,7 @@ Phase 4.1 Post Commit Optimization
 INFO: [Timing 38-35] Done setting XDC timing constraints.
 
 Phase 4.1.1 Post Placement Optimization
-Post Placement Optimization Initialization | Checksum: b7d84e17
+Post Placement Optimization Initialization | Checksum: 1b9aeb3bd
 
 Phase 4.1.1.1 BUFG Insertion
 
@@ -485,33 +485,33 @@ Starting Physical Synthesis Task
 
 Phase 1 Physical Synthesis Initialization
 INFO: [Physopt 32-721] Multithreading enabled for phys_opt_design using a maximum of 2 CPUs
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-3.705 | TNS=-1296.976 |
-Phase 1 Physical Synthesis Initialization | Checksum: 834039a6
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-3.484 | TNS=-1149.393 |
+Phase 1 Physical Synthesis Initialization | Checksum: 15f060f01
 
-Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.777 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.843 . Memory (MB): peak = 2639.297 ; gain = 0.000
 INFO: [Place 46-56] BUFG insertion identified 0 candidate nets. Inserted BUFG: 0, Replicated BUFG Driver: 0, Skipped due to Placement/Routing Conflicts: 0, Skipped due to Timing Degradation: 0, Skipped due to netlist editing failed: 0.
-Ending Physical Synthesis Task | Checksum: 834039a6
+Ending Physical Synthesis Task | Checksum: 15f060f01
 
-Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.930 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Phase 4.1.1.1 BUFG Insertion | Checksum: b7d84e17
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.997 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Phase 4.1.1.1 BUFG Insertion | Checksum: 1b9aeb3bd
 
-Time (s): cpu = 00:00:31 ; elapsed = 00:00:42 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:33 ; elapsed = 00:00:51 . Memory (MB): peak = 2639.297 ; gain = 0.000
 
 Phase 4.1.1.2 Post Placement Timing Optimization
-INFO: [Place 30-746] Post Placement Timing Summary WNS=-2.417. For the most accurate timing information please run report_timing.
-Phase 4.1.1.2 Post Placement Timing Optimization | Checksum: 152f6b97c
+INFO: [Place 30-746] Post Placement Timing Summary WNS=-2.265. For the most accurate timing information please run report_timing.
+Phase 4.1.1.2 Post Placement Timing Optimization | Checksum: 2218c063f
 
-Time (s): cpu = 00:00:52 ; elapsed = 00:01:08 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:49 ; elapsed = 00:01:10 . Memory (MB): peak = 2639.297 ; gain = 0.000
 
-Time (s): cpu = 00:00:52 ; elapsed = 00:01:08 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Phase 4.1 Post Commit Optimization | Checksum: 152f6b97c
+Time (s): cpu = 00:00:49 ; elapsed = 00:01:11 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Phase 4.1 Post Commit Optimization | Checksum: 2218c063f
 
-Time (s): cpu = 00:00:52 ; elapsed = 00:01:08 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:49 ; elapsed = 00:01:11 . Memory (MB): peak = 2639.297 ; gain = 0.000
 
 Phase 4.2 Post Placement Cleanup
-Phase 4.2 Post Placement Cleanup | Checksum: 152f6b97c
+Phase 4.2 Post Placement Cleanup | Checksum: 2218c063f
 
-Time (s): cpu = 00:00:52 ; elapsed = 00:01:09 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:49 ; elapsed = 00:01:11 . Memory (MB): peak = 2639.297 ; gain = 0.000
 
 Phase 4.3 Placer Reporting
 
@@ -521,51 +521,51 @@ INFO: [Place 30-612] Post-Placement Estimated Congestion
 |           | Global Congestion | Short Congestion  |
 | Direction | Region Size       | Region Size       |
 |___________|___________________|___________________|
-|      North|                1x1|                4x4|
+|      North|                2x2|                4x4|
 |___________|___________________|___________________|
-|      South|                1x1|                2x2|
+|      South|                1x1|                4x4|
 |___________|___________________|___________________|
 |       East|                1x1|                1x1|
 |___________|___________________|___________________|
-|       West|                1x1|                4x4|
+|       West|                8x8|                8x8|
 |___________|___________________|___________________|
 
-Phase 4.3.1 Print Estimated Congestion | Checksum: 152f6b97c
+Phase 4.3.1 Print Estimated Congestion | Checksum: 2218c063f
 
-Time (s): cpu = 00:00:52 ; elapsed = 00:01:09 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Phase 4.3 Placer Reporting | Checksum: 152f6b97c
+Time (s): cpu = 00:00:49 ; elapsed = 00:01:11 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Phase 4.3 Placer Reporting | Checksum: 2218c063f
 
-Time (s): cpu = 00:00:52 ; elapsed = 00:01:09 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:49 ; elapsed = 00:01:11 . Memory (MB): peak = 2639.297 ; gain = 0.000
 
 Phase 4.4 Final Placement Cleanup
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2639.297 ; gain = 0.000
 
-Time (s): cpu = 00:00:52 ; elapsed = 00:01:09 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Phase 4 Post Placement Optimization and Clean-Up | Checksum: 16712ea6e
+Time (s): cpu = 00:00:49 ; elapsed = 00:01:11 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Phase 4 Post Placement Optimization and Clean-Up | Checksum: 235a83731
 
-Time (s): cpu = 00:00:52 ; elapsed = 00:01:09 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Ending Placer Task | Checksum: a91b99e7
+Time (s): cpu = 00:00:50 ; elapsed = 00:01:11 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Ending Placer Task | Checksum: 16bee5cb7
 
-Time (s): cpu = 00:00:52 ; elapsed = 00:01:09 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:50 ; elapsed = 00:01:11 . Memory (MB): peak = 2639.297 ; gain = 0.000
 113 Infos, 3 Warnings, 0 Critical Warnings and 0 Errors encountered.
 place_design completed successfully
-place_design: Time (s): cpu = 00:00:54 ; elapsed = 00:01:10 . Memory (MB): peak = 2635.551 ; gain = 0.000
+place_design: Time (s): cpu = 00:00:52 ; elapsed = 00:01:12 . Memory (MB): peak = 2639.297 ; gain = 0.000
 INFO: [runtcl-4] Executing : report_io -file A7BoardTop_io_placed.rpt
-report_io: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.113 . Memory (MB): peak = 2635.551 ; gain = 0.000
+report_io: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.102 . Memory (MB): peak = 2639.297 ; gain = 0.000
 INFO: [runtcl-4] Executing : report_utilization -file A7BoardTop_utilization_placed.rpt -pb A7BoardTop_utilization_placed.pb
 INFO: [runtcl-4] Executing : report_control_sets -verbose -file A7BoardTop_control_sets_placed.rpt
-report_control_sets: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.021 . Memory (MB): peak = 2635.551 ; gain = 0.000
+report_control_sets: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.021 . Memory (MB): peak = 2639.297 ; gain = 0.000
 INFO: [Timing 38-480] Writing timing data to binary archive.
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.027 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Wrote PlaceDB: Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.858 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Wrote PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.030 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Wrote PlaceDB: Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.921 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Wrote PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2639.297 ; gain = 0.000
 Writing XDEF routing.
 Writing XDEF routing logical nets.
 Writing XDEF routing special nets.
-Wrote RouteStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.022 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Wrote Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.017 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Wrote Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Write Physdb Complete: Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.915 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Wrote RouteStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.022 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Wrote Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.017 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Wrote Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Write Physdb Complete: Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.978 . Memory (MB): peak = 2639.297 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/impl_1/A7BoardTop_placed.dcp' has been generated.
 Command: phys_opt_design
 Attempting to get a license for feature 'Implementation' and/or device 'xc7a200t'
@@ -573,518 +573,400 @@ INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc
 
 Starting Initial Update Timing Task
 
-Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 2635.551 ; gain = 0.000
-INFO: [Vivado_Tcl 4-1435] PhysOpt_Tcl_Interface Runtime Before Starting Physical Synthesis Task | CPU: 1.00s |  WALL: 2.14s
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2639.297 ; gain = 0.000
+INFO: [Vivado_Tcl 4-1435] PhysOpt_Tcl_Interface Runtime Before Starting Physical Synthesis Task | CPU: 2.00s |  WALL: 2.26s
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 2639.297 ; gain = 0.000
 
 Starting Physical Synthesis Task
 
 Phase 1 Physical Synthesis Initialization
 INFO: [Physopt 32-721] Multithreading enabled for phys_opt_design using a maximum of 2 CPUs
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.417 | TNS=-926.255 |
-Phase 1 Physical Synthesis Initialization | Checksum: e3f8e20e
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.265 | TNS=-886.777 |
+Phase 1 Physical Synthesis Initialization | Checksum: 216430712
 
-Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 2635.551 ; gain = 0.000
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.417 | TNS=-926.255 |
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 2639.297 ; gain = 0.000
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.265 | TNS=-886.777 |
 
 Phase 2 DSP Register Optimization
 INFO: [Physopt 32-456] No candidate cells for DSP register optimization found in the design.
 INFO: [Physopt 32-775] End 2 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
-Phase 2 DSP Register Optimization | Checksum: e3f8e20e
+Phase 2 DSP Register Optimization | Checksum: 216430712
 
-Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 2639.297 ; gain = 0.000
 
 Phase 3 Critical Path Optimization
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.417 | TNS=-926.255 |
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.265 | TNS=-886.777 |
 INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[31]. Optimizations did not improve timing on the net.
 INFO: [Physopt 32-702] Processed net clk_wiz_0Inst/inst/clk100_clk_wiz_0. Optimizations did not improve timing on the net.
 INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[31]_i_2_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[31]_i_2_comp.
 INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[31]_i_6_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.331 | TNS=-925.983 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[30]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[30]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[30]_i_1_comp.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[30]_i_7_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.313 | TNS=-925.416 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_13_psdsp_n_3.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0_i_13_psdsp_3
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_13_psdsp_n_3. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.289 | TNS=-924.873 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[16]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[16]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[16]_i_1_comp.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[16]_i_5_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.198 | TNS=-924.472 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[28]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[28]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[28]_i_1_comp.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[28]_i_7_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.187 | TNS=-924.165 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[23]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[23]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[23]_i_1_comp.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[23]_i_4_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.183 | TNS=-923.536 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[26]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[26]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[26]_i_1_comp.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[26]_i_7_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.181 | TNS=-923.124 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[27]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rdVal[27]_i_7_n_0.  Re-placed instance tangerineSOCInst/nekoRvInst/rdVal[27]_i_7
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[27]_i_7_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.180 | TNS=-923.122 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[25]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[25]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[25]_i_1_comp.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[25]_i_7_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.179 | TNS=-922.865 |
-INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[27]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[27]_i_1_comp.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[27]_i_7_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.175 | TNS=-922.621 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[24]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[24]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[24]_i_1_comp.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[24]_i_7_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.155 | TNS=-922.210 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[20]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[20]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[20]_i_1_comp.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[20]_i_5_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.155 | TNS=-921.811 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[29]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[29]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[29]_i_1_comp.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[29]_i_7_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.149 | TNS=-921.428 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[15]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[15]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[15]_i_1_comp.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[15]_i_4_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.147 | TNS=-921.047 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_12_psdsp_n_1. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_62_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_175_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 18 pins.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.166 | TNS=-886.463 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_1_psdsp_n.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_1_psdsp
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_1_psdsp_n. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.156 | TNS=-886.296 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_13_psdsp_n_2.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_13_psdsp_2
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_13_psdsp_n_2. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.154 | TNS=-886.202 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_1_psdsp_n. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_18_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_87_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-608] Optimized 1 net.  Swapped 19 pins.
 INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/jtImm[15]_i_1_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.145 | TNS=-885.886 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[22]_i_1_psdsp_n_2.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[22]_i_1_psdsp_2
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[22]_i_1_psdsp_n_2. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.132 | TNS=-885.752 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[25]_i_1_psdsp_n.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[25]_i_1_psdsp
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[25]_i_1_psdsp_n. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.130 | TNS=-885.494 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[26]_i_1_psdsp_n_1.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[26]_i_1_psdsp_1
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[26]_i_1_psdsp_n_1. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.126 | TNS=-885.100 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[13]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[13]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[13]_i_1_comp.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[13]_i_7_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.124 | TNS=-884.561 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[9]_i_1_psdsp_n_2.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[9]_i_1_psdsp_2
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[9]_i_1_psdsp_n_2. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.121 | TNS=-884.001 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[24]_i_1_psdsp_n_2.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[24]_i_1_psdsp_2
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[24]_i_1_psdsp_n_2. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.119 | TNS=-883.747 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[22]_i_1_psdsp_n_5.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[22]_i_1_psdsp_5
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[22]_i_1_psdsp_n_5. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.117 | TNS=-883.679 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[20]_i_1_psdsp_n_3.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[20]_i_1_psdsp_3
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[20]_i_1_psdsp_n_3. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.117 | TNS=-883.521 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[28].  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val_reg[28]
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[28]. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.112 | TNS=-883.188 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[14]_i_1_psdsp_n_1.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[14]_i_1_psdsp_1
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[14]_i_1_psdsp_n_1. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.111 | TNS=-882.837 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[14].  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val_reg[14]
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[14]. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.109 | TNS=-882.814 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_11_psdsp_n.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0_i_11_psdsp
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_11_psdsp_n. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.107 | TNS=-882.456 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[23]_i_1_psdsp_n_4.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[23]_i_1_psdsp_4
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[23]_i_1_psdsp_n_4. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.105 | TNS=-882.440 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[22].  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val_reg[22]
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[22]. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.105 | TNS=-882.386 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[25]_i_1_psdsp_n_3.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[25]_i_1_psdsp_3
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[25]_i_1_psdsp_n_3. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.104 | TNS=-882.186 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[22]_i_1_psdsp_n_3.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[22]_i_1_psdsp_3
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[22]_i_1_psdsp_n_3. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.103 | TNS=-882.149 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[11]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net clk_wiz_0Inst/inst/clk100_clk_wiz_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal[11]_i_6_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rdVal[11]_i_17_n_0.  Re-placed instance tangerineSOCInst/nekoRvInst/rdVal[11]_i_17
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[11]_i_17_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.100 | TNS=-882.131 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val[26]_i_1_psdsp_n_3. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/jtImm[4]_i_1_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/jtImm[4]_i_2_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 12 pins.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[24]. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.086 | TNS=-870.041 |
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.149 | TNS=-871.454 |
 INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[10]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 14 pins.
+INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[10]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[10]_i_1_comp.
 INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[10]_i_7_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.086 | TNS=-869.879 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[6]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 17 pins.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[6]_i_7_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.085 | TNS=-869.730 |
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 3 pins.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[11]_i_17_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.081 | TNS=-869.553 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[31]_i_1_psdsp_n_1.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[31]_i_1_psdsp_1
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[31]_i_1_psdsp_n_1. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.066 | TNS=-869.118 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[4]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal[4]_i_6_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rdVal[4]_i_12_n_0.  Re-placed instance tangerineSOCInst/nekoRvInst/rdVal[4]_i_12
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[4]_i_12_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.063 | TNS=-869.101 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val_reg[26]_i_5_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val[26]_i_13_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 8 pins.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[31]_i_15_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.063 | TNS=-862.171 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[13]_i_1_psdsp_n_2.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[13]_i_1_psdsp_2
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[13]_i_1_psdsp_n_2. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.061 | TNS=-861.509 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_11_psdsp_n_1.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0_i_11_psdsp_1
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_11_psdsp_n_1. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.057 | TNS=-861.226 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_2_psdsp_n_1.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0_i_2_psdsp_1
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_2_psdsp_n_1. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.051 | TNS=-860.997 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[18].  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val_reg[18]
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[18]. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.049 | TNS=-860.714 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal[4]_i_12_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/funct7[3]_i_1_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/funct7[3]_i_2_n_0.  Re-placed instance tangerineSOCInst/nekoRvInst/funct7[3]_i_2
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/funct7[3]_i_2_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.044 | TNS=-860.568 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[14]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 22 pins.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[14]_i_7_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.043 | TNS=-860.567 |
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 22 pins.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[14]_i_7_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.038 | TNS=-860.480 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[0]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal[0]_i_5_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal[0]_i_11_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/btImm[1]_i_1_n_0.  Re-placed instance tangerineSOCInst/nekoRvInst/btImm[1]_i_1
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/btImm[1]_i_1_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.037 | TNS=-860.515 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_14_psdsp_n_3.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0_i_14_psdsp_3
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_14_psdsp_n_3. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.036 | TNS=-860.384 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_1_psdsp_n.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0_i_1_psdsp
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_1_psdsp_n. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.029 | TNS=-860.373 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_8_psdsp_n. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_44_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 23 pins.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_133_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.026 | TNS=-859.232 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_1_psdsp_n. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_16_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_76_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_197_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[15]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[15]_INST_0_i_4_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[15]_INST_0_i_12_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 24 pins.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[15]_INST_0_i_28_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.022 | TNS=-851.691 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[2]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal[2]_i_5_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 8 pins.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[2]_i_11_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.017 | TNS=-851.493 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/funct3[0]_i_1_n_0.  Re-placed instance tangerineSOCInst/nekoRvInst/funct3[0]_i_1
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/funct3[0]_i_1_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.016 | TNS=-851.661 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_15_psdsp_n_3.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0_i_15_psdsp_3
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_15_psdsp_n_3. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.016 | TNS=-851.214 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[13]_i_1_psdsp_n_1.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[13]_i_1_psdsp_1
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[13]_i_1_psdsp_n_1. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.010 | TNS=-850.641 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[3]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rdVal[3]_i_4_n_0.  Re-placed instance tangerineSOCInst/nekoRvInst/rdVal[3]_i_4
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[3]_i_4_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.008 | TNS=-850.609 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[24]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[24]_INST_0_i_4_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[24]_INST_0_i_12_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 24 pins.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[24]_INST_0_i_28_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.005 | TNS=-844.541 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[13]_i_1_psdsp_n_4.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[13]_i_1_psdsp_4
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[13]_i_1_psdsp_n_4. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.004 | TNS=-843.822 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[19]_i_1_psdsp_n_2.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[19]_i_1_psdsp_2
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[19]_i_1_psdsp_n_2. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.992 | TNS=-843.570 |
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 5 pins.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/funct7[3]_i_2_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.986 | TNS=-843.242 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[25].  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val_reg[25]
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[25]. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.982 | TNS=-843.099 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[17]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal[17]_i_7_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal[8]_i_5_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal[8]_i_15_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/stImm[0]_i_1_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[7]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[7]_INST_0_i_3_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[7]_INST_0_i_10_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 24 pins.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[7]_INST_0_i_23_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.981 | TNS=-841.977 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs1Val[18].  Re-placed instance tangerineSOCInst/nekoRvInst/rs1Val_reg[18]
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs1Val[18]. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.980 | TNS=-841.918 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/opcode[0]_i_1_n_0.  Re-placed instance tangerineSOCInst/nekoRvInst/opcode[0]_i_1
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/opcode[0]_i_1_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.978 | TNS=-841.376 |
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 9 pins.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[3]_i_4_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.974 | TNS=-841.184 |
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 24 pins.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[15]_INST_0_i_27_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.973 | TNS=-826.889 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_14_psdsp_n_4.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0_i_14_psdsp_4
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_14_psdsp_n_4. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.967 | TNS=-826.723 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[24]_INST_0_i_2_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[24]_INST_0_i_7_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 24 pins.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[24]_INST_0_i_17_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.967 | TNS=-823.909 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_15_psdsp_n.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_15_psdsp
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_15_psdsp_n. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.957 | TNS=-823.681 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_15_psdsp_n_1.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_15_psdsp_1
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_15_psdsp_n_1. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.955 | TNS=-823.436 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val[19]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val_reg[19]_i_2_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 24 pins.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[19]_i_7_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.953 | TNS=-823.380 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_2_psdsp_n_3.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0_i_2_psdsp_3
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_2_psdsp_n_3. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.951 | TNS=-823.148 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[18]_i_1_psdsp_n_1.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[18]_i_1_psdsp_1
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[18]_i_1_psdsp_n_1. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.947 | TNS=-822.975 |
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 24 pins.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[19]_i_6_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.946 | TNS=-822.352 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal[14]_i_7_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rdVal[14]_i_17_n_0.  Re-placed instance tangerineSOCInst/nekoRvInst/rdVal[14]_i_17
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[14]_i_17_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.946 | TNS=-822.289 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[24]_INST_0_i_8_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[24]_INST_0_i_20_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/regs[0]_32[26]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[236].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_0[0]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.946 | TNS=-822.289 |
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.028 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Phase 3 Critical Path Optimization | Checksum: 1407a1ad2
-
-Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2635.551 ; gain = 0.000
-
-Phase 4 Critical Path Optimization
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.946 | TNS=-822.289 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val[26]_i_1_psdsp_n_3. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net clk_wiz_0Inst/inst/clk100_clk_wiz_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/jtImm[4]_i_1_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/jtImm[4]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/jtImm[4]_i_1_comp.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/jtImm[4]_i_2_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.945 | TNS=-809.046 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[18]_i_1_psdsp_n_4.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[18]_i_1_psdsp_4
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[18]_i_1_psdsp_n_4. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.940 | TNS=-808.984 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val_reg[26]_i_3_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val[26]_i_9_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[31]_i_14_n_0.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[31]_i_14
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[31]_i_14_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.940 | TNS=-803.643 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs1Val[30].  Re-placed instance tangerineSOCInst/nekoRvInst/rs1Val_reg[30]
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs1Val[30]. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.937 | TNS=-803.558 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[6]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[6]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[6]_i_1_comp.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[6]_i_7_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.937 | TNS=-803.368 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_14_psdsp_n.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0_i_14_psdsp
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_14_psdsp_n. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.933 | TNS=-803.173 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[1].  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val_reg[1]
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[1]. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.932 | TNS=-802.716 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[15]_i_1_psdsp_n_4.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[15]_i_1_psdsp_4
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[15]_i_1_psdsp_n_4. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.927 | TNS=-802.331 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[7]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[7]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[7]_i_1_comp.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[7]_i_5_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.921 | TNS=-801.842 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_14_psdsp_n_1.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0_i_14_psdsp_1
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_14_psdsp_n_1. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.915 | TNS=-801.692 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[5]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[5]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[5]_i_1_comp.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[5]_i_4_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.914 | TNS=-801.601 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_11_psdsp_n_1.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_11_psdsp_1
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_11_psdsp_n_1. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.911 | TNS=-801.213 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_15_psdsp_n_2.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0_i_15_psdsp_2
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_15_psdsp_n_2. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.909 | TNS=-800.952 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[17]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[17]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[17]_i_1_comp.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[17]_i_7_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.908 | TNS=-800.672 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[11]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[11]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[11]_i_1_comp.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[11]_i_6_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.900 | TNS=-800.616 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[3].  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val_reg[3]
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[3]. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.896 | TNS=-800.280 |
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[4]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[4]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[4]_i_1_comp.
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[4]_i_6_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.895 | TNS=-800.269 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_14_psdsp_n_5.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0_i_14_psdsp_5
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_14_psdsp_n_5. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.890 | TNS=-800.131 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs1Val[22].  Re-placed instance tangerineSOCInst/nekoRvInst/rs1Val_reg[22]
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs1Val[22]. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.888 | TNS=-799.425 |
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_10_psdsp_n_1.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_10_psdsp_1
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_10_psdsp_n_1. Optimization improves timing on the net.
-INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.885 | TNS=-799.223 |
-INFO: [Common 17-14] Message 'Physopt 32-619' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rdVal[4]_i_6_n_0.  Re-placed instance tangerineSOCInst/nekoRvInst/rdVal[4]_i_6_comp
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[4]_i_6_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_15_psdsp_n_5.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0_i_15_psdsp_5
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_15_psdsp_n_5. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.138 | TNS=-870.875 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[8]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rdVal[8]_i_6_n_0.  Re-placed instance tangerineSOCInst/nekoRvInst/rdVal[8]_i_6
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[8]_i_6_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.133 | TNS=-870.591 |
 INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[14]. Optimizations did not improve timing on the net.
 INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[14]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[14]_i_1_comp.
 INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[14]_i_7_n_0. Optimization improves timing on the net.
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_15_psdsp_n_4.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_15_psdsp_4
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_15_psdsp_n_4. Optimization improves timing on the net.
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs1Val[7].  Re-placed instance tangerineSOCInst/nekoRvInst/rs1Val_reg[7]
-INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs1Val[7]. Optimization improves timing on the net.
-INFO: [Common 17-14] Message 'Physopt 32-735' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_2_psdsp_n_2.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0_i_2_psdsp_2
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs1Val[28].  Re-placed instance tangerineSOCInst/nekoRvInst/rs1Val_reg[28]
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_8_psdsp_n_3.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_8_psdsp_3
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[9]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal[9]_i_6_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[9]_i_6_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[9]_i_6_comp.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val[1]_i_1_psdsp_n_4. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val_reg[1]_i_2_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val[1]_i_7_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/jtImm[1]_i_1_n_0.  Re-placed instance tangerineSOCInst/nekoRvInst/jtImm[1]_i_1
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val[17]_i_1_psdsp_n_1. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val_reg[17]_i_4_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/jtImm[2]_i_1_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 18 pins.
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_15_psdsp_n_4.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_15_psdsp_4
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_2_psdsp_n. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_21_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 23 pins.
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_10_psdsp_n_4.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_10_psdsp_4
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_4_psdsp_n. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_30_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 13 pins.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[10]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[10]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[10]_i_1_comp.
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_10_psdsp_n_3.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_10_psdsp_3
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[22]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net clk_wiz_0Inst/inst/clk100_clk_wiz_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 21 pins.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_2_psdsp_n. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_21_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 23 pins.
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_8_psdsp_n_5.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_8_psdsp_5
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[21]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 18 pins.
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[29].  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val_reg[29]
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_1_psdsp_n. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_16_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_77_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_196_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[16]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[16]_INST_0_i_3_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[16]_INST_0_i_10_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 24 pins.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.129 | TNS=-869.975 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[26]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[26]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[26]_i_1_comp.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[26]_i_7_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.107 | TNS=-869.514 |
 INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[11]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal[11]_i_6_n_0_repN. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal[8]_i_5_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal[8]_i_15_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/stImm[0]_i_1_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[7]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[7]_INST_0_i_2_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[7]_INST_0_i_7_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 24 pins.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[7]_INST_0_i_3_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[7]_INST_0_i_10_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 24 pins.
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[24]_i_1_psdsp_n_5.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[24]_i_1_psdsp_5
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[2]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal[2]_i_5_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal[2]_i_11_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 24 pins.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[5]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal[5]_i_4_n_0_repN. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/opcode[5]_i_1_n_0.  Re-placed instance tangerineSOCInst/nekoRvInst/opcode[5]_i_1
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val[1]_i_1_psdsp_n_4. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val_reg[1]_i_2_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val[1]_i_7_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 23 pins.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_76_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_197_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[11]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[11]_i_1_comp.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[11]_i_6_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.080 | TNS=-869.287 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_9_psdsp_n_1.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0_i_9_psdsp_1
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_9_psdsp_n_1. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.079 | TNS=-869.096 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_9_psdsp_n_5.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0_i_9_psdsp_5
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_9_psdsp_n_5. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.076 | TNS=-868.927 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[18]_i_1_psdsp_n.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[18]_i_1_psdsp
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[18]_i_1_psdsp_n. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.074 | TNS=-868.579 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_9_psdsp_n_3.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0_i_9_psdsp_3
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_9_psdsp_n_3. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.073 | TNS=-868.643 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[22]_i_1_psdsp_n.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[22]_i_1_psdsp
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[22]_i_1_psdsp_n. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.072 | TNS=-867.996 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[25]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[25]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[25]_i_1_comp.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[25]_i_7_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.064 | TNS=-867.675 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[13]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[13]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[13]_i_1_comp.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[13]_i_7_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.052 | TNS=-867.378 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_9_psdsp_n_4.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0_i_9_psdsp_4
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_9_psdsp_n_4. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.047 | TNS=-867.242 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[22]_i_1_psdsp_n_5.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[22]_i_1_psdsp_5
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[22]_i_1_psdsp_n_5. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.045 | TNS=-866.563 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/jtImm[15]_i_1_n_0. Optimizations did not improve timing on the net.
 INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[15]. Optimizations did not improve timing on the net.
 INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[15]_INST_0_i_4_n_0. Optimizations did not improve timing on the net.
 INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[15]_INST_0_i_11_n_0. Optimizations did not improve timing on the net.
 INFO: [Physopt 32-608] Optimized 1 net.  Swapped 24 pins.
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[29]_i_1_psdsp_n_3.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[29]_i_1_psdsp_3
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val[26]_i_1_psdsp_n_3. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/jtImm[4]_i_1_n_0.  Re-placed instance tangerineSOCInst/nekoRvInst/jtImm[4]_i_1_comp
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[29]_i_1_psdsp_n_4.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[29]_i_1_psdsp_4
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val[24]_i_1_psdsp_n. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val_reg[24]_i_4_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val[24]_i_11_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[15]_INST_0_i_26_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.044 | TNS=-848.410 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_11_psdsp_n_2.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0_i_11_psdsp_2
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_11_psdsp_n_2. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.041 | TNS=-848.006 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[9]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[9]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[9]_i_1_comp.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[9]_i_6_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.039 | TNS=-847.893 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[19]_i_1_psdsp_n.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[19]_i_1_psdsp
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[19]_i_1_psdsp_n. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.025 | TNS=-847.493 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[23]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[23]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[23]_i_1_comp.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[23]_i_4_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.022 | TNS=-847.125 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[18]_i_1_psdsp_n_4.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[18]_i_1_psdsp_4
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[18]_i_1_psdsp_n_4. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.021 | TNS=-847.037 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[6]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[6]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[6]_i_1_comp.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[6]_i_7_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.013 | TNS=-846.716 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[17]_i_1_psdsp_n.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[17]_i_1_psdsp
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[17]_i_1_psdsp_n. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.012 | TNS=-846.674 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs1Val[23].  Re-placed instance tangerineSOCInst/nekoRvInst/rs1Val_reg[23]
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs1Val[23]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.012 | TNS=-846.609 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[22]_i_1_psdsp_n_2.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[22]_i_1_psdsp_2
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[22]_i_1_psdsp_n_2. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.004 | TNS=-846.401 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[16]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[16]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[16]_i_1_comp.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[16]_i_5_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.002 | TNS=-846.163 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val[17]_i_1_psdsp_n_2. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val_reg[17]_i_2_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val[17]_i_7_n_0. Optimizations did not improve timing on the net.
 INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val[31]_i_14_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 18 pins.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[1]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal[1]_i_5_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/opcode[1]_i_1_n_0.  Re-placed instance tangerineSOCInst/nekoRvInst/opcode[1]_i_1
+INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rs2Val[31]_i_14_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rs2Val[31]_i_14_comp.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[21]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.989 | TNS=-840.360 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[17]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[17]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[17]_i_1_comp.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[17]_i_7_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.988 | TNS=-840.166 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[1]_i_1_psdsp_n_1.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[1]_i_1_psdsp_1
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[1]_i_1_psdsp_n_1. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.988 | TNS=-839.934 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[22].  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val_reg[22]
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[22]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.987 | TNS=-840.089 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[20]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[20]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[20]_i_1_comp.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[20]_i_5_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.980 | TNS=-839.909 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[2]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[2]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[2]_i_1_comp.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[2]_i_5_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.975 | TNS=-839.889 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[28]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[28]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[28]_i_1_comp.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[28]_i_7_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.969 | TNS=-839.607 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[30]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[30]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[30]_i_1_comp.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[30]_i_7_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.965 | TNS=-839.404 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[29]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[29]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[29]_i_1_comp.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[29]_i_7_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.963 | TNS=-838.667 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[12]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[12]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[12]_i_1_comp.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[12]_i_6_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.963 | TNS=-838.268 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[27]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[27]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[27]_i_1_comp.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[27]_i_7_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.963 | TNS=-837.956 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[25].  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val_reg[25]
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[25]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.960 | TNS=-837.776 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rdVal[2]_i_11_n_0.  Re-placed instance tangerineSOCInst/nekoRvInst/rdVal[2]_i_11
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[2]_i_11_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.960 | TNS=-837.635 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[24]_i_1_psdsp_n.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[24]_i_1_psdsp
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[24]_i_1_psdsp_n. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.959 | TNS=-837.200 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[1]_i_1_psdsp_n_5.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[1]_i_1_psdsp_5
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[1]_i_1_psdsp_n_5. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.953 | TNS=-837.103 |
 INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[3]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal[3]_i_4_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal[11]_i_17_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/funct7[2]_i_1_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/funct7[2]_i_2_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 6 pins.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[19]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-608] Optimized 1 net.  Swapped 15 pins.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[21]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[21]_INST_0_i_3_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[21]_INST_0_i_10_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[21]_INST_0_i_23_n_0. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/regs[0]_32[24]. Optimizations did not improve timing on the net.
-INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[152].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_0[5]. Optimizations did not improve timing on the net.
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.028 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Phase 4 Critical Path Optimization | Checksum: 211b56dc4
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rdVal[3]_i_4_n_0.  Re-placed instance tangerineSOCInst/nekoRvInst/rdVal[3]_i_4
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[3]_i_4_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.952 | TNS=-837.059 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[22]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[22]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[22]_i_1_comp.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[22]_i_7_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.950 | TNS=-836.743 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[8]_i_1_psdsp_n_3.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[8]_i_1_psdsp_3
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[8]_i_1_psdsp_n_3. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.950 | TNS=-836.653 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_14_psdsp_n.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0_i_14_psdsp
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_14_psdsp_n. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.945 | TNS=-836.379 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val[22]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net clk_wiz_0Inst/inst/clk100_clk_wiz_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val_reg[22]_i_3_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val[22]_i_9_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-608] Optimized 1 net.  Swapped 18 pins.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[31]_i_15_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.944 | TNS=-834.391 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val[8]_i_1_psdsp_n_1. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val_reg[8]_i_2_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val[8]_i_7_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-608] Optimized 1 net.  Swapped 19 pins.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/itImm[0]_i_1_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.943 | TNS=-830.805 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[21]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal[21]_i_6_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal[8]_i_5_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal[8]_i_15_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal[8]_i_27_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[23]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[23]_INST_0_i_3_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[23]_INST_0_i_10_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-608] Optimized 1 net.  Swapped 24 pins.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[23]_INST_0_i_24_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.940 | TNS=-830.506 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[21].  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val_reg[21]
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[21]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.933 | TNS=-830.185 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs1Val[23].  Re-placed instance tangerineSOCInst/nekoRvInst/rs1Val_reg[23]
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs1Val[23]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.932 | TNS=-830.139 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val[14]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val_reg[14]_i_3_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-608] Optimized 1 net.  Swapped 13 pins.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[14]_i_9_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.926 | TNS=-830.097 |
+INFO: [Physopt 32-608] Optimized 1 net.  Swapped 13 pins.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[14]_i_8_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.925 | TNS=-829.516 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_12_psdsp_n_1.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0_i_12_psdsp_1
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_12_psdsp_n_1. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.921 | TNS=-829.333 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[31]_i_1_psdsp_n_2.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[31]_i_1_psdsp_2
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[31]_i_1_psdsp_n_2. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.921 | TNS=-828.726 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_1_psdsp_n. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_18_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_87_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/jtImm[15]_i_1_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[15]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[15]_INST_0_i_4_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[15]_INST_0_i_11_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-608] Optimized 1 net.  Swapped 24 pins.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[15]_INST_0_i_25_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.917 | TNS=-828.247 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[31]_i_1_psdsp_n.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[31]_i_1_psdsp
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[31]_i_1_psdsp_n. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.917 | TNS=-827.684 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[15]_INST_0_i_12_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-608] Optimized 1 net.  Swapped 24 pins.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[15]_INST_0_i_27_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.917 | TNS=-826.851 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_9_psdsp_n_4.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0_i_9_psdsp_4
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_9_psdsp_n_4. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.916 | TNS=-826.839 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_9_psdsp_n_2. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_48_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-608] Optimized 1 net.  Swapped 23 pins.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_141_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.914 | TNS=-826.783 |
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.914 | TNS=-826.783 |
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.056 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Phase 3 Critical Path Optimization | Checksum: 1b5e049a3
 
-Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2635.551 ; gain = 0.000
-INFO: [Physopt 32-603] Post Physical Optimization Timing Summary | WNS=-1.779 | TNS=-736.983 |
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:08 . Memory (MB): peak = 2639.297 ; gain = 0.000
+
+Phase 4 Critical Path Optimization
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.914 | TNS=-826.783 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[21]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net clk_wiz_0Inst/inst/clk100_clk_wiz_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[21]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[21]_i_1_comp.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[21]_i_6_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.910 | TNS=-826.600 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[9]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rdVal[9]_i_6_n_0.  Re-placed instance tangerineSOCInst/nekoRvInst/rdVal[9]_i_6_comp_1
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[9]_i_6_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.910 | TNS=-826.486 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_1_psdsp_n. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_18_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_87_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/jtImm[15]_i_1_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-608] Optimized 1 net.  Swapped 6 pins.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[15]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.909 | TNS=-822.356 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[3]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[3]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[3]_i_1_comp.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[3]_i_4_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.908 | TNS=-821.984 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_9_psdsp_n_2. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_48_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-608] Optimized 1 net.  Swapped 23 pins.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_140_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.904 | TNS=-820.493 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[4]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[4]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[4]_i_1_comp.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[4]_i_6_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.903 | TNS=-820.156 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_12_psdsp_n_3.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0_i_12_psdsp_3
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_12_psdsp_n_3. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.897 | TNS=-820.016 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[0]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rdVal[0]_i_5_n_0.  Re-placed instance tangerineSOCInst/nekoRvInst/rdVal[0]_i_5
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[0]_i_5_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.897 | TNS=-819.901 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[31]_i_1_psdsp_n_5.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[31]_i_1_psdsp_5
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[31]_i_1_psdsp_n_5. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.896 | TNS=-819.332 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_12_psdsp_n_4.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0_i_12_psdsp_4
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_12_psdsp_n_4. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.894 | TNS=-819.071 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val[17]_i_1_psdsp_n_2. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val_reg[17]_i_2_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/jtImm[2]_i_1_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-608] Optimized 1 net.  Swapped 24 pins.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[22]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.888 | TNS=-808.641 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs1Val[18].  Re-placed instance tangerineSOCInst/nekoRvInst/rs1Val_reg[18]
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs1Val[18]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.887 | TNS=-808.283 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rdVal_reg_n_0_[24]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-710] Processed net tangerineSOCInst/nekoRvInst/rdVal[24]_i_1_n_0. Critical path length was reduced through logic transformation on cell tangerineSOCInst/nekoRvInst/rdVal[24]_i_1_comp.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rdVal[24]_i_7_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.882 | TNS=-808.067 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_5_psdsp_n_3.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0_i_5_psdsp_3
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_5_psdsp_n_3. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.882 | TNS=-807.897 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_8_psdsp_n_5.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0_i_8_psdsp_5
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_8_psdsp_n_5. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.878 | TNS=-807.781 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_12_psdsp_n.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0_i_12_psdsp
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_12_psdsp_n. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.875 | TNS=-807.763 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs1Val[20].  Re-placed instance tangerineSOCInst/nekoRvInst/rs1Val_reg[20]
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs1Val[20]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.874 | TNS=-807.892 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[15]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[15]_INST_0_i_1_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[15]_INST_0_i_6_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-608] Optimized 1 net.  Swapped 24 pins.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[15]_INST_0_i_16_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.868 | TNS=-807.108 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_7_psdsp_n_1.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0_i_7_psdsp_1
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_7_psdsp_n_1. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.867 | TNS=-806.878 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[15]_INST_0_i_2_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[15]_INST_0_i_8_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-608] Optimized 1 net.  Swapped 24 pins.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[15]_INST_0_i_19_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.867 | TNS=-806.003 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_12_psdsp_n_2.  Re-placed instance tangerineSOCInst/nekoRvInst/resultMuluu0_i_12_psdsp_2
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0_i_12_psdsp_n_2. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.864 | TNS=-805.850 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs1Val[17].  Re-placed instance tangerineSOCInst/nekoRvInst/rs1Val_reg[17]
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs1Val[17]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.864 | TNS=-805.643 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[0]_i_1_psdsp_n_1.  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val[0]_i_1_psdsp_1
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[0]_i_1_psdsp_n_1. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.863 | TNS=-805.601 |
+INFO: [Physopt 32-663] Processed net tangerineSOCInst/nekoRvInst/rs2Val[6].  Re-placed instance tangerineSOCInst/nekoRvInst/rs2Val_reg[6]
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[6]. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.862 | TNS=-805.168 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val[1]_i_1_psdsp_n_5. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net clk_wiz_0Inst/inst/clk100_clk_wiz_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/rs2Val_reg[1]_i_2_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-608] Optimized 1 net.  Swapped 24 pins.
+INFO: [Physopt 32-735] Processed net tangerineSOCInst/nekoRvInst/rs2Val[1]_i_7_n_0. Optimization improves timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.859 | TNS=-805.112 |
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_1_psdsp_n. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_18_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_87_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/jtImm[15]_i_1_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[15]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[15]_INST_0_i_4_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[15]_INST_0_i_11_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/douta[15]_INST_0_i_26_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/nekoRvInst/resultMuluu0__1_i_1_n_0. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-702] Processed net tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[71].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_0[7]. Optimizations did not improve timing on the net.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-1.859 | TNS=-805.112 |
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.028 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Phase 4 Critical Path Optimization | Checksum: 196d82ec1
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:11 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 2639.297 ; gain = 0.000
+INFO: [Physopt 32-603] Post Physical Optimization Timing Summary | WNS=-1.859 | TNS=-805.112 |
 
 Summary of Physical Synthesis Optimizations
 ============================================
@@ -1094,30 +976,30 @@ Summary of Physical Synthesis Optimizations
 |  Optimization   |  WNS Gain (ns)  |  TNS Gain (ns)  |  Added Cells  |  Removed Cells  |  Optimized Cells/Nets  |  Dont Touch  |  Iterations  |  Elapsed   |
 -------------------------------------------------------------------------------------------------------------------------------------------------------------
 |  DSP Register   |          0.000  |          0.000  |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
-|  Critical Path  |          0.638  |        189.272  |            0  |              0  |                   132  |           0  |           2  |  00:00:10  |
-|  Total          |          0.638  |        189.272  |            0  |              0  |                   132  |           0  |           3  |  00:00:10  |
+|  Critical Path  |          0.406  |         81.665  |            0  |              0  |                    87  |           0  |           2  |  00:00:09  |
+|  Total          |          0.406  |         81.665  |            0  |              0  |                    87  |           0  |           3  |  00:00:09  |
 -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Ending Physical Synthesis Task | Checksum: 25b65c0bd
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Ending Physical Synthesis Task | Checksum: 1e08881ba
 
-Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:11 . Memory (MB): peak = 2639.297 ; gain = 0.000
 INFO: [Common 17-83] Releasing license: Implementation
-605 Infos, 3 Warnings, 0 Critical Warnings and 0 Errors encountered.
+487 Infos, 3 Warnings, 0 Critical Warnings and 0 Errors encountered.
 phys_opt_design completed successfully
-phys_opt_design: Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 2635.551 ; gain = 0.000
+phys_opt_design: Time (s): cpu = 00:00:09 ; elapsed = 00:00:13 . Memory (MB): peak = 2639.297 ; gain = 0.000
 INFO: [Timing 38-480] Writing timing data to binary archive.
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.016 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Wrote PlaceDB: Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.879 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Wrote PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.022 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Wrote PlaceDB: Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.920 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Wrote PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2639.297 ; gain = 0.000
 Writing XDEF routing.
 Writing XDEF routing logical nets.
 Writing XDEF routing special nets.
-Wrote RouteStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.021 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Wrote Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.016 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Wrote Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2635.551 ; gain = 0.000
-Write Physdb Complete: Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.931 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Wrote RouteStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.022 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Wrote Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.016 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Wrote Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2639.297 ; gain = 0.000
+Write Physdb Complete: Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.976 . Memory (MB): peak = 2639.297 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/impl_1/A7BoardTop_physopt.dcp' has been generated.
 Command: route_design
 Attempting to get a license for feature 'Implementation' and/or device 'xc7a200t'
@@ -1135,30 +1017,30 @@ Starting Routing Task
 INFO: [Route 35-254] Multithreading enabled for route_design using a maximum of 8 CPUs
 
 Phase 1 Build RT Design
-Checksum: PlaceDB: 8b560f4e ConstDB: 0 ShapeSum: f8931d8e RouteDB: 0
-Post Restoration Checksum: NetGraph: a62f2166 | NumContArr: f3baa0f1 | Constraints: c2a8fa9d | Timing: c2a8fa9d
-Phase 1 Build RT Design | Checksum: 31f3bb791
+Checksum: PlaceDB: d70aac2d ConstDB: 0 ShapeSum: f8931d8e RouteDB: 0
+Post Restoration Checksum: NetGraph: 791fcd74 | NumContArr: 86deebf2 | Constraints: c2a8fa9d | Timing: c2a8fa9d
+Phase 1 Build RT Design | Checksum: 28550aea0
 
-Time (s): cpu = 00:01:00 ; elapsed = 00:00:57 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:59 ; elapsed = 00:01:00 . Memory (MB): peak = 2655.223 ; gain = 15.926
 
 Phase 2 Router Initialization
 
 Phase 2.1 Fix Topology Constraints
-Phase 2.1 Fix Topology Constraints | Checksum: 31f3bb791
+Phase 2.1 Fix Topology Constraints | Checksum: 28550aea0
 
-Time (s): cpu = 00:01:00 ; elapsed = 00:00:57 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:59 ; elapsed = 00:01:00 . Memory (MB): peak = 2655.223 ; gain = 15.926
 
 Phase 2.2 Pre Route Cleanup
-Phase 2.2 Pre Route Cleanup | Checksum: 31f3bb791
+Phase 2.2 Pre Route Cleanup | Checksum: 28550aea0
 
-Time (s): cpu = 00:01:00 ; elapsed = 00:00:57 . Memory (MB): peak = 2635.551 ; gain = 0.000
+Time (s): cpu = 00:00:59 ; elapsed = 00:01:00 . Memory (MB): peak = 2655.223 ; gain = 15.926
  Number of Nodes with overlaps = 0
 
 Phase 2.3 Update Timing
-Phase 2.3 Update Timing | Checksum: 19bbd9d74
+Phase 2.3 Update Timing | Checksum: 25d8bd06e
 
-Time (s): cpu = 00:01:06 ; elapsed = 00:01:04 . Memory (MB): peak = 2749.250 ; gain = 113.699
-INFO: [Route 35-416] Intermediate Timing Summary | WNS=-1.768 | TNS=-669.928| WHS=-0.597 | THS=-86.167|
+Time (s): cpu = 00:01:05 ; elapsed = 00:01:07 . Memory (MB): peak = 2771.551 ; gain = 132.254
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=-1.845 | TNS=-739.735| WHS=-0.559 | THS=-93.508|
 
 
 Router Utilization Summary
@@ -1167,31 +1049,31 @@ Router Utilization Summary
   Routable Net Status*
   *Does not include unroutable nets such as driverless and loadless.
   Run report_route_status for detailed report.
-  Number of Failed Nets               = 11067
+  Number of Failed Nets               = 11074
     (Failed Nets is the sum of unrouted and partially routed nets)
-  Number of Unrouted Nets             = 11066
+  Number of Unrouted Nets             = 11073
   Number of Partially Routed Nets     = 1
   Number of Node Overlaps             = 0
 
-Phase 2 Router Initialization | Checksum: 1dcd519bf
+Phase 2 Router Initialization | Checksum: 17b99006a
 
-Time (s): cpu = 00:01:08 ; elapsed = 00:01:05 . Memory (MB): peak = 2784.422 ; gain = 148.871
+Time (s): cpu = 00:01:06 ; elapsed = 00:01:08 . Memory (MB): peak = 2805.645 ; gain = 166.348
 
 Phase 3 Initial Routing
 
 Phase 3.1 Global Routing
-Phase 3.1 Global Routing | Checksum: 1dcd519bf
+Phase 3.1 Global Routing | Checksum: 17b99006a
 
-Time (s): cpu = 00:01:08 ; elapsed = 00:01:05 . Memory (MB): peak = 2784.422 ; gain = 148.871
+Time (s): cpu = 00:01:06 ; elapsed = 00:01:08 . Memory (MB): peak = 2805.645 ; gain = 166.348
 
 Phase 3.2 Initial Net Routing
-Phase 3.2 Initial Net Routing | Checksum: 2d49a526a
+Phase 3.2 Initial Net Routing | Checksum: 28ea5db07
 
-Time (s): cpu = 00:01:14 ; elapsed = 00:01:07 . Memory (MB): peak = 2810.191 ; gain = 174.641
-Phase 3 Initial Routing | Checksum: 2d49a526a
+Time (s): cpu = 00:01:13 ; elapsed = 00:01:11 . Memory (MB): peak = 2826.352 ; gain = 187.055
+Phase 3 Initial Routing | Checksum: 28ea5db07
 
-Time (s): cpu = 00:01:14 ; elapsed = 00:01:07 . Memory (MB): peak = 2810.191 ; gain = 174.641
-INFO: [Route 35-580] Design has 32 pins with tight setup and hold constraints.
+Time (s): cpu = 00:01:13 ; elapsed = 00:01:11 . Memory (MB): peak = 2826.352 ; gain = 187.055
+INFO: [Route 35-580] Design has 34 pins with tight setup and hold constraints.
 
 The top 5 pins with tight setup and hold constraints:
 
@@ -1200,8 +1082,8 @@ The top 5 pins with tight setup and hold constraints:
 +====================+===================+=================================================================+
 | clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardSyncState_reg_inv/D |
 | clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardWrEn_reg/D          |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[13]/D    |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[5]/D     |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[7]/D     |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[12]/D    |
 | clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardDataIn_reg[14]/D    |
 +--------------------+-------------------+-----------------------------------------------------------------+
 
@@ -1211,114 +1093,98 @@ File with complete list of pins: tight_setup_hold_pins.txt
 Phase 4 Rip-up And Reroute
 
 Phase 4.1 Global Iteration 0
- Number of Nodes with overlaps = 2379
- Number of Nodes with overlaps = 698
- Number of Nodes with overlaps = 208
- Number of Nodes with overlaps = 103
- Number of Nodes with overlaps = 38
- Number of Nodes with overlaps = 31
- Number of Nodes with overlaps = 7
- Number of Nodes with overlaps = 8
- Number of Nodes with overlaps = 2
+ Number of Nodes with overlaps = 2332
+ Number of Nodes with overlaps = 703
+ Number of Nodes with overlaps = 266
+ Number of Nodes with overlaps = 156
+ Number of Nodes with overlaps = 52
+ Number of Nodes with overlaps = 26
+ Number of Nodes with overlaps = 10
  Number of Nodes with overlaps = 6
- Number of Nodes with overlaps = 9
+ Number of Nodes with overlaps = 15
+ Number of Nodes with overlaps = 3
+ Number of Nodes with overlaps = 3
+ Number of Nodes with overlaps = 1
+ Number of Nodes with overlaps = 1
  Number of Nodes with overlaps = 0
-INFO: [Route 35-416] Intermediate Timing Summary | WNS=-2.213 | TNS=-1022.913| WHS=N/A    | THS=N/A    |
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=-2.406 | TNS=-1081.982| WHS=N/A    | THS=N/A    |
 
-Phase 4.1 Global Iteration 0 | Checksum: 1dd5b9933
+Phase 4.1 Global Iteration 0 | Checksum: 2a35539e0
 
-Time (s): cpu = 00:02:01 ; elapsed = 00:01:58 . Memory (MB): peak = 2810.191 ; gain = 174.641
+Time (s): cpu = 00:02:19 ; elapsed = 00:02:26 . Memory (MB): peak = 2826.352 ; gain = 187.055
 
 Phase 4.2 Global Iteration 1
- Number of Nodes with overlaps = 665
- Number of Nodes with overlaps = 205
- Number of Nodes with overlaps = 63
- Number of Nodes with overlaps = 36
- Number of Nodes with overlaps = 17
- Number of Nodes with overlaps = 6
- Number of Nodes with overlaps = 3
- Number of Nodes with overlaps = 1
- Number of Nodes with overlaps = 3
+ Number of Nodes with overlaps = 565
+ Number of Nodes with overlaps = 155
+ Number of Nodes with overlaps = 73
+ Number of Nodes with overlaps = 22
+ Number of Nodes with overlaps = 15
+ Number of Nodes with overlaps = 8
  Number of Nodes with overlaps = 2
  Number of Nodes with overlaps = 1
+ Number of Nodes with overlaps = 1
  Number of Nodes with overlaps = 0
-INFO: [Route 35-416] Intermediate Timing Summary | WNS=-1.982 | TNS=-896.586| WHS=N/A    | THS=N/A    |
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=-2.288 | TNS=-1046.761| WHS=N/A    | THS=N/A    |
 
-Phase 4.2 Global Iteration 1 | Checksum: 2c3383c08
+Phase 4.2 Global Iteration 1 | Checksum: 356f7fb17
 
-Time (s): cpu = 00:02:41 ; elapsed = 00:02:34 . Memory (MB): peak = 2811.234 ; gain = 175.684
+Time (s): cpu = 00:02:56 ; elapsed = 00:03:01 . Memory (MB): peak = 2826.352 ; gain = 187.055
 
 Phase 4.3 Global Iteration 2
- Number of Nodes with overlaps = 395
- Number of Nodes with overlaps = 209
- Number of Nodes with overlaps = 44
- Number of Nodes with overlaps = 17
- Number of Nodes with overlaps = 17
-Phase 4.3 Global Iteration 2 | Checksum: 31633a322
+ Number of Nodes with overlaps = 431
+ Number of Nodes with overlaps = 160
+Phase 4.3 Global Iteration 2 | Checksum: 271826323
 
-Time (s): cpu = 00:03:06 ; elapsed = 00:02:59 . Memory (MB): peak = 2811.234 ; gain = 175.684
-Phase 4 Rip-up And Reroute | Checksum: 31633a322
+Time (s): cpu = 00:03:12 ; elapsed = 00:03:12 . Memory (MB): peak = 2826.352 ; gain = 187.055
+Phase 4 Rip-up And Reroute | Checksum: 271826323
 
-Time (s): cpu = 00:03:06 ; elapsed = 00:02:59 . Memory (MB): peak = 2811.234 ; gain = 175.684
+Time (s): cpu = 00:03:12 ; elapsed = 00:03:12 . Memory (MB): peak = 2826.352 ; gain = 187.055
 
 Phase 5 Delay and Skew Optimization
 
 Phase 5.1 Delay CleanUp
 
 Phase 5.1.1 Update Timing
-Phase 5.1.1 Update Timing | Checksum: 2baaef7c7
+Phase 5.1.1 Update Timing | Checksum: 29a121b4c
 
-Time (s): cpu = 00:03:07 ; elapsed = 00:03:00 . Memory (MB): peak = 2811.234 ; gain = 175.684
-INFO: [Route 35-416] Intermediate Timing Summary | WNS=-1.982 | TNS=-891.302| WHS=N/A    | THS=N/A    |
+Time (s): cpu = 00:03:12 ; elapsed = 00:03:13 . Memory (MB): peak = 2826.352 ; gain = 187.055
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=-2.281 | TNS=-1035.334| WHS=N/A    | THS=N/A    |
 
  Number of Nodes with overlaps = 0
-Phase 5.1 Delay CleanUp | Checksum: 16aece147
+Phase 5.1 Delay CleanUp | Checksum: 1ebd2993a
 
-Time (s): cpu = 00:03:20 ; elapsed = 00:03:03 . Memory (MB): peak = 3094.691 ; gain = 459.141
+Time (s): cpu = 00:03:20 ; elapsed = 00:03:15 . Memory (MB): peak = 2947.332 ; gain = 308.035
 
 Phase 5.2 Clock Skew Optimization
-Phase 5.2 Clock Skew Optimization | Checksum: 16aece147
+Phase 5.2 Clock Skew Optimization | Checksum: 1ebd2993a
 
-Time (s): cpu = 00:03:20 ; elapsed = 00:03:03 . Memory (MB): peak = 3094.691 ; gain = 459.141
-Phase 5 Delay and Skew Optimization | Checksum: 16aece147
+Time (s): cpu = 00:03:20 ; elapsed = 00:03:15 . Memory (MB): peak = 2947.332 ; gain = 308.035
+Phase 5 Delay and Skew Optimization | Checksum: 1ebd2993a
 
-Time (s): cpu = 00:03:20 ; elapsed = 00:03:03 . Memory (MB): peak = 3094.691 ; gain = 459.141
+Time (s): cpu = 00:03:20 ; elapsed = 00:03:15 . Memory (MB): peak = 2947.332 ; gain = 308.035
 
 Phase 6 Post Hold Fix
 
 Phase 6.1 Hold Fix Iter
 
 Phase 6.1.1 Update Timing
-Phase 6.1.1 Update Timing | Checksum: 204f370cb
+Phase 6.1.1 Update Timing | Checksum: 1ce598bc2
 
-Time (s): cpu = 00:03:21 ; elapsed = 00:03:04 . Memory (MB): peak = 3094.691 ; gain = 459.141
-INFO: [Route 35-416] Intermediate Timing Summary | WNS=-1.982 | TNS=-859.532| WHS=-0.080 | THS=-0.080 |
+Time (s): cpu = 00:03:20 ; elapsed = 00:03:16 . Memory (MB): peak = 2947.332 ; gain = 308.035
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=-2.258 | TNS=-975.502| WHS=0.040  | THS=0.000  |
 
+Phase 6.1 Hold Fix Iter | Checksum: 274dab0a7
 
-Phase 6.1.2 Lut RouteThru Assignment for hold
-Phase 6.1.2 Lut RouteThru Assignment for hold | Checksum: 2b0a37e1e
+Time (s): cpu = 00:03:20 ; elapsed = 00:03:16 . Memory (MB): peak = 2947.332 ; gain = 308.035
+Phase 6 Post Hold Fix | Checksum: 274dab0a7
 
-Time (s): cpu = 00:03:54 ; elapsed = 00:03:32 . Memory (MB): peak = 3142.926 ; gain = 507.375
-Phase 6.1 Hold Fix Iter | Checksum: 2b0a37e1e
-
-Time (s): cpu = 00:03:54 ; elapsed = 00:03:32 . Memory (MB): peak = 3142.926 ; gain = 507.375
-
-Phase 6.2 Non Free Resource Hold Fix Iter
-Phase 6.2 Non Free Resource Hold Fix Iter | Checksum: 2de674a0b
-
-Time (s): cpu = 00:03:54 ; elapsed = 00:03:32 . Memory (MB): peak = 3142.926 ; gain = 507.375
-WARNING: [Route 35-468] The router encountered 1 pins that are both setup-critical and hold-critical and tried to fix hold violations at the expense of setup slack. Such pins are:
-	tangerineSOCInst/usbHostInst/fifoHidKeyboardWrEn_reg/D
-
-Phase 6 Post Hold Fix | Checksum: 2de674a0b
-
-Time (s): cpu = 00:03:54 ; elapsed = 00:03:32 . Memory (MB): peak = 3142.926 ; gain = 507.375
+Time (s): cpu = 00:03:20 ; elapsed = 00:03:16 . Memory (MB): peak = 2947.332 ; gain = 308.035
 
 Phase 7 Route finalize
 
 Router Utilization Summary
-  Global Vertical Routing Utilization    = 2.8301 %
-  Global Horizontal Routing Utilization  = 3.15102 %
+  Global Vertical Routing Utilization    = 2.61482 %
+  Global Horizontal Routing Utilization  = 3.01514 %
   Routable Net Status*
   *Does not include unroutable nets such as driverless and loadless.
   Run report_route_status for detailed report.
@@ -1332,12 +1198,15 @@ Router Utilization Summary
 --GLOBAL Congestion:
 Utilization threshold used for congestion level computation: 0.85
 Congestion Report
-North Dir 1x1 Area, Max Cong = 86.4865%, Congestion bounded by tiles (Lower Left Tile -> Upper Right Tile):
-   INT_L_X30Y129 -> INT_L_X30Y129
-South Dir 1x1 Area, Max Cong = 74.7748%, No Congested Regions.
-East Dir 1x1 Area, Max Cong = 80.8824%, No Congested Regions.
-West Dir 1x1 Area, Max Cong = 88.2353%, Congestion bounded by tiles (Lower Left Tile -> Upper Right Tile):
-   INT_L_X36Y129 -> INT_L_X36Y129
+North Dir 1x1 Area, Max Cong = 72.973%, No Congested Regions.
+South Dir 1x1 Area, Max Cong = 80.1802%, No Congested Regions.
+East Dir 1x1 Area, Max Cong = 83.8235%, No Congested Regions.
+West Dir 1x1 Area, Max Cong = 95.5882%, Congestion bounded by tiles (Lower Left Tile -> Upper Right Tile):
+   INT_R_X49Y118 -> INT_R_X49Y118
+   INT_L_X52Y117 -> INT_L_X52Y117
+   INT_L_X48Y116 -> INT_L_X48Y116
+   INT_L_X52Y115 -> INT_L_X52Y115
+   INT_L_X52Y114 -> INT_L_X52Y114
 
 ------------------------------
 Reporting congestion hotspots
@@ -1345,7 +1214,7 @@ Reporting congestion hotspots
 Direction: North
 ----------------
 Congested clusters found at Level 0
-Effective congestion level: 0 Aspect Ratio: 1 Sparse Ratio: 1
+Effective congestion level: 0 Aspect Ratio: 1 Sparse Ratio: 0
 Direction: South
 ----------------
 Congested clusters found at Level 0
@@ -1357,52 +1226,47 @@ Effective congestion level: 0 Aspect Ratio: 1 Sparse Ratio: 0
 Direction: West
 ----------------
 Congested clusters found at Level 0
-Effective congestion level: 0 Aspect Ratio: 1 Sparse Ratio: 1
+Effective congestion level: 1 Aspect Ratio: 0.666667 Sparse Ratio: 1
 
-Phase 7 Route finalize | Checksum: 2de674a0b
+Phase 7 Route finalize | Checksum: 274dab0a7
 
-Time (s): cpu = 00:03:54 ; elapsed = 00:03:32 . Memory (MB): peak = 3142.926 ; gain = 507.375
+Time (s): cpu = 00:03:20 ; elapsed = 00:03:16 . Memory (MB): peak = 2947.332 ; gain = 308.035
 
 Phase 8 Verifying routed nets
 
  Verification completed successfully
-Phase 8 Verifying routed nets | Checksum: 2de674a0b
+Phase 8 Verifying routed nets | Checksum: 274dab0a7
 
-Time (s): cpu = 00:03:54 ; elapsed = 00:03:32 . Memory (MB): peak = 3142.926 ; gain = 507.375
+Time (s): cpu = 00:03:20 ; elapsed = 00:03:16 . Memory (MB): peak = 2947.332 ; gain = 308.035
 
 Phase 9 Depositing Routes
-Phase 9 Depositing Routes | Checksum: 269dcee49
+Phase 9 Depositing Routes | Checksum: 2483c5cc4
 
-Time (s): cpu = 00:03:55 ; elapsed = 00:03:32 . Memory (MB): peak = 3142.926 ; gain = 507.375
+Time (s): cpu = 00:03:21 ; elapsed = 00:03:17 . Memory (MB): peak = 2947.332 ; gain = 308.035
 
 Phase 10 Post Router Timing
-
-Phase 10.1 Update Timing
-Phase 10.1 Update Timing | Checksum: 1b1bd767d
-
-Time (s): cpu = 00:03:56 ; elapsed = 00:03:33 . Memory (MB): peak = 3142.926 ; gain = 507.375
-INFO: [Route 35-57] Estimated Timing Summary | WNS=-1.982 | TNS=-860.041| WHS=0.053  | THS=0.000  |
+INFO: [Route 35-57] Estimated Timing Summary | WNS=-2.258 | TNS=-975.502| WHS=0.040  | THS=0.000  |
 
 WARNING: [Route 35-328] Router estimated timing not met.
 Resolution: For a complete and accurate timing signoff, report_timing_summary must be run after route_design. Alternatively, route_design can be run with the -timing_summary option to enable a complete timing signoff at the end of route_design.
-Phase 10 Post Router Timing | Checksum: 1b1bd767d
+Phase 10 Post Router Timing | Checksum: 2483c5cc4
 
-Time (s): cpu = 00:03:56 ; elapsed = 00:03:33 . Memory (MB): peak = 3142.926 ; gain = 507.375
+Time (s): cpu = 00:03:21 ; elapsed = 00:03:18 . Memory (MB): peak = 2947.332 ; gain = 308.035
 INFO: [Route 35-16] Router Completed Successfully
 
 Phase 11 Post-Route Event Processing
-Phase 11 Post-Route Event Processing | Checksum: 1f18552b9
+Phase 11 Post-Route Event Processing | Checksum: 226c45004
 
-Time (s): cpu = 00:03:56 ; elapsed = 00:03:34 . Memory (MB): peak = 3142.926 ; gain = 507.375
-Ending Routing Task | Checksum: 1f18552b9
+Time (s): cpu = 00:03:22 ; elapsed = 00:03:18 . Memory (MB): peak = 2947.332 ; gain = 308.035
+Ending Routing Task | Checksum: 226c45004
 
-Time (s): cpu = 00:03:57 ; elapsed = 00:03:34 . Memory (MB): peak = 3142.926 ; gain = 507.375
+Time (s): cpu = 00:03:22 ; elapsed = 00:03:19 . Memory (MB): peak = 2947.332 ; gain = 308.035
 
 Routing Is Done.
 INFO: [Common 17-83] Releasing license: Implementation
-624 Infos, 5 Warnings, 0 Critical Warnings and 0 Errors encountered.
+506 Infos, 4 Warnings, 0 Critical Warnings and 0 Errors encountered.
 route_design completed successfully
-route_design: Time (s): cpu = 00:04:00 ; elapsed = 00:03:36 . Memory (MB): peak = 3142.926 ; gain = 507.375
+route_design: Time (s): cpu = 00:03:24 ; elapsed = 00:03:20 . Memory (MB): peak = 2947.332 ; gain = 308.035
 INFO: [runtcl-4] Executing : report_drc -file A7BoardTop_drc_routed.rpt -pb A7BoardTop_drc_routed.pb -rpx A7BoardTop_drc_routed.rpx
 Command: report_drc -file A7BoardTop_drc_routed.rpt -pb A7BoardTop_drc_routed.pb -rpx A7BoardTop_drc_routed.rpx
 INFO: [IP_Flow 19-1839] IP Catalog is up to date.
@@ -1415,14 +1279,14 @@ INFO: [Timing 38-35] Done setting XDC timing constraints.
 INFO: [DRC 23-133] Running Methodology with 2 threads
 INFO: [Vivado_Tcl 2-1520] The results of Report Methodology are in file C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/impl_1/A7BoardTop_methodology_drc_routed.rpt.
 report_methodology completed successfully
-report_methodology: Time (s): cpu = 00:00:07 ; elapsed = 00:00:05 . Memory (MB): peak = 3142.926 ; gain = 0.000
+report_methodology: Time (s): cpu = 00:00:08 ; elapsed = 00:00:06 . Memory (MB): peak = 2947.332 ; gain = 0.000
 INFO: [runtcl-4] Executing : report_power -file A7BoardTop_power_routed.rpt -pb A7BoardTop_power_summary_routed.pb -rpx A7BoardTop_power_routed.rpx
 Command: report_power -file A7BoardTop_power_routed.rpt -pb A7BoardTop_power_summary_routed.pb -rpx A7BoardTop_power_routed.rpx
 INFO: [Timing 38-35] Done setting XDC timing constraints.
 Running Vector-less Activity Propagation...
 
 Finished Running Vector-less Activity Propagation
-634 Infos, 5 Warnings, 0 Critical Warnings and 0 Errors encountered.
+516 Infos, 4 Warnings, 0 Critical Warnings and 0 Errors encountered.
 report_power completed successfully
 INFO: [runtcl-4] Executing : report_route_status -file A7BoardTop_route_status.rpt -pb A7BoardTop_route_status.pb
 INFO: [runtcl-4] Executing : report_timing_summary -max_paths 10 -report_unconstrained -file A7BoardTop_timing_summary_routed.rpt -pb A7BoardTop_timing_summary_routed.pb -rpx A7BoardTop_timing_summary_routed.rpx -warn_on_violation 
@@ -1436,16 +1300,16 @@ INFO: [runtcl-4] Executing : report_bus_skew -warn_on_violation -file A7BoardTop
 INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
 INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
 INFO: [Timing 38-480] Writing timing data to binary archive.
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.023 . Memory (MB): peak = 3142.926 ; gain = 0.000
-Wrote PlaceDB: Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.939 . Memory (MB): peak = 3142.926 ; gain = 0.000
-Wrote PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3142.926 ; gain = 0.000
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.016 . Memory (MB): peak = 2947.332 ; gain = 0.000
+Wrote PlaceDB: Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.980 . Memory (MB): peak = 2947.332 ; gain = 0.000
+Wrote PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2947.332 ; gain = 0.000
 Writing XDEF routing.
 Writing XDEF routing logical nets.
 Writing XDEF routing special nets.
-Wrote RouteStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.193 . Memory (MB): peak = 3142.926 ; gain = 0.000
-Wrote Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.016 . Memory (MB): peak = 3142.926 ; gain = 0.000
-Wrote Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 3142.926 ; gain = 0.000
-Write Physdb Complete: Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 3142.926 ; gain = 0.000
+Wrote RouteStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.264 . Memory (MB): peak = 2947.332 ; gain = 0.000
+Wrote Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.018 . Memory (MB): peak = 2947.332 ; gain = 0.000
+Wrote Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 2947.332 ; gain = 0.000
+Write Physdb Complete: Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 2947.332 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/impl_1/A7BoardTop_routed.dcp' has been generated.
 Command: write_bitstream -force A7BoardTop.bit
 Attempting to get a license for feature 'Implementation' and/or device 'xc7a200t'
@@ -1566,8 +1430,8 @@ WARNING: [DRC DPOR-1] Asynchronous load check: DSP tangerineSOCInst/nekoRvInst/r
 WARNING: [DRC DPOR-1] Asynchronous load check: DSP tangerineSOCInst/nekoRvInst/resultMuluu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMuluu_reg[8]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
 WARNING: [DRC DPOR-1] Asynchronous load check: DSP tangerineSOCInst/nekoRvInst/resultMuluu0 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMuluu_reg[9]). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
 WARNING: [DRC DPOR-1] Asynchronous load check: DSP tangerineSOCInst/nekoRvInst/resultMuluu0__1 output is connected to registers with an asynchronous reset (tangerineSOCInst/nekoRvInst/resultMuluu_reg[16]__1). This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
-WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A2' of cell tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1 (pin tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1/I1) is not included in the LUT equation: 'O6=(A5)+((~A5)*(~A1)*A3)'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
-WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A4' of cell tangerineSOCInst/usbHostInst/keyboardFifoinst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1 (pin tangerineSOCInst/usbHostInst/keyboardFifoinst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1/I1) is not included in the LUT equation: 'O6=(A6)+((~A6)*(~A1)*A2)'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A4' of cell tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1 (pin tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1/I1) is not included in the LUT equation: 'O6=(A6)+((~A6)*(~A5)*A3)'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+WARNING: [DRC PDCN-1569] LUT equation term check: Used physical LUT pin 'A6' of cell tangerineSOCInst/usbHostInst/keyboardFifoinst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1 (pin tangerineSOCInst/usbHostInst/keyboardFifoinst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1/I1) is not included in the LUT equation: 'O6=(A3)+((~A3)*(~A2)*A4)'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
 WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram has an input control pin tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/WEA[0] (net: tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/wea[0]) which is driven by a register (tangerineSOCInst/nekoRvInst/be_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram has an input control pin tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/WEA[0] (net: tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/wea[0]) which is driven by a register (tangerineSOCInst/nekoRvInst/wr_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[100].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram has an input control pin tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[100].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/WEA[0] (net: tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[100].ram.r/prim_noinit.ram/wea[0]) which is driven by a register (tangerineSOCInst/nekoRvInst/be_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
@@ -1588,7 +1452,7 @@ WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 tangerineSOCIn
 WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[107].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram has an input control pin tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[107].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/WEA[0] (net: tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[107].ram.r/prim_noinit.ram/wea[0]) which is driven by a register (tangerineSOCInst/nekoRvInst/wr_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[108].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram has an input control pin tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[108].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/WEA[0] (net: tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[108].ram.r/prim_noinit.ram/wea[0]) which is driven by a register (tangerineSOCInst/nekoRvInst/be_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 WARNING: [DRC REQP-1839] RAMB36 async control check: The RAMB36E1 tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[108].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram has an input control pin tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[108].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/WEA[0] (net: tangerineSOCInst/fastRamInst/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[108].ram.r/prim_noinit.ram/wea[0]) which is driven by a register (tangerineSOCInst/nekoRvInst/wr_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
-WARNING: [DRC RTSTAT-10] No routable loads: 21 net(s) have no routable loads. The problem bus(es) and/or net(s) are tangerineSOCInst/usbHostInst/keyboardFifoinst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i, tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i, tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg[2:0], tangerineSOCInst/usbHostInst/keyboardFifoinst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg[2:0], tangerineSOCInst/usbHostInst/keyboardFifoinst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.wr_rst_reg[2:0], tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.wr_rst_reg[2:0], tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_afull_fb, tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_afull_i, tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i, tangerineSOCInst/usbHostInst/keyboardFifoinst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gras.rsts/ram_empty_i, tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i, tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/user_valid, and tangerineSOCInst/usbHostInst/keyboardFifoinst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/user_valid.
+WARNING: [DRC RTSTAT-10] No routable loads: 21 net(s) have no routable loads. The problem bus(es) and/or net(s) are tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i, tangerineSOCInst/usbHostInst/keyboardFifoinst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i, tangerineSOCInst/usbHostInst/keyboardFifoinst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg[2:0], tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg[2:0], tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.wr_rst_reg[2:0], tangerineSOCInst/usbHostInst/keyboardFifoinst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.wr_rst_reg[2:0], tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_afull_fb, tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_afull_i, tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i, tangerineSOCInst/usbHostInst/keyboardFifoinst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gras.rsts/ram_empty_i, tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_full_i, tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/user_valid, and tangerineSOCInst/usbHostInst/keyboardFifoinst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/user_valid.
 INFO: [DRC REQP-165] writefirst: Synchronous clocking is detected for BRAM (tangerineSOCInst/usbHostInst/keyboardFifoinst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_7SERIES.NO_BMM_INFO.SDP.WIDE_PRIM18.ram) in SDP mode with WRITE_FIRST write-mode. This is the preferred mode for best power characteristics, however it may exhibit address collisions if the same address appears on both read and write ports resulting in unknown or corrupted read data. It is suggested to confirm via simulation that an address collision never occurs and if so it is suggested to try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
 INFO: [Vivado 12-3199] DRC finished with 0 Errors, 136 Warnings, 1 Advisories
 INFO: [Vivado 12-3200] Please refer to the DRC report (report_drc) for more information.
@@ -1605,5 +1469,5 @@ INFO: [Project 1-1876] WebTalk data collection is mandatory when using a ULT dev
 INFO: [Common 17-83] Releasing license: Implementation
 15 Infos, 136 Warnings, 0 Critical Warnings and 0 Errors encountered.
 write_bitstream completed successfully
-write_bitstream: Time (s): cpu = 00:00:46 ; elapsed = 00:00:32 . Memory (MB): peak = 3227.176 ; gain = 84.250
-INFO: [Common 17-206] Exiting Vivado at Mon Sep 16 23:40:38 2024...
+write_bitstream: Time (s): cpu = 00:00:45 ; elapsed = 00:00:35 . Memory (MB): peak = 3238.363 ; gain = 291.031
+INFO: [Common 17-206] Exiting Vivado at Wed Sep 18 11:09:20 2024...

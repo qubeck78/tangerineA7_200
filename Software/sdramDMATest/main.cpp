@@ -148,9 +148,11 @@ ulong testSDRAM()
    sdram = ( ulong * ) 0x20000000;
 
 
-   length = 512 * 240 / 2;
+//   length = 512 * 240 / 2;
 //   length = 262144;
 //   length = 8192;
+
+   length = 1048576;
 
    print( ( char* ) "\nFill 0xffffffff: " );
 

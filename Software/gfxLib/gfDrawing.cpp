@@ -78,6 +78,38 @@ ulong gfPlotA( tgfBitmap *bmp, short x, short y, ushort color, uchar alpha )
 }
 
 
+ulong gfPlotA2C( tgfBitmap *bmp, short x, short y, ushort color1, ushort color2, uchar alpha )
+{
+   ushort  *fb;
+   ulong    r, g, b;
+
+   if( bmp == NULL ) return 1;
+   if( x < 0 ) return 1;
+   if( y < 0 ) return 1;
+   if( x >= bmp->width )   return 1;
+   if( y >= bmp->height )  return 1;
+
+   fb = (ushort *)bmp->buffer;
+
+
+   r = gfColorGetR( color2 ) * ( 255 - alpha );
+   g = gfColorGetG( color2 ) * ( 255 - alpha );
+   b = gfColorGetB( color2 ) * ( 255 - alpha );
+
+   r += gfColorGetR( color1 ) * alpha;
+   g += gfColorGetG( color1 ) * alpha;
+   b += gfColorGetB( color1 ) * alpha;
+
+   r = r >> 8;
+   g = g >> 8;
+   b = b >> 8;
+
+   fb[ x + ( bmp->rowWidth * y ) ] = gfColor( r, g, b );
+
+   return 0;
+
+}
+
 
 ulong gfLine( tgfBitmap *bmp, short x1, short y1, short x2, short y2, ushort color )
 {
@@ -235,10 +267,10 @@ ulong gfEllipse( tgfBitmap *bmp, short x1, short y1, short x2, short y2, ushort 
 ulong gfFillRect( tgfBitmap *bmp, short x1, short y1, short x2, short y2, ushort color )
 {
    short     x;
-   short  y;
-   ushort  *fb;
-   short  bw;
-   short  bh;
+   short     y;
+   ushort   *fb;
+   short     bw;
+   short     bh;
    
    if( !bmp ) return 1;
 
@@ -268,10 +300,8 @@ ulong gfFillRect( tgfBitmap *bmp, short x1, short y1, short x2, short y2, ushort
 
    
 
-   //#if defined ( _GFXLIB_RISCV_FATFS ) && defined ( _GFXLIB_HW_BLITTER_2D )
+   #if defined ( _GFXLIB_RISCV_FATFS ) && defined ( _GFXLIB_HW_BLITTER_2D )
    
-   #if 1
-
       //use blitter
       
       bw = x2 - x1 + 1;

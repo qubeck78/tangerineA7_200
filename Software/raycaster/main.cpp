@@ -15,13 +15,13 @@
 #include "../gfxLib/usbHID.h"
 #include "../gfxLib/ff.h" 
 
-extern	tgfTextOverlay	con;
+extern   tgfTextOverlay con;
 
-tgfBitmap 			 	screen;
-tgfBitmap 			 	screen2;
+tgfBitmap            screen;
+tgfBitmap            screen2;
 
-char					path[256];
-char 					lfnBuf[ 512 + 16];
+char              path[256];
+char              lfnBuf[ 512 + 16];
 
 
 int animLeds( int j );
@@ -151,106 +151,106 @@ int __attribute__ (( cdecl )) cmpspr(const void * a, const void * b) {
 
 
 int animLeds( int j )
-{	
-		switch( j % 2 )
-		{
-			case 0:
-				bsp->gpoPort |= 0x00f0;
-				bsp->gpoPort ^= 0x0010;
-			
-				break;
+{  
+      switch( j % 2 )
+      {
+         case 0:
+            bsp->gpoPort |= 0x00f0;
+            bsp->gpoPort ^= 0x0010;
+         
+            break;
 
-			case 1:
+         case 1:
 
-				bsp->gpoPort |= 0x00f0;
-				bsp->gpoPort ^= 0x0020;
-			
-				break;
+            bsp->gpoPort |= 0x00f0;
+            bsp->gpoPort ^= 0x0020;
+         
+            break;
 
-		}
-		
-	return 0;
+      }
+      
+   return 0;
 } 
 
 int init()
 {
-	int rv;
+   int rv;
 
-	rv = 0;
+   rv = 0;
 
-	bspInit();
+   bspInit();
 
-	setVideoMode( _VIDEOMODE_320_TEXT40_OVER_GFX );
-	
-	con.textAttributes = 0x0f;
+   setVideoMode( _VIDEOMODE_320_TEXT40_OVER_GFX );
+   
+   con.textAttributes = 0x0f;
 
-	toCls( &con );
+   toCls( &con );
 
 
-	//alloc screen buffer
-	screen.width 			      = 320;
-  screen.rowWidth         = 512;
-	screen.height   	      = 240;
-		
-	screen.flags    	      = 0;
-	screen.transparentColor = 0;
-	screen.buffer           = osAlloc( screen.rowWidth * screen.height * 2, OS_ALLOC_MEMF_CHIP );	//osAlloc( 320 * 240 * 2 );
-	
-	if( screen.buffer == NULL )
-	{
-		toPrint( &con, ( char* )"\nCan't alloc screen\n" );
-		rv = 1;
-		return rv;
-	} 
-	
-	//display screen buffer
-	gfDisplayBitmap( &screen );
+   //alloc screen buffer
+   screen.width            = 320;
+   screen.rowWidth         = 512;
+   screen.height           = 240;
+      
+   screen.flags            = 0;
+   screen.transparentColor = 0;
+   screen.buffer           = osAlloc( screen.rowWidth * screen.height * 2, OS_ALLOC_MEMF_CHIP );   //osAlloc( 320 * 240 * 2 );
+   
+   if( screen.buffer == NULL )
+   {
+      toPrint( &con, ( char* )"\nCan't alloc screen\n" );
+      rv = 1;
+      return rv;
+   } 
+   
+   //display screen buffer
+   gfDisplayBitmap( &screen );
 
-	//clear screen buffer
-	gfFillRect( &screen, 0, 0, screen.width - 1, screen.height - 1 , gfColor( 0, 0, 0 ) ); 
-	
-	screen2.width 				= 320;
-  screen2.rowWidth      = 512;
-	screen2.height   			= 240;
-		
-	screen2.flags    			= 0;
-	screen2.transparentColor	= 0;
-	screen2.buffer           	= osAlloc( screen.rowWidth * screen.height * 2, OS_ALLOC_MEMF_CHIP );	
-	
-	if( screen2.buffer == NULL )
-	{
-		toPrint( &con, ( char* )"\nCan't alloc screen 2\n" );
-		rv = 1;
-		return rv;
-	} 
+   //clear screen buffer
+   gfFillRect( &screen, 0, 0, screen.width - 1, screen.height - 1 , gfColor( 0, 0, 0 ) ); 
+   
+   screen2.width              = 320;
+   screen2.rowWidth           = 512;
+   screen2.height             = 240;
+      
+   screen2.flags              = 0;
+   screen2.transparentColor   = 0;
+   screen2.buffer             = osAlloc( screen.rowWidth * screen.height * 2, OS_ALLOC_MEMF_CHIP );   
+   
+   if( screen2.buffer == NULL )
+   {
+      toPrint( &con, ( char* )"\nCan't alloc screen 2\n" );
+      rv = 1;
+      return rv;
+   } 
 
 
   //clear screen buffer
   gfFillRect( &screen2, 0, 0, screen2.width - 1, screen2.height - 1 , gfColor( 0, 0, 0 ) ); 
 
-	
-	if( rv )
-	{
-		toPrint( &con, ( char* )"USB HID init error\n" );
-		
-		rv = 1;
-		return rv;
+   
+   if( rv )
+   {
+      toPrint( &con, ( char* )"USB HID init error\n" );
+      
+      rv = 1;
+      return rv;
 
-	}
+   }
 
-	//init events queue
-	osUIEventsInit(); 
+   //init events queue
+   osUIEventsInit(); 
 
-	//init filesystem
-	rv = osFInit();
+   //init filesystem
+   rv = osFInit();
 
-	if( rv )
-	{
-		toPrint( &con, ( char* )"SD init error\n" );
-		
-		return rv;
+   if( rv )
+   {
+      toPrint( &con, ( char* )"SD init error\n" );
+      
+      return rv;
 
-	}
+   }
 
 //load textures
   gfLoadBitmapFS( &texture[0], (char*)"0:ray/eagle.gbm" );
@@ -277,7 +277,7 @@ int init()
   gfLoadBitmapFS( &texture[10], (char*)"0:ray/greenlight.gbm" );
 
 
-	return rv;
+   return rv;
 }
 
 
@@ -323,6 +323,9 @@ void raycaster( tgfBitmap *screen )
   float   step;
   float   texPos;
 
+  ulong   stepl;
+  ulong   texPosl;
+
   int     texX;
   int     texY;
 
@@ -339,49 +342,44 @@ void raycaster( tgfBitmap *screen )
   {
     //calculate ray position and direction
     cameraX = 2 * x / (float )(w) - 1; //x-coordinate in camera space
-    //cameraX = ffSub( ffDiv( 2 * x , (float )(w) ), 1.0f ); //x-coordinate in camera space
 
     rayDirX = dirX + planeX * cameraX;
-    //rayDirX = ffAdd( dirX, ffMul( planeX, cameraX ) );
     
     rayDirY = dirY + planeY * cameraX;
-    //rayDirY = ffAdd( dirY, ffMul( planeY, cameraX ) );
 
     //which box of the map we're in
     mapX = (int)(posX);
     mapY = (int)(posY);
 
     //length of ray from one x or y-side to next x or y-side
-    deltaDistX = (rayDirX == 0) ? 1e30 : fabs(1 / rayDirX);
-    deltaDistY = (rayDirY == 0) ? 1e30 : fabs(1 / rayDirY);
+    deltaDistX = (rayDirX == 0) ? 1e30 : fabs( 1 / rayDirX );
+    deltaDistY = (rayDirY == 0) ? 1e30 : fabs( 1 / rayDirY );
 
-    //deltaDistX = (rayDirX == 0) ? 1e30 : fabs( ffDiv( 1, rayDirX ) );
-    //deltaDistY = (rayDirY == 0) ? 1e30 : fabs( ffDiv( 1, rayDirY ) );
 
     hit = 0; //was there a wall hit?
     side = 0; //was a NS or a EW wall hit?
 
     //calculate step and initial sideDist
-    if(rayDirX < 0)
+    if( rayDirX < 0 )
     {
-      stepX = -1;
-      sideDistX = (posX - mapX) * deltaDistX;
+      stepX       = -1;
+      sideDistX   = ( posX - mapX ) * deltaDistX;
     }
     else
     {
-      stepX = 1;
-      sideDistX = (mapX + 1.0 - posX) * deltaDistX;
+      stepX       = 1;
+      sideDistX   = ( mapX + 1.0 - posX ) * deltaDistX;
     }
 
-    if(rayDirY < 0)
+    if( rayDirY < 0 )
     {
-      stepY = -1;
-      sideDistY = (posY - mapY) * deltaDistY;
+      stepY       = -1;
+      sideDistY   = ( posY - mapY ) * deltaDistY;
     }
     else
     {
-      stepY = 1;
-      sideDistY = (mapY + 1.0 - posY) * deltaDistY;
+      stepY       = 1;
+      sideDistY   = ( mapY + 1.0 - posY ) * deltaDistY;
     }
     
     //perform DDA
@@ -394,20 +392,14 @@ void raycaster( tgfBitmap *screen )
       {
         
         sideDistX += deltaDistX;
-        mapX += stepX;
+        mapX      += stepX;
         
-        //sideDistX = ffAdd( sideDistX, deltaDistX );
-        //mapX = ffAdd( mapX, stepX );
-
         side = 0;
       }
       else
       {
         sideDistY += deltaDistY;
-        mapY += stepY;
-
-        //sideDistY = ffAdd( sideDistY, deltaDistY );
-        //mapY = ffAdd( mapY, stepY );
+        mapY      += stepY;
 
         side = 1;
       }
@@ -435,14 +427,14 @@ void raycaster( tgfBitmap *screen )
     lineHeight = (int)(h / perpWallDist);
 
     //calculate lowest and highest pixel to fill in current stripe
-    drawStart = (int)( -lineHeight / 2 + h / 2 + pitch + (posZ / perpWallDist) );
+    drawStart = (int)( -lineHeight / 2 + h / 2 + pitch + ( posZ / perpWallDist ) );
 
     if( drawStart < 0 ) 
     {
       drawStart = 0;
     }
 
-    drawEnd = (int)( lineHeight / 2 + h / 2 + pitch + (posZ / perpWallDist) );
+    drawEnd = (int)( lineHeight / 2 + h / 2 + pitch + ( posZ / perpWallDist ) );
 
     if( drawEnd >= h ) 
     {
@@ -474,10 +466,10 @@ void raycaster( tgfBitmap *screen )
 
     //x coordinate on the texture
     
-    texX = (int)(wallX * (float )(texWidth));
+    texX = (int)( wallX * ( float )( texWidth ) );
     
-    if(side == 0 && rayDirX > 0) texX = texWidth - texX - 1;
-    if(side == 1 && rayDirY < 0) texX = texWidth - texX - 1;
+    if( side == 0 && rayDirX > 0 ) texX = texWidth - texX - 1;
+    if( side == 1 && rayDirY < 0 ) texX = texWidth - texX - 1;
 
     // TODO: an integer-only bresenham or DDA like algorithm could make the texture coordinate stepping faster
 
@@ -494,35 +486,41 @@ void raycaster( tgfBitmap *screen )
 
       //make color darker for y-sides:
 
-      texturePtr = &((ushort*)darkTexture[texNum].buffer)[texX];
+      texturePtr = &( (ushort*)darkTexture[texNum].buffer )[texX];
     }
     else
     {
 
-      texturePtr = &((ushort*)texture[texNum].buffer)[texX];
+      texturePtr = &( (ushort*)texture[texNum].buffer )[texX];
 
     }
+
+    texPosl = texPos * 65536;
+    stepl   = ( texHeight << 16 ) / lineHeight;
 
     for( y = drawStart; y < drawEnd; y++ )
     {
       
       // Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
-      texY = (int)texPos & 63;
-      color = texturePtr[ ( texY << 6 ) ];
+      //texY = (int)texPos & 63;
+      //color = texturePtr[ ( texY << 6 ) ];
 
-      gfPlotF( screen, x, y, color );
+      gfPlotF( screen, x, y, ( texturePtr[ ( texPosl >> 16 ) << 6 ] ) );
 
-      texPos += step;
+      texPosl += stepl;
+//      texPos += step;
 
     }
-
+    
     //SET THE ZBUFFER FOR THE SPRITE CASTING
     ZBuffer[x] = perpWallDist; //perpendicular distance is used
 
   }
 
+  
+
     //SPRITE CASTING
-  //sort sprites from far to close
+   //sort sprites from far to close
     for(int i = 0; i < numSprites; i++)
     {
       spriteOrder[i] = i;
@@ -617,141 +615,201 @@ void sortSprites(int* order, float * dist, int amount)
 
 int main()
 {
+   ulong keyStatus;
 
-  ulong step;
+   ulong step;
 
-	int 			i;
-	int 			rv;
-//timing for input and FPS counter
-  float frameTime = 4 / 60.0; //frametime is the time this frame has taken, in seconds
+   int         i;
+   int         rv;
 
-  //speed modifiers
-  float moveSpeed = frameTime * 3.0; //the constant value is in squares/order
-  float rotSpeed = frameTime * 2.0; //the constant value is in radians/order
-float oldDirX;
-float oldPlaneX;
+   //timing for input and FPS counter
+  
+   float frameTime = 4 / 60.0; //frametime is the time this frame has taken, in seconds
 
-	tosUIEvent		event;
+   //speed modifiers
+   float moveSpeed = frameTime * 3.0; //the constant value is in squares/order
+   float rotSpeed = frameTime * 2.0; //the constant value is in radians/order
+   float oldDirX;
+   float oldPlaneX;
 
-	volatile int 	j;
+   tosUIEvent     event;
 
-
-	posX = 22.0; posY = 11.5; //x and y start position
-  	dirX = -1.0; dirY = 0.0; //initial direction vector
-  	planeX = 0.0; planeY = 0.66; //the 2d raycaster version of camera plane
-  	pitch = 0; // looking up/down, expressed in screen pixels the horizon shifts
-  	posZ = 0; // vertical camera strafing up/down, for jumping/crouching. 0 means standard height. Expressed in screen pixels a wall at distance 1 shifts
-
-		
-	rv = init();
-
-  step = 0;
-	do
-	{
+   //volatile int    j;
 
 
-    if( step & 1 )
-    {
+   posX = 22.0; posY = 11.5; //x and y start position
+   dirX = -1.0; dirY = 0.0; //initial direction vector
+   planeX = 0.0; planeY = 0.66; //the 2d raycaster version of camera plane
+   pitch = 0; // looking up/down, expressed in screen pixels the horizon shifts
+   posZ = 0; // vertical camera strafing up/down, for jumping/crouching. 0 means standard height. Expressed in screen pixels a wall at distance 1 shifts
 
-      gfDisplayBitmap( &screen2 );
-
-      do{}while( ! bsp->videoVSync );
-
-      raycaster( &screen );
-
-    }
-    else
-    {
-
-      gfDisplayBitmap( &screen );
-
-      do{}while( ! bsp->videoVSync );
-
-      raycaster( &screen2 );
-
-    }
-
-    step++;
-
-	
-		if( !osGetUIEvent( &event ) )
-		{
-
-			if( event.type == OS_EVENT_TYPE_KEYBOARD_KEYPRESS )
-			{
-				switch( event.arg1 )
-				{
-					case _KEYCODE_UP:
-          
-            if( worldMap[ (int)( posX + dirX * moveSpeed * 5 ) ][ (int) (posY) ] == false ) 
-            {
-              posX += dirX * moveSpeed;
-            }
-
-            if( worldMap[ (int)( posX ) ][ (int)( posY + dirY * moveSpeed * 5 ) ] == false ) 
-            {
-              posY += dirY * moveSpeed;
-            }
-
-					break;
-
-					case _KEYCODE_DOWN:
       
-            if( worldMap[ (int)( posX - dirX * moveSpeed ) ][ (int)( posY ) ] == false ) 
+   rv = init();
+
+   step = 0;
+   
+   keyStatus = 0;
+
+   do
+   {
+
+
+      if( step & 1 )
+      {
+
+         gfDisplayBitmap( &screen2 );
+
+         do{}while( ! bsp->videoVSync );
+
+         raycaster( &screen );
+
+      }
+      else
+      {
+
+         gfDisplayBitmap( &screen );
+
+         do{}while( ! bsp->videoVSync );
+
+         raycaster( &screen2 );
+
+      }
+
+      step++;
+
+   
+      if( !osGetUIEvent( &event ) )
+      {
+
+         if( event.type == OS_EVENT_TYPE_KEYBOARD_KEYPRESS )
+         {
+            switch( event.arg1 )
             {
-              posX -= dirX * moveSpeed;
-            }
+               case _KEYCODE_UP:
+               
+                  keyStatus |= 1;
 
-            if( worldMap[ (int)( posX ) ][ (int)( posY - dirY * moveSpeed ) ] == false ) 
-            {
-              posY -= dirY * moveSpeed;
-            }
+               break;
 
-						break;
+               case _KEYCODE_DOWN:
 
-					case _KEYCODE_RIGHT:
+                  keyStatus |= 2;
 
-            //both camera direction and camera plane must be rotated
-            oldDirX = dirX;
-            dirX = dirX * cos(-rotSpeed) - dirY * sin(-rotSpeed);
-            dirY = oldDirX * sin(-rotSpeed) + dirY * cos(-rotSpeed);
-            oldPlaneX = planeX;
-            planeX = planeX * cos(-rotSpeed) - planeY * sin(-rotSpeed);
-            planeY = oldPlaneX * sin(-rotSpeed) + planeY * cos(-rotSpeed);
+                  break;
 
-      			break;
+               case _KEYCODE_RIGHT:
 
-					case _KEYCODE_LEFT:
+                  keyStatus |= 4;
 
-            //both camera direction and camera plane must be rotated
-            oldDirX = dirX;
-            dirX = dirX * cos(rotSpeed) - dirY * sin(rotSpeed);
-            dirY = oldDirX * sin(rotSpeed) + dirY * cos(rotSpeed);
-            oldPlaneX = planeX;
-            planeX = planeX * cos(rotSpeed) - planeY * sin(rotSpeed);
-            planeY = oldPlaneX * sin(rotSpeed) + planeY * cos(rotSpeed);   
-      			
-            break;
-			
-					case _KEYCODE_PGUP:
+               break;
 
-						break;
+               case _KEYCODE_LEFT:
 
-					case _KEYCODE_PGDOWN:
+                  keyStatus |= 8;
 
-						break;
+               break;
+         
+               case _KEYCODE_PGUP:
+
+                  break;
+
+               case _KEYCODE_PGDOWN:
+
+                  break;
 
           case _KEYCODE_PAUSE:
 
               reboot();
               break;
 
-				}
-			}
+            }
+         }else if( event.type == OS_EVENT_TYPE_KEYBOARD_KEYRELEASE )
+         {
+            switch( event.arg1 )
+            {
+               case _KEYCODE_UP:
+               
+                  keyStatus &= 1 ^ 0xffffffff;
 
+               break;
 
-		} 
-		
-	}while( 1 );
-	
+               case _KEYCODE_DOWN:
+
+                  keyStatus &= 2 ^ 0xffffffff;
+
+                  break;
+
+               case _KEYCODE_RIGHT:
+
+                  keyStatus &= 4 ^ 0xffffffff;
+
+               break;
+
+               case _KEYCODE_LEFT:
+
+                  keyStatus &= 8 ^ 0xffffffff;
+
+               break;
+            }
+         }  
+      }
+
+      
+      if( keyStatus & 1 )
+      {
+         //up
+
+         if( worldMap[ (int)( posX + dirX * moveSpeed * 5 ) ][ (int) (posY) ] == false ) 
+         {
+           posX += dirX * moveSpeed;
+         }
+
+         if( worldMap[ (int)( posX ) ][ (int)( posY + dirY * moveSpeed * 5 ) ] == false ) 
+         {
+           posY += dirY * moveSpeed;
+         }
+      }else if( keyStatus & 2 )
+      {
+         //down
+
+         if( worldMap[ (int)( posX - dirX * moveSpeed ) ][ (int)( posY ) ] == false ) 
+         {
+           posX -= dirX * moveSpeed;
+         }
+
+         if( worldMap[ (int)( posX ) ][ (int)( posY - dirY * moveSpeed ) ] == false ) 
+         {
+           posY -= dirY * moveSpeed;
+         }
+      }
+
+      if( keyStatus & 4 )
+      {
+         //right
+
+         //both camera direction and camera plane must be rotated
+         oldDirX = dirX;
+         dirX = dirX * cos(-rotSpeed) - dirY * sin(-rotSpeed);
+         dirY = oldDirX * sin(-rotSpeed) + dirY * cos(-rotSpeed);
+         oldPlaneX = planeX;
+         planeX = planeX * cos(-rotSpeed) - planeY * sin(-rotSpeed);
+         planeY = oldPlaneX * sin(-rotSpeed) + planeY * cos(-rotSpeed);
+
+      }else if( keyStatus & 8 )
+      {
+         //left
+
+         //both camera direction and camera plane must be rotated
+         oldDirX = dirX;
+         dirX = dirX * cos(rotSpeed) - dirY * sin(rotSpeed);
+         dirY = oldDirX * sin(rotSpeed) + dirY * cos(rotSpeed);
+         oldPlaneX = planeX;
+         planeX = planeX * cos(rotSpeed) - planeY * sin(rotSpeed);
+         planeY = oldPlaneX * sin(rotSpeed) + planeY * cos(rotSpeed);   
+
+      }
+
+      
+   }while( 1 );
+   
 } 

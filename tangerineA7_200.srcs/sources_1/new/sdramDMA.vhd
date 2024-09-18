@@ -18,7 +18,8 @@
 -- 
 ----------------------------------------------------------------------------------
 
---default sdram clock phase shift - 205
+--
+--previous sdram clock phase shift - 195
 
 
 library IEEE;

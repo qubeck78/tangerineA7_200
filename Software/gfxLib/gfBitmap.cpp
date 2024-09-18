@@ -278,6 +278,151 @@ ulong gfBlitBitmap( tgfBitmap *dest, tgfBitmap *src, short x, short y )
     return 0;
 }
 
+ulong gfBlitBitmapSrcRect( tgfBitmap *dest, tgfBitmap *src, short sx, short sy, short bw, short bh, short x, short y )
+{
+   short cx,cy;
+
+   ushort *fbSrc;
+   ushort *fbDest;
+   ushort srcColor;
+
+
+
+   if(( dest == NULL) || ( src == NULL ))
+   {
+      return 1;
+   }
+
+
+   /*bw = src->width;
+   bh = src->height;
+   sx = 0;
+   sy = 0;
+   */
+
+   //clip src bitmap if coordinates are negative
+   if( x < 0 )
+   {
+      sx += -x;
+      bw -= -x;
+      x = 0;
+   }
+
+   if( y < 0 )
+   {
+      sy += -y;
+      bh -= -y;
+      y = 0;
+   }
+
+
+   //clip src width if exceeds sise of dest bitmap
+   if( ( bw + x ) >= dest->width )
+   {
+      bw = dest->width - x;
+   }
+
+   if( bw <= 0 )
+   {
+      return 0;
+   }
+
+   if( ( bh + y ) >= dest->height )
+   {
+      bh = dest->height - y;
+   }
+
+   if( bh <= 0 )
+   {
+      return 0;
+   }
+
+   if( src->flags & GF_BITMAP_FLAG_TRANSPARENT )
+   {
+
+      #if defined ( _GFXLIB_RISCV_FATFS ) && defined ( _GFXLIB_HW_BLITTER_2D )
+         
+         //use blitter
+      
+         //use blitter
+      
+         blt->saAddress       = (ulong)src->buffer + ( sy * ( src->rowWidth << 1 ) + ( sx << 1 ) );
+         blt->saRowWidth      = src->rowWidth;
+         blt->saWidth         = bw;
+         blt->saHeight        = bh;
+
+         blt->daAddress       = (ulong)dest->buffer + ( y * ( dest->rowWidth << 1 ) + ( x << 1 ) );
+         blt->daRowWidth      = dest->rowWidth;
+         blt->daWidth         = bw;
+         blt->daHeight        = bh;
+
+         blt->input0          = src->transparentColor;
+         
+         blt->command         = 0x0201;
+         
+         while( ! ( blt->command & 1 ) );
+
+      #else
+         
+         for( cy = 0; cy < bh; cy++ )
+         {
+            fbSrc = &(( ushort* )src->buffer)[ ( ( cy + sy ) * src->rowWidth ) + sx ];
+            fbDest = &(( ushort* )dest->buffer)[ ( ( cy + y ) * dest->rowWidth ) + x ];
+
+            for( cx = 0; cx < bw; cx++ )
+            {
+               srcColor = *fbSrc++;
+
+               if( srcColor != src->transparentColor )
+               {
+                  *fbDest++ = srcColor;
+               }else{
+                  fbDest++;
+               }
+
+            }
+         }
+      #endif
+   }else{
+
+      #if defined ( _GFXLIB_RISCV_FATFS ) && defined ( _GFXLIB_HW_BLITTER_2D )
+
+         //use blitter
+      
+         blt->saAddress       = (ulong)src->buffer + ( sy * ( src->rowWidth << 1 ) + ( sx << 1 ) );
+         blt->saRowWidth      = src->rowWidth;
+         blt->saWidth         = bw;
+         blt->saHeight        = bh;
+
+         blt->daAddress       = (ulong)dest->buffer + ( y * ( dest->rowWidth << 1 ) + ( x << 1 ) );
+         blt->daRowWidth      = dest->rowWidth;
+         blt->daWidth         = bw;
+         blt->daHeight        = bh;
+
+         blt->command         = 0x0200;
+         
+         while( ! ( blt->command & 1 ) );
+
+      #else
+         for( cy = 0; cy < bh; cy++ )
+         {
+            fbSrc = &(( ushort* )src->buffer)[ ( ( cy + sy ) * src->rowWidth ) + sx ];
+            fbDest = &(( ushort* )dest->buffer)[ ( ( cy + y ) * dest->rowWidth ) + x ];
+
+            for( cx = 0; cx < bw; cx++ )
+            {
+               *fbDest++ = *fbSrc++;
+            }
+         }
+      #endif
+
+   }
+
+    return 0;
+}
+
+
+
 ulong gfBlitBitmapA( tgfBitmap *dest, tgfBitmap *src, short x, short y, uchar alpha )
 {
    short cx,cy,bw,bh,sx,sy;
@@ -418,6 +563,160 @@ ulong gfBlitBitmapA( tgfBitmap *dest, tgfBitmap *src, short x, short y, uchar al
          for( cx = 0; cx < bw; cx++ )
          {
             gfPlotA( dest, cx + x, cy + y, *fbSrc++, alpha );
+         }
+      }
+
+      #endif
+   }
+
+   return 0;
+}
+
+ulong gfBlitBitmapA2Src( tgfBitmap *dest, tgfBitmap *src1, tgfBitmap *src2, short x, short y, uchar alpha )
+{
+   short cx,cy,bw,bh,sx,sy;
+
+   ushort *fbSrc1;
+   ushort *fbSrc2;
+   ushort srcColor1;
+   ushort srcColor2;
+
+
+   if( ( dest == NULL) || ( src1 == NULL ) || ( src2 == NULL ) )
+   {
+      return 1;
+   }
+
+   bw = src1->width;
+   bh = src1->height;
+   sx = 0;
+   sy = 0;
+
+
+   //clip src bitmap if coordinates are negative
+   if( x < 0 )
+   {
+      sx = -x;
+      bw -= sx;
+      x = 0;
+   }
+
+   if( y < 0 )
+   {
+      sy = -y;
+      bh -= sy;
+      y = 0;
+   }
+
+
+   //clip src width if exceeds sise of dest bitmap
+   if( ( bw + x ) >= dest->width )
+   {
+      bw = dest->width - x;
+   }
+
+   if( bw <= 0 )
+   {
+      return 0;
+   }
+
+   if( ( bh + y ) >= dest->height )
+   {
+      bh = dest->height - y;
+   }
+
+   if( bh <= 0 )
+   {
+      return 0;
+   }
+
+   if( src1->flags & GF_BITMAP_FLAG_TRANSPARENT )
+   {
+
+      #if  defined ( _GFXLIB_RISCV_FATFS ) && defined ( _GFXLIB_HW_BLITTER_2D )
+         
+         
+         //use blitter
+      
+         blt->saAddress       = (ulong)src1->buffer + ( sy * ( src1->rowWidth << 1 ) + ( sx << 1 ) );
+         blt->saRowWidth      = src1->rowWidth;
+         blt->saWidth         = bw;
+         blt->saHeight        = bh;
+
+         blt->sbAddress       = (ulong)src2->buffer + ( sy * ( src2->rowWidth << 1 ) + ( sx << 1 ) );
+         blt->sbRowWidth      = src2->rowWidth;
+
+         blt->daAddress       = (ulong)dest->buffer + ( y * ( dest->rowWidth << 1 ) + ( x << 1 ) );
+         blt->daRowWidth      = dest->rowWidth;
+         blt->daWidth         = bw;
+         blt->daHeight        = bh;
+
+         blt->input0          = ( alpha >> 3 );
+         blt->input1          = src1->transparentColor;
+         blt->command         = 0x0301;
+         
+         while( ! ( blt->command & 1 ) );
+
+      #else
+
+
+      for( cy = 0; cy < bh; cy++ )
+      {
+         fbSrc1 = &(( ushort* )src1->buffer)[ ( ( cy + sy ) * src1->rowWidth ) + sx ];
+         fbSrc2 = &(( ushort* )src2->buffer)[ ( ( cy + sy ) * src2->rowWidth ) + sx ];
+
+         for( cx = 0; cx < bw; cx++ )
+         {
+            srcColor1 = *fbSrc1++;
+            srcColor2 = *fbSrc2++;
+
+            if( srcColor1 != src1->transparentColor )
+            {
+               gfPlotA2C( dest, cx + x, cy + y, srcColor1, srcColor2, alpha );
+            }
+
+         }
+      }
+      
+      #endif
+
+   }else{
+
+
+      #if  defined ( _GFXLIB_RISCV_FATFS ) && defined ( _GFXLIB_HW_BLITTER_2D )
+               
+         //use blitter
+      
+         blt->saAddress       = (ulong)src1->buffer + ( sy * ( src1->rowWidth << 1 ) + ( sx << 1 ) );
+         blt->saRowWidth      = src1->rowWidth;
+         blt->saWidth         = bw;
+         blt->saHeight        = bh;
+
+         blt->sbAddress       = (ulong)src2->buffer + ( sy * ( src2->rowWidth << 1 ) + ( sx << 1 ) );
+         blt->sbRowWidth      = src2->rowWidth;
+
+         blt->daAddress       = (ulong)dest->buffer + ( y * ( dest->rowWidth << 1 ) + ( x << 1 ) );
+         blt->daRowWidth      = dest->rowWidth;
+         blt->daWidth         = bw;
+         blt->daHeight        = bh;
+
+         blt->input0          = ( alpha >> 3 );
+
+         blt->command         = 0x0300;
+         
+         while( ! ( blt->command & 1 ) );
+
+      #else
+
+
+      for( cy = 0; cy < bh; cy++ )
+      {
+         fbSrc1 = &(( ushort* )src1->buffer)[ ( ( cy + sy ) * src1->rowWidth ) + sx ];
+         fbSrc2 = &(( ushort* )src2->buffer)[ ( ( cy + sy ) * src2->rowWidth ) + sx ];
+
+         for( cx = 0; cx < bw; cx++ )
+         {
+            gfPlotA2C( dest, cx + x, cy + y, *fbSrc1++, *fbSrc2++, alpha );
          }
       }
 
