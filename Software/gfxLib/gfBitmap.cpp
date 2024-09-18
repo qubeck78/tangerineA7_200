@@ -752,8 +752,8 @@ ulong gfBlitScaledBitmap( tgfBitmap *dest, tgfBitmap *src, short x, short y, sho
       return 1;
    }
 
-   bw    = w;
-   bh    = h;
+   bw = w;
+   bh = h;
 
    sx = 0;
    sy = 0;
@@ -811,37 +811,36 @@ ulong gfBlitScaledBitmap( tgfBitmap *dest, tgfBitmap *src, short x, short y, sho
 
    sourceY = sy;
 
-   #if 0
-//   #if defined ( _GFXLIB_RISCV_FATFS ) && defined ( _GFXLIB_HW_BLITTER_2D )
-      
+   #if defined ( _GFXLIB_RISCV_FATFS ) && defined ( _GFXLIB_HW_BLITTER_2D )
       //use blitter
-   
+
+      blt->saAddress       = (ulong)src->buffer + ( ( sy >> 16 ) * ( src->rowWidth << 1 ) + ( sx >> 15 ) );
+      blt->saRowWidth      = src->rowWidth;
+      blt->saWidth         = src->width;
+      blt->saHeight        = src->height;
+
+      blt->daAddress       = (ulong)dest->buffer + ( y * ( dest->rowWidth << 1 ) + ( x << 1 ) );
+      blt->daRowWidth      = dest->rowWidth;
+      blt->daWidth         = bw;
+      blt->daHeight        = bh;
+
+      blt->input0          = deltaX;
+      blt->input1          = deltaY;
+      blt->input2          = src->transparentColor;
+
       if( src->flags & GF_BITMAP_FLAG_TRANSPARENT )
       {
-         blt->bltConfig0   = 0x0009;   //scale copy with mask
+         //scaled copy with mask
+         blt->command         = 0x0401;
       }
       else
       {
-         blt->bltConfig0   = 0x0008;   //scale copy
+         //scaled copy
+         blt->command         = 0x0400;
       }
-
-      blt->bltSrcAddress         = ( ulong )(( ( ulong ) &(( ushort* )src->buffer)[ ( ( sy >> 16 ) * src->rowWidth ) + ( sx >> 16 ) ] - _SYSTEM_MEMORY_BASE ) / 2);
-      blt->bltScalerSourceWidth  = src->width;
-      blt->bltScalerSourceHeight = src->height;
-      blt->bltScalerDeltaX    = deltaX;
-      blt->bltScalerDeltaY    = deltaY;
-      blt->bltValue           = src->transparentColor;
       
-      blt->bltDstAddress         = ( ulong )(( ( ulong ) &(( ushort* )dest->buffer)[ ( ( y ) * dest->rowWidth ) + x ] - _SYSTEM_MEMORY_BASE ) / 2);
-      blt->bltDstModulo       = dest->rowWidth - bw;
-
-      blt->bltTransferWidth      = bw;
-      blt->bltTransferHeight     = bh - 1;   
-         
-      blt->bltStatus          = 0x1;
-
-      do{}while( ! ( blt->bltStatus & 1 ) ); 
-
+      while( ! ( blt->command & 1 ) );
+   
    #else
 
       if( src->flags & GF_BITMAP_FLAG_TRANSPARENT )
@@ -850,10 +849,11 @@ ulong gfBlitScaledBitmap( tgfBitmap *dest, tgfBitmap *src, short x, short y, sho
          for( cy = 0; cy < bh; cy++ )
          {
             sourceX = sx;
-            sourceY += deltaY;
 
             fbSrc = &(( ushort* )src->buffer)[ ( ( sourceY >> 16 ) * src->rowWidth ) ];
             fbDest = &(( ushort* )dest->buffer)[ ( ( cy + y ) * dest->rowWidth ) + x ];
+
+            sourceY += deltaY;
 
             for( cx = 0; cx < bw; cx++ )
             {
@@ -880,10 +880,11 @@ ulong gfBlitScaledBitmap( tgfBitmap *dest, tgfBitmap *src, short x, short y, sho
          for( cy = 0; cy < bh; cy++ )
          {
             sourceX = sx;
-            sourceY += deltaY;
 
             fbSrc = &(( ushort* )src->buffer)[ ( ( sourceY >> 16 ) * src->rowWidth ) ];
             fbDest = &(( ushort* )dest->buffer)[ ( ( cy + y ) * dest->rowWidth ) + x ];
+
+            sourceY += deltaY;
 
             for( cx = 0; cx < bw; cx++ )
             {
