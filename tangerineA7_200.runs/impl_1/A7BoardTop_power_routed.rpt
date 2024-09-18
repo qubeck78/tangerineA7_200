@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date             : Wed Sep 18 11:08:41 2024
+| Date             : Wed Sep 18 17:13:53 2024
 | Host             : Desktop-qUBECk running 64-bit major release  (build 9200)
 | Command          : report_power -file A7BoardTop_power_routed.rpt -pb A7BoardTop_power_summary_routed.pb -rpx A7BoardTop_power_routed.rpx
 | Design           : A7BoardTop
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.596        |
+| Total On-Chip Power (W)  | 0.598        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.444        |
+| Dynamic (W)              | 0.446        |
 | Device Static (W)        | 0.152        |
 | Effective TJA (C/W)      | 1.9          |
 | Max Ambient (C)          | 83.9         |
@@ -53,21 +53,21 @@ Table of Contents
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
 | Clocks                  |     0.025 |       11 |       --- |             --- |
-| Slice Logic             |     0.006 |    12160 |       --- |             --- |
-|   LUT as Logic          |     0.005 |     5054 |    133800 |            3.78 |
-|   CARRY4                |    <0.001 |      332 |     33450 |            0.99 |
-|   Register              |    <0.001 |     4353 |    269200 |            1.62 |
-|   F7/F8 Muxes           |    <0.001 |      661 |    133800 |            0.49 |
-|   Others                |     0.000 |      881 |       --- |             --- |
+| Slice Logic             |     0.008 |    12412 |       --- |             --- |
+|   LUT as Logic          |     0.007 |     5197 |    133800 |            3.88 |
+|   CARRY4                |    <0.001 |      350 |     33450 |            1.05 |
+|   Register              |    <0.001 |     4419 |    269200 |            1.64 |
+|   F7/F8 Muxes           |    <0.001 |      671 |    133800 |            0.50 |
+|   Others                |     0.000 |      883 |       --- |             --- |
 |   BUFG                  |     0.000 |        1 |        32 |            3.13 |
 |   LUT as Shift Register |     0.000 |        4 |     46200 |           <0.01 |
-| Signals                 |     0.008 |    11075 |       --- |             --- |
+| Signals                 |     0.009 |    11268 |       --- |             --- |
 | Block RAM               |     0.018 |      267 |       365 |           73.15 |
 | MMCM                    |     0.229 |        2 |        10 |           20.00 |
-| DSPs                    |    <0.001 |       12 |       740 |            1.62 |
+| DSPs                    |    <0.001 |       13 |       740 |            1.76 |
 | I/O                     |     0.158 |       77 |       400 |           19.25 |
 | Static Power            |     0.152 |          |           |                 |
-| Total                   |     0.596 |          |           |                 |
+| Total                   |     0.598 |          |           |                 |
 +-------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -77,7 +77,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.095 |       0.057 |      0.037 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.097 |       0.060 |      0.037 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.158 |       0.128 |      0.031 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.052 |       0.047 |      0.005 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -154,15 +154,15 @@ Table of Contents
 +---------------------+-----------+
 | Name                | Power (W) |
 +---------------------+-----------+
-| A7BoardTop          |     0.444 |
+| A7BoardTop          |     0.446 |
 |   clk_wiz_0Inst     |     0.107 |
 |     inst            |     0.107 |
 |   clk_wiz_1Inst     |     0.123 |
 |     inst            |     0.123 |
 |   dvidInst          |     0.002 |
-|   tangerineSOCInst  |     0.053 |
+|   tangerineSOCInst  |     0.056 |
 |     UARTInst        |     0.002 |
-|     blitterInst     |     0.007 |
+|     blitterInst     |     0.010 |
 |     fastRamInst     |     0.009 |
 |       U0            |     0.009 |
 |     nekoRvInst      |     0.013 |

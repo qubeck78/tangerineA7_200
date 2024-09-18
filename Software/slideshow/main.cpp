@@ -25,7 +25,7 @@ tgfBitmap                    background;
 tgfBitmap                    fileBmp;
 
 
-char                         buf[128];
+char                         buf[ 128 ];
 char                         lfnBuf[ 512 + 16];
 
 tosDir                       dir;
