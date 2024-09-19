@@ -26,8 +26,13 @@ port(
    usbHClk:          in    std_logic;
    
    --usb interfaces
+   --keyboard
    usbH0Dp:          inout std_logic;     
-   usbH0Dm:          inout std_logic      
+   usbH0Dm:          inout std_logic;      
+
+   --mouse
+   usbH1Dp:          inout std_logic;     
+   usbH1Dm:          inout std_logic      
 
 );
 end usbHost;
@@ -79,20 +84,6 @@ port(
 );
 end component; 
 
--- usb hid keyboard data fifo
---component keyboardFifo IS
---   PORT
---   (
---      data        : IN STD_LOGIC_VECTOR (31 DOWNTO 0);
---      rdclk       : IN STD_LOGIC ;
---      rdreq       : IN STD_LOGIC ;
---      wrclk       : IN STD_LOGIC ;
---      wrreq       : IN STD_LOGIC ;
---      q           : OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
---      rdempty     : OUT STD_LOGIC ;
---      wrfull      : OUT STD_LOGIC 
---   );
---END component;
 
 COMPONENT keyboardFifo
   PORT (
@@ -125,10 +116,12 @@ signal usbH0Key1:          std_logic_vector( 7 downto 0 );
 signal usbH0Key2:          std_logic_vector( 7 downto 0 );
 signal usbH0Key3:          std_logic_vector( 7 downto 0 );
 signal usbH0Key4:          std_logic_vector( 7 downto 0 );
-signal usbH0MouseBtn:      std_logic_vector( 7 downto 0 );
-signal usbH0MouseDx:       std_logic_vector( 7 downto 0 );
-signal usbH0MouseDy:       std_logic_vector( 7 downto 0 );
-signal usbH0HidReport:     std_logic_vector( 63 downto 0 );
+
+signal usbH1Type:          std_logic_vector( 1 downto 0 );
+signal usbH1ReportPulse:   std_logic;
+signal usbH1MouseBtn:      std_logic_vector( 7 downto 0 );
+signal usbH1MouseDx:       std_logic_vector( 7 downto 0 );
+signal usbH1MouseDy:       std_logic_vector( 7 downto 0 );
 
 --keyboard fifo sync signals
 type fifoHidKeyboardSyncState_T is ( fksIdle, fksWaitForPulseRelease );
@@ -143,6 +136,10 @@ signal fifoHidKeyboardEmpty:    std_logic;
 signal fifoHidKeyboardFull:     std_logic; 
 
 begin
+
+
+usbH1Dp <= 'Z';     
+usbH1Dm <= 'Z'; 
 
 registers: process( all )
    begin
@@ -292,55 +289,28 @@ port map(
     typ             => usbH0Type,
     
     reportPulse     => usbH0ReportPulse,
-    --conerr:         out std_logic;                      --connection or protocol error
 
     --keyboard
     key_modifiers   => usbH0KeyModifiers,
     key1            => usbH0Key1,
     key2            => usbH0Key2,
     key3            => usbH0Key3,
-    key4            => usbH0Key4,
+    key4            => usbH0Key4
+
+    --conerr:         out std_logic;                      --connection or protocol error
 
     --mouse
-    mouse_btn       => usbH0MouseBtn,
-    mouse_dx        => usbH0MouseDx,
-    mouse_dy        => usbH0MouseDy,
+    --mouse_btn       => usbH0MouseBtn,
+    --mouse_dx        => usbH0MouseDx,
+    --mouse_dy        => usbH0MouseDy,
 
-    --debug
-    dbg_hid_report  => usbH0HidReport
+    ----debug
+    --dbg_hid_report  => usbH0HidReport
+
 );
 
 
 --place keyboard fifo
---keyboardFifoInst:keyboardFifo
---port map(
-
---      wrclk       => clock,
---      wrreq       => fifoHidKeyboardWrEn,
---      data        => fifoHidKeyboardDataIn,
---      
---      
---      rdclk       => clock,
---      rdreq       => fifoHidKeyboardRdEn,
---      q           => fifoHidKeyboardDataOut,
-
---      rdempty     => fifoHidKeyboardEmpty,
---      wrfull      => fifoHidKeyboardFull
---      
---);
-
---keyboardFifoInst:keyboardFifo
---port map(
---		WrClk   => clock,
---		WrEn    => fifoHidKeyboardWrEn,
---		Data    => fifoHidKeyboardDataIn,
-
---		RdClk   => clock,
---		RdEn    => fifoHidKeyboardRdEn,
---		Q       => fifoHidKeyboardDataOut,
---		Empty   => fifoHidKeyboardEmpty,
---		Full    => fifoHidKeyboardFull
---);
 
 keyboardFifoinst:keyboardFifo
 port map(

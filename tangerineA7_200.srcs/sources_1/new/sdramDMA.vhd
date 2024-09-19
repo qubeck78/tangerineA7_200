@@ -368,7 +368,7 @@ begin
         ch0Ready        <= '0';
         ch0Dout         <= ( others => '0' );
    
-        ch1DmaReady     <= '1';
+        ch1DmaReady     <= '0';
         ch1Dout         <= ( others => '0' );
    
         ch3DmaRequestLatched    <= ( others => '0' );
@@ -410,7 +410,7 @@ begin
                 when sdcIdle =>
 
                     ch0Ready	<= '0';
-                    ch1DmaReady	<= '1';
+                    ch1DmaReady	<= '0';
 
                     --nop
                     sdramCS     <= '0';
@@ -694,6 +694,7 @@ begin
                     
                     if ch1DmaRequest = '0' then
                     
+                        ch1DmaReady <= '0';
                         sdcState <= sdcIdle;
                         
                     end if;
@@ -815,6 +816,7 @@ begin
                     
                     if ch1DmaRequest = '0' then
                     
+                        ch1DmaReady <= '0';
                         sdcState <= sdcIdle;
                         
                     end if;
