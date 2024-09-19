@@ -130,11 +130,11 @@ signal regState:    regState_T;
 
 type sdcState_T is ( sdcIdle, sdcInit0, sdcInit1, sdcInit2, sdcInit3, sdcInit4, sdcInit5, sdcInit6,
 
-	sdcCh0Read0, sdcCh0Read1, sdcCh0Read2, sdcCh0Read3, sdcCh0Read4, sdcCh0Read5, sdcCh0Read6, sdcCh0Read7, sdcCh0Read8, 
-	sdcCh0Write0, sdcCh0Write1, sdcCh0Write2, sdcCh0Write3, sdcCh0Write4, sdcCh0Write5, sdcCh0Write6, sdcCh0Write7, sdcCh0Write8,
+	sdcCh0Read0, sdcCh0Read1, sdcCh0Read2, sdcCh0Read3, sdcCh0Read4, sdcCh0Read5, sdcCh0Read6, sdcCh0Read7,  
+	sdcCh0Write0, sdcCh0Write1, sdcCh0Write2, sdcCh0Write3, sdcCh0Write4, sdcCh0Write5, sdcCh0Write6, 
 
-	sdcCh1Read0, sdcCh1Read1, sdcCh1Read2, sdcCh1Read3, sdcCh1Read4, sdcCh1Read5, sdcCh1Read6, sdcCh1Read7, sdcCh1Read8, 
-	sdcCh1Write0, sdcCh1Write1, sdcCh1Write2, sdcCh1Write3, sdcCh1Write4, sdcCh1Write5, sdcCh1Write6, sdcCh1Write7, sdcCh1Write8,
+	sdcCh1Read0, sdcCh1Read1, sdcCh1Read2, sdcCh1Read3, sdcCh1Read4, sdcCh1Read5, sdcCh1Read6, sdcCh1Read7,  
+	sdcCh1Write0, sdcCh1Write1, sdcCh1Write2, sdcCh1Write3, sdcCh1Write4, sdcCh1Write5, sdcCh1Write6, sdcCh1Write7, 
 
 	sdcCh3Read0, sdcCh3Read1, sdcCh3Read2, sdcCh3Read3, sdcCh3Read4, sdcCh3Read5, sdcCh3Read6, sdcCh3Read7, sdcCh3Read8, sdcCh3Read9, 
 
@@ -213,7 +213,7 @@ begin
                      --0x04 r- component version                       
                      when x"01" =>
                      
-                        dout  <= x"20240820";
+                        dout  <= x"20240918";
                         
                         ready <= '1';
 
@@ -526,55 +526,35 @@ begin
                         --check ch0 access					
                         elsif ch0Ce = '1' then
 
+                            --row / bank address ( cpu adr max downto 9 )
+                                      
+                            sdramBA     <= ch0A( 23 downto 22 );
+                            sdramA      <= ch0A( 21 downto 9 );
+            
+                            sdramCS     <= '0';
+                            sdramRAS    <= '0';
+                            sdramCAS    <= '1';
+                            sdramWE     <= '1';
+
+                            sdramDQM    <= ( others => '0' );
 
                             if ch0Wr = '1' then
 
                                 --write
-                                --bank/row activation
-                
-                                sdramDQM    <= ( others => '0' );
-                                               
+                               
                                 --put data on bus
                                 sdramD      <= ch0Din;
                                  
                                 --row select, read, auto precharge
                                 
-                                --row / bank address ( cpu adr max downto 8 )
-                
-                              
-                                sdramBA     <= ch0A( 23 downto 22 );
-                                sdramA      <= ch0A( 21 downto 9 );
-                
-                                sdramCS     <= '0';
-                                sdramRAS    <= '0';
-                                sdramCAS    <= '1';
-                                sdramWE     <= '1';
-            
                                 sdcState    <= sdcCh0Write0;
 
                             else --ch0Wr = '0'
  
-                                --read
- 
-                                --bank/row activation
-                
-                                sdramDQM    <= ( others => '0' );
+                                --read                
                 
                                 --sdram data bus in
-                                sdramD      <= ( others => 'Z' );
-                
-                                --row select, read, auto precharge
-                                
-                                --row / bank address ( cpu adr max downto 8 )
-                                
-                                sdramBA     <= ch0A( 23 downto 22 );
-                                sdramA      <= ch0A( 21 downto 9 );
-                
-                                sdramCS     <= '0';
-                                sdramRAS    <= '0';
-                                sdramCAS    <= '1';
-                                sdramWE     <= '1';
-            
+                                sdramD      <= ( others => 'Z' );            
                                    
                                 sdcState    <= sdcCh0Read0;
                             
@@ -799,7 +779,7 @@ begin
                     
                     --sdram data bus in
                     sdramD      <= ( others => 'Z' );
-                                        --nop
+                    --nop
                     sdramCS     <= '0';
                     sdramRAS    <= '1';
                     sdramCAS	<= '1';
@@ -1076,7 +1056,7 @@ begin
                     sdramWE 	<= '1';
 
                     
-                    sdcState                <= sdcCh0Read4;
+                    sdcState    <= sdcCh0Read4;
 				
                 when sdcCh0Read4 =>
                 
@@ -1113,21 +1093,20 @@ begin
                     sdramCAS    <= '1';
                     sdramWE     <= '1';
 
-               --notify CPU, data is ready
+                    --notify CPU, data is ready
                     
                     ch0Ready    <= '1';
+
+                    sdcState    <= sdcCh0Read7;
+
+                when sdcCh0Read7 =>
 
                     if ch0CE = '0' then
                 
                         ch0Ready    <= '0';
                         sdcState    <= sdcIdle;
                     
-                    else
-                    
-                        sdcState    <= sdcCh0Read6;
-                    
-                    end if;
-                                   
+                    end if;                                   
 
                 when sdcCh0Write0 =>
                 
@@ -1189,7 +1168,8 @@ begin
                     
                     --sdram data bus in
                     sdramD      <= ( others => 'Z' );
-                                        --nop
+                    
+                    --nop
                     sdramCS     <= '0';
                     sdramRAS    <= '1';
                     sdramCAS	<= '1';
