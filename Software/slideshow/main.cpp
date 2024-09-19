@@ -183,6 +183,8 @@ int slideshow()
 
                     gfBlitBitmapSrcRect( &background, &screen, x, y, background.width, background.height, 0, 0 );
   
+//                    gfBlitBitmap( &screen, &background, x, y );
+
                     for( i = 0; i < 256; i += 8 )
                     {       
                         do{}while( ! bsp->videoVSync ); 
@@ -194,6 +196,8 @@ int slideshow()
 
                     #endif
                     
+ //                   delayMs( 5000 );
+
                     gfBlitBitmap( &screen, &fileBmp, x, y );
 
                     osFree( fileBmp.buffer );

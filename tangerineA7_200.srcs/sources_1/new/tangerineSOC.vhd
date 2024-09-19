@@ -277,9 +277,14 @@ port(
    --usb phy clock (12MHz)
    usbHClk:          in    std_logic;
    
-   --usb host interfaces
+   --usb interfaces
+   --keyboard
    usbH0Dp:          inout std_logic;     
-   usbH0Dm:          inout std_logic      
+   usbH0Dm:          inout std_logic;      
+
+   --mouse
+   usbH1Dp:          inout std_logic;     
+   usbH1Dm:          inout std_logic      
 
 );
 end component; 
@@ -589,10 +594,6 @@ pggDMARequestClkD2  <= pggDMARequest;
  leds    <=  gpoRegister( 7 downto 6 );       
 
 -- fill unused ports, signals
-
--- usb2 - mouse
-usb2dm      <= 'Z';
-usb2dp      <= 'Z';
 
 
 -- place text mode font rom ( 2048 x 8 )
@@ -1004,7 +1005,7 @@ begin
                      --0x04 r- component version                       
                      when x"01" =>
                      
-                        registersDoutForCPU  <= x"20240918";
+                        registersDoutForCPU  <= x"20240919";
                         
                      --rw 0xf0000008 - videoMuxMode
                      when x"02" =>
@@ -1159,7 +1160,8 @@ port map(
 ); 
 
 -- place usb host
--- usb 1 - keyboard
+-- usb0 - keyboard
+-- usb1 - mouse
 
 usbHostInst: usbHost
 port map(
@@ -1181,8 +1183,13 @@ port map(
   usbHClk        => usbHClk,
   
   --usb interfaces
+   --keyboard
   usbH0Dp        => usb1dp,
-  usbH0Dm        => usb1dm   
+  usbH0Dm        => usb1dm,   
+
+   --mouse
+   usbH1Dp       => usb2dp,     
+   usbH1Dm       => usb2dm      
 
 );
 

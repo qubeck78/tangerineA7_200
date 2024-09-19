@@ -246,7 +246,7 @@ begin
 
                             ready   <= '1';
                  
-                            dout    <= x"20240918";
+                            dout    <= x"20240919";
                     
                         --0x08 rw commandReg
                         when x"02" =>
@@ -610,7 +610,7 @@ begin
                         when x"01" =>
                         
                             --translate address to word based, omit high address bits
-                            dmaWriteAddr    <= daAddressReg( 25 downto 1 );
+                            dpDa           <= daAddressReg( 25 downto 1 );
 
                             --calc transfer size
                             counterXMax     <= daWidthReg;
@@ -687,21 +687,27 @@ begin
               
             when bsFill0 =>
                 
-                dmaWriteData    <= input0Reg;
                 
                 if counterX /= x"0000" then
-                
+
+                    --early write
+                    bltA            <= dpDa;
+                    bltDOut         <= input0Reg;
+
+                    bltWr           <= '1';
+                    bltDmaRequest   <= '1';
+
                     bltReturnState  <= bsFill1;
-                    bltState        <= bsSubWrite0;
-                    
+                    bltState        <= bsSubWrite1;
+            
                 else
                 
                     --end of row
                     if counterY /= x"0000" then
                     
-                        counterY        <= std_logic_vector( unsigned( counterY ) - 1 );
-                        counterX        <= counterXMax;
-                        dmaWriteAddr    <= std_logic_vector( unsigned( dmaWriteAddr ) + unsigned( daColAdd ) );
+                        counterY    <= std_logic_vector( unsigned( counterY ) - 1 );
+                        counterX    <= counterXMax;
+                        dpDa        <= std_logic_vector( unsigned( dpDa ) + unsigned( daColAdd ) );
                     
                     else
                     
@@ -713,8 +719,8 @@ begin
                 
             when bsFill1 =>
             
-                counterX        <= std_logic_vector( unsigned( counterX ) - 1 );
-                dmaWriteAddr    <= std_logic_vector( unsigned( dmaWriteAddr ) + 1 );
+                counterX    <= std_logic_vector( unsigned( counterX ) - 1 );
+                dpDa        <= std_logic_vector( unsigned( dpDa ) + 1 );
                 
                 bltState        <= bsFill0;
         
@@ -723,7 +729,14 @@ begin
                 if counterX /= x"0000" then
                 
                     bltReturnState  <= bsCopy1;
-                    bltState        <= bsSubRead0;
+                    --bltState        <= bsSubRead0;
+
+                    --early read
+                    bltA            <= dmaReadAddr;
+                    bltWr           <= '0';
+                    bltDmaRequest   <= '1';
+                    bltState        <= bsSubRead1;
+                    
                     
                 else
                 
@@ -752,10 +765,20 @@ begin
                     --copy
                     when x"00" =>
                     
-                        dmaWriteData    <= dmaReadData;
+--                        dmaWriteData    <= dmaReadData;
                 
+--                        bltReturnState  <= bsCopy2;
+--                        bltState        <= bsSubWrite0;
+
+                        --early write
+                        bltA            <= dmaWriteAddr;
+                        bltDOut         <= dmaReadData;
+
+                        bltWr           <= '1';
+                        bltDmaRequest   <= '1';
+
                         bltReturnState  <= bsCopy2;
-                        bltState        <= bsSubWrite0;
+                        bltState        <= bsSubWrite1;
                         
                     --mask copy
                     when x"01" =>
@@ -769,19 +792,40 @@ begin
                         else
 
                             --write
-                            dmaWriteData    <= dmaReadData;
+--                            dmaWriteData    <= dmaReadData;
                             
+--                            bltReturnState  <= bsCopy2;
+--                            bltState        <= bsSubWrite0;
+
+                            --early write
+                            bltA            <= dmaWriteAddr;
+                            bltDOut         <= dmaReadData;
+
+                            bltWr           <= '1';
+                            bltDmaRequest   <= '1';
+    
                             bltReturnState  <= bsCopy2;
-                            bltState        <= bsSubWrite0;
-                            
+                            bltState        <= bsSubWrite1;
+                                                        
                         end if;       
                                         
                     when others =>
-                    
-                        dmaWriteData    <= dmaReadData;
+
+--                        write                    
+--                        dmaWriteData    <= dmaReadData;
                         
+--                        bltReturnState  <= bsCopy2;
+--                        bltState        <= bsSubWrite0;
+
+                        --early write
+                        bltA            <= dmaWriteAddr;
+                        bltDOut         <= dmaReadData;
+
+                        bltWr           <= '1';
+                        bltDmaRequest   <= '1';
+
                         bltReturnState  <= bsCopy2;
-                        bltState        <= bsSubWrite0;
+                        bltState        <= bsSubWrite1;
                                 
                 
                 end case;
@@ -904,9 +948,16 @@ begin
             
                 if counterX /= x"0000" then
                 
-                    dmaReadAddr     <= dpSa;
+--                    dmaReadAddr     <= dpSa;
+--                    bltReturnState  <= bsAlphaCopy1;
+--                    bltState        <= bsSubRead0;
+
+                    --early read
+                    bltA            <= dpSa;
+                    bltWr           <= '0';
+                    bltDmaRequest   <= '1';
+                    bltState        <= bsSubRead1;
                     bltReturnState  <= bsAlphaCopy1;
-                    bltState        <= bsSubRead0;
                     
                 else
                 
@@ -938,10 +989,18 @@ begin
                 
                     --alpha copy
                     when x"00" =>
-                                       
+
+--                        read                                       
+--                        bltReturnState  <= bsAlphaCopy2;
+--                        bltState        <= bsSubRead0;
+                        
+                        --early read
+                        bltA            <= dpSb;
+                        bltWr           <= '0';
+                        bltDmaRequest   <= '1';
+                        bltState        <= bsSubRead1;
                         bltReturnState  <= bsAlphaCopy2;
-                        bltState        <= bsSubRead0;
-                                
+                                    
                     --alpha mask copy
                     when x"01" =>
                         
@@ -953,17 +1012,34 @@ begin
                             
                         else
 
-                            --continue                            
+                            --continue with reading second source                            
+
+--                            read
+--                            bltReturnState  <= bsAlphaCopy2;
+--                            bltState        <= bsSubRead0;
+                                                        
+                            --early read
+                            bltA            <= dpSb;
+                            bltWr           <= '0';
+                            bltDmaRequest   <= '1';
+                            bltState        <= bsSubRead1;
                             bltReturnState  <= bsAlphaCopy2;
-                            bltState        <= bsSubRead0;
-                                
+                                        
                         end if;       
                                         
                     when others =>
-                    
+
+--                        read                    
+--                        bltReturnState  <= bsAlphaCopy2;
+--                        bltState        <= bsSubRead0;
+
+                        --early read
+                        bltA            <= dpSb;
+                        bltWr           <= '0';
+                        bltDmaRequest   <= '1';
+                        bltState        <= bsSubRead1;
                         bltReturnState  <= bsAlphaCopy2;
-                        bltState        <= bsSubRead0;
-                        
+                    
                 end case;          
                 
           
@@ -977,10 +1053,21 @@ begin
 
             when bsAlphaCopy4 =>
 
-                dmaWriteData    <= x"0000" & paColorOut;
-                
+--                write
+--                dmaWriteData    <= x"0000" & paColorOut;                
+--                bltReturnState  <= bsAlphaCopy5;
+--                bltState        <= bsSubWrite0;
+
+                --early write
+                bltA            <= dmaWriteAddr;
+                bltDOut         <= x"0000" & paColorOut;
+
+                bltWr           <= '1';
+                bltDmaRequest   <= '1';
+
                 bltReturnState  <= bsAlphaCopy5;
-                bltState        <= bsSubWrite0;
+                bltState        <= bsSubWrite1;
+
                 
             when bsAlphaCopy5 =>
 
@@ -996,67 +1083,47 @@ begin
             
             -- read subroutine
             when bsSubRead0 =>
-            
-                if bltDmaReady = '1' then
+                            
+                bltA            <= dmaReadAddr;
+                bltWr           <= '0';
+                bltDmaRequest   <= '1';
+
+                bltState        <= bsSubRead1;
                 
-                    bltA            <= dmaReadAddr;
-                    bltWr           <= '0';
-                    bltDmaRequest   <= '1';
-    
-                    bltState        <= bsSubRead1;
-                    
-                end if;
                         
             when bsSubRead1 =>
             
-                if bltDmaReady = '0' then
+                if bltDmaReady = '1' then
                 
+                    dmaReadData <= bltDin;
+
                     bltDmaRequest   <= '0';
-                    bltState        <= bsSubRead2;
+                    bltState        <= bltReturnState;
                     
                 end if;
 
-            when bsSubRead2 =>
-            
-                if bltDmaReady = '1' then
-                    
-                    dmaReadData <= bltDin;
-                    
-                    bltState    <= bltReturnState;
-                    
-                end if;
             
             -- write subroutine       
             when bsSubWrite0 =>
 
-                if bltDmaReady = '1' then
-                
-                    bltA            <= dmaWriteAddr;
-                    bltDOut         <= dmaWriteData;
+                bltA            <= dmaWriteAddr;
+                bltDOut         <= dmaWriteData;
 
-                    bltWr           <= '1';
-                    bltDmaRequest   <= '1';
+                bltWr           <= '1';
+                bltDmaRequest   <= '1';
+    
+                bltState        <= bsSubWrite1;                     
         
-                    bltState        <= bsSubWrite1;                     
-            
-                end if;
                 
             when bsSubWrite1 =>
             
-                if bltDmaReady = '0' then
-                
-                    bltDmaRequest   <= '0';
-                    bltState        <= bsSubWrite2;
-                    
-                end if;
-                
-            when bsSubWrite2 =>
-            
                 if bltDmaReady = '1' then
                 
-                    bltState    <= bltReturnState;
+                    bltDmaRequest   <= '0';
+                    bltState        <= bltReturnState;
                     
                 end if;
+                
                                
             when others =>
                 
