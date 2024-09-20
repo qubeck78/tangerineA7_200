@@ -109,8 +109,11 @@ typedef struct __USBHOST_REGISTERS_T
     volatile ulong id;
     volatile ulong version;
 
-    volatile unsigned long usbHidKeyboardStatus;
-    volatile unsigned long usbHidKeyboardData;
+    volatile ulong usbHidKeyboardStatus;
+    volatile ulong usbHidKeyboardData;
+    volatile long usbHidMouseX;
+    volatile long usbHidMouseY;
+    volatile ulong usbHidMouseButtons;
 
 }_USBHOST_REGISTERS_T;
 

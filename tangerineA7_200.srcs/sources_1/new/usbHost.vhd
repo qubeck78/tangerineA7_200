@@ -1,9 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
-use IEEE.std_logic_arith.all;
-use IEEE.std_logic_unsigned.all;
-
-
+use ieee.numeric_std.all;
 
 entity usbHost is
 
@@ -125,7 +122,11 @@ signal usbH1MouseDy:       std_logic_vector( 7 downto 0 );
 
 --keyboard fifo sync signals
 type fifoHidKeyboardSyncState_T is ( fksIdle, fksWaitForPulseRelease );
-signal fifoHidKeyboardSyncState: fifoHidKeyboardSyncState_T;
+type fifoHidMouseSyncState_T is ( fmsIdle, fmsWaitForPulseRelease, fmsCalcMousePosition );
+signal fifoHidKeyboardSyncState:    fifoHidKeyboardSyncState_T;
+signal fifoHidMouseSyncState:       fifoHidMouseSyncState_T;
+
+
 
 --keyboard fifo signals
 signal fifoHidKeyboardRdEn:     std_logic;
@@ -135,11 +136,21 @@ signal fifoHidKeyboardDataIn:   std_logic_vector( 31 downto 0 );
 signal fifoHidKeyboardEmpty:    std_logic;
 signal fifoHidKeyboardFull:     std_logic; 
 
+--mouse signals
+
+signal hidMouseX:               std_logic_vector( 31 downto 0 );
+signal hidMouseY:               std_logic_vector( 31 downto 0 );
+
+signal hidMouseXReset:          std_logic;
+signal hidMouseYReset:          std_logic;
+
+signal hidMouseButtons:         std_logic_vector( 7 downto 0 );
+
+signal usbH1MouseDxLatched:     std_logic_vector( 7 downto 0 );
+signal usbH1MouseDyLatched:     std_logic_vector( 7 downto 0 );
+
 begin
 
-
-usbH1Dp <= 'Z';     
-usbH1Dm <= 'Z'; 
 
 registers: process( all )
    begin
@@ -148,16 +159,22 @@ registers: process( all )
       
          if reset = '1' then
          
-            fifoHidKeyboardRdEn  <= '0';
-
-            ready <= '0';  
-            usbhRegState   <= usbhrWaitForRegAccess;           
+            fifoHidKeyboardRdEn <= '0';
+                        
+            hidMouseXReset      <= '0';
+            hidMouseYReset      <= '0';
+            
+            ready               <= '0';  
+            usbhRegState        <= usbhrWaitForRegAccess;           
             
          else
          
          
-            fifoHidKeyboardRdEn  <= '0';
+            fifoHidKeyboardRdEn <= '0';
             
+            hidMouseXReset      <= '0';
+            hidMouseYReset      <= '0';
+
             case usbhRegState is
       
                 when usbhrWaitForRegAccess =>
@@ -180,7 +197,7 @@ registers: process( all )
                         --0x04 r- component version                       
                         when x"01" =>
                      
-                            dout  <= x"20240820";
+                            dout  <= x"20240920";
                         
                             ready <= '1';
                             
@@ -198,7 +215,29 @@ registers: process( all )
                            fifoHidKeyboardRdEn  <= '1'; 
 
                            ready                <= '1';                       
+
+                        --0x10 r- usbHidMouseX
+                        when x"04" =>
+                                                    
+                            dout            <= hidMouseX;
+                            hidMouseXReset  <= '1';
+
+                            ready           <= '1';
                         
+                        --0x14 r- usbHidMouseY    
+                        when x"05" =>
+                        
+                            dout            <= hidMouseY;
+                            hidMouseYReset  <= '1';
+                        
+                            ready           <= '1';
+                            
+                        --0x18 r- usbHidMouseButtons
+                        when x"06" =>
+                            
+                            dout    <= x"000000" & hidMouseButtons;
+                            ready   <= '1';
+                            
                         when others =>
                         
                            dout  <= ( others => '0' );
@@ -245,7 +284,7 @@ begin
             fifoHidKeyboardSyncState    <= fksIdle;
         else
             
-
+           
             case fifoHidKeyboardSyncState is
 
                 when fksIdle =>
@@ -279,6 +318,82 @@ begin
 
 end process;  
 
+
+--type fifoHidMouseSyncState_T is ( fmsIdle, fmsWaitForPulseRelease, fmsCalcMousePosition );
+--signal fifoHidKeyboardSyncState:    fifoHidKeyboardSyncState_T;
+
+--usb mouse sync process
+fifoHidMouseSync: process( all )
+begin
+    if rising_edge( clock ) then
+
+        if reset = '1' then
+            
+            hidMouseButtons         <= ( others => '0' );
+            usbH1MouseDxLatched     <= ( others => '0' );
+            usbH1MouseDyLatched     <= ( others => '0' );
+            
+            hidMouseX           <= ( others => '0' );
+            hidMouseY           <= ( others => '0' );
+            hidMouseButtons     <= ( others => '0' );
+        
+            fifoHidMouseSyncState   <= fmsIdle;
+
+        else
+            
+            if hidMouseXReset  = '1' then
+                
+                hidMouseX           <= ( others => '0' );
+            
+            end if;
+
+            if hidMouseYReset  = '1' then
+                
+                hidMouseY           <= ( others => '0' );
+            
+            end if;
+
+            case fifoHidMouseSyncState is
+
+                when fmsIdle =>
+                    
+                    if usbH1ReportPulse = '1' and usbH1Type = "10" then
+                    
+                        hidMouseButtons         <= usbH1MouseBtn;
+                        usbH1MouseDxLatched     <= usbH1MouseDx;
+                        usbH1MouseDyLatched     <= usbH1MouseDy;
+                    
+                        fifoHidMouseSyncState   <= fmsWaitForPulseRelease;
+                    end if;
+
+                when fmsWaitForPulseRelease =>
+
+                    if usbH1ReportPulse = '0' then
+                        
+                        fifoHidMouseSyncState  <= fmsCalcMousePosition;
+                        
+                    end if;
+
+                when fmsCalcMousePosition =>
+               
+                    hidMouseX               <= std_logic_vector( signed( hidMouseX ) + signed( usbH1MouseDxLatched ) );
+                    hidMouseY               <= std_logic_vector( signed( hidMouseY ) + signed( usbH1MouseDyLatched ) );
+                      
+                    fifoHidMouseSyncState   <= fmsIdle;
+
+               when others =>
+                  
+                    fifoHidMouseSyncState   <= fmsIdle;
+            
+            end case;
+
+        end if;
+
+    end if;
+
+end process;  
+
+
 -- place usb host0
 usb_hid_host0Inst:usb_hid_host
 port map(
@@ -309,6 +424,35 @@ port map(
 
 );
 
+-- place usb host1
+usb_hid_host1Inst:usb_hid_host
+port map(
+    usbclk          => usbHClk,
+    usbrst_n        => not reset,
+    usb_dm          => usbH1Dm, 
+    usb_dp          => usbh1Dp,
+    typ             => usbH1Type,
+    
+    reportPulse     => usbH1ReportPulse,
+
+    --keyboard
+--    key_modifiers   => usbH0KeyModifiers,
+--    key1            => usbH0Key1,
+--    key2            => usbH0Key2,
+--    key3            => usbH0Key3,
+--    key4            => usbH0Key4
+
+    --conerr:         out std_logic;                      --connection or protocol error
+
+    --mouse
+    mouse_btn       => usbH1MouseBtn,
+    mouse_dx        => usbH1MouseDx,
+    mouse_dy        => usbH1MouseDy
+
+    ----debug
+    --dbg_hid_report  => usbH0HidReport
+
+);
 
 --place keyboard fifo
 
