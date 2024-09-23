@@ -19,7 +19,7 @@ port(
    --2 dma requests
    pggDMARequest:    out std_logic_vector( 1 downto 0 );
    
-   --sync gen outputs
+   --sync gen inputs
    pgVSync:          in  std_logic;
    pgHSync:          in  std_logic;
    pgDe:             in  std_logic;

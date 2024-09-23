@@ -20,13 +20,14 @@ tgfBitmap               cursor;
 tgfBitmap               cursorBg;
 
 
+
 static ulong waitKey()
 {
     ulong       keyPressed;
     tosUIEvent  event; 
 
     keyPressed = 0;
-
+    
     do
     {
         while( !osGetUIEvent( &event ) )
@@ -60,9 +61,14 @@ int main()
     long       prvMouseX;
     long       prvMouseY;
     
-    bspInit();
+    ushort      *spriteRam;
+    ushort      *bmpBuf;
+    ulong       vo,vs;
 
-    
+    bspInit();
+                                            
+    spriteRam = ( ushort* )( 0xf0120000 );
+
     setVideoMode( _VIDEOMODE_320_TEXT80_OVER_GFX );
     
     //alloc screen buffers
@@ -95,10 +101,32 @@ int main()
     //init filesystem
     rv = osFInit();
 
-    toPrintF( &con, (char*)"Mouse test. USBHID id: %08x, version: %08x\n", usbhost->id, usbhost->version );
-    
+    toPrintF( &con, (char*)"Mouse test.\nUSBHID    id: %08x, version: %08x\n", usbhost->id, usbhost->version );
+    toPrintF( &con, (char*)"SPRITEGEN id: %08x, version: %08x\n", spriteGen->id, spriteGen->version );
+   
     gfLoadBitmapFS( &cursor, (char*)"0:/sys/cursor.gbm" );
-    
+
+    bmpBuf = (ushort*)cursor.buffer;
+
+    for( i = 0 ; i < 32 * 32; i++ )
+    {
+        spriteRam[i] = bmpBuf[i];
+    }
+
+    for( i = 0 ; i < 32 * 32; i++ )
+    {
+        vo = bmpBuf[i];
+        vs = spriteRam[i];
+
+        bmpBuf[i] = vs;
+
+        if( vo != vs )
+        {
+            toPrintF( &con, (char*)"idx:%x vo:%04x vs:%04x\n", i , vo, vs );
+        }
+    }
+
+ 
     cursor.flags            = GF_BITMAP_FLAG_TRANSPARENT;
     cursor.transparentColor = gfColor( 0, 0, 0 );
     
@@ -116,6 +144,7 @@ int main()
 
     gfBlitBitmapSrcRect( &cursorBg, &screen, mouseX, mouseY, cursorBg.width, cursorBg.height, 0, 0 );
 
+    gfBlitBitmap( &screen, &cursor, 160, 120 );
 
     do
     {
@@ -133,39 +162,32 @@ int main()
             mouseY = 0;
         }
         
-        if( mouseX > ( screen.width - 1 ) )
+        if( mouseX > ( ( screen.width << 1 ) - 1 ) )
         {
-            mouseX = screen.width -1;
+            mouseX = ( screen.width << 1 ) -1;
         }
 
-        if( mouseY > ( screen.height - 1 ) )
+        if( mouseY > ( ( screen.height << 1 ) - 1 ) )
         {
-            mouseY = screen.height -1;
+            mouseY = ( screen.height << 1 ) -1;
         }
 
-        if ( ( mouseX != prvMouseX ) || ( mouseY != prvMouseY ) )
+        spriteGen->spriteX = mouseX + 47; 
+        spriteGen->spriteY = mouseY + 33;
+
+
+
+        
+        if( usbhost->usbHidMouseButtons & 1 )
         {
-            gfBlitBitmap( &screen, &cursorBg, prvMouseX, prvMouseY );
-            
-            if( usbhost->usbHidMouseButtons & 1 )
-            {
-                gfPlot( &screen, mouseX, mouseY, gfColor( 255, 255, 255 ) );
-            }
-            
-            if( usbhost->usbHidMouseButtons & 2 )
-            {
-                gfBlitBitmap( &screen, &background, 0, 0 );
-            }
-
-
-            gfBlitBitmapSrcRect( &cursorBg, &screen, mouseX, mouseY, cursorBg.width, cursorBg.height, 0, 0 );
-
-            gfBlitBitmap( &screen, &cursor, mouseX, mouseY );
-
-            prvMouseX = mouseX;
-            prvMouseY = mouseY;
-
+            gfPlot( &screen, mouseX >> 1, mouseY >> 1, gfColor( 255, 255, 255 ) );
         }
+        
+        if( usbhost->usbHidMouseButtons & 2 )
+        {
+            gfBlitBitmap( &screen, &background, 0, 0 );
+        }
+
 
         if( !osGetUIEvent( &event ) )
         { 

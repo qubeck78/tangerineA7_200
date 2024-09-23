@@ -187,8 +187,42 @@ port(
    );
 end component; 
  
--- risc-v cpu :)
+--sprite gen for mouse pointer
+component spriteGen is
+port (
 
+    --cpu interface
+    reset:      in  std_logic;
+    clock:      in  std_logic;
+    
+    a:          in  std_logic_vector( 15 downto 0 );
+    din:        in  std_logic_vector( 31 downto 0 );
+    dout:       out std_logic_vector( 31 downto 0 );
+    
+    ce:         in  std_logic;
+    wr:         in  std_logic;
+    dataMask:   in  std_logic_vector( 3 downto 0 );
+    
+    ready:      out std_logic;
+    
+    --sync gen inputs
+    pgDe:       in  std_logic;
+    pgXCount:   in  std_logic_vector( 11 downto 0 );
+    pgYCount:   in  std_logic_vector( 11 downto 0 );
+    
+    --video out
+    sgClock:    in  std_logic;
+    pgVSync:    in  std_logic;
+    pgHSync:    in  std_logic;
+        
+    sgR:        out std_logic_vector( 7 downto 0 );
+    sgG:        out std_logic_vector( 7 downto 0 );
+    sgB:        out std_logic_vector( 7 downto 0 )
+    
+);
+end component;
+
+--risc-v cpu :)
 component nekoRv is
 port( 
     
@@ -231,7 +265,7 @@ component UART
     );
 end component; 
 
--- SPI
+--SPI
 component SPI is
 port(
 
@@ -419,16 +453,26 @@ signal pgFetchEnable:    std_logic;
 signal videoRamBDout:    std_logic_vector( 15 downto 0 );
 signal videoRamBA:       std_logic_vector( 13 downto 0 ); 
 
--- vsync signal synchronised to cpu clock domain
-signal   pgVSyncClkD2:     std_logic;
+--vsync signal synchronised to cpu clock domain
+signal pgVSyncClkD2:     std_logic;
 
--- gfx pixel gen signals
-signal   pgEnabled:             std_logic;
-signal   pggR:                  std_logic_vector( 7 downto 0 );
-signal   pggG:                  std_logic_vector( 7 downto 0 );
-signal   pggB:                  std_logic_vector( 7 downto 0 ); 
-signal   pggDMARequest:         std_logic_vector( 1 downto 0 );
-signal   pggDMARequestClkD2:    std_logic_vector( 1 downto 0 );
+--gfx pixel gen signals
+signal pgEnabled:             std_logic;
+signal pggR:                  std_logic_vector( 7 downto 0 );
+signal pggG:                  std_logic_vector( 7 downto 0 );
+signal pggB:                  std_logic_vector( 7 downto 0 ); 
+signal pggDMARequest:         std_logic_vector( 1 downto 0 );
+signal pggDMARequestClkD2:    std_logic_vector( 1 downto 0 );
+
+--sprite gen signals
+
+signal spriteGenClock:          std_logic;
+signal spriteGenDoutForCPU:     std_logic_vector( 31 downto 0 );
+signal spriteGenCE:             std_logic;
+signal spriteGenReady:          std_logic;
+signal spriteGenR:              std_logic_vector( 7 downto 0 );
+signal spriteGenG:              std_logic_vector( 7 downto 0 );
+signal spriteGenB:              std_logic_vector( 7 downto 0 );
 
 
 --font rom signals
@@ -438,17 +482,17 @@ signal fontRomDout:     std_logic_vector( 7 downto 0 );
 
 --system ram signals
 
-signal  systemRAMCE:                std_logic;
-signal  systemRamReady:             std_logic;
-signal  systemRamDoutForCPU:        std_logic_vector( 31 downto 0 );
-signal  systemRamDoutForPixelGen:   std_logic_vector( 31 downto 0 );
-signal  systemRamDataIn:            std_logic_vector( 31 downto 0 );
-signal  systemRamWr:                std_logic; 
+signal systemRAMCE:                std_logic;
+signal systemRamReady:             std_logic;
+signal systemRamDoutForCPU:        std_logic_vector( 31 downto 0 );
+signal systemRamDoutForPixelGen:   std_logic_vector( 31 downto 0 );
+signal systemRamDataIn:            std_logic_vector( 31 downto 0 );
+signal systemRamWr:                std_logic; 
 
 --fast ram signals
-signal  fastRAMCE:                std_logic;
-signal  fastRamReady:             std_logic;
-signal  fastRamDoutForCPU:        std_logic_vector( 31 downto 0 );
+signal fastRAMCE:                std_logic;
+signal fastRamReady:             std_logic;
+signal fastRamDoutForCPU:        std_logic_vector( 31 downto 0 );
 
 
 --cpu signals
@@ -470,100 +514,102 @@ signal cpuDataMask:		std_logic_vector( 3 downto 0 );
 --cpu resetgen
 signal cpuResetGenCounter:  std_logic_vector( 15 downto 0 ); 
 
--- gpo signals
-signal   gpoRegister:      std_logic_vector( 31 downto 0 );
+--gpo signals
+signal gpoRegister:      std_logic_vector( 31 downto 0 );
 
--- registers signals
-signal   registersClock:      std_logic;
+--registers signals
+signal registersClock:      std_logic;
 
-type     regState_T is ( rsWaitForRegAccess, rsWaitForBusCycleEnd );
-signal   registerState:       regState_T;
+type   regState_T is ( rsWaitForRegAccess, rsWaitForBusCycleEnd );
+signal registerState:       regState_T;
 
-signal   registersCE:         std_logic;
-signal   registersDoutForCPU: std_logic_vector( 31 downto 0 ); 
-signal   registersReady:      std_logic;
+signal registersCE:         std_logic;
+signal registersDoutForCPU: std_logic_vector( 31 downto 0 ); 
+signal registersReady:      std_logic;
 
 -- tick timer signals
-signal   tickTimerClock:            std_logic;
-signal   tickTimerReset:            std_logic;
-signal   tickTimerPrescalerCounter: std_logic_vector( 31 downto 0 );
-signal   tickTimerCounter:          std_logic_vector( 31 downto 0 );
+signal tickTimerClock:            std_logic;
+signal tickTimerReset:            std_logic;
+signal tickTimerPrescalerCounter: std_logic_vector( 31 downto 0 );
+signal tickTimerCounter:          std_logic_vector( 31 downto 0 );
 
 constant tickTimerPrescalerValue:   integer:=   50000 - 1;  --1ms tick timer @50MHz
  
 -- frameTimer signals
-signal   frameTimerClock:        std_logic;
-signal   frameTimerReset:        std_logic;
-signal   frameTimerPgPrvVSync:   std_logic;
-signal   frameTimerValue:        std_logic_vector( 31 downto 0 );
+signal frameTimerClock:        std_logic;
+signal frameTimerReset:        std_logic;
+signal frameTimerPgPrvVSync:   std_logic;
+signal frameTimerValue:        std_logic_vector( 31 downto 0 );
 
--- uart signals
-signal   uartClock:           std_logic;
+--uart signals
 
-signal   uartCE:              std_logic;
-signal   uartDoutForCPU:      std_logic_vector( 31 downto 0 );
-signal   uartReady:           std_logic;
+signal uartClock:           std_logic;
+signal uartCE:              std_logic;
+signal uartDoutForCPU:      std_logic_vector( 31 downto 0 );
+signal uartReady:           std_logic;
 
-signal   uartTxd:             std_logic;
-signal   uartRxd:             std_logic; 
+signal uartTxd:             std_logic;
+signal uartRxd:             std_logic; 
 
--- SPI signals
-signal   spiClock:         std_logic;
-signal   spiCE:            std_logic;
-signal   spiDoutForCPU:    std_logic_vector( 31 downto 0 );
-signal   spiReady:         std_logic;
+--SPI signals
 
-signal   spiSClk:          std_logic;
-signal   spiMOSI:          std_logic;
-signal   spiMISO:          std_logic; 
+signal spiClock:         std_logic;
+signal spiCE:            std_logic;
+signal spiDoutForCPU:    std_logic_vector( 31 downto 0 );
+signal spiReady:         std_logic;
 
--- sdram DMA signals
+signal spiSClk:          std_logic;
+signal spiMOSI:          std_logic;
+signal spiMISO:          std_logic; 
+
+--sdram DMA signals
 
 --registers
 
-signal  sdramDmaRegsCE:         std_logic;
-signal  sdramDmaRegsReady:      std_logic;
-signal  sdramDmaRegsDoutForCPU: std_logic_vector( 31 downto 0 );
+signal sdramDmaRegsCE:         std_logic;
+signal sdramDmaRegsReady:      std_logic;
+signal sdramDmaRegsDoutForCPU: std_logic_vector( 31 downto 0 );
 
 --ch0 CPU
 
-signal  sdramDMACE:              std_logic;
-signal  sdramDMADoutForCPU:      std_logic_vector( 31 downto 0 );
-signal  sdramDMAReady:           std_logic;
+signal sdramDMACE:              std_logic;
+signal sdramDMADoutForCPU:      std_logic_vector( 31 downto 0 );
+signal sdramDMAReady:           std_logic;
 
 --ch1 blitter
 
-signal  ch1DmaRequest:          std_logic;
-signal  ch1DmaReady:            std_logic;
-signal  ch1DmaWordSize:         std_logic;
-signal  ch1A:                   std_logic_vector( 24 downto 0 );
-signal  ch1Din:                 std_logic_vector( 31 downto 0 );
-signal  ch1Dout:                std_logic_vector( 31 downto 0 );
-signal  ch1Wr:                  std_logic;
+signal ch1DmaRequest:          std_logic;
+signal ch1DmaReady:            std_logic;
+signal ch1DmaWordSize:         std_logic;
+signal ch1A:                   std_logic_vector( 24 downto 0 );
+signal ch1Din:                 std_logic_vector( 31 downto 0 );
+signal ch1Dout:                std_logic_vector( 31 downto 0 );
+signal ch1Wr:                  std_logic;
 
 --ch2 
 
 --ch3 gfx pixel gen
 
-signal  gfxBufRamDOut:          std_logic_vector( 31 downto 0 );
-signal  gfxBufRamRdA:           std_logic_vector( 8 downto 0 );
+signal gfxBufRamDOut:          std_logic_vector( 31 downto 0 );
+signal gfxBufRamRdA:           std_logic_vector( 8 downto 0 );
 
--- usb host signals
-signal   usbHostClock:           std_logic;
-signal   usbHostCE:              std_logic;
-signal   usbHostReady:           std_logic;
-signal   usbHostDoutForCPU:      std_logic_vector( 31 downto 0 );
+--usb host signals
+signal usbHostClock:           std_logic;
+signal usbHostCE:              std_logic;
+signal usbHostReady:           std_logic;
+signal usbHostDoutForCPU:      std_logic_vector( 31 downto 0 );
 
--- usb phy clock ( 12 MHz )
-signal   usbHClk:                std_logic; 
+--usb phy clock ( 12 MHz )
+signal usbHClk:                std_logic; 
 
 
--- blitter signals
+--blitter signals
+signal blitterClock:           std_logic;
+signal blitterRegsDoutForCPU:  std_logic_vector( 31 downto 0 );
+signal blitterRegsCE:          std_logic;
+signal blitterRegsReady:       std_logic;
 
-signal  blitterClock:           std_logic;
-signal  blitterRegsDoutForCPU:  std_logic_vector( 31 downto 0 );
-signal  blitterRegsCE:          std_logic;
-signal  blitterRegsReady:       std_logic;
+
 
 begin
 
@@ -582,6 +628,8 @@ usbHostClock        <= mainClock;
 usbHClk             <= usbClock;
 
 blitterClock        <= mainClock;
+
+spriteGenClock      <= mainClock;
 
 
 --no need to sync now
@@ -706,7 +754,7 @@ port map(
 );   
 
 
--- place gfx pixel gen
+--place gfx pixel gen
 
 pgEnabled   <= '1' when vmMode( 1 downto 0 ) /= "00" else '0';
 
@@ -741,7 +789,41 @@ port map(
     pgEnabled         => pgEnabled
 ); 
 
---VideoMux process ( mix text with gfx )
+--place sprite gen
+
+spriteGenInst:spriteGen
+port map(
+
+    --cpu interface
+    reset       => reset,
+    clock       => spriteGenClock,
+    
+    a           => cpuAOut( 15 downto 0 ),
+    din         => cpuDOut,
+    dout        => spriteGenDoutForCPU,
+    ce          => spriteGenCE,
+    wr          => cpuWr,
+    dataMask    => cpuDataMask,
+    ready       => spriteGenReady,        
+        
+    --sync gen inputs
+    pgDe        => pgDe,
+    pgXCount    => pgXCount,
+    pgYCount    => pgYCount,
+    
+    --video out
+    sgClock     => pgClock,
+    pgVSync     => pgVSync,
+    pgHSync     => pgHSync,
+    sgR         => spriteGenR,
+    sgG         => spriteGenG,
+    sgB         => spriteGenB
+    
+);
+
+
+
+--VideoMux process ( mix text with gfx and sprite )
 
 videoMux: process( all )
 
@@ -761,80 +843,107 @@ if rising_edge( pgClock ) then
 
     else
     
+        vgaHS    <= pgHSync;
+        vgaVS    <= pgVSync;
+        vgaDE    <= pgDe;
+        
         case vmMode( 1 downto 0 ) is
         
             --text mode
             when "00" =>
-            
-                vgaHS    <= pgHSync;
-                vgaVS    <= pgVSync;
-                vgaDE    <= pgDe;
                 
-                vgaRed		<= pgR( 7 downto 3 ) & "000";
-                vgaGreen    <= pgG( 7 downto 2 ) & "00";
-                vgaBlue     <= pgB( 7 downto 3 ) & "000";
-            
+                if spriteGenR /= x"00" or spriteGenG /= x"00" or spriteGenB /= x"00" then
+                
+                    vgaRed		<= spriteGenR( 7 downto 3 ) & "000";
+                    vgaGreen    <= spriteGenG( 7 downto 2 ) & "00";
+                    vgaBlue     <= spriteGenB( 7 downto 3 ) & "000";
+                
+                else
+                
+                    vgaRed		<= pgR( 7 downto 3 ) & "000";
+                    vgaGreen    <= pgG( 7 downto 2 ) & "00";
+                    vgaBlue     <= pgB( 7 downto 3 ) & "000";
+                
+                end if;
+                
             --gfx mode
             when "01"	=>
-            
-                vgaHS    <= pgHSync;
-                vgaVS    <= pgVSync;
-                vgaDE    <= pgDe;
-                
-                vgaRed		<= pggR( 7 downto 3 ) & "000";
-                vgaGreen    <= pggG( 7 downto 2 ) & "00";
-                vgaBlue     <= pggB( 7 downto 3 ) & "000";
+                            
+                if spriteGenR /= x"00" or spriteGenG /= x"00" or spriteGenB /= x"00" then
 
+                    vgaRed		<= spriteGenR( 7 downto 3 ) & "000";
+                    vgaGreen    <= spriteGenG( 7 downto 2 ) & "00";
+                    vgaBlue     <= spriteGenB( 7 downto 3 ) & "000";
+                
+                else
+
+                    vgaRed		<= pggR( 7 downto 3 ) & "000";
+                    vgaGreen    <= pggG( 7 downto 2 ) & "00";
+                    vgaBlue     <= pggB( 7 downto 3 ) & "000";
+
+                end if;
+                    
             --text over gfx mode
             when "10" =>
             
-                vgaHS     <= pgHSync;
-                vgaVS     <= pgVSync;
-                vgaDE     <= pgDe;
+                if spriteGenR /= x"00" or spriteGenG /= x"00" or spriteGenB /= x"00" then
 
-                if	pgR = x"00" and pgG = x"00" and pgB = x"00" then
-                    
-                    vgaRed      <= pggR( 7 downto 3 ) & "000";
-                    vgaGreen    <= pggG( 7 downto 2 ) & "00";
-                    vgaBlue     <= pggB( 7 downto 3 ) & "000";
-                    
-                --gray color -> dim background
-                elsif pgR = x"80" and pgG = x"80" and pgB = x"80" then
-            
-                    vgaRed      <= "0" & pggR( 7 downto 4 ) & "000";
-                    vgaGreen    <= "0" & pggG( 7 downto 2 ) & "0";
-                    vgaBlue     <= "0" & pggB( 7 downto 4 ) & "000";
-                    
+                    vgaRed		<= spriteGenR( 7 downto 3 ) & "000";
+                    vgaGreen    <= spriteGenG( 7 downto 2 ) & "00";
+                    vgaBlue     <= spriteGenB( 7 downto 3 ) & "000";
+                
                 else
-
-                    vgaRed      <= pgR( 7 downto 3 ) & "000";
-                    vgaGreen    <= pgG( 7 downto 2 ) & "00";
-                    vgaBlue     <= pgB( 7 downto 3 ) & "000";
+                
+                    if	pgR = x"00" and pgG = x"00" and pgB = x"00" then
+                        
+                        vgaRed      <= pggR( 7 downto 3 ) & "000";
+                        vgaGreen    <= pggG( 7 downto 2 ) & "00";
+                        vgaBlue     <= pggB( 7 downto 3 ) & "000";
+                        
+                    --gray color -> dim background
+                    elsif pgR = x"80" and pgG = x"80" and pgB = x"80" then
+                
+                        vgaRed      <= "0" & pggR( 7 downto 4 ) & "000";
+                        vgaGreen    <= "0" & pggG( 7 downto 2 ) & "0";
+                        vgaBlue     <= "0" & pggB( 7 downto 4 ) & "000";
+                        
+                    else
+    
+                        vgaRed      <= pgR( 7 downto 3 ) & "000";
+                        vgaGreen    <= pgG( 7 downto 2 ) & "00";
+                        vgaBlue     <= pgB( 7 downto 3 ) & "000";
+                    
+                    end if;
                 
                 end if;
-
+                
             --gfx over text mode
             when "11" =>
             
-                vgaHS        <= pgHSync;
-                vgaVS        <= pgVSync;
-                vgaDE        <= pgDe;
+                if spriteGenR /= x"00" or spriteGenG /= x"00" or spriteGenB /= x"00" then
 
-
-                if	pggR = x"00" and pggG = x"00" and pggB = x"00" then
-                    
-                    vgaRed      <= pgR( 7 downto 3 ) & "000";
-                    vgaGreen    <= pgG( 7 downto 2 ) & "00";
-                    vgaBlue     <= pgB( 7 downto 3 ) & "000";
-                    
+                    vgaRed		<= spriteGenR( 7 downto 3 ) & "000";
+                    vgaGreen    <= spriteGenG( 7 downto 2 ) & "00";
+                    vgaBlue     <= spriteGenB( 7 downto 3 ) & "000";
+                
                 else
 
-                    vgaRed      <= pggR( 7 downto 3 ) & "000";
-                    vgaGreen    <= pggG( 7 downto 2 ) & "00";
-                    vgaBlue     <= pggB( 7 downto 3 ) & "000";
-                    
+                    if	pggR = x"00" and pggG = x"00" and pggB = x"00" then
+                        
+                        vgaRed      <= pgR( 7 downto 3 ) & "000";
+                        vgaGreen    <= pgG( 7 downto 2 ) & "00";
+                        vgaBlue     <= pgB( 7 downto 3 ) & "000";
+                        
+                    else
+    
+                        vgaRed      <= pggR( 7 downto 3 ) & "000";
+                        vgaGreen    <= pggG( 7 downto 2 ) & "00";
+                        vgaBlue     <= pggB( 7 downto 3 ) & "000";
+                        
+                    end if;
+                
                 end if;
-
+                
             when others =>
             
         end case;
@@ -859,7 +968,7 @@ end process;
          
     registersCE     <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f00" else '0';
 
---    fpAluCE           <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f01" else '0';
+    spriteGenCE     <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f01" else '0';
    
     blitterRegsCE   <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f02" else '0';
     
@@ -884,7 +993,7 @@ end process;
                         else sdramDMAReady when sdramDMACE = '1' 
                         else fastRamReady when fastRamCE = '1' 
                         else blitterRegsReady when blitterRegsCE = '1' 
---                        else fpAluReady when fpAluCE = '1' 
+                        else spriteGenReady when spriteGenCE = '1' 
 --                        else i2sReady when i2sCE = '1' 
 --                        else flashSpiReady when flashSpiCE = '1'
                         else sdramDmaRegsReady when sdramDmaRegsCE = '1'  
@@ -896,7 +1005,7 @@ end process;
                         registersDoutForCPU                       when cpuAOutFull( 31 downto 20 ) = x"f00" else
                         sdramDMADoutForCPU                        when cpuAOutFull( 31 downto 28 ) = x"2"  else
                         fastRamDoutForCPU                         when cpuAOutFull( 31 downto 28 ) = x"3"  else
---                        fpAluDoutForCPU                           when cpuAOutFull( 31 downto 20 ) = x"f01" else
+                        spriteGenDoutForCPU                           when cpuAOutFull( 31 downto 20 ) = x"f01" else
                         blitterRegsDoutForCPU                     when cpuAOutFull( 31 downto 20 ) = x"f02" else
                         usbHostDoutForCPU                         when cpuAOutFull( 31 downto 20 ) = x"f03" else 
                         uartDoutForCPU                            when cpuAOutFull( 31 downto 20 ) = x"f04" else
@@ -1005,7 +1114,7 @@ begin
                      --0x04 r- component version                       
                      when x"01" =>
                      
-                        registersDoutForCPU  <= x"20240919";
+                        registersDoutForCPU  <= x"20240923";
                         
                      --rw 0xf0000008 - videoMuxMode
                      when x"02" =>
