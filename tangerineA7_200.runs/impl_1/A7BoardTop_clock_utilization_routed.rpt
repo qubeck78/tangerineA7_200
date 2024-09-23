@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Mon Sep 23 14:33:54 2024
+| Date         : Mon Sep 23 20:54:11 2024
 | Host         : Desktop-qUBECk running 64-bit major release  (build 9200)
 | Command      : report_clock_utilization -file A7BoardTop_clock_utilization_routed.rpt
 | Design       : A7BoardTop

@@ -23,7 +23,7 @@ extern tgfTextOverlay        con;
 tgfBitmap                    screen;
 tgfBitmap                    background;
 tgfBitmap                    fileBmp;
-
+tgfBitmap                    cursor;
 
 char                         buf[ 128 ];
 char                         lfnBuf[ 512 + 16];
@@ -209,9 +209,9 @@ uint32_t slideshow()
                     
                     toPrintF( &con, (char*)"%s %d\n", dirItem.name, dirItem.size );
                     
-                    for( i = 0; i < 100; i++ )
+                    for( i = 0; i < 500; i++ )
                     {
-                        delayMs( 100 );
+                        delayMs( 20 );
                                         
                         if( !osGetUIEvent( &event ) )
                         { 
@@ -267,7 +267,7 @@ int main()
 
 
     toCls( &con );
-    toPrint( &con, (char*)"tangerineSOC Slideshow B20240911\n\n" );
+    toPrint( &con, (char*)"tangerineSOC Slideshow B20240923\n\n" );
 
     
     screen.flags            = 0;
@@ -307,7 +307,11 @@ int main()
     {
         toPrint( &con, ( char* )"SD init ok\n" );
     }
-        
+
+    gfLoadBitmapFS( &cursor, (char*)"0:/sys/cursor.gbm" );
+    usbHIDSetMousePointerShape( &cursor );
+
+    usbHIDSetMousePointerVisibility( 1 );        
 
     toPrint( &con, (char*)"Scanning /img directory\n" );
 

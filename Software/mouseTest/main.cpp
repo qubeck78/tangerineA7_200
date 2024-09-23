@@ -9,15 +9,13 @@
 #include "../gfxLib/gfBitmap.h"
 #include "../gfxLib/gfDrawing.h"
 #include "../gfxLib/gfFont.h"
-
 #include "../gfxLib/osUIEvents.h"
-
+#include "../gfxLib/usbHID.h"
 
 extern tgfTextOverlay   con;
 tgfBitmap               screen;
 tgfBitmap               background;
 tgfBitmap               cursor;
-tgfBitmap               cursorBg;
 
 
 
@@ -52,22 +50,16 @@ static uint32_t waitKey()
 
 int main()
 {
-    uint32_t       i;
-    uint32_t       rv;
+    uint32_t    i;
+    uint32_t    rv;
     tosUIEvent  event;
 
-    int32_t       mouseX;
-    int32_t       mouseY;
-    int32_t       prvMouseX;
-    int32_t       prvMouseY;
+    uint32_t    mouseX;
+    uint32_t    mouseY;
+    uint32_t    mouseButtons;
     
-    uint16_t      *spriteRam;
-    uint16_t      *bmpBuf;
-    uint32_t       vo,vs;
-
     bspInit();
                                             
-    spriteRam = ( uint16_t* )( 0xf0120000 );
 
     setVideoMode( _VIDEOMODE_320_TEXT80_OVER_GFX );
     
@@ -93,8 +85,6 @@ int main()
 
     gfFillRect( &screen, 0, 0, screen.width - 1, screen.height - 1 , gfColor( 0, 0, 0 ) ); 
     
-    bsp->frameTimer = 0;
-
     //init events queue
     rv = osUIEventsInit();   
     
@@ -104,79 +94,19 @@ int main()
     toPrintF( &con, (char*)"Mouse test.\nUSBHID    id: %08x, version: %08x\n", usbhost->id, usbhost->version );
     toPrintF( &con, (char*)"SPRITEGEN id: %08x, version: %08x\n", spriteGen->id, spriteGen->version );
    
-    gfLoadBitmapFS( &cursor, (char*)"0:/sys/cursor.gbm" );
-
-    bmpBuf = (uint16_t*)cursor.buffer;
-
-    for( i = 0 ; i < 32 * 32; i++ )
-    {
-        spriteRam[i] = bmpBuf[i];
-    }
-
-    for( i = 0 ; i < 32 * 32; i++ )
-    {
-        vo = bmpBuf[i];
-        vs = spriteRam[i];
-
-        bmpBuf[i] = vs;
-
-        if( vo != vs )
-        {
-            toPrintF( &con, (char*)"idx:%x vo:%04x vs:%04x\n", i , vo, vs );
-        }
-    }
-
- 
-    cursor.flags            = GF_BITMAP_FLAG_TRANSPARENT;
-    cursor.transparentColor = gfColor( 0, 0, 0 );
-    
-    gfLoadBitmapFS( &cursorBg, (char*)"0:/sys/cursor.gbm" );
-
-    gfLoadBitmapFS( &background, (char*)"0:/shell/background.gbm" );
-    
+    gfLoadBitmapFS( &background, (char*)"0:/shell/background.gbm" );    
     gfBlitBitmap( &screen, &background, 0, 0 );
 
-    
-    mouseX      = 0;
-    mouseY      = 0;
-    prvMouseX   = 0;
-    prvMouseY   = 0;
+    gfLoadBitmapFS( &cursor, (char*)"0:/sys/cursor.gbm" );
+    usbHIDSetMousePointerShape( &cursor );
 
-    gfBlitBitmapSrcRect( &cursorBg, &screen, mouseX, mouseY, cursorBg.width, cursorBg.height, 0, 0 );
+    usbHIDSetMousePointerVisibility( 1 );
 
-    gfBlitBitmap( &screen, &cursor, 160, 120 );
 
     do
     {
 
-        mouseX += usbhost->usbHidMouseX;        
-        mouseY += usbhost->usbHidMouseY;
-    
-        if( mouseX < 0 )
-        {
-            mouseX = 0;
-        }
-        
-        if( mouseY < 0 )
-        {
-            mouseY = 0;
-        }
-        
-        if( mouseX > ( ( screen.width << 1 ) - 1 ) )
-        {
-            mouseX = ( screen.width << 1 ) -1;
-        }
-
-        if( mouseY > ( ( screen.height << 1 ) - 1 ) )
-        {
-            mouseY = ( screen.height << 1 ) -1;
-        }
-
-        spriteGen->spriteX = mouseX + 47; 
-        spriteGen->spriteY = mouseY + 33;
-
-
-
+        usbHIDGetMouse( &mouseX, &mouseY, &mouseButtons );
         
         if( usbhost->usbHidMouseButtons & 1 )
         {
