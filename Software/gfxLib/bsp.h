@@ -27,7 +27,7 @@
 //x"80000003";   -- sdram DMA id
 //x"80000004";   -- usb hid host id
 //x"80000005";   -- blitter2d id
-
+//x"80000006";   -- sprite gen id
 
 
 typedef struct _BSP_T
@@ -61,19 +61,17 @@ typedef struct _BSP_T
 
 extern BSP_T *bsp;
 
-typedef struct __FPALU_REGISTERS_T
+typedef struct __SPRITEGEN_REGISTERS_T
 {
-    volatile float fpA;
-    volatile float fpB;
-    volatile float fpAddResult;
-    volatile float fpSubResult;
-    volatile float fpMulResult;
-    volatile float fpDivResult;
+    volatile ulong id;
+    volatile ulong version;
+    
+    volatile ulong spriteX;
+    volatile ulong spriteY;
 
-}_FPALU_REGISTERS_T;
+}_SPRITEGEN_REGISTERS_T;
 
-extern _FPALU_REGISTERS_T *fpalu;
-
+extern _SPRITEGEN_REGISTERS_T *spriteGen;
 
 typedef struct __BLITTER_REGISTERS_T
 {
@@ -109,8 +107,11 @@ typedef struct __USBHOST_REGISTERS_T
     volatile ulong id;
     volatile ulong version;
 
-    volatile unsigned long usbHidKeyboardStatus;
-    volatile unsigned long usbHidKeyboardData;
+    volatile ulong usbHidKeyboardStatus;
+    volatile ulong usbHidKeyboardData;
+    volatile long usbHidMouseX;
+    volatile long usbHidMouseY;
+    volatile ulong usbHidMouseButtons;
 
 }_USBHOST_REGISTERS_T;
 
