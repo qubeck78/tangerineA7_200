@@ -3,12 +3,12 @@
 
 #include "gfTypes.h"
 
-ulong osSerialOpen( ulong serialNum, ulong baudRate );
-ulong osSerialClose( ulong serialNum );
-long  osSerialGetC( ulong serialNum );
-ulong osSerialClearRxFifo( ulong serialNum );
-ulong osSerialPutC( ulong serialNum, uchar c );
-ulong osSerialGetS( ulong serialNum, char *buf, ulong maxLength, ulong timeoutMs );
-ulong osSerialPrint( ulong serialNum, char *buf );
+uint32_t osSerialOpen( uint32_t serialNum, uint32_t baudRate );
+uint32_t osSerialClose( uint32_t serialNum );
+int32_t  osSerialGetC( uint32_t serialNum );
+uint32_t osSerialClearRxFifo( uint32_t serialNum );
+uint32_t osSerialPutC( uint32_t serialNum, uint8_t c );
+uint32_t osSerialGetS( uint32_t serialNum, char *buf, uint32_t maxLength, uint32_t timeoutMs );
+uint32_t osSerialPrint( uint32_t serialNum, char *buf );
 
 #endif

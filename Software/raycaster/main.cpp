@@ -323,15 +323,15 @@ void raycaster( tgfBitmap *screen )
   float   step;
   float   texPos;
 
-  ulong   stepl;
-  ulong   texPosl;
+  uint32_t   stepl;
+  uint32_t   texPosl;
 
   int     texX;
   int     texY;
 
-  ushort  *texturePtr;
+  uint16_t  *texturePtr;
 
-  ushort  color;
+  uint16_t  color;
 
 
   gfFillRect( screen, 0, 0, w, h, 0x0 );
@@ -486,12 +486,12 @@ void raycaster( tgfBitmap *screen )
 
       //make color darker for y-sides:
 
-      texturePtr = &( (ushort*)darkTexture[texNum].buffer )[texX];
+      texturePtr = &( (uint16_t*)darkTexture[texNum].buffer )[texX];
     }
     else
     {
 
-      texturePtr = &( (ushort*)texture[texNum].buffer )[texX];
+      texturePtr = &( (uint16_t*)texture[texNum].buffer )[texX];
 
     }
 
@@ -582,7 +582,7 @@ void raycaster( tgfBitmap *screen )
     {
       int d = (y-vMoveScreen) * 256 - h * 128 + spriteHeight * 128; //256 and 128 factors to avoid floats
       int texY = ((d * texHeight) / spriteHeight) / 256;
-      ushort color = ((ushort*)texture[sprite[spriteOrder[i]].texture].buffer)[texWidth * texY + texX]; //get current color from the texture
+      uint16_t color = ((uint16_t*)texture[sprite[spriteOrder[i]].texture].buffer)[texWidth * texY + texX]; //get current color from the texture
       if((color & 0x00FFFFFF) != 0)
       {
       gfPlotF( screen, stripe, y, color );
@@ -615,9 +615,9 @@ void sortSprites(int* order, float * dist, int amount)
 
 int main()
 {
-   ulong keyStatus;
+   uint32_t keyStatus;
 
-   ulong step;
+   uint32_t step;
 
    int         i;
    int         rv;

@@ -23,15 +23,15 @@
 
 typedef struct _tosAllocMemoryNode
 {
-	ulong	flags;
+	uint32_t	flags;
 
-	uchar   *blockBitmap;
-	ulong    blockBitmapSize;
+	uint8_t   *blockBitmap;
+	uint32_t    blockBitmapSize;
 
 	void    *allocStart;
 	void    *allocEnd;
 
-	ulong 	 totalBlocksNum;
+	uint32_t 	 totalBlocksNum;
 
 
 }tosAllocMemoryNode;
@@ -42,11 +42,11 @@ typedef struct _tosAllocMemoryNodes
 }tosAllocMemoryNodes;
 
 
-ulong	 osAllocInit();
-ulong	 osAllocAddNode( ulong nodeNumber, void *allocStart, ulong memorySize, ulong nodeFlags );
+uint32_t	 osAllocInit();
+uint32_t	 osAllocAddNode( uint32_t nodeNumber, void *allocStart, uint32_t memorySize, uint32_t nodeFlags );
 
-void 	*osAlloc( ulong size, ulong memFlags );
-ulong 	 osFree( void *allocMemPtr );
+void 	*osAlloc( uint32_t size, uint32_t memFlags );
+uint32_t 	 osFree( void *allocMemPtr );
 
 
 

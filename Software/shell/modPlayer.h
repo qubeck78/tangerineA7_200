@@ -4,7 +4,7 @@
 #include "../gfxLib/gftypes.h"
 
 
-ulong mpInit( void );
-ulong mpPlay( char *fileName );
+uint32_t mpInit( void );
+uint32_t mpPlay( char *fileName );
 
 #endif

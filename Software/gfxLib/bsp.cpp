@@ -21,9 +21,9 @@ void (*bootLoaderEntry)(void) = (void(*)())0x0;
 tgfTextOverlay  con;
 
 
-ulong           random_state = 3242323459;
+uint32_t    random_state = 3242323459;
 
-int bspInit()
+uint32_t bspInit()
 {
     random_state            = ( bsp->tickTimerValue << 16 ) | ( bsp->tickTimerValue ^ 0xf123 );
 
@@ -43,7 +43,7 @@ int bspInit()
     con.cursY               = 0;
     con.textAttributes      = 0x0f;
     con.font                = NULL;
-    con.textBuffer          = (uchar*) 0x6d40; //hw text mode buffer address
+    con.textBuffer          = (uint8_t*) 0x6d40; //hw text mode buffer address
 
     toCls( &con );
 
@@ -56,9 +56,9 @@ int bspInit()
     return 0;
 } 
 
-int randomNumber()
+uint32_t randomNumber()
 {
-    unsigned int r = random_state;
+    uint32_t r = random_state;
 
     r ^= r << 13;
     r ^= r >> 17;
@@ -85,13 +85,13 @@ void hexDigit(char *string,char digit)
     }
 }
 
-void itoaHex2Digits( int value, char* str )
+void itoaHex2Digits( uint32_t value, char* str )
 {
     hexDigit(&str[0], ( value >> 4 ) & 0x0f );
     hexDigit(&str[1], ( value ) & 0x0f );
 }
 
-void itoaHex4Digits( int value, char* str )
+void itoaHex4Digits( uint32_t value, char* str )
 {
     hexDigit(&str[4], ( value >> 12 ) & 0x0f );
     hexDigit(&str[5], ( value >> 8 ) & 0x0f );
@@ -101,7 +101,7 @@ void itoaHex4Digits( int value, char* str )
 }
 
 
-void itoaHex8Digits( int value, char* str )
+void itoaHex8Digits( uint32_t value, char* str )
 {
     hexDigit(&str[0], ( value >> 28 ) & 0x0f );
     hexDigit(&str[1], ( value >> 24 ) & 0x0f );
@@ -116,14 +116,14 @@ void itoaHex8Digits( int value, char* str )
     hexDigit(&str[7], ( value ) & 0x0f );
 }
 
-ulong getTicks()
+uint32_t getTicks()
 {
     return bsp->tickTimerValue;
 }
 
-void delayMs( unsigned long delay )
+void delayMs( uint32_t delay )
 {
-    unsigned long startMs;
+    uint32_t startMs;
     
     startMs = bsp->tickTimerValue;
     
@@ -131,7 +131,7 @@ void delayMs( unsigned long delay )
     
 }
 
-int setVideoMode( ulong videoMode )
+uint32_t setVideoMode( uint32_t videoMode )
 {
     bsp->videoMuxMode = videoMode;
     
@@ -159,7 +159,7 @@ int setVideoMode( ulong videoMode )
     {
         //320
 
-        //adjust dma request modulos to have 512 pixels, 256 longwords odd & even scan lines
+        //adjust dma request modulos to have 512 pixels, 256 ilongtwords odd & even scan lines
         sdrdma->ch3DmaRequest0Modulo = 96;
         sdrdma->ch3DmaRequest1Modulo = 96;   
 

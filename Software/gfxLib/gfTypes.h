@@ -1,9 +1,11 @@
 #ifndef _GFTYPES_H
 #define _GFTYPES_H
 
+#include <stdint.h>
+
 //Version
 
-#define _GFXLIB_VERSION 20240917
+#define _GFXLIB_VERSION 20240923
 
 
 //Platform
@@ -22,10 +24,12 @@
 #define _GFXLIB_USB_HOST
 
 
-typedef unsigned char	uchar;
+/*typedef unsigned char	uchar;
 typedef unsigned char	ubyte;
 typedef unsigned short	ushort;
 typedef unsigned long	ulong;
+*/
+
 
 #ifndef NULL
 #define NULL 0

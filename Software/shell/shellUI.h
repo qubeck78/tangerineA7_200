@@ -17,23 +17,23 @@ typedef struct _tselector
 
    char     path[256];
    
-   ushort   x;
-   ushort   y;
+   uint16_t   x;
+   uint16_t   y;
 
-   ushort   selectorActive;
+   uint16_t   selectorActive;
    long     selectorWindowIdx;
    long     selectorCursorPos;
    long     selectorWindowHeight;
    char     selectorFileNames[_SELECTOR_WINDOW_HEIGHT][_MAXFILENAMELENGTH + 1];
-   ulong    selectorFileLengths[_SELECTOR_WINDOW_HEIGHT];
+   uint32_t    selectorFileLengths[_SELECTOR_WINDOW_HEIGHT];
    
 }tselector;
 
-ulong uiDrawStatusBar( void );
-ulong uiDrawSelectorWindowFrame( tselector *selector );
-ulong uiDrawSelectorWindowContents( tselector *selector );
-ulong uiReadDirAndFillSelectorWindowContents( tselector *selector );
-ulong uiDrawInfoWindow( char *title, char *contents, ulong buttons );
+uint32_t uiDrawStatusBar( void );
+uint32_t uiDrawSelectorWindowFrame( tselector *selector );
+uint32_t uiDrawSelectorWindowContents( tselector *selector );
+uint32_t uiReadDirAndFillSelectorWindowContents( tselector *selector );
+uint32_t uiDrawInfoWindow( char *title, char *contents, uint32_t buttons );
 
 #endif
 

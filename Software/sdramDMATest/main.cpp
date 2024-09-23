@@ -7,16 +7,16 @@
 BSP_T                   *bsp     = ( BSP_T *)                  0xf0000000; //registers base address 
 _SDRAMDMA_REGISTERS_T   *sdrdma  = ( _SDRAMDMA_REGISTERS_T * ) 0xf0800000;
 
-ushort   textAttr = 0x8f00;
+uint16_t   textAttr = 0x8f00;
 
-unsigned short *displayRam;
+uint16_t *displayRam;
 int screenIndex;
 
 char buf[128];
 
 unsigned int random_state = 3242323459;
 
-int randomNumber()
+uint32_t randomNumber()
 {
     unsigned int r = random_state;
 
@@ -30,10 +30,10 @@ int randomNumber()
 } 
 
 
-int print( char *buf )
+uint32_t print( char *buf )
 {
    char c;
-   int i;
+   uint32_t i;
 
    i = 0;
 
@@ -81,13 +81,13 @@ void hexDigit(char *string,char digit)
     }
 }
 
-void itoaHex2Digits( int value, char* str )
+void itoaHex2Digits( uint32_t value, char* str )
 {
     hexDigit(&str[0], ( value >> 4 ) & 0x0f );
     hexDigit(&str[1], ( value ) & 0x0f );
 }
 
-void itoaHex4Digits( int value, char* str )
+void itoaHex4Digits( uint32_t value, char* str )
 {
     hexDigit(&str[4], ( value >> 12 ) & 0x0f );
     hexDigit(&str[5], ( value >> 8 ) & 0x0f );
@@ -97,7 +97,7 @@ void itoaHex4Digits( int value, char* str )
 }
 
 
-void itoaHex8Digits( int value, char* str )
+void itoaHex8Digits( uint32_t value, char* str )
 {
     hexDigit(&str[0], ( value >> 28 ) & 0x0f );
     hexDigit(&str[1], ( value >> 24 ) & 0x0f );
@@ -112,12 +112,12 @@ void itoaHex8Digits( int value, char* str )
     hexDigit(&str[7], ( value ) & 0x0f );
 }
 
-ulong getTicks()
+uint32_t getTicks()
 {
     return bsp->tickTimerValue;
 }
 
-void delayMsTest( unsigned long delay )
+void delayMsTest( uint32_t delay )
 {
 /*    long startMs;
     
@@ -135,17 +135,17 @@ void delayMsTest( unsigned long delay )
 }
  
 
-ulong testSDRAM()
+uint32_t testSDRAM()
 {
    char            buf[256];
 
-   ulong           i;
-   ulong          *sdram;
-   ulong           length;
-   ulong           rvl;
-   ulong           cvl;
+   uint32_t           i;
+   uint32_t          *sdram;
+   uint32_t           length;
+   uint32_t           rvl;
+   uint32_t           cvl;
 
-   sdram = ( ulong * ) 0x20000000;
+   sdram = ( uint32_t * ) 0x20000000;
 
 
 //   length = 512 * 240 / 2;

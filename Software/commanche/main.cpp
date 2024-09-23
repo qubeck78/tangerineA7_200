@@ -18,7 +18,7 @@ extern BSP_T        *bsp;
 tgfBitmap            screen1;
 tgfBitmap            screen2;
 tgfBitmap            textureMap;
-uchar               *heightMap;
+uint8_t             *heightMap;
 tosFile              in;
 
 
@@ -26,9 +26,9 @@ struct
 {
       float x;       // x position on the map
       float y;       // y position on the map
-      short height;  // height of the camera
+      int16_t height;  // height of the camera
       float angle;   // direction of the camera
-      short horizon; // horizon position (look up and down)
+      int16_t horizon; // horizon position (look up and down)
       float distance; // distance of map
 } camera = { 256, 256, 40, 0.1, 50, 100 };
 
@@ -56,47 +56,47 @@ int animLeds( int j )
 } 
 
 
-int commanche( tgfBitmap *screen )
+uint32_t commanche( tgfBitmap *screen )
 {
 
-   int     screenwidth = 320;
-   float   screenwidthf = screenwidth;
+   uint32_t screenwidth = 320;
+   float    screenwidthf = screenwidth;
    
-   int     screenheight = 200;
+   uint32_t screenheight = 200;
 
-   int     mapwidthperiod = 512 - 1;
-   int     mapheightperiod = 512 - 1;
-   int     mapshift = 9;
-   long    mapoffset;
-   float   deltaz = 1.5f;
-   short   y;
-   short   x;
-   float   z;
-   float   invz;
-   short   heightonscreen;
-   ushort  color;
-   long    cameraoffs;
-   float   sinang;
-   float   cosang;
-   float   plx;
-   float   ply;
-   float   prx;
-   float   pry;
-   float   dx;
-   float   dy;
+   uint32_t mapwidthperiod = 512 - 1;
+   uint32_t mapheightperiod = 512 - 1;
+   uint32_t mapshift = 9;
+   int32_t  mapoffset;
+   float    deltaz = 1.5f;
+   int16_t  y;
+   int16_t  x;
+   float    z;
+   float    invz;
+   int16_t  heightonscreen;
+   uint16_t color;
+   int32_t  cameraoffs;
+   float    sinang;
+   float    cosang;
+   float    plx;
+   float    ply;
+   float    prx;
+   float    pry;
+   float    dx;
+   float    dy;
    
-   short    bw;
-   short    bh;
+   int16_t  bw;
+   int16_t  bh;
 
-   long    linvz;
-   short   hiddeny[ 320 ];
+   int32_t  linvz;
+   int16_t  hiddeny[ 320 ];
 
-   long    lplx;
-   long    lply;
-   long    ldx;
-   long    ldy;
-   float   cosangz;
-   float   sinangz;
+   int32_t  lplx;
+   int32_t  lply;
+   int32_t  ldx;
+   int32_t  ldy;
+   float    cosangz;
+   float    sinangz;
    
    gfFillRect( screen, 0, 0, screenwidth, screenheight, 0 );
 
@@ -146,8 +146,8 @@ int commanche( tgfBitmap *screen )
 //      invz = 100.0f / z;
       
 //      linvz = invz * 256;
-//      linvz = 25600 / (long)z;
-      linvz = 12800 / (long)z;
+//      linvz = 25600 / (int32_t)z;
+      linvz = 12800 / (int32_t)z;
    
    
       lplx  = plx * 256;
@@ -158,18 +158,18 @@ int commanche( tgfBitmap *screen )
       
       for( x = 0; x < screenwidth; x++ )
       {
-//          mapoffset = ( ( ((long)ply) & mapwidthperiod ) << mapshift ) + ( ((long)plx) & mapheightperiod );
+//          mapoffset = ( ( ((int32_t)ply) & mapwidthperiod ) << mapshift ) + ( ((int32_t)plx) & mapheightperiod );
 
          mapoffset = ( ( ( lply >> 8 ) & mapwidthperiod ) << mapshift ) + ( ( lplx >> 8 ) & mapheightperiod );
          
-         heightonscreen = (short)( ( ( ( camera.height - heightMap[ mapoffset ] ) * linvz ) >> 8 ) + camera.horizon );
+         heightonscreen = (int16_t)( ( ( ( camera.height - heightMap[ mapoffset ] ) * linvz ) >> 8 ) + camera.horizon );
          
          if( heightonscreen < 0 )
          {
             heightonscreen = 0;
          }
 
-         color = ((ushort *)textureMap.buffer)[ mapoffset ];
+         color = ((uint16_t *)textureMap.buffer)[ mapoffset ];
          
          if( heightonscreen < hiddeny[x] )
          {                
@@ -201,11 +201,11 @@ int commanche( tgfBitmap *screen )
 
 int main()
 {
-   ulong           i;
-   ulong           rv;
+   uint32_t    i;
+   uint32_t    rv;
    
-   tosUIEvent      event;
-   ulong           keyStatus;
+   tosUIEvent  event;
+   uint32_t    keyStatus;
 
    bspInit();
       
@@ -262,11 +262,11 @@ int main()
       toPrint( &con, (char*)"\nError, copy ctexture.gbm file to sd-card\n" );
    }
 
-   heightMap = (uchar*)osAlloc( 262144, OS_ALLOC_MEMF_CHIP );
+   heightMap = (uint8_t*)osAlloc( 262144, OS_ALLOC_MEMF_CHIP );
 
    if( !osFOpen( &in, (char*)"cheight.raw" , OS_FILE_READ ) )
    {
-      osFRead( &in, (uchar*)heightMap, 262144, NULL );
+      osFRead( &in, (uint8_t*)heightMap, 262144, NULL );
       osFClose( &in );
    }
    else

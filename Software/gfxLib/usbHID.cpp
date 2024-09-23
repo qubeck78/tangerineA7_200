@@ -1,10 +1,10 @@
 #include "usbHID.h"
 
-static uchar   activeKeys[4];
-static uchar   shiftState;
+static uint8_t   activeKeys[4];
+static uint8_t   shiftState;
 
-static ulong   lastPressedKeyRepeatTime;
-static uchar   lastPressedKeyCode;
+static uint32_t   lastPressedKeyRepeatTime;
+static uint8_t   lastPressedKeyCode;
 
 const char HIDkeys[] = {
     0x0, '-', 0x0, 0x00,
@@ -45,7 +45,7 @@ const char HIDKeysShifted[] = {
 };
 
 
-static ulong findInArray( uchar element, uchar *array, int arrayLength )
+static uint32_t findInArray( uint8_t element, uint8_t *array, int arrayLength )
 {
   int i;
 
@@ -60,7 +60,7 @@ static ulong findInArray( uchar element, uchar *array, int arrayLength )
   return -1;
 }
 
-ulong usbHIDInit()
+uint32_t usbHIDInit()
 {
    int i;
 
@@ -76,10 +76,10 @@ ulong usbHIDInit()
    return 0;
 }
 
-static ulong usbHIDRxMain( ulong rxData )
+static uint32_t usbHIDRxMain( uint32_t rxData )
 {
-   uchar       shf;
-   uchar       keys[3];
+   uint8_t       shf;
+   uint8_t       keys[3];
    int         i;
    int         pos;
    tosUIEvent  event;
@@ -220,7 +220,7 @@ static ulong usbHIDRxMain( ulong rxData )
    return 0;
 }
 
-static ulong usbHIDKeyRepeatCheck()
+static uint32_t usbHIDKeyRepeatCheck()
 {
    tosUIEvent  event;
  
@@ -257,10 +257,10 @@ static ulong usbHIDKeyRepeatCheck()
    return 0;
 }
 
-ulong usbHIDHandleEvents( void )
+uint32_t usbHIDHandleEvents( void )
 {
-   ulong currKeys;
-   ulong lastKeys;
+   uint32_t currKeys;
+   uint32_t lastKeys;
    
    if( ! ( usbhost->usbHidKeyboardStatus & 1 ) )
    {

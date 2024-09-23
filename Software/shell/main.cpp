@@ -32,21 +32,21 @@ char           fileNameBuf1[ 256 ];
 char           fileNameBuf2[ 256 ];
 
 tselector      selectors[2];
-ushort         activeSelectorIdx;
-ushort         inactiveSelectorIdx;
+uint16_t         activeSelectorIdx;
+uint16_t         inactiveSelectorIdx;
 
-ulong animLeds( ulong j );
-ulong init( void );
+uint32_t animLeds( uint32_t j );
+uint32_t init( void );
 
-ulong asciiTable( void );
+uint32_t asciiTable( void );
 
-ulong viewImage( char *fileName );
-ulong viewFont( char* fileName );
-ulong viewHex( char* fileName );
-ulong viewFile( char* fileName );
+uint32_t viewImage( char *fileName );
+uint32_t viewFont( char* fileName );
+uint32_t viewHex( char* fileName );
+uint32_t viewFile( char* fileName );
 
 
-ulong animLeds( ulong j )
+uint32_t animLeds( uint32_t j )
 {  
       switch( j % 2 )
       {
@@ -68,9 +68,9 @@ ulong animLeds( ulong j )
    return 0;
 } 
 
-ulong init()
+uint32_t init()
 {
-   ulong rv;
+   uint32_t rv;
 
    rv = 0;
 
@@ -156,7 +156,7 @@ ulong init()
 
 
 
-ulong asciiTable()
+uint32_t asciiTable()
 {
    short       x;
    short       y;
@@ -214,14 +214,14 @@ ulong asciiTable()
 }
 
 
-ulong viewImage( char* fileName )
+uint32_t viewImage( char* fileName )
 {
    tgfBitmap   img;
-   ulong       rv;
+   uint32_t       rv;
    tosUIEvent  event;
-   ulong       fileNameLength;
-   ushort      x;
-   ushort      y;
+   uint32_t       fileNameLength;
+   uint16_t      x;
+   uint16_t      y;
 
 
    con.textAttributes = 0x0f;
@@ -293,15 +293,15 @@ ulong viewImage( char* fileName )
    return rv;
 }
 
-ulong viewFont( char* fileName )
+uint32_t viewFont( char* fileName )
 {
    tgfFont     font;
-   ulong       rv;
+   uint32_t       rv;
    tosUIEvent  event;
-   ulong       fileNameLength;
+   uint32_t       fileNameLength;
    short       x;
    short       y;
-   ulong       i;
+   uint32_t       i;
 
    con.textAttributes = 0x0f;
 
@@ -377,20 +377,20 @@ ulong viewFont( char* fileName )
    return rv;
 }
 
-ulong viewHex( char* fileName )
+uint32_t viewHex( char* fileName )
 {
-   ulong       rv;
-   uchar       buf[32];
+   uint32_t       rv;
+   uint8_t       buf[32];
    tosFile     in;
 
-   ushort      x;
-   ushort      y;
-   ulong       i;
-   uchar       c;
+   uint16_t      x;
+   uint16_t      y;
+   uint32_t       i;
+   uint8_t       c;
 
    tosUIEvent  event;
-   ulong       nbr;
-   ushort      eofReached;
+   uint32_t       nbr;
+   uint16_t      eofReached;
 
    rv = 0;
 
@@ -494,12 +494,12 @@ ulong viewHex( char* fileName )
    return rv;
 }
 
-ulong viewFile( char* fileName )
+uint32_t viewFile( char* fileName )
 {
-   ulong  rv;
+   uint32_t  rv;
    char   extension[32];
    char  *pExtension;
-   ulong  i;
+   uint32_t  i;
 
    rv = 0;
 
@@ -566,8 +566,8 @@ ulong viewFile( char* fileName )
 int main()
 {
    long           i;
-   ulong          rv;
-   ushort         refreshScreen;
+   uint32_t          rv;
+   uint16_t         refreshScreen;
 
    tosUIEvent     event;
 

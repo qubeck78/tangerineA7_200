@@ -10,9 +10,9 @@
 volatile tosUIEventQueue osUIEventQueue;
 
 
-ulong osUIEventsInit()
+uint32_t osUIEventsInit()
 {
-	ulong rv;
+	uint32_t rv;
 
 	rv = 0;
 
@@ -39,7 +39,7 @@ ulong osUIEventsInit()
 }
 
 //Store event into queue
-ulong osPutUIEvent( tosUIEvent *event )
+uint32_t osPutUIEvent( tosUIEvent *event )
 {
 	if( !event )
 	{
@@ -83,7 +83,7 @@ ulong osPutUIEvent( tosUIEvent *event )
 
 
 //Get event from queue
-ulong osGetUIEvent( tosUIEvent *event )
+uint32_t osGetUIEvent( tosUIEvent *event )
 {
 
 	#ifdef _GFXLIB_RISCV_FATFS

@@ -8,16 +8,16 @@ BSP_T             *bsp     = ( BSP_T *)            0xf0000000; //registers base 
 
 #define TEXTATTR 0x7f00
 
-unsigned short *displayRam;
-int screenIndex;
+uint16_t *displayRam;
+uint32_t  screenIndex;
 
 char buf[128];
 
-unsigned int random_state = 3242323459;
+uint32_t random_state = 3242323459;
 
-int randomNumber()
+uint32_t randomNumber()
 {
-    unsigned int r = random_state;
+    uint32_t r = random_state;
 
     r ^= r << 13;
     r ^= r >> 17;
@@ -29,10 +29,10 @@ int randomNumber()
 } 
 
 
-int print( char *buf )
+uint32_t print( char *buf )
 {
-   char c;
-   int i;
+   char     c;
+   uint32_t i;
 
    i = 0;
 
@@ -63,9 +63,9 @@ int print( char *buf )
  
 int main()
 {
-   int            i;
-   volatile int   j;
-   int            k;
+   uint32_t          i;
+   volatile uint32_t j;
+   uint32_t          k;
 
    
    //80 column txt mode only

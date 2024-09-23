@@ -27,11 +27,11 @@ char                    lineBuffer[255];
 
 emContext_t             ectx;
 
-extern ulong *rvStackL;
+extern uint32_t *rvStackL;
 
-ulong init()
+uint32_t init()
 {
-    ulong rv;
+    uint32_t rv;
 
     bspInit();
 
@@ -59,7 +59,7 @@ ulong init()
 
     //disassembler
 
-    dctx.codeBuf        = (ulong*) 0x0;
+    dctx.codeBuf        = (uint32_t*) 0x0;
     dctx.codeBufIdx     = 0;
     dctx.codeBufStartPc = 0;
 
@@ -77,22 +77,22 @@ ulong init()
 
 int main()
 {
-    ulong       i;
-    ulong       j;
-    ulong       disasmLineLength;
+    uint32_t       i;
+    uint32_t       j;
+    uint32_t       disasmLineLength;
 
     int         rv;
     tosUIEvent  event; 
-    ulong       disasmIdx;
-    ulong       refresh;
-    ulong       *bootloaderPtr;
+    uint32_t       disasmIdx;
+    uint32_t       refresh;
+    uint32_t       *bootloaderPtr;
 
 
     init();
 
 
     //copy bootloader
-    bootloaderPtr = (ulong*)0;
+    bootloaderPtr = (uint32_t*)0;
 
     for( i = 0; i < 2048; i++ )
     {
@@ -134,7 +134,7 @@ int main()
     disasmIdx           = 0;
     refresh             = 1;
 
-    dctx.codeBuf        = (ulong*) 0;
+    dctx.codeBuf        = (uint32_t*) 0;
 
     dctx.codeBufIdx     = ectx.pc / 4;
     dctx.codeBufStartPc = 0;

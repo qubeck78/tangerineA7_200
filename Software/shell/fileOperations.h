@@ -5,17 +5,17 @@
 #include "../gfxLib/gftypes.h"
 #include "shellUI.h"
 
-ulong pathSelectParentDirectory( char* path );
+uint32_t pathSelectParentDirectory( char* path );
 char* pathFindExtension( char* fileName );
-ulong pathGetSelectedFileFromSelector( tselector *selector, char *fileName );
+uint32_t pathGetSelectedFileFromSelector( tselector *selector, char *fileName );
 
-ulong remountSD( void );
-ulong deleteFile( char *fileName );
-ulong copyFile( char *fromFileName, char *toFileName, char *dialogTitle );
-ulong createDir( char *path );
-ulong moveFile( char *fromFileName, char *toFileName );
-ulong renameFile( char *path, char *fileName );
-ulong downloadFile( char *path );
+uint32_t remountSD( void );
+uint32_t deleteFile( char *fileName );
+uint32_t copyFile( char *fromFileName, char *toFileName, char *dialogTitle );
+uint32_t createDir( char *path );
+uint32_t moveFile( char *fromFileName, char *toFileName );
+uint32_t renameFile( char *path, char *fileName );
+uint32_t downloadFile( char *path );
 
 
 #endif

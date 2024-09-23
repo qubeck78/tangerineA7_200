@@ -2,16 +2,16 @@
 
 
 static pjpeg_image_info_t   jpegImageInfo;
-static uchar            *gfJpegBuf;
-static ulong             gfJpegBufSize;
-static ulong             gfJpegBufIdx;
+static uint8_t            *gfJpegBuf;
+static uint32_t             gfJpegBufSize;
+static uint32_t             gfJpegBufIdx;
 static tosFile          *gfJpegFile;
 
 //decoder callback function - data from RAM
 unsigned char gfJPEGDecoderCallbackRAM( unsigned char* pBuf, unsigned char buf_size, unsigned char *pBytes_actually_read, void *pCallback_data )
 {
-   ulong numBytesToCopy;
-   ulong i;
+   uint32_t numBytesToCopy;
+   uint32_t i;
 
    numBytesToCopy = buf_size;
 
@@ -37,7 +37,7 @@ unsigned char gfJPEGDecoderCallbackRAM( unsigned char* pBuf, unsigned char buf_s
 unsigned char gfJPEGDecoderCallbackFile( unsigned char* pBuf, unsigned char buf_size, unsigned char *pBytes_actually_read, void *pCallback_data )
 {
 
-   ulong bytesRead;
+   uint32_t bytesRead;
 
    bytesRead = 0;
 
@@ -49,7 +49,7 @@ unsigned char gfJPEGDecoderCallbackFile( unsigned char* pBuf, unsigned char buf_
 }
 
 
-ulong gfJPEGDecode( uchar *jpegBuf, ulong jpegBufSize, tgfBitmap *bmp )
+uint32_t gfJPEGDecode( uint8_t *jpegBuf, uint32_t jpegBufSize, tgfBitmap *bmp )
 {
    unsigned char  pjRv;
    short       cx;
@@ -64,9 +64,9 @@ ulong gfJPEGDecode( uchar *jpegBuf, ulong jpegBufSize, tgfBitmap *bmp )
    short           mcuIdx3;
    short           mcuIdx4;
 
-   uchar           r;
-   uchar           g;
-   uchar           b;
+   uint8_t           r;
+   uint8_t           g;
+   uint8_t           b;
 
    gfJpegBuf      = jpegBuf;
    gfJpegBufSize   = jpegBufSize;
@@ -222,7 +222,7 @@ ulong gfJPEGDecode( uchar *jpegBuf, ulong jpegBufSize, tgfBitmap *bmp )
 }
 
 
-ulong gfLoadJPEGFS( tgfBitmap *bmp, char *jpegFileName )
+uint32_t gfLoadJPEGFS( tgfBitmap *bmp, char *jpegFileName )
 {
    tosFile     in;
    unsigned char  pjRv;
@@ -238,9 +238,9 @@ ulong gfLoadJPEGFS( tgfBitmap *bmp, char *jpegFileName )
    short           mcuIdx3;
    short           mcuIdx4;
 
-   uchar           r;
-   uchar           g;
-   uchar           b;
+   uint8_t           r;
+   uint8_t           g;
+   uint8_t           b;
 
    if( osFOpen( &in, jpegFileName , OS_FILE_READ ) )
    {

@@ -5,43 +5,43 @@
 
 typedef struct _dsContext_t
 {
-   ulong    *codeBuf;
-   ulong     codeBufIdx;
-   ulong     codeBufStartPc;
+   uint32_t    *codeBuf;
+   uint32_t     codeBufIdx;
+   uint32_t     codeBufStartPc;
 
    //instruction decoder
 
-   ulong     instruction;
-   ulong     pc;
+   uint32_t     instruction;
+   uint32_t     pc;
 
    //Common
-   uchar    opcode;
-   uchar    rd;
-   uchar    funct3;
-   uchar    rs1;
-   uchar    rs2;
+   uint8_t    opcode;
+   uint8_t    rd;
+   uint8_t    funct3;
+   uint8_t    rs1;
+   uint8_t    rs2;
 
    //R-type
-   uchar    rtFunct7;
+   uint8_t    rtFunct7;
 
    //I-type
-   ulong    itImm;
+   uint32_t    itImm;
 
    //S-type
-   ulong    stImm;
+   uint32_t    stImm;
 
    //B-type
-   ulong    btImm;
+   uint32_t    btImm;
 
    //U-type
-   ulong    utImm;
+   uint32_t    utImm;
 
    //J-type
-   ulong    jtImm;
+   uint32_t    jtImm;
 
 }dsContext_t;
 
-ulong nameRegister( ulong r, char *outputBuffer );
-ulong dsDisassemble( dsContext_t *ctx, char *outputBuffer );
+uint32_t nameRegister( uint32_t r, char *outputBuffer );
+uint32_t dsDisassemble( dsContext_t *ctx, char *outputBuffer );
 
 #endif

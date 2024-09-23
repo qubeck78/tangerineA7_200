@@ -60,10 +60,10 @@ Disassembly of section .text:
     20b4:	ff0788e3          	beq	a5,a6,20a4 <_Z5printPc+0x4c>
     20b8:	4c062703          	lw	a4,1216(a2)
     20bc:	fd179ae3          	bne	a5,a7,2090 <_Z5printPc+0x38>
-    20c0:	03d767b3          	rem	a5,a4,t4
-    20c4:	40f70733          	sub	a4,a4,a5
-    20c8:	05070713          	addi	a4,a4,80
-    20cc:	00ee4e63          	blt	t3,a4,20e8 <_Z5printPc+0x90>
+    20c0:	03d777b3          	remu	a5,a4,t4
+    20c4:	05070713          	addi	a4,a4,80
+    20c8:	40f70733          	sub	a4,a4,a5
+    20cc:	00ee6e63          	bltu	t3,a4,20e8 <_Z5printPc+0x90>
     20d0:	4ce62023          	sw	a4,1216(a2)
     20d4:	00150513          	addi	a0,a0,1
     20d8:	fff54783          	lbu	a5,-1(a0)
@@ -144,30 +144,30 @@ Disassembly of section .text.startup:
     21f4:	00000313          	li	t1,0
     21f8:	000f8693          	mv	a3,t6
     21fc:	32100793          	li	a5,801
-    2200:	0a6f5063          	bge	t5,t1,22a0 <main+0x1b0>
-    2204:	fb130e13          	addi	t3,t1,-79
+    2200:	0a6f7063          	bgeu	t5,t1,22a0 <main+0x1b0>
+    2204:	fb030e13          	addi	t3,t1,-80
     2208:	0140006f          	j	221c <main+0x12c>
     220c:	00a69023          	sh	a0,0(a3) # 8000 <__ramend>
     2210:	00178793          	addi	a5,a5,1
     2214:	00268693          	addi	a3,a3,2
     2218:	00c78e63          	beq	a5,a2,2234 <main+0x144>
     221c:	cdf78593          	addi	a1,a5,-801
-    2220:	ffc5c6e3          	blt	a1,t3,220c <main+0x11c>
+    2220:	febe76e3          	bgeu	t3,a1,220c <main+0x11c>
     2224:	01069023          	sh	a6,0(a3)
     2228:	00178793          	addi	a5,a5,1
     222c:	00268693          	addi	a3,a3,2
     2230:	fec796e3          	bne	a5,a2,221c <main+0x12c>
     2234:	00130313          	addi	t1,t1,1
-    2238:	0860d263          	bge	ra,t1,22bc <main+0x1cc>
+    2238:	0860f263          	bgeu	ra,t1,22bc <main+0x1cc>
     223c:	00012623          	sw	zero,12(sp)
     2240:	00c12783          	lw	a5,12(sp)
-    2244:	02fec063          	blt	t4,a5,2264 <main+0x174>
+    2244:	02fee063          	bltu	t4,a5,2264 <main+0x174>
     2248:	00c12783          	lw	a5,12(sp)
     224c:	00000313          	li	t1,0
     2250:	00178793          	addi	a5,a5,1
     2254:	00f12623          	sw	a5,12(sp)
     2258:	00c12783          	lw	a5,12(sp)
-    225c:	06fed663          	bge	t4,a5,22c8 <main+0x1d8>
+    225c:	06fef663          	bgeu	t4,a5,22c8 <main+0x1d8>
     2260:	f8031ce3          	bnez	t1,21f8 <main+0x108>
     2264:	005386b3          	add	a3,t2,t0
     2268:	00d71793          	slli	a5,a4,0xd
@@ -185,7 +185,7 @@ Disassembly of section .text.startup:
     2298:	00268693          	addi	a3,a3,2
     229c:	00c78e63          	beq	a5,a2,22b8 <main+0x1c8>
     22a0:	cdf78593          	addi	a1,a5,-801
-    22a4:	feb346e3          	blt	t1,a1,2290 <main+0x1a0>
+    22a4:	feb366e3          	bltu	t1,a1,2290 <main+0x1a0>
     22a8:	01069023          	sh	a6,0(a3)
     22ac:	00178793          	addi	a5,a5,1
     22b0:	00268693          	addi	a3,a3,2
@@ -193,11 +193,11 @@ Disassembly of section .text.startup:
     22b8:	00130313          	addi	t1,t1,1
     22bc:	00012623          	sw	zero,12(sp)
     22c0:	00c12783          	lw	a5,12(sp)
-    22c4:	f2fecae3          	blt	t4,a5,21f8 <main+0x108>
+    22c4:	f2feeae3          	bltu	t4,a5,21f8 <main+0x108>
     22c8:	00c12783          	lw	a5,12(sp)
     22cc:	00178793          	addi	a5,a5,1
     22d0:	00f12623          	sw	a5,12(sp)
     22d4:	00c12783          	lw	a5,12(sp)
-    22d8:	fefed8e3          	bge	t4,a5,22c8 <main+0x1d8>
+    22d8:	fefef8e3          	bgeu	t4,a5,22c8 <main+0x1d8>
     22dc:	f80304e3          	beqz	t1,2264 <main+0x174>
     22e0:	f19ff06f          	j	21f8 <main+0x108>

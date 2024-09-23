@@ -12,9 +12,9 @@ extern BSP_T *bsp;   //registers
 #endif
 
 
-ulong gfPlot( tgfBitmap *bmp, short x, short y, ushort color )
+uint32_t gfPlot( tgfBitmap *bmp, int16_t x, int16_t y, uint16_t color )
 {
-   ushort  *fb;
+   uint16_t  *fb;
 
    if( bmp == NULL ) return 1;
    if( x < 0 ) return 1;
@@ -22,15 +22,15 @@ ulong gfPlot( tgfBitmap *bmp, short x, short y, ushort color )
    if( x >= bmp->width )   return 1;
    if( y >= bmp->height )  return 1;
 
-   fb = (ushort *)bmp->buffer;
+   fb = (uint16_t *)bmp->buffer;
    fb[ x + ( bmp->rowWidth * y ) ] = color;
 
    return 0;
 }
 
-ushort gfGetPixel( tgfBitmap *bmp, short x, short y )
+uint16_t gfGetPixel( tgfBitmap *bmp, int16_t x, int16_t y )
 {
-   ushort  *fb;
+   uint16_t  *fb;
 
    if( bmp == NULL ) return 0;
    if( x < 0 ) return 0;
@@ -38,15 +38,15 @@ ushort gfGetPixel( tgfBitmap *bmp, short x, short y )
    if( x >= bmp->width )   return 0;
    if( y >= bmp->height )  return 0;
 
-   fb = (ushort *)bmp->buffer;
+   fb = (uint16_t *)bmp->buffer;
    return fb[ x + ( bmp->rowWidth * y ) ];
 }
 
-ulong gfPlotA( tgfBitmap *bmp, short x, short y, ushort color, uchar alpha )
+uint32_t gfPlotA( tgfBitmap *bmp, int16_t x, int16_t y, uint16_t color, uint8_t alpha )
 {
-   ushort  *fb;
-   ushort  basePixelColor;
-   ulong    r, g, b;
+   uint16_t  *fb;
+   uint16_t  basePixelColor;
+   uint32_t    r, g, b;
 
    if( bmp == NULL ) return 1;
    if( x < 0 ) return 1;
@@ -54,7 +54,7 @@ ulong gfPlotA( tgfBitmap *bmp, short x, short y, ushort color, uchar alpha )
    if( x >= bmp->width )   return 1;
    if( y >= bmp->height )  return 1;
 
-   fb = (ushort *)bmp->buffer;
+   fb = (uint16_t *)bmp->buffer;
 
 
 
@@ -78,10 +78,10 @@ ulong gfPlotA( tgfBitmap *bmp, short x, short y, ushort color, uchar alpha )
 }
 
 
-ulong gfPlotA2C( tgfBitmap *bmp, short x, short y, ushort color1, ushort color2, uchar alpha )
+uint32_t gfPlotA2C( tgfBitmap *bmp, int16_t x, int16_t y, uint16_t color1, uint16_t color2, uint8_t alpha )
 {
-   ushort  *fb;
-   ulong    r, g, b;
+   uint16_t  *fb;
+   uint32_t    r, g, b;
 
    if( bmp == NULL ) return 1;
    if( x < 0 ) return 1;
@@ -89,7 +89,7 @@ ulong gfPlotA2C( tgfBitmap *bmp, short x, short y, ushort color1, ushort color2,
    if( x >= bmp->width )   return 1;
    if( y >= bmp->height )  return 1;
 
-   fb = (ushort *)bmp->buffer;
+   fb = (uint16_t *)bmp->buffer;
 
 
    r = gfColorGetR( color2 ) * ( 255 - alpha );
@@ -111,15 +111,15 @@ ulong gfPlotA2C( tgfBitmap *bmp, short x, short y, ushort color1, ushort color2,
 }
 
 
-ulong gfLine( tgfBitmap *bmp, short x1, short y1, short x2, short y2, ushort color )
+uint32_t gfLine( tgfBitmap *bmp, int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint16_t color )
 {
 
-   short dx;
-   short dy;
-   short   sx;
-   short   sy;
-   short   err;
-   short   e2;
+   int16_t dx;
+   int16_t dy;
+   int16_t   sx;
+   int16_t   sy;
+   int16_t   err;
+   int16_t   e2;
 
    dx = gfAbs( x2 - x1 );
    sx =  x1<x2 ? 1: -1;
@@ -157,11 +157,11 @@ ulong gfLine( tgfBitmap *bmp, short x1, short y1, short x2, short y2, ushort col
    return 0;
 }
 
-ulong gfCircle( tgfBitmap *bmp, short xm, short ym, short r, ushort color )
+uint32_t gfCircle( tgfBitmap *bmp, int16_t xm, int16_t ym, int16_t r, uint16_t color )
 {
-   short x = -r;
-   short y = 0;
-   short err = 2 - 2 * r; /* II. Quadrant */
+   int16_t x = -r;
+   int16_t y = 0;
+   int16_t err = 2 - 2 * r; /* II. Quadrant */
 
    do
    {
@@ -187,17 +187,17 @@ ulong gfCircle( tgfBitmap *bmp, short xm, short ym, short r, ushort color )
    return 0;
 }
 
-ulong gfEllipse( tgfBitmap *bmp, short x1, short y1, short x2, short y2, ushort color )
+uint32_t gfEllipse( tgfBitmap *bmp, int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint16_t color )
 {
 
-   long a = gfAbs( x2 - x1 );
-   long b = gfAbs( y2 - y1 );
-   long b1 = b & 1; /* values of diameter */
+   int32_t a = gfAbs( x2 - x1 );
+   int32_t b = gfAbs( y2 - y1 );
+   int32_t b1 = b & 1; /* values of diameter */
 
-   long dx = 4 * ( 1 - a )* b * b;
-   long dy = 4 * ( b1 + 1 ) * a * a; /* error increment */
-   long err = dx + dy + ( b1 * a * a );
-   long e2; /* error of 1.step */
+   int32_t dx = 4 * ( 1 - a )* b * b;
+   int32_t dy = 4 * ( b1 + 1 ) * a * a; /* error increment */
+   int32_t err = dx + dy + ( b1 * a * a );
+   int32_t e2; /* error of 1.step */
 
    if( x1 > x2 )
    {
@@ -264,13 +264,13 @@ ulong gfEllipse( tgfBitmap *bmp, short x1, short y1, short x2, short y2, ushort 
 }
 
 
-ulong gfFillRect( tgfBitmap *bmp, short x1, short y1, short x2, short y2, ushort color )
+uint32_t gfFillRect( tgfBitmap *bmp, int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint16_t color )
 {
-   short     x;
-   short     y;
-   ushort   *fb;
-   short     bw;
-   short     bh;
+   int16_t     x;
+   int16_t     y;
+   uint16_t   *fb;
+   int16_t     bw;
+   int16_t     bh;
    
    if( !bmp ) return 1;
 
@@ -307,7 +307,7 @@ ulong gfFillRect( tgfBitmap *bmp, short x1, short y1, short x2, short y2, ushort
       bw = x2 - x1 + 1;
       bh = y2 - y1 + 1;
       
-      blt->daAddress       = (ulong)bmp->buffer + ( y1 * ( bmp->rowWidth << 1 ) + ( x1 << 1 ) );
+      blt->daAddress       = (uint32_t)bmp->buffer + ( y1 * ( bmp->rowWidth << 1 ) + ( x1 << 1 ) );
       blt->daRowWidth      = bmp->rowWidth;
       blt->daWidth         = bw;
       blt->daHeight        = bh;
@@ -321,7 +321,7 @@ ulong gfFillRect( tgfBitmap *bmp, short x1, short y1, short x2, short y2, ushort
 
    for( y = y1; y <= y2; y++ )
    {
-      fb = &((ushort*)bmp->buffer)[ y * bmp->rowWidth + x1 ];
+      fb = &((uint16_t*)bmp->buffer)[ y * bmp->rowWidth + x1 ];
 
       for( x = x1; x <= x2; x++ )
       {

@@ -54,10 +54,10 @@
 
 typedef struct _tosUIEvent
 {
-	ushort	type;
-	ulong   arg1;
-	ulong   arg2;
-	ulong	arg3;
+	uint16_t	type;
+	uint32_t   arg1;
+	uint32_t   arg2;
+	uint32_t	arg3;
 	void    *obj;
 
 }tosUIEvent;
@@ -67,24 +67,24 @@ typedef struct _tosUIEvent
 
 typedef struct _tosUIEventQueue
 {
-    volatile ushort     lock;
+    volatile uint16_t     lock;
 
 	volatile tosUIEvent	queue[OS_UI_EVENT_QUEUE_DEPTH];
 
-	volatile ulong      rdIdx;
-	volatile ulong      wrIdx;
-    volatile ushort     elementCount;
+	volatile uint32_t      rdIdx;
+	volatile uint32_t      wrIdx;
+    volatile uint16_t     elementCount;
 
 }tosUIEventQueue;
 
 
 
-ulong osUIEventsInit( void );
+uint32_t osUIEventsInit( void );
 
 
-ulong osPutUIEvent( tosUIEvent *event );
+uint32_t osPutUIEvent( tosUIEvent *event );
 
-ulong osGetUIEvent( tosUIEvent *event );
+uint32_t osGetUIEvent( tosUIEvent *event );
 
 
 

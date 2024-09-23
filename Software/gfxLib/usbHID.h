@@ -12,7 +12,7 @@
 #define USBHID_KEYREPEAT_RATE    128
 
 
-ulong usbHIDInit( void );
-ulong usbHIDHandleEvents( void );
+uint32_t usbHIDInit( void );
+uint32_t usbHIDHandleEvents( void );
 
 #endif

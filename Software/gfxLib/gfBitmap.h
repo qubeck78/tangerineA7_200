@@ -10,19 +10,19 @@
 typedef struct _tgfBitmap
 {
 	//Bitmap width
-	ushort   width;
+	uint16_t   width;
 
 	//Total bitmap width ( with optional margin to align rows in memory )
-	ushort	 rowWidth;
+	uint16_t	 rowWidth;
 	
 	//Bitma[] height
-	ushort   height;
+	uint16_t   height;
 
 	//Flags
-	ushort   flags;
+	uint16_t   flags;
 
 	//Transparent color
-	ushort   transparentColor;
+	uint16_t   transparentColor;
 
 	//Graphics data buffer pointer
 	void    *buffer;
@@ -30,15 +30,15 @@ typedef struct _tgfBitmap
 }tgfBitmap;
 
 
-ulong gfDisplayBitmap( tgfBitmap *bmp );
+uint32_t gfDisplayBitmap( tgfBitmap *bmp );
 
-ulong gfLoadBitmapFS( tgfBitmap *dest, char *fileName );
+uint32_t gfLoadBitmapFS( tgfBitmap *dest, char *fileName );
 
-ulong gfBlitBitmap( tgfBitmap *dest, tgfBitmap *src, short x, short y );
-ulong gfBlitBitmapSrcRect( tgfBitmap *dest, tgfBitmap *src, short sx, short sy, short bw, short bh, short x, short y );
-ulong gfBlitBitmapA( tgfBitmap *dest, tgfBitmap *src, short x, short y, uchar alpha );
-ulong gfBlitBitmapA2Src( tgfBitmap *dest, tgfBitmap *src1, tgfBitmap *src2, short x, short y, uchar alpha );
-ulong gfBlitScaledBitmap( tgfBitmap *dest, tgfBitmap *src, short x, short y, short w, short h );
+uint32_t gfBlitBitmap( tgfBitmap *dest, tgfBitmap *src, int16_t x, int16_t y );
+uint32_t gfBlitBitmapSrcRect( tgfBitmap *dest, tgfBitmap *src, int16_t sx, int16_t sy, int16_t bw, int16_t bh, int16_t x, int16_t y );
+uint32_t gfBlitBitmapA( tgfBitmap *dest, tgfBitmap *src, int16_t x, int16_t y, uint8_t alpha );
+uint32_t gfBlitBitmapA2Src( tgfBitmap *dest, tgfBitmap *src1, tgfBitmap *src2, int16_t x, int16_t y, uint8_t alpha );
+uint32_t gfBlitScaledBitmap( tgfBitmap *dest, tgfBitmap *src, int16_t x, int16_t y, int16_t w, int16_t h );
 
 
 

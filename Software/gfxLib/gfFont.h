@@ -15,19 +15,19 @@
 
 typedef struct _tgfFont
 {
-	ushort   type;
-	ushort   flags;
+	uint16_t   type;
+	uint16_t   flags;
 
-	ushort   width;
-	ushort   height;
+	uint16_t   width;
+	uint16_t   height;
 
-	ushort   charColor;
-	ushort   backgroundColor;
+	uint16_t   charColor;
+	uint16_t   backgroundColor;
 
-	uchar    firstChar;
-	uchar    lastChar;
+	uint8_t    firstChar;
+	uint8_t    lastChar;
 
-	uchar   *charWidths;
+	uint8_t   *charWidths;
 	void    *charBuffer;
 
 }tgfFont;
@@ -38,36 +38,36 @@ typedef struct _tgfFont
 #define GF_TEXT_OVERLAY_FLAG_SHOW_CURSOR    0x0001
 typedef struct _tgfTextOverlay
 {
-	ushort   type;
-	ushort   flags;
+	uint16_t   type;
+	uint16_t   flags;
 
-	ushort   width;
-	ushort   height;
+	uint16_t   width;
+	uint16_t   height;
 
-	ushort   cursX;
-	ushort   cursY;
-	uchar    textAttributes;
+	uint16_t   cursX;
+	uint16_t   cursY;
+	uint8_t    textAttributes;
 
 	tgfFont *font;
 
-	uchar   *textBuffer;
+	uint8_t   *textBuffer;
 	
 }tgfTextOverlay;
 
 
 
-ulong gfLoadFontFS( tgfFont *dest, char *fileName );
+uint32_t gfLoadFontFS( tgfFont *dest, char *fileName );
 
-short gfPutChar( tgfBitmap *bmp, tgfFont *font, short x, short y, char c );
-short gfPutString( tgfBitmap *bmp, tgfFont *font, short x, short y, char *string );
+int16_t gfPutChar( tgfBitmap *bmp, tgfFont *font, int16_t x, int16_t y, char c );
+int16_t gfPutString( tgfBitmap *bmp, tgfFont *font, int16_t x, int16_t y, char *string );
 
-ulong gfDrawTextOverlay( tgfBitmap *bmp, tgfTextOverlay *textOverlay, short x, short y );
+uint32_t gfDrawTextOverlay( tgfBitmap *bmp, tgfTextOverlay *textOverlay, int16_t x, int16_t y );
 
-ulong toSetCursorPos( tgfTextOverlay *overlay, ushort cursX, ushort cursY );
-ulong toCls( tgfTextOverlay *overlay );
-ulong toScrollUp( tgfTextOverlay *overlay );
-ulong toPrint( tgfTextOverlay *overlay, char *string );
-ulong toPrintF( tgfTextOverlay *overlay, char *format, ... );
+uint32_t toSetCursorPos( tgfTextOverlay *overlay, uint16_t cursX, uint16_t cursY );
+uint32_t toCls( tgfTextOverlay *overlay );
+uint32_t toScrollUp( tgfTextOverlay *overlay );
+uint32_t toPrint( tgfTextOverlay *overlay, char *string );
+uint32_t toPrintF( tgfTextOverlay *overlay, char *format, ... );
 
 
 

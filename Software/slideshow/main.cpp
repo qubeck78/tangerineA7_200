@@ -31,14 +31,14 @@ char                         lfnBuf[ 512 + 16];
 tosDir                       dir;
 tosDirItem                   dirItem;
 
-ulong                        numDirEntries;
+uint32_t                     numDirEntries;
 
 
 
-ulong getNumEntries()
+uint32_t getNumEntries()
 {
-    ulong rv;
-    ulong numEntries;
+    uint32_t rv;
+    uint32_t numEntries;
 
     #ifdef _GFXLIB_SDL
 
@@ -76,10 +76,10 @@ ulong getNumEntries()
     return numEntries;
 }
 
-ulong getEntry( ulong entryNumber )
+uint32_t getEntry( uint32_t entryNumber )
 {
-    ulong i;
-    ulong rv;
+    uint32_t i;
+    uint32_t rv;
     
     #ifdef _GFXLIB_SDL
 
@@ -105,13 +105,12 @@ ulong getEntry( ulong entryNumber )
 }
 
 
-int slideshow()
+uint32_t slideshow()
 {
-    int             rv;
-    int             i;
-    volatile ulong  j;
-    short           x;
-    short           y;
+    uint32_t        rv;
+    uint32_t        i;
+    int16_t         x;
+    int16_t         y;
     char            extension[8];
     tosUIEvent      event;
     
@@ -159,8 +158,8 @@ int slideshow()
 
                     if( screen.width > 512 )
                     {                       
-                        x  = ((ulong)randomNumber() ) % 320;
-                        y  = ((ulong)randomNumber() ) % 240;
+                        x  = ((uint32_t)randomNumber() ) % 320;
+                        y  = ((uint32_t)randomNumber() ) % 240;
                         
                     }
                     else
@@ -251,9 +250,8 @@ int slideshow()
 
 int main()
 {
-    int         i;
-    int         rv;
-    volatile int j;
+    uint32_t    i;
+    uint32_t    rv;
 
 
     bspInit();

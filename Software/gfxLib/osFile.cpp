@@ -30,7 +30,7 @@ static struct stat fsStat;
 #endif
 
 
-ulong osFInit( void )
+uint32_t osFInit( void )
 {
    int rv;
    int retryCount;
@@ -74,7 +74,7 @@ ulong osFInit( void )
    #endif
 }
 
-ulong osFOpen( tosFile *file, char *path, ulong mode )
+uint32_t osFOpen( tosFile *file, char *path, uint32_t mode )
 {
    #ifdef _GFXLIB_SDL
 
@@ -228,7 +228,7 @@ ulong osFOpen( tosFile *file, char *path, ulong mode )
    return 255;
 }
 
-ulong osFClose( tosFile *file )
+uint32_t osFClose( tosFile *file )
 {
 
    if( !file )
@@ -263,7 +263,7 @@ ulong osFClose( tosFile *file )
    return 255;
 }
 
-ulong osFWrite( tosFile *file, uchar *buffer, ulong numBytesToWrite )
+uint32_t osFWrite( tosFile *file, uint8_t *buffer, uint32_t numBytesToWrite )
 {
 
    #if defined( _GFXLIB_STM32_FATFS ) || defined( _GFXLIB_MC68K_FATFS ) || defined( _GFXLIB_RISCV_FATFS )
@@ -318,7 +318,7 @@ ulong osFWrite( tosFile *file, uchar *buffer, ulong numBytesToWrite )
    return 255;
 }
 
-ulong osFRead( tosFile *file, uchar *buffer, ulong numBytesToRead, ulong *numBytesRead )
+uint32_t osFRead( tosFile *file, uint8_t *buffer, uint32_t numBytesToRead, uint32_t *numBytesRead )
 {
 
    #if defined( _GFXLIB_SDL ) || defined( _GFXLIB_ESP32_FFAT )
@@ -413,12 +413,12 @@ ulong osFRead( tosFile *file, uchar *buffer, ulong numBytesToRead, ulong *numByt
 }
 
 
-ulong osFGetS( tosFile *file, uchar *buffer, ulong maxLength )
+uint32_t osFGetS( tosFile *file, uint8_t *buffer, uint32_t maxLength )
 {
-   uchar rbuf[4];
-   ulong idx;
-   ulong rv;
-   ulong nbr;
+   uint8_t rbuf[4];
+   uint32_t idx;
+   uint32_t rv;
+   uint32_t nbr;
 
    idx = 0;
 
@@ -449,7 +449,7 @@ ulong osFGetS( tosFile *file, uchar *buffer, ulong maxLength )
    return rv;
 }
 
-ulong osDirOpen( tosDir *dir, char *path )
+uint32_t osDirOpen( tosDir *dir, char *path )
 {
 
    #if defined( _GFXLIB_STM32_FATFS ) || defined( _GFXLIB_MC68K_FATFS ) || defined( _GFXLIB_RISCV_FATFS )
@@ -502,7 +502,7 @@ ulong osDirOpen( tosDir *dir, char *path )
    return 1;
 }
 
-ulong osDirClose( tosDir *dir )
+uint32_t osDirClose( tosDir *dir )
 {
 
    if( dir == NULL )
@@ -536,7 +536,7 @@ ulong osDirClose( tosDir *dir )
 
 }
 
-ulong osDirRead( tosDir *dir, tosDirItem *dirItem )
+uint32_t osDirRead( tosDir *dir, tosDirItem *dirItem )
 {
    #ifdef _GFXLIB_SDL
 
@@ -681,9 +681,9 @@ ulong osDirRead( tosDir *dir, tosDirItem *dirItem )
 
 }
 
-ulong osFSize( char *path )
+uint32_t osFSize( char *path )
 {
-   ulong rv;
+   uint32_t rv;
 
    #if defined( _GFXLIB_STM32_FATFS ) || defined( _GFXLIB_MC68K_FATFS ) || defined( _GFXLIB_RISCV_FATFS )
    
@@ -714,7 +714,7 @@ ulong osFSize( char *path )
 }
 
 
-ulong osFDelete( char *path )
+uint32_t osFDelete( char *path )
 {
 
    #if defined( _GFXLIB_STM32_FATFS ) || defined( _GFXLIB_MC68K_FATFS ) || defined( _GFXLIB_RISCV_FATFS )
@@ -737,7 +737,7 @@ ulong osFDelete( char *path )
    return 1;
 }
 
-ulong osMkDir( char *path )
+uint32_t osMkDir( char *path )
 {
    #if defined( _GFXLIB_STM32_FATFS ) || defined( _GFXLIB_MC68K_FATFS ) || defined( _GFXLIB_RISCV_FATFS )
    
@@ -759,7 +759,7 @@ ulong osMkDir( char *path )
    return 1;
 }
 
-ulong osRename( char *pathOld, char *pathNew )
+uint32_t osRename( char *pathOld, char *pathNew )
 {
    #if defined( _GFXLIB_STM32_FATFS ) || defined( _GFXLIB_MC68K_FATFS ) || defined( _GFXLIB_RISCV_FATFS )
    

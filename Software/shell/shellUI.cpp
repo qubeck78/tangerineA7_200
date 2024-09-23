@@ -17,9 +17,9 @@ tosDirItem              dirItem;
 
 extern tgfBitmap        background;
 
-ulong uiDrawStatusBar()
+uint32_t uiDrawStatusBar()
 {
-   ulong rv;
+   uint32_t rv;
 
    rv = 0;
 
@@ -103,11 +103,11 @@ ulong uiDrawStatusBar()
    return rv;
 }
 
-ulong uiDrawSelectorWindowFrame( tselector *selector )
+uint32_t uiDrawSelectorWindowFrame( tselector *selector )
 {
-   ulong    rv;
-   ulong    i;
-   ulong    j;
+   uint32_t    rv;
+   uint32_t    i;
+   uint32_t    j;
    char     buf[50];
 
    rv = 0;
@@ -165,15 +165,15 @@ ulong uiDrawSelectorWindowFrame( tselector *selector )
 }
 
 
-ulong uiDrawSelectorWindowContents( tselector *selector )
+uint32_t uiDrawSelectorWindowContents( tselector *selector )
 {
-   ulong    rv;
-   ulong    i;
-   ulong    j;
-   ulong    idx;
+   uint32_t    rv;
+   uint32_t    i;
+   uint32_t    j;
+   uint32_t    idx;
 
    char     buf[50];
-   ushort   position;
+   uint16_t   position;
    char     buf2[16];
 
 
@@ -233,11 +233,11 @@ ulong uiDrawSelectorWindowContents( tselector *selector )
 }
 
 
-ulong uiReadDirAndFillSelectorWindowContents( tselector *selector)
+uint32_t uiReadDirAndFillSelectorWindowContents( tselector *selector)
 {
-   ulong rv;
-   ulong i;
-   ulong j;
+   uint32_t rv;
+   uint32_t i;
+   uint32_t j;
 
 
    rv = 0;
@@ -294,14 +294,14 @@ ulong uiReadDirAndFillSelectorWindowContents( tselector *selector)
    return 0;
 }
 
-ulong uiDrawInfoWindow( char *title, char *contents, ulong buttons )
+uint32_t uiDrawInfoWindow( char *title, char *contents, uint32_t buttons )
 {
-   ulong    wy;
-   ulong    wx;
+   uint32_t    wy;
+   uint32_t    wx;
    char     buf[80];
-   ulong    i;
-   ulong    j;
-   ushort   width;
+   uint32_t    i;
+   uint32_t    j;
+   uint16_t   width;
 
    width = strlen( contents );
 

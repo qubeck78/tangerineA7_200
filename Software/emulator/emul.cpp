@@ -6,7 +6,7 @@
 
 
 
-ulong rvReset( emContext_t *ctx )
+uint32_t rvReset( emContext_t *ctx )
 {
    if( ctx == NULL )
    {
@@ -26,43 +26,43 @@ ulong rvReset( emContext_t *ctx )
 }
 
 
-ulong rvStep( emContext_t *ctx )
+uint32_t rvStep( emContext_t *ctx )
 {
    //Instruction decoder
 
    //common
-   ulong opcode;
-   ulong rd;
-   ulong funct3;
-   ulong rs1;
-   ulong rs2;
-   ulong rtFunct7;
+   uint32_t opcode;
+   uint32_t rd;
+   uint32_t funct3;
+   uint32_t rs1;
+   uint32_t rs2;
+   uint32_t rtFunct7;
 
    //I-type
-   ulong itImm;
+   uint32_t itImm;
    long  itsImm;
 
    //S-type
-   ulong stImm;
+   uint32_t stImm;
    long  stsImm;
 
    //B-type
-   ulong btImm;
+   uint32_t btImm;
    long  btsImm;
 
    //U-type
-   ulong utImm;
+   uint32_t utImm;
 
    //J-type
-   ulong jtImm;
+   uint32_t jtImm;
    long  jtsImm;
 
-   ulong iDecAux;
-   ulong instruction;
-   ulong i;
-   ulong j;
+   uint32_t iDecAux;
+   uint32_t instruction;
+   uint32_t i;
+   uint32_t j;
 
-   ulong rv;
+   uint32_t rv;
 
 
    //fetch instruction

@@ -21,9 +21,9 @@ tgfBitmap               cursorBg;
 
 
 
-static ulong waitKey()
+static uint32_t waitKey()
 {
-    ulong       keyPressed;
+    uint32_t       keyPressed;
     tosUIEvent  event; 
 
     keyPressed = 0;
@@ -52,22 +52,22 @@ static ulong waitKey()
 
 int main()
 {
-    ulong       i;
-    ulong       rv;
+    uint32_t       i;
+    uint32_t       rv;
     tosUIEvent  event;
 
-    long       mouseX;
-    long       mouseY;
-    long       prvMouseX;
-    long       prvMouseY;
+    int32_t       mouseX;
+    int32_t       mouseY;
+    int32_t       prvMouseX;
+    int32_t       prvMouseY;
     
-    ushort      *spriteRam;
-    ushort      *bmpBuf;
-    ulong       vo,vs;
+    uint16_t      *spriteRam;
+    uint16_t      *bmpBuf;
+    uint32_t       vo,vs;
 
     bspInit();
                                             
-    spriteRam = ( ushort* )( 0xf0120000 );
+    spriteRam = ( uint16_t* )( 0xf0120000 );
 
     setVideoMode( _VIDEOMODE_320_TEXT80_OVER_GFX );
     
@@ -106,7 +106,7 @@ int main()
    
     gfLoadBitmapFS( &cursor, (char*)"0:/sys/cursor.gbm" );
 
-    bmpBuf = (ushort*)cursor.buffer;
+    bmpBuf = (uint16_t*)cursor.buffer;
 
     for( i = 0 ; i < 32 * 32; i++ )
     {
