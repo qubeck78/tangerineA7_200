@@ -24,15 +24,15 @@
 
 modcontext  modctx;
 short      *audioData;
-ulong       audioDataLength;
+uint32_t       audioDataLength;
 short      *audioDataL;
 short      *audioDataH;
 short      *audioModData;
-ulong       audioModDataLength;
+uint32_t       audioModDataLength;
 
-ulong mpInit()
+uint32_t mpInit()
 {
-   ulong rv;
+   uint32_t rv;
 
    rv = 0;
 
@@ -64,17 +64,17 @@ ulong mpInit()
    return rv;
 }
 
-ulong mpPlay( char *fileName )
+uint32_t mpPlay( char *fileName )
 {
-   ulong          rv;
+   uint32_t          rv;
    tosUIEvent     event; 
    tosFile        in;
-   ulong          nbr;
-   ulong          audioDmaStatus;
-   ulong          quitPlayer;
+   uint32_t          nbr;
+   uint32_t          audioDmaStatus;
+   uint32_t          quitPlayer;
    char           buf[60];
-   ulong          i;
-   ulong          j;
+   uint32_t          i;
+   uint32_t          j;
 
 
    uiDrawInfoWindow( (char*)"Loading", fileName, _UI_INFO_WINDOW_BUTTONS_NONE );
@@ -104,7 +104,7 @@ ulong mpPlay( char *fileName )
 
    }
 
-   osFRead( &in, (uchar*)audioModData, audioModDataLength, &nbr );
+   osFRead( &in, (uint8_t*)audioModData, audioModDataLength, &nbr );
 
    osFClose( &in );
 
@@ -117,7 +117,7 @@ ulong mpPlay( char *fileName )
 
 
    //play audio buffer :)
-   aud->audioDmaPointer = ( (ulong)audioData - _SYSTEM_MEMORY_BASE ) / 4;
+   aud->audioDmaPointer = ( (uint32_t)audioData - _SYSTEM_MEMORY_BASE ) / 4;
    aud->audioDmaLength  = ( audioDataLength / 4 ) - 1;      //32 bit tranfer, 2 samples per count
    aud->audioDmaConfig  = 0x04 | 0x01;                      //start dma transfer, looping enabled, mode: mono 
 

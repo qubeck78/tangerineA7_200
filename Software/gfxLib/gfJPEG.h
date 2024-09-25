@@ -10,8 +10,8 @@
 #include "osFile.h"
 
 
-ulong gfJPEGDecode( uchar *jpegBuf, ulong jpegBufSize, tgfBitmap *bmp );
-ulong gfLoadJPEGFS( tgfBitmap *bmp, char *jpegFileName );
+uint32_t gfJPEGDecode( uint8_t *jpegBuf, uint32_t jpegBufSize, tgfBitmap *bmp );
+uint32_t gfLoadJPEGFS( tgfBitmap *bmp, char *jpegFileName );
 
 
 

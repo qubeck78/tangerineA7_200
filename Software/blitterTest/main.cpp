@@ -20,14 +20,14 @@ tgfBitmap               bmp;
 char buf[256];
 
 
-static ulong fillTest()
+static uint32_t fillTest()
 {
-    ulong   i;
+    uint32_t   i;
 
     gfLine( &screen, 160, 0, 160, 239, gfColor( 0, 255, 0 ) );
     gfLine( &screen, 0, 120, 319, 120, gfColor( 0, 255, 0 ) );
     
-    blt->daAddress  = (ulong)screen.buffer;
+    blt->daAddress  = (uint32_t)screen.buffer;
     blt->daRowWidth = screen.rowWidth;
     blt->daWidth    = 160;
     blt->daHeight   = 120;
@@ -37,7 +37,7 @@ static ulong fillTest()
 
     while( ! ( blt->command & 1 ) );
 
-    blt->daAddress  = (ulong)screen.buffer + ( 122 * ( screen.rowWidth << 1 ) + 2 );
+    blt->daAddress  = (uint32_t)screen.buffer + ( 122 * ( screen.rowWidth << 1 ) + 2 );
 
     blt->daRowWidth = screen.rowWidth;
     blt->daWidth    = 158;
@@ -51,7 +51,7 @@ static ulong fillTest()
     for( i = 0; i < 120; i++ )
     {
 
-        blt->daAddress  = (ulong)screen.buffer + ( i * ( screen.rowWidth << 1 ) + ( 161 << 1 ) );
+        blt->daAddress  = (uint32_t)screen.buffer + ( i * ( screen.rowWidth << 1 ) + ( 161 << 1 ) );
 
         blt->daRowWidth = screen.rowWidth;
         blt->daWidth    = 159;
@@ -68,7 +68,7 @@ static ulong fillTest()
     for( i = 0; i < 159; i++ )
     {
 
-        blt->daAddress  = (ulong)screen.buffer + ( 121 * ( screen.rowWidth << 1 ) + ( ( i + 161 ) << 1 ) );
+        blt->daAddress  = (uint32_t)screen.buffer + ( 121 * ( screen.rowWidth << 1 ) + ( ( i + 161 ) << 1 ) );
 
         blt->daRowWidth = screen.rowWidth;
         blt->daWidth    = 1;
@@ -85,15 +85,15 @@ static ulong fillTest()
     return 0;
 }
 
-static ulong copyTest()
+static uint32_t copyTest()
 {
 
-    blt->saAddress  = (ulong)bmp.buffer;
+    blt->saAddress  = (uint32_t)bmp.buffer;
     blt->saRowWidth = bmp.rowWidth;
     blt->saWidth    = bmp.width;
     blt->saHeight   = bmp.height;
 
-    blt->daAddress  = (ulong)screen.buffer + ( 32 * ( screen.rowWidth << 1 ) + ( 32 << 1) );
+    blt->daAddress  = (uint32_t)screen.buffer + ( 32 * ( screen.rowWidth << 1 ) + ( 32 << 1) );
     blt->daRowWidth = screen.rowWidth;
 
     blt->daWidth    = bmp.width;
@@ -103,12 +103,12 @@ static ulong copyTest()
 
     while( ! ( blt->command & 1 ) );
 
-    blt->saAddress  = (ulong)bmp.buffer;
+    blt->saAddress  = (uint32_t)bmp.buffer;
     blt->saRowWidth = bmp.rowWidth;
     blt->saWidth    = bmp.width;
     blt->saHeight   = bmp.height;
 
-    blt->daAddress  = (ulong)screen.buffer + ( ( 121 + 32 ) * ( screen.rowWidth << 1 ) + ( ( 161 + 32 ) << 1) );
+    blt->daAddress  = (uint32_t)screen.buffer + ( ( 121 + 32 ) * ( screen.rowWidth << 1 ) + ( ( 161 + 32 ) << 1) );
     blt->daRowWidth = screen.rowWidth;
 
     blt->daWidth    = bmp.width;
@@ -119,15 +119,15 @@ static ulong copyTest()
 
     while( ! ( blt->command & 1 ) );
 
-    blt->saAddress  = (ulong)bmp.buffer;
+    blt->saAddress  = (uint32_t)bmp.buffer;
     blt->saRowWidth = bmp.rowWidth;
     blt->saWidth    = bmp.width;
     blt->saHeight   = bmp.height;
 
-    blt->sbAddress  = (ulong)screen.buffer + ( 32 * ( screen.rowWidth << 1 ) + (  ( 161 + 32 ) << 1) );
+    blt->sbAddress  = (uint32_t)screen.buffer + ( 32 * ( screen.rowWidth << 1 ) + (  ( 161 + 32 ) << 1) );
     blt->sbRowWidth = screen.rowWidth;
 
-    blt->daAddress  = (ulong)screen.buffer + ( 32 * ( screen.rowWidth << 1 ) + ( ( 161 + 32 ) << 1) );
+    blt->daAddress  = (uint32_t)screen.buffer + ( 32 * ( screen.rowWidth << 1 ) + ( ( 161 + 32 ) << 1) );
     blt->daRowWidth = screen.rowWidth;
 
     blt->daWidth    = bmp.width;
@@ -139,15 +139,15 @@ static ulong copyTest()
 
     while( ! ( blt->command & 1 ) );
 
-    blt->saAddress  = (ulong)bmp.buffer;
+    blt->saAddress  = (uint32_t)bmp.buffer;
     blt->saRowWidth = bmp.rowWidth;
     blt->saWidth    = bmp.width;
     blt->saHeight   = bmp.height;
 
-    blt->sbAddress  = (ulong)screen.buffer + ( ( 121 + 32 ) * ( screen.rowWidth << 1 ) + (  32 << 1 ) );
+    blt->sbAddress  = (uint32_t)screen.buffer + ( ( 121 + 32 ) * ( screen.rowWidth << 1 ) + (  32 << 1 ) );
     blt->sbRowWidth = screen.rowWidth;
 
-    blt->daAddress  = (ulong)screen.buffer + ( ( 121 + 32 ) * ( screen.rowWidth << 1 ) + ( 32  << 1 ) );
+    blt->daAddress  = (uint32_t)screen.buffer + ( ( 121 + 32 ) * ( screen.rowWidth << 1 ) + ( 32  << 1 ) );
     blt->daRowWidth = screen.rowWidth;
 
     blt->daWidth    = bmp.width;
@@ -163,9 +163,9 @@ static ulong copyTest()
     return 0;
 }
 
-static ulong waitKey()
+static uint32_t waitKey()
 {
-    ulong       keyPressed;
+    uint32_t    keyPressed;
     tosUIEvent  event; 
 
     keyPressed = 0;
@@ -194,8 +194,8 @@ static ulong waitKey()
 
 int main()
 {
-    ulong   i;
-    ulong   rv;
+    uint32_t   i;
+    uint32_t   rv;
 
     bspInit();
 

@@ -2,8 +2,7 @@
 #define _USBHID_H
 
 #include "bsp.h"
-
-#include "../gfxLib/osUIEvents.h"
+#include "gfBitmap.h"
 
 //1000ms key repeat delay
 #define USBHID_KEYREPEAT_DELAY   1000
@@ -12,7 +11,13 @@
 #define USBHID_KEYREPEAT_RATE    128
 
 
-ulong usbHIDInit( void );
-ulong usbHIDHandleEvents( void );
+uint32_t usbHIDInit( void );
+uint32_t usbHIDSetMousePointerShape( tgfBitmap *pointerBitmap );
+uint32_t usbHIDSetMousePointerVisibility( uint32_t visible );
+uint32_t usbHidSetMouseReporting( uint32_t enable );
+
+uint32_t usbHIDGetMouse( uint32_t *pmouseX, uint32_t *pmouseY, uint32_t *pmouseButtons );
+
+uint32_t usbHIDHandleEvents( void );
 
 #endif

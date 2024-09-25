@@ -1,10 +1,19 @@
 #include "usbHID.h"
+#include "osUIEvents.h"
+#include "gfDrawing.h"
 
-static uchar   activeKeys[4];
-static uchar   shiftState;
+static uint8_t    activeKeys[4];
+static uint8_t    shiftState;
 
-static ulong   lastPressedKeyRepeatTime;
-static uchar   lastPressedKeyCode;
+static uint32_t   lastPressedKeyRepeatTime;
+static uint8_t    lastPressedKeyCode;
+
+static int32_t    mouseX;
+static int32_t    mouseY;
+static int32_t    mouseButtons;
+static int32_t    prvMouseButtons;
+static uint8_t    mouseEventsEnabled;
+static uint8_t    mousePointerVisible;
 
 const char HIDkeys[] = {
     0x0, '-', 0x0, 0x00,
@@ -45,7 +54,7 @@ const char HIDKeysShifted[] = {
 };
 
 
-static ulong findInArray( uchar element, uchar *array, int arrayLength )
+static uint32_t findInArray( uint8_t element, uint8_t *array, int arrayLength )
 {
   int i;
 
@@ -60,7 +69,7 @@ static ulong findInArray( uchar element, uchar *array, int arrayLength )
   return -1;
 }
 
-ulong usbHIDInit()
+uint32_t usbHIDInit()
 {
    int i;
 
@@ -73,13 +82,22 @@ ulong usbHIDInit()
    lastPressedKeyRepeatTime   = 0xffffffff;
    lastPressedKeyCode         = 0;
 
+   mouseX                     = 0;
+   mouseY                     = 0;
+   mouseButtons               = 0;
+   prvMouseButtons            = 0;
+   mouseEventsEnabled         = 0;
+   
+   usbHIDSetMousePointerVisibility( 0 );
+
+
    return 0;
 }
 
-static ulong usbHIDRxMain( ulong rxData )
+static uint32_t usbHIDRxMain( uint32_t rxData )
 {
-   uchar       shf;
-   uchar       keys[3];
+   uint8_t       shf;
+   uint8_t       keys[3];
    int         i;
    int         pos;
    tosUIEvent  event;
@@ -220,7 +238,7 @@ static ulong usbHIDRxMain( ulong rxData )
    return 0;
 }
 
-static ulong usbHIDKeyRepeatCheck()
+static uint32_t usbHIDKeyRepeatCheck()
 {
    tosUIEvent  event;
  
@@ -257,11 +275,186 @@ static ulong usbHIDKeyRepeatCheck()
    return 0;
 }
 
-ulong usbHIDHandleEvents( void )
+uint32_t usbHIDSetMousePointerShape( tgfBitmap *pointerBitmap )
 {
-   ulong currKeys;
-   ulong lastKeys;
+   uint16_t *spriteRam;
+   uint32_t  x;
+   uint32_t  y;
+
+   if( pointerBitmap == NULL )
+   {
+      return 1;
+   }
+
+
+   spriteRam = ( uint16_t* )( 0xf0120000 );
+
+   for( y = 0; y < 32; y++ )
+   {
+      for( x = 0; x < 32; x++ )
+      {
+         *spriteRam++ = gfGetPixel( pointerBitmap, x, y );
+      }
+   }
+
+   return 0;
+}
+uint32_t usbHIDSetMousePointerVisibility( uint32_t visible )
+{
+   if( visible )
+   {
+      
+      spriteGen->spriteX   = mouseX + 47; 
+      spriteGen->spriteY   = mouseY + 33;
+      mousePointerVisible  = 1;
+
+   }
+   else
+   {
+
+      spriteGen->spriteX   = 0; 
+      spriteGen->spriteY   = 0;
+      mousePointerVisible  = 0;
+
+   }
+
+   return 0;
+}
+
+uint32_t usbHidSetMouseReporting( uint32_t enable )
+{
+   if( enable )
+   {
+      mouseEventsEnabled   = 1;
+   }
+   else
+   {
+      mouseEventsEnabled   = 0;
+   }
+
+   return 0;
+}
+
+uint32_t usbHIDGetMouse( uint32_t *pmouseX, uint32_t *pmouseY, uint32_t *pmouseButtons )
+{
+   if( pmouseX )
+   {
+      *pmouseX = mouseX;
+   }
+
+   if( pmouseY )
+   {
+      *pmouseY = mouseY;
+   }
+
+   if( pmouseButtons )
+   {
+      *pmouseButtons = mouseButtons;
+   }
+
+   return 0;
+}
+uint32_t usbHIDHandleEvents( void )
+{
+   uint32_t    currKeys;
+   uint32_t    lastKeys;
    
+   int32_t     mouseDx;
+   int32_t     mouseDy;
+
+   tosUIEvent  event;
+
+
+   prvMouseButtons   = mouseButtons;
+   mouseDx           = usbhost->usbHidMouseX;
+   mouseDy           = usbhost->usbHidMouseY;
+   mouseButtons      = usbhost->usbHidMouseButtons;
+
+
+   if( mouseDx | mouseDy )
+   {
+      mouseX   += mouseDx;
+      mouseY   += mouseDy;
+
+      if( mouseX < 0 )
+      {
+         mouseX = 0;
+      }
+      
+      if( mouseY < 0 )
+      {
+         mouseY = 0;
+      }
+
+      if( mouseX > 639 )
+      {
+         mouseX = 639;
+      }
+      
+      if( mouseY > 479 )
+      {
+         mouseY = 479;
+      }
+
+      if( mousePointerVisible )
+      {
+         spriteGen->spriteX = mouseX + 47; 
+         spriteGen->spriteY = mouseY + 33;
+      }
+
+      if( mouseEventsEnabled )
+      {
+         //generate mouse move event
+         event.type  = OS_EVENT_TYPE_MOUSE_MOVE;
+         
+         event.arg1  = mouseButtons;    
+         event.arg2  = mouseX;
+         event.arg3  = mouseY;
+         event.obj   = NULL;
+         
+         osPutUIEvent( &event );
+
+      }
+
+   }
+
+   if( mouseEventsEnabled )
+   {
+      if( mouseButtons != prvMouseButtons )
+      {
+         if( ( !( prvMouseButtons & 1 ) && ( mouseButtons & 1 ) ) || ( !( prvMouseButtons & 2 ) && ( mouseButtons & 2 ) ) )
+         {
+            //keydown lmb or rmb
+
+            //generate mouse key press event
+            event.type  = OS_EVENT_TYPE_MOUSE_KEYDOWN;
+            
+            event.arg1  = mouseButtons;    
+            event.arg2  = mouseX;
+            event.arg3  = mouseY;
+            event.obj   = NULL;
+            
+            osPutUIEvent( &event );
+         }
+
+         if( ( ( prvMouseButtons & 1 ) && !( mouseButtons & 1 ) ) || ( ( prvMouseButtons & 2 ) && !( mouseButtons & 2 ) ) )
+         {
+            //keyup lmb or rmb
+
+            //generate mouse key press event
+            event.type  = OS_EVENT_TYPE_MOUSE_KEYRELEASE;
+            
+            event.arg1  = mouseButtons;    
+            event.arg2  = mouseX;
+            event.arg3  = mouseY;
+            event.obj   = NULL;
+            
+            osPutUIEvent( &event );
+         }
+
+      }
+   }
+
    if( ! ( usbhost->usbHidKeyboardStatus & 1 ) )
    {
       while( ! ( usbhost->usbHidKeyboardStatus & 1 ))
@@ -278,3 +471,4 @@ ulong usbHIDHandleEvents( void )
    }   
    return 0;
 }
+

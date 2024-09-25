@@ -3,10 +3,10 @@
 
 #include "../gfxLib/gftypes.h"
 
-ulong mioInit( void );
+uint32_t mioInit( void );
 
-ulong fetchInstruction( ulong addr );
-ulong fetchData( ulong addr );
-ulong storeData( ulong addr, uchar mask, ulong data );
+uint32_t fetchInstruction( uint32_t addr );
+uint32_t fetchData( uint32_t addr );
+uint32_t storeData( uint32_t addr, uint8_t mask, uint32_t data );
 
 #endif

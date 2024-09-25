@@ -3,19 +3,19 @@
 #include "../gfxLib/gfFont.h"
 
 
-static uchar rvStack[32768];
-ulong *rvStackL;
-static ulong *txtModeRam;
+static uint8_t rvStack[32768];
+uint32_t *rvStackL;
+static uint32_t *txtModeRam;
 
 extern tgfTextOverlay    con;
 
-ulong mioInit()
+uint32_t mioInit()
 {
 
-   ulong i;
+   uint32_t i;
 
-   rvStackL    = (ulong*) &rvStack[0];
-   txtModeRam  = (ulong*) 0x6d40;
+   rvStackL    = (uint32_t*) &rvStack[0];
+   txtModeRam  = (uint32_t*) 0x6d40;
 
    for( i = 0; i < 32768; i++ )
    {
@@ -25,15 +25,15 @@ ulong mioInit()
    return 0;
 }
 
-ulong fetchInstruction( ulong addr )
+uint32_t fetchInstruction( uint32_t addr )
 {
 
    return fetchData( addr );
 }
 
-ulong fetchData( ulong addr )
+uint32_t fetchData( uint32_t addr )
 {
-   ulong *loadPtr;
+   uint32_t *loadPtr;
 
    //stack / boot area
    if( addr < 0x6d40 )
@@ -50,7 +50,7 @@ ulong fetchData( ulong addr )
    //fast ram ( 8MB )
    else if( ( addr >= 0x20000000 ) && ( addr < 0x20800000 ) )
    {
-      loadPtr = (ulong*)addr;
+      loadPtr = (uint32_t*)addr;
       return *loadPtr;
 
    }
@@ -58,7 +58,7 @@ ulong fetchData( ulong addr )
    else if( addr >= 0xf0000000 )
    {
       
-      loadPtr = (ulong*)addr;
+      loadPtr = (uint32_t*)addr;
       
       return *loadPtr;
    }
@@ -67,10 +67,10 @@ ulong fetchData( ulong addr )
 }
 
 
-ulong storeData( ulong addr, uchar mask, ulong data )
+uint32_t storeData( uint32_t addr, uint8_t mask, uint32_t data )
 {
-   ulong *storePtr;
-   ulong rb;
+   uint32_t *storePtr;
+   uint32_t rb;
 
    storePtr = NULL;
 
@@ -79,7 +79,7 @@ ulong storeData( ulong addr, uchar mask, ulong data )
    //stack / boot area
    if( addr < 0x6d40 )
    {
-      storePtr = (ulong*) &rvStackL[ addr >> 2 ];
+      storePtr = (uint32_t*) &rvStackL[ addr >> 2 ];
    }
 
    //text mode ram
@@ -91,13 +91,13 @@ ulong storeData( ulong addr, uchar mask, ulong data )
    //fast ram ( 8MB )
    else if( ( addr >= 0x20000000 ) && ( addr < 0x20800000 ) )
    {
-      storePtr = (ulong*)addr;
+      storePtr = (uint32_t*)addr;
    }
 
    //registers
    else if( addr >= 0xf0000000 )
    {
-      storePtr = (ulong*)addr;
+      storePtr = (uint32_t*)addr;
    }
 
    if( storePtr )

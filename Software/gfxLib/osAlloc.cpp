@@ -4,9 +4,9 @@
 tosAllocMemoryNodes	osAllocMemoryNodes;
 
 
-ulong osAllocInit()
+uint32_t osAllocInit()
 {
-	ulong i;
+	uint32_t i;
 
 	for( i = 0; i < _OS_ALLOC_NUM_NODES; i++ )
 	{
@@ -21,9 +21,9 @@ ulong osAllocInit()
 	return 0;
 }
 
-ulong osAllocAddNode( ulong nodeNumber, void *allocStart, ulong memorySize, ulong nodeFlags )
+uint32_t osAllocAddNode( uint32_t nodeNumber, void *allocStart, uint32_t memorySize, uint32_t nodeFlags )
 {
-	ulong i;
+	uint32_t i;
 	long long li;
 
 	tosAllocMemoryNode *node;
@@ -40,14 +40,14 @@ ulong osAllocAddNode( ulong nodeNumber, void *allocStart, ulong memorySize, ulon
 	node->totalBlocksNum	= ( memorySize / _OS_ALLOC_BLOCK_SIZE );
 
 	//block bitmap goes first
-	node->blockBitmap		= (uchar*)allocStart;
+	node->blockBitmap		= (uint8_t*)allocStart;
 
 
 	//calculate block bitmap size
 	node->blockBitmapSize  =  node->totalBlocksNum;
 
 	//set alloc start
-	node->allocStart       = (void*)( (uchar*)node->blockBitmap + node->blockBitmapSize );
+	node->allocStart       = (void*)( (uint8_t*)node->blockBitmap + node->blockBitmapSize );
 
 	//align alloc start to block boundary
 	li = (long long)node->allocStart;
@@ -63,15 +63,15 @@ ulong osAllocAddNode( ulong nodeNumber, void *allocStart, ulong memorySize, ulon
 	node->allocStart = (void*)li;
 
 	//calculate alloc end
-	node->allocEnd = (void*)( (uchar*) allocStart + memorySize );
+	node->allocEnd = (void*)( (uint8_t*) allocStart + memorySize );
 
 
 	//update total blocks num - now with bitmap allocated and memory aligned to block size
-	node->totalBlocksNum = ( (uchar*)node->allocEnd - (uchar*)node->allocStart ) / _OS_ALLOC_BLOCK_SIZE;
+	node->totalBlocksNum = ( (uint8_t*)node->allocEnd - (uint8_t*)node->allocStart ) / _OS_ALLOC_BLOCK_SIZE;
 
 
 	//update alloc end according to blocks num
-	node->allocEnd = (void*)( (uchar*)node->allocStart + ( node->totalBlocksNum * _OS_ALLOC_BLOCK_SIZE ) );
+	node->allocEnd = (void*)( (uint8_t*)node->allocStart + ( node->totalBlocksNum * _OS_ALLOC_BLOCK_SIZE ) );
 
 	//mark all blocks as free in bitmap
 	for( i = 0; i < node->totalBlocksNum; i++ )
@@ -83,16 +83,16 @@ ulong osAllocAddNode( ulong nodeNumber, void *allocStart, ulong memorySize, ulon
 	return 0;
 }
 
-void *osAlloc( ulong size, ulong memFlags )
+void *osAlloc( uint32_t size, uint32_t memFlags )
 {
 
-	ulong	 numBlocksToAlloc;
-	long	 freeBlockNum;
-	ulong    freeBlocksInChunk;
+	uint32_t	 numBlocksToAlloc;
+	int32_t	 freeBlockNum;
+	uint32_t    freeBlocksInChunk;
 	void    *rv;
 
-	ulong 	 i;
-	ulong    j;
+	uint32_t 	 i;
+	uint32_t    j;
 
 	tosAllocMemoryNode *node;
 
@@ -157,7 +157,7 @@ void *osAlloc( ulong size, ulong memFlags )
 					node->blockBitmap[i] = _OS_ALLOC_LAST_BLOCK_TAKEN;
 
 					//calc allocated memory address
-					rv = (void*)( (uchar*)node->allocStart + ( freeBlockNum * _OS_ALLOC_BLOCK_SIZE ) );
+					rv = (void*)( (uint8_t*)node->allocStart + ( freeBlockNum * _OS_ALLOC_BLOCK_SIZE ) );
 
 					return rv;
 
@@ -182,12 +182,12 @@ void *osAlloc( ulong size, ulong memFlags )
 	return NULL;
 }
 
-ulong osFree( void *allocMemPtr )
+uint32_t osFree( void *allocMemPtr )
 {
-	ulong 				 blockNumToFree;
-	ulong 				 i;
+	uint32_t 				 blockNumToFree;
+	uint32_t 				 i;
 	tosAllocMemoryNode	*node;
-	ushort				 nodeFound;
+	uint16_t				 nodeFound;
 
 	//find node
 
@@ -213,7 +213,7 @@ ulong osFree( void *allocMemPtr )
 
 
 
-	blockNumToFree = ( (uchar*)allocMemPtr - (uchar*)node->allocStart ) / _OS_ALLOC_BLOCK_SIZE;
+	blockNumToFree = ( (uint8_t*)allocMemPtr - (uint8_t*)node->allocStart ) / _OS_ALLOC_BLOCK_SIZE;
 
 	if( blockNumToFree >= node->totalBlocksNum )
 	{

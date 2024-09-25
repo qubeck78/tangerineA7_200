@@ -15,7 +15,7 @@ extern BSP_T *bsp;
 //https://austinmorlan.com/posts/drawing_a_triangle/
 
 
-long inline gfGouraudEdge( tgfPoint3D *e1, tgfPoint3D *e2, tgfPoint3D *p )
+int32_t inline gfGouraudEdge( tgfPoint3D *e1, tgfPoint3D *e2, tgfPoint3D *p )
 {
 	tgfPoint3D a,b;
 
@@ -45,7 +45,7 @@ long inline gfGouraudEdge( tgfPoint3D *e1, tgfPoint3D *e2, tgfPoint3D *p )
 }
 
 
-ulong  gfGouraudDrawTriangleBlt( tgfBitmap *bmp, tgfTriangle3D *triangle )
+uint32_t  gfGouraudDrawTriangleBlt( tgfBitmap *bmp, tgfTriangle3D *triangle )
 {
 	#if defined( _GFXLIB_RISCV_FATFS ) && defined( _GFXLIB_HW_BLITTER_3D )
 
@@ -86,7 +86,7 @@ ulong  gfGouraudDrawTriangleBlt( tgfBitmap *bmp, tgfTriangle3D *triangle )
 		//config blitter to draw triangle using gouraud iterators
 
 		blt->bltConfig0			= 0x0003;		//blitter mode - gouraud RGB triangle, zbuffer disabled
-		blt->bltDstAddress 		= ( ulong )(( ( ulong )bmp->buffer - _SYSTEM_MEMORY_BASE ) / 2);
+		blt->bltDstAddress 		= ( uint32_t )(( ( uint32_t )bmp->buffer - _SYSTEM_MEMORY_BASE ) / 2);
 
 
 		//bsp->bltDstModulo		= 320;			//screen width
@@ -106,7 +106,7 @@ ulong  gfGouraudDrawTriangleBlt( tgfBitmap *bmp, tgfTriangle3D *triangle )
 	#endif
 }
 
-ulong  gfGouraudDrawTexturedTriangleBlt( tgfBitmap *bmp, tgfTriangle3D *triangle )
+uint32_t  gfGouraudDrawTexturedTriangleBlt( tgfBitmap *bmp, tgfTriangle3D *triangle )
 {
 
 	#if defined( _GFXLIB_RISCV_FATFS ) && defined( _GFXLIB_HW_BLITTER_3D )
@@ -155,9 +155,9 @@ ulong  gfGouraudDrawTexturedTriangleBlt( tgfBitmap *bmp, tgfTriangle3D *triangle
 												//
 												//trigger bounding box calc
 		
-		blt->bltDstAddress 		= ( ulong )(( ( ulong )bmp->buffer - _SYSTEM_MEMORY_BASE ) / 2);
+		blt->bltDstAddress 		= ( uint32_t )(( ( uint32_t )bmp->buffer - _SYSTEM_MEMORY_BASE ) / 2);
 
-		blt->bltSrcAddress 		= ( ulong )(( ( ulong )triangle->texture->buffer - _SYSTEM_MEMORY_BASE ) / 2);
+		blt->bltSrcAddress 		= ( uint32_t )(( ( uint32_t )triangle->texture->buffer - _SYSTEM_MEMORY_BASE ) / 2);
 
 	
 		blt->bltStatus			= 0x1;			//run
@@ -176,7 +176,7 @@ ulong  gfGouraudDrawTexturedTriangleBlt( tgfBitmap *bmp, tgfTriangle3D *triangle
 
 }
 
-ulong gfGouraudDrawTexturedTriangleZBufferBlt( tgfBitmap *bmp, tgfBitmap *zBuffer, tgfTriangle3D *triangle )
+uint32_t gfGouraudDrawTexturedTriangleZBufferBlt( tgfBitmap *bmp, tgfBitmap *zBuffer, tgfTriangle3D *triangle )
 {
 
 	#if defined( _GFXLIB_RISCV_FATFS ) && defined( _GFXLIB_HW_BLITTER_3D )
@@ -228,11 +228,11 @@ ulong gfGouraudDrawTexturedTriangleZBufferBlt( tgfBitmap *bmp, tgfBitmap *zBuffe
 												//
 												//trigger bounding box calc
 		
-		blt->bltDstAddress 				= ( ulong )(( ( ulong )bmp->buffer - _SYSTEM_MEMORY_BASE ) / 2);
+		blt->bltDstAddress 				= ( uint32_t )(( ( uint32_t )bmp->buffer - _SYSTEM_MEMORY_BASE ) / 2);
 
-		blt->bltSrcAddress 				= ( ulong )(( ( ulong )triangle->texture->buffer - _SYSTEM_MEMORY_BASE ) / 2);
+		blt->bltSrcAddress 				= ( uint32_t )(( ( uint32_t )triangle->texture->buffer - _SYSTEM_MEMORY_BASE ) / 2);
 
-		blt->bltGouraudZBufferAddress	= ( ulong )(( ( ulong )zBuffer->buffer - _SYSTEM_MEMORY_BASE ) / 2);
+		blt->bltGouraudZBufferAddress	= ( uint32_t )(( ( uint32_t )zBuffer->buffer - _SYSTEM_MEMORY_BASE ) / 2);
 	
 		blt->bltStatus			= 0x1;			//run
 
@@ -250,7 +250,7 @@ ulong gfGouraudDrawTexturedTriangleZBufferBlt( tgfBitmap *bmp, tgfBitmap *zBuffe
 
 }
 
-ulong gfGouraudDrawTriangleZBufferBlt( tgfBitmap *bmp, tgfBitmap *zBuffer, tgfTriangle3D *triangle )
+uint32_t gfGouraudDrawTriangleZBufferBlt( tgfBitmap *bmp, tgfBitmap *zBuffer, tgfTriangle3D *triangle )
 {
 
 	#if defined( _GFXLIB_RISCV_FATFS ) && defined( _GFXLIB_HW_BLITTER_3D )
@@ -302,10 +302,10 @@ ulong gfGouraudDrawTriangleZBufferBlt( tgfBitmap *bmp, tgfBitmap *zBuffer, tgfTr
 												//
 												//trigger bounding box calc
 		
-		blt->bltDstAddress 				= ( ulong )(( ( ulong )bmp->buffer - _SYSTEM_MEMORY_BASE ) / 2);
+		blt->bltDstAddress 				= ( uint32_t )(( ( uint32_t )bmp->buffer - _SYSTEM_MEMORY_BASE ) / 2);
 
 
-		blt->bltGouraudZBufferAddress	= ( ulong )(( ( ulong )zBuffer->buffer - _SYSTEM_MEMORY_BASE ) / 2);
+		blt->bltGouraudZBufferAddress	= ( uint32_t )(( ( uint32_t )zBuffer->buffer - _SYSTEM_MEMORY_BASE ) / 2);
 	
 		blt->bltStatus			= 0x1;			//run
 
@@ -326,33 +326,33 @@ ulong gfGouraudDrawTriangleZBufferBlt( tgfBitmap *bmp, tgfBitmap *zBuffer, tgfTr
 
 /*
 //int, no hw
-ulong  gfGouraudDrawTriangle( tgfBitmap *bmp, tgfTriangle3D *triangle )
+uint32_t  gfGouraudDrawTriangle( tgfBitmap *bmp, tgfTriangle3D *triangle )
 {
-	short 	    x;
-	short		y;
+	int16_t 	    x;
+	int16_t		y;
 
-	short       xMin;
-	short       xMax;
-	short       yMin;
-	short       yMax;
+	int16_t       xMin;
+	int16_t       xMax;
+	int16_t       yMin;
+	int16_t       yMax;
 
-	long        eba;
-	long        ecb;
-	long        eac;
+	int32_t        eba;
+	int32_t        ecb;
+	int32_t        eac;
 
-	long		areal;
+	int32_t		areal;
 
-	long		wbal;
-	long		wcbl;
-	long		wacl;
+	int32_t		wbal;
+	int32_t		wcbl;
+	int32_t		wacl;
 
-	long       r;
-	long       g;
-	long       b;
+	int32_t       r;
+	int32_t       g;
+	int32_t       b;
 
 	tgfPoint3D 	p;
 
-	ushort		*bmpPtr;
+	uint16_t		*bmpPtr;
 
 
 	xMin = bmp->width - 1;
@@ -469,14 +469,14 @@ ulong  gfGouraudDrawTriangle( tgfBitmap *bmp, tgfTriangle3D *triangle )
 					wcbl = ( ecb << 8 ) / areal;
 					wacl = ( eac << 8 ) / areal;
 
-					r = ( ( wcbl * (long)triangle->a->r ) + ( wacl * (long)triangle->b->r ) + ( wbal * (long)triangle->c->r ) ) >> 8;
-					g = ( ( wcbl * (long)triangle->a->g ) + ( wacl * (long)triangle->b->g ) + ( wbal * (long)triangle->c->g ) ) >> 8;
-					b = ( ( wcbl * (long)triangle->a->b ) + ( wacl * (long)triangle->b->b ) + ( wbal * (long)triangle->c->b ) ) >> 8;
+					r = ( ( wcbl * (int32_t)triangle->a->r ) + ( wacl * (int32_t)triangle->b->r ) + ( wbal * (int32_t)triangle->c->r ) ) >> 8;
+					g = ( ( wcbl * (int32_t)triangle->a->g ) + ( wacl * (int32_t)triangle->b->g ) + ( wbal * (int32_t)triangle->c->g ) ) >> 8;
+					b = ( ( wcbl * (int32_t)triangle->a->b ) + ( wacl * (int32_t)triangle->b->b ) + ( wbal * (int32_t)triangle->c->b ) ) >> 8;
 
 					if( !bmpPtr )
 					{
 						//pixel not yet drawn in this line
-						bmpPtr = &((ushort*)( bmp->buffer ))[ x + ( y * bmp-> width ) ];
+						bmpPtr = &((uint16_t*)( bmp->buffer ))[ x + ( y * bmp-> width ) ];
 					}
 
 					*bmpPtr++ = gfColor( r, g, b );
@@ -497,19 +497,19 @@ ulong  gfGouraudDrawTriangle( tgfBitmap *bmp, tgfTriangle3D *triangle )
 	return 0;
 }
 
-ulong gfGouraudDrawTriangleFloat( tgfBitmap *bmp, tgfTriangle3D *triangle )
+uint32_t gfGouraudDrawTriangleFloat( tgfBitmap *bmp, tgfTriangle3D *triangle )
 {
-	short 	    x;
-	short		y;
+	int16_t 	    x;
+	int16_t		y;
 
-	short       xMin;
-	short       xMax;
-	short       yMin;
-	short       yMax;
+	int16_t       xMin;
+	int16_t       xMax;
+	int16_t       yMin;
+	int16_t       yMax;
 
-	long        eba;
-	long        ecb;
-	long        eac;
+	int32_t        eba;
+	int32_t        ecb;
+	int32_t        eac;
 
 	float       area;
 
@@ -517,9 +517,9 @@ ulong gfGouraudDrawTriangleFloat( tgfBitmap *bmp, tgfTriangle3D *triangle )
 	float       wcb;
 	float       wac;
 
-	short       r;
-	short       g;
-	short       b;
+	int16_t       r;
+	int16_t       g;
+	int16_t       b;
 
 	tgfPoint3D 	p;
 
@@ -646,20 +646,20 @@ ulong gfGouraudDrawTriangleFloat( tgfBitmap *bmp, tgfTriangle3D *triangle )
 }
 
 
-ulong gfGouraudDrawTexturedTriangleFloat( tgfBitmap *bmp, tgfTriangle3D *triangle )
+uint32_t gfGouraudDrawTexturedTriangleFloat( tgfBitmap *bmp, tgfTriangle3D *triangle )
 {
 
-	short 		  x;
-	short		  y;
+	int16_t 		  x;
+	int16_t		  y;
 
-	short       xMin;
-	short       xMax;
-	short       yMin;
-	short       yMax;
+	int16_t       xMin;
+	int16_t       xMax;
+	int16_t       yMin;
+	int16_t       yMax;
 
-	long        eba;
-	long        ecb;
-	long        eac;
+	int32_t        eba;
+	int32_t        ecb;
+	int32_t        eac;
 
 	float       area;
 
@@ -667,8 +667,8 @@ ulong gfGouraudDrawTexturedTriangleFloat( tgfBitmap *bmp, tgfTriangle3D *triangl
 	float       wcb;
 	float       wac;
 
-	short       tx;
-	short       ty;
+	int16_t       tx;
+	int16_t       ty;
 
 	tgfPoint3D  p;
 
@@ -796,38 +796,38 @@ if ( xMin >= bmp->width )
 
 }
 
-ulong gfGouraudDrawTexturedTriangle( tgfBitmap *bmp, tgfTriangle3D *triangle )
+uint32_t gfGouraudDrawTexturedTriangle( tgfBitmap *bmp, tgfTriangle3D *triangle )
 {
 
-	short 		  	 x;
-	short		  	 y;
-	ushort	    	 r;
-	ushort		     g;
-	ushort		     b;
-	unsigned short   texturePixel;
+	int16_t 		  	 x;
+	int16_t		  	 y;
+	uint16_t	    	 r;
+	uint16_t		     g;
+	uint16_t		     b;
+	unsigned int16_t   texturePixel;
 
-	short       	 xMin;
-	short       	 xMax;
-	short       	 yMin;
-	short       	 yMax;
+	int16_t       	 xMin;
+	int16_t       	 xMax;
+	int16_t       	 yMin;
+	int16_t       	 yMax;
 
-	long        	 eba;
-	long        	 ecb;
-	long        	 eac;
+	int32_t        	 eba;
+	int32_t        	 ecb;
+	int32_t        	 eac;
 
-	long			 areal;
-	unsigned long 	 areaNorm;
+	int32_t			 areal;
+	unsigned int32_t 	 areaNorm;
 
-	long			 wbal;
-	long			 wcbl;
-	long			 wacl;
+	int32_t			 wbal;
+	int32_t			 wcbl;
+	int32_t			 wacl;
 
 
-	short       	 tx;
-	short       	 ty;
+	int16_t       	 tx;
+	int16_t       	 ty;
 	unsigned char	 tl;
 
-	ushort			*bmpPtr;
+	uint16_t			*bmpPtr;
 
 	tgfPoint3D  	 p;
 
@@ -954,9 +954,9 @@ ulong gfGouraudDrawTexturedTriangle( tgfBitmap *bmp, tgfTriangle3D *triangle )
 				wacl = ( eac * areaNorm ) >> 24;
 
 
-				tx = ( ( wcbl * ( long )triangle->aTx2D ) + ( wacl * ( long )triangle->bTx2D ) + ( wbal * ( long )triangle->cTx2D ) ) >> 8;
-				ty = ( ( wcbl * ( long )triangle->aTy2D ) + ( wacl * ( long )triangle->bTy2D ) + ( wbal * ( long )triangle->cTy2D ) ) >> 8;
-				tl = ( ( wcbl * ( long )triangle->a->r ) + ( wacl * ( long )triangle->b->r ) + ( wbal * ( long )triangle->c->r ) ) >> 8;
+				tx = ( ( wcbl * ( int32_t )triangle->aTx2D ) + ( wacl * ( int32_t )triangle->bTx2D ) + ( wbal * ( int32_t )triangle->cTx2D ) ) >> 8;
+				ty = ( ( wcbl * ( int32_t )triangle->aTy2D ) + ( wacl * ( int32_t )triangle->bTy2D ) + ( wbal * ( int32_t )triangle->cTy2D ) ) >> 8;
+				tl = ( ( wcbl * ( int32_t )triangle->a->r ) + ( wacl * ( int32_t )triangle->b->r ) + ( wbal * ( int32_t )triangle->c->r ) ) >> 8;
 
 
 				//gfPlotF( bmp, x, y, gfGetPixel( triangle->texture, tx, ty ) );
@@ -964,7 +964,7 @@ ulong gfGouraudDrawTexturedTriangle( tgfBitmap *bmp, tgfTriangle3D *triangle )
 				if( !bmpPtr )
 				{
 					//pixel not yet drawn in this line
-					bmpPtr = &((ushort*)( bmp->buffer ))[ x + ( y * bmp-> width ) ];
+					bmpPtr = &((uint16_t*)( bmp->buffer ))[ x + ( y * bmp-> width ) ];
 				}
 
 				texturePixel = gfGetPixel( triangle->texture, tx, ty );
@@ -995,35 +995,35 @@ ulong gfGouraudDrawTexturedTriangle( tgfBitmap *bmp, tgfTriangle3D *triangle )
 
 */
 
-ulong gfGouraudDrawTriangleZBuffer( tgfBitmap *bmp, tgfBitmap *zBuffer, tgfTriangle3D *triangle )
+uint32_t gfGouraudDrawTriangleZBuffer( tgfBitmap *bmp, tgfBitmap *zBuffer, tgfTriangle3D *triangle )
 {
-	short 	     x;
-	short		 y;
+	int16_t 	     x;
+	int16_t		 y;
 
-	short        xMin;
-	short        xMax;
-	short        yMin;
-	short        yMax;
+	int16_t        xMin;
+	int16_t        xMax;
+	int16_t        yMin;
+	int16_t        yMax;
 
-	long         eba;
-	long         ecb;
-	long         eac;
+	int32_t         eba;
+	int32_t         ecb;
+	int32_t         eac;
 
-	long		 areal;
+	int32_t		 areal;
 
-	long		 wbal;
-	long		 wcbl;
-	long		 wacl;
+	int32_t		 wbal;
+	int32_t		 wcbl;
+	int32_t		 wacl;
 
-	long       	 r;
-	long       	 g;
-	long       	 b;
-	ulong      	 cz;
+	int32_t       	 r;
+	int32_t       	 g;
+	int32_t       	 b;
+	uint32_t      	 cz;
 
 	tgfPoint3D 	 p;
 
-	ushort		*bmpPtr;
-	ushort      *zBufPtr;
+	uint16_t		*bmpPtr;
+	uint16_t      *zBufPtr;
 
 
 
@@ -1122,7 +1122,7 @@ ulong gfGouraudDrawTriangleZBuffer( tgfBitmap *bmp, tgfBitmap *zBuffer, tgfTrian
 		{
 
 			bmpPtr = NULL;
-			zBufPtr = &((ushort*)( zBuffer->buffer ))[ ( y * zBuffer->rowWidth ) ];
+			zBufPtr = &((uint16_t*)( zBuffer->buffer ))[ ( y * zBuffer->rowWidth ) ];
 
 			for( x = xMin; x <= xMax; x++ )
 			{
@@ -1142,18 +1142,18 @@ ulong gfGouraudDrawTriangleZBuffer( tgfBitmap *bmp, tgfBitmap *zBuffer, tgfTrian
 					wcbl = ( ecb << 8 ) / areal;
 					wacl = ( eac << 8 ) / areal;
 
-					r = ( ( wcbl * (long)triangle->a->r ) + ( wacl * (long)triangle->b->r ) + ( wbal * (long)triangle->c->r ) ) >> 8;
-					g = ( ( wcbl * (long)triangle->a->g ) + ( wacl * (long)triangle->b->g ) + ( wbal * (long)triangle->c->g ) ) >> 8;
-					b = ( ( wcbl * (long)triangle->a->b ) + ( wacl * (long)triangle->b->b ) + ( wbal * (long)triangle->c->b ) ) >> 8;
+					r = ( ( wcbl * (int32_t)triangle->a->r ) + ( wacl * (int32_t)triangle->b->r ) + ( wbal * (int32_t)triangle->c->r ) ) >> 8;
+					g = ( ( wcbl * (int32_t)triangle->a->g ) + ( wacl * (int32_t)triangle->b->g ) + ( wbal * (int32_t)triangle->c->g ) ) >> 8;
+					b = ( ( wcbl * (int32_t)triangle->a->b ) + ( wacl * (int32_t)triangle->b->b ) + ( wbal * (int32_t)triangle->c->b ) ) >> 8;
 
-					cz = ( ( wcbl * ( long )triangle->a->z2D ) + ( wacl * ( long )triangle->b->z2D ) + ( wbal * ( long )triangle->c->z2D ) ) >> 8;
+					cz = ( ( wcbl * ( int32_t )triangle->a->z2D ) + ( wacl * ( int32_t )triangle->b->z2D ) + ( wbal * ( int32_t )triangle->c->z2D ) ) >> 8;
 
 
 
 					if( !bmpPtr )
 						{
 							//pixel not yet drawn in this line
-						bmpPtr = &((ushort*)( bmp->buffer ))[ x + ( y * bmp->rowWidth ) ];
+						bmpPtr = &((uint16_t*)( bmp->buffer ))[ x + ( y * bmp->rowWidth ) ];
 					}
 
 
@@ -1183,41 +1183,41 @@ ulong gfGouraudDrawTriangleZBuffer( tgfBitmap *bmp, tgfBitmap *zBuffer, tgfTrian
 	return 0;
 }
 
-ulong gfGouraudDrawTexturedTriangleZBuffer( tgfBitmap *bmp, tgfBitmap *zBuffer, tgfTriangle3D *triangle )
+uint32_t gfGouraudDrawTexturedTriangleZBuffer( tgfBitmap *bmp, tgfBitmap *zBuffer, tgfTriangle3D *triangle )
 {
 
-	short 		  	 x;
-	short		  	 y;
-	ushort	    	 r;
-	ushort		     g;
-	ushort		     b;
-	ushort   		 texturePixel;
+	int16_t 		  	 x;
+	int16_t		  	 y;
+	uint16_t	    	 r;
+	uint16_t		     g;
+	uint16_t		     b;
+	uint16_t   		 texturePixel;
 
-	short       	 xMin;
-	short       	 xMax;
-	short       	 yMin;
-	short       	 yMax;
+	int16_t       	 xMin;
+	int16_t       	 xMax;
+	int16_t       	 yMin;
+	int16_t       	 yMax;
 
-	long        	 eba;
-	long        	 ecb;
-	long        	 eac;
+	int32_t        	 eba;
+	int32_t        	 ecb;
+	int32_t        	 eac;
 
-	long			 areal;
-	ulong 	 		 areaNorm;
+	int32_t			 areal;
+	uint32_t 	 		 areaNorm;
 
-	long			 wbal;
-	long			 wcbl;
-	long			 wacl;
+	int32_t			 wbal;
+	int32_t			 wcbl;
+	int32_t			 wacl;
 
 
-	short       	 tx;
-	short       	 ty;
+	int16_t       	 tx;
+	int16_t       	 ty;
 	unsigned char	 tl;
 
-	ulong           cz;
+	uint32_t           cz;
 
-	ushort			*bmpPtr;
-	ushort          *zBufPtr;
+	uint16_t			*bmpPtr;
+	uint16_t          *zBufPtr;
 
 	tgfPoint3D  	 p;
 
@@ -1326,7 +1326,7 @@ ulong gfGouraudDrawTexturedTriangleZBuffer( tgfBitmap *bmp, tgfBitmap *zBuffer, 
 	{
 
 		bmpPtr = NULL;
-		zBufPtr = &((ushort*)( zBuffer->buffer ))[ ( y * zBuffer->rowWidth ) ];
+		zBufPtr = &((uint16_t*)( zBuffer->buffer ))[ ( y * zBuffer->rowWidth ) ];
 
 		for( x = xMin; x <= xMax; x++ )
 		{
@@ -1355,17 +1355,17 @@ ulong gfGouraudDrawTexturedTriangleZBuffer( tgfBitmap *bmp, tgfBitmap *zBuffer, 
 
 
 
-				tx = ( ( wcbl * ( long )triangle->aTx2D ) + ( wacl * ( long )triangle->bTx2D ) + ( wbal * ( long )triangle->cTx2D ) ) >> 8;
-				ty = ( ( wcbl * ( long )triangle->aTy2D ) + ( wacl * ( long )triangle->bTy2D ) + ( wbal * ( long )triangle->cTy2D ) ) >> 8;
-				tl = ( ( wcbl * ( long )triangle->a->r ) + ( wacl * ( long )triangle->b->r ) + ( wbal * ( long )triangle->c->r ) ) >> 8;
+				tx = ( ( wcbl * ( int32_t )triangle->aTx2D ) + ( wacl * ( int32_t )triangle->bTx2D ) + ( wbal * ( int32_t )triangle->cTx2D ) ) >> 8;
+				ty = ( ( wcbl * ( int32_t )triangle->aTy2D ) + ( wacl * ( int32_t )triangle->bTy2D ) + ( wbal * ( int32_t )triangle->cTy2D ) ) >> 8;
+				tl = ( ( wcbl * ( int32_t )triangle->a->r ) + ( wacl * ( int32_t )triangle->b->r ) + ( wbal * ( int32_t )triangle->c->r ) ) >> 8;
 
-				cz = ( ( wcbl * ( long )triangle->a->z2D ) + ( wacl * ( long )triangle->b->z2D ) + ( wbal * ( long )triangle->c->z2D ) ) >> 8;
+				cz = ( ( wcbl * ( int32_t )triangle->a->z2D ) + ( wacl * ( int32_t )triangle->b->z2D ) + ( wbal * ( int32_t )triangle->c->z2D ) ) >> 8;
 
 
 				if( !bmpPtr )
 				{
 					//pixel not yet drawn in this line
-					bmpPtr = &((ushort*)( bmp->buffer ))[ x + ( y * bmp->rowWidth ) ];
+					bmpPtr = &((uint16_t*)( bmp->buffer ))[ x + ( y * bmp->rowWidth ) ];
 				}
 
 				//current pixel is closer than existing one

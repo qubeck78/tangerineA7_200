@@ -23,7 +23,7 @@ extern tgfTextOverlay        con;
 tgfBitmap                    screen;
 tgfBitmap                    background;
 tgfBitmap                    fileBmp;
-
+tgfBitmap                    cursor;
 
 char                         buf[ 128 ];
 char                         lfnBuf[ 512 + 16];
@@ -31,14 +31,14 @@ char                         lfnBuf[ 512 + 16];
 tosDir                       dir;
 tosDirItem                   dirItem;
 
-ulong                        numDirEntries;
+uint32_t                     numDirEntries;
 
 
 
-ulong getNumEntries()
+uint32_t getNumEntries()
 {
-    ulong rv;
-    ulong numEntries;
+    uint32_t rv;
+    uint32_t numEntries;
 
     #ifdef _GFXLIB_SDL
 
@@ -76,10 +76,10 @@ ulong getNumEntries()
     return numEntries;
 }
 
-ulong getEntry( ulong entryNumber )
+uint32_t getEntry( uint32_t entryNumber )
 {
-    ulong i;
-    ulong rv;
+    uint32_t i;
+    uint32_t rv;
     
     #ifdef _GFXLIB_SDL
 
@@ -105,13 +105,12 @@ ulong getEntry( ulong entryNumber )
 }
 
 
-int slideshow()
+uint32_t slideshow()
 {
-    int             rv;
-    int             i;
-    volatile ulong  j;
-    short           x;
-    short           y;
+    uint32_t        rv;
+    uint32_t        i;
+    int16_t         x;
+    int16_t         y;
     char            extension[8];
     tosUIEvent      event;
     
@@ -159,8 +158,8 @@ int slideshow()
 
                     if( screen.width > 512 )
                     {                       
-                        x  = ((ulong)randomNumber() ) % 320;
-                        y  = ((ulong)randomNumber() ) % 240;
+                        x  = ((uint32_t)randomNumber() ) % 320;
+                        y  = ((uint32_t)randomNumber() ) % 240;
                         
                     }
                     else
@@ -210,9 +209,9 @@ int slideshow()
                     
                     toPrintF( &con, (char*)"%s %d\n", dirItem.name, dirItem.size );
                     
-                    for( i = 0; i < 100; i++ )
+                    for( i = 0; i < 500; i++ )
                     {
-                        delayMs( 100 );
+                        delayMs( 20 );
                                         
                         if( !osGetUIEvent( &event ) )
                         { 
@@ -251,9 +250,8 @@ int slideshow()
 
 int main()
 {
-    int         i;
-    int         rv;
-    volatile int j;
+    uint32_t    i;
+    uint32_t    rv;
 
 
     bspInit();
@@ -269,7 +267,7 @@ int main()
 
 
     toCls( &con );
-    toPrint( &con, (char*)"tangerineSOC Slideshow B20240911\n\n" );
+    toPrint( &con, (char*)"tangerineSOC Slideshow B20240923\n\n" );
 
     
     screen.flags            = 0;
@@ -309,7 +307,11 @@ int main()
     {
         toPrint( &con, ( char* )"SD init ok\n" );
     }
-        
+
+    gfLoadBitmapFS( &cursor, (char*)"0:/sys/cursor.gbm" );
+    usbHIDSetMousePointerShape( &cursor );
+
+    usbHIDSetMousePointerVisibility( 1 );        
 
     toPrint( &con, (char*)"Scanning /img directory\n" );
 

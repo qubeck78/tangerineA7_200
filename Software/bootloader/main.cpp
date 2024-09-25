@@ -2,15 +2,22 @@
 #include <cstring>
 #include "../gfxLib/bsp.h"
 
-BSP_T                *bsp     = ( BSP_T *)                  0xf0000000; //registers base address
+BSP_T                   *bsp     = ( BSP_T *)                  0xf0000000; //registers base address
+_UART_REGISTERS_T       *uart0   = ( _UART_REGISTERS_T *)      0xf0400000; //uart 0 base address
+_SPRITEGEN_REGISTERS_T  *spriteGen   = ( _SPRITEGEN_REGISTERS_T *)   0xf0100000; //hw sprite generator base address
+
+
+
+
+/*
 _USBHOST_REGISTERS_T *usbhost = ( _USBHOST_REGISTERS_T *)   0xf0300000; //hid usb host base address
-_UART_REGISTERS_T    *uart0   = ( _UART_REGISTERS_T *)      0xf0400000; //uart 0 base address
 _AUDIO_REGISTERS_T   *aud     = ( _AUDIO_REGISTERS_T*)      0xf0600000; //i2s audio base address
 _SPI_REGISTERS_T     *spi1    = ( _SPI_REGISTERS_T *)       0xf0700000; //spi 1 base address
+*/
 
 
-ulong              screenIndex;
-ushort            *displayRam; 
+uint32_t              screenIndex;
+uint16_t            *displayRam; 
 
 void (*bootEntry)(void) = (void(*)())0x0;
 
@@ -19,10 +26,10 @@ char buf[128];
 #define _BOOTLOADER_PROTECTION_ADDR ( 8 * 1024 )
 #define _TXT_ATTR                   0x0d00
 
-int print( char *buf )
+uint32_t print( char *buf )
 {
-   char c;
-   int i;
+   char     c;
+   uint32_t i;
 
    i = 0;
 
@@ -50,9 +57,8 @@ int print( char *buf )
    return 0;
 }
 
-int uartGetC()
+int32_t uartGetC()
 {
-   volatile int j;
 
    if ( uart0->uartStatus & 1 )
    {           
@@ -72,13 +78,11 @@ int uartPutC( unsigned char c )
    return 0;
 }
 
-int uartGetS( char *buf, int maxLength )
+uint32_t uartGetS( char *buf, uint32_t maxLength )
 {
-   int idx;
-   volatile int j;
-   
-   char c;
-   int rv;
+   uint32_t idx;   
+   char     c;
+   uint32_t rv;
 
    idx = 0;
    
@@ -108,7 +112,7 @@ int uartGetS( char *buf, int maxLength )
 }
 
 
-int hexToIDigit( char *buf, int position )
+uint32_t hexToIDigit( char *buf, uint32_t position )
 {
    char c;
    
@@ -130,9 +134,10 @@ int hexToIDigit( char *buf, int position )
    }
 }
 
-int hexToIByte( char *buf, int position )
+uint32_t hexToIByte( char *buf, uint32_t position )
 {
-   int d1, d2;
+   uint32_t d1;
+   uint32_t d2;
    
    d1 = hexToIDigit( buf, position++ );
    if( d1 == -1 ) return -1;
@@ -144,7 +149,7 @@ int hexToIByte( char *buf, int position )
    return ( d1 << 4 ) | d2;
 }
 
-void hexDigit(char *string,char digit)
+void hexDigit(char *string, char digit )
 {
     digit &= 0x0f;
     
@@ -160,7 +165,7 @@ void hexDigit(char *string,char digit)
     }
 }
 
-void itoaHex8Digits( int value, char* str )
+void itoaHex8Digits( uint32_t value, char* str )
 {
     hexDigit(&str[0], ( value >> 28 ) & 0x0f );
     hexDigit(&str[1], ( value >> 24 ) & 0x0f );
@@ -175,11 +180,12 @@ void itoaHex8Digits( int value, char* str )
     hexDigit(&str[7], ( value ) & 0x0f );
 }
 
-int decodeAndDisplayS0Record( char *buf )
+uint32_t decodeAndDisplayS0Record( char *buf )
 {
-   int idx;
-   int recordLength;
-   int i,v;
+   uint32_t idx;
+   uint32_t recordLength;
+   uint32_t i;
+   uint32_t v;
    char line[8];
    
    recordLength = hexToIByte( buf, 1 );
@@ -200,14 +206,14 @@ int decodeAndDisplayS0Record( char *buf )
    return 0;
 }
 
-int decodeAndSaveS1_2_3Record( char *buf, ulong recordType )
+uint32_t decodeAndSaveS1_2_3Record( char *buf, uint32_t recordType )
 {
-   int   rv;
-   ulong i;
-   ulong dataFieldIdx;
-   ulong address;
-   ulong recordLength;
-   ulong addressFieldLength;
+   uint32_t rv;
+   uint32_t i;
+   uint32_t dataFieldIdx;
+   uint32_t address;
+   uint32_t recordLength;
+   uint32_t addressFieldLength;
 
    unsigned char *memPtr;
    
@@ -252,7 +258,7 @@ int decodeAndSaveS1_2_3Record( char *buf, ulong recordType )
       if( rv == -1 ) return 1;
 
       address <<= 8;
-      address |= (uchar)rv;
+      address |= (uint8_t)rv;
 
    }
 
@@ -271,12 +277,12 @@ int decodeAndSaveS1_2_3Record( char *buf, ulong recordType )
 }
 
 
-int decodeAndExecuteS7_8_9Record( char *buf, ulong recordType )
+uint32_t decodeAndExecuteS7_8_9Record( char *buf, uint32_t recordType )
 {
-   long  rv;
-   ulong address;
-   ulong i;
-   ulong addressFieldLength;
+   uint32_t rv;
+   uint32_t address;
+   uint32_t i;
+   uint32_t addressFieldLength;
 
 
    switch( recordType )
@@ -306,7 +312,7 @@ int decodeAndExecuteS7_8_9Record( char *buf, ulong recordType )
       if( rv == -1 ) return 1;
    
       address <<= 8;
-      address |= (uchar)rv;
+      address |= (uint8_t)rv;
    
    }
 
@@ -320,9 +326,9 @@ int decodeAndExecuteS7_8_9Record( char *buf, ulong recordType )
 }
 
 
-void spaceDistance( ulong n )
+void spaceDistance( uint32_t n )
 {
-   ulong i;
+   uint32_t i;
 
    for( i = 0 ; i < n; i++ )
    {
@@ -332,7 +338,7 @@ void spaceDistance( ulong n )
 }
 
 
-uchar flashSpiSendReceive( uchar txB )
+/*uint8_t flashSpiSendReceive( uint8_t txB )
 {
    
    do
@@ -350,9 +356,9 @@ uchar flashSpiSendReceive( uchar txB )
 }
 
 
-int flashRead( ulong address, ulong length, uchar *buffer )
+int flashRead( uint32_t address, uint32_t length, uint8_t *buffer )
 {
-   ulong i;
+   uint32_t i;
 
    //cs low
    bsp->gpoPort &= ( 1 << 8 ) ^ 0xffffffff;
@@ -380,13 +386,13 @@ int flashRead( ulong address, ulong length, uchar *buffer )
 
 void loadSecondStageBootloader()
 {
-   ulong *sbPtr;
+   uint32_t *sbPtr;
 
    print( (char*)"\n\nLoading second stage\n" );
 
-   flashRead( 0x700000, 0x20000, (uchar*)_SYSTEM_MEMORY_BASE );
+   flashRead( 0x700000, 0x20000, (uint8_t*)_SYSTEM_MEMORY_BASE );
 
-   sbPtr = (ulong*)_SYSTEM_MEMORY_BASE;
+   sbPtr = (uint32_t*)_SYSTEM_MEMORY_BASE;
 
    //check code signature (jump command)
    if( *sbPtr == 0x0100006f )
@@ -407,30 +413,20 @@ void loadSecondStageBootloader()
    }
 
 }
+*/
 
 int main()
 {
-   int i;
-   volatile int j;
-   int k;
-   int uartData;
-
-   //stop audio dma
-   aud->audioDmaConfig  = 0x00;         
+   uint32_t          i;
+   uint32_t          k;
+   uint32_t          uartData;
+   volatile uint32_t j;
 
    //80 column txt mode only
    bsp->videoMuxMode    = 0x0004;
 
-   //clear usb hid fifo
-/*   j = 0;
-   while( ! ( usbhost->usbHidKeyboardStatus & 1 ) )
-   {
-      j |= usbhost->usbHidKeyboardData;
-   }
-*/
    displayRam           = ( unsigned short * )0x6d40;
       
-   
    screenIndex          = 0;  
 
    for( i = 0; i < 2400 ; i++ )
@@ -453,7 +449,7 @@ int main()
    spaceDistance( 40 - 13 ); print( (char*) "   | Powered by nekoRV | \n" );
    spaceDistance( 40 - 13 ); print( (char*) "   |                   | \n" );
    spaceDistance( 40 - 13 ); print( (char*) "   |   Bootloader32I   | \n" );
-   spaceDistance( 40 - 13 ); print( (char*) "   |   B20240911       | \n" );
+   spaceDistance( 40 - 13 ); print( (char*) "   |   B20240923       | \n" );
    spaceDistance( 40 - 13 ); print( (char*) "   |                   | \n" );
    spaceDistance( 40 - 13 ); print( (char*) "   |   SOC             | \n" );
    spaceDistance( 40 - 13 ); print( (char*) "   |   B" );
@@ -462,13 +458,33 @@ int main()
 
    spaceDistance( 40 - 13 ); print( (char*) "   |                   | \n" );
    spaceDistance( 40 - 13 ); print( (char*) "   `-------------------` \n\n" );
+
+
+   //stop audio dma
+   //aud->audioDmaConfig  = 0x00;         
+
+   //clear usb hid fifo
+/*   j = 0;
+   while( ! ( usbhost->usbHidKeyboardStatus & 1 ) )
+   {
+      j |= usbhost->usbHidKeyboardData;
+   }
+*/
+
+   //hide sprite ( mouse cursor )
+   spriteGen->spriteX = 0;
+   spriteGen->spriteY = 0;
    
+   
+   //clear uart rx fifo
+   while( uartGetC() != -1 );
+
    for( i = 0; i < 16; i++ )
    {
       displayRam[ i ] = i << 12;
    }
 
-   
+      
 
    k = 0;
    uartData = -1;

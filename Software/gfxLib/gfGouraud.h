@@ -14,13 +14,13 @@ typedef struct _tgfPoint3D
 	float y3DT;
 	float z3DT;
 
-	short x2D;
-	short y2D;
-	ushort z2D;
+	int16_t x2D;
+	int16_t y2D;
+	uint16_t z2D;
 
-	uchar r;
-	uchar g;
-	uchar b;
+	uint8_t r;
+	uint8_t g;
+	uint8_t b;
 
 }tgfPoint3D;
 
@@ -33,32 +33,32 @@ typedef struct _tgfTriangle3D
 
 	tgfBitmap   *texture;
 
-	short        aTx2D;
-	short        aTy2D;
+	int16_t        aTx2D;
+	int16_t        aTy2D;
 
-	short        bTx2D;
-	short        bTy2D;
+	int16_t        bTx2D;
+	int16_t        bTy2D;
 
-	short        cTx2D;
-	short        cTy2D;
+	int16_t        cTx2D;
+	int16_t        cTy2D;
 
 }tgfTriangle3D;
 
 
-long inline gfGouraudEdge( tgfPoint3D *e1, tgfPoint3D *e2, tgfPoint3D *p );
+int32_t inline gfGouraudEdge( tgfPoint3D *e1, tgfPoint3D *e2, tgfPoint3D *p );
 
-ulong gfGouraudDrawTriangle( tgfBitmap *bmp, tgfTriangle3D *triangle );
-ulong gfGouraudDrawTriangleFloat( tgfBitmap *bmp, tgfTriangle3D *triangle );
-ulong gfGouraudDrawTriangleBlt( tgfBitmap *bmp, tgfTriangle3D *triangle );
+uint32_t gfGouraudDrawTriangle( tgfBitmap *bmp, tgfTriangle3D *triangle );
+uint32_t gfGouraudDrawTriangleFloat( tgfBitmap *bmp, tgfTriangle3D *triangle );
+uint32_t gfGouraudDrawTriangleBlt( tgfBitmap *bmp, tgfTriangle3D *triangle );
 
-ulong gfGouraudDrawTexturedTriangle( tgfBitmap *bmp, tgfTriangle3D *triangle );
-ulong gfGouraudDrawTexturedTriangleFloat( tgfBitmap *bmp, tgfTriangle3D *triangle );
-ulong gfGouraudDrawTexturedTriangleBlt( tgfBitmap *bmp, tgfTriangle3D *triangle );
+uint32_t gfGouraudDrawTexturedTriangle( tgfBitmap *bmp, tgfTriangle3D *triangle );
+uint32_t gfGouraudDrawTexturedTriangleFloat( tgfBitmap *bmp, tgfTriangle3D *triangle );
+uint32_t gfGouraudDrawTexturedTriangleBlt( tgfBitmap *bmp, tgfTriangle3D *triangle );
 
-ulong gfGouraudDrawTexturedTriangleZBuffer( tgfBitmap *bmp, tgfBitmap *zBuffer, tgfTriangle3D *triangle );
-ulong gfGouraudDrawTexturedTriangleZBufferBlt( tgfBitmap *bmp, tgfBitmap *zBuffer, tgfTriangle3D *triangle );
+uint32_t gfGouraudDrawTexturedTriangleZBuffer( tgfBitmap *bmp, tgfBitmap *zBuffer, tgfTriangle3D *triangle );
+uint32_t gfGouraudDrawTexturedTriangleZBufferBlt( tgfBitmap *bmp, tgfBitmap *zBuffer, tgfTriangle3D *triangle );
 
-ulong gfGouraudDrawTriangleZBuffer( tgfBitmap *bmp, tgfBitmap *zBuffer, tgfTriangle3D *triangle );
-ulong gfGouraudDrawTriangleZBufferBlt( tgfBitmap *bmp, tgfBitmap *zBuffer, tgfTriangle3D *triangle );
+uint32_t gfGouraudDrawTriangleZBuffer( tgfBitmap *bmp, tgfBitmap *zBuffer, tgfTriangle3D *triangle );
+uint32_t gfGouraudDrawTriangleZBufferBlt( tgfBitmap *bmp, tgfBitmap *zBuffer, tgfTriangle3D *triangle );
 
 #endif

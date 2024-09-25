@@ -11,20 +11,20 @@ extern _UART_REGISTERS_T   *uart0;
 #endif
 
 
-ulong osSerialOpen( ulong serialNum, ulong baudRate )
+uint32_t osSerialOpen( uint32_t serialNum, uint32_t baudRate )
 {
 
    return 0;
 }
 
-ulong osSerialClose( ulong serialNum )
+uint32_t osSerialClose( uint32_t serialNum )
 {
 
    return 0;
 }
 
 
-long  osSerialGetC( ulong serialNum )
+int32_t  osSerialGetC( uint32_t serialNum )
 {
    #ifdef _GFXLIB_RISCV_FATFS
 
@@ -42,14 +42,14 @@ long  osSerialGetC( ulong serialNum )
    return -1;
 }
 
-ulong osSerialClearRxFifo( ulong serialNum )
+uint32_t osSerialClearRxFifo( uint32_t serialNum )
 {
    while( osSerialGetC( serialNum ) != -1 );
 
    return 0;
 }
 
-ulong osSerialPutC( ulong serialNum, uchar c )
+uint32_t osSerialPutC( uint32_t serialNum, uint8_t c )
 {
    #ifdef _GFXLIB_RISCV_FATFS
 
@@ -65,12 +65,12 @@ ulong osSerialPutC( ulong serialNum, uchar c )
 
 }
 
-ulong osSerialGetS( ulong serialNum, char *buf, ulong maxLength, ulong timeoutMs )
+uint32_t osSerialGetS( uint32_t serialNum, char *buf, uint32_t maxLength, uint32_t timeoutMs )
 {
-   ulong idx;   
+   uint32_t idx;   
    char  c;
-   long  rv;
-   ulong startTicks;
+   int32_t  rv;
+   uint32_t startTicks;
 
    idx = 0;
    
@@ -119,7 +119,7 @@ ulong osSerialGetS( ulong serialNum, char *buf, ulong maxLength, ulong timeoutMs
    return 0;
 }
 
-ulong osSerialPrint( ulong serialNum, char *buf )
+uint32_t osSerialPrint( uint32_t serialNum, char *buf )
 {
    char c;
 

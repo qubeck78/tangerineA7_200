@@ -46,24 +46,24 @@ int animLeds( int j )
 
 
 //mandelbrot browser: https://mandel.gart.nz/
-int mandelbrot( tgfBitmap *bmp, float xmin, float ymin, float dx, float dy )
+uint32_t mandelbrot( tgfBitmap *bmp, float xmin, float ymin, float dx, float dy )
 {
-    int     x;
-    int     y;
+    uint32_t    x;
+    uint32_t    y;
     
-    float   ci;
-    float   cr;
-    float   zr;
-    float   zi;
-    float   zrr;
-    float   zii;
-    float   zri;
+    float       ci;
+    float       cr;
+    float       zr;
+    float       zi;
+    float       zrr;
+    float       zii;
+    float       zri;
     
-    int     iter;
+    int32_t     iter;
     
-    ushort  r;
-    ushort  g;
-    ushort  b;
+    uint16_t    r;
+    uint16_t    g;
+    uint16_t    b;
     
     ci = ymin;
     
@@ -125,27 +125,27 @@ int mandelbrot( tgfBitmap *bmp, float xmin, float ymin, float dx, float dy )
     return 0;
 }
 
-int ffMandelbrot( tgfBitmap *bmp, ushort colorMask, float xmin, float ymin, float dx, float dy )
+uint32_t ffMandelbrot( tgfBitmap *bmp, uint16_t colorMask, float xmin, float ymin, float dx, float dy )
 {
-    int     x;
-    int     y;
+    uint32_t    x;
+    uint32_t    y;
     
-    float   ci;
-    float   cr;
-    float   zr;
-    float   zi;
-    float   zrr;
-    float   zii;
-    float   zri;
+    float       ci;
+    float       cr;
+    float       zr;
+    float       zi;
+    float       zrr;
+    float       zii;
+    float       zri;
     
-    float   zrmzi;
+    float       zrmzi;
     
-    int     iter;
-    ushort  color;
+    int32_t     iter;
+    uint16_t    color;
     
-    ushort  r;
-    ushort  g;
-    ushort  b;
+    uint16_t    r;
+    uint16_t    g;
+    uint16_t    b;
     
     
     if( ( colorMask & 3 ) == 0 )
@@ -252,10 +252,10 @@ int ffMandelbrot( tgfBitmap *bmp, ushort colorMask, float xmin, float ymin, floa
 
 int main()
 {
-    ulong       i;
-    int         rv;
-    ulong       startTicks;
-    ulong       endTicks;
+    uint32_t    i;
+    uint32_t    rv;
+    uint32_t    startTicks;
+    uint32_t    endTicks;
     tosUIEvent  event; 
 
     bspInit();
@@ -297,7 +297,7 @@ int main()
 
     endTicks = getTicks();
 
-    toPrintF( &con,  (char*)"Time: %d ms\n", (ulong)( endTicks - startTicks ) );
+    toPrintF( &con,  (char*)"Time: %d ms\n", (uint32_t)( endTicks - startTicks ) );
 
 
 /*    asm
@@ -318,7 +318,7 @@ int main()
 
     do
     {
-        ffMandelbrot( &screen, ( randomNumber() >> 7 ) & 7, -1.7f + ((ulong)randomNumber() ) / 3294967296.0f ,  -1.7f + ((ulong)randomNumber() ) / 3294967296.0f , 0.001f, 0.001f );
+        ffMandelbrot( &screen, ( randomNumber() >> 7 ) & 7, -1.7f + ((uint32_t)randomNumber() ) / 3294967296.0f ,  -1.7f + ((uint32_t)randomNumber() ) / 3294967296.0f , 0.001f, 0.001f );
 
 /*        while( !osGetUIEvent( &event ) )
         { 

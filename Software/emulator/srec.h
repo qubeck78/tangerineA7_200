@@ -4,7 +4,7 @@
 #include "../gfxLib/gfTypes.h"
 
 
-ulong srecLoadFile( char *path );
+uint32_t srecLoadFile( char *path );
 
 
 

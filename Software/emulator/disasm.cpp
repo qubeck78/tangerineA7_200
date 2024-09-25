@@ -4,7 +4,7 @@
 #include "disasm.h"
 #include "memio.h"
 
-ulong nameRegister( ulong r, char *outputBuffer )
+uint32_t nameRegister( uint32_t r, char *outputBuffer )
 {
 
    outputBuffer[0] = 0;
@@ -62,7 +62,7 @@ ulong nameRegister( ulong r, char *outputBuffer )
    return 0;
 }
 
-static ulong decodeIStypeImm( ulong imm, char *outputBuffer )
+static uint32_t decodeIStypeImm( uint32_t imm, char *outputBuffer )
 {
    short  extImm;
 
@@ -82,7 +82,7 @@ static ulong decodeIStypeImm( ulong imm, char *outputBuffer )
    return 0;
 }
 
-static ulong decodeBtypeImm( ulong imm, ulong pc, char *outputBuffer )
+static uint32_t decodeBtypeImm( uint32_t imm, uint32_t pc, char *outputBuffer )
 {
    short  extImm;
 
@@ -103,7 +103,7 @@ static ulong decodeBtypeImm( ulong imm, ulong pc, char *outputBuffer )
    return 0;
 }
 
-static ulong decodeJtypeImm( ulong imm, ulong pc, char *outputBuffer )
+static uint32_t decodeJtypeImm( uint32_t imm, uint32_t pc, char *outputBuffer )
 {
    long  extImm;
 
@@ -124,11 +124,11 @@ static ulong decodeJtypeImm( ulong imm, ulong pc, char *outputBuffer )
    return 0;
 }
 
-ulong dsDisassemble( dsContext_t *ctx, char *outputBuffer )
+uint32_t dsDisassemble( dsContext_t *ctx, char *outputBuffer )
 {
-   ulong pc;
-   ulong instruction;
-   ulong iDecAux;
+   uint32_t pc;
+   uint32_t instruction;
+   uint32_t iDecAux;
 
    char  regDName[8];
    char  regS1Name[8];

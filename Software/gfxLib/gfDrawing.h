@@ -21,23 +21,23 @@
 //         76543
 // 76543
 
-#define gfColor( r, g, b ) ( ushort )((((ushort)b >> 3) & 31 ) | (((ushort)g & 252 ) << 3 ) | (((ushort)r & 248 ) << 8 ))
-#define gfColorGetR( color ) ( ushort )(( color >> 8) & 0xf8 )
-#define gfColorGetG( color ) ( ushort )(( color >> 3) & 0xfc )
-#define gfColorGetB( color ) ( ushort )(( color << 3) & 0xf8 )
+#define gfColor( r, g, b ) ( uint16_t )((((uint16_t)b >> 3) & 31 ) | (((uint16_t)g & 252 ) << 3 ) | (((uint16_t)r & 248 ) << 8 ))
+#define gfColorGetR( color ) ( uint16_t )(( color >> 8) & 0xf8 )
+#define gfColorGetG( color ) ( uint16_t )(( color >> 3) & 0xfc )
+#define gfColorGetB( color ) ( uint16_t )(( color << 3) & 0xf8 )
 
 
-ulong gfPlot( tgfBitmap *bmp, short x, short y, ushort color );
-#define gfPlotF( bmp, x, y, color) (( ushort* ) bmp->buffer )[ x + ( bmp->rowWidth * y ) ] = color;
-ulong gfPlotA( tgfBitmap *bmp, short x, short y, ushort color, uchar alpha );
-ulong gfPlotA2C( tgfBitmap *bmp, short x, short y, ushort color1, ushort color2, uchar alpha );
+uint32_t gfPlot( tgfBitmap *bmp, int16_t x, int16_t y, uint16_t color );
+#define gfPlotF( bmp, x, y, color) (( uint16_t* ) bmp->buffer )[ x + ( bmp->rowWidth * y ) ] = color;
+uint32_t gfPlotA( tgfBitmap *bmp, int16_t x, int16_t y, uint16_t color, uint8_t alpha );
+uint32_t gfPlotA2C( tgfBitmap *bmp, int16_t x, int16_t y, uint16_t color1, uint16_t color2, uint8_t alpha );
 
-ushort gfGetPixel( tgfBitmap *bmp, short x, short y );
+uint16_t gfGetPixel( tgfBitmap *bmp, int16_t x, int16_t y );
 
 
-ulong gfLine( tgfBitmap *bmp, short x1, short y1, short x2, short y2, ushort color );
-ulong gfCircle( tgfBitmap *bmp, short xm, short ym, short r, ushort color );
-ulong gfEllipse( tgfBitmap *bmp, short x1, short y1, short x2, short y2, ushort color );
-ulong gfFillRect( tgfBitmap *bmp, short x1, short y1, short x2, short y2, ushort color );
+uint32_t gfLine( tgfBitmap *bmp, int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint16_t color );
+uint32_t gfCircle( tgfBitmap *bmp, int16_t xm, int16_t ym, int16_t r, uint16_t color );
+uint32_t gfEllipse( tgfBitmap *bmp, int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint16_t color );
+uint32_t gfFillRect( tgfBitmap *bmp, int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint16_t color );
 
 #endif

@@ -14,7 +14,7 @@ extern tgfBitmap			 texture;
 
 float						 sinT[360];
 float 						 cosT[360];  
-uchar						 lightT[100];
+uint8_t						 lightT[100];
 
 int							 sincosLightTablesValid;
 
@@ -27,7 +27,7 @@ int 				 		 rotation;
 int							 rotationCounter;
 tgfPoint3D 					 cam;
 
-ushort						 rendererType;
+uint16_t						 rendererType;
 
 char 						 buf[512];
 
@@ -57,24 +57,24 @@ int objvLoadOBJFS( char *fileName, float scaleFactor, tgfBitmap *texture )
 {
 	tosFile	in;
 	char 	lineBuf[256];
-	ulong 	objNumPoints;
-	ulong 	objNumTriangles;
+	uint32_t 	objNumPoints;
+	uint32_t 	objNumTriangles;
 	float   x;
 	float	y;
 	float	z;
-	ushort  lineIdx;
-	ushort  lineLen;
-	ulong   p1;
-	ulong   p2;
-	ulong   p3;
-	ulong   t1;
-	ulong   t2;
-	ulong   t3;
+	uint16_t  lineIdx;
+	uint16_t  lineLen;
+	uint32_t   p1;
+	uint32_t   p2;
+	uint32_t   p3;
+	uint32_t   t1;
+	uint32_t   t2;
+	uint32_t   t3;
 
 	float   *tx;
 	float   *ty;
-	ulong   objNumTexturePoints;
-	ulong   texturePointIdx;
+	uint32_t   objNumTexturePoints;
+	uint32_t   texturePointIdx;
 
 
 	objNumPoints 		= 0;
@@ -89,7 +89,7 @@ int objvLoadOBJFS( char *fileName, float scaleFactor, tgfBitmap *texture )
 		return 1;
 	}
 
-	while( !osFGetS( &in, (uchar*)lineBuf, sizeof( lineBuf ) ) )
+	while( !osFGetS( &in, (uint8_t*)lineBuf, sizeof( lineBuf ) ) )
 	{
 
 		lineLen = strlen( lineBuf );
@@ -141,7 +141,7 @@ int objvLoadOBJFS( char *fileName, float scaleFactor, tgfBitmap *texture )
 		return 1;
 	}
 
-	while( !osFGetS( &in, (uchar*)lineBuf, sizeof( lineBuf ) ) )
+	while( !osFGetS( &in, (uint8_t*)lineBuf, sizeof( lineBuf ) ) )
 	{
 
 		lineLen = strlen( lineBuf );
@@ -344,11 +344,11 @@ int objvCalc3d( tgfBitmap *pscr )
 
 	int 		 i;
 	float 		 xp,yp,zp;
-	ulong		 light;
+	uint32_t		 light;
 
-	ushort		 screenw2;
-	ushort 		 screenh2;
-	ushort		 rotation360;
+	uint16_t		 screenw2;
+	uint16_t 		 screenh2;
+	uint16_t		 rotation360;
 	
 	short		 z3DTs;
 	float		 cosRotation;
@@ -516,8 +516,8 @@ int objvDisplayObj( tgfBitmap *pscr )
 			blt->bltTransferHeight	= 240;
 			blt->bltDstModulo		= 512;			//screen modulo
 
-			blt->bltDstAddress 				= ( ulong )(( ( ulong )pscr->buffer - _SYSTEM_MEMORY_BASE ) / 2);
-			blt->bltGouraudZBufferAddress	= ( ulong )(( ( ulong )zBuffer.buffer - _SYSTEM_MEMORY_BASE ) / 2);
+			blt->bltDstAddress 				= ( uint32_t )(( ( uint32_t )pscr->buffer - _SYSTEM_MEMORY_BASE ) / 2);
+			blt->bltGouraudZBufferAddress	= ( uint32_t )(( ( uint32_t )zBuffer.buffer - _SYSTEM_MEMORY_BASE ) / 2);
 
 			for( i = 0 ; i < numTriangles; i++ )
 			{
@@ -573,7 +573,7 @@ int objvDisplayObj( tgfBitmap *pscr )
 						
 
 						//set texture address
-						blt->bltSrcAddress 		= ( ulong )(( ( ulong )triangle->texture->buffer - _SYSTEM_MEMORY_BASE ) / 2);
+						blt->bltSrcAddress 		= ( uint32_t )(( ( uint32_t )triangle->texture->buffer - _SYSTEM_MEMORY_BASE ) / 2);
 				
 						blt->bltStatus			= 0x1;			//run			
 						
@@ -642,8 +642,8 @@ int objvView( char* fileName )
 	int 		rv;
 	int			i;
 	tosUIEvent	event;
-	ushort		exitMainLoop;
-	ushort		lightCalc;
+	uint16_t		exitMainLoop;
+	uint16_t		lightCalc;
 
 	rv = 0;
 

@@ -10,13 +10,13 @@
 
 #endif
 
-ulong gfDisplayBitmap( tgfBitmap *bmp )
+uint32_t gfDisplayBitmap( tgfBitmap *bmp )
 {
    
    #if defined( _GFXLIB_RISCV_FATFS )
    
-   //bsp->dmaDisplayPointerStart = ( ulong )( ( ulong )bmp->buffer - _SYSTEM_MEMORY_BASE ) / 4;
-   sdrdma->ch3DmaPointerStart = ( ulong )( ( ulong )bmp->buffer - _SYSTEM_MEMORY_BASE ) / 4;
+   //bsp->dmaDisplayPointerStart = ( uint32_t )( ( uint32_t )bmp->buffer - _SYSTEM_MEMORY_BASE ) / 4;
+   sdrdma->ch3DmaPointerStart = ( uint32_t )( ( uint32_t )bmp->buffer - _SYSTEM_MEMORY_BASE ) / 4;
    
    #endif
 
@@ -31,12 +31,12 @@ ulong gfDisplayBitmap( tgfBitmap *bmp )
 }
 
 
-ulong gfLoadBitmapFS( tgfBitmap *dest, char *fileName )
+uint32_t gfLoadBitmapFS( tgfBitmap *dest, char *fileName )
 {
    tosFile file;
-   uchar buf[4];
-   ushort *bmpBufferUS;
-   ushort tmp;
+   uint8_t buf[4];
+   uint16_t *bmpBufferUS;
+   uint16_t tmp;
    
    int      i;
 
@@ -100,7 +100,7 @@ ulong gfLoadBitmapFS( tgfBitmap *dest, char *fileName )
 
       }
 
-      osFRead( &file, (uchar*)dest->buffer, (ulong)( dest->rowWidth * dest->height * 2 ), NULL );
+      osFRead( &file, (uint8_t*)dest->buffer, (uint32_t)( dest->rowWidth * dest->height * 2 ), NULL );
 
       #ifdef _GFXLIB_BIG_ENDIAN
       if( ! ( dest->flags & GF_BITMAP_FLAG_BIG_ENDIAN ) )
@@ -108,7 +108,7 @@ ulong gfLoadBitmapFS( tgfBitmap *dest, char *fileName )
       if( dest->flags & GF_BITMAP_FLAG_BIG_ENDIAN )
       #endif
       {
-         bmpBufferUS = (ushort*)dest->buffer;
+         bmpBufferUS = (uint16_t*)dest->buffer;
          
          //not compatible bitmap, swap bytes
          for( i = 0; i < dest->rowWidth * dest->height; i++ )
@@ -136,13 +136,13 @@ ulong gfLoadBitmapFS( tgfBitmap *dest, char *fileName )
 }
 
 
-ulong gfBlitBitmap( tgfBitmap *dest, tgfBitmap *src, short x, short y )
+uint32_t gfBlitBitmap( tgfBitmap *dest, tgfBitmap *src, int16_t x, int16_t y )
 {
-   short cx,cy,bw,bh,sx,sy;
+   int16_t cx,cy,bw,bh,sx,sy;
 
-   ushort *fbSrc;
-   ushort *fbDest;
-   ushort srcColor;
+   uint16_t *fbSrc;
+   uint16_t *fbDest;
+   uint16_t srcColor;
 
 
 
@@ -203,12 +203,12 @@ ulong gfBlitBitmap( tgfBitmap *dest, tgfBitmap *src, short x, short y )
       
          //use blitter
       
-         blt->saAddress       = (ulong)src->buffer + ( sy * ( src->rowWidth << 1 ) + ( sx << 1 ) );
+         blt->saAddress       = (uint32_t)src->buffer + ( sy * ( src->rowWidth << 1 ) + ( sx << 1 ) );
          blt->saRowWidth      = src->rowWidth;
          blt->saWidth         = bw;
          blt->saHeight        = bh;
 
-         blt->daAddress       = (ulong)dest->buffer + ( y * ( dest->rowWidth << 1 ) + ( x << 1 ) );
+         blt->daAddress       = (uint32_t)dest->buffer + ( y * ( dest->rowWidth << 1 ) + ( x << 1 ) );
          blt->daRowWidth      = dest->rowWidth;
          blt->daWidth         = bw;
          blt->daHeight        = bh;
@@ -223,8 +223,8 @@ ulong gfBlitBitmap( tgfBitmap *dest, tgfBitmap *src, short x, short y )
          
          for( cy = 0; cy < bh; cy++ )
          {
-            fbSrc = &(( ushort* )src->buffer)[ ( ( cy + sy ) * src->rowWidth ) + sx ];
-            fbDest = &(( ushort* )dest->buffer)[ ( ( cy + y ) * dest->rowWidth ) + x ];
+            fbSrc = &(( uint16_t* )src->buffer)[ ( ( cy + sy ) * src->rowWidth ) + sx ];
+            fbDest = &(( uint16_t* )dest->buffer)[ ( ( cy + y ) * dest->rowWidth ) + x ];
 
             for( cx = 0; cx < bw; cx++ )
             {
@@ -246,12 +246,12 @@ ulong gfBlitBitmap( tgfBitmap *dest, tgfBitmap *src, short x, short y )
 
          //use blitter
       
-         blt->saAddress       = (ulong)src->buffer + ( sy * ( src->rowWidth << 1 ) + ( sx << 1 ) );
+         blt->saAddress       = (uint32_t)src->buffer + ( sy * ( src->rowWidth << 1 ) + ( sx << 1 ) );
          blt->saRowWidth      = src->rowWidth;
          blt->saWidth         = bw;
          blt->saHeight        = bh;
 
-         blt->daAddress       = (ulong)dest->buffer + ( y * ( dest->rowWidth << 1 ) + ( x << 1 ) );
+         blt->daAddress       = (uint32_t)dest->buffer + ( y * ( dest->rowWidth << 1 ) + ( x << 1 ) );
          blt->daRowWidth      = dest->rowWidth;
          blt->daWidth         = bw;
          blt->daHeight        = bh;
@@ -263,8 +263,8 @@ ulong gfBlitBitmap( tgfBitmap *dest, tgfBitmap *src, short x, short y )
       #else
          for( cy = 0; cy < bh; cy++ )
          {
-            fbSrc = &(( ushort* )src->buffer)[ ( ( cy + sy ) * src->rowWidth ) + sx ];
-            fbDest = &(( ushort* )dest->buffer)[ ( ( cy + y ) * dest->rowWidth ) + x ];
+            fbSrc = &(( uint16_t* )src->buffer)[ ( ( cy + sy ) * src->rowWidth ) + sx ];
+            fbDest = &(( uint16_t* )dest->buffer)[ ( ( cy + y ) * dest->rowWidth ) + x ];
 
             for( cx = 0; cx < bw; cx++ )
             {
@@ -278,13 +278,13 @@ ulong gfBlitBitmap( tgfBitmap *dest, tgfBitmap *src, short x, short y )
     return 0;
 }
 
-ulong gfBlitBitmapSrcRect( tgfBitmap *dest, tgfBitmap *src, short sx, short sy, short bw, short bh, short x, short y )
+uint32_t gfBlitBitmapSrcRect( tgfBitmap *dest, tgfBitmap *src, int16_t sx, int16_t sy, int16_t bw, int16_t bh, int16_t x, int16_t y )
 {
-   short cx,cy;
+   int16_t cx,cy;
 
-   ushort *fbSrc;
-   ushort *fbDest;
-   ushort srcColor;
+   uint16_t *fbSrc;
+   uint16_t *fbDest;
+   uint16_t srcColor;
 
 
 
@@ -346,12 +346,12 @@ ulong gfBlitBitmapSrcRect( tgfBitmap *dest, tgfBitmap *src, short sx, short sy, 
       
          //use blitter
       
-         blt->saAddress       = (ulong)src->buffer + ( sy * ( src->rowWidth << 1 ) + ( sx << 1 ) );
+         blt->saAddress       = (uint32_t)src->buffer + ( sy * ( src->rowWidth << 1 ) + ( sx << 1 ) );
          blt->saRowWidth      = src->rowWidth;
          blt->saWidth         = bw;
          blt->saHeight        = bh;
 
-         blt->daAddress       = (ulong)dest->buffer + ( y * ( dest->rowWidth << 1 ) + ( x << 1 ) );
+         blt->daAddress       = (uint32_t)dest->buffer + ( y * ( dest->rowWidth << 1 ) + ( x << 1 ) );
          blt->daRowWidth      = dest->rowWidth;
          blt->daWidth         = bw;
          blt->daHeight        = bh;
@@ -366,8 +366,8 @@ ulong gfBlitBitmapSrcRect( tgfBitmap *dest, tgfBitmap *src, short sx, short sy, 
          
          for( cy = 0; cy < bh; cy++ )
          {
-            fbSrc = &(( ushort* )src->buffer)[ ( ( cy + sy ) * src->rowWidth ) + sx ];
-            fbDest = &(( ushort* )dest->buffer)[ ( ( cy + y ) * dest->rowWidth ) + x ];
+            fbSrc = &(( uint16_t* )src->buffer)[ ( ( cy + sy ) * src->rowWidth ) + sx ];
+            fbDest = &(( uint16_t* )dest->buffer)[ ( ( cy + y ) * dest->rowWidth ) + x ];
 
             for( cx = 0; cx < bw; cx++ )
             {
@@ -389,12 +389,12 @@ ulong gfBlitBitmapSrcRect( tgfBitmap *dest, tgfBitmap *src, short sx, short sy, 
 
          //use blitter
       
-         blt->saAddress       = (ulong)src->buffer + ( sy * ( src->rowWidth << 1 ) + ( sx << 1 ) );
+         blt->saAddress       = (uint32_t)src->buffer + ( sy * ( src->rowWidth << 1 ) + ( sx << 1 ) );
          blt->saRowWidth      = src->rowWidth;
          blt->saWidth         = bw;
          blt->saHeight        = bh;
 
-         blt->daAddress       = (ulong)dest->buffer + ( y * ( dest->rowWidth << 1 ) + ( x << 1 ) );
+         blt->daAddress       = (uint32_t)dest->buffer + ( y * ( dest->rowWidth << 1 ) + ( x << 1 ) );
          blt->daRowWidth      = dest->rowWidth;
          blt->daWidth         = bw;
          blt->daHeight        = bh;
@@ -406,8 +406,8 @@ ulong gfBlitBitmapSrcRect( tgfBitmap *dest, tgfBitmap *src, short sx, short sy, 
       #else
          for( cy = 0; cy < bh; cy++ )
          {
-            fbSrc = &(( ushort* )src->buffer)[ ( ( cy + sy ) * src->rowWidth ) + sx ];
-            fbDest = &(( ushort* )dest->buffer)[ ( ( cy + y ) * dest->rowWidth ) + x ];
+            fbSrc = &(( uint16_t* )src->buffer)[ ( ( cy + sy ) * src->rowWidth ) + sx ];
+            fbDest = &(( uint16_t* )dest->buffer)[ ( ( cy + y ) * dest->rowWidth ) + x ];
 
             for( cx = 0; cx < bw; cx++ )
             {
@@ -423,12 +423,12 @@ ulong gfBlitBitmapSrcRect( tgfBitmap *dest, tgfBitmap *src, short sx, short sy, 
 
 
 
-ulong gfBlitBitmapA( tgfBitmap *dest, tgfBitmap *src, short x, short y, uchar alpha )
+uint32_t gfBlitBitmapA( tgfBitmap *dest, tgfBitmap *src, int16_t x, int16_t y, uint8_t alpha )
 {
-   short cx,cy,bw,bh,sx,sy;
+   int16_t cx,cy,bw,bh,sx,sy;
 
-   ushort *fbSrc;
-   ushort srcColor;
+   uint16_t *fbSrc;
+   uint16_t srcColor;
 
 
    if(( dest == NULL) || ( src == NULL ))
@@ -487,15 +487,15 @@ ulong gfBlitBitmapA( tgfBitmap *dest, tgfBitmap *src, short x, short y, uchar al
 
          //use blitter
       
-         blt->saAddress       = (ulong)src->buffer + ( sy * ( src->rowWidth << 1 ) + ( sx << 1 ) );
+         blt->saAddress       = (uint32_t)src->buffer + ( sy * ( src->rowWidth << 1 ) + ( sx << 1 ) );
          blt->saRowWidth      = src->rowWidth;
          blt->saWidth         = bw;
          blt->saHeight        = bh;
 
-         blt->sbAddress       = (ulong)dest->buffer + ( y * ( dest->rowWidth << 1 ) + ( x << 1 ) );
+         blt->sbAddress       = (uint32_t)dest->buffer + ( y * ( dest->rowWidth << 1 ) + ( x << 1 ) );
          blt->sbRowWidth      = dest->rowWidth;
 
-         blt->daAddress       = (ulong)dest->buffer + ( y * ( dest->rowWidth << 1 ) + ( x << 1 ) );
+         blt->daAddress       = (uint32_t)dest->buffer + ( y * ( dest->rowWidth << 1 ) + ( x << 1 ) );
          blt->daRowWidth      = dest->rowWidth;
          blt->daWidth         = bw;
          blt->daHeight        = bh;
@@ -511,7 +511,7 @@ ulong gfBlitBitmapA( tgfBitmap *dest, tgfBitmap *src, short x, short y, uchar al
 
       for( cy = 0; cy < bh; cy++ )
       {
-         fbSrc = &(( ushort* )src->buffer)[ ( ( cy + sy ) * src->rowWidth ) + sx ];
+         fbSrc = &(( uint16_t* )src->buffer)[ ( ( cy + sy ) * src->rowWidth ) + sx ];
 
          for( cx = 0; cx < bw; cx++ )
          {
@@ -534,15 +534,15 @@ ulong gfBlitBitmapA( tgfBitmap *dest, tgfBitmap *src, short x, short y, uchar al
                
          //use blitter
       
-         blt->saAddress       = (ulong)src->buffer + ( sy * ( src->rowWidth << 1 ) + ( sx << 1 ) );
+         blt->saAddress       = (uint32_t)src->buffer + ( sy * ( src->rowWidth << 1 ) + ( sx << 1 ) );
          blt->saRowWidth      = src->rowWidth;
          blt->saWidth         = bw;
          blt->saHeight        = bh;
 
-         blt->sbAddress       = (ulong)dest->buffer + ( y * ( dest->rowWidth << 1 ) + ( x << 1 ) );
+         blt->sbAddress       = (uint32_t)dest->buffer + ( y * ( dest->rowWidth << 1 ) + ( x << 1 ) );
          blt->sbRowWidth      = dest->rowWidth;
 
-         blt->daAddress       = (ulong)dest->buffer + ( y * ( dest->rowWidth << 1 ) + ( x << 1 ) );
+         blt->daAddress       = (uint32_t)dest->buffer + ( y * ( dest->rowWidth << 1 ) + ( x << 1 ) );
          blt->daRowWidth      = dest->rowWidth;
          blt->daWidth         = bw;
          blt->daHeight        = bh;
@@ -558,7 +558,7 @@ ulong gfBlitBitmapA( tgfBitmap *dest, tgfBitmap *src, short x, short y, uchar al
 
       for( cy = 0; cy < bh; cy++ )
       {
-         fbSrc = &(( ushort* )src->buffer)[ ( ( cy + sy ) * src->rowWidth ) + sx ];
+         fbSrc = &(( uint16_t* )src->buffer)[ ( ( cy + sy ) * src->rowWidth ) + sx ];
 
          for( cx = 0; cx < bw; cx++ )
          {
@@ -572,14 +572,14 @@ ulong gfBlitBitmapA( tgfBitmap *dest, tgfBitmap *src, short x, short y, uchar al
    return 0;
 }
 
-ulong gfBlitBitmapA2Src( tgfBitmap *dest, tgfBitmap *src1, tgfBitmap *src2, short x, short y, uchar alpha )
+uint32_t gfBlitBitmapA2Src( tgfBitmap *dest, tgfBitmap *src1, tgfBitmap *src2, int16_t x, int16_t y, uint8_t alpha )
 {
-   short cx,cy,bw,bh,sx,sy;
+   int16_t cx,cy,bw,bh,sx,sy;
 
-   ushort *fbSrc1;
-   ushort *fbSrc2;
-   ushort srcColor1;
-   ushort srcColor2;
+   uint16_t *fbSrc1;
+   uint16_t *fbSrc2;
+   uint16_t srcColor1;
+   uint16_t srcColor2;
 
 
    if( ( dest == NULL) || ( src1 == NULL ) || ( src2 == NULL ) )
@@ -638,15 +638,15 @@ ulong gfBlitBitmapA2Src( tgfBitmap *dest, tgfBitmap *src1, tgfBitmap *src2, shor
          
          //use blitter
       
-         blt->saAddress       = (ulong)src1->buffer + ( sy * ( src1->rowWidth << 1 ) + ( sx << 1 ) );
+         blt->saAddress       = (uint32_t)src1->buffer + ( sy * ( src1->rowWidth << 1 ) + ( sx << 1 ) );
          blt->saRowWidth      = src1->rowWidth;
          blt->saWidth         = bw;
          blt->saHeight        = bh;
 
-         blt->sbAddress       = (ulong)src2->buffer + ( sy * ( src2->rowWidth << 1 ) + ( sx << 1 ) );
+         blt->sbAddress       = (uint32_t)src2->buffer + ( sy * ( src2->rowWidth << 1 ) + ( sx << 1 ) );
          blt->sbRowWidth      = src2->rowWidth;
 
-         blt->daAddress       = (ulong)dest->buffer + ( y * ( dest->rowWidth << 1 ) + ( x << 1 ) );
+         blt->daAddress       = (uint32_t)dest->buffer + ( y * ( dest->rowWidth << 1 ) + ( x << 1 ) );
          blt->daRowWidth      = dest->rowWidth;
          blt->daWidth         = bw;
          blt->daHeight        = bh;
@@ -662,8 +662,8 @@ ulong gfBlitBitmapA2Src( tgfBitmap *dest, tgfBitmap *src1, tgfBitmap *src2, shor
 
       for( cy = 0; cy < bh; cy++ )
       {
-         fbSrc1 = &(( ushort* )src1->buffer)[ ( ( cy + sy ) * src1->rowWidth ) + sx ];
-         fbSrc2 = &(( ushort* )src2->buffer)[ ( ( cy + sy ) * src2->rowWidth ) + sx ];
+         fbSrc1 = &(( uint16_t* )src1->buffer)[ ( ( cy + sy ) * src1->rowWidth ) + sx ];
+         fbSrc2 = &(( uint16_t* )src2->buffer)[ ( ( cy + sy ) * src2->rowWidth ) + sx ];
 
          for( cx = 0; cx < bw; cx++ )
          {
@@ -687,15 +687,15 @@ ulong gfBlitBitmapA2Src( tgfBitmap *dest, tgfBitmap *src1, tgfBitmap *src2, shor
                
          //use blitter
       
-         blt->saAddress       = (ulong)src1->buffer + ( sy * ( src1->rowWidth << 1 ) + ( sx << 1 ) );
+         blt->saAddress       = (uint32_t)src1->buffer + ( sy * ( src1->rowWidth << 1 ) + ( sx << 1 ) );
          blt->saRowWidth      = src1->rowWidth;
          blt->saWidth         = bw;
          blt->saHeight        = bh;
 
-         blt->sbAddress       = (ulong)src2->buffer + ( sy * ( src2->rowWidth << 1 ) + ( sx << 1 ) );
+         blt->sbAddress       = (uint32_t)src2->buffer + ( sy * ( src2->rowWidth << 1 ) + ( sx << 1 ) );
          blt->sbRowWidth      = src2->rowWidth;
 
-         blt->daAddress       = (ulong)dest->buffer + ( y * ( dest->rowWidth << 1 ) + ( x << 1 ) );
+         blt->daAddress       = (uint32_t)dest->buffer + ( y * ( dest->rowWidth << 1 ) + ( x << 1 ) );
          blt->daRowWidth      = dest->rowWidth;
          blt->daWidth         = bw;
          blt->daHeight        = bh;
@@ -711,8 +711,8 @@ ulong gfBlitBitmapA2Src( tgfBitmap *dest, tgfBitmap *src1, tgfBitmap *src2, shor
 
       for( cy = 0; cy < bh; cy++ )
       {
-         fbSrc1 = &(( ushort* )src1->buffer)[ ( ( cy + sy ) * src1->rowWidth ) + sx ];
-         fbSrc2 = &(( ushort* )src2->buffer)[ ( ( cy + sy ) * src2->rowWidth ) + sx ];
+         fbSrc1 = &(( uint16_t* )src1->buffer)[ ( ( cy + sy ) * src1->rowWidth ) + sx ];
+         fbSrc2 = &(( uint16_t* )src2->buffer)[ ( ( cy + sy ) * src2->rowWidth ) + sx ];
 
          for( cx = 0; cx < bw; cx++ )
          {
@@ -727,24 +727,24 @@ ulong gfBlitBitmapA2Src( tgfBitmap *dest, tgfBitmap *src1, tgfBitmap *src2, shor
 }
 
 
-ulong gfBlitScaledBitmap( tgfBitmap *dest, tgfBitmap *src, short x, short y, short w, short h )
+uint32_t gfBlitScaledBitmap( tgfBitmap *dest, tgfBitmap *src, int16_t x, int16_t y, int16_t w, int16_t h )
 {
-   short  cx;
-   short  cy;
-   short  bw;
-   short  bh;
-   ulong  sx;
-   ulong  sy;
+   int16_t  cx;
+   int16_t  cy;
+   int16_t  bw;
+   int16_t  bh;
+   uint32_t  sx;
+   uint32_t  sy;
 
 
-   ulong  deltaX;
-   ulong  deltaY;
-   ulong  sourceX;
-   ulong  sourceY;
+   uint32_t  deltaX;
+   uint32_t  deltaY;
+   uint32_t  sourceX;
+   uint32_t  sourceY;
 
-   ushort   *fbSrc;
-   ushort   *fbDest;
-   ushort    pixel;
+   uint16_t   *fbSrc;
+   uint16_t   *fbDest;
+   uint16_t    pixel;
 
 
    if(( dest == NULL) || ( src == NULL ))
@@ -759,8 +759,8 @@ ulong gfBlitScaledBitmap( tgfBitmap *dest, tgfBitmap *src, short x, short y, sho
    sy = 0;
 
    //calc scale deltas
-   deltaX = ( (ulong)( src->width  ) << 16 ) / w;
-   deltaY = ( (ulong)( src->height ) << 16 ) / h;
+   deltaX = ( (uint32_t)( src->width  ) << 16 ) / w;
+   deltaY = ( (uint32_t)( src->height ) << 16 ) / h;
 
 
    //clip source bitmap if x or y negative
@@ -814,12 +814,12 @@ ulong gfBlitScaledBitmap( tgfBitmap *dest, tgfBitmap *src, short x, short y, sho
    #if defined ( _GFXLIB_RISCV_FATFS ) && defined ( _GFXLIB_HW_BLITTER_2D )
       //use blitter
 
-      blt->saAddress       = (ulong)src->buffer + ( ( sy >> 16 ) * ( src->rowWidth << 1 ) + ( sx >> 15 ) );
+      blt->saAddress       = (uint32_t)src->buffer + ( ( sy >> 16 ) * ( src->rowWidth << 1 ) + ( sx >> 15 ) );
       blt->saRowWidth      = src->rowWidth;
       blt->saWidth         = src->width;
       blt->saHeight        = src->height;
 
-      blt->daAddress       = (ulong)dest->buffer + ( y * ( dest->rowWidth << 1 ) + ( x << 1 ) );
+      blt->daAddress       = (uint32_t)dest->buffer + ( y * ( dest->rowWidth << 1 ) + ( x << 1 ) );
       blt->daRowWidth      = dest->rowWidth;
       blt->daWidth         = bw;
       blt->daHeight        = bh;
@@ -850,8 +850,8 @@ ulong gfBlitScaledBitmap( tgfBitmap *dest, tgfBitmap *src, short x, short y, sho
          {
             sourceX = sx;
 
-            fbSrc = &(( ushort* )src->buffer)[ ( ( sourceY >> 16 ) * src->rowWidth ) ];
-            fbDest = &(( ushort* )dest->buffer)[ ( ( cy + y ) * dest->rowWidth ) + x ];
+            fbSrc = &(( uint16_t* )src->buffer)[ ( ( sourceY >> 16 ) * src->rowWidth ) ];
+            fbDest = &(( uint16_t* )dest->buffer)[ ( ( cy + y ) * dest->rowWidth ) + x ];
 
             sourceY += deltaY;
 
@@ -881,8 +881,8 @@ ulong gfBlitScaledBitmap( tgfBitmap *dest, tgfBitmap *src, short x, short y, sho
          {
             sourceX = sx;
 
-            fbSrc = &(( ushort* )src->buffer)[ ( ( sourceY >> 16 ) * src->rowWidth ) ];
-            fbDest = &(( ushort* )dest->buffer)[ ( ( cy + y ) * dest->rowWidth ) + x ];
+            fbSrc = &(( uint16_t* )src->buffer)[ ( ( sourceY >> 16 ) * src->rowWidth ) ];
+            fbDest = &(( uint16_t* )dest->buffer)[ ( ( cy + y ) * dest->rowWidth ) + x ];
 
             sourceY += deltaY;
 

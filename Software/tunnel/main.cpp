@@ -56,9 +56,9 @@ int animLeds( int j )
    return 0;
 } 
 
-ulong init()
+uint32_t init()
 {
-   ulong rv;
+   uint32_t rv;
    int   x;
    int   y;
    int   w = screenWidth;
@@ -150,11 +150,11 @@ ulong init()
    return rv;
 }
 
-ulong tunnel( tgfBitmap *bmp, float animation )
+uint32_t tunnel( tgfBitmap *bmp, float animation )
 {
-   ushort color;
-   ulong     tx;
-   ulong     ty;
+   uint16_t color;
+   uint32_t     tx;
+   uint32_t     ty;
    int       x;
    int       y;
    int       w = screenWidth;
@@ -164,7 +164,7 @@ ulong tunnel( tgfBitmap *bmp, float animation )
    int       shiftLookX;
    int       shiftLookY;
 
-   ushort   *bmpPtr;
+   uint16_t   *bmpPtr;
 
    //calculate the shift values out of the animation value
    shiftX   = (int)( texWidth * 1.0 * animation );
@@ -176,7 +176,7 @@ ulong tunnel( tgfBitmap *bmp, float animation )
    shiftLookX  = w / 2 + (int)( w / 2 * sin( animation ) );
    shiftLookY  = h / 2 + (int)( h / 2 * sin( animation * 2.0 ) );
 
-   bmpPtr = (ushort*)bmp->buffer;
+   bmpPtr = (uint16_t*)bmp->buffer;
    bmpPtr += 512 * 20;
 
    for( y = 0; y < h; y++ )
@@ -186,10 +186,10 @@ ulong tunnel( tgfBitmap *bmp, float animation )
          //get the texel from the texture by using the tables, shifted with the animation variable
          //now, x and y are shifted as well with the "look" animation values
 
-         tx = (ulong)(distanceTable[ ( x + shiftLookX ) + ( y + shiftLookY ) * tableRowSize] + shiftX )  % texWidth;
-         ty = (ulong)(angleTable[ ( x + shiftLookX ) + ( y + shiftLookY ) * tableRowSize ] + shiftY ) % texHeight;
+         tx = (uint32_t)(distanceTable[ ( x + shiftLookX ) + ( y + shiftLookY ) * tableRowSize] + shiftX )  % texWidth;
+         ty = (uint32_t)(angleTable[ ( x + shiftLookX ) + ( y + shiftLookY ) * tableRowSize ] + shiftY ) % texHeight;
 
-         *bmpPtr++ = ((ushort*)texture.buffer)[ tx + ty * texture.rowWidth ];
+         *bmpPtr++ = ((uint16_t*)texture.buffer)[ tx + ty * texture.rowWidth ];
 
       }
 

@@ -32,28 +32,28 @@
 
 typedef struct _BSP_T
 {
-    volatile ulong id;
-    volatile ulong version;
+    volatile uint32_t id;
+    volatile uint32_t version;
 
     //
-    volatile unsigned long videoMuxMode;
+    volatile uint32_t videoMuxMode;
     
     //b0 - vsync (positive)
-    volatile unsigned long videoVSync;
+    volatile uint32_t videoVSync;
     
-    volatile unsigned long  unused0;
+    volatile uint32_t  unused0;
         
     //wr b7, b6, b5, b4 - LEDS, b0 - spi0SSel
-    volatile unsigned long gpoPort;
+    volatile uint32_t gpoPort;
     
     //wr b0 - tickTimerReset
-    volatile unsigned long tickTimerConfig;
+    volatile uint32_t tickTimerConfig;
     
     //rd - tickTimerValue
-    volatile unsigned long tickTimerValue;
+    volatile uint32_t tickTimerValue;
     
     //counts frames (up), write resets timer
-    volatile unsigned long  frameTimer;
+    volatile uint32_t  frameTimer;
     
 
 }BSP_T;
@@ -63,11 +63,11 @@ extern BSP_T *bsp;
 
 typedef struct __SPRITEGEN_REGISTERS_T
 {
-    volatile ulong id;
-    volatile ulong version;
+    volatile uint32_t id;
+    volatile uint32_t version;
     
-    volatile ulong spriteX;
-    volatile ulong spriteY;
+    volatile uint32_t spriteX;
+    volatile uint32_t spriteY;
 
 }_SPRITEGEN_REGISTERS_T;
 
@@ -75,28 +75,28 @@ extern _SPRITEGEN_REGISTERS_T *spriteGen;
 
 typedef struct __BLITTER_REGISTERS_T
 {
-    volatile ulong id;
-    volatile ulong version;
+    volatile uint32_t id;
+    volatile uint32_t version;
 
-    volatile ulong command;
-    volatile ulong input0;
-    volatile ulong input1;
-    volatile ulong input2;
-    volatile ulong input3;
-    volatile ulong saAddress;
-    volatile ulong saRowWidth;
-    volatile ulong saWidth;
-    volatile ulong saHeight;
-    volatile ulong sbAddress;
-    volatile ulong sbRowWidth;
-    volatile ulong scAddress;
-    volatile ulong scRowWidth;
-    volatile ulong daAddress;
-    volatile ulong daRowWidth;
-    volatile ulong daWidth;
-    volatile ulong daHeight;
-    volatile ulong dbAddress;
-    volatile ulong dbRowWidth;
+    volatile uint32_t command;
+    volatile uint32_t input0;
+    volatile uint32_t input1;
+    volatile uint32_t input2;
+    volatile uint32_t input3;
+    volatile uint32_t saAddress;
+    volatile uint32_t saRowWidth;
+    volatile uint32_t saWidth;
+    volatile uint32_t saHeight;
+    volatile uint32_t sbAddress;
+    volatile uint32_t sbRowWidth;
+    volatile uint32_t scAddress;
+    volatile uint32_t scRowWidth;
+    volatile uint32_t daAddress;
+    volatile uint32_t daRowWidth;
+    volatile uint32_t daWidth;
+    volatile uint32_t daHeight;
+    volatile uint32_t dbAddress;
+    volatile uint32_t dbRowWidth;
 
 }_BLITTER_REGISTERS_T;
 
@@ -104,14 +104,14 @@ extern _BLITTER_REGISTERS_T *blt;
 
 typedef struct __USBHOST_REGISTERS_T
 {
-    volatile ulong id;
-    volatile ulong version;
+    volatile uint32_t id;
+    volatile uint32_t version;
 
-    volatile ulong usbHidKeyboardStatus;
-    volatile ulong usbHidKeyboardData;
-    volatile long usbHidMouseX;
-    volatile long usbHidMouseY;
-    volatile ulong usbHidMouseButtons;
+    volatile uint32_t usbHidKeyboardStatus;
+    volatile uint32_t usbHidKeyboardData;
+    volatile int32_t  usbHidMouseX;
+    volatile int32_t  usbHidMouseY;
+    volatile uint32_t usbHidMouseButtons;
 
 }_USBHOST_REGISTERS_T;
 
@@ -119,14 +119,14 @@ extern _USBHOST_REGISTERS_T *usbhost;
 
 typedef struct __UART_REGISTERS_T
 {
-    volatile ulong id;
-    volatile ulong version;
+    volatile uint32_t id;
+    volatile uint32_t version;
 
     //wr - send data via uart, rd - read received data from fifo
-    volatile unsigned long uartData;
+    volatile uint32_t uartData;
 
     //b0 - suDataReceivedReady, b1 - suDataSenderReady
-    volatile unsigned long uartStatus;
+    volatile uint32_t uartStatus;
 
 }_UART_REGISTERS_T;
 
@@ -134,14 +134,14 @@ extern _UART_REGISTERS_T *uart0;
 
 typedef struct __SPI_REGISTERS_T
 {
-    volatile ulong id;
-    volatile ulong version;
+    volatile uint32_t id;
+    volatile uint32_t version;
 
     //wr - send data via spi, rd - read received data
-    volatile unsigned long spiData;
+    volatile uint32_t spiData;
     
     //rd b0 - spiReady
-    volatile unsigned long spiStatus;
+    volatile uint32_t spiStatus;
 
 }_SPI_REGISTERS_T;
 
@@ -150,14 +150,14 @@ extern _SPI_REGISTERS_T *spi1;
 
 typedef struct __AUDIO_REGISTERS_T
 {
-    volatile ulong audioFiFoData;
-    volatile ulong audioFiFoStatus;
-    volatile ulong i2sClockConfig;
-    volatile ulong fifoReadConfig;
-    volatile ulong audioDmaConfig;
-    volatile ulong audioDmaStatus;
-    volatile ulong audioDmaPointer;
-    volatile ulong audioDmaLength;
+    volatile uint32_t audioFiFoData;
+    volatile uint32_t audioFiFoStatus;
+    volatile uint32_t i2sClockConfig;
+    volatile uint32_t fifoReadConfig;
+    volatile uint32_t audioDmaConfig;
+    volatile uint32_t audioDmaStatus;
+    volatile uint32_t audioDmaPointer;
+    volatile uint32_t audioDmaLength;
 
 }_AUDIO_REGISTERS_T;
 
@@ -165,34 +165,34 @@ extern _AUDIO_REGISTERS_T *aud;
 
 typedef struct __SDRAMDMA_REGISTERS_T
 {
-    volatile ulong id;
-    volatile ulong version;
-    volatile ulong ch3DmaPointerStart;
-    volatile ulong ch3DmaRequest0Modulo;
-    volatile ulong ch3DmaRequest1Modulo;
+    volatile uint32_t id;
+    volatile uint32_t version;
+    volatile uint32_t ch3DmaPointerStart;
+    volatile uint32_t ch3DmaRequest0Modulo;
+    volatile uint32_t ch3DmaRequest1Modulo;
 
 }_SDRAMDMA_REGISTERS_T;
 
 extern _SDRAMDMA_REGISTERS_T *sdrdma;
 
 
-int     bspInit( void );
-int     randomNumber( void );
-void    itoaHex2Digits( int value, char* str );
-void    itoaHex4Digits( int value, char* str );
-void    itoaHex8Digits( int value, char* str );
-ulong   getTicks( void );
-void    delayMs( unsigned long delay );
+uint32_t    bspInit( void );
+uint32_t    randomNumber( void );
+void        itoaHex2Digits( uint32_t value, char* str );
+void        itoaHex4Digits( uint32_t value, char* str );
+void        itoaHex8Digits( uint32_t value, char* str );
+uint32_t    getTicks( void );
+void        delayMs( uint32_t delay );
 
-int     setVideoMode( ulong videoMode );
-void    reboot( void );
+uint32_t    setVideoMode( uint32_t videoMode );
+void        reboot( void );
 
 
 #ifdef _GFXLIB_FPALU
 
 float inline ffMul( float a, float b )
 {
-    volatile ulong j;
+    volatile uint32_t j;
 
     fpalu->fpA = a;
     fpalu->fpB = b;
@@ -205,7 +205,7 @@ float inline ffMul( float a, float b )
 
 float inline ffAdd( float a, float b )
 {
-    volatile ulong j;
+    volatile uint32_t j;
 
     fpalu->fpA = a;
     fpalu->fpB = b;
@@ -217,7 +217,7 @@ float inline ffAdd( float a, float b )
 
 float inline ffSub( float a, float b )
 {
-    volatile ulong j;
+    volatile uint32_t j;
 
     fpalu->fpA = a;
     fpalu->fpB = b;
@@ -229,7 +229,7 @@ float inline ffSub( float a, float b )
 
 float inline ffDiv( float a, float b )
 {
-    volatile ulong j;
+    volatile uint32_t j;
 
     fpalu->fpA = a;
     fpalu->fpB = b;

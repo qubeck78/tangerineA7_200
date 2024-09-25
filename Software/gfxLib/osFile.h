@@ -94,27 +94,27 @@ typedef struct _tosDirItem
    
    char  name[256];
    char  type;
-   ulong size;
+   uint32_t size;
 
 }tosDirItem;
 
 
-ulong osFInit( void );
-ulong osFOpen( tosFile *file, char *path, ulong mode );
-ulong osFClose( tosFile *file );
-ulong osFWrite( tosFile *file, uchar *buffer, ulong numBytesToWrite );
-ulong osFRead( tosFile *file, uchar *buffer, ulong numBytesToRead, ulong *numBytesRead );
-ulong osFGetS( tosFile *file, uchar *buffer, ulong maxLength );
+uint32_t osFInit( void );
+uint32_t osFOpen( tosFile *file, char *path, uint32_t mode );
+uint32_t osFClose( tosFile *file );
+uint32_t osFWrite( tosFile *file, uint8_t *buffer, uint32_t numBytesToWrite );
+uint32_t osFRead( tosFile *file, uint8_t *buffer, uint32_t numBytesToRead, uint32_t *numBytesRead );
+uint32_t osFGetS( tosFile *file, uint8_t *buffer, uint32_t maxLength );
 
-ulong osDirOpen( tosDir *dir, char *path );
-ulong osDirClose( tosDir *dir );
-ulong osDirRead( tosDir *dir, tosDirItem *dirItem );
+uint32_t osDirOpen( tosDir *dir, char *path );
+uint32_t osDirClose( tosDir *dir );
+uint32_t osDirRead( tosDir *dir, tosDirItem *dirItem );
 
 //todo: add sdl compatible code
-ulong osFSize( char *path );
-ulong osFDelete( char *path );
-ulong osMkDir( char *path );
-ulong osRename( char *pathOld, char *pathNew );
+uint32_t osFSize( char *path );
+uint32_t osFDelete( char *path );
+uint32_t osMkDir( char *path );
+uint32_t osRename( char *pathOld, char *pathNew );
 
 #endif
 

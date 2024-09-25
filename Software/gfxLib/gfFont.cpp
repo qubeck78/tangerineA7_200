@@ -12,19 +12,19 @@
 #define _IS_DIGIT(c)    (((c)>='0')&&((c)<='9'))
 
 
-ulong gfLoadFontFS( tgfFont *dest, char *fileName )
+uint32_t gfLoadFontFS( tgfFont *dest, char *fileName )
 {
 	tosFile file;
-	uchar	buf[4];
+	uint8_t	buf[4];
 	int		i;
 
-	ushort	fontType;
-	ulong	charBufOffset;
-	ulong	charBufSize;
+	uint16_t	fontType;
+	uint32_t	charBufOffset;
+	uint32_t	charBufSize;
 
 	if ( !osFOpen( &file, fileName, OS_FILE_READ ) )
 	{
-		osFRead( &file, (uchar*)buf, 2, NULL );
+		osFRead( &file, (uint8_t*)buf, 2, NULL );
 
 		fontType  = buf[0];
 		fontType |= ( buf[1] << 8 );
@@ -36,39 +36,39 @@ ulong gfLoadFontFS( tgfFont *dest, char *fileName )
 				dest->type = GF_FONT_TYPE_ALPHA4_BITMAP_VAR_WIDTH;
 
 
-				osFRead( &file, (uchar*)buf, 2, NULL );
+				osFRead( &file, (uint8_t*)buf, 2, NULL );
 
 				dest->flags = buf[0];
 				dest->flags |= ( buf[1] << 8 );
 
-				osFRead( &file, (uchar*)buf, 2, NULL );
+				osFRead( &file, (uint8_t*)buf, 2, NULL );
 
 				dest->width = buf[0];
 				dest->width |= ( buf[1] << 8 );
 
-				osFRead( &file, (uchar*)buf, 2, NULL );
+				osFRead( &file, (uint8_t*)buf, 2, NULL );
 
 				dest->height = buf[0];
 				dest->height |= ( buf[1] << 8 );
 
-				osFRead( &file, (uchar*)buf, 2, NULL );
+				osFRead( &file, (uint8_t*)buf, 2, NULL );
 
 				dest->charColor = buf[0];
 				dest->charColor |= ( buf[1] << 8 );
 
-				osFRead( &file, (uchar*)buf, 2, NULL );
+				osFRead( &file, (uint8_t*)buf, 2, NULL );
 
 				dest->backgroundColor = buf[0];
 				dest->backgroundColor |= ( buf[1] << 8 );
 
-				osFRead( &file, (uchar*)buf, 2, NULL );
+				osFRead( &file, (uint8_t*)buf, 2, NULL );
 
 				dest->firstChar = buf[0];
 				dest->lastChar 	= buf[1];
 
 				//char widths - has to be 22
 
-				osFRead( &file, (uchar*)buf, 4, NULL );
+				osFRead( &file, (uint8_t*)buf, 4, NULL );
 
 				i  = buf[0];
 				i |= ( buf[1] << 8 );
@@ -83,17 +83,17 @@ ulong gfLoadFontFS( tgfFont *dest, char *fileName )
 				}
 
 				//char buffer offset
-				osFRead( &file, (uchar*)buf, 4, NULL );
+				osFRead( &file, (uint8_t*)buf, 4, NULL );
 
 				charBufOffset  = buf[0];
 				charBufOffset |= ( buf[1] << 8 );
 				charBufOffset |= ( buf[2] << 16 );
 				charBufOffset |= ( buf[3] << 24 );
 
-				dest->charWidths = (uchar *)osAlloc( 256, OS_ALLOC_MEMF_CHIP );
+				dest->charWidths = (uint8_t *)osAlloc( 256, OS_ALLOC_MEMF_CHIP );
 				for( i = 0; i < 256 ; i++ )
 				{
-					( ( uchar* ) dest->charWidths )[i] = 0;
+					( ( uint8_t* ) dest->charWidths )[i] = 0;
 				}
 
 				charBufSize = 0;
@@ -101,10 +101,10 @@ ulong gfLoadFontFS( tgfFont *dest, char *fileName )
 				//char widths
 				for( i = dest->firstChar ; i <= dest->lastChar; i ++ )
 				{
-					osFRead( &file, (uchar*)buf, 1, NULL );
-					( ( uchar* ) dest->charWidths )[i - dest->firstChar] = buf[0];
+					osFRead( &file, (uint8_t*)buf, 1, NULL );
+					( ( uint8_t* ) dest->charWidths )[i - dest->firstChar] = buf[0];
 
-					charBufSize += ( ( uchar* ) dest->charWidths )[i - dest->firstChar];
+					charBufSize += ( ( uint8_t* ) dest->charWidths )[i - dest->firstChar];
 				}
 
 				charBufSize /= 2;   //2 pixels per byte
@@ -114,8 +114,8 @@ ulong gfLoadFontFS( tgfFont *dest, char *fileName )
 
 				for( i = 0; i < charBufSize; i++ )
 				{
-					osFRead( &file, (uchar*)buf, 1, NULL );
-					( ( uchar* ) dest->charBuffer )[i] = buf[0];
+					osFRead( &file, (uint8_t*)buf, 1, NULL );
+					( ( uint8_t* ) dest->charBuffer )[i] = buf[0];
 				}
 
 				osFClose( &file );
@@ -139,17 +139,17 @@ ulong gfLoadFontFS( tgfFont *dest, char *fileName )
 }
 
 
-short gfPutChar( tgfBitmap *bmp, tgfFont *font, short x, short y, char c )
+int16_t gfPutChar( tgfBitmap *bmp, tgfFont *font, int16_t x, int16_t y, char c )
 {
-	short	 cx;
-	short 	 cy;
+	int16_t	 cx;
+	int16_t 	 cy;
 	int      i;
-	ulong    letterDataIdx;
+	uint32_t    letterDataIdx;
 
-	uchar 	*letterPtr;
+	uint8_t 	*letterPtr;
 	char 	 letterData;
-	ushort	 alpha1;
-	ushort	 alpha2;
+	uint16_t	 alpha1;
+	uint16_t	 alpha2;
 
 	if( c < font->firstChar )
 	{
@@ -168,7 +168,7 @@ short gfPutChar( tgfBitmap *bmp, tgfFont *font, short x, short y, char c )
 
 			c -= font->firstChar;
 			
-			letterPtr = &((uchar *)font->charBuffer)[ c * font->height ];
+			letterPtr = &((uint8_t *)font->charBuffer)[ c * font->height ];
 
 			for( cy = 0; cy < font->height ; cy++ )
 			{
@@ -209,7 +209,7 @@ short gfPutChar( tgfBitmap *bmp, tgfFont *font, short x, short y, char c )
 
 			for( i = 0; i < c; i++ )
 			{
-				cx =  ( ( uchar * )font->charWidths)[ i ];
+				cx =  ( ( uint8_t * )font->charWidths)[ i ];
 
 				if( cx & 1 )
 				{
@@ -224,9 +224,9 @@ short gfPutChar( tgfBitmap *bmp, tgfFont *font, short x, short y, char c )
 
 			for( cy = 0; cy < font->height; cy++ )
 			{
-				for( cx = 0; cx < ( ( uchar* )font->charWidths)[ c ] ; cx+=2 )
+				for( cx = 0; cx < ( ( uint8_t* )font->charWidths)[ c ] ; cx+=2 )
 				{
-					letterData = (( uchar *)font->charBuffer)[ letterDataIdx++ ];
+					letterData = (( uint8_t *)font->charBuffer)[ letterDataIdx++ ];
 
 					if( ! ( font->flags &  GF_FONT_FLAG_TRANSPARENT ) )
 					{
@@ -273,7 +273,7 @@ short gfPutChar( tgfBitmap *bmp, tgfFont *font, short x, short y, char c )
 			}
 
 
-			return ( ( uchar* )font->charWidths)[ c ];
+			return ( ( uint8_t* )font->charWidths)[ c ];
 
 			break;
 
@@ -288,10 +288,10 @@ short gfPutChar( tgfBitmap *bmp, tgfFont *font, short x, short y, char c )
 	return font->width;
 }
 
-short gfPutString( tgfBitmap *bmp, tgfFont *font, short x, short y, char *string )
+int16_t gfPutString( tgfBitmap *bmp, tgfFont *font, int16_t x, int16_t y, char *string )
 {
-	short 	stringWidth;
-	short   sw;
+	int16_t 	stringWidth;
+	int16_t   sw;
 	char    c;
 
 	stringWidth = 0;
@@ -310,19 +310,19 @@ short gfPutString( tgfBitmap *bmp, tgfFont *font, short x, short y, char *string
 }
 
 
-ulong gfDrawTextOverlay( tgfBitmap *bmp, tgfTextOverlay *textOverlay, short x, short y )
+uint32_t gfDrawTextOverlay( tgfBitmap *bmp, tgfTextOverlay *textOverlay, int16_t x, int16_t y )
 {
-	short	 cx;
-	short	 cy;
+	int16_t	 cx;
+	int16_t	 cy;
 
-	uchar    letter;
-	uchar    attributes;
-	uchar    r;
-	uchar    g;
-	uchar    b;
-	uchar    alphaBackground;
+	uint8_t    letter;
+	uint8_t    attributes;
+	uint8_t    r;
+	uint8_t    g;
+	uint8_t    b;
+	uint8_t    alphaBackground;
 
-	uchar   *textDataPtr;
+	uint8_t   *textDataPtr;
 	tgfFont *font;
 
 	if( textOverlay->type == GF_TEXT_OVERLAY_TYPE_HARDWARE ) 
@@ -488,7 +488,7 @@ ulong gfDrawTextOverlay( tgfBitmap *bmp, tgfTextOverlay *textOverlay, short x, s
 
 
 
-ulong toSetCursorPos( tgfTextOverlay *overlay, ushort cursX, ushort cursY )
+uint32_t toSetCursorPos( tgfTextOverlay *overlay, uint16_t cursX, uint16_t cursY )
 {
 	if( !overlay )
 	{
@@ -510,9 +510,9 @@ ulong toSetCursorPos( tgfTextOverlay *overlay, ushort cursX, ushort cursY )
 	return 0;
 }
 
-ulong toCls( tgfTextOverlay *overlay )
+uint32_t toCls( tgfTextOverlay *overlay )
 {
-	ulong   i;
+	uint32_t   i;
 
 	if( !overlay )
 	{
@@ -533,12 +533,12 @@ ulong toCls( tgfTextOverlay *overlay )
 }
 
 
-ulong toScrollUp( tgfTextOverlay *overlay )
+uint32_t toScrollUp( tgfTextOverlay *overlay )
 {
-	ulong   idx;
-	ulong   idx2;
-	ushort  x;
-	ushort  y;
+	uint32_t   idx;
+	uint32_t   idx2;
+	uint16_t  x;
+	uint16_t  y;
 
 	//scroll up
 	if( !overlay )
@@ -583,10 +583,10 @@ ulong toScrollUp( tgfTextOverlay *overlay )
 
 }
 
-ulong toPrint( tgfTextOverlay *overlay, char *string )
+uint32_t toPrint( tgfTextOverlay *overlay, char *string )
 {
-	uchar	c;
-	ulong   idx;
+	uint8_t	c;
+	uint32_t   idx;
 
 	if( !overlay )
 	{
@@ -633,20 +633,20 @@ ulong toPrint( tgfTextOverlay *overlay, char *string )
 
 
 
-ulong toPrintF( tgfTextOverlay *overlay, char *format, ... )
+uint32_t toPrintF( tgfTextOverlay *overlay, char *format, ... )
 {
     va_list  arp;
     unsigned char       flag;
-    ulong      radix;
-    ulong      width;
-    ulong      value;
+    uint32_t      radix;
+    uint32_t      width;
+    uint32_t      value;
     unsigned char       scratch[16];
     unsigned char      *pointer;
 
     unsigned char       c;
     unsigned char       d; 
-    ulong      i; 
-    ulong      j;
+    uint32_t      i; 
+    uint32_t      j;
 
 	char printBuf[2];
 	
@@ -705,7 +705,7 @@ ulong toPrintF( tgfTextOverlay *overlay, char *format, ... )
         
         if( (c == 'l') || (c == 'L') ) 
         {   
-            /* Prefix: Size is long int */
+            /* Prefix: Size is int32_t int */
             
             flag |= 4; 
             c = *format++;
@@ -790,7 +790,7 @@ ulong toPrintF( tgfTextOverlay *overlay, char *format, ... )
 
         /* Get an argument and put it in numeral */
         
-        value = (flag & 4) ? (ulong) va_arg( arp, long ) : ( ( d == 'D' ) ? (ulong)(long) va_arg( arp, int ) : (ulong) va_arg( arp, unsigned int ) );
+        value = (flag & 4) ? (uint32_t) va_arg( arp, int32_t ) : ( ( d == 'D' ) ? (uint32_t)(int32_t) va_arg( arp, int ) : (uint32_t) va_arg( arp, unsigned int ) );
         
         
         if( d == 'D' && ( value & 0x80000000) ) 

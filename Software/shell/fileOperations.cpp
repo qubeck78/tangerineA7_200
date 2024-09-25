@@ -16,10 +16,10 @@ extern tgfBitmap        screen2;
 extern tgfTextOverlay   con;
 
 
-ulong pathSelectParentDirectory( char* path )
+uint32_t pathSelectParentDirectory( char* path )
 {
-   ulong i;
-   ulong slashIdx;
+   uint32_t i;
+   uint32_t slashIdx;
 
    slashIdx = -1;
 
@@ -56,7 +56,7 @@ char* pathFindExtension( char* fileName )
    return pExtension;
 }
 
-ulong pathGetSelectedFileFromSelector( tselector *selector, char *fileName )
+uint32_t pathGetSelectedFileFromSelector( tselector *selector, char *fileName )
 {
    //create full file path
    strcpy( fileName, selector->path );
@@ -66,9 +66,9 @@ ulong pathGetSelectedFileFromSelector( tselector *selector, char *fileName )
    return 0;
 }
 
-ulong remountSD()
+uint32_t remountSD()
 {
-   ulong       rv;
+   uint32_t       rv;
    tosUIEvent  event;
 
    //unmount sd
@@ -130,7 +130,7 @@ ulong remountSD()
 }
 
 
-ulong deleteFile( char *fileName )
+uint32_t deleteFile( char *fileName )
 {
    char        buf[256];
    tosUIEvent  event;
@@ -163,22 +163,22 @@ ulong deleteFile( char *fileName )
    return 0;
 }
 
-ulong copyFile( char *fromFileName, char *toFileName, char *dialogTitle )
+uint32_t copyFile( char *fromFileName, char *toFileName, char *dialogTitle )
 {
-   uchar    *fileBuffer;
-   ulong     fileBufferLength;
+   uint8_t    *fileBuffer;
+   uint32_t     fileBufferLength;
    tosFile   src;
    tosFile   dst;
-   ulong     fileSize;
-   ulong     fileIdx;
-   ulong     nbr;
-   ulong     i;
-   ulong     j;
+   uint32_t     fileSize;
+   uint32_t     fileIdx;
+   uint32_t     nbr;
+   uint32_t     i;
+   uint32_t     j;
 
    char      progressBarBuf[80];
 
    //use screen2 framebuffer as file buf
-   fileBuffer = (uchar*)screen2.buffer;
+   fileBuffer = (uint8_t*)screen2.buffer;
 
    //8k default length
    fileBufferLength  = 8192;
@@ -252,13 +252,13 @@ ulong copyFile( char *fromFileName, char *toFileName, char *dialogTitle )
    return 0;
 }
 
-ulong createDir( char *path )
+uint32_t createDir( char *path )
 {
    char        buf[32];
 
    tosUIEvent  event;
-   ushort      typeLoop;
-   ushort      idx;
+   uint16_t      typeLoop;
+   uint16_t      idx;
    uint8_t     keyCode;
 
    strcpy( buf, "_                             " );
@@ -342,7 +342,7 @@ ulong createDir( char *path )
    return 0;
 }
 
-ulong moveFile( char *fromFileName, char *toFileName )
+uint32_t moveFile( char *fromFileName, char *toFileName )
 {
 
    if( !copyFile( fromFileName, toFileName, (char*)"Move" ) )
@@ -353,15 +353,15 @@ ulong moveFile( char *fromFileName, char *toFileName )
    return 0;   
 }
 
-ulong renameFile( char *path, char *fileName )
+uint32_t renameFile( char *path, char *fileName )
 {
    char        buf[32];
 
    tosUIEvent  event;
-   ushort      typeLoop;
-   ushort      idx;
+   uint16_t      typeLoop;
+   uint16_t      idx;
    uint8_t     keyCode;
-   ulong       i;
+   uint32_t       i;
 
    strcpy( buf, "_                             " );
 
@@ -464,10 +464,10 @@ ulong renameFile( char *path, char *fileName )
    return 0;   
 }
 
-ulong atoiHex( char *buf, long index, long digits )
+uint32_t atoiHex( char *buf, long index, long digits )
 {
-   ulong rv;
-   ulong i;
+   uint32_t rv;
+   uint32_t i;
    char  c;
 
    rv = 0;
@@ -495,11 +495,11 @@ ulong atoiHex( char *buf, long index, long digits )
    return rv;
 }
 
-ulong dfDecodeFileInformation( char *rxBuf, char *fileName, ulong *fileLength )
+uint32_t dfDecodeFileInformation( char *rxBuf, char *fileName, uint32_t *fileLength )
 {
-   ulong idx;
-   ulong fnameLength;
-   ulong i;
+   uint32_t idx;
+   uint32_t fnameLength;
+   uint32_t i;
 
    if( rxBuf == NULL )
    {
@@ -538,12 +538,12 @@ ulong dfDecodeFileInformation( char *rxBuf, char *fileName, ulong *fileLength )
 }
 
 
-ulong dfDecodeFileContents( char *rxBuf, tosFile *out, ulong *fileIdx )
+uint32_t dfDecodeFileContents( char *rxBuf, tosFile *out, uint32_t *fileIdx )
 {
-   ulong length;
-   ulong i;
-   uchar fileContentsBuf[32];
-   uchar lrc;
+   uint32_t length;
+   uint32_t i;
+   uint8_t fileContentsBuf[32];
+   uint8_t lrc;
 
 
    length   = 0;
@@ -585,11 +585,11 @@ ulong dfDecodeFileContents( char *rxBuf, tosFile *out, ulong *fileIdx )
       //:01lld0d1d2d3d4..dncc
 
 
-      lrc = (uchar)':';
+      lrc = (uint8_t)':';
 
       length = atoiHex( rxBuf, 3, 2 );
 
-      lrc ^= (uchar)length;
+      lrc ^= (uint8_t)length;
 
       if( length > 32 )
       {
@@ -620,15 +620,15 @@ ulong dfDecodeFileContents( char *rxBuf, tosFile *out, ulong *fileIdx )
 }
 
 
-ulong downloadFile( char *path )
+uint32_t downloadFile( char *path )
 {
    long     rv;
-   ulong    i;
-   ulong    j;
-   ulong    fileSize;
-   ulong    fileIdx;
+   uint32_t    i;
+   uint32_t    j;
+   uint32_t    fileSize;
+   uint32_t    fileIdx;
    char     progressBarBuf[80];
-   ulong    abort;
+   uint32_t    abort;
    tosFile  out;
 
    rv = osSerialOpen( 0, 460800 );
