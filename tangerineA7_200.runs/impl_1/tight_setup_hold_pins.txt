@@ -14,8 +14,8 @@
 | clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardSyncState_reg_inv/D        |
 | clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/fifoHidKeyboardWrEn_reg/D                 |
 | clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/hidMouseButtons_reg[0]/D                  |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/hidMouseButtons_reg[2]/CE                 |
 | clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/usbH1MouseDxLatched_reg[0]/CE             |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/hidMouseButtons_reg[2]/CE                 |
 | clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/usbH1MouseDxLatched_reg[6]/CE             |
 | clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/hidMouseButtons_reg[6]/CE                 |
 | clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/usbH1MouseDyLatched_reg[2]/CE             |
@@ -26,11 +26,11 @@
 | clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/hidMouseButtons_reg[0]/CE                 |
 | clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/hidMouseButtons_reg[1]/CE                 |
 | clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/usbH1MouseDxLatched_reg[5]/CE             |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/usbH1MouseDyLatched_reg[4]/CE             |
+| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/usbH1MouseDyLatched_reg[1]/CE             |
 | clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/usbH1MouseDxLatched_reg[1]/CE             |
 | clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/usbH1MouseDyLatched_reg[3]/CE             |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/usbH1MouseDyLatched_reg[4]/CE             |
 | clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/usbH1MouseDxLatched_reg[7]/CE             |
-| clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/usbH1MouseDyLatched_reg[1]/CE             |
 | clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/usbH1MouseDyLatched_reg[6]/CE             |
 | clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/usbH1MouseDyLatched_reg[5]/CE             |
 | clk12_clk_wiz_1    | clk12_clk_wiz_1   | tangerineSOCInst/usbHostInst/hidMouseButtons_reg[7]/CE                 |

@@ -12,7 +12,7 @@
 
 #define OS_EVENT_TYPE_MOUSE_MOVE          0x0201
 #define OS_EVENT_TYPE_MOUSE_KEYDOWN       0x0202
-#define OS_EVENT_TYPE_MOUSE_KEYUP         0x0203
+#define OS_EVENT_TYPE_MOUSE_KEYRELEASE    0x0203
 
 #define SST_SHIFT     1
 #define SST_CONTROL   2

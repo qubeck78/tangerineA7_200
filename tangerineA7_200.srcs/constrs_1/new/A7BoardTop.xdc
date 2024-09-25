@@ -172,3 +172,13 @@ set_property PACKAGE_PIN C4 [get_ports usb2dm]
 set_property IOSTANDARD LVCMOS33 [get_ports usb2dm]
 set_property PACKAGE_PIN D4 [get_ports usb2dp]
 set_property IOSTANDARD LVCMOS33 [get_ports usb2dp]
+
+set_property PACKAGE_PIN P24 [get_ports i2sBClk]
+set_property IOSTANDARD LVCMOS33 [get_ports i2sBClk]
+set_property PACKAGE_PIN P23 [get_ports i2sDOut]
+set_property IOSTANDARD LVCMOS33 [get_ports i2sDOut]
+set_property PACKAGE_PIN P25 [get_ports i2sLRCk]
+set_property IOSTANDARD LVCMOS33 [get_ports i2sLRCk]
+
+set_property PACKAGE_PIN N21 [get_ports i2sSClk]
+set_property IOSTANDARD LVCMOS33 [get_ports i2sSClk]

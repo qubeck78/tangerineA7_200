@@ -11,6 +11,7 @@ static uint8_t    lastPressedKeyCode;
 static int32_t    mouseX;
 static int32_t    mouseY;
 static int32_t    mouseButtons;
+static int32_t    prvMouseButtons;
 static uint8_t    mouseEventsEnabled;
 static uint8_t    mousePointerVisible;
 
@@ -84,7 +85,7 @@ uint32_t usbHIDInit()
    mouseX                     = 0;
    mouseY                     = 0;
    mouseButtons               = 0;
-
+   prvMouseButtons            = 0;
    mouseEventsEnabled         = 0;
    
    usbHIDSetMousePointerVisibility( 0 );
@@ -355,16 +356,20 @@ uint32_t usbHIDGetMouse( uint32_t *pmouseX, uint32_t *pmouseY, uint32_t *pmouseB
 }
 uint32_t usbHIDHandleEvents( void )
 {
-   uint32_t currKeys;
-   uint32_t lastKeys;
+   uint32_t    currKeys;
+   uint32_t    lastKeys;
    
-   int32_t  mouseDx;
-   int32_t  mouseDy;
+   int32_t     mouseDx;
+   int32_t     mouseDy;
+
+   tosUIEvent  event;
 
 
-   mouseDx        = usbhost->usbHidMouseX;
-   mouseDy        = usbhost->usbHidMouseY;
-   mouseButtons   = usbhost->usbHidMouseButtons;
+   prvMouseButtons   = mouseButtons;
+   mouseDx           = usbhost->usbHidMouseX;
+   mouseDy           = usbhost->usbHidMouseY;
+   mouseButtons      = usbhost->usbHidMouseButtons;
+
 
    if( mouseDx | mouseDy )
    {
@@ -396,8 +401,59 @@ uint32_t usbHIDHandleEvents( void )
          spriteGen->spriteX = mouseX + 47; 
          spriteGen->spriteY = mouseY + 33;
       }
+
+      if( mouseEventsEnabled )
+      {
+         //generate mouse move event
+         event.type  = OS_EVENT_TYPE_MOUSE_MOVE;
+         
+         event.arg1  = mouseButtons;    
+         event.arg2  = mouseX;
+         event.arg3  = mouseY;
+         event.obj   = NULL;
+         
+         osPutUIEvent( &event );
+
+      }
+
    }
 
+   if( mouseEventsEnabled )
+   {
+      if( mouseButtons != prvMouseButtons )
+      {
+         if( ( !( prvMouseButtons & 1 ) && ( mouseButtons & 1 ) ) || ( !( prvMouseButtons & 2 ) && ( mouseButtons & 2 ) ) )
+         {
+            //keydown lmb or rmb
+
+            //generate mouse key press event
+            event.type  = OS_EVENT_TYPE_MOUSE_KEYDOWN;
+            
+            event.arg1  = mouseButtons;    
+            event.arg2  = mouseX;
+            event.arg3  = mouseY;
+            event.obj   = NULL;
+            
+            osPutUIEvent( &event );
+         }
+
+         if( ( ( prvMouseButtons & 1 ) && !( mouseButtons & 1 ) ) || ( ( prvMouseButtons & 2 ) && !( mouseButtons & 2 ) ) )
+         {
+            //keyup lmb or rmb
+
+            //generate mouse key press event
+            event.type  = OS_EVENT_TYPE_MOUSE_KEYRELEASE;
+            
+            event.arg1  = mouseButtons;    
+            event.arg2  = mouseX;
+            event.arg3  = mouseY;
+            event.obj   = NULL;
+            
+            osPutUIEvent( &event );
+         }
+
+      }
+   }
 
    if( ! ( usbhost->usbHidKeyboardStatus & 1 ) )
    {
