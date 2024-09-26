@@ -28,6 +28,7 @@
 //x"80000004";   -- usb hid host id
 //x"80000005";   -- blitter2d id
 //x"80000006";   -- sprite gen id
+//x"80000007";   -- i2s id
 
 
 typedef struct _BSP_T
@@ -150,6 +151,8 @@ extern _SPI_REGISTERS_T *spi1;
 
 typedef struct __AUDIO_REGISTERS_T
 {
+    volatile uint32_t id;
+    volatile uint32_t version;
     volatile uint32_t audioFiFoData;
     volatile uint32_t audioFiFoStatus;
     volatile uint32_t i2sClockConfig;

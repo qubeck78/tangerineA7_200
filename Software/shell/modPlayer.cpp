@@ -38,8 +38,8 @@ uint32_t mpInit()
 
    //config audio
    
-   //i2s freq 48kHz @ 80Mhz base clock
-   aud->i2sClockConfig  = 0x0034001a;
+   //i2s freq 48kHz @ 100Mhz base clock
+   aud->i2sClockConfig  = 0x00410020;
 
    //fifo read div to 2 ( 24kHz frequency )
    aud->fifoReadConfig  = 0x1;

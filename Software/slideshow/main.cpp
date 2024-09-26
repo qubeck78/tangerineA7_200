@@ -232,7 +232,7 @@ uint32_t slideshow()
                                     default:
 
                                         //exit delay loop
-                                        i = 100;
+                                        i = 500;
                                         break;
                                 }
                             }

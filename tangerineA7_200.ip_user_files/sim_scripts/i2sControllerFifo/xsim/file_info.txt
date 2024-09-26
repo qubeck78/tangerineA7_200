@@ -1,0 +1,2 @@
+i2sControllerFifo.v,verilog,xil_defaultlib,../../../../tangerineA7_200.gen/sources_1/ip/i2sControllerFifo/sim/i2sControllerFifo.v,
+glbl.v,Verilog,xil_defaultlib,glbl.v

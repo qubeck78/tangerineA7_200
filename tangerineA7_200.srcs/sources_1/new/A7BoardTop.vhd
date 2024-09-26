@@ -182,6 +182,12 @@ Port (
     sdMciCmd:	    out  std_logic;	
     sdMciClk:	    out  std_logic;	 
 
+    --i2s
+    i2sSClk:    out std_logic;
+    i2sBClk:    out std_logic;
+    i2sLRCk:    out std_logic;
+    i2sDOut:    out std_logic;
+    
     --sdram
     sdramA:     out     std_logic_vector( 12 downto 0 );
     sdramBA:    out     std_logic_vector( 1 downto 0 );
@@ -257,10 +263,6 @@ begin
 
 --drive unused pins
 
-    i2sSClk     <= '0';
-    i2sBClk     <= '0';
-    i2sLRCk     <= '0';
-    i2sDOut     <= '0';
 
 --place main pll
 clk_wiz_0Inst:clk_wiz_0
@@ -360,6 +362,12 @@ port map(
     sdMciDat            => sdCardDat,
     sdMciCmd            => sdCardCmd,
     sdMciClk            => sdCardClk,
+
+    --i2s
+    i2sSClk             => i2sSClk,
+    i2sBClk             => i2sBClk,
+    i2sLRCk             => i2sLRCk,
+    i2sDOut             => i2sDOut,
 
     --usb 1 - keyboard
     usb1dm              => usb1dm,
