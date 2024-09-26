@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Wed Sep 25 09:15:32 2024
+| Date         : Thu Sep 26 20:36:31 2024
 | Host         : Desktop-qUBECk running 64-bit major release  (build 9200)
 | Command      : report_utilization -file A7BoardTop_utilization_synth.rpt -pb A7BoardTop_utilization_synth.pb
 | Design       : A7BoardTop
@@ -31,14 +31,14 @@ Table of Contents
 +-------------------------+------+-------+------------+-----------+-------+
 |        Site Type        | Used | Fixed | Prohibited | Available | Util% |
 +-------------------------+------+-------+------------+-----------+-------+
-| Slice LUTs*             | 4967 |     0 |          0 |    134600 |  3.69 |
-|   LUT as Logic          | 4967 |     0 |          0 |    134600 |  3.69 |
+| Slice LUTs*             | 5301 |     0 |          0 |    134600 |  3.94 |
+|   LUT as Logic          | 5301 |     0 |          0 |    134600 |  3.94 |
 |   LUT as Memory         |    0 |     0 |          0 |     46200 |  0.00 |
-| Slice Registers         | 4295 |     0 |          0 |    269200 |  1.60 |
-|   Register as Flip Flop | 4294 |     0 |          0 |    269200 |  1.60 |
+| Slice Registers         | 4688 |     0 |          0 |    269200 |  1.74 |
+|   Register as Flip Flop | 4687 |     0 |          0 |    269200 |  1.74 |
 |   Register as Latch     |    1 |     0 |          0 |    269200 | <0.01 |
-| F7 Muxes                |  309 |     0 |          0 |     67300 |  0.46 |
-| F8 Muxes                |    0 |     0 |          0 |     33650 |  0.00 |
+| F7 Muxes                |  204 |     0 |          0 |     67300 |  0.30 |
+| F8 Muxes                |    1 |     0 |          0 |     33650 | <0.01 |
 +-------------------------+------+-------+------------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
 Warning! LUT value is adjusted to account for LUT combining.
@@ -57,9 +57,9 @@ Warning! LUT value is adjusted to account for LUT combining.
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
 | 49    |          Yes |           - |          Set |
-| 1057  |          Yes |           - |        Reset |
-| 50    |          Yes |         Set |            - |
-| 3139  |          Yes |       Reset |            - |
+| 1090  |          Yes |           - |        Reset |
+| 60    |          Yes |         Set |            - |
+| 3489  |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -120,7 +120,7 @@ Warning! LUT value is adjusted to account for LUT combining.
 +------------+------+-------+------------+-----------+-------+
 |  Site Type | Used | Fixed | Prohibited | Available | Util% |
 +------------+------+-------+------------+-----------+-------+
-| BUFGCTRL   |    1 |     0 |          0 |        32 |  3.13 |
+| BUFGCTRL   |    2 |     0 |          0 |        32 |  6.25 |
 | BUFIO      |    0 |     0 |          0 |        40 |  0.00 |
 | MMCME2_ADV |    0 |     0 |          0 |        10 |  0.00 |
 | PLLE2_ADV  |    0 |     0 |          0 |        10 |  0.00 |
@@ -154,47 +154,49 @@ Warning! LUT value is adjusted to account for LUT combining.
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| FDRE     | 3139 |        Flop & Latch |
-| LUT6     | 2419 |                 LUT |
-| FDCE     | 1056 |        Flop & Latch |
-| LUT2     |  935 |                 LUT |
-| LUT5     |  825 |                 LUT |
-| LUT3     |  733 |                 LUT |
-| LUT4     |  698 |                 LUT |
-| CARRY4   |  393 |          CarryLogic |
-| MUXF7    |  309 |               MuxFx |
-| LUT1     |  286 |                 LUT |
-| FDSE     |   50 |        Flop & Latch |
+| FDRE     | 3489 |        Flop & Latch |
+| LUT6     | 2648 |                 LUT |
+| FDCE     | 1089 |        Flop & Latch |
+| LUT2     |  974 |                 LUT |
+| LUT4     |  826 |                 LUT |
+| LUT5     |  806 |                 LUT |
+| LUT3     |  754 |                 LUT |
+| CARRY4   |  419 |          CarryLogic |
+| LUT1     |  287 |                 LUT |
+| MUXF7    |  204 |               MuxFx |
+| FDSE     |   60 |        Flop & Latch |
 | FDPE     |   49 |        Flop & Latch |
 | IBUF     |   40 |                  IO |
-| OBUFT    |   36 |                  IO |
-| OBUF     |   35 |                  IO |
+| OBUFT    |   37 |                  IO |
+| OBUF     |   34 |                  IO |
 | DSP48E1  |   13 |    Block Arithmetic |
 | OBUFDS   |    8 |                  IO |
 | ODDR     |    4 |                  IO |
 | INV      |    4 |                 LUT |
+| BUFG     |    2 |               Clock |
 | RAMB18E1 |    1 |        Block Memory |
+| MUXF8    |    1 |               MuxFx |
 | LDCE     |    1 |        Flop & Latch |
-| BUFG     |    1 |               Clock |
 +----------+------+---------------------+
 
 
 8. Black Boxes
 --------------
 
-+--------------+------+
-|   Ref Name   | Used |
-+--------------+------+
-| uartFiFo     |    1 |
-| systemRam    |    1 |
-| spriteDPRam  |    1 |
-| keyboardFifo |    1 |
-| gfxBufRam    |    1 |
-| fontPROM     |    1 |
-| fastRam      |    1 |
-| clk_wiz_1    |    1 |
-| clk_wiz_0    |    1 |
-+--------------+------+
++-------------------+------+
+|      Ref Name     | Used |
++-------------------+------+
+| uartFiFo          |    1 |
+| systemRam         |    1 |
+| spriteDPRam       |    1 |
+| keyboardFifo      |    1 |
+| i2sControllerFifo |    1 |
+| gfxBufRam         |    1 |
+| fontPROM          |    1 |
+| fastRam           |    1 |
+| clk_wiz_1         |    1 |
+| clk_wiz_0         |    1 |
++-------------------+------+
 
 
 9. Instantiated Netlists

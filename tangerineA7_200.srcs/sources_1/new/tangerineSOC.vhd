@@ -65,7 +65,12 @@ Port (
     sdMciCmd:	    out  std_logic;	
     sdMciClk:	    out  std_logic;	 
         
-    --sdram
+    --i2s
+    i2sSClk:    out std_logic;
+    i2sBClk:    out std_logic;
+    i2sLRCk:    out std_logic;
+    i2sDOut:    out std_logic;
+        --sdram
     sdramA:     out     std_logic_vector( 12 downto 0 );
     sdramBA:    out     std_logic_vector( 1 downto 0 );
     sdramD:     inout   std_logic_vector( 31 downto 0 );
@@ -290,6 +295,37 @@ port(
    
 );
 end component;
+
+component i2sController is
+port(
+
+    --cpu interface
+    reset:      in  std_logic;
+    clock:      in  std_logic;
+    a:          in  std_logic_vector( 15 downto 0 );
+    din:        in  std_logic_vector( 31 downto 0 );
+    dout:       out std_logic_vector( 31 downto 0 );
+	
+    ce:         in  std_logic;
+    wr:         in  std_logic;
+    dataMask:   in  std_logic_vector( 3 downto 0 );
+	
+    ready:      out	std_logic;
+	
+    --dma interface
+    dmaRequest: out std_logic;
+    dmaA:       out std_logic_vector( 23 downto 0 );
+    dmaDin:     in  std_logic_vector( 31 downto 0 );
+    dmaReady:   in  std_logic;
+
+
+    --i2s interface
+    i2sBClk:    out std_logic;
+    i2sLRCk:    out std_logic;
+    i2sDOut:    out std_logic
+);
+end component;
+
 
 -- usb host
 component usbHost is
@@ -562,6 +598,14 @@ signal spiSClk:          std_logic;
 signal spiMOSI:          std_logic;
 signal spiMISO:          std_logic; 
 
+--i2s signals
+signal i2sClock:        std_logic;
+signal i2sCE:           std_logic;
+signal i2sDoutForCPU:   std_logic_vector( 31 downto 0 );
+signal i2sReady:        std_logic;
+
+
+
 --sdram DMA signals
 
 --registers
@@ -586,7 +630,12 @@ signal ch1Din:                 std_logic_vector( 31 downto 0 );
 signal ch1Dout:                std_logic_vector( 31 downto 0 );
 signal ch1Wr:                  std_logic;
 
---ch2 
+--ch2 i2s ( audio )
+
+signal ch2DmaRequest:           std_logic;
+signal ch2DmaReady:             std_logic;
+signal ch2A:                    std_logic_vector( 23 downto 0 );
+signal ch2Dout:                 std_logic_vector( 31 downto 0 );
 
 --ch3 gfx pixel gen
 
@@ -623,6 +672,7 @@ uartClock           <= mainClock;
 tickTimerClock      <= mainClockD2;
 frameTimerClock     <= mainClock;
 spiClock            <= mainClockD2;
+i2sClock            <= mainClock;
 
 usbHostClock        <= mainClock;
 usbHClk             <= usbClock;
@@ -641,8 +691,7 @@ pggDMARequestClkD2  <= pggDMARequest;
 
  leds    <=  gpoRegister( 7 downto 6 );       
 
--- fill unused ports, signals
-
+-- drive unused ports, signals
 
 -- place text mode font rom ( 2048 x 8 )
 
@@ -978,7 +1027,7 @@ end process;
 
     spiCE             <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f05" else '0';
 
---    i2sCE             <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f06" else '0';
+    i2sCE             <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f06" else '0';
 
 --    flashSpiCE        <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f07" else '0';
     
@@ -994,7 +1043,7 @@ end process;
                         else fastRamReady when fastRamCE = '1' 
                         else blitterRegsReady when blitterRegsCE = '1' 
                         else spriteGenReady when spriteGenCE = '1' 
---                        else i2sReady when i2sCE = '1' 
+                        else i2sReady when i2sCE = '1' 
 --                        else flashSpiReady when flashSpiCE = '1'
                         else sdramDmaRegsReady when sdramDmaRegsCE = '1'  
                         else '1';
@@ -1005,12 +1054,12 @@ end process;
                         registersDoutForCPU                       when cpuAOutFull( 31 downto 20 ) = x"f00" else
                         sdramDMADoutForCPU                        when cpuAOutFull( 31 downto 28 ) = x"2"  else
                         fastRamDoutForCPU                         when cpuAOutFull( 31 downto 28 ) = x"3"  else
-                        spriteGenDoutForCPU                           when cpuAOutFull( 31 downto 20 ) = x"f01" else
+                        spriteGenDoutForCPU                       when cpuAOutFull( 31 downto 20 ) = x"f01" else
                         blitterRegsDoutForCPU                     when cpuAOutFull( 31 downto 20 ) = x"f02" else
                         usbHostDoutForCPU                         when cpuAOutFull( 31 downto 20 ) = x"f03" else 
                         uartDoutForCPU                            when cpuAOutFull( 31 downto 20 ) = x"f04" else
                         spiDoutForCPU                             when cpuAOutFull( 31 downto 20 ) = x"f05" else
---                        i2sDoutForCPU                             when cpuAOutFull( 31 downto 20 ) = x"f06" else 
+                        i2sDoutForCPU                             when cpuAOutFull( 31 downto 20 ) = x"f06" else 
 --                        flashSpiDoutForCPU                        when cpuAOutFull( 31 downto 20 ) = x"f07" else  
                         sdramDmaRegsDoutForCPU                      when cpuAOutFull( 31 downto 20 ) = x"f08" else                        
                         x"00000000";
@@ -1114,7 +1163,7 @@ begin
                      --0x04 r- component version                       
                      when x"01" =>
                      
-                        registersDoutForCPU  <= x"20240923";
+                        registersDoutForCPU  <= x"20240926";
                         
                      --rw 0xf0000008 - videoMuxMode
                      when x"02" =>
@@ -1268,6 +1317,43 @@ port map(
    
 ); 
 
+
+-- place i2s controller
+
+i2sSClk     <= 'Z';
+
+
+i2sControllerInst:i2sController
+port map(
+
+    --cpu interface
+    reset       => reset,
+    clock       => i2sClock,
+    a           => cpuAOut( 15 downto 0 ),
+    din         => cpuDOut,
+    dout        => i2sDoutForCPU,
+	
+    ce          => i2sCE,
+    wr          => cpuWr,
+    dataMask    => cpuDataMask,
+	
+    ready       => i2sReady,
+    
+    --dma interface
+    dmaRequest  => ch2DmaRequest,
+    dmaA        => ch2A,
+    dmaReady    => ch2DmaReady,
+    dmaDin      => ch2Dout,
+	
+
+    --i2s interface
+    i2sBClk     => i2sBClk,
+    i2sLRCk     => i2sLRCk,
+    i2sDOut     => i2sDOut
+);
+
+
+
 -- place usb host
 -- usb0 - keyboard
 -- usb1 - mouse
@@ -1351,10 +1437,10 @@ port map(
     
     --ch2 - audio, priority: 1
 
-    ch2DmaRequest   => '0',
-    --ch2DmaReady:        out     std_logic;
-    ch2A            => ( others => '0' ),
-    --ch2Dout:            out     std_logic_vector( 31 downto 0 );
+    ch2DmaRequest   => ch2DmaRequest,
+    ch2DmaReady     => ch2DmaReady,
+    ch2A            => ch2A,
+    ch2Dout         => ch2Dout,
     
     --ch3 - gfx display, highest priority: 0
     

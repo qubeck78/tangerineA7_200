@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a200tfbg676-1" LaunchTime="1727248435" LaunchWriteIncrSynthDcp="true">
+<GenRun Id="synth_1" LaunchPart="xc7a200tfbg676-1" LaunchTime="1727375686" LaunchWriteIncrSynthDcp="true">
   <File Type="PA-TCL" Name="A7BoardTop.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="A7BoardTop_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="A7BoardTop_reports.tcl"/>
@@ -44,6 +44,12 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/blitter.vhd">
+      <FileInfo SFType="VHDL2019">
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/i2sController.vhd">
       <FileInfo SFType="VHDL2019">
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -165,4 +171,5 @@
   <BlockFileSet Type="BlockSrcs" Name="keyboardFifo"/>
   <BlockFileSet Type="BlockSrcs" Name="fontPROM"/>
   <BlockFileSet Type="BlockSrcs" Name="systemRam"/>
+  <BlockFileSet Type="BlockSrcs" Name="i2sControllerFifo"/>
 </GenRun>

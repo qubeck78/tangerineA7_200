@@ -136,6 +136,8 @@ type sdcState_T is ( sdcIdle, sdcInit0, sdcInit1, sdcInit2, sdcInit3, sdcInit4, 
 	sdcCh1Read0, sdcCh1Read1, sdcCh1Read2, sdcCh1Read3, sdcCh1Read4, sdcCh1Read5, sdcCh1Read6, sdcCh1Read7,  
 	sdcCh1Write0, sdcCh1Write1, sdcCh1Write2, sdcCh1Write3, sdcCh1Write4, sdcCh1Write5, sdcCh1Write6, sdcCh1Write7, 
 
+	sdcCh2Read0, sdcCh2Read1, sdcCh2Read2, sdcCh2Read3, sdcCh2Read4, sdcCh2Read5, sdcCh2Read6, sdcCh2Read7,  
+
 	sdcCh3Read0, sdcCh3Read1, sdcCh3Read2, sdcCh3Read3, sdcCh3Read4, sdcCh3Read5, sdcCh3Read6, sdcCh3Read7, sdcCh3Read8, sdcCh3Read9, 
 
 	sdcSubRefresh0, sdcSubRefresh1, sdcSubRefresh2, sdcSubRefresh3, sdcSubRefresh4, sdcSubRefresh5, sdcSubRefresh6
@@ -213,7 +215,7 @@ begin
                      --0x04 r- component version                       
                      when x"01" =>
                      
-                        dout  <= x"20240918";
+                        dout  <= x"20240926";
                         
                         ready <= '1';
 
@@ -320,7 +322,7 @@ begin
 			else  --refreshDone = '1' 
 			
 				refreshRequest	<= '0';
-				refreshCounter	<= x"320";		-- 8us @ 100Mhz
+				refreshCounter	<= x"320"; 		-- 8us @ 100Mhz
 			
 			end if;
 			
@@ -371,6 +373,9 @@ begin
         ch1DmaReady     <= '0';
         ch1Dout         <= ( others => '0' );
    
+        ch2DmaReady     <= '0';
+        ch2Dout         <= ( others => '0' );
+
         ch3DmaRequestLatched    <= ( others => '0' );
         ch3DmaPointer           <= ( others => '0' );
 
@@ -411,7 +416,8 @@ begin
 
                     ch0Ready	<= '0';
                     ch1DmaReady	<= '0';
-
+                    ch2DmaReady <= '1';
+                    
                     --nop
                     sdramCS     <= '0';
                     sdramRAS    <= '1';
@@ -449,7 +455,32 @@ begin
                             
                             sdcState            <= sdcCh3Read0;
                             
-                        --check ch1 access
+                        --check ch2 access ( i2s )
+                        elsif ch2DmaRequest = '1' then
+                        
+                            ch2DmaReady <= '0';
+                            
+                            --32 bit transfer
+                        
+                            --row / bank address ( dma adr max downto 8 )
+                            
+                            sdramBA     <= ch2A( 23 downto 22 );
+                            sdramA      <= ch2A( 21 downto 9 );
+                        
+                            --bank/row activation
+            
+                            sdramDQM    <= ( others => '0' );
+                      
+                            --row select
+                                      
+                            sdramCS     <= '0';
+                            sdramRAS    <= '0';
+                            sdramCAS    <= '1';
+                            sdramWE     <= '1';
+                        
+                            sdcState    <= sdcCh2Read0;
+                            
+                        --check ch1 access ( blitter )
                         elsif ch1DmaRequest = '1' then
 
                             ch1DmaReady <= '0';
@@ -468,7 +499,7 @@ begin
 
                                 --32 bit transfer
                             
-                                --row / bank address ( cpu adr max downto 8 )
+                                --row / bank address ( ch1 adr max downto 8 )
                                 
                                 sdramBA     <= ch1A( 23 downto 22 );
                                 sdramA      <= ch1A( 21 downto 9 );
@@ -480,7 +511,7 @@ begin
                             sdramDQM    <= ( others => '0' );
             
             
-                            --row select, read, auto precharge
+                            --row select
                                        
                             sdramCS     <= '0';
                             sdramRAS    <= '0';
@@ -820,6 +851,116 @@ begin
                         sdcState <= sdcIdle;
                         
                     end if;
+
+
+                --ch2 - i2s ( audio )
+
+                when sdcCh2Read0 =>
+                
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+
+    
+                    sdcState <= sdcCh2Read1;        
+
+                when sdcCh2Read1 =>
+                
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+
+                    sdcState <= sdcCh2Read2;        
+
+                when sdcCh2Read2 =>
+                
+                    --column select, read
+
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS    <= '0';
+                    sdramWE     <= '1';
+
+                    --auto precharge
+
+                    sdramA( 12 downto 9 )   <= "0010";
+
+                    --column address ( both dma and sdram addresses are in longwords )
+                    --a0-a8 - column address (word)
+                    --cpu addresses in longwords
+
+                    sdramA( 8 downto 0 )    <= ch2A( 8 downto 0 );
+
+                    sdcState <= sdcCh2Read3;        
+
+                when sdcCh2Read3 =>
+
+                    -- cas latency 1
+                
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS	<= '1';
+                    sdramWE 	<= '1';
+
+                    
+                    sdcState    <= sdcCh2Read4;
+				
+                when sdcCh2Read4 =>
+                
+                    -- cas latency 2 
+                
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS    <= '1';
+                    sdramWE     <= '1';
+
+
+                    sdcState    <= sdcCh2Read5;
+
+               when sdcCh2Read5 =>
+                
+                    --data latch latency 
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS    <= '1';
+                    sdramWE     <= '1';
+
+                    
+                    sdcState    <= sdcCh2Read6;
+
+                when sdcCh2Read6 =>
+
+                    ch2Dout     <= sdramDInLatched;
+
+                    --nop
+                    sdramCS     <= '0';
+                    sdramRAS    <= '1';
+                    sdramCAS    <= '1';
+                    sdramWE     <= '1';
+
+                    --notify i2s, data is ready
+                    
+                    ch2DmaReady <= '1';
+
+                    sdcState    <= sdcCh2Read7;
+
+                when sdcCh2Read7 =>
+
+                    if ch2DmaRequest = '0' then
+                
+                        ch2DmaReady <= '1';
+                        sdcState    <= sdcIdle;
+                    
+                    end if;                                   
+
+
 
                     
                 --ch3 pixelGenGfx buffer fetch ( 160 32-bit words )

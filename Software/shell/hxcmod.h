@@ -25,7 +25,7 @@ extern "C" {
 
 
 #define HXCMOD_SLOW_TARGET
-#define HXCMOD_MONO_OUTPUT
+//#define HXCMOD_MONO_OUTPUT
 #define HXCMOD_MAXCHANNELS 4
 
 #ifndef HXCMOD_SLOW_TARGET
