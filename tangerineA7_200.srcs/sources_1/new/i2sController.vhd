@@ -103,12 +103,13 @@ signal fifoDinDma:              std_logic_vector( 31 downto 0 );
 
 -- i2s dma control signals
 
-type   dmaState_T is    ( dmaDisabled, dmaMode01s0, dmaMode01s1, dmaMode01s2, dmaMode01s3, dmaMode01s4, dmaMode01s5 );
+type   dmaState_T is    ( dmaDisabled, dmaMode01s0, dmaMode01s1, dmaMode01s2, dmaMode01s3, dmaMode01s4, dmaMode01s5,
+                                        dmaMode02s0, dmaMode02s1, dmaMode02s2, dmaMode02s3, dmaMode02s4, dmaMode02s5 );
 signal dmaState:                dmaState_T;
 
 
 -- 00 - disabled
--- 01 - mono (left channel only )
+-- 01 - mono 
 -- 10 - stereo
 signal dmaMode:                 std_logic_vector( 1 downto 0 );
 signal dmaLoop:                 std_logic;
@@ -211,7 +212,7 @@ begin
                     --0x04 r- component version                       
                     when x"01" =>
                  
-                        dout  <= x"20240925";
+                        dout  <= x"20240926";
                     
                         ready <= '1';
 
@@ -414,11 +415,17 @@ begin
 
                     if dmaMode = "01" then
 
-
                         dmaDataPointer  <= dmaDataPointerReg;
                         dmaDataCounter  <= ( others => '0' );
 
                         dmaState    <= dmaMode01s0;
+
+                    elsif dmaMode = "10" then
+
+                        dmaDataPointer  <= dmaDataPointerReg;
+                        dmaDataCounter  <= ( others => '0' );
+
+                        dmaState    <= dmaMode02s0;
 
                     end if;
 
@@ -512,6 +519,97 @@ begin
                     -- wait for dma mode change
 
                     if dmaMode /= "01" then
+
+                        dmaState    <= dmaDisabled;
+
+                    end if;
+            
+                -- mode 10
+                when dmaMode02s0 =>
+
+                    if dmaMode /= "10" then
+
+                        dmaState    <= dmaDisabled;
+
+                    else
+
+                        if fifoAlmostFull = '0' then
+
+                            -- read data and write 2 samples to fifo
+
+                            dmaA        <= dmaDataPointer;
+                            dmaRequest  <= '1';
+
+                            dmaState    <= dmaMode02s1;
+
+                        end if; --fifoAlmostFull = '0'
+
+                    end if; --dmaMode /=, = "10"
+
+                when dmaMode02s1 =>
+
+                    if dmaReady = '0' then
+
+                        dmaRequest  <= '0';
+                        dmaState    <= dmaMode02s2;
+                    end if; 
+
+
+                when dmaMode02s2 =>
+
+                    if dmaReady = '1' then
+
+                        fifoWrDma   <= '1';
+
+                        fifoDinDma  <= dmaDin;
+
+                        dmaState    <= dmaMode02s3;
+
+                    end if;
+
+                when dmaMode02s3 =>
+
+                    fifoWrDma   <= '0';
+
+                    --check data counter
+                    if dmaDataCounter < dmaDataLengthReg then
+
+                        --next sample ( l + r )
+                        dmaDataCounter  <= dmaDataCounter + 1;
+                        dmaDataPointer  <= dmaDataPointer + 1;
+
+                        dmaState <= dmaMode02s0;
+
+                    else
+
+                        --restart pointer / counter
+                        dmaDataCounter  <= ( others => '0' );
+                        dmaDataPointer  <= dmaDataPointerReg;
+
+                        --set dmaFinished flag
+                        dmaFinished     <= '1';
+
+                        if dmaLoop = '1' then
+
+                            --looping enabled
+
+                            dmaState <= dmaMode02s0;
+
+                        else
+
+                            --looping disabled
+
+                            dmaState <= dmaMode02s4;
+
+                        end if; --dmaLoop = '1' or '0'
+
+                    end if;
+
+                when dmaMode02s4 =>
+
+                    -- wait for dma mode change
+
+                    if dmaMode /= "10" then
 
                         dmaState    <= dmaDisabled;
 

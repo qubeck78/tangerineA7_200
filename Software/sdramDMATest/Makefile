@@ -43,5 +43,5 @@ clean:
 	rm -f *.o *.rec *.disasm *.elf *.mif *.bin
 
 send: prog.rec
-	srecsend prog.rec com3 460800
+	srecsend prog.rec com8 460800
 	

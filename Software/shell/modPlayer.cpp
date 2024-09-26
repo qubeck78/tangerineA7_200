@@ -50,7 +50,7 @@ uint32_t mpInit()
    //alloc audio buffer
    audioDataLength      = 16384;   //8K samples
 
-   audioData            = (short*)osAlloc( audioDataLength, OS_ALLOC_MEMF_CHIP ); 
+   audioData            = (short*)osAlloc( audioDataLength * 2, OS_ALLOC_MEMF_CHIP ); 
 
    audioDataL           = &audioData[0];
    audioDataH           = &audioData[audioDataLength / 4];
@@ -66,15 +66,22 @@ uint32_t mpInit()
 
 uint32_t mpPlay( char *fileName )
 {
-   uint32_t          rv;
-   tosUIEvent     event; 
-   tosFile        in;
-   uint32_t          nbr;
-   uint32_t          audioDmaStatus;
-   uint32_t          quitPlayer;
-   char           buf[60];
-   uint32_t          i;
-   uint32_t          j;
+   uint32_t    rv;
+   tosUIEvent  event; 
+   tosFile     in;
+   uint32_t    nbr;
+   uint32_t    audioDmaStatus;
+   uint32_t    quitPlayer;
+   char        buf[60];
+   uint32_t    i;
+   uint32_t    j;
+
+
+   //init hxcmod
+   hxcmod_init( &modctx );
+
+   //config hxcmod
+   hxcmod_setcfg( &modctx, 48000 / 2, 0, 0 );
 
 
    uiDrawInfoWindow( (char*)"Loading", fileName, _UI_INFO_WINDOW_BUTTONS_NONE );
@@ -112,14 +119,14 @@ uint32_t mpPlay( char *fileName )
 
    //pre-fill lower part of the buffer
    //length in samples ( 16-bit) -> half of the buffer
-   hxcmod_fillbuffer( &modctx, audioDataL, audioDataLength / 4, NULL );
+   hxcmod_fillbuffer( &modctx, audioDataL, audioDataLength / 8, NULL ); 
 
 
 
    //play audio buffer :)
    aud->audioDmaPointer = ( (uint32_t)audioData - _SYSTEM_MEMORY_BASE ) / 4;
-   aud->audioDmaLength  = ( audioDataLength / 4 ) - 1;      //32 bit tranfer, 2 samples per count
-   aud->audioDmaConfig  = 0x04 | 0x01;                      //start dma transfer, looping enabled, mode: mono 
+   aud->audioDmaLength  = ( audioDataLength / 4 ) - 1;      //32 bit tranfer, 2 samples per count ( l + r )
+   aud->audioDmaConfig  = 0x04 | 0x02;                      //start dma transfer, looping enabled, mode: stereo 
 
 
    quitPlayer = 0;
@@ -158,7 +165,7 @@ uint32_t mpPlay( char *fileName )
       }while( audioDmaStatus & 2 );
 
       //lower part of buffer is played, fill upper
-      hxcmod_fillbuffer( &modctx, audioDataH, audioDataLength / 4, NULL );
+      hxcmod_fillbuffer( &modctx, audioDataH, audioDataLength / 8, NULL );
 
       do
       {
@@ -166,7 +173,7 @@ uint32_t mpPlay( char *fileName )
       }while( ( ! (audioDmaStatus & 2 ) ) );
 
       //upper part of buffer is played, fill lower
-      hxcmod_fillbuffer( &modctx, audioDataL, audioDataLength / 4, NULL );
+      hxcmod_fillbuffer( &modctx, audioDataL, audioDataLength / 8, NULL );
 
    
       while( !osGetUIEvent( &event ) )
