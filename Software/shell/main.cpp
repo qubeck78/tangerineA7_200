@@ -27,6 +27,7 @@ tgfBitmap      background;
 tgfBitmap      screen2;
 tgfBitmap      zBuffer; 
 tgfBitmap      texture; 
+tgfBitmap      mousePointer;
 
 char           fileNameBuf1[ 256 ];
 char           fileNameBuf2[ 256 ];
@@ -138,8 +139,16 @@ uint32_t init()
 
    rv = gfLoadBitmapFS( &background, ( char* )"0:/shell/background.gbm" );
 
-
    gfBlitBitmap( &screen, &background, 0, 0 );
+
+
+   gfLoadBitmapFS( &mousePointer, (char*)"0:/sys/cursor.gbm" );
+   usbHIDSetMousePointerShape( &mousePointer );
+
+   usbHIDSetMousePointerVisibility( 1 );        
+
+   toPrintF( &con, (char*)"mouseInit\n" );
+
 
    //3d obj viewer init
    rv = objvInit();

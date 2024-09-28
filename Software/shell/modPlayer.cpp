@@ -17,40 +17,46 @@
 #include "../gfxLib/osFile.h"
 #include "../gfxLib/gfFont.h"
 #include "../gfxLib/osUIEvents.h"
+#include "../gfxLib/gfAudio.h"
 
 
 #include "shellUI.h"
 
 
 modcontext  modctx;
-short      *audioData;
-uint32_t       audioDataLength;
-short      *audioDataL;
-short      *audioDataH;
-short      *audioModData;
-uint32_t       audioModDataLength;
+int16_t    *audioData;
+uint32_t    audioDataLength;
+int16_t    *audioDataL;
+int16_t    *audioDataH;
+int16_t    *audioModData;
+uint32_t    audioModDataLength;
+
+uint32_t    audioSupported;
 
 uint32_t mpInit()
 {
    uint32_t rv;
 
-   rv = 0;
 
-   //config audio
-   
-   //i2s freq 48kHz @ 100Mhz base clock
-   aud->i2sClockConfig  = 0x00410020;
+   rv = gfAudioInit();
 
-   //fifo read div to 2 ( 24kHz frequency )
-   aud->fifoReadConfig  = 0x1;
+   if( rv )
+   {
+      audioSupported = 0;
+   }
+   else
+   {
+      audioSupported = 1;
+   }
 
-   //stop dma
-   aud->audioDmaConfig  = 0x00;
+   //config audio ( 24kHz )
+   gfAudioConfigure( GF_AUDIO_SAMPLING_RATE_48000, 2 );
+
 
    //alloc audio buffer
    audioDataLength      = 16384;   //8K samples
 
-   audioData            = (short*)osAlloc( audioDataLength * 2, OS_ALLOC_MEMF_CHIP ); 
+   audioData            = (short*)osAlloc( audioDataLength, OS_ALLOC_MEMF_CHIP ); 
 
    audioDataL           = &audioData[0];
    audioDataH           = &audioData[audioDataLength / 4];
@@ -76,6 +82,11 @@ uint32_t mpPlay( char *fileName )
    uint32_t    i;
    uint32_t    j;
 
+
+   if( !audioSupported )
+   {
+      return 1;
+   }
 
    //init hxcmod
    hxcmod_init( &modctx );
@@ -118,16 +129,14 @@ uint32_t mpPlay( char *fileName )
    hxcmod_load( &modctx, (void*)audioModData, audioModDataLength  );
 
    //pre-fill lower part of the buffer
-   //length in samples ( 16-bit) -> half of the buffer
+   //length in samples ( 2 x 16-bit, l + r ) -> half of the buffer
    hxcmod_fillbuffer( &modctx, audioDataL, audioDataLength / 8, NULL ); 
 
-
+ 
 
    //play audio buffer :)
-   aud->audioDmaPointer = ( (uint32_t)audioData - _SYSTEM_MEMORY_BASE ) / 4;
-   aud->audioDmaLength  = ( audioDataLength / 4 ) - 1;      //32 bit tranfer, 2 samples per count ( l + r )
-   aud->audioDmaConfig  = 0x04 | 0x02;                      //start dma transfer, looping enabled, mode: stereo 
 
+   gfAudioPlayDMA( audioData, audioDataLength, GF_AUDIO_FORMAT_STEREO_16BIT, GF_AUDIO_FLAG_DMA_LOOP );
 
    quitPlayer = 0;
 
@@ -159,18 +168,15 @@ uint32_t mpPlay( char *fileName )
 
       uiDrawInfoWindow( fileName, buf, _UI_INFO_WINDOW_BUTTONS_NONE );
 
-      do
-      {
-         audioDmaStatus = aud->audioDmaStatus;
-      }while( audioDmaStatus & 2 );
+      do{
+      }while( gfAudioDMAStatus() & GF_AUDIO_DMA_STATUS_SECOND_HALF );
+
 
       //lower part of buffer is played, fill upper
       hxcmod_fillbuffer( &modctx, audioDataH, audioDataLength / 8, NULL );
 
-      do
-      {
-         audioDmaStatus = aud->audioDmaStatus;
-      }while( ( ! (audioDmaStatus & 2 ) ) );
+      do{
+      }while( ! ( gfAudioDMAStatus() & GF_AUDIO_DMA_STATUS_SECOND_HALF ) );
 
       //upper part of buffer is played, fill lower
       hxcmod_fillbuffer( &modctx, audioDataL, audioDataLength / 8, NULL );
@@ -181,7 +187,7 @@ uint32_t mpPlay( char *fileName )
          if( event.type == OS_EVENT_TYPE_KEYBOARD_KEYPRESS )
          {
 
-               aud->audioDmaConfig  = 0x00;  //stop audio dma                  
+               gfAudioStopDMA();
                quitPlayer = 1;
 
          }
