@@ -47,7 +47,7 @@ uint32_t fetchData( uint32_t addr )
       return txtModeRam[ ( addr - 0x6d40 ) >> 2 ];
    }
 
-   //fast ram ( 8MB )
+   //dma ram ( 8MB )
    else if( ( addr >= 0x20000000 ) && ( addr < 0x20800000 ) )
    {
       loadPtr = (uint32_t*)addr;
@@ -88,7 +88,7 @@ uint32_t storeData( uint32_t addr, uint8_t mask, uint32_t data )
       storePtr = &txtModeRam[ ( addr - 0x6d40 ) >> 2 ];
    }
 
-   //fast ram ( 8MB )
+   //dma ram ( 8MB )
    else if( ( addr >= 0x20000000 ) && ( addr < 0x20800000 ) )
    {
       storePtr = (uint32_t*)addr;

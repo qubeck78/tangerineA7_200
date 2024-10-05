@@ -212,7 +212,7 @@ begin
                     --0x04 r- component version                       
                     when x"01" =>
                  
-                        dout  <= x"20240926";
+                        dout  <= x"20240928";
                     
                         ready <= '1';
 
@@ -293,11 +293,11 @@ begin
                     --0x20 rw audioDmaPointer
                     when x"08" =>
 
-                        dout    <= x"00" & dmaDataPointerReg;
+                        dout    <= "000000" & dmaDataPointerReg & "00";
     
                         if wr = '1' then
 
-                            dmaDataPointerReg   <= din( 23 downto 0 );
+                            dmaDataPointerReg   <= din( 25 downto 2 );
 
                         end if;
 
