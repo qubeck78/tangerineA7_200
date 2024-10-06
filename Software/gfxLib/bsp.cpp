@@ -32,7 +32,7 @@ uint32_t bspInit()
     
 	//osAllocAddNode( 1, ( void* )_SDRAM_MEMORY_BASE, _SDRAM_MEMORY_SIZE, OS_ALLOC_MEMF_FAST );
 
-    bsp->videoMuxMode       = 0x02; //text over gfx, 320x240
+    bsp->videoMuxMode       = _VIDEOMODE_320_TEXT40_OVER_GFX; //text over gfx, 320x240
     
     //connect gfxlib con to hardware text overlay   
     con.type                = GF_TEXT_OVERLAY_TYPE_HARDWARE;
@@ -43,7 +43,7 @@ uint32_t bspInit()
     con.cursY               = 0;
     con.textAttributes      = 0x0f;
     con.font                = NULL;
-    con.textBuffer          = (uint8_t*) 0x6d40; //hw text mode buffer address
+    con.textBuffer          = (uint8_t*) 0x5a80; //hw text mode buffer address
 
     toCls( &con );
 

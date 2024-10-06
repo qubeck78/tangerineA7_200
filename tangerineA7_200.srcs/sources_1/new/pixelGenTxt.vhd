@@ -66,6 +66,8 @@ port(
 
    -- 00 : 40x30 characters, 16 font/background colors
    -- 01 : 80x30 characters, 16 font/background colors
+   -- 11 : 80x60 characters, 16 font/background colors
+   
    pgVideoMode:      in  std_logic_vector( 1 downto 0 )
     
 );
@@ -243,8 +245,8 @@ begin
 
             pgState             <= m0pre0;
 
-            pgDisplayPtr        <= "11011010100000";
-            pgDisplayPtrShadow  <= "11011010100000";
+            pgDisplayPtr        <= "10110101000000";    --0x2d40 * 2 = 0x5a80
+            pgDisplayPtrShadow  <= "10110101000000";
             pgLetterYCount      <= ( others => '0' );
 
 
@@ -360,9 +362,9 @@ begin
 
             if pgVSync = '1' then
             
-               --0x6D40 
-               pgDisplayPtr        <= "11011010100000";
-               pgDisplayPtrShadow  <= "11011010100000";
+               --0x5a80 
+               pgDisplayPtr        <= "10110101000000";
+               pgDisplayPtrShadow  <= "10110101000000";
                pgLetterYCount      <= ( others => '0' );
 
             end if;
@@ -391,7 +393,7 @@ begin
                     end if;
 
                   --switch mode if necesary
-                  if pgVideoMode = "01" then
+                  if pgVideoMode( 0 ) = '1' then
                   
                      pgState  <= m1pre0;
                      
@@ -686,7 +688,7 @@ begin
                     end if;
 
                   --switch mode if necesary
-                  if pgVideoMode = "00" then
+                  if pgVideoMode( 0 ) = '0' then
                   
                      pgState  <= m0pre0;
                      
@@ -700,8 +702,20 @@ begin
                 when m1pre2 =>                    
 
                     --read char shape
-                    fontRomA            <= videoRamBDout( 7 downto 0 ) & pgLetterYCount( 3 downto 1 );
+                     if pgVideoMode( 1 ) = '0' then
+                        
+                        --80x30
+                        
+                        fontRomA            <= videoRamBDout( 7 downto 0 ) & pgLetterYCount( 3 downto 1 );
 
+                    else
+
+                        --80x60
+                        
+                        fontRomA            <= videoRamBDout( 7 downto 0 ) & pgLetterYCount( 2 downto 0 );
+                    
+                    end if;
+                    
                     pgState <= m1pre3;
                     
                 when m1pre3 =>
@@ -839,8 +853,20 @@ begin
                     end if;
                    
                      --read char shape
-                    fontRomA            <= videoRamBDout( 7 downto 0 ) & pgLetterYCount( 3 downto 1 );
+                    if pgVideoMode( 1 ) = '0' then
 
+                        --80x30
+
+                        fontRomA            <= videoRamBDout( 7 downto 0 ) & pgLetterYCount( 3 downto 1 );
+
+                    else
+
+                        --80x60
+
+                        fontRomA            <= videoRamBDout( 7 downto 0 ) & pgLetterYCount( 2 downto 0 );                    
+                    
+                    end if;
+                    
                     pgState <= m1p6;
 
               when m1p6 =>
@@ -907,14 +933,34 @@ begin
                     pgG <= ( others => '0' );
                     pgB <= ( others => '0' );
 
-                    if pgLetterYCount /= "1111" then
+                    
+                    if pgVideoMode( 1 ) = '0' then
 
-                        --if not end of 16 px line (one letter height)
-                        --restore data pointer
-                        pgDisplayPtr <= pgDisplayPtrShadow;
+                        --80x30
 
+                        if pgLetterYCount /= "1111" then
+        
+                            --if not end of 16 px line (one letter height)
+                            --restore data pointer
+                            pgDisplayPtr <= pgDisplayPtrShadow;
+        
+                        end if;
+        
+                    else
+
+                        --80x60
+
+                        if pgLetterYCount( 2 downto 0 ) /= "111" then
+        
+                            --if not end of 16 px line (one letter height)
+                            --restore data pointer
+                            pgDisplayPtr <= pgDisplayPtrShadow;
+        
+                        end if;
+                    
+                    
                     end if;
-
+                    
                     pgLetterYCount <= pgLetterYCount + 1;
 
                     pgState <= m1pre0;

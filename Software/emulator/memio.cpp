@@ -15,7 +15,7 @@ uint32_t mioInit()
    uint32_t i;
 
    rvStackL    = (uint32_t*) &rvStack[0];
-   txtModeRam  = (uint32_t*) 0x6d40;
+   txtModeRam  = (uint32_t*) 0x5a80;
 
    for( i = 0; i < 32768; i++ )
    {
@@ -36,7 +36,7 @@ uint32_t fetchData( uint32_t addr )
    uint32_t *loadPtr;
 
    //stack / boot area
-   if( addr < 0x6d40 )
+   if( addr < 0x5a80 )
    {
       return rvStackL[ addr >> 2 ];
    }
@@ -44,7 +44,7 @@ uint32_t fetchData( uint32_t addr )
    //text mode ram
    else if( addr < 0x8000 )
    {
-      return txtModeRam[ ( addr - 0x6d40 ) >> 2 ];
+      return txtModeRam[ ( addr - 0x5a80 ) >> 2 ];
    }
 
    //dma ram ( 8MB )
@@ -77,7 +77,7 @@ uint32_t storeData( uint32_t addr, uint8_t mask, uint32_t data )
 //   toPrintF( &con, (char*)"WR %08X, %08X, %01X ", addr, data, mask );
 
    //stack / boot area
-   if( addr < 0x6d40 )
+   if( addr < 0x5a80 )
    {
       storePtr = (uint32_t*) &rvStackL[ addr >> 2 ];
    }
@@ -85,7 +85,7 @@ uint32_t storeData( uint32_t addr, uint8_t mask, uint32_t data )
    //text mode ram
    else if( addr < 0x8000 )
    {
-      storePtr = &txtModeRam[ ( addr - 0x6d40 ) >> 2 ];
+      storePtr = &txtModeRam[ ( addr - 0x5a80 ) >> 2 ];
    }
 
    //dma ram ( 8MB )

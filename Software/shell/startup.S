@@ -1,6 +1,6 @@
 
 
-	.equ		stackPointer, 		0x00006d40 
+	.equ		stackPointer, 		0x00005a80 
 
 	.org 0x0
 
@@ -19,12 +19,6 @@ start:
 
 	li sp, stackPointer 
 
-
-# initialize control and status registers
-#	csrw mepc,        zero
-#	csrw mcause,      zero
-#	csrw mscratch,    zero
-#	csrw mtval,       zero
 
 #push argc and argv to stack
 

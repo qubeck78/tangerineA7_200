@@ -102,7 +102,7 @@ begin
     if reset = '1' then
 
       regs(0)         <= ( others => '0' );
-      regs(2)         <= x"00006d40";
+      regs(2)         <= x"00005a80";
 
     elsif rising_edge( clk ) then
     
