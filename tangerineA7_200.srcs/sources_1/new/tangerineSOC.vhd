@@ -1163,7 +1163,7 @@ begin
                      --0x04 r- component version                       
                      when x"01" =>
                      
-                        registersDoutForCPU  <= x"20241006";
+                        registersDoutForCPU  <= x"20241007";
                                                 
                      --rw 0xf0000008 - videoMuxMode
                      when x"02" =>

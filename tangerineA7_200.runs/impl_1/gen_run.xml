@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a200tfbg676-1" LaunchTime="1728297373">
+<GenRun Id="impl_1" LaunchPart="xc7a200tfbg676-1" LaunchTime="1728330582">
   <File Type="ROUTE-PWR" Name="A7BoardTop_power_routed.rpt"/>
   <File Type="PA-TCL" Name="A7BoardTop.tcl"/>
   <File Type="ROUTE-PWR-SUM" Name="A7BoardTop_power_summary_routed.pb"/>

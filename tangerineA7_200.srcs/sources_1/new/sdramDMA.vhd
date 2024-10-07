@@ -169,6 +169,7 @@ signal ch3DmaBufPointer:        std_logic_vector( 8 downto 0 );
 signal ch3DmaRequest0Modulo:    std_logic_vector( 7 downto 0 );
 signal ch3DmaRequest1Modulo:    std_logic_vector( 7 downto 0 );
 
+signal ch3DmaRequestLength:     std_logic_vector( 7 downto 0 );
 
 begin
 
@@ -189,7 +190,8 @@ begin
          ch3DmaPointerStart     <= ( others => '0' );
          ch3DmaRequest0Modulo   <= x"60";
          ch3DmaRequest1Modulo   <= x"60";
-         
+         ch3DmaRequestLength    <= x"9f";
+           
       else
       
          
@@ -215,7 +217,7 @@ begin
                      --0x04 r- component version                       
                      when x"01" =>
                      
-                        dout  <= x"20240926";
+                        dout  <= x"20241007";
                         
                         ready <= '1';
 
@@ -257,7 +259,20 @@ begin
                         end if;
                        
                         ready <= '1';
+         
+                     --0x14 rw ch3 dma request length
+                     when x"05" =>
+                     
+                        dout <= x"000000" & ch3DmaRequestLength;
                         
+                        if wr = '1' then
+                        
+                            ch3DmaRequestLength <= din( 7 downto 0 );
+                            
+                        end if;
+                        
+                        ready <= '1';
+                                       
                      when others =>
                      
                         dout  <= ( others =>'0' );
@@ -444,14 +459,14 @@ begin
                         if ch3DmaRequestLatched( 0 ) = '1' then
 
                             ch3DmaBufPointer    <= "000000000";                       
-                            ch3TransferCounter  <= x"9f";           --160 long words
+                            ch3TransferCounter  <= ch3DmaRequestLength; --x"9f";           --160 long words
                             
                             sdcState            <= sdcCh3Read0;
                         
                         elsif ch3DmaRequestLatched( 1 ) = '1' then
 
                             ch3DmaBufPointer    <= "100000000";                       
-                            ch3TransferCounter  <= x"9f";           --160 long words
+                            ch3TransferCounter  <= ch3DmaRequestLength; --x"9f";           --160 long words
                             
                             sdcState            <= sdcCh3Read0;
                             

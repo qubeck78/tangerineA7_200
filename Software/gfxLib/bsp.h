@@ -176,6 +176,7 @@ typedef struct __SDRAMDMA_REGISTERS_T
     volatile uint32_t ch3DmaPointerStart;
     volatile uint32_t ch3DmaRequest0Modulo;
     volatile uint32_t ch3DmaRequest1Modulo;
+    volatile uint32_t ch3DmaRequestLength;
 
 }_SDRAMDMA_REGISTERS_T;
 

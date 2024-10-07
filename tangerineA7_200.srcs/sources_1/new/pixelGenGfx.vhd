@@ -7,34 +7,39 @@ entity pixelGenGfx is
 
 port(
    reset:            in  std_logic;
-   pggClock:         in  std_logic;
-   pggR:             out std_logic_vector( 7 downto 0 );
-   pggG:             out std_logic_vector( 7 downto 0 );
-   pggB:             out std_logic_vector( 7 downto 0 );
+
+    --pixel clock
+    pggClock:         in  std_logic;
+   
+    --video out
+    pggR:             out std_logic_vector( 7 downto 0 );
+    pggG:             out std_logic_vector( 7 downto 0 );
+    pggB:             out std_logic_vector( 7 downto 0 );
 
     --gfx buffer ram
-   gfxBufRamDOut:    in  std_logic_vector( 31 downto 0 );
-   gfxBufRamRdA:     out std_logic_vector( 8 downto 0 );
+    gfxBufRamDOut:    in  std_logic_vector( 31 downto 0 );
+    gfxBufRamRdA:     out std_logic_vector( 8 downto 0 );
 
-   --2 dma requests
-   pggDMARequest:    out std_logic_vector( 1 downto 0 );
+    --2 dma requests
+    pggDMARequest:    out std_logic_vector( 1 downto 0 );
    
-   --sync gen inputs
-   pgVSync:          in  std_logic;
-   pgHSync:          in  std_logic;
-   pgDe:             in  std_logic;
-   pgXCount:         in  std_logic_vector( 11 downto 0 );
-   pgYCount:         in  std_logic_vector( 11 downto 0 );
-   pgDeX:            in  std_logic;
-   pgDeY:            in  std_logic;
-   pgPreFetchLine:   in  std_logic;
-   pgFetchEnable:    in  std_logic;
+    --sync gen inputs
+    pgVSync:          in  std_logic;
+    pgHSync:          in  std_logic;
+    pgDe:             in  std_logic;
+    pgXCount:         in  std_logic_vector( 11 downto 0 );
+    pgYCount:         in  std_logic_vector( 11 downto 0 );
+    pgDeX:            in  std_logic;
+    pgDeY:            in  std_logic;
+    pgPreFetchLine:   in  std_logic;
+    pgFetchEnable:    in  std_logic;
    
-   -- 00 : 320x240x16
-   -- 01 : 640x480x16
-   pgVideoMode:      in  std_logic_vector( 1 downto 0 );
+    -- 00 : 320x240x16
+    -- 01 : 640x480x16
+    -- 10 : 320x240x8 ( palette )
+    pgVideoMode:      in  std_logic_vector( 1 downto 0 );
    
-   pgEnabled:        in  std_logic
+    pgEnabled:        in  std_logic
 );
 
 end pixelGenGfx;
@@ -43,7 +48,8 @@ architecture behavior of pixelGenGfx is
 
 type pggState_T is ( mDisabled,
                      m1pre0, m1pre1, m1pre2, m1pre3, m1pre4, m1pre5, m1pre6, m1p0, m1p1, m1p2, m1p3, m1post0, m1post1, m1post2, m1post3, m1hblank,
-                     m2pre0, m2pre1, m2pre2, m2pre3, m2pre4, m2pre5, m2pre6, m2p0, m2p1, m2hblank
+                     m2pre0, m2pre1, m2pre2, m2pre3, m2pre4, m2pre5, m2pre6, m2p0, m2p1, m2hblank,
+                     m3pre0, m3pre1, m3pre2, m3pre3, m3pre4, m3pre5, m3pre6, m3p0, m3p1, m3p2, m3p3, m3post0, m3post1, m3post2, m3post3, m3hblank
 );
 
 signal pggState:                 pggState_T;
@@ -89,16 +95,26 @@ begin
                         -- pixel gen gfx has been enabled
                         -- select state according to gfx mode selected
 
-                        if pgVideoMode = "01" then
-                  
-                            pggState <= m2pre0;
+                        case pgVideoMode is
+                        
+                            when "00" =>
+                            
+                                pggState <= m1pre0;
+                                
+                            when "01" =>
+                            
+                                pggState <= m2pre0;
+                        
+                            when "10" =>
 
-                        else
-
-                            pggState <= m1pre0;
-                     
-                        end if;
-
+                                pggState <= m3pre0;
+                            
+                            when others =>
+                            
+                                pggState <= mDisabled;
+                            
+                        end case;
+                        
 
                     end if;
 
@@ -142,15 +158,9 @@ begin
 
                  end if;
                
-                  --switch mode if necesary
-                  if pgVideoMode = "01" then
-                  
-                     pggState <= m2pre0;
-                     
-                  end if;
-               
                   --check if not disabled
-                  if pgEnabled = '0' then
+                  --switch mode if necesary               
+                  if pgEnabled = '0' or pgVideoMode /= "00" then
 
                      pggState    <= mDisabled;
     
@@ -322,15 +332,10 @@ begin
 
                  end if;
 
-                 --switch mode if necesary
-                  if pgVideoMode = "00" then
-                  
-                     pggState <= m1pre0;
-                     
-                  end if;
 
                   --check if not disabled
-                  if pgEnabled = '0' then
+                  --switch mode if necesary               
+                  if pgEnabled = '0' or pgVideoMode /= "01" then
 
                      pggState    <= mDisabled;
     
@@ -382,13 +387,7 @@ begin
 --                RISCV
                   pggR     <= pggPixelData( 15 downto 11 ) & "000";
                   pggG     <= pggPixelData( 10 downto 5  ) & "00";                  
-                  pggB     <= pggPixelData( 4  downto 0  ) & "000";
-            
---                MC68K
---                pggR     <= pggPixelData( 31 downto 27 ) & "000";
---                pggG     <= pggPixelData( 26 downto 21 ) & "00";                  
---                pggB     <= pggPixelData( 20 downto 16 ) & "000";
-               
+                  pggB     <= pggPixelData( 4  downto 0  ) & "000";          
                   
                   
                   --display higher buffer half, fill lower
@@ -443,6 +442,180 @@ begin
                   
                   pggState <= m2pre0;
                
+               ----------------------------------------------
+               --mode 3: 320x240x8
+               --wait for fetch enable
+               
+               --7 prefetch states to match 8 clock cycles between fetch enable and display enable
+               when m3pre0 =>             
+               
+                  pggR <= ( others => '0' );
+                  pggG <= ( others => '0' );
+                  pggB <= ( others => '0' );
+
+                  
+                  --pass dma request for first displayed line
+                  if pgPreFetchLine = '1' then
+                  
+                     --fill lower line
+                     
+                     pggDMARequest  <= "01";
+
+                     --clear line counter for doubling lo-res lines
+                     pggLineCounter <= ( others => '0' );
+                     
+                  else
+                  
+                     pggDMARequest  <= "00";
+                  
+                  end if;
+                  
+               
+                  if pgFetchEnable = '1' then
+                    
+                        --pre fetch first data
+                        
+                        --reset line buf address counter
+                        pggGfxBufAddressCounter <= ( others => '0' );
+
+                        pggState <= m3pre1;
+
+                 end if;
+               
+                  --check if not disabled
+                  --switch mode if necesary               
+                  if pgEnabled = '0' or pgVideoMode /= "10" then
+
+                     pggState    <= mDisabled;
+    
+                  end if;
+
+               when m3pre1 =>
+                  gfxBufRamRdA   <= pggLineCounter( 1 ) & pggGfxBufAddressCounter( 7 downto 0 );
+                  
+                  pggState <= m3pre2;
+               
+               when m3pre2 =>
+                  
+                  --dma requests
+                  if pggLineCounter( 0 ) = '0' then
+                  
+                     if pggLineCounter( 1 ) = '0' then
+                  
+                        --display lower buffer half, fill upper
+                     
+                        pggDMARequest  <= "10";
+                     
+                     else
+                     
+                        --display upper buffer half, fill lower
+                     
+                        pggDMARequest  <= "01";
+                     
+                     end if;
+                  
+                  end if;
+                  
+                  pggState <= m3pre3;
+                  
+               when m3pre3 =>
+               
+                  pggPixelData   <= gfxBufRamDOut;
+                  pggGfxBufAddressCounter <= pggGfxBufAddressCounter + 1;
+                  
+                  pggState <= m3pre4;
+                  
+               when m3pre4 =>
+               
+                  --clear dma request
+                  pggDMARequest  <= ( others => '0' );
+               
+                  pggState <= m3pre5;
+               
+               when m3pre5 =>
+               
+                  pggState <= m3pre6;
+                  
+               when m3pre6 =>
+               
+               
+                  pggState <= m3p0;
+                  
+               when m3p0 =>
+
+                  pggR     <= pggPixelData( 15 downto 11 ) & "000";
+                  pggG     <= pggPixelData( 10 downto 5  ) & "00";                  
+                  pggB     <= pggPixelData( 4  downto 0  ) & "000";
+               
+                  gfxBufRamRdA   <= pggLineCounter( 1 ) & pggGfxBufAddressCounter( 7 downto 0 );
+                  
+                  pggState <= m3p1;
+                  
+               when m3p1 =>
+               
+                  pggGfxBufAddressCounter <= pggGfxBufAddressCounter + 1;
+                  
+                  pggState <= m3p2;
+   
+               when m3p2 =>
+               
+                  pggR     <= pggPixelData( 31 downto 27 ) & "000";
+                  pggG     <= pggPixelData( 26 downto 21 ) & "00";                  
+                  pggB     <= pggPixelData( 20 downto 16 ) & "000";
+
+                        
+                  pggState <= m3p3;
+
+               when m3p3 =>
+               
+                  pggPixelData <= gfxBufRamDOut;
+               
+                  if pgFetchEnable = '1' then
+
+                        pggState <= m3p0;
+
+                    else
+
+                        pggState <= m3post0;
+
+                    end if;
+                    
+                    
+               when m3post0 =>
+
+                  pggR     <= pggPixelData( 15 downto 11 ) & "000";
+                  pggG     <= pggPixelData( 10 downto 5  ) & "00";                  
+                  pggB     <= pggPixelData( 4  downto 0  ) & "000";
+
+                  pggState <= m3post1;
+                  
+               when m3post1 =>
+               
+                  pggState <= m3post2;
+                  
+               when m3post2 =>
+
+                  pggR     <= pggPixelData( 31 downto 27 ) & "000";
+                  pggG     <= pggPixelData( 26 downto 21 ) & "00";                  
+                  pggB     <= pggPixelData( 20 downto 16 ) & "000";
+
+
+                  pggState <= m3post3;
+                  
+               when m3post3 =>
+
+                  pggState <= m3hblank;
+               
+               when m3hblank =>
+               
+                  --inc line counter
+                  pggLineCounter <= pggLineCounter + 1;
+               
+                  pggR <= ( others => '0' );
+                  pggG <= ( others => '0' );
+                  pggB <= ( others => '0' );
+                  
+                  pggState <= m3pre0;
                
                
                when others =>
