@@ -89,5 +89,5 @@ clean:
 	rm -f ../gfxLib/*.o
 
 send: $(TARGET).rec
-	srecsend $(TARGET).rec com8 460800
+	srecsend $(TARGET).rec com9 460800
 	
