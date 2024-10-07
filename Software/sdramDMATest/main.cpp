@@ -287,9 +287,10 @@ int main()
    //bsp->videoMuxMode = 0x04; 
 
    //80 column txt over gfx 320x240
-   bsp->videoMuxMode = _VIDEOMODE_320_TEXT80_OVER_GFX;
+   bsp->videoMuxMode = _VIDEOMODE_320_TEXT80_60_OVER_GFX;
 
-   displayRam = ( unsigned short * )0x6d40;
+   //displayRam = ( unsigned short * )0x6d40;
+   displayRam = ( unsigned short * )0x5a80;
    
    screenIndex = 0;  
    

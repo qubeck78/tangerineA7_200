@@ -11,8 +11,8 @@ Disassembly of section .text:
 3000000c:	00000013          	nop
 
 30000010 <start>:
-30000010:	00007137          	lui	sp,0x7
-30000014:	d4010113          	addi	sp,sp,-704 # 6d40 <stackPointer>
+30000010:	00006137          	lui	sp,0x6
+30000014:	a8010113          	addi	sp,sp,-1408 # 5a80 <stackPointer>
 30000018:	ff010113          	addi	sp,sp,-16
 3000001c:	00012023          	sw	zero,0(sp)
 30000020:	00012223          	sw	zero,4(sp)
@@ -223,7 +223,7 @@ Disassembly of section .text:
 30000344:	02000937          	lui	s2,0x2000
 30000348:	ea840413          	addi	s0,s0,-344 # 30033ea8 <fileNameBuf1>
 3000034c:	200100ef          	jal	ra,3001054c <_Z8toPrintFP15_tgfTextOverlayPcz>
-30000350:	14090913          	addi	s2,s2,320 # 2000140 <stackPointer+0x1ff9400>
+30000350:	14090913          	addi	s2,s2,320 # 2000140 <stackPointer+0x1ffa6c0>
 30000354:	0f000a13          	li	s4,240
 30000358:	00100593          	li	a1,1
 3000035c:	11242023          	sw	s2,256(s0)
@@ -264,7 +264,7 @@ Disassembly of section .text:
 300003e8:	13242023          	sw	s2,288(s0)
 300003ec:	13442223          	sw	s4,292(s0)
 300003f0:	00100593          	li	a1,1
-300003f4:	40050513          	addi	a0,a0,1024 # 3c400 <stackPointer+0x356c0>
+300003f4:	40050513          	addi	a0,a0,1024 # 3c400 <stackPointer+0x36980>
 300003f8:	12041423          	sh	zero,296(s0)
 300003fc:	7100d0ef          	jal	ra,3000db0c <_Z7osAllocmm>
 30000400:	12445703          	lhu	a4,292(s0)
@@ -1209,7 +1209,7 @@ Disassembly of section .text:
 30001274:	300327b7          	lui	a5,0x30032
 30001278:	00062503          	lw	a0,0(a2)
 3000127c:	00010637          	lui	a2,0x10
-30001280:	fff60813          	addi	a6,a2,-1 # ffff <stackPointer+0x92bf>
+30001280:	fff60813          	addi	a6,a2,-1 # ffff <stackPointer+0xa57f>
 30001284:	4407a583          	lw	a1,1088(a5) # 30032440 <_ZL14HIDKeysShifted+0x2724>
 30001288:	0106f6b3          	and	a3,a3,a6
 3000128c:	0116e6b3          	or	a3,a3,a7
@@ -1231,7 +1231,7 @@ Disassembly of section .text:
 300012cc:	0005a503          	lw	a0,0(a1)
 300012d0:	4407a583          	lw	a1,1088(a5) # 30032440 <_ZL14HIDKeysShifted+0x2724>
 300012d4:	000107b7          	lui	a5,0x10
-300012d8:	fff78813          	addi	a6,a5,-1 # ffff <stackPointer+0x92bf>
+300012d8:	fff78813          	addi	a6,a5,-1 # ffff <stackPointer+0xa57f>
 300012dc:	010d7d33          	and	s10,s10,a6
 300012e0:	00cd6d33          	or	s10,s10,a2
 300012e4:	1fd2b0ef          	jal	ra,3002cce0 <__mulsf3>
@@ -1248,7 +1248,7 @@ Disassembly of section .text:
 30001310:	2242c0ef          	jal	ra,3002d534 <__fixsfsi>
 30001314:	00c12603          	lw	a2,12(sp)
 30001318:	000107b7          	lui	a5,0x10
-3000131c:	fff78813          	addi	a6,a5,-1 # ffff <stackPointer+0x92bf>
+3000131c:	fff78813          	addi	a6,a5,-1 # ffff <stackPointer+0xa57f>
 30001320:	02812783          	lw	a5,40(sp)
 30001324:	01051513          	slli	a0,a0,0x10
 30001328:	01067633          	and	a2,a2,a6
@@ -1732,7 +1732,7 @@ Disassembly of section .text:
 30001a98:	4447a783          	lw	a5,1092(a5) # 30032444 <_ZL14HIDKeysShifted+0x2728>
 30001a9c:	00361b93          	slli	s7,a2,0x3
 30001aa0:	000106b7          	lui	a3,0x10
-30001aa4:	fff68693          	addi	a3,a3,-1 # ffff <stackPointer+0x92bf>
+30001aa4:	fff68693          	addi	a3,a3,-1 # ffff <stackPointer+0xa57f>
 30001aa8:	00cb8bb3          	add	s7,s7,a2
 30001aac:	00f12823          	sw	a5,16(sp)
 30001ab0:	30032637          	lui	a2,0x30032
@@ -1753,7 +1753,7 @@ Disassembly of section .text:
 30001aec:	d3070793          	addi	a5,a4,-720 # 30036d30 <modctx+0xc>
 30001af0:	002b9b93          	slli	s7,s7,0x2
 30001af4:	00f12e23          	sw	a5,28(sp)
-30001af8:	be860793          	addi	a5,a2,-1048 # be8 <stackPointer-0x6158>
+30001af8:	be860793          	addi	a5,a2,-1048 # be8 <stackPointer-0x4e98>
 30001afc:	018b8bb3          	add	s7,s7,s8
 30001b00:	00f12223          	sw	a5,4(sp)
 30001b04:	00d12a23          	sw	a3,20(sp)
@@ -1867,7 +1867,7 @@ Disassembly of section .text:
 30001cb4:	00050993          	mv	s3,a0
 30001cb8:	07d2b0ef          	jal	ra,3002d534 <__fixsfsi>
 30001cbc:	000017b7          	lui	a5,0x1
-30001cc0:	dab78793          	addi	a5,a5,-597 # dab <stackPointer-0x5f95>
+30001cc0:	dab78793          	addi	a5,a5,-597 # dab <stackPointer-0x4cd5>
 30001cc4:	00f50533          	add	a0,a0,a5
 30001cc8:	00412783          	lw	a5,4(sp)
 30001ccc:	01051513          	slli	a0,a0,0x10
@@ -1948,7 +1948,7 @@ Disassembly of section .text:
 30001df0:	c39ff0ef          	jal	ra,30001a28 <_Z10objvCalc3dP10_tgfBitmap>
 30001df4:	30034a37          	lui	s4,0x30034
 30001df8:	000107b7          	lui	a5,0x10
-30001dfc:	fff78793          	addi	a5,a5,-1 # ffff <stackPointer+0x92bf>
+30001dfc:	fff78793          	addi	a5,a5,-1 # ffff <stackPointer+0xa57f>
 30001e00:	0ef00713          	li	a4,239
 30001e04:	13f00693          	li	a3,319
 30001e08:	00000613          	li	a2,0
@@ -2585,9 +2585,9 @@ Disassembly of section .text:
 300027c4:	00001937          	lui	s2,0x1
 300027c8:	00003cb7          	lui	s9,0x3
 300027cc:	010a9a93          	slli	s5,s5,0x10
-300027d0:	db090913          	addi	s2,s2,-592 # db0 <stackPointer-0x5f90>
+300027d0:	db090913          	addi	s2,s2,-592 # db0 <stackPointer-0x4cd0>
 300027d4:	00007d37          	lui	s10,0x7
-300027d8:	972c8793          	addi	a5,s9,-1678 # 2972 <stackPointer-0x43ce>
+300027d8:	972c8793          	addi	a5,s9,-1678 # 2972 <stackPointer-0x310e>
 300027dc:	010ada93          	srli	s5,s5,0x10
 300027e0:	00050993          	mv	s3,a0
 300027e4:	11450493          	addi	s1,a0,276
@@ -2595,7 +2595,7 @@ Disassembly of section .text:
 300027ec:	00000413          	li	s0,0
 300027f0:	02500c13          	li	s8,37
 300027f4:	fff00b93          	li	s7,-1
-300027f8:	964d0d13          	addi	s10,s10,-1692 # 6964 <stackPointer-0x3dc>
+300027f8:	964d0d13          	addi	s10,s10,-1692 # 6964 <stackPointer+0xee4>
 300027fc:	00f11723          	sh	a5,14(sp)
 30002800:	0680006f          	j	30002868 <_Z28uiDrawSelectorWindowContentsP10_tselector+0xfc>
 30002804:	0004c783          	lbu	a5,0(s1)
@@ -2786,7 +2786,7 @@ Disassembly of section .text:
 30002ae0:	08178793          	addi	a5,a5,129
 30002ae4:	fee79ce3          	bne	a5,a4,30002adc <_Z38uiReadDirAndFillSelectorWindowContentsP10_tselector+0x40>
 30002ae8:	00001537          	lui	a0,0x1
-30002aec:	db050513          	addi	a0,a0,-592 # db0 <stackPointer-0x5f90>
+30002aec:	db050513          	addi	a0,a0,-592 # db0 <stackPointer-0x4cd0>
 30002af0:	00261613          	slli	a2,a2,0x2
 30002af4:	00000593          	li	a1,0
 30002af8:	00a40533          	add	a0,s0,a0
@@ -3091,7 +3091,7 @@ Disassembly of section .text:
 30002f94:	ff010113          	addi	sp,sp,-16
 30002f98:	00912223          	sw	s1,4(sp)
 30002f9c:	000014b7          	lui	s1,0x1
-30002fa0:	88048613          	addi	a2,s1,-1920 # 880 <stackPointer-0x64c0>
+30002fa0:	88048613          	addi	a2,s1,-1920 # 880 <stackPointer-0x5200>
 30002fa4:	00000593          	li	a1,0
 30002fa8:	00812423          	sw	s0,8(sp)
 30002fac:	00112623          	sw	ra,12(sp)
@@ -3099,10 +3099,10 @@ Disassembly of section .text:
 30002fb4:	16c150ef          	jal	ra,30018120 <memset>
 30002fb8:	0000b6b7          	lui	a3,0xb
 30002fbc:	00010737          	lui	a4,0x10
-30002fc0:	c4468693          	addi	a3,a3,-956 # ac44 <stackPointer+0x3f04>
+30002fc0:	c4468693          	addi	a3,a3,-956 # ac44 <stackPointer+0x51c4>
 30002fc4:	6ad42e23          	sw	a3,1724(s0)
 30002fc8:	009407b3          	add	a5,s0,s1
-30002fcc:	00170693          	addi	a3,a4,1 # 10001 <stackPointer+0x92c1>
+30002fcc:	00170693          	addi	a3,a4,1 # 10001 <stackPointer+0xa581>
 30002fd0:	01070713          	addi	a4,a4,16
 30002fd4:	86d7ac23          	sw	a3,-1928(a5)
 30002fd8:	86e7ae23          	sw	a4,-1924(a5)
@@ -3122,7 +3122,7 @@ Disassembly of section .text:
 30003008:	00c7c863          	blt	a5,a2,30003018 <hxcmod_setcfg+0x1c>
 3000300c:	000017b7          	lui	a5,0x1
 30003010:	00f507b3          	add	a5,a0,a5
-30003014:	86c79d23          	sh	a2,-1926(a5) # 87a <stackPointer-0x64c6>
+30003014:	86c79d23          	sh	a2,-1926(a5) # 87a <stackPointer-0x5206>
 30003018:	000017b7          	lui	a5,0x1
 3000301c:	00f50533          	add	a0,a0,a5
 30003020:	00068a63          	beqz	a3,30003034 <hxcmod_setcfg+0x38>
@@ -3160,13 +3160,13 @@ Disassembly of section .text:
 30003098:	00058713          	mv	a4,a1
 3000309c:	43c50813          	addi	a6,a0,1084
 300030a0:	00072683          	lw	a3,0(a4)
-300030a4:	00478793          	addi	a5,a5,4 # 1004 <stackPointer-0x5d3c>
+300030a4:	00478793          	addi	a5,a5,4 # 1004 <stackPointer-0x4a7c>
 300030a8:	00470713          	addi	a4,a4,4
 300030ac:	fed7ae23          	sw	a3,-4(a5)
 300030b0:	ff0798e3          	bne	a5,a6,300030a0 <hxcmod_load+0x58>
 300030b4:	000018b7          	lui	a7,0x1
 300030b8:	011508b3          	add	a7,a0,a7
-300030bc:	86089823          	sh	zero,-1936(a7) # 870 <stackPointer-0x64d0>
+300030bc:	86089823          	sh	zero,-1936(a7) # 870 <stackPointer-0x5210>
 300030c0:	00060493          	mv	s1,a2
 300030c4:	43854603          	lbu	a2,1080(a0)
 300030c8:	3002e337          	lui	t1,0x3002e
@@ -3291,7 +3291,7 @@ Disassembly of section .text:
 300032a4:	0036f693          	andi	a3,a3,3
 300032a8:	40069063          	bnez	a3,300036a8 <hxcmod_load+0x660>
 300032ac:	2e4b37b7          	lui	a5,0x2e4b3
-300032b0:	e4d78793          	addi	a5,a5,-435 # 2e4b2e4d <stackPointer+0x2e4ac10d>
+300032b0:	e4d78793          	addi	a5,a5,-435 # 2e4b2e4d <stackPointer+0x2e4ad3cd>
 300032b4:	42f42c23          	sw	a5,1080(s0)
 300032b8:	1d640993          	addi	s3,s0,470
 300032bc:	00098593          	mv	a1,s3
@@ -3305,7 +3305,7 @@ Disassembly of section .text:
 300032dc:	000017b7          	lui	a5,0x1
 300032e0:	00400713          	li	a4,4
 300032e4:	00f407b3          	add	a5,s0,a5
-300032e8:	86e79823          	sh	a4,-1936(a5) # 870 <stackPointer-0x64d0>
+300032e8:	86e79823          	sh	a4,-1936(a5) # 870 <stackPointer-0x5210>
 300032ec:	25890993          	addi	s3,s2,600
 300032f0:	00400713          	li	a4,4
 300032f4:	009904b3          	add	s1,s2,s1
@@ -3406,7 +3406,7 @@ Disassembly of section .text:
 30003470:	07d00793          	li	a5,125
 30003474:	6cf403a3          	sb	a5,1735(s0)
 30003478:	0361f7b7          	lui	a5,0x361f
-3000347c:	0e078793          	addi	a5,a5,224 # 361f0e0 <stackPointer+0x36183a0>
+3000347c:	0e078793          	addi	a5,a5,224 # 361f0e0 <stackPointer+0x3619660>
 30003480:	6c042023          	sw	zero,1728(s0)
 30003484:	00c40633          	add	a2,s0,a2
 30003488:	02d7d7b3          	divu	a5,a5,a3
@@ -3419,7 +3419,7 @@ Disassembly of section .text:
 300034a4:	6cb42423          	sw	a1,1736(s0)
 300034a8:	00679793          	slli	a5,a5,0x6
 300034ac:	6cf42e23          	sw	a5,1756(s0)
-300034b0:	87065783          	lhu	a5,-1936(a2) # 870 <stackPointer-0x64d0>
+300034b0:	87065783          	lhu	a5,-1936(a2) # 870 <stackPointer-0x5210>
 300034b4:	02078e63          	beqz	a5,300034f0 <hxcmod_load+0x4a8>
 300034b8:	72040123          	sb	zero,1826(s0)
 300034bc:	72041023          	sh	zero,1824(s0)
@@ -3456,7 +3456,7 @@ Disassembly of section .text:
 30003538:	010787b3          	add	a5,a5,a6
 3000353c:	00279793          	slli	a5,a5,0x2
 30003540:	00f307b3          	add	a5,t1,a5
-30003544:	0017c503          	lbu	a0,1(a5) # 1001 <stackPointer-0x5d3f>
+30003544:	0017c503          	lbu	a0,1(a5) # 1001 <stackPointer-0x4a7f>
 30003548:	0007cf83          	lbu	t6,0(a5)
 3000354c:	0027c983          	lbu	s3,2(a5)
 30003550:	0037c383          	lbu	t2,3(a5)
@@ -3577,7 +3577,7 @@ Disassembly of section .text:
 30003714:	18058463          	beqz	a1,3000389c <hxcmod_fillbuffer+0x1c4>
 30003718:	000017b7          	lui	a5,0x1
 3000371c:	00f507b3          	add	a5,a0,a5
-30003720:	8727d703          	lhu	a4,-1934(a5) # 872 <stackPointer-0x64ce>
+30003720:	8727d703          	lhu	a4,-1934(a5) # 872 <stackPointer-0x520e>
 30003724:	00050b93          	mv	s7,a0
 30003728:	00060d13          	mv	s10,a2
 3000372c:	2a0700e3          	beqz	a4,300041cc <hxcmod_fillbuffer+0xaf4>
@@ -3812,7 +3812,7 @@ Disassembly of section .text:
 30003ac0:	00600f13          	li	t5,6
 30003ac4:	00500e93          	li	t4,5
 30003ac8:	03f00993          	li	s3,63
-30003acc:	daf70913          	addi	s2,a4,-593 # 4daf <stackPointer-0x1f91>
+30003acc:	daf70913          	addi	s2,a4,-593 # 4daf <stackPointer-0xcd1>
 30003ad0:	07100a93          	li	s5,113
 30003ad4:	03279703          	lh	a4,50(a5)
 30003ad8:	02070463          	beqz	a4,30003b00 <hxcmod_fillbuffer+0x428>
@@ -3921,13 +3921,13 @@ Disassembly of section .text:
 30003c74:	01071513          	slli	a0,a4,0x10
 30003c78:	00005737          	lui	a4,0x5
 30003c7c:	01055513          	srli	a0,a0,0x10
-30003c80:	e2070713          	addi	a4,a4,-480 # 4e20 <stackPointer-0x1f20>
+30003c80:	e2070713          	addi	a4,a4,-480 # 4e20 <stackPointer-0xc60>
 30003c84:	7ea77463          	bgeu	a4,a0,3000446c <hxcmod_fillbuffer+0xd94>
 30003c88:	00005737          	lui	a4,0x5
-30003c8c:	e2070713          	addi	a4,a4,-480 # 4e20 <stackPointer-0x1f20>
+30003c8c:	e2070713          	addi	a4,a4,-480 # 4e20 <stackPointer-0xc60>
 30003c90:	04e79023          	sh	a4,64(a5)
 30003c94:	00005737          	lui	a4,0x5
-30003c98:	e2070513          	addi	a0,a4,-480 # 4e20 <stackPointer-0x1f20>
+30003c98:	e2070513          	addi	a0,a4,-480 # 4e20 <stackPointer-0xc60>
 30003c9c:	ef9ff06f          	j	30003b94 <hxcmod_fillbuffer+0x4bc>
 30003ca0:	0447c603          	lbu	a2,68(a5)
 30003ca4:	ee0606e3          	beqz	a2,30003b90 <hxcmod_fillbuffer+0x4b8>
@@ -4049,7 +4049,7 @@ Disassembly of section .text:
 30003e74:	00c78633          	add	a2,a5,a2
 30003e78:	bc0704e3          	beqz	a4,30003a40 <hxcmod_fillbuffer+0x368>
 30003e7c:	00001737          	lui	a4,0x1
-30003e80:	f0070413          	addi	s0,a4,-256 # f00 <stackPointer-0x5e40>
+30003e80:	f0070413          	addi	s0,a4,-256 # f00 <stackPointer-0x4b80>
 30003e84:	01412783          	lw	a5,20(sp)
 30003e88:	3002e737          	lui	a4,0x3002e
 30003e8c:	02812983          	lw	s3,40(sp)
@@ -4697,7 +4697,7 @@ Disassembly of section .text:
 30004884:	0000c537          	lui	a0,0xc
 30004888:	300387b7          	lui	a5,0x30038
 3000488c:	00200593          	li	a1,2
-30004890:	b8050513          	addi	a0,a0,-1152 # bb80 <stackPointer+0x4e40>
+30004890:	b8050513          	addi	a0,a0,-1152 # bb80 <stackPointer+0x6100>
 30004894:	62e7a223          	sw	a4,1572(a5) # 30038624 <audioSupported>
 30004898:	78c130ef          	jal	ra,30018024 <_Z16gfAudioConfiguremm>
 3000489c:	00100593          	li	a1,1
@@ -4724,7 +4724,7 @@ Disassembly of section .text:
 300048f0:	d2448513          	addi	a0,s1,-732
 300048f4:	00000693          	li	a3,0
 300048f8:	00000613          	li	a2,0
-300048fc:	dc058593          	addi	a1,a1,-576 # 5dc0 <stackPointer-0xf80>
+300048fc:	dc058593          	addi	a1,a1,-576 # 5dc0 <stackPointer+0x340>
 30004900:	efcfe0ef          	jal	ra,30002ffc <hxcmod_setcfg>
 30004904:	00040513          	mv	a0,s0
 30004908:	00c12083          	lw	ra,12(sp)
@@ -4760,7 +4760,7 @@ Disassembly of section .text:
 30004978:	000065b7          	lui	a1,0x6
 3000497c:	00000693          	li	a3,0
 30004980:	00000613          	li	a2,0
-30004984:	dc058593          	addi	a1,a1,-576 # 5dc0 <stackPointer-0xf80>
+30004984:	dc058593          	addi	a1,a1,-576 # 5dc0 <stackPointer+0x340>
 30004988:	d24b0513          	addi	a0,s6,-732
 3000498c:	e70fe0ef          	jal	ra,30002ffc <hxcmod_setcfg>
 30004990:	30030537          	lui	a0,0x30030
@@ -5203,7 +5203,7 @@ Disassembly of section .text:
 3000502c:	00800a13          	li	s4,8
 30005030:	01900b93          	li	s7,25
 30005034:	01c00c93          	li	s9,28
-30005038:	00198993          	addi	s3,s3,1 # 3ff6001 <stackPointer+0x3fef2c1>
+30005038:	00198993          	addi	s3,s3,1 # 3ff6001 <stackPointer+0x3ff0581>
 3000503c:	00000613          	li	a2,0
 30005040:	02010593          	addi	a1,sp,32
 30005044:	0bc40513          	addi	a0,s0,188 # 300300bc <_ZL14HIDKeysShifted+0x3a0>
@@ -5370,7 +5370,7 @@ Disassembly of section .text:
 300052b8:	00800b13          	li	s6,8
 300052bc:	01900c93          	li	s9,25
 300052c0:	01c00d13          	li	s10,28
-300052c4:	001a8a93          	addi	s5,s5,1 # 3ff6001 <stackPointer+0x3fef2c1>
+300052c4:	001a8a93          	addi	s5,s5,1 # 3ff6001 <stackPointer+0x3ff0581>
 300052c8:	00000613          	li	a2,0
 300052cc:	02010593          	addi	a1,sp,32
 300052d0:	0d440513          	addi	a0,s0,212 # 300300d4 <_ZL14HIDKeysShifted+0x3b8>
@@ -5972,7 +5972,7 @@ Disassembly of section .text:
 30005c00:	f4010113          	addi	sp,sp,-192
 30005c04:	000715b7          	lui	a1,0x71
 30005c08:	0b312623          	sw	s3,172(sp)
-30005c0c:	80058593          	addi	a1,a1,-2048 # 70800 <stackPointer+0x69ac0>
+30005c0c:	80058593          	addi	a1,a1,-2048 # 70800 <stackPointer+0x6ad80>
 30005c10:	00050993          	mv	s3,a0
 30005c14:	00000513          	li	a0,0
 30005c18:	0a112e23          	sw	ra,188(sp)
@@ -6157,7 +6157,7 @@ Disassembly of section .text:
 30005edc:	30033437          	lui	s0,0x30033
 30005ee0:	4f442703          	lw	a4,1268(s0) # 300334f4 <bsp>
 30005ee4:	0000f6b7          	lui	a3,0xf
-30005ee8:	12368693          	addi	a3,a3,291 # f123 <stackPointer+0x83e3>
+30005ee8:	12368693          	addi	a3,a3,291 # f123 <stackPointer+0x96a3>
 30005eec:	01c72783          	lw	a5,28(a4)
 30005ef0:	01c72703          	lw	a4,28(a4)
 30005ef4:	00112623          	sw	ra,12(sp)
@@ -6169,7 +6169,7 @@ Disassembly of section .text:
 30005f0c:	2f9070ef          	jal	ra,3000da04 <_Z11osAllocInitv>
 30005f10:	00780637          	lui	a2,0x780
 30005f14:	00100693          	li	a3,1
-30005f18:	ff060613          	addi	a2,a2,-16 # 77fff0 <stackPointer+0x7792b0>
+30005f18:	ff060613          	addi	a2,a2,-16 # 77fff0 <stackPointer+0x77a570>
 30005f1c:	200005b7          	lui	a1,0x20000
 30005f20:	00000513          	li	a0,0
 30005f24:	321070ef          	jal	ra,3000da44 <_Z14osAllocAddNodemPvmm>
@@ -6181,12 +6181,12 @@ Disassembly of section .text:
 30005f3c:	000087b7          	lui	a5,0x8
 30005f40:	00f42023          	sw	a5,0(s0)
 30005f44:	001e07b7          	lui	a5,0x1e0
-30005f48:	05078793          	addi	a5,a5,80 # 1e0050 <stackPointer+0x1d9310>
+30005f48:	05078793          	addi	a5,a5,80 # 1e0050 <stackPointer+0x1da5d0>
 30005f4c:	00f42223          	sw	a5,4(s0)
 30005f50:	00f00793          	li	a5,15
 30005f54:	00f40623          	sb	a5,12(s0)
-30005f58:	000077b7          	lui	a5,0x7
-30005f5c:	d4078793          	addi	a5,a5,-704 # 6d40 <stackPointer>
+30005f58:	000067b7          	lui	a5,0x6
+30005f5c:	a8078793          	addi	a5,a5,-1408 # 5a80 <stackPointer>
 30005f60:	00042423          	sw	zero,8(s0)
 30005f64:	5a450513          	addi	a0,a0,1444
 30005f68:	00f42a23          	sw	a5,20(s0)
@@ -6219,7 +6219,7 @@ Disassembly of section .text:
 30005fc8 <_Z8hexDigitPcc>:
 30005fc8:	00f5f593          	andi	a1,a1,15
 30005fcc:	00900713          	li	a4,9
-30005fd0:	05758793          	addi	a5,a1,87 # 20000057 <stackPointer+0x1fff9317>
+30005fd0:	05758793          	addi	a5,a1,87 # 20000057 <stackPointer+0x1fffa5d7>
 30005fd4:	00b76463          	bltu	a4,a1,30005fdc <_Z8hexDigitPcc+0x14>
 30005fd8:	03058793          	addi	a5,a1,48
 30005fdc:	000500a3          	sb	zero,1(a0)
@@ -6525,7 +6525,7 @@ Disassembly of section .text:
 3000643c:	0087a703          	lw	a4,8(a5)
 30006440:	01452703          	lw	a4,20(a0)
 30006444:	00001637          	lui	a2,0x1
-30006448:	38860613          	addi	a2,a2,904 # 1388 <stackPointer-0x59b8>
+30006448:	38860613          	addi	a2,a2,904 # 1388 <stackPointer-0x46f8>
 3000644c:	ffe77713          	andi	a4,a4,-2
 30006450:	00e52a23          	sw	a4,20(a0)
 30006454:	0ff00593          	li	a1,255
@@ -6759,7 +6759,7 @@ Disassembly of section .text:
 300067cc:	04abf663          	bgeu	s7,a0,30006818 <disk_initialize+0x1ec>
 300067d0:	00005ab7          	lui	s5,0x5
 300067d4:	3e800b13          	li	s6,1000
-300067d8:	e1fa8a93          	addi	s5,s5,-481 # 4e1f <stackPointer-0x1f21>
+300067d8:	e1fa8a93          	addi	s5,s5,-481 # 4e1f <stackPointer-0xc61>
 300067dc:	00000593          	li	a1,0
 300067e0:	0a900513          	li	a0,169
 300067e4:	bf9ff0ef          	jal	ra,300063dc <_ZL8send_cmdhm>
@@ -6782,7 +6782,7 @@ Disassembly of section .text:
 30006828:	f8e696e3          	bne	a3,a4,300067b4 <disk_initialize+0x188>
 3000682c:	00005ab7          	lui	s5,0x5
 30006830:	3e800b93          	li	s7,1000
-30006834:	e1fa8a93          	addi	s5,s5,-481 # 4e1f <stackPointer-0x1f21>
+30006834:	e1fa8a93          	addi	s5,s5,-481 # 4e1f <stackPointer-0xc61>
 30006838:	400005b7          	lui	a1,0x40000
 3000683c:	0a900513          	li	a0,169
 30006840:	b9dff0ef          	jal	ra,300063dc <_ZL8send_cmdhm>
@@ -6955,7 +6955,7 @@ Disassembly of section .text:
 30006acc:	0ff00913          	li	s2,255
 30006ad0:	7cf00493          	li	s1,1999
 30006ad4:	4e0a2783          	lw	a5,1248(s4) # 300334e0 <spi0>
-30006ad8:	388a8613          	addi	a2,s5,904 # 1388 <stackPointer-0x59b8>
+30006ad8:	388a8613          	addi	a2,s5,904 # 1388 <stackPointer-0x46f8>
 30006adc:	00c7a703          	lw	a4,12(a5)
 30006ae0:	00177713          	andi	a4,a4,1
 30006ae4:	fe070ce3          	beqz	a4,30006adc <disk_write+0x98>
@@ -6977,7 +6977,7 @@ Disassembly of section .text:
 30006b24:	fff60613          	addi	a2,a2,-1
 30006b28:	fa061ae3          	bnez	a2,30006adc <disk_write+0x98>
 30006b2c:	00001637          	lui	a2,0x1
-30006b30:	38860613          	addi	a2,a2,904 # 1388 <stackPointer-0x59b8>
+30006b30:	38860613          	addi	a2,a2,904 # 1388 <stackPointer-0x46f8>
 30006b34:	0ff00593          	li	a1,255
 30006b38:	7cf00693          	li	a3,1999
 30006b3c:	00c7a703          	lw	a4,12(a5)
@@ -7065,7 +7065,7 @@ Disassembly of section .text:
 30006c84:	30033a37          	lui	s4,0x30033
 30006c88:	4e0a2783          	lw	a5,1248(s4) # 300334e0 <spi0>
 30006c8c:	00001637          	lui	a2,0x1
-30006c90:	38860613          	addi	a2,a2,904 # 1388 <stackPointer-0x59b8>
+30006c90:	38860613          	addi	a2,a2,904 # 1388 <stackPointer-0x46f8>
 30006c94:	0ff00593          	li	a1,255
 30006c98:	7cf00693          	li	a3,1999
 30006c9c:	00c7a703          	lw	a4,12(a5)
@@ -7172,7 +7172,7 @@ Disassembly of section .text:
 30006e28:	4e07a783          	lw	a5,1248(a5) # 300334e0 <spi0>
 30006e2c:	01482703          	lw	a4,20(a6)
 30006e30:	00001637          	lui	a2,0x1
-30006e34:	38860613          	addi	a2,a2,904 # 1388 <stackPointer-0x59b8>
+30006e34:	38860613          	addi	a2,a2,904 # 1388 <stackPointer-0x46f8>
 30006e38:	ffe77713          	andi	a4,a4,-2
 30006e3c:	00e82a23          	sw	a4,20(a6)
 30006e40:	0ff00593          	li	a1,255
@@ -7303,7 +7303,7 @@ Disassembly of section .text:
 30007034:	00b70733          	add	a4,a4,a1
 30007038:	000015b7          	lui	a1,0x1
 3000703c:	00a51513          	slli	a0,a0,0xa
-30007040:	c0058593          	addi	a1,a1,-1024 # c00 <stackPointer-0x6140>
+30007040:	c0058593          	addi	a1,a1,-1024 # c00 <stackPointer-0x4e80>
 30007044:	00b575b3          	and	a1,a0,a1
 30007048:	00f6f693          	andi	a3,a3,15
 3000704c:	0078d893          	srli	a7,a7,0x7
@@ -7387,7 +7387,7 @@ Disassembly of section .text:
 30007174:	00279793          	slli	a5,a5,0x2
 30007178:	6b860613          	addi	a2,a2,1720 # 3002f6b8 <_ZL11periodtable+0x1200>
 3000717c:	00c787b3          	add	a5,a5,a2
-30007180:	0007a783          	lw	a5,0(a5) # 1000 <stackPointer-0x5d40>
+30007180:	0007a783          	lw	a5,0(a5) # 1000 <stackPointer-0x4a80>
 30007184:	00078067          	jr	a5
 30007188:	00161613          	slli	a2,a2,0x1
 3000718c:	00c70733          	add	a4,a4,a2
@@ -7560,7 +7560,7 @@ Disassembly of section .text:
 30007420:	06078063          	beqz	a5,30007480 <_ZL12get_fileinfoP3DIRP7FILINFO+0x248>
 30007424:	02055703          	lhu	a4,32(a0)
 30007428:	000107b7          	lui	a5,0x10
-3000742c:	fff78793          	addi	a5,a5,-1 # ffff <stackPointer+0x92bf>
+3000742c:	fff78793          	addi	a5,a5,-1 # ffff <stackPointer+0xa57f>
 30007430:	04f70863          	beq	a4,a5,30007480 <_ZL12get_fileinfoP3DIRP7FILINFO+0x248>
 30007434:	01c52903          	lw	s2,28(a0)
 30007438:	00095503          	lhu	a0,0(s2)
@@ -7856,9 +7856,9 @@ Disassembly of section .text:
 300078b0:	01000537          	lui	a0,0x1000
 300078b4:	01079793          	slli	a5,a5,0x10
 300078b8:	00e7e7b3          	or	a5,a5,a4
-300078bc:	fff50693          	addi	a3,a0,-1 # ffffff <stackPointer+0xff92bf>
+300078bc:	fff50693          	addi	a3,a0,-1 # ffffff <stackPointer+0xffa57f>
 300078c0:	00544537          	lui	a0,0x544
-300078c4:	14650713          	addi	a4,a0,326 # 544146 <stackPointer+0x53d406>
+300078c4:	14650713          	addi	a4,a0,326 # 544146 <stackPointer+0x53e6c6>
 300078c8:	00d7f7b3          	and	a5,a5,a3
 300078cc:	00000513          	li	a0,0
 300078d0:	02e78063          	beq	a5,a4,300078f0 <_ZL8check_fsP5FATFSm+0x98>
@@ -7986,13 +7986,13 @@ Disassembly of section .text:
 30007ab0:	02d658b3          	divu	a7,a2,a3
 30007ab4:	0ed66863          	bltu	a2,a3,30007ba4 <_ZL11chk_mountedPPKcPP5FATFSh+0x290>
 30007ab8:	00001637          	lui	a2,0x1
-30007abc:	ff560613          	addi	a2,a2,-11 # ff5 <stackPointer-0x5d4b>
+30007abc:	ff560613          	addi	a2,a2,-11 # ff5 <stackPointer-0x4a8b>
 30007ac0:	00950533          	add	a0,a0,s1
 30007ac4:	01048833          	add	a6,s1,a6
 30007ac8:	00288693          	addi	a3,a7,2
 30007acc:	17167e63          	bgeu	a2,a7,30007c48 <_ZL11chk_mountedPPKcPP5FATFSh+0x334>
 30007ad0:	00010637          	lui	a2,0x10
-30007ad4:	ff560613          	addi	a2,a2,-11 # fff5 <stackPointer+0x92b5>
+30007ad4:	ff560613          	addi	a2,a2,-11 # fff5 <stackPointer+0xa575>
 30007ad8:	00d42c23          	sw	a3,24(s0)
 30007adc:	03042423          	sw	a6,40(s0)
 30007ae0:	02a42023          	sw	a0,32(s0)
@@ -8394,7 +8394,7 @@ Disassembly of section .text:
 300080f8:	030ac783          	lbu	a5,48(s5)
 300080fc:	000016b7          	lui	a3,0x1
 30008100:	004a1713          	slli	a4,s4,0x4
-30008104:	ff068693          	addi	a3,a3,-16 # ff0 <stackPointer-0x5d50>
+30008104:	ff068693          	addi	a3,a3,-16 # ff0 <stackPointer-0x4a90>
 30008108:	00f7f793          	andi	a5,a5,15
 3000810c:	00d77733          	and	a4,a4,a3
 30008110:	00e7e7b3          	or	a5,a5,a4
@@ -8637,7 +8637,7 @@ Disassembly of section .text:
 300084ac:	0ff00493          	li	s1,255
 300084b0:	0e500913          	li	s2,229
 300084b4:	30030b37          	lui	s6,0x30030
-300084b8:	fffa0a13          	addi	s4,s4,-1 # ffff <stackPointer+0x92bf>
+300084b8:	fffa0a13          	addi	s4,s4,-1 # ffff <stackPointer+0xa57f>
 300084bc:	0fe00a93          	li	s5,254
 300084c0:	02cc2403          	lw	s0,44(s8)
 300084c4:	01940863          	beq	s0,s9,300084d4 <_ZL8dir_findP3DIR.part.7+0x74>
@@ -9270,7 +9270,7 @@ Disassembly of section .text:
 30008e80:	2a0c8463          	beqz	s9,30009128 <_ZL8dir_readP3DIR+0x2e8>
 30008e84:	00010ab7          	lui	s5,0x10
 30008e88:	00052d03          	lw	s10,0(a0)
-30008e8c:	fffa8793          	addi	a5,s5,-1 # ffff <stackPointer+0x92bf>
+30008e8c:	fffa8793          	addi	a5,s5,-1 # ffff <stackPointer+0xa57f>
 30008e90:	0ff00b13          	li	s6,255
 30008e94:	0ff00493          	li	s1,255
 30008e98:	0e500913          	li	s2,229
@@ -9718,8 +9718,8 @@ Disassembly of section .text:
 30009578:	00100b13          	li	s6,1
 3000957c:	00200c93          	li	s9,2
 30009580:	00300913          	li	s2,3
-30009584:	fffa0a13          	addi	s4,s4,-1 # fffffff <stackPointer+0xfff92bf>
-30009588:	fffa8a93          	addi	s5,s5,-1 # fff <stackPointer-0x5d41>
+30009584:	fffa0a13          	addi	s4,s4,-1 # fffffff <stackPointer+0xfffa57f>
+30009588:	fffa8a93          	addi	s5,s5,-1 # fff <stackPointer-0x4a81>
 3000958c:	0ef46463          	bltu	s0,a5,30009674 <_ZL12create_chainP5FATFSm+0x15c>
 30009590:	1b7b7c63          	bgeu	s6,s7,30009748 <_ZL12create_chainP5FATFSm+0x230>
 30009594:	04fce263          	bltu	s9,a5,300095d8 <_ZL12create_chainP5FATFSm+0xc0>
@@ -9838,7 +9838,7 @@ Disassembly of section .text:
 30009758:	0184a783          	lw	a5,24(s1)
 3000975c:	e2f47ee3          	bgeu	s0,a5,30009598 <_ZL12create_chainP5FATFSm+0x80>
 30009760:	10000637          	lui	a2,0x10000
-30009764:	fff60613          	addi	a2,a2,-1 # fffffff <stackPointer+0xfff92bf>
+30009764:	fff60613          	addi	a2,a2,-1 # fffffff <stackPointer+0xfffa57f>
 30009768:	00040593          	mv	a1,s0
 3000976c:	00048513          	mv	a0,s1
 30009770:	891fe0ef          	jal	ra,30008000 <_Z7put_fatP5FATFSmm.part.6>
@@ -9887,8 +9887,8 @@ Disassembly of section .text:
 30009814:	00100c13          	li	s8,1
 30009818:	00200b13          	li	s6,2
 3000981c:	00300a93          	li	s5,3
-30009820:	fff98993          	addi	s3,s3,-1 # fffffff <stackPointer+0xfff92bf>
-30009824:	fffa0a13          	addi	s4,s4,-1 # fff <stackPointer-0x5d41>
+30009820:	fff98993          	addi	s3,s3,-1 # fffffff <stackPointer+0xfffa57f>
+30009824:	fffa0a13          	addi	s4,s4,-1 # fff <stackPointer-0x4a81>
 30009828:	fff00b93          	li	s7,-1
 3000982c:	01842783          	lw	a5,24(s0)
 30009830:	18f4fa63          	bgeu	s1,a5,300099c4 <_ZL12remove_chainP5FATFSm.part.8+0x1f0>
@@ -10418,7 +10418,7 @@ Disassembly of section .text:
 3000a058:	ce0514e3          	bnez	a0,30009d40 <_ZL12dir_registerP3DIR+0x36c>
 3000a05c:	018d2783          	lw	a5,24(s10)
 3000a060:	00010ab7          	lui	s5,0x10
-3000a064:	fffa8493          	addi	s1,s5,-1 # ffff <stackPointer+0x92bf>
+3000a064:	fffa8493          	addi	s1,s5,-1 # ffff <stackPointer+0xa57f>
 3000a068:	0007c683          	lbu	a3,0(a5)
 3000a06c:	0017c583          	lbu	a1,1(a5)
 3000a070:	0027c603          	lbu	a2,2(a5)
@@ -10964,7 +10964,7 @@ Disassembly of section .text:
 3000a8c8:	030ac783          	lbu	a5,48(s5)
 3000a8cc:	000016b7          	lui	a3,0x1
 3000a8d0:	00491713          	slli	a4,s2,0x4
-3000a8d4:	ff068693          	addi	a3,a3,-16 # ff0 <stackPointer-0x5d50>
+3000a8d4:	ff068693          	addi	a3,a3,-16 # ff0 <stackPointer-0x4a90>
 3000a8d8:	00f7f793          	andi	a5,a5,15
 3000a8dc:	00d77733          	and	a4,a4,a3
 3000a8e0:	00e7e7b3          	or	a5,a5,a4
@@ -12495,7 +12495,7 @@ Disassembly of section .text:
 3000c054:	10000b37          	lui	s6,0x10000
 3000c058:	00000813          	li	a6,0
 3000c05c:	00000a13          	li	s4,0
-3000c060:	fffb0b13          	addi	s6,s6,-1 # fffffff <stackPointer+0xfff92bf>
+3000c060:	fffb0b13          	addi	s6,s6,-1 # fffffff <stackPointer+0xfffa57f>
 3000c064:	0440006f          	j	3000c0a8 <f_getfree+0x104>
 3000c068:	00174603          	lbu	a2,1(a4)
 3000c06c:	00074583          	lbu	a1,0(a4)
@@ -12688,7 +12688,7 @@ Disassembly of section .text:
 3000c350:	08b97263          	bgeu	s2,a1,3000c3d4 <f_truncate+0x1fc>
 3000c354:	08f5f063          	bgeu	a1,a5,3000c3d4 <f_truncate+0x1fc>
 3000c358:	10000637          	lui	a2,0x10000
-3000c35c:	fff60613          	addi	a2,a2,-1 # fffffff <stackPointer+0xfff92bf>
+3000c35c:	fff60613          	addi	a2,a2,-1 # fffffff <stackPointer+0xfffa57f>
 3000c360:	ca1fb0ef          	jal	ra,30008000 <_Z7put_fatP5FATFSmm.part.6>
 3000c364:	02051063          	bnez	a0,3000c384 <f_truncate+0x1ac>
 3000c368:	06997663          	bgeu	s2,s1,3000c3d4 <f_truncate+0x1fc>
@@ -12808,7 +12808,7 @@ Disassembly of section .text:
 3000c528:	eee51ee3          	bne	a0,a4,3000c424 <f_unlink+0x34>
 3000c52c:	04815583          	lhu	a1,72(sp)
 3000c530:	000107b7          	lui	a5,0x10
-3000c534:	fff78793          	addi	a5,a5,-1 # ffff <stackPointer+0x92bf>
+3000c534:	fff78793          	addi	a5,a5,-1 # ffff <stackPointer+0xa57f>
 3000c538:	02e15483          	lhu	s1,46(sp)
 3000c53c:	00f59463          	bne	a1,a5,3000c544 <f_unlink+0x154>
 3000c540:	00048593          	mv	a1,s1
@@ -13341,7 +13341,7 @@ Disassembly of section .text:
 3000cd5c:	14079063          	bnez	a5,3000ce9c <f_rename+0x2a8>
 3000cd60:	05815583          	lhu	a1,88(sp)
 3000cd64:	000107b7          	lui	a5,0x10
-3000cd68:	fff78793          	addi	a5,a5,-1 # ffff <stackPointer+0x92bf>
+3000cd68:	fff78793          	addi	a5,a5,-1 # ffff <stackPointer+0xa57f>
 3000cd6c:	03e15a03          	lhu	s4,62(sp)
 3000cd70:	00f59463          	bne	a1,a5,3000cd78 <f_rename+0x184>
 3000cd74:	000a0593          	mv	a1,s4
@@ -13559,25 +13559,25 @@ Disassembly of section .text:
 3000d0bc:	0007d737          	lui	a4,0x7d
 3000d0c0:	00e7f0e3          	bgeu	a5,a4,3000d8c0 <f_mkfs+0x8cc>
 3000d0c4:	0003e737          	lui	a4,0x3e
-3000d0c8:	7ff70713          	addi	a4,a4,2047 # 3e7ff <stackPointer+0x37abf>
+3000d0c8:	7ff70713          	addi	a4,a4,2047 # 3e7ff <stackPointer+0x38d7f>
 3000d0cc:	02f762e3          	bltu	a4,a5,3000d8f0 <f_mkfs+0x8fc>
 3000d0d0:	0001f737          	lui	a4,0x1f
-3000d0d4:	3ff70713          	addi	a4,a4,1023 # 1f3ff <stackPointer+0x186bf>
+3000d0d4:	3ff70713          	addi	a4,a4,1023 # 1f3ff <stackPointer+0x1997f>
 3000d0d8:	02f760e3          	bltu	a4,a5,3000d8f8 <f_mkfs+0x904>
 3000d0dc:	00010737          	lui	a4,0x10
-3000d0e0:	9ff70713          	addi	a4,a4,-1537 # f9ff <stackPointer+0x8cbf>
+3000d0e0:	9ff70713          	addi	a4,a4,-1537 # f9ff <stackPointer+0x9f7f>
 3000d0e4:	00f76ee3          	bltu	a4,a5,3000d900 <f_mkfs+0x90c>
 3000d0e8:	00008737          	lui	a4,0x8
-3000d0ec:	cff70713          	addi	a4,a4,-769 # 7cff <stackPointer+0xfbf>
+3000d0ec:	cff70713          	addi	a4,a4,-769 # 7cff <stackPointer+0x227f>
 3000d0f0:	50f76063          	bltu	a4,a5,3000d5f0 <f_mkfs+0x5fc>
 3000d0f4:	00004737          	lui	a4,0x4
-3000d0f8:	e7f70713          	addi	a4,a4,-385 # 3e7f <stackPointer-0x2ec1>
+3000d0f8:	e7f70713          	addi	a4,a4,-385 # 3e7f <stackPointer-0x1c01>
 3000d0fc:	00f766e3          	bltu	a4,a5,3000d908 <f_mkfs+0x914>
 3000d100:	00002737          	lui	a4,0x2
-3000d104:	f3f70713          	addi	a4,a4,-193 # 1f3f <stackPointer-0x4e01>
+3000d104:	f3f70713          	addi	a4,a4,-193 # 1f3f <stackPointer-0x3b41>
 3000d108:	00f764e3          	bltu	a4,a5,3000d910 <f_mkfs+0x91c>
 3000d10c:	00001737          	lui	a4,0x1
-3000d110:	f9f70713          	addi	a4,a4,-97 # f9f <stackPointer-0x5da1>
+3000d110:	f9f70713          	addi	a4,a4,-97 # f9f <stackPointer-0x4ae1>
 3000d114:	00f73733          	sltu	a4,a4,a5
 3000d118:	00174713          	xori	a4,a4,1
 3000d11c:	00970713          	addi	a4,a4,9
@@ -13592,7 +13592,7 @@ Disassembly of section .text:
 3000d140:	00078913          	mv	s2,a5
 3000d144:	00100a93          	li	s5,1
 3000d148:	00001737          	lui	a4,0x1
-3000d14c:	ff570713          	addi	a4,a4,-11 # ff5 <stackPointer-0x5d4b>
+3000d14c:	ff570713          	addi	a4,a4,-11 # ff5 <stackPointer-0x4a8b>
 3000d150:	4b276463          	bltu	a4,s2,3000d5f8 <f_mkfs+0x604>
 3000d154:	00191713          	slli	a4,s2,0x1
 3000d158:	01270933          	add	s2,a4,s2
@@ -13635,7 +13635,7 @@ Disassembly of section .text:
 3000d1ec:	035a5a33          	divu	s4,s4,s5
 3000d1f0:	00eb1863          	bne	s6,a4,3000d200 <f_mkfs+0x20c>
 3000d1f4:	00001737          	lui	a4,0x1
-3000d1f8:	ff570713          	addi	a4,a4,-11 # ff5 <stackPointer-0x5d4b>
+3000d1f8:	ff570713          	addi	a4,a4,-11 # ff5 <stackPointer-0x4a8b>
 3000d1fc:	45477c63          	bgeu	a4,s4,3000d654 <f_mkfs+0x660>
 3000d200:	00f12623          	sw	a5,12(sp)
 3000d204:	03040993          	addi	s3,s0,48
@@ -13653,10 +13653,10 @@ Disassembly of section .text:
 3000d234:	00fb8733          	add	a4,s7,a5
 3000d238:	1ec40723          	sb	a2,494(s0)
 3000d23c:	1e0408a3          	sb	zero,497(s0)
-3000d240:	3ff68693          	addi	a3,a3,1023 # fb03ff <stackPointer+0xfa96bf>
+3000d240:	3ff68693          	addi	a3,a3,1023 # fb03ff <stackPointer+0xfaa97f>
 3000d244:	5ee6ee63          	bltu	a3,a4,3000d840 <f_mkfs+0x84c>
 3000d248:	000046b7          	lui	a3,0x4
-3000d24c:	ec168693          	addi	a3,a3,-319 # 3ec1 <stackPointer-0x2e7f>
+3000d24c:	ec168693          	addi	a3,a3,-319 # 3ec1 <stackPointer-0x1bbf>
 3000d250:	02d75733          	divu	a4,a4,a3
 3000d254:	00275693          	srli	a3,a4,0x2
 3000d258:	03f6e693          	ori	a3,a3,63
@@ -13719,7 +13719,7 @@ Disassembly of section .text:
 3000d33c:	45378793          	addi	a5,a5,1107 # 534f4453 <__bss_end__+0x233f4453>
 3000d340:	02f42a23          	sw	a5,52(s0)
 3000d344:	000037b7          	lui	a5,0x3
-3000d348:	e3578793          	addi	a5,a5,-459 # 2e35 <stackPointer-0x3f0b>
+3000d348:	e3578793          	addi	a5,a5,-459 # 2e35 <stackPointer-0x2c4b>
 3000d34c:	02f41c23          	sh	a5,56(s0)
 3000d350:	03000793          	li	a5,48
 3000d354:	02f40d23          	sb	a5,58(s0)
@@ -13795,16 +13795,16 @@ Disassembly of section .text:
 3000d46c:	f4e78793          	addi	a5,a5,-178 # 4e204f4e <__bss_end__+0x1e104f4e>
 3000d470:	04f42da3          	sw	a5,91(s0)
 3000d474:	204557b7          	lui	a5,0x20455
-3000d478:	d4178793          	addi	a5,a5,-703 # 20454d41 <stackPointer+0x2044e001>
+3000d478:	d4178793          	addi	a5,a5,-703 # 20454d41 <stackPointer+0x2044f2c1>
 3000d47c:	04f42fa3          	sw	a5,95(s0)
 3000d480:	462027b7          	lui	a5,0x46202
 3000d484:	02078793          	addi	a5,a5,32 # 46202020 <__bss_end__+0x16102020>
 3000d488:	06f421a3          	sw	a5,99(s0)
 3000d48c:	202057b7          	lui	a5,0x20205
-3000d490:	44178793          	addi	a5,a5,1089 # 20205441 <stackPointer+0x201fe701>
+3000d490:	44178793          	addi	a5,a5,1089 # 20205441 <stackPointer+0x201ff9c1>
 3000d494:	06f423a3          	sw	a5,103(s0)
 3000d498:	000027b7          	lui	a5,0x2
-3000d49c:	02078793          	addi	a5,a5,32 # 2020 <stackPointer-0x4d20>
+3000d49c:	02078793          	addi	a5,a5,32 # 2020 <stackPointer-0x3a60>
 3000d4a0:	06f415a3          	sh	a5,107(s0)
 3000d4a4:	02000793          	li	a5,32
 3000d4a8:	06f406a3          	sb	a5,109(s0)
@@ -13884,7 +13884,7 @@ Disassembly of section .text:
 3000d5d0:	0094da93          	srli	s5,s1,0x9
 3000d5d4:	b69776e3          	bgeu	a4,s1,3000d140 <f_mkfs+0x14c>
 3000d5d8:	00010737          	lui	a4,0x10
-3000d5dc:	1ff70713          	addi	a4,a4,511 # 101ff <stackPointer+0x94bf>
+3000d5dc:	1ff70713          	addi	a4,a4,511 # 101ff <stackPointer+0xa77f>
 3000d5e0:	0c977463          	bgeu	a4,s1,3000d6a8 <f_mkfs+0x6b4>
 3000d5e4:	0077d913          	srli	s2,a5,0x7
 3000d5e8:	08000a93          	li	s5,128
@@ -13892,7 +13892,7 @@ Disassembly of section .text:
 3000d5f0:	00600713          	li	a4,6
 3000d5f4:	b2dff06f          	j	3000d120 <f_mkfs+0x12c>
 3000d5f8:	00010737          	lui	a4,0x10
-3000d5fc:	ff570713          	addi	a4,a4,-11 # fff5 <stackPointer+0x92b5>
+3000d5fc:	ff570713          	addi	a4,a4,-11 # fff5 <stackPointer+0xa575>
 3000d600:	01276a63          	bltu	a4,s2,3000d614 <f_mkfs+0x620>
 3000d604:	00290913          	addi	s2,s2,2
 3000d608:	00191913          	slli	s2,s2,0x1
@@ -13911,7 +13911,7 @@ Disassembly of section .text:
 3000d63c:	41ba0a33          	sub	s4,s4,s11
 3000d640:	035a5a33          	divu	s4,s4,s5
 3000d644:	000106b7          	lui	a3,0x10
-3000d648:	ff568693          	addi	a3,a3,-11 # fff5 <stackPointer+0x92b5>
+3000d648:	ff568693          	addi	a3,a3,-11 # fff5 <stackPointer+0xa575>
 3000d64c:	00e484b3          	add	s1,s1,a4
 3000d650:	bb46e8e3          	bltu	a3,s4,3000d200 <f_mkfs+0x20c>
 3000d654:	00e00513          	li	a0,14
@@ -13989,7 +13989,7 @@ Disassembly of section .text:
 3000d774:	f4e78793          	addi	a5,a5,-178 # 4e204f4e <__bss_end__+0x1e104f4e>
 3000d778:	06f42ba3          	sw	a5,119(s0)
 3000d77c:	204557b7          	lui	a5,0x20455
-3000d780:	d4178793          	addi	a5,a5,-703 # 20454d41 <stackPointer+0x2044e001>
+3000d780:	d4178793          	addi	a5,a5,-703 # 20454d41 <stackPointer+0x2044f2c1>
 3000d784:	06f42da3          	sw	a5,123(s0)
 3000d788:	462027b7          	lui	a5,0x46202
 3000d78c:	02078793          	addi	a5,a5,32 # 46202020 <__bss_end__+0x16102020>
@@ -13998,7 +13998,7 @@ Disassembly of section .text:
 3000d798:	44178793          	addi	a5,a5,1089 # 32335441 <__bss_end__+0x2235441>
 3000d79c:	08f421a3          	sw	a5,131(s0)
 3000d7a0:	000027b7          	lui	a5,0x2
-3000d7a4:	02078793          	addi	a5,a5,32 # 2020 <stackPointer-0x4d20>
+3000d7a4:	02078793          	addi	a5,a5,32 # 2020 <stackPointer-0x3a60>
 3000d7a8:	08f413a3          	sh	a5,135(s0)
 3000d7ac:	02000793          	li	a5,32
 3000d7b0:	08f404a3          	sb	a5,137(s0)
@@ -14041,7 +14041,7 @@ Disassembly of section .text:
 3000d844:	0ff00713          	li	a4,255
 3000d848:	a1dff06f          	j	3000d264 <f_mkfs+0x270>
 3000d84c:	010007b7          	lui	a5,0x1000
-3000d850:	f0078793          	addi	a5,a5,-256 # ffff00 <stackPointer+0xff91c0>
+3000d850:	f0078793          	addi	a5,a5,-256 # ffff00 <stackPointer+0xffa480>
 3000d854:	c9dff06f          	j	3000d4f0 <f_mkfs+0x4fc>
 3000d858:	00c00713          	li	a4,12
 3000d85c:	a31ff06f          	j	3000d28c <f_mkfs+0x298>
@@ -15581,7 +15581,7 @@ Disassembly of section .text:
 3000ef34:	00100293          	li	t0,1
 3000ef38:	00d5c663          	blt	a1,a3,3000ef44 <_Z6gfLineP10_tgfBitmapsssst+0x28>
 3000ef3c:	000102b7          	lui	t0,0x10
-3000ef40:	fff28293          	addi	t0,t0,-1 # ffff <stackPointer+0x92bf>
+3000ef40:	fff28293          	addi	t0,t0,-1 # ffff <stackPointer+0xa57f>
 3000ef44:	40c70833          	sub	a6,a4,a2
 3000ef48:	41f85893          	srai	a7,a6,0x1f
 3000ef4c:	0108cf33          	xor	t5,a7,a6
@@ -15594,7 +15594,7 @@ Disassembly of section .text:
 3000ef68:	00100393          	li	t2,1
 3000ef6c:	00e64663          	blt	a2,a4,3000ef78 <_Z6gfLineP10_tgfBitmapsssst+0x5c>
 3000ef70:	000103b7          	lui	t2,0x10
-3000ef74:	fff38393          	addi	t2,t2,-1 # ffff <stackPointer+0x92bf>
+3000ef74:	fff38393          	addi	t2,t2,-1 # ffff <stackPointer+0xa57f>
 3000ef78:	010f9f93          	slli	t6,t6,0x10
 3000ef7c:	010fdf93          	srli	t6,t6,0x10
 3000ef80:	41ef8833          	sub	a6,t6,t5
@@ -16762,7 +16762,7 @@ Disassembly of section .text:
 30010168:	00000793          	li	a5,0
 3001016c:	00000513          	li	a0,0
 30010170:	00700a93          	li	s5,7
-30010174:	410c0b13          	addi	s6,s8,1040 # 8410 <stackPointer+0x16d0>
+30010174:	410c0b13          	addi	s6,s8,1040 # 8410 <stackPointer+0x2990>
 30010178:	002cd683          	lhu	a3,2(s9)
 3001017c:	000bc603          	lbu	a2,0(s7)
 30010180:	01079d93          	slli	s11,a5,0x10
@@ -16895,7 +16895,7 @@ Disassembly of section .text:
 3001037c:	000f0793          	mv	a5,t5
 30010380:	fe9ff06f          	j	30010368 <_Z17gfDrawTextOverlayP10_tgfBitmapP15_tgfTextOverlayss+0x29c>
 30010384:	000087b7          	lui	a5,0x8
-30010388:	01078613          	addi	a2,a5,16 # 8010 <stackPointer+0x12d0>
+30010388:	01078613          	addi	a2,a5,16 # 8010 <stackPointer+0x2590>
 3001038c:	40078693          	addi	a3,a5,1024
 30010390:	00008eb7          	lui	t4,0x8
 30010394:	000b0793          	mv	a5,s6
@@ -17656,7 +17656,7 @@ Disassembly of section .text:
 30010f10:	00455283          	lhu	t0,4(a0)
 30010f14:	fc010113          	addi	sp,sp,-64
 30010f18:	02912c23          	sw	s1,56(sp)
-30010f1c:	018e9f03          	lh	t5,24(t4) # 8018 <stackPointer+0x12d8>
+30010f1c:	018e9f03          	lh	t5,24(t4) # 8018 <stackPointer+0x2598>
 30010f20:	018e1483          	lh	s1,24(t3)
 30010f24:	02812e23          	sw	s0,60(sp)
 30010f28:	fff28f93          	addi	t6,t0,-1
@@ -17782,7 +17782,7 @@ Disassembly of section .text:
 30011108:	00412783          	lw	a5,4(sp)
 3001110c:	22f8c063          	blt	a7,a5,3001132c <_Z28gfGouraudDrawTriangleZBufferP10_tgfBitmapS0_P14_tgfTriangle3D+0x428>
 30011110:	010007b7          	lui	a5,0x1000
-30011114:	f0078793          	addi	a5,a5,-256 # ffff00 <stackPointer+0xff91c0>
+30011114:	f0078793          	addi	a5,a5,-256 # ffff00 <stackPointer+0xffa480>
 30011118:	00f12623          	sw	a5,12(sp)
 3001111c:	00812783          	lw	a5,8(sp)
 30011120:	01031f13          	slli	t5,t1,0x10
@@ -18374,7 +18374,7 @@ Disassembly of section .text:
 30011a28:	004da603          	lw	a2,4(s11)
 30011a2c:	000da683          	lw	a3,0(s11)
 30011a30:	00010737          	lui	a4,0x10
-30011a34:	fff70713          	addi	a4,a4,-1 # ffff <stackPointer+0x92bf>
+30011a34:	fff70713          	addi	a4,a4,-1 # ffff <stackPointer+0xa57f>
 30011a38:	00e6f533          	and	a0,a3,a4
 30011a3c:	00e67733          	and	a4,a2,a4
 30011a40:	02e50533          	mul	a0,a0,a4
@@ -18693,7 +18693,7 @@ Disassembly of section .text:
 30011f1c:	004da603          	lw	a2,4(s11)
 30011f20:	000da683          	lw	a3,0(s11)
 30011f24:	00010737          	lui	a4,0x10
-30011f28:	fff70713          	addi	a4,a4,-1 # ffff <stackPointer+0x92bf>
+30011f28:	fff70713          	addi	a4,a4,-1 # ffff <stackPointer+0xa57f>
 30011f2c:	00e6f533          	and	a0,a3,a4
 30011f30:	00e67733          	and	a4,a2,a4
 30011f34:	02e50533          	mul	a0,a0,a4
@@ -20018,7 +20018,7 @@ Disassembly of section .text:
 30013378:	01075713          	srli	a4,a4,0x10
 3001337c:	02090993          	addi	s3,s2,32
 30013380:	00000d93          	li	s11,0
-30013384:	fff58b93          	addi	s7,a1,-1 # ffff <stackPointer+0x92bf>
+30013384:	fff58b93          	addi	s7,a1,-1 # ffff <stackPointer+0xa57f>
 30013388:	0ff00493          	li	s1,255
 3001338c:	30038b37          	lui	s6,0x30038
 30013390:	a68a0a13          	addi	s4,s4,-1432 # 30037a68 <_ZL9gCoeffBuf>
@@ -23182,7 +23182,7 @@ Disassembly of section .text:
 300164d0:	1cf77663          	bgeu	a4,a5,3001669c <pjpeg_decode_init+0x328>
 300164d4:	01000737          	lui	a4,0x1000
 300164d8:	008b9c13          	slli	s8,s7,0x8
-300164dc:	f0070713          	addi	a4,a4,-256 # ffff00 <stackPointer+0xff91c0>
+300164dc:	f0070713          	addi	a4,a4,-256 # ffff00 <stackPointer+0xffa480>
 300164e0:	00ec7c33          	and	s8,s8,a4
 300164e4:	ff878793          	addi	a5,a5,-8
 300164e8:	010c1c13          	slli	s8,s8,0x10
@@ -23205,7 +23205,7 @@ Disassembly of section .text:
 3001652c:	000015b7          	lui	a1,0x1
 30016530:	0ff00793          	li	a5,255
 30016534:	0ffc7c93          	andi	s9,s8,255
-30016538:	fff58d93          	addi	s11,a1,-1 # fff <stackPointer-0x5d41>
+30016538:	fff58d93          	addi	s11,a1,-1 # fff <stackPointer-0x4a81>
 3001653c:	0cfb8e63          	beq	s7,a5,30016618 <pjpeg_decode_init+0x2a4>
 30016540:	00700613          	li	a2,7
 30016544:	0d800c13          	li	s8,216
@@ -23544,7 +23544,7 @@ Disassembly of section .text:
 30016a78:	001bc783          	lbu	a5,1(s7)
 30016a7c:	01b00d93          	li	s11,27
 30016a80:	a18796e3          	bne	a5,s8,3001648c <pjpeg_decode_init+0x118>
-30016a84:	001cc783          	lbu	a5,1(s9) # 4001 <stackPointer-0x2d3f>
+30016a84:	001cc783          	lbu	a5,1(s9) # 4001 <stackPointer-0x1a7f>
 30016a88:	a18792e3          	bne	a5,s8,3001648c <pjpeg_decode_init+0x118>
 30016a8c:	002bc783          	lbu	a5,2(s7)
 30016a90:	9f879ee3          	bne	a5,s8,3001648c <pjpeg_decode_init+0x118>
@@ -23987,7 +23987,7 @@ Disassembly of section .text:
 30017164:	0ff57693          	andi	a3,a0,255
 30017168:	00d98733          	add	a4,s3,a3
 3001716c:	4087d793          	srai	a5,a5,0x8
-30017170:	38f70023          	sb	a5,896(a4) # 2010380 <stackPointer+0x2009640>
+30017170:	38f70023          	sb	a5,896(a4) # 2010380 <stackPointer+0x200a900>
 30017174:	300387b7          	lui	a5,0x30038
 30017178:	300385b7          	lui	a1,0x30038
 3001717c:	6ac78623          	sb	a2,1708(a5) # 300386ac <_ZL10gInBufLeft>
@@ -24083,7 +24083,7 @@ Disassembly of section .text:
 300172e4:	40e686b3          	sub	a3,a3,a4
 300172e8:	0107d793          	srli	a5,a5,0x10
 300172ec:	00d797b3          	sll	a5,a5,a3
-300172f0:	00470713          	addi	a4,a4,4 # 2010004 <stackPointer+0x20092c4>
+300172f0:	00470713          	addi	a4,a4,4 # 2010004 <stackPointer+0x200a584>
 300172f4:	01079793          	slli	a5,a5,0x10
 300172f8:	0107d793          	srli	a5,a5,0x10
 300172fc:	0ff77713          	andi	a4,a4,255
@@ -24958,22 +24958,22 @@ Disassembly of section .text:
 30018038:	fff58593          	addi	a1,a1,-1
 3001803c:	0000b7b7          	lui	a5,0xb
 30018040:	00b6aa23          	sw	a1,20(a3)
-30018044:	c4478793          	addi	a5,a5,-956 # ac44 <stackPointer+0x3f04>
+30018044:	c4478793          	addi	a5,a5,-956 # ac44 <stackPointer+0x51c4>
 30018048:	02f50a63          	beq	a0,a5,3001807c <_Z16gfAudioConfiguremm+0x58>
 3001804c:	0000c7b7          	lui	a5,0xc
-30018050:	b8078793          	addi	a5,a5,-1152 # bb80 <stackPointer+0x4e40>
+30018050:	b8078793          	addi	a5,a5,-1152 # bb80 <stackPointer+0x6100>
 30018054:	00100713          	li	a4,1
 30018058:	00f50663          	beq	a0,a5,30018064 <_Z16gfAudioConfiguremm+0x40>
 3001805c:	00070513          	mv	a0,a4
 30018060:	00008067          	ret
 30018064:	004107b7          	lui	a5,0x410
-30018068:	02078793          	addi	a5,a5,32 # 410020 <stackPointer+0x4092e0>
+30018068:	02078793          	addi	a5,a5,32 # 410020 <stackPointer+0x40a5a0>
 3001806c:	00000713          	li	a4,0
 30018070:	00f6a823          	sw	a5,16(a3)
 30018074:	00070513          	mv	a0,a4
 30018078:	00008067          	ret
 3001807c:	004707b7          	lui	a5,0x470
-30018080:	02378793          	addi	a5,a5,35 # 470023 <stackPointer+0x4692e3>
+30018080:	02378793          	addi	a5,a5,35 # 470023 <stackPointer+0x46a5a3>
 30018084:	00000713          	li	a4,0
 30018088:	00f6a823          	sw	a5,16(a3)
 3001808c:	00070513          	mv	a0,a4
@@ -25199,14 +25199,14 @@ Disassembly of section .text.startup:
 300183cc:	f008ae23          	sw	zero,-228(a7)
 300183d0:	f208a023          	sw	zero,-224(a7)
 300183d4:	300388b7          	lui	a7,0x30038
-300183d8:	a3078813          	addi	a6,a5,-1488 # 3a30 <stackPointer-0x3310>
+300183d8:	a3078813          	addi	a6,a5,-1488 # 3a30 <stackPointer-0x2050>
 300183dc:	000106b7          	lui	a3,0x10
 300183e0:	30035bb7          	lui	s7,0x30035
 300183e4:	01900793          	li	a5,25
 300183e8:	60e89023          	sh	a4,1536(a7) # 30038600 <inactiveSelectorIdx>
 300183ec:	10e91223          	sh	a4,260(s2)
 300183f0:	0f858713          	addi	a4,a1,248
-300183f4:	02868613          	addi	a2,a3,40 # 10028 <stackPointer+0x92e8>
+300183f4:	02868613          	addi	a2,a3,40 # 10028 <stackPointer+0xa5a8>
 300183f8:	f2f72223          	sw	a5,-220(a4)
 300183fc:	f10b9623          	sh	a6,-244(s7) # 30034f0c <selectors+0xe14>
 30018400:	10f92823          	sw	a5,272(s2)
@@ -25244,7 +25244,7 @@ Disassembly of section .text.startup:
 30018480:	028a8a93          	addi	s5,s5,40 # 3002e028 <__clzsi2+0x94>
 30018484:	00f12e23          	sw	a5,28(sp)
 30018488:	10100413          	li	s0,257
-3001848c:	e14a0a13          	addi	s4,s4,-492 # e14 <stackPointer-0x5f2c>
+3001848c:	e14a0a13          	addi	s4,s4,-492 # e14 <stackPointer-0x4c6c>
 30018490:	00100793          	li	a5,1
 30018494:	4af48463          	beq	s1,a5,3001893c <main+0x5c4>
 30018498:	00200793          	li	a5,2
@@ -26395,7 +26395,7 @@ Disassembly of section .text._strtod_l:
 300195bc:	001007b7          	lui	a5,0x100
 300195c0:	41f65713          	srai	a4,a2,0x1f
 300195c4:	41658b33          	sub	s6,a1,s6
-300195c8:	fff78793          	addi	a5,a5,-1 # fffff <stackPointer+0xf92bf>
+300195c8:	fff78793          	addi	a5,a5,-1 # fffff <stackPointer+0xfa57f>
 300195cc:	00eb7933          	and	s2,s6,a4
 300195d0:	00000d13          	li	s10,0
 300195d4:	00000a93          	li	s5,0
@@ -26827,7 +26827,7 @@ Disassembly of section .text._strtod_l:
 30019c7c:	41d30333          	sub	t1,t1,t4
 30019c80:	00800713          	li	a4,8
 30019c84:	00088793          	mv	a5,a7
-30019c88:	e1fb0b13          	addi	s6,s6,-481 # 4e1f <stackPointer-0x1f21>
+30019c88:	e1fb0b13          	addi	s6,s6,-481 # 4e1f <stackPointer-0xc61>
 30019c8c:	0e675e63          	bge	a4,t1,30019d88 <_strtod_l+0xd5c>
 30019c90:	f8080863          	beqz	a6,30019420 <_strtod_l+0x3f4>
 30019c94:	41600b33          	neg	s6,s6
@@ -26893,7 +26893,7 @@ Disassembly of section .text._strtod_l:
 30019d84:	ff0ff06f          	j	30019574 <_strtod_l+0x548>
 30019d88:	00078b13          	mv	s6,a5
 30019d8c:	000057b7          	lui	a5,0x5
-30019d90:	e1f78793          	addi	a5,a5,-481 # 4e1f <stackPointer-0x1f21>
+30019d90:	e1f78793          	addi	a5,a5,-481 # 4e1f <stackPointer-0xc61>
 30019d94:	ef67dee3          	bge	a5,s6,30019c90 <_strtod_l+0xc64>
 30019d98:	00078b13          	mv	s6,a5
 30019d9c:	ef5ff06f          	j	30019c90 <_strtod_l+0xc64>
@@ -27135,7 +27135,7 @@ Disassembly of section .text._strtod_l:
 3001a14c:	e28ff06f          	j	30019774 <_strtod_l+0x748>
 3001a150:	01412683          	lw	a3,20(sp)
 3001a154:	00100737          	lui	a4,0x100
-3001a158:	fff70713          	addi	a4,a4,-1 # fffff <stackPointer+0xf92bf>
+3001a158:	fff70713          	addi	a4,a4,-1 # fffff <stackPointer+0xfa57f>
 3001a15c:	03c12c03          	lw	s8,60(sp)
 3001a160:	02c12a03          	lw	s4,44(sp)
 3001a164:	02812903          	lw	s2,40(sp)
@@ -27273,7 +27273,7 @@ Disassembly of section .text._strtod_l:
 3001a374:	01247933          	and	s2,s0,s2
 3001a378:	00f90933          	add	s2,s2,a5
 3001a37c:	001007b7          	lui	a5,0x100
-3001a380:	fff78793          	addi	a5,a5,-1 # fffff <stackPointer+0xf92bf>
+3001a380:	fff78793          	addi	a5,a5,-1 # fffff <stackPointer+0xfa57f>
 3001a384:	fff00a13          	li	s4,-1
 3001a388:	00f96933          	or	s2,s2,a5
 3001a38c:	e2dff06f          	j	3001a1b8 <_strtod_l+0x118c>
@@ -27553,7 +27553,7 @@ Disassembly of section .text._strtol_l.isra.0:
 3001a774:	0080006f          	j	3001a77c <_strtol_l.isra.0+0x48>
 3001a778:	00040b13          	mv	s6,s0
 3001a77c:	001b0413          	addi	s0,s6,1
-3001a780:	fff44a83          	lbu	s5,-1(s0) # 34fffff <stackPointer+0x34f92bf>
+3001a780:	fff44a83          	lbu	s5,-1(s0) # 34fffff <stackPointer+0x34fa57f>
 3001a784:	000b8513          	mv	a0,s7
 3001a788:	0f9060ef          	jal	ra,30021080 <__locale_ctype_ptr_l>
 3001a78c:	01550533          	add	a0,a0,s5
@@ -27580,7 +27580,7 @@ Disassembly of section .text._strtol_l.isra.0:
 3001a7e0:	01900893          	li	a7,25
 3001a7e4:	fff00593          	li	a1,-1
 3001a7e8:	026e5833          	divu	a6,t3,t1
-3001a7ec:	fd070793          	addi	a5,a4,-48 # 36fffd0 <stackPointer+0x36f9290>
+3001a7ec:	fd070793          	addi	a5,a4,-48 # 36fffd0 <stackPointer+0x36fa550>
 3001a7f0:	00f6f863          	bgeu	a3,a5,3001a800 <_strtol_l.isra.0+0xcc>
 3001a7f4:	fbf70793          	addi	a5,a4,-65
 3001a7f8:	04f8ec63          	bltu	a7,a5,3001a850 <_strtol_l.isra.0+0x11c>
@@ -30493,7 +30493,7 @@ Disassembly of section .text._malloc_trim_r:
 3001d504:	5d4040ef          	jal	ra,30021ad8 <__malloc_lock>
 3001d508:	0089a683          	lw	a3,8(s3)
 3001d50c:	00001737          	lui	a4,0x1
-3001d510:	fef70793          	addi	a5,a4,-17 # fef <stackPointer-0x5d51>
+3001d510:	fef70793          	addi	a5,a4,-17 # fef <stackPointer-0x4a91>
 3001d514:	0046a483          	lw	s1,4(a3)
 3001d518:	40878433          	sub	s0,a5,s0
 3001d51c:	ffc4f493          	andi	s1,s1,-4
@@ -31581,7 +31581,7 @@ Disassembly of section .text.m16m:
 3001e584:	01858593          	addi	a1,a1,24
 3001e588:	01c10793          	addi	a5,sp,28
 3001e58c:	00810813          	addi	a6,sp,8
-3001e590:	fffe0e13          	addi	t3,t3,-1 # ffff <stackPointer+0x92bf>
+3001e590:	fffe0e13          	addi	t3,t3,-1 # ffff <stackPointer+0xa57f>
 3001e594:	0005d703          	lhu	a4,0(a1)
 3001e598:	ffe78793          	addi	a5,a5,-2
 3001e59c:	ffe58593          	addi	a1,a1,-2
@@ -31683,7 +31683,7 @@ Disassembly of section .text.emovi:
 3001e6dc:	00f59023          	sh	a5,0(a1)
 3001e6e0:	01255783          	lhu	a5,18(a0)
 3001e6e4:	000086b7          	lui	a3,0x8
-3001e6e8:	fff68693          	addi	a3,a3,-1 # 7fff <stackPointer+0x12bf>
+3001e6e8:	fff68693          	addi	a3,a3,-1 # 7fff <stackPointer+0x257f>
 3001e6ec:	00f6f7b3          	and	a5,a3,a5
 3001e6f0:	00f59123          	sh	a5,2(a1)
 3001e6f4:	00050493          	mv	s1,a0
@@ -32049,7 +32049,7 @@ Disassembly of section .text.emdnorm:
 3001ec44:	40a90933          	sub	s2,s2,a0
 3001ec48:	06a7de63          	bge	a5,a0,3001ecc4 <emdnorm+0xc0>
 3001ec4c:	000087b7          	lui	a5,0x8
-3001ec50:	ffe78793          	addi	a5,a5,-2 # 7ffe <stackPointer+0x12be>
+3001ec50:	ffe78793          	addi	a5,a5,-2 # 7ffe <stackPointer+0x257e>
 3001ec54:	2127de63          	bge	a5,s2,3001ee70 <emdnorm+0x26c>
 3001ec58:	1e0a8863          	beqz	s5,3001ee48 <emdnorm+0x244>
 3001ec5c:	0044a503          	lw	a0,4(s1)
@@ -32092,16 +32092,16 @@ Disassembly of section .text.emdnorm:
 3001ecf0:	03500793          	li	a5,53
 3001ecf4:	2cf51063          	bne	a0,a5,3001efb4 <emdnorm+0x3b0>
 3001ecf8:	040007b7          	lui	a5,0x4000
-3001ecfc:	7ff78793          	addi	a5,a5,2047 # 40007ff <stackPointer+0x3ff9abf>
+3001ecfc:	7ff78793          	addi	a5,a5,2047 # 40007ff <stackPointer+0x3ffad7f>
 3001ed00:	00600713          	li	a4,6
 3001ed04:	00f4aa23          	sw	a5,20(s1)
 3001ed08:	000017b7          	lui	a5,0x1
-3001ed0c:	80078793          	addi	a5,a5,-2048 # 800 <stackPointer-0x6540>
+3001ed0c:	80078793          	addi	a5,a5,-2048 # 800 <stackPointer-0x5280>
 3001ed10:	00e4a423          	sw	a4,8(s1)
 3001ed14:	00e4a623          	sw	a4,12(s1)
 3001ed18:	00001737          	lui	a4,0x1
 3001ed1c:	00f49c23          	sh	a5,24(s1)
-3001ed20:	80070713          	addi	a4,a4,-2048 # 800 <stackPointer-0x6540>
+3001ed20:	80070713          	addi	a4,a4,-2048 # 800 <stackPointer-0x5280>
 3001ed24:	00600793          	li	a5,6
 3001ed28:	00878793          	addi	a5,a5,8
 3001ed2c:	00179793          	slli	a5,a5,0x1
@@ -32163,7 +32163,7 @@ Disassembly of section .text.emdnorm:
 3001ee0c:	0a079c63          	bnez	a5,3001eec4 <emdnorm+0x2c0>
 3001ee10:	000087b7          	lui	a5,0x8
 3001ee14:	00041c23          	sh	zero,24(s0)
-3001ee18:	ffe78793          	addi	a5,a5,-2 # 7ffe <stackPointer+0x12be>
+3001ee18:	ffe78793          	addi	a5,a5,-2 # 7ffe <stackPointer+0x257e>
 3001ee1c:	0327c863          	blt	a5,s2,3001ee4c <emdnorm+0x248>
 3001ee20:	01241123          	sh	s2,2(s0)
 3001ee24:	01c12083          	lw	ra,28(sp)
@@ -32211,7 +32211,7 @@ Disassembly of section .text.emdnorm:
 3001eecc:	000087b7          	lui	a5,0x8
 3001eed0:	00190913          	addi	s2,s2,1
 3001eed4:	00041c23          	sh	zero,24(s0)
-3001eed8:	ffe78793          	addi	a5,a5,-2 # 7ffe <stackPointer+0x12be>
+3001eed8:	ffe78793          	addi	a5,a5,-2 # 7ffe <stackPointer+0x257e>
 3001eedc:	f727c8e3          	blt	a5,s2,3001ee4c <emdnorm+0x248>
 3001eee0:	f40950e3          	bgez	s2,3001ee20 <emdnorm+0x21c>
 3001eee4:	00041123          	sh	zero,2(s0)
@@ -32245,7 +32245,7 @@ Disassembly of section .text.emdnorm:
 3001ef54:	00041123          	sh	zero,2(s0)
 3001ef58:	ecdff06f          	j	3001ee24 <emdnorm+0x220>
 3001ef5c:	008007b7          	lui	a5,0x800
-3001ef60:	0ff78793          	addi	a5,a5,255 # 8000ff <stackPointer+0x7f93bf>
+3001ef60:	0ff78793          	addi	a5,a5,255 # 8000ff <stackPointer+0x7fa67f>
 3001ef64:	00400713          	li	a4,4
 3001ef68:	00f4aa23          	sw	a5,20(s1)
 3001ef6c:	10000793          	li	a5,256
@@ -32280,7 +32280,7 @@ Disassembly of section .text.emdnorm:
 3001efe0:	de0a06e3          	beqz	s4,3001edcc <emdnorm+0x1c8>
 3001efe4:	e21ff06f          	j	3001ee04 <emdnorm+0x200>
 3001efe8:	008007b7          	lui	a5,0x800
-3001efec:	0ff78793          	addi	a5,a5,255 # 8000ff <stackPointer+0x7f93bf>
+3001efec:	0ff78793          	addi	a5,a5,255 # 8000ff <stackPointer+0x7fa67f>
 3001eff0:	00600713          	li	a4,6
 3001eff4:	00f4aa23          	sw	a5,20(s1)
 3001eff8:	10000793          	li	a5,256
@@ -32395,7 +32395,7 @@ Disassembly of section .text.emovo.isra.6:
 3001f18c:	00f59923          	sh	a5,18(a1)
 3001f190:	00255703          	lhu	a4,2(a0)
 3001f194:	000087b7          	lui	a5,0x8
-3001f198:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x12bf>
+3001f198:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x257f>
 3001f19c:	02f70463          	beq	a4,a5,3001f1c4 <emovo.isra.6+0x4c>
 3001f1a0:	00650793          	addi	a5,a0,6
 3001f1a4:	01058593          	addi	a1,a1,16
@@ -32419,7 +32419,7 @@ Disassembly of section .text.emovo.isra.6:
 3001f1ec:	fef71ce3          	bne	a4,a5,3001f1e4 <emovo.isra.6+0x6c>
 3001f1f0:	0125d783          	lhu	a5,18(a1)
 3001f1f4:	00008737          	lui	a4,0x8
-3001f1f8:	fff70713          	addi	a4,a4,-1 # 7fff <stackPointer+0x12bf>
+3001f1f8:	fff70713          	addi	a4,a4,-1 # 7fff <stackPointer+0x257f>
 3001f1fc:	00e7e7b3          	or	a5,a5,a4
 3001f200:	00f59923          	sh	a5,18(a1)
 3001f204:	00008067          	ret
@@ -32439,7 +32439,7 @@ Disassembly of section .text.emul:
 3001f22c:	07512a23          	sw	s5,116(sp)
 3001f230:	01255a83          	lhu	s5,18(a0)
 3001f234:	000087b7          	lui	a5,0x8
-3001f238:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x12bf>
+3001f238:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x257f>
 3001f23c:	08812423          	sw	s0,136(sp)
 3001f240:	08912223          	sw	s1,132(sp)
 3001f244:	09212023          	sw	s2,128(sp)
@@ -32468,7 +32468,7 @@ Disassembly of section .text.emul:
 3001f2a0:	e20ff0ef          	jal	ra,3001e8c0 <eisinf.part.1>
 3001f2a4:	20051e63          	bnez	a0,3001f4c0 <emul+0x298>
 3001f2a8:	000087b7          	lui	a5,0x8
-3001f2ac:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x12bf>
+3001f2ac:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x257f>
 3001f2b0:	0147fa33          	and	s4,a5,s4
 3001f2b4:	010a1a13          	slli	s4,s4,0x10
 3001f2b8:	010a5a13          	srli	s4,s4,0x10
@@ -32630,7 +32630,7 @@ Disassembly of section .text.emul:
 3001f528:	fee79ce3          	bne	a5,a4,3001f520 <emul+0x2f8>
 3001f52c:	01245783          	lhu	a5,18(s0)
 3001f530:	00008737          	lui	a4,0x8
-3001f534:	fff70713          	addi	a4,a4,-1 # 7fff <stackPointer+0x12bf>
+3001f534:	fff70713          	addi	a4,a4,-1 # 7fff <stackPointer+0x257f>
 3001f538:	00e7e7b3          	or	a5,a5,a4
 3001f53c:	00f41923          	sh	a5,18(s0)
 3001f540:	e19ff06f          	j	3001f358 <emul+0x130>
@@ -32653,7 +32653,7 @@ Disassembly of section .text.emul:
 3001f584:	e81ff06f          	j	3001f404 <emul+0x1dc>
 3001f588:	0124da83          	lhu	s5,18(s1)
 3001f58c:	000087b7          	lui	a5,0x8
-3001f590:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x12bf>
+3001f590:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x257f>
 3001f594:	0157fab3          	and	s5,a5,s5
 3001f598:	010a9a93          	slli	s5,s5,0x10
 3001f59c:	010ada93          	srli	s5,s5,0x10
@@ -32733,7 +32733,7 @@ Disassembly of section .text.ediv:
 3001f6b4:	0124d983          	lhu	s3,18(s1)
 3001f6b8:	01295703          	lhu	a4,18(s2)
 3001f6bc:	000087b7          	lui	a5,0x8
-3001f6c0:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x12bf>
+3001f6c0:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x257f>
 3001f6c4:	0137f9b3          	and	s3,a5,s3
 3001f6c8:	00e7fa33          	and	s4,a5,a4
 3001f6cc:	08f99a63          	bne	s3,a5,3001f760 <ediv+0x130>
@@ -32828,7 +32828,7 @@ Disassembly of section .text.ediv:
 3001f830:	fee79ce3          	bne	a5,a4,3001f828 <ediv+0x1f8>
 3001f834:	01245783          	lhu	a5,18(s0)
 3001f838:	00008737          	lui	a4,0x8
-3001f83c:	fff70713          	addi	a4,a4,-1 # 7fff <stackPointer+0x12bf>
+3001f83c:	fff70713          	addi	a4,a4,-1 # 7fff <stackPointer+0x257f>
 3001f840:	00e7e7b3          	or	a5,a5,a4
 3001f844:	00f41923          	sh	a5,18(s0)
 3001f848:	eb5ff06f          	j	3001f6fc <ediv+0xcc>
@@ -32862,7 +32862,7 @@ Disassembly of section .text.ediv:
 3001f8b8:	010c1a13          	slli	s4,s8,0x10
 3001f8bc:	418a0a33          	sub	s4,s4,s8
 3001f8c0:	03a10a93          	addi	s5,sp,58
-3001f8c4:	fff98993          	addi	s3,s3,-1 # ffff <stackPointer+0x92bf>
+3001f8c4:	fff98993          	addi	s3,s3,-1 # ffff <stackPointer+0xa57f>
 3001f8c8:	06e10c93          	addi	s9,sp,110
 3001f8cc:	05610913          	addi	s2,sp,86
 3001f8d0:	03c15503          	lhu	a0,60(sp)
@@ -32926,7 +32926,7 @@ Disassembly of section .text.ediv:
 3001f9b8:	00c12783          	lw	a5,12(sp)
 3001f9bc:	00812703          	lw	a4,8(sp)
 3001f9c0:	000046b7          	lui	a3,0x4
-3001f9c4:	fff68693          	addi	a3,a3,-1 # 3fff <stackPointer-0x2d41>
+3001f9c4:	fff68693          	addi	a3,a3,-1 # 3fff <stackPointer-0x1a81>
 3001f9c8:	40e78bb3          	sub	s7,a5,a4
 3001f9cc:	03810513          	addi	a0,sp,56
 3001f9d0:	000b0793          	mv	a5,s6
@@ -33013,7 +33013,7 @@ Disassembly of section .text.ediv:
 3001fb14:	fef71ce3          	bne	a4,a5,3001fb0c <ediv+0x4dc>
 3001fb18:	01245783          	lhu	a5,18(s0)
 3001fb1c:	00008737          	lui	a4,0x8
-3001fb20:	fff70713          	addi	a4,a4,-1 # 7fff <stackPointer+0x12bf>
+3001fb20:	fff70713          	addi	a4,a4,-1 # 7fff <stackPointer+0x257f>
 3001fb24:	00e7e7b3          	or	a5,a5,a4
 3001fb28:	00f41923          	sh	a5,18(s0)
 3001fb2c:	bd1ff06f          	j	3001f6fc <ediv+0xcc>
@@ -33035,7 +33035,7 @@ Disassembly of section .text.e113toe.isra.8:
 3001fb5c:	4107d793          	srai	a5,a5,0x10
 3001fb60:	0607ca63          	bltz	a5,3001fbd4 <e113toe.isra.8+0xa4>
 3001fb64:	000087b7          	lui	a5,0x8
-3001fb68:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x12bf>
+3001fb68:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x257f>
 3001fb6c:	00011223          	sh	zero,4(sp)
 3001fb70:	00f67633          	and	a2,a2,a5
 3001fb74:	06f60c63          	beq	a2,a5,3001fbec <e113toe.isra.8+0xbc>
@@ -33065,7 +33065,7 @@ Disassembly of section .text.e113toe.isra.8:
 3001fbd4:	fff00793          	li	a5,-1
 3001fbd8:	00f11223          	sh	a5,4(sp)
 3001fbdc:	000087b7          	lui	a5,0x8
-3001fbe0:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x12bf>
+3001fbe0:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x257f>
 3001fbe4:	00f67633          	and	a2,a2,a5
 3001fbe8:	f8f618e3          	bne	a2,a5,3001fb78 <e113toe.isra.8+0x48>
 3001fbec:	00050793          	mv	a5,a0
@@ -33086,7 +33086,7 @@ Disassembly of section .text.e113toe.isra.8:
 3001fc28:	fee79ce3          	bne	a5,a4,3001fc20 <e113toe.isra.8+0xf0>
 3001fc2c:	01245783          	lhu	a5,18(s0)
 3001fc30:	00008737          	lui	a4,0x8
-3001fc34:	fff70713          	addi	a4,a4,-1 # 7fff <stackPointer+0x12bf>
+3001fc34:	fff70713          	addi	a4,a4,-1 # 7fff <stackPointer+0x257f>
 3001fc38:	00e7e7b3          	or	a5,a5,a4
 3001fc3c:	00f41923          	sh	a5,18(s0)
 3001fc40:	00e51783          	lh	a5,14(a0)
@@ -33189,7 +33189,7 @@ Disassembly of section .text._ldtoa_r:
 3001fdb4:	01161613          	slli	a2,a2,0x11
 3001fdb8:	000107b7          	lui	a5,0x10
 3001fdbc:	01165613          	srli	a2,a2,0x11
-3001fdc0:	fff78793          	addi	a5,a5,-1 # ffff <stackPointer+0x92bf>
+3001fdc0:	fff78793          	addi	a5,a5,-1 # ffff <stackPointer+0xa57f>
 3001fdc4:	08c11723          	sh	a2,142(sp)
 3001fdc8:	00f12c23          	sw	a5,24(sp)
 3001fdcc:	00000693          	li	a3,0
@@ -33205,7 +33205,7 @@ Disassembly of section .text._ldtoa_r:
 3001fdf4:	ffb798e3          	bne	a5,s11,3001fde4 <_ldtoa_r+0x170>
 3001fdf8:	16060663          	beqz	a2,3001ff64 <_ldtoa_r+0x2f0>
 3001fdfc:	000087b7          	lui	a5,0x8
-3001fe00:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x12bf>
+3001fe00:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x257f>
 3001fe04:	58f604e3          	beq	a2,a5,30020b8c <_ldtoa_r+0xf18>
 3001fe08:	08c11783          	lh	a5,140(sp)
 3001fe0c:	6007d6e3          	bgez	a5,30020c18 <_ldtoa_r+0xfa4>
@@ -33785,7 +33785,7 @@ Disassembly of section .text._ldtoa_r:
 30020704:	e50ff06f          	j	3001fd54 <_ldtoa_r+0xe0>
 30020708:	01412703          	lw	a4,20(sp)
 3002070c:	000027b7          	lui	a5,0x2
-30020710:	70f78793          	addi	a5,a5,1807 # 270f <stackPointer-0x4631>
+30020710:	70f78793          	addi	a5,a5,1807 # 270f <stackPointer-0x3371>
 30020714:	00f72023          	sw	a5,0(a4)
 30020718:	e21ff06f          	j	30020538 <_ldtoa_r+0x8c4>
 3002071c:	0b410a93          	addi	s5,sp,180
@@ -33798,10 +33798,10 @@ Disassembly of section .text._ldtoa_r:
 30020738:	fed71f23          	sh	a3,-2(a4)
 3002073c:	fec798e3          	bne	a5,a2,3002072c <_ldtoa_r+0xab8>
 30020740:	000047b7          	lui	a5,0x4
-30020744:	08e78793          	addi	a5,a5,142 # 408e <stackPointer-0x2cb2>
+30020744:	08e78793          	addi	a5,a5,142 # 408e <stackPointer-0x19f2>
 30020748:	0cf11323          	sh	a5,198(sp)
 3002074c:	000087b7          	lui	a5,0x8
-30020750:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x12bf>
+30020750:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x257f>
 30020754:	02f12223          	sw	a5,36(sp)
 30020758:	ffffc7b7          	lui	a5,0xffffc
 3002075c:	00278793          	addi	a5,a5,2 # ffffc002 <__bss_end__+0xcfefc002>
@@ -33846,7 +33846,7 @@ Disassembly of section .text._ldtoa_r:
 300207f8:	00f00793          	li	a5,15
 300207fc:	00040713          	mv	a4,s0
 30020800:	02c7dc63          	bge	a5,a2,30020838 <_ldtoa_r+0xbc4>
-30020804:	ff060613          	addi	a2,a2,-16 # 7ff0 <stackPointer+0x12b0>
+30020804:	ff060613          	addi	a2,a2,-16 # 7ff0 <stackPointer+0x2570>
 30020808:	00465693          	srli	a3,a2,0x4
 3002080c:	00168713          	addi	a4,a3,1
 30020810:	00171713          	slli	a4,a4,0x1
@@ -33955,7 +33955,7 @@ Disassembly of section .text._ldtoa_r:
 300209ac:	00090513          	mv	a0,s2
 300209b0:	000024b7          	lui	s1,0x2
 300209b4:	b00f80ef          	jal	ra,30018cb4 <sprintf>
-300209b8:	70f48493          	addi	s1,s1,1807 # 270f <stackPointer-0x4631>
+300209b8:	70f48493          	addi	s1,s1,1807 # 270f <stackPointer-0x3371>
 300209bc:	af1ff06f          	j	300204ac <_ldtoa_r+0x838>
 300209c0:	04c10793          	addi	a5,sp,76
 300209c4:	00040713          	mv	a4,s0
@@ -34080,7 +34080,7 @@ Disassembly of section .text._ldtoa_r:
 30020ba0:	00090513          	mv	a0,s2
 30020ba4:	000024b7          	lui	s1,0x2
 30020ba8:	90cf80ef          	jal	ra,30018cb4 <sprintf>
-30020bac:	70f48493          	addi	s1,s1,1807 # 270f <stackPointer-0x4631>
+30020bac:	70f48493          	addi	s1,s1,1807 # 270f <stackPointer-0x3371>
 30020bb0:	8fdff06f          	j	300204ac <_ldtoa_r+0x838>
 30020bb4:	03100793          	li	a5,49
 30020bb8:	12f102a3          	sb	a5,293(sp)
@@ -34113,7 +34113,7 @@ Disassembly of section .text._ldtoa_r:
 30020c24:	00090513          	mv	a0,s2
 30020c28:	000024b7          	lui	s1,0x2
 30020c2c:	888f80ef          	jal	ra,30018cb4 <sprintf>
-30020c30:	70f48493          	addi	s1,s1,1807 # 270f <stackPointer-0x4631>
+30020c30:	70f48493          	addi	s1,s1,1807 # 270f <stackPointer-0x3371>
 30020c34:	879ff06f          	j	300204ac <_ldtoa_r+0x838>
 30020c38:	09810593          	addi	a1,sp,152
 30020c3c:	07c10513          	addi	a0,sp,124
@@ -34140,7 +34140,7 @@ Disassembly of section .text._ldtoa_r:
 30020c90:	00090513          	mv	a0,s2
 30020c94:	000024b7          	lui	s1,0x2
 30020c98:	81cf80ef          	jal	ra,30018cb4 <sprintf>
-30020c9c:	70f48493          	addi	s1,s1,1807 # 270f <stackPointer-0x4631>
+30020c9c:	70f48493          	addi	s1,s1,1807 # 270f <stackPointer-0x3371>
 30020ca0:	80dff06f          	j	300204ac <_ldtoa_r+0x838>
 30020ca4:	00178793          	addi	a5,a5,1
 30020ca8:	fef70fa3          	sb	a5,-1(a4)
@@ -34154,7 +34154,7 @@ Disassembly of section .text._ldtoa_r:
 30020cc8:	0e810b93          	addi	s7,sp,232
 30020ccc:	0cc10913          	addi	s2,sp,204
 30020cd0:	0d210993          	addi	s3,sp,210
-30020cd4:	ffea8a93          	addi	s5,s5,-2 # 3ffe <stackPointer-0x2d42>
+30020cd4:	ffea8a93          	addi	s5,s5,-2 # 3ffe <stackPointer-0x1a82>
 30020cd8:	fd500c93          	li	s9,-43
 30020cdc:	0e815783          	lhu	a5,232(sp)
 30020ce0:	0077f793          	andi	a5,a5,7
@@ -34681,7 +34681,7 @@ Disassembly of section .text._malloc_r:
 30021464:	01548ab3          	add	s5,s1,s5
 30021468:	36f70663          	beq	a4,a5,300217d4 <_malloc_r+0x6a8>
 3002146c:	000017b7          	lui	a5,0x1
-30021470:	00f78793          	addi	a5,a5,15 # 100f <stackPointer-0x5d31>
+30021470:	00f78793          	addi	a5,a5,15 # 100f <stackPointer-0x4a71>
 30021474:	00fa8ab3          	add	s5,s5,a5
 30021478:	fffff7b7          	lui	a5,0xfffff
 3002147c:	00fafab3          	and	s5,s5,a5
@@ -34712,7 +34712,7 @@ Disassembly of section .text._malloc_r:
 300214e0:	418b0b33          	sub	s6,s6,s8
 300214e4:	000017b7          	lui	a5,0x1
 300214e8:	008b0b13          	addi	s6,s6,8
-300214ec:	fff78a13          	addi	s4,a5,-1 # fff <stackPointer-0x5d41>
+300214ec:	fff78a13          	addi	s4,a5,-1 # fff <stackPointer-0x4a81>
 300214f0:	015b0ab3          	add	s5,s6,s5
 300214f4:	00878793          	addi	a5,a5,8
 300214f8:	014af733          	and	a4,s5,s4
@@ -34909,7 +34909,7 @@ Disassembly of section .text._malloc_r:
 300217f4:	2ae5a623          	sw	a4,684(a1) # 30033a9c <__malloc_av_+0x4>
 300217f8:	e45ff06f          	j	3002163c <_malloc_r+0x510>
 300217fc:	000017b7          	lui	a5,0x1
-30021800:	fff78713          	addi	a4,a5,-1 # fff <stackPointer-0x5d41>
+30021800:	fff78713          	addi	a4,a5,-1 # fff <stackPointer-0x4a81>
 30021804:	015b0a33          	add	s4,s6,s5
 30021808:	00ea7a33          	and	s4,s4,a4
 3002180c:	414787b3          	sub	a5,a5,s4
@@ -35079,7 +35079,7 @@ Disassembly of section .text.memchr:
 30021a6c:	00008067          	ret
 30021a70:	00010737          	lui	a4,0x10
 30021a74:	00859893          	slli	a7,a1,0x8
-30021a78:	fff70713          	addi	a4,a4,-1 # ffff <stackPointer+0x92bf>
+30021a78:	fff70713          	addi	a4,a4,-1 # ffff <stackPointer+0xa57f>
 30021a7c:	00e8f8b3          	and	a7,a7,a4
 30021a80:	0ff5f593          	andi	a1,a1,255
 30021a84:	00b8e5b3          	or	a1,a7,a1
@@ -35192,7 +35192,7 @@ Disassembly of section .text.__multadd:
 30021be0:	01312e23          	sw	s3,28(sp)
 30021be4:	01458593          	addi	a1,a1,20
 30021be8:	00000513          	li	a0,0
-30021bec:	fff80813          	addi	a6,a6,-1 # ffff <stackPointer+0x92bf>
+30021bec:	fff80813          	addi	a6,a6,-1 # ffff <stackPointer+0xa57f>
 30021bf0:	0005a783          	lw	a5,0(a1)
 30021bf4:	00458593          	addi	a1,a1,4
 30021bf8:	00150513          	addi	a0,a0,1
@@ -35467,7 +35467,7 @@ Disassembly of section .text.__multiply:
 30021fdc:	00010837          	lui	a6,0x10
 30021fe0:	01d58eb3          	add	t4,a1,t4
 30021fe4:	011608b3          	add	a7,a2,a7
-30021fe8:	fff80813          	addi	a6,a6,-1 # ffff <stackPointer+0x92bf>
+30021fe8:	fff80813          	addi	a6,a6,-1 # ffff <stackPointer+0xa57f>
 30021fec:	01d5ee63          	bltu	a1,t4,30022008 <__multiply+0xb8>
 30021ff0:	10c0006f          	j	300220fc <__multiply+0x1ac>
 30021ff4:	010fdf93          	srli	t6,t6,0x10
@@ -35807,7 +35807,7 @@ Disassembly of section .text.__mdiff:
 300224ec:	01d48eb3          	add	t4,s1,t4
 300224f0:	01450813          	addi	a6,a0,20
 300224f4:	00000793          	li	a5,0
-300224f8:	fff60613          	addi	a2,a2,-1 # ffff <stackPointer+0x92bf>
+300224f8:	fff60613          	addi	a2,a2,-1 # ffff <stackPointer+0xa57f>
 300224fc:	0080006f          	j	30022504 <__mdiff+0xcc>
 30022500:	00088813          	mv	a6,a7
 30022504:	00042703          	lw	a4,0(s0)
@@ -35834,7 +35834,7 @@ Disassembly of section .text.__mdiff:
 30022558:	00010eb7          	lui	t4,0x10
 3002255c:	00088813          	mv	a6,a7
 30022560:	00040593          	mv	a1,s0
-30022564:	fffe8e93          	addi	t4,t4,-1 # ffff <stackPointer+0x92bf>
+30022564:	fffe8e93          	addi	t4,t4,-1 # ffff <stackPointer+0xa57f>
 30022568:	0005a703          	lw	a4,0(a1)
 3002256c:	00480813          	addi	a6,a6,4
 30022570:	00458593          	addi	a1,a1,4
@@ -36002,7 +36002,7 @@ Disassembly of section .text.__d2b:
 300227c8:	b28ff0ef          	jal	ra,30021af0 <_Balloc>
 300227cc:	00100637          	lui	a2,0x100
 300227d0:	0144d413          	srli	s0,s1,0x14
-300227d4:	fff60793          	addi	a5,a2,-1 # fffff <stackPointer+0xf92bf>
+300227d4:	fff60793          	addi	a5,a2,-1 # fffff <stackPointer+0xfa57f>
 300227d8:	7ff47413          	andi	s0,s0,2047
 300227dc:	00050913          	mv	s2,a0
 300227e0:	0097f7b3          	and	a5,a5,s1
@@ -36524,7 +36524,7 @@ Disassembly of section .text._svfiprintf_r:
 30022f50:	02f11323          	sh	a5,38(sp)
 30022f54:	00048413          	mv	s0,s1
 30022f58:	000c0d13          	mv	s10,s8
-30022f5c:	000d4783          	lbu	a5,0(s10) # 1000 <stackPointer-0x5d40>
+30022f5c:	000d4783          	lbu	a5,0(s10) # 1000 <stackPointer-0x4a80>
 30022f60:	12078063          	beqz	a5,30023080 <_svfiprintf_r+0x1c0>
 30022f64:	02500693          	li	a3,37
 30022f68:	4ad786e3          	beq	a5,a3,30023c14 <_svfiprintf_r+0xd54>
@@ -39166,10 +39166,10 @@ Disassembly of section .text.__kernel_rem_pio2:
 30025728:	fffd8793          	addi	a5,s11,-1
 3002572c:	00870433          	add	s0,a4,s0
 30025730:	20000737          	lui	a4,0x20000
-30025734:	fff70713          	addi	a4,a4,-1 # 1fffffff <stackPointer+0x1fff92bf>
+30025734:	fff70713          	addi	a4,a4,-1 # 1fffffff <stackPointer+0x1fffa57f>
 30025738:	00e12c23          	sw	a4,24(sp)
 3002573c:	00800737          	lui	a4,0x800
-30025740:	fff70713          	addi	a4,a4,-1 # 7fffff <stackPointer+0x7f92bf>
+30025740:	fff70713          	addi	a4,a4,-1 # 7fffff <stackPointer+0x7fa57f>
 30025744:	00279793          	slli	a5,a5,0x2
 30025748:	02e12e23          	sw	a4,60(sp)
 3002574c:	27010713          	addi	a4,sp,624
@@ -39508,7 +39508,7 @@ Disassembly of section .text.__kernel_rem_pio2:
 30025c80:	dd072703          	lw	a4,-560(a4)
 30025c84:	00f587b3          	add	a5,a1,a5
 30025c88:	00d586b3          	add	a3,a1,a3
-30025c8c:	fff60613          	addi	a2,a2,-1 # ffffff <stackPointer+0xff92bf>
+30025c8c:	fff60613          	addi	a2,a2,-1 # ffffff <stackPointer+0xffa57f>
 30025c90:	0080006f          	j	30025c98 <__kernel_rem_pio2+0x714>
 30025c94:	0007a703          	lw	a4,0(a5)
 30025c98:	40e60733          	sub	a4,a2,a4
@@ -40099,7 +40099,7 @@ Disassembly of section .text.floor:
 3002658c:	0c974863          	blt	a4,s1,3002665c <floor+0x114>
 30026590:	0804cc63          	bltz	s1,30026628 <floor+0xe0>
 30026594:	00100b37          	lui	s6,0x100
-30026598:	fffb0a93          	addi	s5,s6,-1 # fffff <stackPointer+0xf92bf>
+30026598:	fffb0a93          	addi	s5,s6,-1 # fffff <stackPointer+0xfa57f>
 3002659c:	409adab3          	sra	s5,s5,s1
 300265a0:	00baf7b3          	and	a5,s5,a1
 300265a4:	00a7e7b3          	or	a5,a5,a0
@@ -40241,7 +40241,7 @@ Disassembly of section .text.scalbn:
 300267b4:	fcb00593          	li	a1,-53
 300267b8:	0ab7d063          	bge	a5,a1,30026858 <scalbn+0x124>
 300267bc:	0000c7b7          	lui	a5,0xc
-300267c0:	35078793          	addi	a5,a5,848 # c350 <stackPointer+0x5610>
+300267c0:	35078793          	addi	a5,a5,848 # c350 <stackPointer+0x68d0>
 300267c4:	0e87c863          	blt	a5,s0,300268b4 <scalbn+0x180>
 300267c8:	0000d797          	auipc	a5,0xd
 300267cc:	a7078793          	addi	a5,a5,-1424 # 30033238 <init_jk+0x58>
@@ -40582,7 +40582,7 @@ Disassembly of section .text.__udivdi3:
 30026ce8:	01079793          	slli	a5,a5,0x10
 30026cec:	00010f37          	lui	t5,0x10
 30026cf0:	00e7e7b3          	or	a5,a5,a4
-30026cf4:	ffff0713          	addi	a4,t5,-1 # ffff <stackPointer+0x92bf>
+30026cf4:	ffff0713          	addi	a4,t5,-1 # ffff <stackPointer+0xa57f>
 30026cf8:	00e7f6b3          	and	a3,a5,a4
 30026cfc:	0107d893          	srli	a7,a5,0x10
 30026d00:	00e67733          	and	a4,a2,a4
@@ -40605,7 +40605,7 @@ Disassembly of section .text.__udivdi3:
 30026d44:	00000593          	li	a1,0
 30026d48:	00008067          	ret
 30026d4c:	00010737          	lui	a4,0x10
-30026d50:	fff70713          	addi	a4,a4,-1 # ffff <stackPointer+0x92bf>
+30026d50:	fff70713          	addi	a4,a4,-1 # ffff <stackPointer+0xa57f>
 30026d54:	00e6f6b3          	and	a3,a3,a4
 30026d58:	01069693          	slli	a3,a3,0x10
 30026d5c:	00eefeb3          	and	t4,t4,a4
@@ -40826,7 +40826,7 @@ Disassembly of section .text.__umoddi3:
 300270a8:	00b76733          	or	a4,a4,a1
 300270ac:	01e77e63          	bgeu	a4,t5,300270c8 <__umoddi3+0x2dc>
 300270b0:	00d70733          	add	a4,a4,a3
-300270b4:	fff78593          	addi	a1,a5,-1 # ffffff <stackPointer+0xff92bf>
+300270b4:	fff78593          	addi	a1,a5,-1 # ffffff <stackPointer+0xffa57f>
 300270b8:	16d76e63          	bltu	a4,a3,30027234 <__umoddi3+0x448>
 300270bc:	17e77c63          	bgeu	a4,t5,30027234 <__umoddi3+0x448>
 300270c0:	ffe78793          	addi	a5,a5,-2
@@ -40834,7 +40834,7 @@ Disassembly of section .text.__umoddi3:
 300270c8:	010e9e93          	slli	t4,t4,0x10
 300270cc:	000102b7          	lui	t0,0x10
 300270d0:	00feeeb3          	or	t4,t4,a5
-300270d4:	fff28813          	addi	a6,t0,-1 # ffff <stackPointer+0x92bf>
+300270d4:	fff28813          	addi	a6,t0,-1 # ffff <stackPointer+0xa57f>
 300270d8:	010ef8b3          	and	a7,t4,a6
 300270dc:	01065593          	srli	a1,a2,0x10
 300270e0:	010ede93          	srli	t4,t4,0x10
@@ -40850,7 +40850,7 @@ Disassembly of section .text.__umoddi3:
 30027108:	0107f463          	bgeu	a5,a6,30027110 <__umoddi3+0x324>
 3002710c:	005e8eb3          	add	t4,t4,t0
 30027110:	00010837          	lui	a6,0x10
-30027114:	fff80813          	addi	a6,a6,-1 # ffff <stackPointer+0x92bf>
+30027114:	fff80813          	addi	a6,a6,-1 # ffff <stackPointer+0xa57f>
 30027118:	0107d593          	srli	a1,a5,0x10
 3002711c:	0107f7b3          	and	a5,a5,a6
 30027120:	01079793          	slli	a5,a5,0x10
@@ -40934,7 +40934,7 @@ Disassembly of section .text.__adddf3:
 3002724c <__adddf3>:
 3002724c:	00100837          	lui	a6,0x100
 30027250:	fe010113          	addi	sp,sp,-32
-30027254:	fff80813          	addi	a6,a6,-1 # fffff <stackPointer+0xf92bf>
+30027254:	fff80813          	addi	a6,a6,-1 # fffff <stackPointer+0xfa57f>
 30027258:	00b87733          	and	a4,a6,a1
 3002725c:	00912a23          	sw	s1,20(sp)
 30027260:	00d87833          	and	a6,a6,a3
@@ -40984,7 +40984,7 @@ Disassembly of section .text.__adddf3:
 30027310:	00861793          	slli	a5,a2,0x8
 30027314:	2a07d263          	bgez	a5,300275b8 <__adddf3+0x36c>
 30027318:	00800737          	lui	a4,0x800
-3002731c:	fff70713          	addi	a4,a4,-1 # 7fffff <stackPointer+0x7f92bf>
+3002731c:	fff70713          	addi	a4,a4,-1 # 7fffff <stackPointer+0x7fa57f>
 30027320:	00e67433          	and	s0,a2,a4
 30027324:	34040e63          	beqz	s0,30027680 <__adddf3+0x434>
 30027328:	00040513          	mv	a0,s0
@@ -41724,7 +41724,7 @@ Disassembly of section .text.__divdf3:
 30027e90:	01079793          	slli	a5,a5,0x10
 30027e94:	00010437          	lui	s0,0x10
 30027e98:	00e7e733          	or	a4,a5,a4
-30027e9c:	fff40793          	addi	a5,s0,-1 # ffff <stackPointer+0x92bf>
+30027e9c:	fff40793          	addi	a5,s0,-1 # ffff <stackPointer+0xa57f>
 30027ea0:	00f77533          	and	a0,a4,a5
 30027ea4:	01075893          	srli	a7,a4,0x10
 30027ea8:	010e5f93          	srli	t6,t3,0x10
@@ -41740,7 +41740,7 @@ Disassembly of section .text.__divdf3:
 30027ed0:	00767463          	bgeu	a2,t2,30027ed8 <__divdf3+0x408>
 30027ed4:	00850533          	add	a0,a0,s0
 30027ed8:	000108b7          	lui	a7,0x10
-30027edc:	fff88893          	addi	a7,a7,-1 # ffff <stackPointer+0x92bf>
+30027edc:	fff88893          	addi	a7,a7,-1 # ffff <stackPointer+0xa57f>
 30027ee0:	01065593          	srli	a1,a2,0x10
 30027ee4:	01167633          	and	a2,a2,a7
 30027ee8:	01061613          	slli	a2,a2,0x10
@@ -41778,7 +41778,7 @@ Disassembly of section .text.__divdf3:
 30027f68:	01666633          	or	a2,a2,s6
 30027f6c:	01e67e63          	bgeu	a2,t5,30027f88 <__divdf3+0x4b8>
 30027f70:	00660633          	add	a2,a2,t1
-30027f74:	fff68593          	addi	a1,a3,-1 # 7fffff <stackPointer+0x7f92bf>
+30027f74:	fff68593          	addi	a1,a3,-1 # 7fffff <stackPointer+0x7fa57f>
 30027f78:	28666a63          	bltu	a2,t1,3002820c <__divdf3+0x73c>
 30027f7c:	29e67863          	bgeu	a2,t5,3002820c <__divdf3+0x73c>
 30027f80:	ffe68693          	addi	a3,a3,-2
@@ -41800,7 +41800,7 @@ Disassembly of section .text.__divdf3:
 30027fc0:	000107b7          	lui	a5,0x10
 30027fc4:	00ff8fb3          	add	t6,t6,a5
 30027fc8:	000105b7          	lui	a1,0x10
-30027fcc:	fff58593          	addi	a1,a1,-1 # ffff <stackPointer+0x92bf>
+30027fcc:	fff58593          	addi	a1,a1,-1 # ffff <stackPointer+0xa57f>
 30027fd0:	0106d793          	srli	a5,a3,0x10
 30027fd4:	00b6f6b3          	and	a3,a3,a1
 30027fd8:	01069693          	slli	a3,a3,0x10
@@ -41837,7 +41837,7 @@ Disassembly of section .text.__divdf3:
 30028054:	00812603          	lw	a2,8(sp)
 30028058:	02050513          	addi	a0,a0,32
 3002805c:	bee6dee3          	bge	a3,a4,30027c58 <__divdf3+0x188>
-30028060:	ff878793          	addi	a5,a5,-8 # fff8 <stackPointer+0x92b8>
+30028060:	ff878793          	addi	a5,a5,-8 # fff8 <stackPointer+0xa578>
 30028064:	00f61733          	sll	a4,a2,a5
 30028068:	00000893          	li	a7,0
 3002806c:	c09ff06f          	j	30027c74 <__divdf3+0x1a4>
@@ -41974,7 +41974,7 @@ Disassembly of section .text.__eqdf2:
 3002826c <__eqdf2>:
 3002826c:	0145d713          	srli	a4,a1,0x14
 30028270:	001007b7          	lui	a5,0x100
-30028274:	fff78793          	addi	a5,a5,-1 # fffff <stackPointer+0xf92bf>
+30028274:	fff78793          	addi	a5,a5,-1 # fffff <stackPointer+0xfa57f>
 30028278:	0146d813          	srli	a6,a3,0x14
 3002827c:	7ff77713          	andi	a4,a4,2047
 30028280:	7ff00893          	li	a7,2047
@@ -42013,7 +42013,7 @@ Disassembly of section .text.__gedf2:
 300282f8 <__gedf2>:
 300282f8:	0145d713          	srli	a4,a1,0x14
 300282fc:	001007b7          	lui	a5,0x100
-30028300:	fff78793          	addi	a5,a5,-1 # fffff <stackPointer+0xf92bf>
+30028300:	fff78793          	addi	a5,a5,-1 # fffff <stackPointer+0xfa57f>
 30028304:	0146d813          	srli	a6,a3,0x14
 30028308:	7ff77713          	andi	a4,a4,2047
 3002830c:	7ff00893          	li	a7,2047
@@ -42077,7 +42077,7 @@ Disassembly of section .text.__ledf2:
 300283e8 <__ledf2>:
 300283e8:	0145d713          	srli	a4,a1,0x14
 300283ec:	001007b7          	lui	a5,0x100
-300283f0:	fff78793          	addi	a5,a5,-1 # fffff <stackPointer+0xf92bf>
+300283f0:	fff78793          	addi	a5,a5,-1 # fffff <stackPointer+0xfa57f>
 300283f4:	0146d813          	srli	a6,a3,0x14
 300283f8:	7ff77713          	andi	a4,a4,2047
 300283fc:	7ff00893          	li	a7,2047
@@ -42257,7 +42257,7 @@ Disassembly of section .text.__muldf3:
 300286a4:	00050793          	mv	a5,a0
 300286a8:	ff550713          	addi	a4,a0,-11
 300286ac:	01d00413          	li	s0,29
-300286b0:	ff878493          	addi	s1,a5,-8 # 7ffff8 <stackPointer+0x7f92b8>
+300286b0:	ff878493          	addi	s1,a5,-8 # 7ffff8 <stackPointer+0x7fa578>
 300286b4:	40e40433          	sub	s0,s0,a4
 300286b8:	009999b3          	sll	s3,s3,s1
 300286bc:	008a5433          	srl	s0,s4,s0
@@ -42329,7 +42329,7 @@ Disassembly of section .text.__muldf3:
 300287c4:	00000493          	li	s1,0
 300287c8:	e31ff06f          	j	300285f8 <__muldf3+0x114>
 300287cc:	00010eb7          	lui	t4,0x10
-300287d0:	fffe8613          	addi	a2,t4,-1 # ffff <stackPointer+0x92bf>
+300287d0:	fffe8613          	addi	a2,t4,-1 # ffff <stackPointer+0xa57f>
 300287d4:	0104d693          	srli	a3,s1,0x10
 300287d8:	0105de13          	srli	t3,a1,0x10
 300287dc:	00c4f4b3          	and	s1,s1,a2
@@ -42344,7 +42344,7 @@ Disassembly of section .text.__muldf3:
 30028800:	0068f463          	bgeu	a7,t1,30028808 <__muldf3+0x324>
 30028804:	01d282b3          	add	t0,t0,t4
 30028808:	00010fb7          	lui	t6,0x10
-3002880c:	ffff8313          	addi	t1,t6,-1 # ffff <stackPointer+0x92bf>
+3002880c:	ffff8313          	addi	t1,t6,-1 # ffff <stackPointer+0xa57f>
 30028810:	0067f533          	and	a0,a5,t1
 30028814:	0107d393          	srli	t2,a5,0x10
 30028818:	0068f7b3          	and	a5,a7,t1
@@ -42362,7 +42362,7 @@ Disassembly of section .text.__muldf3:
 30028848:	00f4f463          	bgeu	s1,a5,30028850 <__muldf3+0x36c>
 3002884c:	01fe8eb3          	add	t4,t4,t6
 30028850:	00010a37          	lui	s4,0x10
-30028854:	fffa0793          	addi	a5,s4,-1 # ffff <stackPointer+0x92bf>
+30028854:	fffa0793          	addi	a5,s4,-1 # ffff <stackPointer+0xa57f>
 30028858:	01045f93          	srli	t6,s0,0x10
 3002885c:	00f476b3          	and	a3,s0,a5
 30028860:	00f4f9b3          	and	s3,s1,a5
@@ -42382,7 +42382,7 @@ Disassembly of section .text.__muldf3:
 30028898:	00bef463          	bgeu	t4,a1,300288a0 <__muldf3+0x3bc>
 3002889c:	014e0e33          	add	t3,t3,s4
 300288a0:	000107b7          	lui	a5,0x10
-300288a4:	fff78593          	addi	a1,a5,-1 # ffff <stackPointer+0x92bf>
+300288a4:	fff78593          	addi	a1,a5,-1 # ffff <stackPointer+0xa57f>
 300288a8:	00bef633          	and	a2,t4,a1
 300288ac:	00b47433          	and	s0,s0,a1
 300288b0:	01061613          	slli	a2,a2,0x10
@@ -42399,7 +42399,7 @@ Disassembly of section .text.__muldf3:
 300288dc:	00a6f463          	bgeu	a3,a0,300288e4 <__muldf3+0x400>
 300288e0:	00ff8fb3          	add	t6,t6,a5
 300288e4:	00010537          	lui	a0,0x10
-300288e8:	fff50513          	addi	a0,a0,-1 # ffff <stackPointer+0x92bf>
+300288e8:	fff50513          	addi	a0,a0,-1 # ffff <stackPointer+0xa57f>
 300288ec:	00a6f7b3          	and	a5,a3,a0
 300288f0:	01079793          	slli	a5,a5,0x10
 300288f4:	00a5f533          	and	a0,a1,a0
@@ -42555,7 +42555,7 @@ Disassembly of section .text.__subdf3:
 
 30028b44 <__subdf3>:
 30028b44:	00100737          	lui	a4,0x100
-30028b48:	fff70713          	addi	a4,a4,-1 # fffff <stackPointer+0xf92bf>
+30028b48:	fff70713          	addi	a4,a4,-1 # fffff <stackPointer+0xfa57f>
 30028b4c:	fe010113          	addi	sp,sp,-32
 30028b50:	00b77333          	and	t1,a4,a1
 30028b54:	0146d893          	srli	a7,a3,0x14
@@ -42608,7 +42608,7 @@ Disassembly of section .text.__subdf3:
 30028c10:	00861793          	slli	a5,a2,0x8
 30028c14:	2a07d863          	bgez	a5,30028ec4 <__subdf3+0x380>
 30028c18:	00800937          	lui	s2,0x800
-30028c1c:	fff90913          	addi	s2,s2,-1 # 7fffff <stackPointer+0x7f92bf>
+30028c1c:	fff90913          	addi	s2,s2,-1 # 7fffff <stackPointer+0x7fa57f>
 30028c20:	01267933          	and	s2,a2,s2
 30028c24:	36090663          	beqz	s2,30028f90 <__subdf3+0x44c>
 30028c28:	00090513          	mv	a0,s2
@@ -43103,7 +43103,7 @@ Disassembly of section .text.__unorddf2:
 300293c0 <__unorddf2>:
 300293c0:	0145d713          	srli	a4,a1,0x14
 300293c4:	001007b7          	lui	a5,0x100
-300293c8:	fff78793          	addi	a5,a5,-1 # fffff <stackPointer+0xf92bf>
+300293c8:	fff78793          	addi	a5,a5,-1 # fffff <stackPointer+0xfa57f>
 300293cc:	fff74713          	not	a4,a4
 300293d0:	0146d813          	srli	a6,a3,0x14
 300293d4:	00b7f5b3          	and	a1,a5,a1
@@ -43128,7 +43128,7 @@ Disassembly of section .text.__fixdfsi:
 30029414 <__fixdfsi>:
 30029414:	0145d793          	srli	a5,a1,0x14
 30029418:	001006b7          	lui	a3,0x100
-3002941c:	fff68713          	addi	a4,a3,-1 # fffff <stackPointer+0xf92bf>
+3002941c:	fff68713          	addi	a4,a3,-1 # fffff <stackPointer+0xfa57f>
 30029420:	7ff7f793          	andi	a5,a5,2047
 30029424:	3fe00613          	li	a2,1022
 30029428:	00b77733          	and	a4,a4,a1
@@ -43165,7 +43165,7 @@ Disassembly of section .text.__fixunsdfsi:
 30029498 <__fixunsdfsi>:
 30029498:	0145d793          	srli	a5,a1,0x14
 3002949c:	001006b7          	lui	a3,0x100
-300294a0:	fff68713          	addi	a4,a3,-1 # fffff <stackPointer+0xf92bf>
+300294a0:	fff68713          	addi	a4,a3,-1 # fffff <stackPointer+0xfa57f>
 300294a4:	7ff7f793          	andi	a5,a5,2047
 300294a8:	3fe00613          	li	a2,1022
 300294ac:	00050813          	mv	a6,a0
@@ -43300,7 +43300,7 @@ Disassembly of section .text.__eqtf2:
 30029680:	00c52703          	lw	a4,12(a0)
 30029684:	00c5a683          	lw	a3,12(a1)
 30029688:	000087b7          	lui	a5,0x8
-3002968c:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x12bf>
+3002968c:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x257f>
 30029690:	01075613          	srli	a2,a4,0x10
 30029694:	0106d813          	srli	a6,a3,0x10
 30029698:	01071e93          	slli	t4,a4,0x10
@@ -43356,7 +43356,7 @@ Disassembly of section .text.__getf2:
 30029750:	00c52603          	lw	a2,12(a0)
 30029754:	00c5a703          	lw	a4,12(a1)
 30029758:	000087b7          	lui	a5,0x8
-3002975c:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x12bf>
+3002975c:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x257f>
 30029760:	01065813          	srli	a6,a2,0x10
 30029764:	01075693          	srli	a3,a4,0x10
 30029768:	00052e03          	lw	t3,0(a0)
@@ -43451,7 +43451,7 @@ Disassembly of section .text.__letf2:
 300298bc:	00c52603          	lw	a2,12(a0)
 300298c0:	00c5a703          	lw	a4,12(a1)
 300298c4:	000087b7          	lui	a5,0x8
-300298c8:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x12bf>
+300298c8:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x257f>
 300298cc:	01065813          	srli	a6,a2,0x10
 300298d0:	01075693          	srli	a3,a4,0x10
 300298d4:	01071e93          	slli	t4,a4,0x10
@@ -43555,7 +43555,7 @@ Disassembly of section .text.__multf3:
 30029a4c:	0a812c23          	sw	s0,184(sp)
 30029a50:	01075713          	srli	a4,a4,0x10
 30029a54:	010a5413          	srli	s0,s4,0x10
-30029a58:	fff58593          	addi	a1,a1,-1 # 7fff <stackPointer+0x12bf>
+30029a58:	fff58593          	addi	a1,a1,-1 # 7fff <stackPointer+0x257f>
 30029a5c:	0a912a23          	sw	s1,180(sp)
 30029a60:	0b312623          	sw	s3,172(sp)
 30029a64:	0b512223          	sw	s5,164(sp)
@@ -43608,7 +43608,7 @@ Disassembly of section .text.__multf3:
 30029b20:	000087b7          	lui	a5,0x8
 30029b24:	0109d713          	srli	a4,s3,0x10
 30029b28:	01055513          	srli	a0,a0,0x10
-30029b2c:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x12bf>
+30029b2c:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x257f>
 30029b30:	07312623          	sw	s3,108(sp)
 30029b34:	07512023          	sw	s5,96(sp)
 30029b38:	07612223          	sw	s6,100(sp)
@@ -43642,7 +43642,7 @@ Disassembly of section .text.__multf3:
 30029ba8:	05512023          	sw	s5,64(sp)
 30029bac:	00f40433          	add	s0,s0,a5
 30029bb0:	00000693          	li	a3,0
-30029bb4:	00140613          	addi	a2,s0,1 # 80001 <stackPointer+0x792c1>
+30029bb4:	00140613          	addi	a2,s0,1 # 80001 <stackPointer+0x7a581>
 30029bb8:	013a47b3          	xor	a5,s4,s3
 30029bbc:	00f00713          	li	a4,15
 30029bc0:	00c12223          	sw	a2,4(sp)
@@ -43665,7 +43665,7 @@ Disassembly of section .text.__multf3:
 30029c04:	fb1ff06f          	j	30029bb4 <__multf3+0x18c>
 30029c08:	00008737          	lui	a4,0x8
 30029c0c:	00000793          	li	a5,0
-30029c10:	fff70713          	addi	a4,a4,-1 # 7fff <stackPointer+0x12bf>
+30029c10:	fff70713          	addi	a4,a4,-1 # 7fff <stackPointer+0x257f>
 30029c14:	000086b7          	lui	a3,0x8
 30029c18:	00000513          	li	a0,0
 30029c1c:	00000813          	li	a6,0
@@ -43739,7 +43739,7 @@ Disassembly of section .text.__multf3:
 30029d2c:	faf696e3          	bne	a3,a5,30029cd8 <__multf3+0x2b0>
 30029d30:	00008737          	lui	a4,0x8
 30029d34:	00058793          	mv	a5,a1
-30029d38:	fff70713          	addi	a4,a4,-1 # 7fff <stackPointer+0x12bf>
+30029d38:	fff70713          	addi	a4,a4,-1 # 7fff <stackPointer+0x257f>
 30029d3c:	00000693          	li	a3,0
 30029d40:	00000513          	li	a0,0
 30029d44:	00000813          	li	a6,0
@@ -43865,7 +43865,7 @@ Disassembly of section .text.__multf3:
 30029f24:	03012683          	lw	a3,48(sp)
 30029f28:	04012503          	lw	a0,64(sp)
 30029f2c:	000105b7          	lui	a1,0x10
-30029f30:	fff58713          	addi	a4,a1,-1 # ffff <stackPointer+0x92bf>
+30029f30:	fff58713          	addi	a4,a1,-1 # ffff <stackPointer+0xa57f>
 30029f34:	0106de13          	srli	t3,a3,0x10
 30029f38:	01055293          	srli	t0,a0,0x10
 30029f3c:	00e6f6b3          	and	a3,a3,a4
@@ -43881,7 +43881,7 @@ Disassembly of section .text.__multf3:
 30029f64:	00bc0c33          	add	s8,s8,a1
 30029f68:	04412603          	lw	a2,68(sp)
 30029f6c:	00010837          	lui	a6,0x10
-30029f70:	fff80593          	addi	a1,a6,-1 # ffff <stackPointer+0x92bf>
+30029f70:	fff80593          	addi	a1,a6,-1 # ffff <stackPointer+0xa57f>
 30029f74:	00b678b3          	and	a7,a2,a1
 30029f78:	01065e93          	srli	t4,a2,0x10
 30029f7c:	00bb7633          	and	a2,s6,a1
@@ -43904,7 +43904,7 @@ Disassembly of section .text.__multf3:
 30029fc0:	010b8bb3          	add	s7,s7,a6
 30029fc4:	03412583          	lw	a1,52(sp)
 30029fc8:	00010737          	lui	a4,0x10
-30029fcc:	fff70613          	addi	a2,a4,-1 # ffff <stackPointer+0x92bf>
+30029fcc:	fff70613          	addi	a2,a4,-1 # ffff <stackPointer+0xa57f>
 30029fd0:	00c8fab3          	and	s5,a7,a2
 30029fd4:	0105df13          	srli	t5,a1,0x10
 30029fd8:	00c37333          	and	t1,t1,a2
@@ -43924,7 +43924,7 @@ Disassembly of section .text.__multf3:
 3002a010:	00667463          	bgeu	a2,t1,3002a018 <__multf3+0x5f0>
 3002a014:	00e90933          	add	s2,s2,a4
 3002a018:	00010337          	lui	t1,0x10
-3002a01c:	fff30f93          	addi	t6,t1,-1 # ffff <stackPointer+0x92bf>
+3002a01c:	fff30f93          	addi	t6,t1,-1 # ffff <stackPointer+0xa57f>
 3002a020:	01f67733          	and	a4,a2,t6
 3002a024:	01065613          	srli	a2,a2,0x10
 3002a028:	01012383          	lw	t2,16(sp)
@@ -43945,7 +43945,7 @@ Disassembly of section .text.__multf3:
 3002a064:	006f0f33          	add	t5,t5,t1
 3002a068:	04812f83          	lw	t6,72(sp)
 3002a06c:	00010337          	lui	t1,0x10
-3002a070:	fff30393          	addi	t2,t1,-1 # ffff <stackPointer+0x92bf>
+3002a070:	fff30393          	addi	t2,t1,-1 # ffff <stackPointer+0xa57f>
 3002a074:	00767a33          	and	s4,a2,t2
 3002a078:	007ffb33          	and	s6,t6,t2
 3002a07c:	010fd993          	srli	s3,t6,0x10
@@ -43967,7 +43967,7 @@ Disassembly of section .text.__multf3:
 3002a0bc:	006b0b33          	add	s6,s6,t1
 3002a0c0:	03812e83          	lw	t4,56(sp)
 3002a0c4:	00010637          	lui	a2,0x10
-3002a0c8:	fff60c93          	addi	s9,a2,-1 # ffff <stackPointer+0x92bf>
+3002a0c8:	fff60c93          	addi	s9,a2,-1 # ffff <stackPointer+0xa57f>
 3002a0cc:	0193f9b3          	and	s3,t2,s9
 3002a0d0:	010edf13          	srli	t5,t4,0x10
 3002a0d4:	019fffb3          	and	t6,t6,s9
@@ -43990,7 +43990,7 @@ Disassembly of section .text.__multf3:
 3002a118:	015b3ab3          	sltu	s5,s6,s5
 3002a11c:	01588633          	add	a2,a7,s5
 3002a120:	000108b7          	lui	a7,0x10
-3002a124:	fff88c13          	addi	s8,a7,-1 # ffff <stackPointer+0x92bf>
+3002a124:	fff88c13          	addi	s8,a7,-1 # ffff <stackPointer+0xa57f>
 3002a128:	01760633          	add	a2,a2,s7
 3002a12c:	00eb08b3          	add	a7,s6,a4
 3002a130:	01085b13          	srli	s6,a6,0x10
@@ -44052,7 +44052,7 @@ Disassembly of section .text.__multf3:
 3002a210:	011f8fb3          	add	t6,t6,a7
 3002a214:	03c12683          	lw	a3,60(sp)
 3002a218:	00010637          	lui	a2,0x10
-3002a21c:	fff60393          	addi	t2,a2,-1 # ffff <stackPointer+0x92bf>
+3002a21c:	fff60393          	addi	t2,a2,-1 # ffff <stackPointer+0xa57f>
 3002a220:	0106de13          	srli	t3,a3,0x10
 3002a224:	007afc33          	and	s8,s5,t2
 3002a228:	0076f6b3          	and	a3,a3,t2
@@ -44072,7 +44072,7 @@ Disassembly of section .text.__multf3:
 3002a260:	00aff463          	bgeu	t6,a0,3002a268 <__multf3+0x840>
 3002a264:	00c282b3          	add	t0,t0,a2
 3002a268:	000108b7          	lui	a7,0x10
-3002a26c:	fff88513          	addi	a0,a7,-1 # ffff <stackPointer+0x92bf>
+3002a26c:	fff88513          	addi	a0,a7,-1 # ffff <stackPointer+0xa57f>
 3002a270:	010fda93          	srli	s5,t6,0x10
 3002a274:	00aff633          	and	a2,t6,a0
 3002a278:	00a77733          	and	a4,a4,a0
@@ -44092,7 +44092,7 @@ Disassembly of section .text.__multf3:
 3002a2b0:	00e3f463          	bgeu	t2,a4,3002a2b8 <__multf3+0x890>
 3002a2b4:	01150533          	add	a0,a0,a7
 3002a2b8:	000108b7          	lui	a7,0x10
-3002a2bc:	fff88713          	addi	a4,a7,-1 # ffff <stackPointer+0x92bf>
+3002a2bc:	fff88713          	addi	a4,a7,-1 # ffff <stackPointer+0xa57f>
 3002a2c0:	00e3f933          	and	s2,t2,a4
 3002a2c4:	0103d393          	srli	t2,t2,0x10
 3002a2c8:	00c12983          	lw	s3,12(sp)
@@ -44116,7 +44116,7 @@ Disassembly of section .text.__multf3:
 3002a310:	016c8fb3          	add	t6,s9,s6
 3002a314:	00010cb7          	lui	s9,0x10
 3002a318:	011f8c33          	add	s8,t6,a7
-3002a31c:	fffc8513          	addi	a0,s9,-1 # ffff <stackPointer+0x92bf>
+3002a31c:	fffc8513          	addi	a0,s9,-1 # ffff <stackPointer+0xa57f>
 3002a320:	03db8333          	mul	t1,s7,t4
 3002a324:	016fbfb3          	sltu	t6,t6,s6
 3002a328:	01412b03          	lw	s6,20(sp)
@@ -44165,7 +44165,7 @@ Disassembly of section .text.__multf3:
 3002a3d4:	01930333          	add	t1,t1,s9
 3002a3d8:	02812383          	lw	t2,40(sp)
 3002a3dc:	00010fb7          	lui	t6,0x10
-3002a3e0:	ffff8293          	addi	t0,t6,-1 # ffff <stackPointer+0x92bf>
+3002a3e0:	ffff8293          	addi	t0,t6,-1 # ffff <stackPointer+0xa57f>
 3002a3e4:	0058fa33          	and	s4,a7,t0
 3002a3e8:	0053fb33          	and	s6,t2,t0
 3002a3ec:	00812983          	lw	s3,8(sp)
@@ -44184,7 +44184,7 @@ Disassembly of section .text.__multf3:
 3002a420:	0125f463          	bgeu	a1,s2,3002a428 <__multf3+0xa00>
 3002a424:	01f282b3          	add	t0,t0,t6
 3002a428:	00010937          	lui	s2,0x10
-3002a42c:	fff90f93          	addi	t6,s2,-1 # ffff <stackPointer+0x92bf>
+3002a42c:	fff90f93          	addi	t6,s2,-1 # ffff <stackPointer+0xa57f>
 3002a430:	01f5f9b3          	and	s3,a1,t6
 3002a434:	0105d393          	srli	t2,a1,0x10
 3002a438:	00c12a83          	lw	s5,12(sp)
@@ -44204,7 +44204,7 @@ Disassembly of section .text.__multf3:
 3002a470:	012282b3          	add	t0,t0,s2
 3002a474:	00812b03          	lw	s6,8(sp)
 3002a478:	00010937          	lui	s2,0x10
-3002a47c:	fff90a93          	addi	s5,s2,-1 # ffff <stackPointer+0x92bf>
+3002a47c:	fff90a93          	addi	s5,s2,-1 # ffff <stackPointer+0xa57f>
 3002a480:	0155f333          	and	t1,a1,s5
 3002a484:	0105d593          	srli	a1,a1,0x10
 3002a488:	015fffb3          	and	t6,t6,s5
@@ -44221,7 +44221,7 @@ Disassembly of section .text.__multf3:
 3002a4b4:	00bef463          	bgeu	t4,a1,3002a4bc <__multf3+0xa94>
 3002a4b8:	012f0f33          	add	t5,t5,s2
 3002a4bc:	000105b7          	lui	a1,0x10
-3002a4c0:	fff58b13          	addi	s6,a1,-1 # ffff <stackPointer+0x92bf>
+3002a4c0:	fff58b13          	addi	s6,a1,-1 # ffff <stackPointer+0xa57f>
 3002a4c4:	016ef933          	and	s2,t4,s6
 3002a4c8:	010edf93          	srli	t6,t4,0x10
 3002a4cc:	01412c03          	lw	s8,20(sp)
@@ -44262,7 +44262,7 @@ Disassembly of section .text.__multf3:
 3002a558:	00010db7          	lui	s11,0x10
 3002a55c:	007cb3b3          	sltu	t2,s9,t2
 3002a560:	00b3e3b3          	or	t2,t2,a1
-3002a564:	fffd8d13          	addi	s10,s11,-1 # ffff <stackPointer+0x92bf>
+3002a564:	fffd8d13          	addi	s10,s11,-1 # ffff <stackPointer+0xa57f>
 3002a568:	01456533          	or	a0,a0,s4
 3002a56c:	01af78b3          	and	a7,t5,s10
 3002a570:	030e0833          	mul	a6,t3,a6
@@ -44297,7 +44297,7 @@ Disassembly of section .text.__multf3:
 3002a5e4:	0106f463          	bgeu	a3,a6,3002a5ec <__multf3+0xbc4>
 3002a5e8:	01be0e33          	add	t3,t3,s11
 3002a5ec:	00010837          	lui	a6,0x10
-3002a5f0:	fff80813          	addi	a6,a6,-1 # ffff <stackPointer+0x92bf>
+3002a5f0:	fff80813          	addi	a6,a6,-1 # ffff <stackPointer+0xa57f>
 3002a5f4:	0106f5b3          	and	a1,a3,a6
 3002a5f8:	01059593          	slli	a1,a1,0x10
 3002a5fc:	010b7b33          	and	s6,s6,a6
@@ -44322,7 +44322,7 @@ Disassembly of section .text.__multf3:
 3002a648:	06a12c23          	sw	a0,120(sp)
 3002a64c:	00c76733          	or	a4,a4,a2
 3002a650:	00bb6b33          	or	s6,s6,a1
-3002a654:	00e6a023          	sw	a4,0(a3) # 8000 <stackPointer+0x12c0>
+3002a654:	00e6a023          	sw	a4,0(a3) # 8000 <stackPointer+0x2580>
 3002a658:	07010593          	addi	a1,sp,112
 3002a65c:	00468693          	addi	a3,a3,4
 3002a660:	02d58263          	beq	a1,a3,3002a684 <__multf3+0xc5c>
@@ -44364,7 +44364,7 @@ Disassembly of section .text.__multf3:
 3002a6f0:	04d12e23          	sw	a3,92(sp)
 3002a6f4:	04e12823          	sw	a4,80(sp)
 3002a6f8:	00004737          	lui	a4,0x4
-3002a6fc:	fff70713          	addi	a4,a4,-1 # 3fff <stackPointer-0x2d41>
+3002a6fc:	fff70713          	addi	a4,a4,-1 # 3fff <stackPointer-0x1a81>
 3002a700:	00e408b3          	add	a7,s0,a4
 3002a704:	1b105663          	blez	a7,3002a8b0 <__multf3+0xe88>
 3002a708:	05012603          	lw	a2,80(sp)
@@ -44404,7 +44404,7 @@ Disassembly of section .text.__multf3:
 3002a790:	01d59593          	slli	a1,a1,0x1d
 3002a794:	00385813          	srli	a6,a6,0x3
 3002a798:	00355513          	srli	a0,a0,0x3
-3002a79c:	ffe70313          	addi	t1,a4,-2 # 7ffe <stackPointer+0x12be>
+3002a79c:	ffe70313          	addi	t1,a4,-2 # 7ffe <stackPointer+0x257e>
 3002a7a0:	00b665b3          	or	a1,a2,a1
 3002a7a4:	01d86833          	or	a6,a6,t4
 3002a7a8:	01c56533          	or	a0,a0,t3
@@ -44688,7 +44688,7 @@ Disassembly of section .text.__subtf3:
 3002abf0:	00379793          	slli	a5,a5,0x3
 3002abf4:	01d3d693          	srli	a3,t2,0x1d
 3002abf8:	00008eb7          	lui	t4,0x8
-3002abfc:	fffe8e93          	addi	t4,t4,-1 # 7fff <stackPointer+0x12bf>
+3002abfc:	fffe8e93          	addi	t4,t4,-1 # 7fff <stackPointer+0x257f>
 3002ac00:	01f7e7b3          	or	a5,a5,t6
 3002ac04:	01c2ee33          	or	t3,t0,t3
 3002ac08:	01075f93          	srli	t6,a4,0x10
@@ -44731,7 +44731,7 @@ Disassembly of section .text.__subtf3:
 3002ac9c:	fff88713          	addi	a4,a7,-1
 3002aca0:	6c0706e3          	beqz	a4,3002bb6c <__subtf3+0xfec>
 3002aca4:	000086b7          	lui	a3,0x8
-3002aca8:	fff68693          	addi	a3,a3,-1 # 7fff <stackPointer+0x12bf>
+3002aca8:	fff68693          	addi	a3,a3,-1 # 7fff <stackPointer+0x257f>
 3002acac:	04d88ae3          	beq	a7,a3,3002b500 <__subtf3+0x980>
 3002acb0:	07400693          	li	a3,116
 3002acb4:	1ee6cc63          	blt	a3,a4,3002aeac <__subtf3+0x32c>
@@ -44789,7 +44789,7 @@ Disassembly of section .text.__subtf3:
 3002ad84:	3a089863          	bnez	a7,3002b134 <__subtf3+0x5b4>
 3002ad88:	00008eb7          	lui	t4,0x8
 3002ad8c:	00190513          	addi	a0,s2,1
-3002ad90:	ffee8813          	addi	a6,t4,-2 # 7ffe <stackPointer+0x12be>
+3002ad90:	ffee8813          	addi	a6,t4,-2 # 7ffe <stackPointer+0x257e>
 3002ad94:	01057533          	and	a0,a0,a6
 3002ad98:	08051ce3          	bnez	a0,3002b630 <__subtf3+0xab0>
 3002ad9c:	00c7e533          	or	a0,a5,a2
@@ -44853,7 +44853,7 @@ Disassembly of section .text.__subtf3:
 3002ae84:	6ae48063          	beq	s1,a4,3002b524 <__subtf3+0x9a4>
 3002ae88:	ef105ee3          	blez	a7,3002ad84 <__subtf3+0x204>
 3002ae8c:	00008737          	lui	a4,0x8
-3002ae90:	fff70713          	addi	a4,a4,-1 # 7fff <stackPointer+0x12bf>
+3002ae90:	fff70713          	addi	a4,a4,-1 # 7fff <stackPointer+0x257f>
 3002ae94:	00e90ee3          	beq	s2,a4,3002b6b0 <__subtf3+0xb30>
 3002ae98:	00080837          	lui	a6,0x80
 3002ae9c:	0105e833          	or	a6,a1,a6
@@ -44909,7 +44909,7 @@ Disassembly of section .text.__subtf3:
 3002af64:	fff80737          	lui	a4,0xfff80
 3002af68:	fff70713          	addi	a4,a4,-1 # fff7ffff <__bss_end__+0xcfe7ffff>
 3002af6c:	00190893          	addi	a7,s2,1
-3002af70:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x12bf>
+3002af70:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x257f>
 3002af74:	00e87733          	and	a4,a6,a4
 3002af78:	40f88863          	beq	a7,a5,3002b388 <__subtf3+0x808>
 3002af7c:	03412583          	lw	a1,52(sp)
@@ -44923,7 +44923,7 @@ Disassembly of section .text.__subtf3:
 3002af9c:	01d69693          	slli	a3,a3,0x1d
 3002afa0:	0035d593          	srli	a1,a1,0x3
 3002afa4:	00365613          	srli	a2,a2,0x3
-3002afa8:	fff50513          	addi	a0,a0,-1 # 7fff <stackPointer+0x12bf>
+3002afa8:	fff50513          	addi	a0,a0,-1 # 7fff <stackPointer+0x257f>
 3002afac:	0066e6b3          	or	a3,a3,t1
 3002afb0:	0105e5b3          	or	a1,a1,a6
 3002afb4:	00f66633          	or	a2,a2,a5
@@ -44968,7 +44968,7 @@ Disassembly of section .text.__subtf3:
 3002b050:	fff88713          	addi	a4,a7,-1
 3002b054:	220700e3          	beqz	a4,3002ba74 <__subtf3+0xef4>
 3002b058:	000086b7          	lui	a3,0x8
-3002b05c:	fff68693          	addi	a3,a3,-1 # 7fff <stackPointer+0x12bf>
+3002b05c:	fff68693          	addi	a3,a3,-1 # 7fff <stackPointer+0x257f>
 3002b060:	4ad88063          	beq	a7,a3,3002b500 <__subtf3+0x980>
 3002b064:	07400693          	li	a3,116
 3002b068:	20e6c863          	blt	a3,a4,3002b278 <__subtf3+0x6f8>
@@ -45031,7 +45031,7 @@ Disassembly of section .text.__subtf3:
 3002b14c:	fff88513          	addi	a0,a7,-1
 3002b150:	540504e3          	beqz	a0,3002be98 <__subtf3+0x1318>
 3002b154:	000087b7          	lui	a5,0x8
-3002b158:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x12bf>
+3002b158:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x257f>
 3002b15c:	16f884e3          	beq	a7,a5,3002bac4 <__subtf3+0xf44>
 3002b160:	07400793          	li	a5,116
 3002b164:	6aa7c463          	blt	a5,a0,3002b80c <__subtf3+0xc8c>
@@ -45096,7 +45096,7 @@ Disassembly of section .text.__subtf3:
 3002b250:	41e585b3          	sub	a1,a1,t5
 3002b254:	5d40006f          	j	3002b828 <__subtf3+0xca8>
 3002b258:	00008737          	lui	a4,0x8
-3002b25c:	fff70713          	addi	a4,a4,-1 # 7fff <stackPointer+0x12bf>
+3002b25c:	fff70713          	addi	a4,a4,-1 # 7fff <stackPointer+0x257f>
 3002b260:	44e90863          	beq	s2,a4,3002b6b0 <__subtf3+0xb30>
 3002b264:	00080837          	lui	a6,0x80
 3002b268:	0105e833          	or	a6,a1,a6
@@ -45154,7 +45154,7 @@ Disassembly of section .text.__subtf3:
 3002b338:	000087b7          	lui	a5,0x8
 3002b33c:	03012e23          	sw	a6,60(sp)
 3002b340:	02a12823          	sw	a0,48(sp)
-3002b344:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x12bf>
+3002b344:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x257f>
 3002b348:	60f91c63          	bne	s2,a5,3002b960 <__subtf3+0xde0>
 3002b34c:	02012e23          	sw	zero,60(sp)
 3002b350:	02012c23          	sw	zero,56(sp)
@@ -45184,7 +45184,7 @@ Disassembly of section .text.__subtf3:
 3002b3b0:	00000693          	li	a3,0
 3002b3b4:	c19ff06f          	j	3002afcc <__subtf3+0x44c>
 3002b3b8:	00080537          	lui	a0,0x80
-3002b3bc:	fff50513          	addi	a0,a0,-1 # 7ffff <stackPointer+0x792bf>
+3002b3bc:	fff50513          	addi	a0,a0,-1 # 7ffff <stackPointer+0x7a57f>
 3002b3c0:	00a87533          	and	a0,a6,a0
 3002b3c4:	02a12e23          	sw	a0,60(sp)
 3002b3c8:	1c050863          	beqz	a0,3002b598 <__subtf3+0xa18>
@@ -45216,7 +45216,7 @@ Disassembly of section .text.__subtf3:
 3002b430:	ffc68813          	addi	a6,a3,-4
 3002b434:	00c7a023          	sw	a2,0(a5)
 3002b438:	fed596e3          	bne	a1,a3,3002b424 <__subtf3+0x8a4>
-3002b43c:	fff70713          	addi	a4,a4,-1 # 7fff <stackPointer+0x12bf>
+3002b43c:	fff70713          	addi	a4,a4,-1 # 7fff <stackPointer+0x257f>
 3002b440:	fff00793          	li	a5,-1
 3002b444:	02f70463          	beq	a4,a5,3002b46c <__subtf3+0x8ec>
 3002b448:	00271713          	slli	a4,a4,0x2
@@ -45259,7 +45259,7 @@ Disassembly of section .text.__subtf3:
 3002b4dc:	00c706b3          	add	a3,a4,a2
 3002b4e0:	0006a683          	lw	a3,0(a3)
 3002b4e4:	00470713          	addi	a4,a4,4
-3002b4e8:	00180813          	addi	a6,a6,1 # 80001 <stackPointer+0x792c1>
+3002b4e8:	00180813          	addi	a6,a6,1 # 80001 <stackPointer+0x7a581>
 3002b4ec:	fed72e23          	sw	a3,-4(a4)
 3002b4f0:	ff08d6e3          	bge	a7,a6,3002b4dc <__subtf3+0x95c>
 3002b4f4:	00400713          	li	a4,4
@@ -45277,7 +45277,7 @@ Disassembly of section .text.__subtf3:
 3002b524:	1a089263          	bnez	a7,3002b6c8 <__subtf3+0xb48>
 3002b528:	00008eb7          	lui	t4,0x8
 3002b52c:	00190893          	addi	a7,s2,1
-3002b530:	ffee8713          	addi	a4,t4,-2 # 7ffe <stackPointer+0x12be>
+3002b530:	ffee8713          	addi	a4,t4,-2 # 7ffe <stackPointer+0x257e>
 3002b534:	00e8f733          	and	a4,a7,a4
 3002b538:	6a071663          	bnez	a4,3002bbe4 <__subtf3+0x1064>
 3002b53c:	00c7e733          	or	a4,a5,a2
@@ -45388,7 +45388,7 @@ Disassembly of section .text.__subtf3:
 3002b6e0:	fff88713          	addi	a4,a7,-1
 3002b6e4:	160700e3          	beqz	a4,3002c044 <__subtf3+0x14c4>
 3002b6e8:	000087b7          	lui	a5,0x8
-3002b6ec:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x12bf>
+3002b6ec:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x257f>
 3002b6f0:	76f88263          	beq	a7,a5,3002be54 <__subtf3+0x12d4>
 3002b6f4:	07400793          	li	a5,116
 3002b6f8:	32e7c063          	blt	a5,a4,3002ba18 <__subtf3+0xe98>
@@ -45453,7 +45453,7 @@ Disassembly of section .text.__subtf3:
 3002b7e4:	01c637b3          	sltu	a5,a2,t3
 3002b7e8:	2440006f          	j	3002ba2c <__subtf3+0xeac>
 3002b7ec:	000087b7          	lui	a5,0x8
-3002b7f0:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x12bf>
+3002b7f0:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x257f>
 3002b7f4:	34ff8463          	beq	t6,a5,3002bb3c <__subtf3+0xfbc>
 3002b7f8:	00080837          	lui	a6,0x80
 3002b7fc:	010f6833          	or	a6,t5,a6
@@ -45584,7 +45584,7 @@ Disassembly of section .text.__subtf3:
 3002b9f0:	00100713          	li	a4,1
 3002b9f4:	ad5ff06f          	j	3002b4c8 <__subtf3+0x948>
 3002b9f8:	000087b7          	lui	a5,0x8
-3002b9fc:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x12bf>
+3002b9fc:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x257f>
 3002ba00:	68ff8c63          	beq	t6,a5,3002c098 <__subtf3+0x1518>
 3002ba04:	00080837          	lui	a6,0x80
 3002ba08:	010f6833          	or	a6,t5,a6
@@ -45791,7 +45791,7 @@ Disassembly of section .text.__subtf3:
 3002bd2c:	011758b3          	srl	a7,a4,a7
 3002bd30:	00400713          	li	a4,4
 3002bd34:	40d706b3          	sub	a3,a4,a3
-3002bd38:	ff182023          	sw	a7,-32(a6) # 7ffe0 <stackPointer+0x792a0>
+3002bd38:	ff182023          	sw	a7,-32(a6) # 7ffe0 <stackPointer+0x7a560>
 3002bd3c:	ba8ff06f          	j	3002b0e4 <__subtf3+0x564>
 3002bd40:	00000513          	li	a0,0
 3002bd44:	00000713          	li	a4,0
@@ -46051,7 +46051,7 @@ Disassembly of section .text.__fixtfsi:
 3002c12c:	01012823          	sw	a6,16(sp)
 3002c130:	00c12c23          	sw	a2,24(sp)
 3002c134:	0116d693          	srli	a3,a3,0x11
-3002c138:	ffe78593          	addi	a1,a5,-2 # 3ffe <stackPointer-0x2d42>
+3002c138:	ffe78593          	addi	a1,a5,-2 # 3ffe <stackPointer-0x1a82>
 3002c13c:	00000513          	li	a0,0
 3002c140:	02d5d063          	bge	a1,a3,3002c160 <__fixtfsi+0x64>
 3002c144:	01d78593          	addi	a1,a5,29
@@ -46078,7 +46078,7 @@ Disassembly of section .text.__fixtfsi:
 3002c198:	08078463          	beqz	a5,3002c220 <__fixtfsi+0x124>
 3002c19c:	00100513          	li	a0,1
 3002c1a0:	0aa59063          	bne	a1,a0,3002c240 <__fixtfsi+0x144>
-3002c1a4:	00168813          	addi	a6,a3,1 # 10001 <stackPointer+0x92c1>
+3002c1a4:	00168813          	addi	a6,a3,1 # 10001 <stackPointer+0xa581>
 3002c1a8:	02010513          	addi	a0,sp,32
 3002c1ac:	00281813          	slli	a6,a6,0x2
 3002c1b0:	00269693          	slli	a3,a3,0x2
@@ -46138,7 +46138,7 @@ Disassembly of section .text.__floatsitf:
 3002c278:	51d010ef          	jal	ra,3002df94 <__clzsi2>
 3002c27c:	05150693          	addi	a3,a0,81 # 80000051 <__bss_end__+0x4ff00051>
 3002c280:	00004737          	lui	a4,0x4
-3002c284:	01e70713          	addi	a4,a4,30 # 401e <stackPointer-0x2d22>
+3002c284:	01e70713          	addi	a4,a4,30 # 401e <stackPointer-0x1a62>
 3002c288:	00812823          	sw	s0,16(sp)
 3002c28c:	00012a23          	sw	zero,20(sp)
 3002c290:	00012c23          	sw	zero,24(sp)
@@ -46236,7 +46236,7 @@ Disassembly of section .text.__addsf3:
 3002c3f4 <__addsf3>:
 3002c3f4:	ff010113          	addi	sp,sp,-16
 3002c3f8:	00800737          	lui	a4,0x800
-3002c3fc:	fff70713          	addi	a4,a4,-1 # 7fffff <stackPointer+0x7f92bf>
+3002c3fc:	fff70713          	addi	a4,a4,-1 # 7fffff <stackPointer+0x7fa57f>
 3002c400:	0175d813          	srli	a6,a1,0x17
 3002c404:	00912223          	sw	s1,4(sp)
 3002c408:	01755493          	srli	s1,a0,0x17
@@ -46274,7 +46274,7 @@ Disassembly of section .text.__addsf3:
 3002c488:	00579713          	slli	a4,a5,0x5
 3002c48c:	20075063          	bgez	a4,3002c68c <__addsf3+0x298>
 3002c490:	04000437          	lui	s0,0x4000
-3002c494:	fff40413          	addi	s0,s0,-1 # 3ffffff <stackPointer+0x3ff92bf>
+3002c494:	fff40413          	addi	s0,s0,-1 # 3ffffff <stackPointer+0x3ffa57f>
 3002c498:	0087f433          	and	s0,a5,s0
 3002c49c:	00040513          	mv	a0,s0
 3002c4a0:	2f5010ef          	jal	ra,3002df94 <__clzsi2>
@@ -46295,7 +46295,7 @@ Disassembly of section .text.__addsf3:
 3002c4dc:	00f7f713          	andi	a4,a5,15
 3002c4e0:	00400693          	li	a3,4
 3002c4e4:	00d70463          	beq	a4,a3,3002c4ec <__addsf3+0xf8>
-3002c4e8:	00478793          	addi	a5,a5,4 # 4000004 <stackPointer+0x3ff92c4>
+3002c4e8:	00478793          	addi	a5,a5,4 # 4000004 <stackPointer+0x3ffa584>
 3002c4ec:	00579713          	slli	a4,a5,0x5
 3002c4f0:	1a075263          	bgez	a4,3002c694 <__addsf3+0x2a0>
 3002c4f4:	00148493          	addi	s1,s1,1
@@ -46541,7 +46541,7 @@ Disassembly of section .text.__divsf3:
 3002c8a4:	003a9a93          	slli	s5,s5,0x3
 3002c8a8:	04000737          	lui	a4,0x4000
 3002c8ac:	00eaeab3          	or	s5,s5,a4
-3002c8b0:	f8178a13          	addi	s4,a5,-127 # 3ffff81 <stackPointer+0x3ff9241>
+3002c8b0:	f8178a13          	addi	s4,a5,-127 # 3ffff81 <stackPointer+0x3ffa501>
 3002c8b4:	00000413          	li	s0,0
 3002c8b8:	00000b13          	li	s6,0
 3002c8bc:	0175d793          	srli	a5,a1,0x17
@@ -46676,7 +46676,7 @@ Disassembly of section .text.__divsf3:
 3002cac0:	e95ff06f          	j	3002c954 <__divsf3+0xfc>
 3002cac4:	00010637          	lui	a2,0x10
 3002cac8:	00549513          	slli	a0,s1,0x5
-3002cacc:	fff60613          	addi	a2,a2,-1 # ffff <stackPointer+0x92bf>
+3002cacc:	fff60613          	addi	a2,a2,-1 # ffff <stackPointer+0xa57f>
 3002cad0:	01055793          	srli	a5,a0,0x10
 3002cad4:	00c57633          	and	a2,a0,a2
 3002cad8:	0e9af663          	bgeu	s5,s1,3002cbc4 <__divsf3+0x36c>
@@ -46765,7 +46765,7 @@ Disassembly of section .text.__lesf2:
 3002cc18 <__lesf2>:
 3002cc18:	01755693          	srli	a3,a0,0x17
 3002cc1c:	008007b7          	lui	a5,0x800
-3002cc20:	fff78793          	addi	a5,a5,-1 # 7fffff <stackPointer+0x7f92bf>
+3002cc20:	fff78793          	addi	a5,a5,-1 # 7fffff <stackPointer+0x7fa57f>
 3002cc24:	0175d613          	srli	a2,a1,0x17
 3002cc28:	0ff6f693          	andi	a3,a3,255
 3002cc2c:	0ff00813          	li	a6,255
@@ -46849,7 +46849,7 @@ Disassembly of section .text.__mulsf3:
 3002cd54:	0ff00793          	li	a5,255
 3002cd58:	04f70663          	beq	a4,a5,3002cda4 <__mulsf3+0xc4>
 3002cd5c:	003a9a93          	slli	s5,s5,0x3
-3002cd60:	f8170713          	addi	a4,a4,-127 # 3ffff81 <stackPointer+0x3ff9241>
+3002cd60:	f8170713          	addi	a4,a4,-127 # 3ffff81 <stackPointer+0x3ffa501>
 3002cd64:	040007b7          	lui	a5,0x4000
 3002cd68:	00faeab3          	or	s5,s5,a5
 3002cd6c:	00e40433          	add	s0,s0,a4
@@ -46865,7 +46865,7 @@ Disassembly of section .text.__mulsf3:
 3002cd94:	00e484b3          	add	s1,s1,a4
 3002cd98:	0004a783          	lw	a5,0(s1)
 3002cd9c:	00e787b3          	add	a5,a5,a4
-3002cda0:	00078067          	jr	a5 # 4000000 <stackPointer+0x3ff92c0>
+3002cda0:	00078067          	jr	a5 # 4000000 <stackPointer+0x3ffa580>
 3002cda4:	0ff40413          	addi	s0,s0,255
 3002cda8:	120a9c63          	bnez	s5,3002cee0 <__mulsf3+0x200>
 3002cdac:	0024e493          	ori	s1,s1,2
@@ -46956,7 +46956,7 @@ Disassembly of section .text.__mulsf3:
 3002cf00:	00000793          	li	a5,0
 3002cf04:	ec1ff06f          	j	3002cdc4 <__mulsf3+0xe4>
 3002cf08:	00010337          	lui	t1,0x10
-3002cf0c:	fff30693          	addi	a3,t1,-1 # ffff <stackPointer+0x92bf>
+3002cf0c:	fff30693          	addi	a3,t1,-1 # ffff <stackPointer+0xa57f>
 3002cf10:	0109d613          	srli	a2,s3,0x10
 3002cf14:	010ad893          	srli	a7,s5,0x10
 3002cf18:	00d9f7b3          	and	a5,s3,a3
@@ -46971,7 +46971,7 @@ Disassembly of section .text.__mulsf3:
 3002cf3c:	01577463          	bgeu	a4,s5,3002cf44 <__mulsf3+0x264>
 3002cf40:	00660633          	add	a2,a2,t1
 3002cf44:	000107b7          	lui	a5,0x10
-3002cf48:	fff78793          	addi	a5,a5,-1 # ffff <stackPointer+0x92bf>
+3002cf48:	fff78793          	addi	a5,a5,-1 # ffff <stackPointer+0xa57f>
 3002cf4c:	00f776b3          	and	a3,a4,a5
 3002cf50:	00f87833          	and	a6,a6,a5
 3002cf54:	01069693          	slli	a3,a3,0x10
@@ -47048,7 +47048,7 @@ Disassembly of section .text.__subsf3:
 3002d064 <__subsf3>:
 3002d064:	00800737          	lui	a4,0x800
 3002d068:	ff010113          	addi	sp,sp,-16
-3002d06c:	fff70713          	addi	a4,a4,-1 # 7fffff <stackPointer+0x7f92bf>
+3002d06c:	fff70713          	addi	a4,a4,-1 # 7fffff <stackPointer+0x7fa57f>
 3002d070:	01755693          	srli	a3,a0,0x17
 3002d074:	0175d813          	srli	a6,a1,0x17
 3002d078:	00a777b3          	and	a5,a4,a0
@@ -47091,7 +47091,7 @@ Disassembly of section .text.__subsf3:
 3002d10c:	00579713          	slli	a4,a5,0x5
 3002d110:	20075463          	bgez	a4,3002d318 <__subsf3+0x2b4>
 3002d114:	04000437          	lui	s0,0x4000
-3002d118:	fff40413          	addi	s0,s0,-1 # 3ffffff <stackPointer+0x3ff92bf>
+3002d118:	fff40413          	addi	s0,s0,-1 # 3ffffff <stackPointer+0x3ffa57f>
 3002d11c:	0087f433          	and	s0,a5,s0
 3002d120:	00040513          	mv	a0,s0
 3002d124:	671000ef          	jal	ra,3002df94 <__clzsi2>
@@ -47341,7 +47341,7 @@ Disassembly of section .text.__unordsf2:
 3002d4e8 <__unordsf2>:
 3002d4e8:	01755693          	srli	a3,a0,0x17
 3002d4ec:	008007b7          	lui	a5,0x800
-3002d4f0:	fff78793          	addi	a5,a5,-1 # 7fffff <stackPointer+0x7f92bf>
+3002d4f0:	fff78793          	addi	a5,a5,-1 # 7fffff <stackPointer+0x7fa57f>
 3002d4f4:	0175d613          	srli	a2,a1,0x17
 3002d4f8:	0ff6f693          	andi	a3,a3,255
 3002d4fc:	0ff00813          	li	a6,255
@@ -47364,7 +47364,7 @@ Disassembly of section .text.__fixsfsi:
 3002d534 <__fixsfsi>:
 3002d534:	00800637          	lui	a2,0x800
 3002d538:	01755713          	srli	a4,a0,0x17
-3002d53c:	fff60793          	addi	a5,a2,-1 # 7fffff <stackPointer+0x7f92bf>
+3002d53c:	fff60793          	addi	a5,a2,-1 # 7fffff <stackPointer+0x7fa57f>
 3002d540:	0ff77713          	andi	a4,a4,255
 3002d544:	07e00593          	li	a1,126
 3002d548:	00a7f6b3          	and	a3,a5,a0
@@ -47397,7 +47397,7 @@ Disassembly of section .text.__fixunssfsi:
 3002d5a8 <__fixunssfsi>:
 3002d5a8:	01755713          	srli	a4,a0,0x17
 3002d5ac:	00800637          	lui	a2,0x800
-3002d5b0:	fff60793          	addi	a5,a2,-1 # 7fffff <stackPointer+0x7f92bf>
+3002d5b0:	fff60793          	addi	a5,a2,-1 # 7fffff <stackPointer+0x7fa57f>
 3002d5b4:	0ff77713          	andi	a4,a4,255
 3002d5b8:	07e00593          	li	a1,126
 3002d5bc:	00a7f6b3          	and	a3,a5,a0
@@ -47593,7 +47593,7 @@ Disassembly of section .text.__extenddftf2:
 3002d884:	01f65493          	srli	s1,a2,0x1f
 3002d888:	08068863          	beqz	a3,3002d918 <__extenddftf2+0xd4>
 3002d88c:	000046b7          	lui	a3,0x4
-3002d890:	c0068693          	addi	a3,a3,-1024 # 3c00 <stackPointer-0x3140>
+3002d890:	c0068693          	addi	a3,a3,-1024 # 3c00 <stackPointer-0x1e80>
 3002d894:	00d787b3          	add	a5,a5,a3
 3002d898:	0045d613          	srli	a2,a1,0x4
 3002d89c:	01c71693          	slli	a3,a4,0x1c
@@ -47658,7 +47658,7 @@ Disassembly of section .text.__extenddftf2:
 3002d988:	ffc70693          	addi	a3,a4,-4
 3002d98c:	fee61ae3          	bne	a2,a4,3002d980 <__extenddftf2+0x13c>
 3002d990:	000047b7          	lui	a5,0x4
-3002d994:	c0c78793          	addi	a5,a5,-1012 # 3c0c <stackPointer-0x3134>
+3002d994:	c0c78793          	addi	a5,a5,-1012 # 3c0c <stackPointer-0x1e74>
 3002d998:	40a787b3          	sub	a5,a5,a0
 3002d99c:	01179793          	slli	a5,a5,0x11
 3002d9a0:	01012803          	lw	a6,16(sp)
@@ -47677,12 +47677,12 @@ Disassembly of section .text.__extenddftf2:
 3002d9d4:	00c6e6b3          	or	a3,a3,a2
 3002d9d8:	01c59513          	slli	a0,a1,0x1c
 3002d9dc:	01075713          	srli	a4,a4,0x10
-3002d9e0:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x12bf>
+3002d9e0:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x257f>
 3002d9e4:	00000813          	li	a6,0
 3002d9e8:	ed1ff06f          	j	3002d8b8 <__extenddftf2+0x74>
 3002d9ec:	000087b7          	lui	a5,0x8
 3002d9f0:	00000693          	li	a3,0
-3002d9f4:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x12bf>
+3002d9f4:	fff78793          	addi	a5,a5,-1 # 7fff <stackPointer+0x257f>
 3002d9f8:	00000713          	li	a4,0
 3002d9fc:	00000813          	li	a6,0
 3002da00:	eb9ff06f          	j	3002d8b8 <__extenddftf2+0x74>
@@ -47867,7 +47867,7 @@ Disassembly of section .text.__trunctfdf2:
 3002dcac:	00452683          	lw	a3,4(a0)
 3002dcb0:	00852583          	lw	a1,8(a0)
 3002dcb4:	00008537          	lui	a0,0x8
-3002dcb8:	fff50793          	addi	a5,a0,-1 # 7fff <stackPointer+0x12bf>
+3002dcb8:	fff50793          	addi	a5,a0,-1 # 7fff <stackPointer+0x257f>
 3002dcbc:	01085613          	srli	a2,a6,0x10
 3002dcc0:	00359e13          	slli	t3,a1,0x3
 3002dcc4:	00f67633          	and	a2,a2,a5
@@ -47880,7 +47880,7 @@ Disassembly of section .text.__trunctfdf2:
 3002dce0:	0116e6b3          	or	a3,a3,a7
 3002dce4:	01035313          	srli	t1,t1,0x10
 3002dce8:	00371e13          	slli	t3,a4,0x3
-3002dcec:	00160893          	addi	a7,a2,1 # 800001 <stackPointer+0x7f92c1>
+3002dcec:	00160893          	addi	a7,a2,1 # 800001 <stackPointer+0x7fa581>
 3002dcf0:	ffe50513          	addi	a0,a0,-2
 3002dcf4:	01d5d593          	srli	a1,a1,0x1d
 3002dcf8:	00331313          	slli	t1,t1,0x3
@@ -47942,7 +47942,7 @@ Disassembly of section .text.__trunctfdf2:
 3002ddd8:	00000693          	li	a3,0
 3002dddc:	00b12623          	sw	a1,12(sp)
 3002dde0:	00a108b3          	add	a7,sp,a0
-3002dde4:	00470713          	addi	a4,a4,4 # 80004 <stackPointer+0x792c4>
+3002dde4:	00470713          	addi	a4,a4,4 # 80004 <stackPointer+0x7a584>
 3002dde8:	01f67613          	andi	a2,a2,31
 3002ddec:	01c6e6b3          	or	a3,a3,t3
 3002ddf0:	01170a63          	beq	a4,a7,3002de04 <__trunctfdf2+0x160>
@@ -48038,7 +48038,7 @@ Disassembly of section .text.__trunctfdf2:
 3002df58:	00279793          	slli	a5,a5,0x2
 3002df5c:	00f107b3          	add	a5,sp,a5
 3002df60:	01010713          	addi	a4,sp,16
-3002df64:	0007a023          	sw	zero,0(a5) # 400000 <stackPointer+0x3f92c0>
+3002df64:	0007a023          	sw	zero,0(a5) # 400000 <stackPointer+0x3fa580>
 3002df68:	00478793          	addi	a5,a5,4
 3002df6c:	fee79ce3          	bne	a5,a4,3002df64 <__trunctfdf2+0x2c0>
 3002df70:	00012703          	lw	a4,0(sp)

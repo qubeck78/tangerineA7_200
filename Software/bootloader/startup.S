@@ -1,5 +1,5 @@
 
-	.equ		stackPointer, 		0x00006d40 
+	.equ		stackPointer, 		0x00005a80 
 
 	.org 0x0
 
@@ -19,22 +19,6 @@ start:
 #init stack pointer 
 
 	li sp, stackPointer
-
-	li a5, stackPointer
-	li t0, 0x1f41
-
-	sh t0, 0(a5)
-	sh t0, 2(a5)
-	sh t0, 4(a5)
-	sh t0, 6(a5)
-	
-#loop: j loop
-
-# initialize control and status registers
-#	csrw mepc,        zero
-#	csrw mcause,      zero
-#	csrw mscratch,    zero
-#	csrw mtval,       zero
 
 	#push argc and argv to stack
 

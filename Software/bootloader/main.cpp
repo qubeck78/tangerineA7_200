@@ -425,7 +425,7 @@ int main()
    //80 column txt mode only
    bsp->videoMuxMode    = 0x0004;
 
-   displayRam           = ( unsigned short * )0x6d40;
+   displayRam           = ( unsigned short * )0x5a80;
       
    screenIndex          = 0;  
 
@@ -449,7 +449,7 @@ int main()
    spaceDistance( 40 - 13 ); print( (char*) "   | Powered by nekoRV | \n" );
    spaceDistance( 40 - 13 ); print( (char*) "   |                   | \n" );
    spaceDistance( 40 - 13 ); print( (char*) "   |   Bootloader32I   | \n" );
-   spaceDistance( 40 - 13 ); print( (char*) "   |   B20240923       | \n" );
+   spaceDistance( 40 - 13 ); print( (char*) "   |   B20241006       | \n" );
    spaceDistance( 40 - 13 ); print( (char*) "   |                   | \n" );
    spaceDistance( 40 - 13 ); print( (char*) "   |   SOC             | \n" );
    spaceDistance( 40 - 13 ); print( (char*) "   |   B" );

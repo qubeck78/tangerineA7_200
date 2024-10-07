@@ -6,7 +6,7 @@
 .balign 16
 
 irq_vec:
-#	picorv32_retirq_insn()
+
 
 
 	.globl start
@@ -14,13 +14,13 @@ irq_vec:
 
 start:
 
-# initialize control and status registers
-#	csrw mepc,        zero
-#	csrw mcause,      zero
-#	csrw mscratch,    zero
-#	csrw mtval,       zero
+	#init stack pointer
 
-#push argc and argv to stack
+
+	li sp, 0x5a80
+
+	#push argc and argv to stack
+	
 	addi sp,sp,-16
 	sw zero,0(sp)
 	sw zero,4(sp)

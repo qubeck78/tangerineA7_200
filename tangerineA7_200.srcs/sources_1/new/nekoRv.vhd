@@ -20,6 +20,12 @@ use IEEE.NUMERIC_STD.ALL;
 
 
 entity nekoRv is
+generic
+(
+    genInitialPC:       std_logic_vector( 31 downto 0 ) := x"00000000";
+    genInitialSP:       std_logic_vector( 31 downto 0 ) := x"00005a80";
+);
+
 port( 
     
     clk:                in  std_logic;
@@ -102,7 +108,7 @@ begin
     if reset = '1' then
 
       regs(0)         <= ( others => '0' );
-      regs(2)         <= x"00006d40";
+      regs(2)         <= genInitialSP;
 
     elsif rising_edge( clk ) then
     
@@ -135,7 +141,7 @@ begin
     
         if reset = '1' then
         
-            pc              <= ( others => '0' );
+            pc              <= genInitialPC;
                
             rvState         <= rvsIFetch0;
             rdWrite         <= '0';
