@@ -5,7 +5,7 @@
 
 //Version
 
-#define _GFXLIB_VERSION 20240923
+#define _GFXLIB_VERSION 20241014
 
 
 //Platform
@@ -24,20 +24,11 @@
 #define _GFXLIB_USB_HOST
 
 
-/*typedef unsigned char	uchar;
-typedef unsigned char	ubyte;
-typedef unsigned short	ushort;
-typedef unsigned long	ulong;
-*/
-
-
 #ifndef NULL
 #define NULL 0
 #endif
 
 
 #define gfAbs(x) ((x)>0?(x):-(x))
-
-
 
 #endif

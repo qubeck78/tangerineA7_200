@@ -449,6 +449,52 @@ uint32_t osFGetS( tosFile *file, uint8_t *buffer, uint32_t maxLength )
    return rv;
 }
 
+uint32_t osFSeek( tosFile *file, int32_t offset, uint32_t whence )
+{
+   #if defined( _GFXLIB_STM32_FATFS ) || defined( _GFXLIB_MC68K_FATFS ) || defined( _GFXLIB_RISCV_FATFS )
+
+   FRESULT    rc;             
+
+   #endif
+
+   if( file == NULL )
+   {
+      return 1;
+   }
+
+   #if defined( _GFXLIB_STM32_FATFS ) || defined( _GFXLIB_MC68K_FATFS ) || defined( _GFXLIB_RISCV_FATFS )
+
+   switch( whence )
+   {
+      case OS_SEEK_SET: 
+      
+         rc = f_lseek( &file->fd, offset );
+         
+         if( rc != FR_OK )
+         {
+            return 1;
+         }
+         else
+         {
+            return 0;
+         }
+
+         break;
+
+      default:
+         //not supported yet
+         return 1;
+  }
+ 
+
+   #else
+
+      return 1;
+
+   #endif
+
+}
+
 uint32_t osDirOpen( tosDir *dir, char *path )
 {
 

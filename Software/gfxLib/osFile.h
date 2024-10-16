@@ -48,9 +48,14 @@
 #define OS_FILE_WRITE  2
 #define OS_FILE_APPEND 4
 
+
 #define OS_DIRITEM_NONE 0
 #define OS_DIRITEM_FILE 1
 #define OS_DIRITEM_DIR  2
+
+#define OS_SEEK_SET     0
+#define OS_SEEK_CUR     1
+#define OS_SEEK_END     2
 
 typedef struct _tosFile
 {
@@ -105,12 +110,12 @@ uint32_t osFClose( tosFile *file );
 uint32_t osFWrite( tosFile *file, uint8_t *buffer, uint32_t numBytesToWrite );
 uint32_t osFRead( tosFile *file, uint8_t *buffer, uint32_t numBytesToRead, uint32_t *numBytesRead );
 uint32_t osFGetS( tosFile *file, uint8_t *buffer, uint32_t maxLength );
+uint32_t osFSeek( tosFile *file, int32_t offset, uint32_t whence );
 
 uint32_t osDirOpen( tosDir *dir, char *path );
 uint32_t osDirClose( tosDir *dir );
 uint32_t osDirRead( tosDir *dir, tosDirItem *dirItem );
 
-//todo: add sdl compatible code
 uint32_t osFSize( char *path );
 uint32_t osFDelete( char *path );
 uint32_t osMkDir( char *path );

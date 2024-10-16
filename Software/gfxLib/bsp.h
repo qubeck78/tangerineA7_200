@@ -5,22 +5,29 @@
 //Memory regions
 
 //7.5MB
-#define _SYSTEM_MEMORY_SIZE 	( 7864320 - 16)
+//#define _SYSTEM_MEMORY_SIZE 	( 7864320 - 16)
+
+//63.5MB
+#define _SYSTEM_MEMORY_SIZE     ( 66584576 - 16)
+
 #define _SYSTEM_MEMORY_BASE		0x20000000
 
 
-#define _VIDEOMODE_TEXT40_ONLY              0x00
-#define _VIDEOMODE_TEXT80_ONLY              0x04
-#define _VIDEOMODE_TEXT80_60_ONLY           0x0c
+#define _VIDEOMODE_TEXT40_ONLY                  0x00
+#define _VIDEOMODE_TEXT80_ONLY                  0x04
+#define _VIDEOMODE_TEXT80_60_ONLY               0x0c
 
-#define _VIDEOMODE_320_TEXT40_OVER_GFX      0x02
-#define _VIDEOMODE_320_TEXT80_OVER_GFX      0x06
-#define _VIDEOMODE_320_TEXT80_60_OVER_GFX   0x0e
+#define _VIDEOMODE_320_TEXT40_OVER_GFX          0x02
+#define _VIDEOMODE_320_TEXT80_OVER_GFX          0x06
+#define _VIDEOMODE_320_TEXT80_60_OVER_GFX       0x0e
 
-#define _VIDEOMODE_640_TEXT40_OVER_GFX      0x12
-#define _VIDEOMODE_640_TEXT80_OVER_GFX      0x16
-#define _VIDEOMODE_640_TEXT80_60_OVER_GFX   0x1e
+#define _VIDEOMODE_640_TEXT40_OVER_GFX          0x12
+#define _VIDEOMODE_640_TEXT80_OVER_GFX          0x16
+#define _VIDEOMODE_640_TEXT80_60_OVER_GFX       0x1e
 
+#define _VIDEOMODE_320_8BPP_TEXT40_OVER_GFX     0x22
+#define _VIDEOMODE_320_8BPP_TEXT80_OVER_GFX     0x26
+#define _VIDEOMODE_320_8BPP_TEXT80_60_OVER_GFX  0x2e
 
 #include "gfTypes.h"
 
@@ -32,7 +39,7 @@
 //x"80000005";   -- blitter2d id
 //x"80000006";   -- sprite gen id
 //x"80000007";   -- i2s id
-
+//x"80000008";   -- gfx pixel gen id
 
 typedef struct _BSP_T
 {
@@ -62,8 +69,18 @@ typedef struct _BSP_T
 
 }BSP_T;
 
-
 extern BSP_T *bsp;
+
+
+typedef struct __GFXPIXELGEN_REGISTERS_T
+{
+    volatile uint32_t id;
+    volatile uint32_t version;
+    
+}_GFXPIXELGEN_REGISTERS_T;
+
+extern _GFXPIXELGEN_REGISTERS_T *gfxPixelGen;
+
 
 typedef struct __SPRITEGEN_REGISTERS_T
 {

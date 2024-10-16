@@ -115,5 +115,5 @@ clean:
 
 # uart baudrate set to 460800, if it fails, change it here and in uart.vhd SOC file
 send: $(TARGET).rec
-	srecsend $(TARGET).rec com9 460800
+	srecsend $(TARGET).rec com8 460800
 	

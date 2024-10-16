@@ -44,10 +44,11 @@ typedef struct _tosAllocMemoryNodes
 
 uint32_t	 osAllocInit();
 uint32_t	 osAllocAddNode( uint32_t nodeNumber, void *allocStart, uint32_t memorySize, uint32_t nodeFlags );
+uint32_t  osAllocGetAllocatedMemSize( void *allocMemPtr );
 
-void 	*osAlloc( uint32_t size, uint32_t memFlags );
-uint32_t 	 osFree( void *allocMemPtr );
-
+void		*osAlloc( uint32_t size, uint32_t memFlags );
+uint32_t  osFree( void *allocMemPtr );
+void		*osRealloc( void *allocMemPtr, uint32_t sizeNew, uint32_t memFlagsNew );
 
 
 #endif

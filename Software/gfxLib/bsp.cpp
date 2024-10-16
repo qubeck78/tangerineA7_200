@@ -5,27 +5,27 @@
 #include "gfFont.h"
 #include "osAlloc.h"
 
-BSP_T *bsp                          = ( BSP_T *)                    0xf0000000; //registers base address
+BSP_T *bsp                              = ( BSP_T *)                        0xf0000000; //registers base address
 
-_BLITTER_REGISTERS_T *blt           = ( _BLITTER_REGISTERS_T *)     0xf0200000; //blitter base address
-_SPRITEGEN_REGISTERS_T *spriteGen   = ( _SPRITEGEN_REGISTERS_T *)   0xf0100000; //hw sprite generator base address
-_USBHOST_REGISTERS_T *usbhost       = ( _USBHOST_REGISTERS_T *)     0xf0300000; //hid usb host base address
-_UART_REGISTERS_T *uart0            = ( _UART_REGISTERS_T *)        0xf0400000; //uart 0 base address
-_SPI_REGISTERS_T *spi0              = ( _SPI_REGISTERS_T *)         0xf0500000; //spi 0 base address
-_AUDIO_REGISTERS_T *aud             = ( _AUDIO_REGISTERS_T*)        0xf0600000; //i2s audio base address
-_SPI_REGISTERS_T *spi1              = ( _SPI_REGISTERS_T *)         0xf0700000; //spi 1 base address
-_SDRAMDMA_REGISTERS_T *sdrdma       = ( _SDRAMDMA_REGISTERS_T *)    0xf0800000; //sdram dma base address
+_BLITTER_REGISTERS_T *blt               = ( _BLITTER_REGISTERS_T *)         0xf0200000; //blitter base address
+_SPRITEGEN_REGISTERS_T *spriteGen       = ( _SPRITEGEN_REGISTERS_T *)       0xf0100000; //hw sprite generator base address
+_USBHOST_REGISTERS_T *usbhost           = ( _USBHOST_REGISTERS_T *)         0xf0300000; //hid usb host base address
+_UART_REGISTERS_T *uart0                = ( _UART_REGISTERS_T *)            0xf0400000; //uart 0 base address
+_SPI_REGISTERS_T *spi0                  = ( _SPI_REGISTERS_T *)             0xf0500000; //spi 0 base address
+_AUDIO_REGISTERS_T *aud                 = ( _AUDIO_REGISTERS_T*)            0xf0600000; //i2s audio base address
+_SPI_REGISTERS_T *spi1                  = ( _SPI_REGISTERS_T *)             0xf0700000; //spi 1 base address
+_SDRAMDMA_REGISTERS_T *sdrdma           = ( _SDRAMDMA_REGISTERS_T *)        0xf0800000; //sdram dma base address
+_GFXPIXELGEN_REGISTERS_T *gfxPixelGen   = ( _GFXPIXELGEN_REGISTERS_T * )    0xf0900000; //gfx pixel gen base address
 
 void (*bootLoaderEntry)(void) = (void(*)())0x0; 
 
 tgfTextOverlay  con;
 
-
-uint32_t    random_state = 3242323459;
+uint32_t    randomSeed;
 
 uint32_t bspInit()
 {
-    random_state            = ( bsp->tickTimerValue << 16 ) | ( bsp->tickTimerValue ^ 0xf123 );
+    randomSeed = 3242323459 + ( bsp->tickTimerValue << 16 ) ^ ( bsp->tickTimerValue ^ 0xef122333 );
 
     osAllocInit();
     osAllocAddNode( 0, ( void* )_SYSTEM_MEMORY_BASE, _SYSTEM_MEMORY_SIZE, OS_ALLOC_MEMF_CHIP );
@@ -58,15 +58,28 @@ uint32_t bspInit()
 
 uint32_t randomNumber()
 {
-    uint32_t r = random_state;
+    uint32_t r = randomSeed;
 
     r ^= r << 13;
     r ^= r >> 17;
     r ^= r << 5;
 
-    random_state = r;
+    randomSeed = r;
 
     return r;
+
+/* 
+    //https://github.com/cmcqueen/simplerandom/blob/main/c/lecuyer/lfsr88.c
+   uint32_t b;
+
+    b = (((s1 << 13) ^ s1) >> 19);
+    s1 = (((s1 & 4294967294) << 12) ^ b);
+    b = (((s2 << 2) ^ s2) >> 25);
+    s2 = (((s2 & 4294967288) << 4) ^ b);
+    b = (((s3 << 3) ^ s3) >> 11);
+    s3 = (((s3 & 4294967280) << 17) ^ b);
+    return (s1 ^ s2 ^ s3);
+    */
 } 
 
 void hexDigit(char *string,char digit)
@@ -148,21 +161,43 @@ uint32_t setVideoMode( uint32_t videoMode )
     if( videoMode & 0x10 )
     {
         
-        //640
+        //640 x 480
 
         //adjust dma request modulos to achieve continuous data throughout x scan line
         //line size: 1024 pixels, 512 longwords
         sdrdma->ch3DmaRequest0Modulo = 0;
         sdrdma->ch3DmaRequest1Modulo = 192;   
+        
+        //dma request length: 160 long words ( 2 requests per line )
+        sdrdma->ch3DmaRequestLength     = 0x9f;
     }
     else
     {
-        //320
+        //320 x 240
 
-        //adjust dma request modulos to have 512 pixels, 256 ilongtwords odd & even scan lines
-        sdrdma->ch3DmaRequest0Modulo = 96;
-        sdrdma->ch3DmaRequest1Modulo = 96;   
+        if( videoMode & 0x20 )
+        {
+            //8bpp
 
+            //adjust dma request modulos to have 512 pixels, 128 longwords odd & even scan lines
+            sdrdma->ch3DmaRequest0Modulo = 0x30;
+            sdrdma->ch3DmaRequest1Modulo = 0x30;   
+
+            //dma request length: 80 long words ( 1 request per two lines )
+            sdrdma->ch3DmaRequestLength  = 0x4f;
+
+        }
+        else
+        {        
+            //16bpp
+
+            //adjust dma request modulos to have 512 pixels, 256 longwords odd & even scan lines
+            sdrdma->ch3DmaRequest0Modulo = 0x60;
+            sdrdma->ch3DmaRequest1Modulo = 0x60;   
+
+            //dma request length: 160 long words ( 1 request per two lines )
+            sdrdma->ch3DmaRequestLength  = 0x9f;
+        }
     }
 
 
