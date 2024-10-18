@@ -6,6 +6,7 @@
 
 BSP_T                   *bsp     = ( BSP_T *)                  0xf0000000; //registers base address 
 _SDRAMDMA_REGISTERS_T   *sdrdma  = ( _SDRAMDMA_REGISTERS_T * ) 0xf0800000;
+_GFXPIXELGEN_REGISTERS_T *gfxPixelGen   = ( _GFXPIXELGEN_REGISTERS_T * )    0xf0900000; //gfx pixel gen base address
 
 uint16_t   textAttr = 0x8f00;
 
@@ -283,13 +284,9 @@ int main()
    char           buf[256];
 
 
-   //80 column txt mode only
-   //bsp->videoMuxMode = 0x04; 
-
    //80 column txt over gfx 320x240
-   bsp->videoMuxMode = _VIDEOMODE_320_TEXT80_60_OVER_GFX;
+   bsp->videoMuxMode = _VIDEOMODE_320_TEXT80_OVER_GFX;
 
-   //displayRam = ( unsigned short * )0x6d40;
    displayRam = ( unsigned short * )0x5a80;
    
    screenIndex = 0;  
@@ -314,7 +311,7 @@ int main()
    print( buf );
    print( (char*) "\n" );
 
-   print( (char*) "Checking sdramDMA version: " );
+   print( (char*) "sdramDMA version: " );
 
    itoaHex8Digits( sdrdma->id, buf );
    
@@ -340,6 +337,18 @@ int main()
       while( 1 );
    }
 
+   print( (char*) "pixelGenGfx version: " );
+
+   itoaHex8Digits( gfxPixelGen->id, buf );
+   
+   print( buf );
+
+   print( (char*)"." );
+
+
+   itoaHex8Digits( gfxPixelGen->version, buf );
+   
+   print( buf );
 
    do
    {

@@ -12,9 +12,12 @@
 #https://github.com/qubeck78/tangyLink
 #
 
+PORT = com6
 TARGET = shell
+
 CC = riscv-none-embed-gcc -march=rv32im -c -O3 
 LD = riscv-none-embed-ld -T ram.ld
+NM = riscv-none-embed-nm -n 
 OBJCOPY = riscv-none-embed-objcopy
 OBJDUMP = riscv-none-embed-objdump 
 LIBGCC =   "c:\Program Files\riscv-none-gcc\lib\gcc\riscv-none-embed\8.2.0\rv32im\ilp32\libgcc.a"
@@ -22,23 +25,23 @@ LIBSTDCC = "c:\Program Files\riscv-none-gcc\riscv-none-embed\lib\rv32im\ilp32\li
 LIBC     = "c:\Program Files\riscv-none-gcc\riscv-none-embed\lib\rv32im\ilp32\libc.a"
 LIBM     = "c:\Program Files\riscv-none-gcc\riscv-none-embed\lib\rv32im\ilp32\libm.a" 
 LIBNOSYS = "c:\Program Files\riscv-none-gcc\riscv-none-embed\lib\rv32im\ilp32\libnosys.a"
+SENDER = srecsend
 
 all: $(TARGET).bin $(TARGET).rec $(TARGET).disasm 
 
 $(TARGET).disasm: $(TARGET).elf
 	$(OBJDUMP) --disassemble -S $(TARGET).elf>$(TARGET).disasm
 
-$(TARGET).rec: $(TARGET).elf
+$(TARGET).rec: $(TARGET).elf $(TARGET).disasm 
 	$(OBJCOPY) -O srec $(TARGET).elf $(TARGET).rec
 
 $(TARGET).elf: main.o objViewer.o shellUI.o hxcmod.o modPlayer.o fileOperations.o bsp.o startup.o osAlloc.o osFile.o osSerial.o gfBitmap.o gfDrawing.o gfFont.o gfGouraud.o gfJPEG.o picojpeg.o diskio.o ccsbcs.o ff.o osUIEvents.o usbHID.o gfAudio.o
 	$(LD) startup.o main.o objViewer.o shellUI.o hxcmod.o modPlayer.o fileOperations.o ../gfxLib/bsp.o ../gfxLib/diskio.o ../gfxLib/ccsbcs.o ../gfxLib/ff.o ../gfxLib/osAlloc.o ../gfxLib/osFile.o ../gfxLib/osSerial.o ../gfxLib/gfBitmap.o ../gfxLib/gfDrawing.o ../gfxLib/gfFont.o ../gfxLib/gfGouraud.o ../gfxLib/gfJPEG.o ../gfxLib/picojpeg.o ../gfxLib/osUIEvents.o ../gfxLib/usbHID.o ../gfxLib/gfAudio.o $(LIBC) $(LIBNOSYS) $(LIBM) $(LIBGCC)  -o $(TARGET).elf
+	$(NM) $(TARGET).elf >$(TARGET).sym
+
 
 $(TARGET).bin: $(TARGET).elf
 	$(OBJCOPY) -O binary $(TARGET).elf $(TARGET).bin
-
-$(TARGET)_L.mif: $(TARGET).bin
-	bin2mif16 $(TARGET).bin $(TARGET)
 
 objViewer.o: objViewer.cpp
 	$(CC) -o objViewer.o objViewer.cpp 
@@ -115,5 +118,9 @@ clean:
 
 # uart baudrate set to 460800, if it fails, change it here and in uart.vhd SOC file
 send: $(TARGET).rec
-	srecsend $(TARGET).rec com9 460800
-	
+	$(SENDER) $(TARGET).rec $(PORT) 460800
+	$(OBJSIZE) $(TARGET).elf
+
+run: $(TARGET).rec
+	cp $(TARGET).rec "/f/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/bin"
+	cd "/f/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/bin" && ./tangerine.exe $(TARGET).rec

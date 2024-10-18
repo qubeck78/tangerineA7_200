@@ -162,7 +162,21 @@ end component;
 -- gfx pixel gen
 component pixelGenGfx is
 port(
+   
+   --cpu interface
    reset:            in  std_logic;
+   clock:            in  std_logic;
+    
+   a:                in  std_logic_vector( 15 downto 0 );
+   din:              in  std_logic_vector( 31 downto 0 );
+   dout:             out std_logic_vector( 31 downto 0 );
+    
+   ce:               in  std_logic;
+   wr:               in  std_logic;
+   dataMask:         in  std_logic_vector( 3 downto 0 );
+    
+   ready:            out std_logic;
+    
    pggClock:         in  std_logic;
    pggR:             out std_logic_vector( 7 downto 0 );
    pggG:             out std_logic_vector( 7 downto 0 );
@@ -493,6 +507,12 @@ signal videoRamBA:       std_logic_vector( 13 downto 0 );
 signal pgVSyncClkD2:     std_logic;
 
 --gfx pixel gen signals
+
+signal pggRegsClock:          std_logic;
+signal pggRegsDoutForCPU:     std_logic_vector( 31 downto 0 );
+signal pggRegsCE:             std_logic;
+signal pggRegsReady:          std_logic;
+
 signal pgEnabled:             std_logic;
 signal pggR:                  std_logic_vector( 7 downto 0 );
 signal pggG:                  std_logic_vector( 7 downto 0 );
@@ -665,13 +685,19 @@ begin
 -- assign clocks
 
 cpuClock            <= mainClock;
+
 pgClock             <= pixelClock;
 
 registersClock      <= mainClock;
+
 uartClock           <= mainClock;
+
 tickTimerClock      <= mainClockD2;
+
 frameTimerClock     <= mainClock;
+
 spiClock            <= mainClockD2;
+
 i2sClock            <= mainClock;
 
 usbHostClock        <= mainClock;
@@ -680,6 +706,8 @@ usbHClk             <= usbClock;
 blitterClock        <= mainClock;
 
 spriteGenClock      <= mainClock;
+
+pggRegsClock        <= mainClock;
 
 
 --no need to sync now
@@ -810,6 +838,15 @@ pgEnabled   <= '1' when vmMode( 1 downto 0 ) /= "00" else '0';
 pixelGenGfxInst: pixelGenGfx
 port map(
     reset             => reset,
+    clock             => pggRegsClock,
+    a                 => cpuAOut( 15 downto 0 ),
+    din               => cpuDOut,
+    dout              => pggRegsDoutForCPU,
+    ce                => pggRegsCE,
+    wr                => cpuWr,
+    dataMask          => cpuDataMask,
+    ready             => pggRegsReady,
+    
     pggClock          => pgClock,
 
     pggR              => pggR,
@@ -937,25 +974,37 @@ if rising_edge( pgClock ) then
             
                 if spriteGenR /= x"00" or spriteGenG /= x"00" or spriteGenB /= x"00" then
 
-                    vgaRed		<= spriteGenR( 7 downto 3 ) & "000";
-                    vgaGreen    <= spriteGenG( 7 downto 2 ) & "00";
-                    vgaBlue     <= spriteGenB( 7 downto 3 ) & "000";
+--                    vgaRed		<= spriteGenR( 7 downto 3 ) & "000";
+--                    vgaGreen    <= spriteGenG( 7 downto 2 ) & "00";
+--                    vgaBlue     <= spriteGenB( 7 downto 3 ) & "000";
+
+                    vgaRed		<= spriteGenR( 7 downto 0 );
+                    vgaGreen    <= spriteGenG( 7 downto 0 );
+                    vgaBlue     <= spriteGenB( 7 downto 0 );
                 
                 else
                 
                     if	pgR = x"00" and pgG = x"00" and pgB = x"00" then
                         
-                        vgaRed      <= pggR( 7 downto 3 ) & "000";
-                        vgaGreen    <= pggG( 7 downto 2 ) & "00";
-                        vgaBlue     <= pggB( 7 downto 3 ) & "000";
+--                        vgaRed      <= pggR( 7 downto 3 ) & "000";
+--                        vgaGreen    <= pggG( 7 downto 2 ) & "00";
+--                        vgaBlue     <= pggB( 7 downto 3 ) & "000";
+
+                        vgaRed      <= pggR( 7 downto 0 );
+                        vgaGreen    <= pggG( 7 downto 0 );
+                        vgaBlue     <= pggB( 7 downto 0 );
                         
                     --gray color -> dim background
                     elsif pgR = x"80" and pgG = x"80" and pgB = x"80" then
                 
-                        vgaRed      <= "0" & pggR( 7 downto 4 ) & "000";
-                        vgaGreen    <= "0" & pggG( 7 downto 2 ) & "0";
-                        vgaBlue     <= "0" & pggB( 7 downto 4 ) & "000";
+--                        vgaRed      <= "0" & pggR( 7 downto 4 ) & "000";
+--                        vgaGreen    <= "0" & pggG( 7 downto 2 ) & "0";
+--                        vgaBlue     <= "0" & pggB( 7 downto 4 ) & "000";
                         
+                        vgaRed      <= "0" & pggR( 7 downto 1 );
+                        vgaGreen    <= "0" & pggG( 7 downto 1 );
+                        vgaBlue     <= "0" & pggB( 7 downto 1 );
+
                     else
     
                         vgaRed      <= pgR( 7 downto 3 ) & "000";
@@ -1023,16 +1072,19 @@ end process;
     
     usbHostCE       <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f03" else '0';
 
-    uartCE            <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f04" else '0';
+    uartCE          <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f04" else '0';
 
-    spiCE             <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f05" else '0';
+    spiCE           <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f05" else '0';
 
-    i2sCE             <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f06" else '0';
+    i2sCE           <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f06" else '0';
 
 --    flashSpiCE        <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f07" else '0';
     
-    sdramDmaRegsCE      <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f08" else '0';
+    sdramDmaRegsCE  <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f08" else '0';
+  
+    pggRegsCE       <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f09" else '0';
     
+  
 -- bus slaves ready signals mux
    cpuMemReady       <= systemRamReady when systemRAMCE = '1'
                         else uartReady when uartCE = '1' 
@@ -1046,6 +1098,7 @@ end process;
                         else i2sReady when i2sCE = '1' 
 --                        else flashSpiReady when flashSpiCE = '1'
                         else sdramDmaRegsReady when sdramDmaRegsCE = '1'  
+                        else pggRegsReady when pggRegsCE = '1' 
                         else '1';
 
 
@@ -1061,7 +1114,8 @@ end process;
                         spiDoutForCPU                             when cpuAOutFull( 31 downto 20 ) = x"f05" else
                         i2sDoutForCPU                             when cpuAOutFull( 31 downto 20 ) = x"f06" else 
 --                        flashSpiDoutForCPU                        when cpuAOutFull( 31 downto 20 ) = x"f07" else  
-                        sdramDmaRegsDoutForCPU                      when cpuAOutFull( 31 downto 20 ) = x"f08" else                        
+                        sdramDmaRegsDoutForCPU                    when cpuAOutFull( 31 downto 20 ) = x"f08" else                        
+                        pggRegsDoutForCPU                         when cpuAOutFull( 31 downto 20 ) = x"f09" else
                         x"00000000";
 
 -- the CPU
@@ -1163,7 +1217,7 @@ begin
                      --0x04 r- component version                       
                      when x"01" =>
                      
-                        registersDoutForCPU  <= x"20241006";
+                        registersDoutForCPU  <= x"20241010";
                                                 
                      --rw 0xf0000008 - videoMuxMode
                      when x"02" =>

@@ -1349,17 +1349,15 @@ uint32_t gfGouraudDrawTexturedTriangleZBuffer( tgfBitmap *bmp, tgfBitmap *zBuffe
 				//wacl = ( eac << 8 ) / areal;
 				 
 
-				wbal = ( eba * areaNorm ) >> 24;
-				wcbl = ( ecb * areaNorm ) >> 24;
-				wacl = ( eac * areaNorm ) >> 24;
+				wbal = ( eba * areaNorm ) >> 20;	//24
+				wcbl = ( ecb * areaNorm ) >> 20;
+				wacl = ( eac * areaNorm ) >> 20;
 
+				tx = ( ( wcbl * ( int32_t )triangle->aTx2D ) + ( wacl * ( int32_t )triangle->bTx2D ) + ( wbal * ( int32_t )triangle->cTx2D ) ) >> 12; //8
+				ty = ( ( wcbl * ( int32_t )triangle->aTy2D ) + ( wacl * ( int32_t )triangle->bTy2D ) + ( wbal * ( int32_t )triangle->cTy2D ) ) >> 12;
+				tl = ( ( wcbl * ( int32_t )triangle->a->r ) + ( wacl * ( int32_t )triangle->b->r ) + ( wbal * ( int32_t )triangle->c->r ) ) >> 12;
 
-
-				tx = ( ( wcbl * ( int32_t )triangle->aTx2D ) + ( wacl * ( int32_t )triangle->bTx2D ) + ( wbal * ( int32_t )triangle->cTx2D ) ) >> 8;
-				ty = ( ( wcbl * ( int32_t )triangle->aTy2D ) + ( wacl * ( int32_t )triangle->bTy2D ) + ( wbal * ( int32_t )triangle->cTy2D ) ) >> 8;
-				tl = ( ( wcbl * ( int32_t )triangle->a->r ) + ( wacl * ( int32_t )triangle->b->r ) + ( wbal * ( int32_t )triangle->c->r ) ) >> 8;
-
-				cz = ( ( wcbl * ( int32_t )triangle->a->z2D ) + ( wacl * ( int32_t )triangle->b->z2D ) + ( wbal * ( int32_t )triangle->c->z2D ) ) >> 8;
+				cz = ( ( wcbl * ( int32_t )triangle->a->z2D ) + ( wacl * ( int32_t )triangle->b->z2D ) + ( wbal * ( int32_t )triangle->c->z2D ) ) >> 12;
 
 
 				if( !bmpPtr )

@@ -17,7 +17,21 @@ irq_vec:
 
 start:
 
+#init stack pointer
+
 	li sp, stackPointer 
+
+#clear bss
+
+	la t0, _sbss
+	la t1, _ebss
+
+clearbss:
+	sw 	zero, (t0)
+	addi	t0, t0, 4
+
+	bltu 	t0, t1, clearbss
+
 
 #push argc and argv to stack
 
@@ -30,6 +44,8 @@ start:
 	# jump to main C code
 	jal ra,main
 
-1:
-	j 1b
+	#reboot
+	
+	la		ra, 0x0
+	jalr	zero, 0(ra)
 

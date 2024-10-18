@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Tue Oct  8 07:45:34 2024
+# Process ID: 12616
+# Current directory: C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/gfxPaletteRam_synth_1
+# Command line: vivado.exe -log gfxPaletteRam.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source gfxPaletteRam.tcl
+# Log file: C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/gfxPaletteRam_synth_1/gfxPaletteRam.vds
+# Journal file: C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/gfxPaletteRam_synth_1\vivado.jou
+# Running On: Desktop-qUBECk, OS: Windows, CPU Frequency: 4104 MHz, CPU Physical cores: 6, Host memory: 34266 MB
+#-----------------------------------------------------------
+source gfxPaletteRam.tcl -notrace

@@ -1210,9 +1210,9 @@ begin
                                 ---0
                                 --sb
                                 
-                                a   <= dataStoreAddr( 31 downto 2 ) & "00";
+                                a       <= dataStoreAddr( 31 downto 2 ) & "00";
                                                                     
-                                dout            <= rs2Val( 7 downto 0 ) & rs2Val( 7 downto 0 ) & rs2Val( 7 downto 0 ) & rs2Val( 7 downto 0 );
+                                dout    <= rs2Val( 7 downto 0 ) & rs2Val( 7 downto 0 ) & rs2Val( 7 downto 0 ) & rs2Val( 7 downto 0 );
                                 
                                 case dataStoreAddr( 1 downto 0 ) is
                                 
@@ -1246,9 +1246,9 @@ begin
                                 --1
                                 --sh
 
-                                a               <= dataStoreAddr( 31 downto 2 ) & "00";
+                                a       <= dataStoreAddr( 31 downto 2 ) & "00";
                                 
-                                dout            <= rs2Val( 15 downto 0 ) & rs2Val( 15 downto 0 );
+                                dout    <= rs2Val( 15 downto 0 ) & rs2Val( 15 downto 0 );
                                 
                                 if dataStoreAddr( 1 ) = '0' then
                                 
@@ -1279,7 +1279,7 @@ begin
                                 be              <= '1';
                                 instrFetchCycle <= '0';
                                 
-                                rvState <=      rvsMemWrite1;
+                                rvState         <= rvsMemWrite1;
                                 
                             when others =>
                                 

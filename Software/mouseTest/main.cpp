@@ -17,7 +17,14 @@ tgfBitmap               screen;
 tgfBitmap               background;
 tgfBitmap               cursor;
 
+volatile uint32_t       isrCounter = 0;
 
+extern "C" void ___isrMain()
+{
+
+   isrCounter++;
+
+}
 
 static uint32_t waitKey()
 {

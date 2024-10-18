@@ -5,7 +5,7 @@
 
 //Version
 
-#define _GFXLIB_VERSION 20240923
+#define _GFXLIB_VERSION 20241017
 
 
 //Platform
@@ -17,18 +17,9 @@
 
 //Features
 
-//#define _GFXLIB_BIG_ENDIAN
-
 #define _GFXLIB_HW_BLITTER_2D
 //#define _GFXLIB_HW_BLITTER_3D
 #define _GFXLIB_USB_HOST
-
-
-/*typedef unsigned char	uchar;
-typedef unsigned char	ubyte;
-typedef unsigned short	ushort;
-typedef unsigned long	ulong;
-*/
 
 
 #ifndef NULL
@@ -37,7 +28,5 @@ typedef unsigned long	ulong;
 
 
 #define gfAbs(x) ((x)>0?(x):-(x))
-
-
 
 #endif

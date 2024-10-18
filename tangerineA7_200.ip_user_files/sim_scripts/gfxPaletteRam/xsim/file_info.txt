@@ -1,0 +1,2 @@
+gfxPaletteRam.v,verilog,xil_defaultlib,../../../../tangerineA7_200.gen/sources_1/ip/gfxPaletteRam/sim/gfxPaletteRam.v,
+glbl.v,Verilog,xil_defaultlib,glbl.v

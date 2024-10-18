@@ -226,11 +226,11 @@ uint32_t asciiTable()
 uint32_t viewImage( char* fileName )
 {
    tgfBitmap   img;
-   uint32_t       rv;
+   uint32_t    rv;
    tosUIEvent  event;
-   uint32_t       fileNameLength;
-   uint16_t      x;
-   uint16_t      y;
+   uint32_t    fileNameLength;
+   uint16_t    x;
+   uint16_t    y;
 
 
    con.textAttributes = 0x0f;
@@ -305,12 +305,12 @@ uint32_t viewImage( char* fileName )
 uint32_t viewFont( char* fileName )
 {
    tgfFont     font;
-   uint32_t       rv;
+   uint32_t    rv;
    tosUIEvent  event;
-   uint32_t       fileNameLength;
+   uint32_t    fileNameLength;
    short       x;
    short       y;
-   uint32_t       i;
+   uint32_t    i;
 
    con.textAttributes = 0x0f;
 
@@ -388,18 +388,18 @@ uint32_t viewFont( char* fileName )
 
 uint32_t viewHex( char* fileName )
 {
-   uint32_t       rv;
-   uint8_t       buf[32];
+   uint32_t    rv;
+   uint8_t     buf[32];
    tosFile     in;
 
-   uint16_t      x;
-   uint16_t      y;
-   uint32_t       i;
-   uint8_t       c;
+   uint16_t    x;
+   uint16_t    y;
+   uint32_t    i;
+   uint8_t     c;
 
    tosUIEvent  event;
-   uint32_t       nbr;
-   uint16_t      eofReached;
+   uint32_t    nbr;
+   uint16_t    eofReached;
 
    rv = 0;
 
@@ -506,8 +506,8 @@ uint32_t viewHex( char* fileName )
 uint32_t viewFile( char* fileName )
 {
    uint32_t  rv;
-   char   extension[32];
-   char  *pExtension;
+   char      extension[32];
+   char     *pExtension;
    uint32_t  i;
 
    rv = 0;
@@ -574,13 +574,11 @@ uint32_t viewFile( char* fileName )
 
 int main()
 {
-   long           i;
-   uint32_t          rv;
-   uint16_t         refreshScreen;
+   int32_t     i;
+   uint32_t    rv;
+   uint16_t    refreshScreen;
 
-   tosUIEvent     event;
-
-   volatile int   j;
+   tosUIEvent  event;
       
    rv = init();
 
