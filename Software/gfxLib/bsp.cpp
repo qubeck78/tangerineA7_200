@@ -2,6 +2,9 @@
 #include "bsp.h"
 
 #include <climits>
+#include <stddef.h>  // for size_t
+#include <unistd.h>  // for STDERR_FILENO
+
 #include "gfFont.h"
 #include "osAlloc.h"
 
@@ -22,6 +25,34 @@ void (*bootLoaderEntry)(void) = (void(*)())0x0;
 tgfTextOverlay  con;
 
 uint32_t    randomSeed;
+
+
+extern "C" void _fini(void) { }
+
+extern "C" int _write ( int file, const void * ptr, size_t len ) 
+{
+    char        buf[4];
+    uint32_t    i;
+
+    if( ( file == STDOUT_FILENO ) || ( file == STDERR_FILENO ) )
+    {
+
+        buf[1] = 0;
+
+        for( i = 0; i < len; i++ )
+        {
+            buf[0] = ((char*)ptr)[i];
+            toPrint( &con, buf );
+        }
+
+        return len;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
 
 uint32_t bspInit()
 {

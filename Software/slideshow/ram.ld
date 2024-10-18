@@ -13,52 +13,52 @@ MEMORY
 
 }
 
+
 SECTIONS
 {
 
-        .text :
+	.text :
 	{
-	    __text_start = . ;
+    	__text_start = . ;
 
-	    *(.text)
+		*(.text)
 
-	_etext = . ;
-	__data_rom_start = ALIGN ( 4 ) ;
-        } > ram
+		_etext = . ;
+   } > ram
 
-        .data :
+	.data :
 	{
-	_sdata = . ;
-	__data_start = . ;
+		_sdata = . ;
+		__data_start = . ;
 
-        *(.data)
+      *(.data)
 
-	_edata = . ;
-	edata = ALIGN( 0x10 ) ;
-        } > ram
+		_edata = . ;
+		edata = ALIGN( 0x10 ) ;
+   } > ram
 
 
 	.bss :
-    	{
-        . = ALIGN(4);
-        _sbss = .;
-        *(.bss)
-        *(.bss*)
-        *(.sbss)
-        *(.sbss*)
-        *(COMMON)
-        . = ALIGN(4);
-        _ebss = .;
-    	} > ram 
+   {
+      . = ALIGN(4);
+      _sbss = .;
+      *(.bss)
+      *(.bss*)
+      *(.sbss)
+      *(.sbss*)
+      *(COMMON)
+      . = ALIGN(4);
+      _ebss = .;
+   } > ram 
 
 	. = ALIGN(8);
 
 	__bss_end__ = .;
-    	_end = __bss_end__;
-    	end = _end; 
+   _end = __bss_end__;
+   end = _end; 
 
 	.eram :
 	{
-	__ramend = . ;
+		__ramend = . ;
 	} > eram
 }

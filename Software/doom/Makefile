@@ -8,8 +8,9 @@
 #https://github.com/qubeck78/srecsend
 #
 
-
+PORT = com7
 TARGET = doom
+
 CC = riscv-none-embed-gcc -march=rv32im -c -O2 -I./ -I./doom/src
 LD = riscv-none-embed-ld -T ram.ld
 NM = riscv-none-embed-nm -n 
@@ -271,7 +272,7 @@ clean:
 	rm -f src/doom/*.o
 
 send: $(TARGET).rec
-	srecsend $(TARGET).rec com3 460800
+	srecsend $(TARGET).rec $(PORT) 460800
 	riscv-none-embed-size $(TARGET).elf
 	
 run: $(TARGET).rec

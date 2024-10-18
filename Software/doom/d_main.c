@@ -571,9 +571,16 @@ void IdentifyVersion (void)
 //
 void D_DoomMain (void)
 {
-    IdentifyVersion ();
+    uint32_t i;
 
-//    setbuf (stdout, NULL);
+    for( i = 0; i < MAXWADFILES; i++ )
+    {
+        wadfiles[i] = NULL;
+    }
+
+    IdentifyVersion();
+
+
     modifiedgame = false;
 
     /* Static options */
@@ -589,9 +596,9 @@ void D_DoomMain (void)
     autostart    = false;
 
     /* Custom title */
-    printf ( "----------------------------\n"
-             "RISC-V DOOM Startup v%i.%i\n"
-             "----------------------------\n",
+    printf ( "-------------------------------------\n"
+             "tangerineRISC-V DOOM Startup v%i.%i\n"
+             "-------------------------------------\n",
              VERSION/100,VERSION%100);
 
     // init subsystems

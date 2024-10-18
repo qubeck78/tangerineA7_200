@@ -1,6 +1,7 @@
 #include "main.h"
 #include <cstring>
 #include <climits>
+#include <cstdio>
 
 #include "../gfxLib/bsp.h"
 #include "../gfxLib/osAlloc.h"
@@ -34,6 +35,21 @@ tosDirItem                   dirItem;
 uint32_t                     numDirEntries;
 
 
+extern "C" void *malloc( size_t size )
+{
+    return osAlloc( size, OS_ALLOC_MEMF_CHIP ); 
+}
+
+extern "C" void free( void *mem )
+{
+    osFree( mem ); 
+}
+
+extern "C" void* realloc( void *oldmem, size_t bytes )
+{
+    return osRealloc( oldmem, bytes, OS_ALLOC_MEMF_CHIP );
+}
+
 
 uint32_t getNumEntries()
 {
@@ -50,7 +66,7 @@ uint32_t getNumEntries()
     
     #endif
 
-    toPrintF( &con, (char*)"Dir open\n" );
+    printf( "Dir open\n" );
 
     numEntries = 0;
 
@@ -63,7 +79,7 @@ uint32_t getNumEntries()
             break; // Error or end of dir
         }
 
-        toPrintF( &con, (char*)"%s\n", dirItem.name );
+        printf( "%s\n", dirItem.name );
 
         numEntries++;
 
@@ -71,7 +87,7 @@ uint32_t getNumEntries()
 
     osDirClose( &dir );
 
-    toPrintF( &con, (char*)"%d entries\n", numEntries );
+    printf( "%d entries\n", numEntries );
 
     return numEntries;
 }
@@ -144,7 +160,7 @@ uint32_t slideshow()
                     toCls( &con );
                     con.textAttributes  = 0x8f;
 
-                    toPrintF( &con, (char*)"Loading:%s", dirItem.name );
+                    printf( "Loading:%s\n", dirItem.name );
 
                     if( dirItem.name[ i - 3 ] == 'g' )
                     {
@@ -204,7 +220,7 @@ uint32_t slideshow()
                     toCls( &con );
                     con.textAttributes      = 0x8f;
                     
-                    toPrintF( &con, (char*)"%s %d\n", dirItem.name, dirItem.size );
+                    printf( "%s %d\n", dirItem.name, dirItem.size );
                     
                     for( i = 0; i < 500; i++ )
                     {
@@ -264,7 +280,7 @@ int main()
 
 
     toCls( &con );
-    toPrint( &con, (char*)"tangerineSOC Slideshow B20240923\n\n" );
+    printf( "tangerineRISC-V SOC Slideshow B20241017\n\n" );
 
     
     screen.flags            = 0;
@@ -274,7 +290,7 @@ int main()
     
     if( screen.buffer == NULL )
     {
-        toPrint( &con, (char*)"\nCan't alloc screen\n" );
+        printf( "\nERROR: Can't alloc screen\n" );
         do{}while( 1 );
     } 
         

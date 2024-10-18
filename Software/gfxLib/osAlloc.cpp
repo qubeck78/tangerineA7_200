@@ -339,6 +339,7 @@ void *osRealloc( void *allocMemPtr, uint32_t sizeNew, uint32_t memFlagsNew )
 		//allocMemPtr does not point to correctly allocated memory
 		return NULL;
 	}
+	
 	if( newMemory != NULL )
 	{
 

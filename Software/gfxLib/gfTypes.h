@@ -5,7 +5,7 @@
 
 //Version
 
-#define _GFXLIB_VERSION 20241014
+#define _GFXLIB_VERSION 20241017
 
 
 //Platform
@@ -16,8 +16,6 @@
 #define _GFXLIB_RISCV_FATFS
 
 //Features
-
-//#define _GFXLIB_BIG_ENDIAN
 
 #define _GFXLIB_HW_BLITTER_2D
 //#define _GFXLIB_HW_BLITTER_3D

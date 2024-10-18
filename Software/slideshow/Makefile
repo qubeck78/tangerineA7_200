@@ -9,11 +9,17 @@
 #
 
 
+PORT = com7
 TARGET = slideshow
+
 CC = riscv-none-embed-gcc -march=rv32im -c -O3 
 LD = riscv-none-embed-ld -T ram.ld
+NM = riscv-none-embed-nm -n 
 OBJCOPY = riscv-none-embed-objcopy
 OBJDUMP = riscv-none-embed-objdump 
+OBJSIZE = riscv-none-embed-size
+SENDER = srecsend
+
 LIBGCC =   "c:\Program Files\riscv-none-gcc\lib\gcc\riscv-none-embed\8.2.0\rv32im\ilp32\libgcc.a"
 LIBSTDCC = "c:\Program Files\riscv-none-gcc\riscv-none-embed\lib\rv32im\ilp32\libstdc++.a"
 LIBC     = "c:\Program Files\riscv-none-gcc\riscv-none-embed\lib\rv32im\ilp32\libc.a"
@@ -25,11 +31,12 @@ all: $(TARGET).bin $(TARGET).rec $(TARGET).disasm
 $(TARGET).disasm: $(TARGET).elf
 	$(OBJDUMP) --disassemble -S $(TARGET).elf>$(TARGET).disasm
 
-$(TARGET).rec: $(TARGET).elf
+$(TARGET).rec: $(TARGET).elf $(TARGET).disasm 
 	$(OBJCOPY) -O srec $(TARGET).elf $(TARGET).rec
 
 $(TARGET).elf: main.o bsp.o startup.o osAlloc.o osFile.o gfBitmap.o gfDrawing.o gfFont.o gfGouraud.o gfJPEG.o picojpeg.o diskio.o ccsbcs.o ff.o osUIEvents.o usbHID.o
 	$(LD) startup.o main.o ../gfxLib/bsp.o ../gfxLib/diskio.o ../gfxLib/ccsbcs.o ../gfxLib/ff.o ../gfxLib/osAlloc.o ../gfxLib/osFile.o ../gfxLib/gfBitmap.o ../gfxLib/gfDrawing.o ../gfxLib/gfFont.o ../gfxLib/gfGouraud.o ../gfxLib/gfJPEG.o ../gfxLib/picojpeg.o ../gfxLib/osUIEvents.o ../gfxLib/usbHID.o $(LIBC) $(LIBNOSYS) $(LIBM) $(LIBGCC)  -o $(TARGET).elf
+	$(NM) $(TARGET).elf >$(TARGET).sym
 
 $(TARGET).bin: $(TARGET).elf
 	$(OBJCOPY) -O binary $(TARGET).elf $(TARGET).bin
@@ -90,7 +97,9 @@ clean:
 	rm -f ../gfxLib/*.o
 
 send: $(TARGET).rec
-	srecsend $(TARGET).rec com3 460800
-	riscv-none-embed-size $(TARGET).elf
+	$(SENDER) $(TARGET).rec $(PORT) 460800
+	$(OBJSIZE) $(TARGET).elf
 	
-	
+run: $(TARGET).rec
+	cp $(TARGET).rec "/f/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/bin"
+	cd "/f/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/bin" && ./tangerine.exe $(TARGET).rec

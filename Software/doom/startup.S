@@ -20,7 +20,18 @@ start:
 
 	li sp, stackPointer 
 
-#push argc and argv to stack
+	#clear bss
+
+	la t0, _sbss
+	la t1, _ebss
+
+clearbss:
+	sw 	zero, (t0)
+	addi	t0, t0, 4
+
+	bltu 	t0, t1, clearbss
+
+	#push argc and argv to stack
 
 	addi sp,sp,-16
 	sw zero,0(sp)

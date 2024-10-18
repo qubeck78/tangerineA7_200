@@ -17,6 +17,7 @@ extern tgfTextOverlay       con;
 int32_t gfLibInterfaceInit( void *pframeBuffer )
 {
    fileOpen = 0;
+   
    paletteRegisters = (volatile uint32_t*)( 0xf0920000 );
 
    if( pframeBuffer == NULL )
@@ -43,13 +44,13 @@ _extc void *gfReAlloc( void *memPtr, uint32_t size )
 
 _extc int gfOpen( const char *fileName, int flags )
 {
+   printf( "gfOpen: \"%s\"\n", (char*)fileName );
+
    if( fileOpen )
    {
       printf( "ERROR: gfOpen tries to open more than one file.\n" );
       return -1;
    }
-
-   printf( "osFOpen: \"%s\"\n", (char*)fileName );
    
    if( !osFOpen( &fileStruct, ( char* )fileName, OS_FILE_READ ) )
    {
@@ -185,6 +186,11 @@ _extc uint32_t gfGetKey( void )
 
          switch( event.arg1 )
          {
+
+            case _KEYCODE_PAUSE:
+
+               reboot();
+               break; 
 
             case _KEYCODE_ENTER:
 
