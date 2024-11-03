@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date             : Thu Oct 10 21:51:04 2024
+| Date             : Fri Nov  1 23:09:10 2024
 | Host             : Desktop-qUBECk running 64-bit major release  (build 9200)
 | Command          : report_power -file A7BoardTop_power_routed.rpt -pb A7BoardTop_power_summary_routed.pb -rpx A7BoardTop_power_routed.rpx
 | Design           : A7BoardTop
@@ -54,14 +54,14 @@ Table of Contents
 +-------------------------+-----------+----------+-----------+-----------------+
 | Clocks                  |     0.028 |       11 |       --- |             --- |
 | Slice Logic             |     0.010 |    15068 |       --- |             --- |
-|   LUT as Logic          |     0.009 |     6242 |    133800 |            4.67 |
+|   LUT as Logic          |     0.009 |     6256 |    133800 |            4.68 |
 |   CARRY4                |    <0.001 |      430 |     33450 |            1.29 |
 |   Register              |    <0.001 |     5659 |    269200 |            2.10 |
 |   F7/F8 Muxes           |    <0.001 |      696 |    133800 |            0.52 |
 |   Others                |     0.000 |      933 |       --- |             --- |
 |   BUFG                  |     0.000 |        2 |        32 |            6.25 |
 |   LUT as Shift Register |     0.000 |        7 |     46200 |            0.02 |
-| Signals                 |     0.012 |    13433 |       --- |             --- |
+| Signals                 |     0.012 |    13443 |       --- |             --- |
 | Block RAM               |     0.023 |    269.5 |       365 |           73.84 |
 | MMCM                    |     0.229 |        2 |        10 |           20.00 |
 | DSPs                    |    <0.001 |       13 |       740 |            1.76 |
@@ -77,7 +77,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.110 |       0.073 |      0.037 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.111 |       0.073 |      0.037 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.158 |       0.127 |      0.031 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.051 |       0.046 |      0.005 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -162,17 +162,18 @@ Table of Contents
 |   dvidInst              |     0.002 |
 |   tangerineSOCInst      |     0.070 |
 |     UARTInst            |     0.002 |
-|     blitterInst         |     0.011 |
+|     blitterInst         |     0.012 |
 |     fastRamInst         |     0.009 |
 |       U0                |     0.009 |
 |     i2sControllerInst   |     0.003 |
-|     nekoRvInst          |     0.014 |
-|     pixelGenGfxInst     |     0.005 |
-|       gfxPaletteRamInst |     0.004 |
-|     sdramDMAInst        |     0.007 |
+|     nekoRvInst          |     0.013 |
+|     pixelGenGfxInst     |     0.004 |
+|       gfxPaletteRamInst |     0.003 |
+|     pixelGenInst        |     0.001 |
+|     sdramDMAInst        |     0.008 |
 |       gfxBufRamInst     |     0.002 |
 |     spriteGenInst       |     0.004 |
-|       spriteDPRamInst   |     0.003 |
+|       spriteDPRamInst   |     0.004 |
 |     systemRamInst       |     0.009 |
 |       U0                |     0.009 |
 |     usbHostInst         |     0.003 |

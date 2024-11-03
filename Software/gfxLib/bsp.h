@@ -31,6 +31,18 @@
 
 #include "gfTypes.h"
 
+
+//IRQ macros
+
+//set mie bit in mstatus csr
+#define __enable_irq() asm volatile( "csrrsi zero, 0x300, 0x08" )
+
+//clear mie bit in mstatus csr
+#define __disable_irq() asm volatile( "csrrci zero, 0x300, 0x08" )
+
+#define __break() asm volatile( "ebreak" )
+
+
 //x"80000000";   -- root id
 //x"80000001";   -- serial id
 //x"80000002";   -- spi id

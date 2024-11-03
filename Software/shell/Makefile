@@ -12,7 +12,7 @@
 #https://github.com/qubeck78/tangyLink
 #
 
-PORT = com6
+PORT = com7
 TARGET = shell
 
 CC = riscv-none-embed-gcc -march=rv32im -c -O3 

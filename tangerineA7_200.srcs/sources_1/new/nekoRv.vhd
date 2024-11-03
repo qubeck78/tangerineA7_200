@@ -91,6 +91,7 @@ signal  resultMulsu:    std_logic_vector( 65 downto 0 );
 signal  resultMuluu:    std_logic_vector( 63 downto 0 );
 
 --divider
+
 signal  divI:           std_logic_vector( 7 downto 0 );
 signal  divN:           std_logic_vector( 31 downto 0 );
 signal  divD:           std_logic_vector( 31 downto 0 );
