@@ -31,6 +31,8 @@ port(
     clk:                in  std_logic;
     reset:              in  std_logic;
     
+    mtimeIrq:           in  std_logic;
+    
     a:                  out std_logic_vector( 31 downto 0 );
     din:                in  std_logic_vector( 31 downto 0 );
     dout:               out std_logic_vector( 31 downto 0 );
@@ -78,6 +80,7 @@ signal  rs2Val:         std_logic_vector( 31 downto 0 );
 signal  rdVal:          std_logic_vector( 31 downto 0 );
 signal  rdWrite:        std_logic;
 
+signal  rs1:            std_logic_vector( 4 downto 0 );
 
 --data fetch
 
@@ -99,6 +102,25 @@ signal  divQ:           std_logic_vector( 31 downto 0 );
 signal  divR:           std_logic_vector( 31 downto 0 );
 signal  divQSign:       std_logic;
 signal  divRSign:       std_logic;
+
+--csr
+signal  csrA:           std_logic_vector( 11 downto 0 );
+signal  csrDIn:         std_logic_vector( 31 downto 0 );
+signal  csrDOut:        std_logic_vector( 31 downto 0 );
+signal  csrWr:          std_logic;
+
+--csr regs
+signal  csrMstatus:     std_logic_vector( 63 downto 0 );
+signal  csrMie:         std_logic_vector( 31 downto 0 );
+signal  csrMtvec:       std_logic_vector( 31 downto 0 );
+signal  csrMscratch:    std_logic_vector( 31 downto 0 );
+signal  csrMepc:        std_logic_vector( 31 downto 0 );
+signal  csrMcause:      std_logic_vector( 31 downto 0 );
+signal  csrMtval:       std_logic_vector( 31 downto 0 );
+signal  csrMip:         std_logic_vector( 31 downto 0 );
+
+--irq
+signal  irqProcessing:  std_logic;
 
 begin
 
@@ -122,6 +144,145 @@ begin
     end if;
     
 
+
+end process;
+
+csr: process( all )
+begin
+
+    if reset = '1' then
+
+        csrDOut     <= ( others => '0' );
+
+        csrMstatus  <= ( others => '0' );
+        csrMie      <= ( others => '0' );
+        csrMscratch <= ( others => '0' );
+        
+        csrMtvec    <= ( others => '0' );
+        csrMepc     <= ( others => '0' );
+        csrMcause   <= ( others => '0' );
+        csrMtval    <= ( others => '0' );
+        csrMip      <= ( others => '0' );
+                     
+    elsif rising_edge( clk ) then
+
+        --csr read
+        
+        case csrA is
+        
+            --mstatus
+            when x"300" =>
+
+                csrDOut <= csrMstatus( 31 downto 0 );
+            
+            --misa
+            when x"301" =>
+        
+                --rv-32 im
+                csrDOut <= "01000000000000000001000100000000";
+ 
+            --mie
+            when x"304" =>
+                
+                csrDOut <= csrMie;
+                            
+            --mtvec
+            when x"305" =>
+            
+                csrDOut <= csrMtvec;
+                
+            --mstatush
+            when x"310" =>
+
+                csrDOut <= csrMstatus( 63 downto 32 );
+            
+            --mscratch
+            when x"340" =>
+            
+                csrDOut <= csrMscratch;
+                
+            --mepc
+            when x"341" =>
+            
+                csrDOut <= csrMepc;
+                
+            --mcause
+            when x"342" =>
+            
+                csrDOut <= csrMcause;
+                
+            --mtval
+            when x"343" =>
+            
+                csrDOut <= csrMtval;
+                
+            --mip
+            when x"344" =>
+            
+                csrDOut <= csrMip;
+            
+            when others =>
+            
+                csrDOut <= ( others => '0' );
+                
+        end case;   --csrA is
+
+        if csrWr = '1' then
+ 
+            case csrA is
+            
+                --mstatus
+                when x"300" =>
+    
+                    csrMstatus( 31 downto 0 )   <= csrDIn;
+                     
+                --mie
+                when x"304" =>
+                    
+                    csrMie      <= csrDIn;
+                                
+                --mtvec
+                when x"305" =>
+                
+                    csrMtvec    <= csrDIn;
+                    
+                --mstatush
+                when x"310" =>
+    
+                    csrMstatus( 63 downto 32 )  <= csrDIn;
+                
+                --mscratch
+                when x"340" =>
+                
+                    csrMscratch <= csrDIn;
+                    
+                --mepc
+                when x"341" =>
+                
+                    csrMepc     <= csrDIn;
+                    
+                --mcause
+                when x"342" =>
+                
+                    csrMcause   <= csrDIn;
+                    
+                --mtval
+                when x"343" =>
+                
+                    csrMtval    <= csrDIn;
+                    
+                --mip
+                when x"344" =>
+                
+                    csrMip      <= csrDIn;
+                
+                when others =>
+                                    
+            end case;   --csrA is
+   
+        end if; --csrWr = '1'
+    
+    end if; --rising_edge( clk )
 
 end process;
 
@@ -159,6 +320,13 @@ begin
             resultMulsu     <= ( others => '0' );
             resultMuluu     <= ( others => '0' );
             
+            csrWr           <= '0';
+            csrDIn          <= ( others => '0' );
+        
+            rs1             <= ( others => '0' );
+                
+            irqProcessing   <= '0';
+            
         elsif rising_edge( clk ) then
 
         
@@ -167,7 +335,8 @@ begin
                 when rvsIFetch0 =>
                     
                     rdWrite         <= '0';
-
+                    csrWr           <= '0';
+                    
                     a               <= pc;
                     dataMask        <= "1111";
                     wr              <= '0';
@@ -222,10 +391,11 @@ begin
                         rs1Val  <= regs( to_integer( unsigned ( din( 19 downto 15 ) ) ) );
                         rs2Val  <= regs( to_integer( unsigned ( din( 24 downto 20 ) ) ) );
                         
+                        csrA                    <= din( 31 downto 20 );
+                        rs1                     <= din( 19 downto 15 );
                         
                         rvState <= rvsIExecute0;
-                        
-                        
+                                                
                      end if;
                 
                 when rvsIExecute0 =>                
@@ -1041,7 +1211,103 @@ begin
                             
                             rdVal <= std_logic_vector( signed( pc ) + signed( utImm ) - 4 );
                             rdWrite <= '1';
+                        
+                        when "1110011" =>
+                            
+                            --system
+                            
+                            case funct3 is 
+                            
+                                when "000" =>
                                 
+                                    case itImm( 11 downto 0 ) is
+                                        
+                                        when "000000000000" =>
+                                            
+                                            --ecall
+                                        
+                                        
+                                        when "000000000001" =>
+                                        
+                                            --ebreak
+                                            
+                                            
+                                        when "001100000010" =>
+                                        
+                                            --mret
+                                            
+                                            --return from irq
+                                            pc              <= csrMepc;
+                                            irqProcessing   <= '0';
+                                    
+                                    
+                                        when others =>
+                                    
+                                    end case; --itImm( 11 downto 0 ) is
+                                
+                                when "001" =>
+                                
+                                    --csrrw %s, %d, %s
+                                    
+                                    rdVal   <= csrDOut;
+                                    rdWrite <= '1';     
+                                    
+                                    csrDIn  <= rs1Val;
+                                    csrWr   <= '1';                                    
+                                
+                                when "010" =>
+                                
+                                    --csrrs %s, %d, %s
+
+                                    rdVal   <= csrDOut;
+                                    rdWrite <= '1';     
+                                        
+                                    csrDin  <= csrDOut or rs1Val;
+                                    csrWr   <= '1';
+                                    
+                                when "011" =>
+                                
+                                    --csrrc %s, %d, %s
+
+                                    rdVal   <= csrDOut;
+                                    rdWrite <= '1';     
+                                        
+                                    csrDin  <= csrDOut and ( rs1Val xor x"ffffffff" );
+                                    csrWr   <= '1';
+
+                                when "101" =>
+   
+                                    --csrrwi %s, %d, %d
+                                                                 
+                                    rdVal   <= csrDOut;
+                                    rdWrite <= '1';     
+                                    
+                                    csrDIn  <= "000000000000000000000000000" & rs1;
+                                    csrWr   <= '1';                                    
+                              
+                                when "110" =>
+   
+                                    --csrrsi %s, %d, %d
+                                                                 
+                                    rdVal   <= csrDOut;
+                                    rdWrite <= '1';     
+                                    
+                                    csrDIn  <= csrDOut or "000000000000000000000000000" & rs1;
+                                    csrWr   <= '1';                                    
+
+                                when "111" =>
+   
+                                    --csrrci %s, %d, %d
+                                                                 
+                                    rdVal   <= csrDOut;
+                                    rdWrite <= '1';     
+                                    
+                                    csrDIn  <= csrDOut and ( "000000000000000000000000000" & rs1 xor x"ffffffff" );
+                                    csrWr   <= '1';                                    
+
+                                when others =>
+                                
+                            end case; --funct3 is
                             
                         when others => --opcode is
                         

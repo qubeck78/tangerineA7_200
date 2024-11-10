@@ -7,8 +7,6 @@
 
 	j start
 
-.balign 16
-
 
 .balign 16
 
@@ -83,7 +81,7 @@ irq_vec:
 	lw		x2,	4(sp)
 	lw		x1, 	0(sp)
 
-	addi	sp,	sp,	-128
+	addi	sp,	sp,	128
 
 	mret
 

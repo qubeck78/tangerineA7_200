@@ -58,26 +58,33 @@ typedef struct _BSP_T
     volatile uint32_t id;
     volatile uint32_t version;
 
-    //
-    volatile uint32_t videoMuxMode;
+    //txt/gfx/mux mode
+    volatile uint32_t   videoMuxMode;
     
     //b0 - vsync (positive)
-    volatile uint32_t videoVSync;
+    volatile uint32_t   videoVSync;
     
-    volatile uint32_t  unused0;
+    volatile uint32_t   unused0;
         
     //wr b7, b6, b5, b4 - LEDS, b0 - spi0SSel
-    volatile uint32_t gpoPort;
+    volatile uint32_t   gpoPort;
     
     //wr b0 - tickTimerReset
-    volatile uint32_t tickTimerConfig;
+    volatile uint32_t   tickTimerConfig;
     
     //rd - tickTimerValue
-    volatile uint32_t tickTimerValue;
+    volatile uint32_t   tickTimerValue;
     
     //counts frames (up), write resets timer
-    volatile uint32_t  frameTimer;
+    volatile uint32_t   frameTimer;
     
+    volatile uint32_t   unused1;
+
+    //counts up, clocked by cpu clock
+    volatile uint64_t   mtime;
+
+    //mtime compare, generates interrupt on match
+    volatile uint64_t   mtimeCmp;
 
 }BSP_T;
 

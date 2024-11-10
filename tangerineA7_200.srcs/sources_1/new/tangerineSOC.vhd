@@ -248,6 +248,8 @@ port(
     clk:                in  std_logic;
     reset:              in  std_logic;
     
+    mtimeIrq:           in  std_logic;
+
     a:                  out std_logic_vector( 31 downto 0 );
     din:                in  std_logic_vector( 31 downto 0 );
     dout:               out std_logic_vector( 31 downto 0 );
@@ -554,6 +556,8 @@ signal fastRamDoutForCPU:        std_logic_vector( 31 downto 0 );
 --cpu signals
 signal cpuClock:        std_logic;
 signal cpuResetn:       std_logic;
+signal cpuMtimeIrq:     std_logic;
+
 signal cpuAOut:         std_logic_vector( 29 downto 0 );
 signal cpuDOut:         std_logic_vector( 31 downto 0 );
 
@@ -592,10 +596,15 @@ signal tickTimerCounter:          std_logic_vector( 31 downto 0 );
 constant tickTimerPrescalerValue:   integer:=   50000 - 1;  --1ms tick timer @50MHz
  
 -- frameTimer signals
-signal frameTimerClock:        std_logic;
-signal frameTimerReset:        std_logic;
-signal frameTimerPgPrvVSync:   std_logic;
-signal frameTimerValue:        std_logic_vector( 31 downto 0 );
+signal frameTimerClock:         std_logic;
+signal frameTimerReset:         std_logic;
+signal frameTimerPgPrvVSync:    std_logic;
+signal frameTimerValue:         std_logic_vector( 31 downto 0 );
+
+-- mtime timer signals
+signal mtimeTimer:              std_logic_vector( 63 downto 0 );
+signal mtimeTimerCmp:           std_logic_vector( 63 downto 0 );
+
 
 --uart signals
 
@@ -1126,6 +1135,8 @@ port map(
     clk             => cpuClock,
     reset           => not cpuResetn,
     
+    mtimeIrq        => cpuMtimeIrq,
+    
     a               => cpuAOutFull,
     din             => cpuDin,
     dout            => cpuDOut,
@@ -1190,13 +1201,31 @@ begin
                   
         registerState   <= rsWaitForRegAccess;
         frameTimerReset <= '0';
+        
+        mtimeTimer      <= ( others => '0' );
+        mtimeTimerCmp   <= ( others => '0' );
+        
+        
         registersReady  <= '0';
+      
         
       else
       
          tickTimerReset             <= '0';
          frameTimerReset            <= '0';
+    
+         --mtime
+        
+         mtimeTimer <= std_logic_vector( unsigned( mtimeTimer ) + 1 );
+        
+         cpuMtimeIrq     <= '0';
+
+         if mtimeTimer = mtimeTimerCmp then
+            
+            cpuMtimeIrq <= '1';
          
+         end if;
+          
          case registerState is
          
             when rsWaitForRegAccess =>
@@ -1217,7 +1246,7 @@ begin
                      --0x04 r- component version                       
                      when x"01" =>
                      
-                        registersDoutForCPU  <= x"20241101";
+                        registersDoutForCPU  <= x"20241110";
                                                 
                      --rw 0xf0000008 - videoMuxMode
                      when x"02" =>
@@ -1277,7 +1306,53 @@ begin
                               frameTimerReset <= '1';
                               
                         end if;
-                                             
+                       
+                     --rw 0xf0000028 - mtime low
+                     when x"0a" =>
+                     
+                        registersDoutForCPU <= mtimeTimer( 31 downto 0 );
+                     
+                        if cpuWr = '1' then
+                            
+                            mtimeTimer( 31 downto 0 ) <= cpuDOut;
+                        
+                        end if;
+                        
+                     --rw 0xf000002c - mtime high
+                     
+                     when x"0b" =>
+
+                        registersDoutForCPU <= mtimeTimer( 63 downto 32 );
+                                           
+                        if cpuWr = '1' then
+                            
+                            mtimeTimer( 63 downto 32 ) <= cpuDOut;
+                        
+                        end if;
+
+                     --rw 0xf0000030 - mtimeCmp low
+                     
+                     when x"0c" =>
+
+                        registersDoutForCPU <= mtimeTimerCmp( 31 downto 0 );
+
+                        if cpuWr = '1' then
+                            
+                            mtimeTimerCmp( 31 downto 0 ) <= cpuDOut;
+                        
+                        end if;
+
+                     --rw 0xf0000034 - mtimeCmp high
+                     
+                     when x"0d" =>
+
+                        registersDoutForCPU <= mtimeTimerCmp( 63 downto 32 );
+
+                        if cpuWr = '1' then
+                            
+                            mtimeTimerCmp( 63 downto 32 ) <= cpuDOut;
+                        
+                        end if;
 
                      when others =>
 

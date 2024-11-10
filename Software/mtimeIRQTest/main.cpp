@@ -23,6 +23,8 @@ volatile uint32_t       irqCounter = 0;
 extern "C" void ___isrMain()
 {
 
+   bsp->mtimeCmp = bsp->mtime + ( 100000000 );
+
    irqCounter++;
 
 }
@@ -60,6 +62,8 @@ int main()
 {
    uint32_t    i;
    uint32_t    rv;
+   uint64_t    mtm;
+
    tosUIEvent  event;
    
    bspInit();                                 
@@ -94,20 +98,29 @@ int main()
    //init filesystem
    rv = osFInit();
 
-   toPrintF( &con, (char*)"mtime IRQ test B20241103\n" );
+   toPrintF( &con, (char*)"mtime IRQ test B20241110\n" );
    
 /*   usbHIDSetMousePointerVisibility( 1 );
    usbHidSetMouseReporting( 1 );
 */
 
-   __enable_irq();
 
+   __disable_irq();
+   bsp->mtimeCmp = bsp->mtime + ( 100000000 );
+   __enable_irq();
+   
    do
    {
-      waitKey();
+//      waitKey();
 
-      toPrintF( &con, (char*)"IRQ counter:%d\n", irqCounter );
+      delayMs( 10000 );
 
+      mtm = bsp->mtime;
+
+      toPrintF( &con, (char*)"IRQ counter: %d\n", irqCounter );
+      toPrintF( &con, (char*)"mtimehi: %u\n", (uint32_t)( mtm >> 32 ) );
+      toPrintF( &con, (char*)"mtimelo: %u\n", (uint32_t)( mtm & 0xffffffff ) );
+      
    }while( 1 );
    
 } 
