@@ -120,7 +120,14 @@ signal  csrMtval:       std_logic_vector( 31 downto 0 );
 signal  csrMip:         std_logic_vector( 31 downto 0 );
 
 --irq
-signal  irqProcessing:  std_logic;
+
+--trigger irq ( all condintions for irq are met )
+signal  triggerIrq:             std_logic;
+
+--cpu executes isr
+signal  irqProcessing:          std_logic;
+
+signal clearMtimePendingIrq:    std_logic;
 
 begin
 
@@ -163,6 +170,8 @@ begin
         csrMcause   <= ( others => '0' );
         csrMtval    <= ( others => '0' );
         csrMip      <= ( others => '0' );
+        
+        triggerIrq  <= '0';
                      
     elsif rising_edge( clk ) then
 
@@ -282,6 +291,42 @@ begin
    
         end if; --csrWr = '1'
     
+    
+        --irq requests
+        
+        if mtimeIrq = '1' then
+        
+            --set proper bit in mip
+            
+            --todo: check mie before setting mip
+            
+            --set machine timer interrupt bit
+            csrMip(7) <= '1';
+
+        elsif clearMtimePendingIrq = '1' then
+        
+            --clear machine timer interupt bit
+            csrMip(7) <= '0';
+                 
+        end if;
+        
+
+        --pass irq request to the cpu if irq is pending, irq is not handled right now and irqs are enabled
+    
+        if csrMstatus( 3 ) = '1' and irqProcessing = '0' and csrMip( 7 ) = '1' then
+            
+            --trigger irq
+            triggerIrq  <= '1';
+
+            --write cause
+            csrMcause   <= x"80000007";            
+
+        else
+        
+            triggerIrq  <= '0';
+             
+        end if;
+        
     end if; --rising_edge( clk )
 
 end process;
@@ -303,29 +348,30 @@ begin
     
         if reset = '1' then
         
-            pc              <= genInitialPC;
+            pc                  <= genInitialPC;
                
-            rvState         <= rvsIFetch0;
-            rdWrite         <= '0';
-            wr              <= '0';
-            be              <= '1';
-            InstrFetchCycle <= '1';
+            rvState                 <= rvsIFetch0;
+            rdWrite                 <= '0';
+            wr                      <= '0';
+            be                      <= '1';
+            InstrFetchCycle         <= '1';
    
    
-            wr              <= '0';
-            be              <= '0';
-            InstrFetchCycle <= '0';
+            wr                      <= '0';
+            be                      <= '0';
+            InstrFetchCycle         <= '0';
 
-            resultMul       <= ( others => '0' );
-            resultMulsu     <= ( others => '0' );
-            resultMuluu     <= ( others => '0' );
+            resultMul               <= ( others => '0' );
+            resultMulsu             <= ( others => '0' );
+            resultMuluu             <= ( others => '0' );
             
-            csrWr           <= '0';
-            csrDIn          <= ( others => '0' );
+            csrWr                   <= '0';
+            csrDIn                  <= ( others => '0' );
         
-            rs1             <= ( others => '0' );
+            rs1                     <= ( others => '0' );
                 
-            irqProcessing   <= '0';
+            irqProcessing           <= '0';
+            clearMtimePendingIrq    <= '0';
             
         elsif rising_edge( clk ) then
 
@@ -334,19 +380,42 @@ begin
             
                 when rvsIFetch0 =>
                     
-                    rdWrite         <= '0';
-                    csrWr           <= '0';
+                    clearMtimePendingIrq    <= '0';
+
+                    if triggerIrq = '1' and irqProcessing = '0' then
+
+                        --set irq processing flag ( cleared by mret )
+                        irqProcessing           <= '1';
+                        
+                        --clear mtime trigger
+                        clearMtimePendingIrq    <= '1';
+                        
+                        --write mepc
+                        csrA    <= x"341";
+                        csrDIn  <= pc;
+                        csrWr   <= '1';
+                        
+                        --set pc to mtvec
+                        pc      <= csrMtvec;
+                                            
                     
-                    a               <= pc;
-                    dataMask        <= "1111";
-                    wr              <= '0';
-                    be              <= '1';
-                    InstrFetchCycle <= '1';
-                                  
-                    pc              <= std_logic_vector( unsigned(pc) + x"00000004" );
-                      
-                    rvState         <= rvsIFetch1Decode;
-            
+                    else
+                    
+                        rdWrite         <= '0';
+                        csrWr           <= '0';
+                        
+                        a               <= pc;
+                        dataMask        <= "1111";
+                        wr              <= '0';
+                        be              <= '1';
+                        InstrFetchCycle <= '1';
+                                      
+                        pc              <= std_logic_vector( unsigned(pc) + x"00000004" );
+                        
+                        rvState         <= rvsIFetch1Decode;
+                
+                    end if;
+                    
                 when rvsIFetch1Decode =>
                 
                     if ready = '1' then

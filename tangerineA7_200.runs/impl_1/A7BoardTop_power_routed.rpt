@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date             : Sun Nov 10 23:16:23 2024
+| Date             : Mon Nov 11 15:55:36 2024
 | Host             : Desktop-qUBECk running 64-bit major release  (build 9200)
 | Command          : report_power -file A7BoardTop_power_routed.rpt -pb A7BoardTop_power_summary_routed.pb -rpx A7BoardTop_power_routed.rpx
 | Design           : A7BoardTop
@@ -52,19 +52,19 @@ Table of Contents
 +-------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
-| Clocks                  |     0.030 |       11 |       --- |             --- |
-| Slice Logic             |     0.011 |    15979 |       --- |             --- |
-|   LUT as Logic          |     0.010 |     6617 |    133800 |            4.95 |
-|   CARRY4                |    <0.001 |      462 |     33450 |            1.38 |
-|   Register              |    <0.001 |     6148 |    269200 |            2.28 |
-|   F7/F8 Muxes           |    <0.001 |      709 |    133800 |            0.53 |
+| Clocks                  |     0.029 |       11 |       --- |             --- |
+| Slice Logic             |     0.011 |    16187 |       --- |             --- |
+|   LUT as Logic          |     0.010 |     6745 |    133800 |            5.04 |
+|   CARRY4                |     0.001 |      472 |     33450 |            1.41 |
+|   Register              |    <0.001 |     6165 |    269200 |            2.29 |
+|   F7/F8 Muxes           |    <0.001 |      703 |    133800 |            0.53 |
 |   Others                |     0.000 |      933 |       --- |             --- |
 |   BUFG                  |     0.000 |        2 |        32 |            6.25 |
 |   LUT as Shift Register |     0.000 |        7 |     46200 |            0.02 |
-| Signals                 |     0.013 |    14239 |       --- |             --- |
-| Block RAM               |     0.023 |    269.5 |       365 |           73.84 |
+| Signals                 |     0.013 |    14385 |       --- |             --- |
+| Block RAM               |     0.024 |    269.5 |       365 |           73.84 |
 | MMCM                    |     0.229 |        2 |        10 |           20.00 |
-| DSPs                    |    <0.001 |       13 |       740 |            1.76 |
+| DSPs                    |     0.001 |       13 |       740 |            1.76 |
 | I/O                     |     0.153 |       83 |       400 |           20.75 |
 | Static Power            |     0.152 |          |           |                 |
 | Total                   |     0.612 |          |           |                 |
@@ -166,7 +166,7 @@ Table of Contents
 |     fastRamInst         |     0.009 |
 |       U0                |     0.009 |
 |     i2sControllerInst   |     0.003 |
-|     nekoRvInst          |     0.018 |
+|     nekoRvInst          |     0.017 |
 |     pixelGenGfxInst     |     0.004 |
 |       gfxPaletteRamInst |     0.003 |
 |     sdramDMAInst        |     0.007 |

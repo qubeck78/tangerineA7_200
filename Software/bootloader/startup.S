@@ -7,16 +7,17 @@
 
 .balign 16
 
-irq_vec:
-#	picorv32_retirq_insn()
-
 
 	.globl start
 	.type start,@function
 
 start:
+	
+	#disable interrupts
+	csrrci zero, 0x300, 0x08
 
-#init stack pointer 
+
+	#init stack pointer 
 
 	li sp, stackPointer
 

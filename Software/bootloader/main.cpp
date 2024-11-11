@@ -449,7 +449,7 @@ int main()
    spaceDistance( 40 - 13 ); print( (char*) "   | Powered by nekoRV | \n" );
    spaceDistance( 40 - 13 ); print( (char*) "   |                   | \n" );
    spaceDistance( 40 - 13 ); print( (char*) "   |   Bootloader32I   | \n" );
-   spaceDistance( 40 - 13 ); print( (char*) "   |   B20241006       | \n" );
+   spaceDistance( 40 - 13 ); print( (char*) "   |   B20241111       | \n" );
    spaceDistance( 40 - 13 ); print( (char*) "   |                   | \n" );
    spaceDistance( 40 - 13 ); print( (char*) "   |   SOC             | \n" );
    spaceDistance( 40 - 13 ); print( (char*) "   |   B" );
