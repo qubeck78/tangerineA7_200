@@ -9,7 +9,7 @@
 #
 
 
-PORT = com7
+PORT = com9
 TARGET = mtimeIRQTest
 
 CC = riscv-none-embed-gcc -march=rv32im -c -O3 -I../gfxLib

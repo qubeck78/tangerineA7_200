@@ -50,7 +50,8 @@ end nekoRv;
 architecture Behavioral of nekoRv is
 
 type    rvState_T is ( rvsIFetch0, rvsIFetch1Decode, rvsMemRead0, rvsMemRead1, rvsMemWrite0, rvsMemWrite1, rvsIExecute0, 
-                        rvsIExecute1Mul, rvsIExecute1Div, rvsIExecute2Div );
+                        rvsIExecute1Mul, rvsIExecute1Div, rvsIExecute2Div,
+                        rvsEcall0 );
 
 signal  rvState:        rvState_T;
 
@@ -173,7 +174,7 @@ begin
         
         triggerIrq  <= '0';
                      
-    elsif rising_edge( clk ) then
+    elsif falling_edge( clk ) then
 
         --csr read
         
@@ -294,7 +295,7 @@ begin
     
         --irq requests
         
-        if mtimeIrq = '1' then
+        if mtimeIrq = '1' and csrMstatus( 3 ) = '1' and irqProcessing = '0' then
         
             --set proper bit in mip
             
@@ -381,7 +382,9 @@ begin
                 when rvsIFetch0 =>
                     
                     clearMtimePendingIrq    <= '0';
-
+                    rdWrite                 <= '0';
+                    csrWr                   <= '0';
+                        
                     if triggerIrq = '1' and irqProcessing = '0' then
 
                         --set irq processing flag ( cleared by mret )
@@ -400,10 +403,7 @@ begin
                                             
                     
                     else
-                    
-                        rdWrite         <= '0';
-                        csrWr           <= '0';
-                        
+                                            
                         a               <= pc;
                         dataMask        <= "1111";
                         wr              <= '0';
@@ -1253,8 +1253,7 @@ begin
                             --I type
                             
                             --jalr
-                            
-                            
+                                                        
                             rdVal <=  pc;
                             rdWrite <= '1';
                                 
@@ -1265,8 +1264,7 @@ begin
                         when "0110111" =>
                             --U type
                             
-                            --lui
-                             
+                            --lui 
                             
                             rdVal <= utImm; 
                             rdWrite <= '1';
@@ -1276,8 +1274,7 @@ begin
                             --U type
                             
                             --auipc
-                             
-                            
+                                
                             rdVal <= std_logic_vector( signed( pc ) + signed( utImm ) - 4 );
                             rdWrite <= '1';
                         
@@ -1294,8 +1291,17 @@ begin
                                         when "000000000000" =>
                                             
                                             --ecall
-                                        
-                                        
+                                            
+                                            --write mepc
+                                            csrA    <= x"341";
+                                            csrDIn  <= std_logic_vector( unsigned( pc ) - 4 );
+                                            csrWr   <= '1';
+                    
+                                            --jump to trap vector
+                                            pc      <= csrMtvec;
+                                            
+                                            rvState <= rvsEcall0;
+                                            
                                         when "000000000001" =>
                                         
                                             --ebreak
@@ -1759,6 +1765,15 @@ begin
                     end case;
                     
 
+                    rvState <= rvsIFetch0;
+                
+                when rvsEcall0 =>
+                
+                    --write mcause
+                    csrA    <= x"342";
+                    csrDIn  <= x"0000000b"; --env call
+                    csrWr   <= '1';
+                    
                     rvState <= rvsIFetch0;
 
                 when others => --rvState is

@@ -46,9 +46,33 @@ irq_vec:
 	sw		x30,	120(sp)
 	sw		x31, 	124(sp)
 
+	addi	t0, zero, 0x0a
+	addi	t1, zero, 11
+	csrrs t0, mcause, zero
+
+	la		a0, 8
+	sw		t0, (a0)
+
+	bne	t0, t1, notEcall
+
+#	call c ecall handler
+	jal	ra, ___ecallMain
+
+#  add 4 to mepc
+
+	csrrs	t0, mepc, zero
+	addi	t0, t0, 4
+
+	csrrw	zero, mepc, t0
+
+	j		restoreCtx
+
+notEcall:
 #	call c ISR
 	jal	ra, ___isrMain
 	
+restoreCtx:
+
 	lw		x31,	124(sp)
 	lw		x30,	120(sp)
 	lw		x29,	112(sp)

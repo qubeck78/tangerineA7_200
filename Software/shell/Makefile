@@ -15,7 +15,7 @@
 PORT = com7
 TARGET = shell
 
-CC = riscv-none-embed-gcc -march=rv32im -c -O3 
+CC = riscv-none-embed-gcc -march=rv32im -c -O3
 LD = riscv-none-embed-ld -T ram.ld
 NM = riscv-none-embed-nm -n 
 OBJCOPY = riscv-none-embed-objcopy

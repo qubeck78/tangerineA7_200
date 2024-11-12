@@ -18,15 +18,25 @@ tgfBitmap               background;
 tgfBitmap               cursor;
 
 volatile uint32_t       irqCounter = 0;
-
+uint32_t *mcauseVal;
+   
 
 extern "C" void ___isrMain()
 {
+
 
    bsp->mtimeCmp = bsp->mtime + ( 100000000 );
 
    irqCounter++;
 
+   printf( "irq %x\n", *mcauseVal );
+
+}
+
+extern "C" void ___ecallMain()
+{
+
+   printf( "ecall %x\n", *mcauseVal );
 }
 
 static uint32_t waitKey()
@@ -104,6 +114,8 @@ int main()
    usbHidSetMouseReporting( 1 );
 */
 
+   mcauseVal = (uint32_t*)8;
+
 
    __disable_irq();
    bsp->mtimeCmp = bsp->mtime + ( 100000000 );
@@ -114,6 +126,8 @@ int main()
 //      waitKey();
 
       delayMs( 10000 );
+
+      asm volatile( "ecall" );
 
       mtm = bsp->mtime;
 
