@@ -9,6 +9,7 @@
 #
 
 TARGET = fractal
+PORT = com7
 #CC = riscv-none-embed-gcc -march=rv32im -mno-div -c -O3 
 CC = riscv-none-embed-gcc -march=rv32im -c -O3 
 LD = riscv-none-embed-ld -T ram.ld
@@ -90,5 +91,5 @@ clean:
 	rm -f ../gfxLib/*.o
 
 send: $(TARGET).rec
-	srecsend $(TARGET).rec com9 460800
+	srecsend $(TARGET).rec $(PORT) 460800
 	

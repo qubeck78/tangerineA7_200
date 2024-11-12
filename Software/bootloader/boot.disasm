@@ -11,15 +11,16 @@ Disassembly of section .text:
    c:	00000013          	nop
 
 00000010 <start>:
-  10:	00006137          	lui	sp,0x6
-  14:	a8010113          	addi	sp,sp,-1408 # 5a80 <stackPointer>
-  18:	ff010113          	addi	sp,sp,-16
-  1c:	00012023          	sw	zero,0(sp)
-  20:	00012223          	sw	zero,4(sp)
-  24:	00012423          	sw	zero,8(sp)
-  28:	00012623          	sw	zero,12(sp)
-  2c:	1ad000ef          	jal	ra,9d8 <main>
-  30:	0000006f          	j	30 <start+0x20>
+  10:	30047073          	csrci	mstatus,8
+  14:	00006137          	lui	sp,0x6
+  18:	a8010113          	addi	sp,sp,-1408 # 5a80 <stackPointer>
+  1c:	ff010113          	addi	sp,sp,-16
+  20:	00012023          	sw	zero,0(sp)
+  24:	00012223          	sw	zero,4(sp)
+  28:	00012423          	sw	zero,8(sp)
+  2c:	00012623          	sw	zero,12(sp)
+  30:	1a9000ef          	jal	ra,9d8 <main>
+  34:	0000006f          	j	34 <start+0x24>
 	...
 
 00000040 <_Z5printPc>:

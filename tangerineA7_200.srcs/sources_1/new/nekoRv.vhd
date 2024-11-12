@@ -31,6 +31,8 @@ port(
     clk:                in  std_logic;
     reset:              in  std_logic;
     
+    mtimeIrq:           in  std_logic;
+    
     a:                  out std_logic_vector( 31 downto 0 );
     din:                in  std_logic_vector( 31 downto 0 );
     dout:               out std_logic_vector( 31 downto 0 );
@@ -48,7 +50,8 @@ end nekoRv;
 architecture Behavioral of nekoRv is
 
 type    rvState_T is ( rvsIFetch0, rvsIFetch1Decode, rvsMemRead0, rvsMemRead1, rvsMemWrite0, rvsMemWrite1, rvsIExecute0, 
-                        rvsIExecute1Mul, rvsIExecute1Div, rvsIExecute2Div );
+                        rvsIExecute1Mul, rvsIExecute1Div, rvsIExecute2Div,
+                        rvsEcall0 );
 
 signal  rvState:        rvState_T;
 
@@ -78,6 +81,7 @@ signal  rs2Val:         std_logic_vector( 31 downto 0 );
 signal  rdVal:          std_logic_vector( 31 downto 0 );
 signal  rdWrite:        std_logic;
 
+signal  rs1:            std_logic_vector( 4 downto 0 );
 
 --data fetch
 
@@ -91,6 +95,7 @@ signal  resultMulsu:    std_logic_vector( 65 downto 0 );
 signal  resultMuluu:    std_logic_vector( 63 downto 0 );
 
 --divider
+
 signal  divI:           std_logic_vector( 7 downto 0 );
 signal  divN:           std_logic_vector( 31 downto 0 );
 signal  divD:           std_logic_vector( 31 downto 0 );
@@ -98,6 +103,32 @@ signal  divQ:           std_logic_vector( 31 downto 0 );
 signal  divR:           std_logic_vector( 31 downto 0 );
 signal  divQSign:       std_logic;
 signal  divRSign:       std_logic;
+
+--csr
+signal  csrA:           std_logic_vector( 11 downto 0 );
+signal  csrDIn:         std_logic_vector( 31 downto 0 );
+signal  csrDOut:        std_logic_vector( 31 downto 0 );
+signal  csrWr:          std_logic;
+
+--csr regs
+signal  csrMstatus:     std_logic_vector( 63 downto 0 );
+signal  csrMie:         std_logic_vector( 31 downto 0 );
+signal  csrMtvec:       std_logic_vector( 31 downto 0 );
+signal  csrMscratch:    std_logic_vector( 31 downto 0 );
+signal  csrMepc:        std_logic_vector( 31 downto 0 );
+signal  csrMcause:      std_logic_vector( 31 downto 0 );
+signal  csrMtval:       std_logic_vector( 31 downto 0 );
+signal  csrMip:         std_logic_vector( 31 downto 0 );
+
+--irq
+
+--trigger irq ( all condintions for irq are met )
+signal  triggerIrq:             std_logic;
+
+--cpu executes isr
+signal  irqProcessing:          std_logic;
+
+signal clearMtimePendingIrq:    std_logic;
 
 begin
 
@@ -124,6 +155,183 @@ begin
 
 end process;
 
+csr: process( all )
+begin
+
+    if reset = '1' then
+
+        csrDOut     <= ( others => '0' );
+
+        csrMstatus  <= ( others => '0' );
+        csrMie      <= ( others => '0' );
+        csrMscratch <= ( others => '0' );
+        
+        csrMtvec    <= ( others => '0' );
+        csrMepc     <= ( others => '0' );
+        csrMcause   <= ( others => '0' );
+        csrMtval    <= ( others => '0' );
+        csrMip      <= ( others => '0' );
+        
+        triggerIrq  <= '0';
+                     
+    elsif falling_edge( clk ) then
+
+        --csr read
+        
+        case csrA is
+        
+            --mstatus
+            when x"300" =>
+
+                csrDOut <= csrMstatus( 31 downto 0 );
+            
+            --misa
+            when x"301" =>
+        
+                --rv-32 im
+                csrDOut <= "01000000000000000001000100000000";
+ 
+            --mie
+            when x"304" =>
+                
+                csrDOut <= csrMie;
+                            
+            --mtvec
+            when x"305" =>
+            
+                csrDOut <= csrMtvec;
+                
+            --mstatush
+            when x"310" =>
+
+                csrDOut <= csrMstatus( 63 downto 32 );
+            
+            --mscratch
+            when x"340" =>
+            
+                csrDOut <= csrMscratch;
+                
+            --mepc
+            when x"341" =>
+            
+                csrDOut <= csrMepc;
+                
+            --mcause
+            when x"342" =>
+            
+                csrDOut <= csrMcause;
+                
+            --mtval
+            when x"343" =>
+            
+                csrDOut <= csrMtval;
+                
+            --mip
+            when x"344" =>
+            
+                csrDOut <= csrMip;
+            
+            when others =>
+            
+                csrDOut <= ( others => '0' );
+                
+        end case;   --csrA is
+
+        if csrWr = '1' then
+ 
+            case csrA is
+            
+                --mstatus
+                when x"300" =>
+    
+                    csrMstatus( 31 downto 0 )   <= csrDIn;
+                     
+                --mie
+                when x"304" =>
+                    
+                    csrMie      <= csrDIn;
+                                
+                --mtvec
+                when x"305" =>
+                
+                    csrMtvec    <= csrDIn;
+                    
+                --mstatush
+                when x"310" =>
+    
+                    csrMstatus( 63 downto 32 )  <= csrDIn;
+                
+                --mscratch
+                when x"340" =>
+                
+                    csrMscratch <= csrDIn;
+                    
+                --mepc
+                when x"341" =>
+                
+                    csrMepc     <= csrDIn;
+                    
+                --mcause
+                when x"342" =>
+                
+                    csrMcause   <= csrDIn;
+                    
+                --mtval
+                when x"343" =>
+                
+                    csrMtval    <= csrDIn;
+                    
+                --mip
+                when x"344" =>
+                
+                    csrMip      <= csrDIn;
+                
+                when others =>
+                                    
+            end case;   --csrA is
+   
+        end if; --csrWr = '1'
+    
+    
+        --irq requests
+        
+        if mtimeIrq = '1' and csrMstatus( 3 ) = '1' and irqProcessing = '0' then
+        
+            --set proper bit in mip
+            
+            --todo: check mie before setting mip
+            
+            --set machine timer interrupt bit
+            csrMip(7) <= '1';
+
+        elsif clearMtimePendingIrq = '1' then
+        
+            --clear machine timer interupt bit
+            csrMip(7) <= '0';
+                 
+        end if;
+        
+
+        --pass irq request to the cpu if irq is pending, irq is not handled right now and irqs are enabled
+    
+        if csrMstatus( 3 ) = '1' and irqProcessing = '0' and csrMip( 7 ) = '1' then
+            
+            --trigger irq
+            triggerIrq  <= '1';
+
+            --write cause
+            csrMcause   <= x"80000007";            
+
+        else
+        
+            triggerIrq  <= '0';
+             
+        end if;
+        
+    end if; --rising_edge( clk )
+
+end process;
+
 
 
 rvMain: process( all )
@@ -141,22 +349,30 @@ begin
     
         if reset = '1' then
         
-            pc              <= genInitialPC;
+            pc                  <= genInitialPC;
                
-            rvState         <= rvsIFetch0;
-            rdWrite         <= '0';
-            wr              <= '0';
-            be              <= '1';
-            InstrFetchCycle <= '1';
+            rvState                 <= rvsIFetch0;
+            rdWrite                 <= '0';
+            wr                      <= '0';
+            be                      <= '1';
+            InstrFetchCycle         <= '1';
    
    
-            wr              <= '0';
-            be              <= '0';
-            InstrFetchCycle <= '0';
+            wr                      <= '0';
+            be                      <= '0';
+            InstrFetchCycle         <= '0';
 
-            resultMul       <= ( others => '0' );
-            resultMulsu     <= ( others => '0' );
-            resultMuluu     <= ( others => '0' );
+            resultMul               <= ( others => '0' );
+            resultMulsu             <= ( others => '0' );
+            resultMuluu             <= ( others => '0' );
+            
+            csrWr                   <= '0';
+            csrDIn                  <= ( others => '0' );
+        
+            rs1                     <= ( others => '0' );
+                
+            irqProcessing           <= '0';
+            clearMtimePendingIrq    <= '0';
             
         elsif rising_edge( clk ) then
 
@@ -165,18 +381,41 @@ begin
             
                 when rvsIFetch0 =>
                     
-                    rdWrite         <= '0';
+                    clearMtimePendingIrq    <= '0';
+                    rdWrite                 <= '0';
+                    csrWr                   <= '0';
+                        
+                    if triggerIrq = '1' and irqProcessing = '0' then
 
-                    a               <= pc;
-                    dataMask        <= "1111";
-                    wr              <= '0';
-                    be              <= '1';
-                    InstrFetchCycle <= '1';
-                                  
-                    pc              <= std_logic_vector( unsigned(pc) + x"00000004" );
-                      
-                    rvState         <= rvsIFetch1Decode;
-            
+                        --set irq processing flag ( cleared by mret )
+                        irqProcessing           <= '1';
+                        
+                        --clear mtime trigger
+                        clearMtimePendingIrq    <= '1';
+                        
+                        --write mepc
+                        csrA    <= x"341";
+                        csrDIn  <= pc;
+                        csrWr   <= '1';
+                        
+                        --set pc to mtvec
+                        pc      <= csrMtvec;
+                                            
+                    
+                    else
+                                            
+                        a               <= pc;
+                        dataMask        <= "1111";
+                        wr              <= '0';
+                        be              <= '1';
+                        InstrFetchCycle <= '1';
+                                      
+                        pc              <= std_logic_vector( unsigned(pc) + x"00000004" );
+                        
+                        rvState         <= rvsIFetch1Decode;
+                
+                    end if;
+                    
                 when rvsIFetch1Decode =>
                 
                     if ready = '1' then
@@ -221,10 +460,11 @@ begin
                         rs1Val  <= regs( to_integer( unsigned ( din( 19 downto 15 ) ) ) );
                         rs2Val  <= regs( to_integer( unsigned ( din( 24 downto 20 ) ) ) );
                         
+                        csrA                    <= din( 31 downto 20 );
+                        rs1                     <= din( 19 downto 15 );
                         
                         rvState <= rvsIExecute0;
-                        
-                        
+                                                
                      end if;
                 
                 when rvsIExecute0 =>                
@@ -1013,8 +1253,7 @@ begin
                             --I type
                             
                             --jalr
-                            
-                            
+                                                        
                             rdVal <=  pc;
                             rdWrite <= '1';
                                 
@@ -1025,8 +1264,7 @@ begin
                         when "0110111" =>
                             --U type
                             
-                            --lui
-                             
+                            --lui 
                             
                             rdVal <= utImm; 
                             rdWrite <= '1';
@@ -1036,11 +1274,115 @@ begin
                             --U type
                             
                             --auipc
-                             
-                            
+                                
                             rdVal <= std_logic_vector( signed( pc ) + signed( utImm ) - 4 );
                             rdWrite <= '1';
+                        
+                        when "1110011" =>
+                            
+                            --system
+                            
+                            case funct3 is 
+                            
+                                when "000" =>
                                 
+                                    case itImm( 11 downto 0 ) is
+                                        
+                                        when "000000000000" =>
+                                            
+                                            --ecall
+                                            
+                                            --write mepc
+                                            csrA    <= x"341";
+                                            csrDIn  <= std_logic_vector( unsigned( pc ) - 4 );
+                                            csrWr   <= '1';
+                    
+                                            --jump to trap vector
+                                            pc      <= csrMtvec;
+                                            
+                                            rvState <= rvsEcall0;
+                                            
+                                        when "000000000001" =>
+                                        
+                                            --ebreak
+                                            
+                                            
+                                        when "001100000010" =>
+                                        
+                                            --mret
+                                            
+                                            --return from irq
+                                            pc              <= csrMepc;
+                                            irqProcessing   <= '0';
+                                    
+                                    
+                                        when others =>
+                                    
+                                    end case; --itImm( 11 downto 0 ) is
+                                
+                                when "001" =>
+                                
+                                    --csrrw %s, %d, %s
+                                    
+                                    rdVal   <= csrDOut;
+                                    rdWrite <= '1';     
+                                    
+                                    csrDIn  <= rs1Val;
+                                    csrWr   <= '1';                                    
+                                
+                                when "010" =>
+                                
+                                    --csrrs %s, %d, %s
+
+                                    rdVal   <= csrDOut;
+                                    rdWrite <= '1';     
+                                        
+                                    csrDin  <= csrDOut or rs1Val;
+                                    csrWr   <= '1';
+                                    
+                                when "011" =>
+                                
+                                    --csrrc %s, %d, %s
+
+                                    rdVal   <= csrDOut;
+                                    rdWrite <= '1';     
+                                        
+                                    csrDin  <= csrDOut and ( rs1Val xor x"ffffffff" );
+                                    csrWr   <= '1';
+
+                                when "101" =>
+   
+                                    --csrrwi %s, %d, %d
+                                                                 
+                                    rdVal   <= csrDOut;
+                                    rdWrite <= '1';     
+                                    
+                                    csrDIn  <= "000000000000000000000000000" & rs1;
+                                    csrWr   <= '1';                                    
+                              
+                                when "110" =>
+   
+                                    --csrrsi %s, %d, %d
+                                                                 
+                                    rdVal   <= csrDOut;
+                                    rdWrite <= '1';     
+                                    
+                                    csrDIn  <= csrDOut or "000000000000000000000000000" & rs1;
+                                    csrWr   <= '1';                                    
+
+                                when "111" =>
+   
+                                    --csrrci %s, %d, %d
+                                                                 
+                                    rdVal   <= csrDOut;
+                                    rdWrite <= '1';     
+                                    
+                                    csrDIn  <= csrDOut and ( "000000000000000000000000000" & rs1 xor x"ffffffff" );
+                                    csrWr   <= '1';                                    
+
+                                when others =>
+                                
+                            end case; --funct3 is
                             
                         when others => --opcode is
                         
@@ -1423,6 +1765,15 @@ begin
                     end case;
                     
 
+                    rvState <= rvsIFetch0;
+                
+                when rvsEcall0 =>
+                
+                    --write mcause
+                    csrA    <= x"342";
+                    csrDIn  <= x"0000000b"; --env call
+                    csrWr   <= '1';
+                    
                     rvState <= rvsIFetch0;
 
                 when others => --rvState is
