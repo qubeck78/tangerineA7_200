@@ -107,7 +107,7 @@ void secondTask( void *pvParameters )
          fb += 192;
       }
    
-    vTaskDelay( 10 );
+    //vTaskDelay( 10 );
 
    }while( 1 );
 
@@ -225,7 +225,7 @@ int main()
    printf( "mainTask handle (upper bar):%x\n", (int)mainTaskHandle );
 
    
-   getKey();
+   //getKey();
 
 
 
