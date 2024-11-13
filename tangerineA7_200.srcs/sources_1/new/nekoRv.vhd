@@ -1,10 +1,10 @@
 
 
---  nekoRV32IM
+--  nekoRV32IMZicsr
 
---  Risc-V32IM core
+--  Risc-V 32 IM Zicsr core
 
---  Copyright (c) 2024, Michal‚ Kubecki - qubeck78@wp.pl
+--  Copyright (c) 2024, Michal Kubecki - qubeck78@wp.pl
 
 --  Supplied under BSD-3 Clause license ( see LICENSE file )
 
@@ -51,7 +51,7 @@ architecture Behavioral of nekoRv is
 
 type    rvState_T is ( rvsIFetch0, rvsIFetch1Decode, rvsMemRead0, rvsMemRead1, rvsMemWrite0, rvsMemWrite1, rvsIExecute0, 
                         rvsIExecute1Mul, rvsIExecute1Div, rvsIExecute2Div,
-                        rvsEcall0 );
+                        rvsEcall0, rvsEbreak0 );
 
 signal  rvState:        rvState_T;
 
@@ -174,69 +174,74 @@ begin
         
         triggerIrq  <= '0';
                      
-    elsif falling_edge( clk ) then
+    elsif rising_edge( clk ) then
 
         --csr read
-        
-        case csrA is
-        
-            --mstatus
-            when x"300" =>
 
-                csrDOut <= csrMstatus( 31 downto 0 );
+        --only when decoding instruction
+        if rvState = rvsIFetch1Decode and ready = '1' then
+                                
+            case din( 31 downto 20 ) is     --csrA, but w/o one cycle latency
             
-            --misa
-            when x"301" =>
+                --mstatus
+                when x"300" =>
+    
+                    csrDOut <= csrMstatus( 31 downto 0 );
+                
+                --misa
+                when x"301" =>
+            
+                    --rv-32 im
+                    csrDOut <= "01000000000000000001000100000000";
+     
+                --mie
+                when x"304" =>
+                    
+                    csrDOut <= csrMie;
+                                
+                --mtvec
+                when x"305" =>
+                
+                    csrDOut <= csrMtvec;
+                    
+                --mstatush
+                when x"310" =>
+    
+                    csrDOut <= csrMstatus( 63 downto 32 );
+                
+                --mscratch
+                when x"340" =>
+                
+                    csrDOut <= csrMscratch;
+                    
+                --mepc
+                when x"341" =>
+                
+                    csrDOut <= csrMepc;
+                    
+                --mcause
+                when x"342" =>
+                
+                    csrDOut <= csrMcause;
+                    
+                --mtval
+                when x"343" =>
+                
+                    csrDOut <= csrMtval;
+                    
+                --mip
+                when x"344" =>
+                
+                    csrDOut <= csrMip;
+                
+                when others =>
+                
+                    csrDOut <= ( others => '0' );
+                    
+            end case;   --csrA is
+            
+        end if;
         
-                --rv-32 im
-                csrDOut <= "01000000000000000001000100000000";
- 
-            --mie
-            when x"304" =>
-                
-                csrDOut <= csrMie;
-                            
-            --mtvec
-            when x"305" =>
-            
-                csrDOut <= csrMtvec;
-                
-            --mstatush
-            when x"310" =>
-
-                csrDOut <= csrMstatus( 63 downto 32 );
-            
-            --mscratch
-            when x"340" =>
-            
-                csrDOut <= csrMscratch;
-                
-            --mepc
-            when x"341" =>
-            
-                csrDOut <= csrMepc;
-                
-            --mcause
-            when x"342" =>
-            
-                csrDOut <= csrMcause;
-                
-            --mtval
-            when x"343" =>
-            
-                csrDOut <= csrMtval;
-                
-            --mip
-            when x"344" =>
-            
-                csrDOut <= csrMip;
-            
-            when others =>
-            
-                csrDOut <= ( others => '0' );
-                
-        end case;   --csrA is
-
         if csrWr = '1' then
  
             case csrA is
@@ -295,8 +300,10 @@ begin
     
         --irq requests
         
-        if mtimeIrq = '1' and csrMstatus( 3 ) = '1' and irqProcessing = '0' then
-        
+        --if mtimeIrq = '1' and csrMstatus( 3 ) = '1' and irqProcessing = '0' then
+
+        if mtimeIrq = '1' then
+
             --set proper bit in mip
             
             --todo: check mie before setting mip
@@ -1305,6 +1312,15 @@ begin
                                         when "000000000001" =>
                                         
                                             --ebreak
+                                            --write mepc
+                                            csrA    <= x"341";
+                                            csrDIn  <= std_logic_vector( unsigned( pc ) - 4 );
+                                            csrWr   <= '1';
+                    
+                                            --jump to trap vector
+                                            pc      <= csrMtvec;
+                                            
+                                            rvState <= rvsEbreak0;
                                             
                                             
                                         when "001100000010" =>
@@ -1772,6 +1788,15 @@ begin
                     --write mcause
                     csrA    <= x"342";
                     csrDIn  <= x"0000000b"; --env call
+                    csrWr   <= '1';
+                    
+                    rvState <= rvsIFetch0;
+
+                when rvsEbreak0 =>
+                
+                    --write mcause
+                    csrA    <= x"342";
+                    csrDIn  <= x"00000003"; --breakpoint
                     csrWr   <= '1';
                     
                     rvState <= rvsIFetch0;
