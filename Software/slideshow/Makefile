@@ -12,7 +12,7 @@
 PORT = com7
 TARGET = slideshow
 
-CC = riscv-none-embed-gcc -march=rv32im -c -O3 
+CC = riscv-none-embed-gcc -march=rv32im -c -O2 -I. -I../gfxLib/ 
 LD = riscv-none-embed-ld -T ram.ld
 NM = riscv-none-embed-nm -n 
 OBJCOPY = riscv-none-embed-objcopy
@@ -34,8 +34,8 @@ $(TARGET).disasm: $(TARGET).elf
 $(TARGET).rec: $(TARGET).elf $(TARGET).disasm 
 	$(OBJCOPY) -O srec $(TARGET).elf $(TARGET).rec
 
-$(TARGET).elf: main.o bsp.o startup.o osAlloc.o osFile.o gfBitmap.o gfDrawing.o gfFont.o gfGouraud.o gfJPEG.o picojpeg.o diskio.o ccsbcs.o ff.o osUIEvents.o usbHID.o
-	$(LD) startup.o main.o ../gfxLib/bsp.o ../gfxLib/diskio.o ../gfxLib/ccsbcs.o ../gfxLib/ff.o ../gfxLib/osAlloc.o ../gfxLib/osFile.o ../gfxLib/gfBitmap.o ../gfxLib/gfDrawing.o ../gfxLib/gfFont.o ../gfxLib/gfGouraud.o ../gfxLib/gfJPEG.o ../gfxLib/picojpeg.o ../gfxLib/osUIEvents.o ../gfxLib/usbHID.o $(LIBC) $(LIBNOSYS) $(LIBM) $(LIBGCC)  -o $(TARGET).elf
+$(TARGET).elf: main.o bsp.o startup.o osAlloc.o osFile.o gfBitmap.o gfDrawing.o gfFont.o gfJPEG.o picojpeg.o diskio.o ccsbcs.o ff.o osUIEvents.o usbHID.o
+	$(LD) startup.o main.o ../gfxLib/bsp.o ../gfxLib/diskio.o ../gfxLib/ccsbcs.o ../gfxLib/ff.o ../gfxLib/osAlloc.o ../gfxLib/osFile.o ../gfxLib/gfBitmap.o ../gfxLib/gfDrawing.o ../gfxLib/gfFont.o ../gfxLib/gfJPEG.o ../gfxLib/picojpeg.o ../gfxLib/osUIEvents.o ../gfxLib/usbHID.o $(LIBC) $(LIBNOSYS) $(LIBM) $(LIBGCC)  -o $(TARGET).elf
 	$(NM) $(TARGET).elf >$(TARGET).sym
 
 $(TARGET).bin: $(TARGET).elf
