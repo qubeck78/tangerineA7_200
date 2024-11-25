@@ -3,17 +3,15 @@
 #include <climits>
 #include <cstdio>
 
-#include "../gfxLib/bsp.h"
-#include "../gfxLib/osAlloc.h"
-#include "../gfxLib/osFile.h"
-#include "../gfxLib/gfBitmap.h"
-#include "../gfxLib/gfDrawing.h"
-#include "../gfxLib/gfFont.h"
-#include "../gfxLib/gfGouraud.h"
-#include "../gfxLib/gfJPEG.h"
-#include "../gfxLib/osUIEvents.h"
-#include "../gfxLib/usbHID.h" 
-#include "../gfxLib/ff.h" 
+#include "bsp.h"
+#include "osAlloc.h"
+#include "osFile.h"
+#include "gfBitmap.h"
+#include "gfDrawing.h"
+#include "gfFont.h"
+#include "gfJPEG.h"
+#include "osUIEvents.h"
+#include "usbHID.h" 
 
 #define SLIDESHOW_ALPHA_ANIMATION
 
@@ -280,7 +278,7 @@ int main()
 
 
     toCls( &con );
-    printf( "tangerineRISC-V SOC Slideshow B20241017\n\n" );
+    printf( "tangerineRISC-V SOC Slideshow B20241113\n\n" );
 
     
     screen.flags            = 0;
@@ -311,14 +309,14 @@ int main()
 
     if( rv )
     {
-        toPrint( &con, ( char* )"SD init error!" );
+        printf( "SD init error!\n" );
         
         do{
         }while( 1 );        
     }
     else
     {
-        toPrint( &con, ( char* )"SD init ok\n" );
+        printf( "SD init ok\n" );
     }
 
     gfLoadBitmapFS( &cursor, (char*)"0:/sys/cursor.gbm" );
@@ -326,7 +324,7 @@ int main()
 
     usbHIDSetMousePointerVisibility( 1 );        
 
-    toPrint( &con, (char*)"Scanning /img directory\n" );
+    printf( "Scanning /img directory\n" );
 
     numDirEntries = getNumEntries();
 
