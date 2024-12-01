@@ -1209,8 +1209,8 @@ uint32_t gfGouraudDrawTexturedTriangleZBuffer( tgfBitmap *bmp, tgfBitmap *zBuffe
    int32_t      wcbl;
    int32_t      wacl;
 
-   int16_t      tx;
-   int16_t      ty;
+   uint8_t      tx;
+   uint8_t      ty;
    uint8_t      tl;
 
    uint32_t     cz;

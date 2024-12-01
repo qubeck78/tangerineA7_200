@@ -8,9 +8,11 @@
 #https://github.com/qubeck78/srecsend
 #
 
+PORT = com10
 TARGET = blitterTest
+
 #CC = riscv-none-embed-gcc -march=rv32im -mno-div -c -O3 
-CC = riscv-none-embed-gcc -march=rv32im -c -O3 
+CC = riscv-none-embed-gcc -march=rv32im -c -O2 -I../gfxLib 
 LD = riscv-none-embed-ld -T ram.ld
 OBJCOPY = riscv-none-embed-objcopy
 OBJDUMP = riscv-none-embed-objdump 
@@ -90,5 +92,8 @@ clean:
 	rm -f ../gfxLib/*.o
 
 send: $(TARGET).rec
-	srecsend $(TARGET).rec com9 460800
+	srecsend $(TARGET).rec $(PORT) 460800
 	
+run: $(TARGET).rec
+	cp $(TARGET).rec "/f/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/bin"
+	cd "/f/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/bin" && ./tangerine.exe $(TARGET).rec

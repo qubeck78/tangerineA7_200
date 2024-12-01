@@ -6,16 +6,19 @@
 
 	j start
 
+
 .balign 16
-
-irq_vec:
-#	picorv32_retirq_insn()
-
 
 	.globl start
 	.type start,@function
 
 start:
+
+#load interrupt vector ( mtvec )
+
+#	la t0, freertos_risc_v_trap_handler
+#	csrrw	zero, 0x305, t0
+
 
 #init stack pointer
 
@@ -32,20 +35,19 @@ clearbss:
 
 	bltu 	t0, t1, clearbss
 
-
 #push argc and argv to stack
 
-	addi sp,sp,-16
-	sw zero,0(sp)
-	sw zero,4(sp)
-	sw zero,8(sp)
-	sw zero,12(sp)
+	addi 	sp, sp,-16
+	sw 	zero, 0(sp)
+	sw 	zero, 4(sp)
+	sw 	zero, 8(sp)
+	sw 	zero, 12(sp)
 
 	# jump to main C code
-	jal ra,main
+	jal 	ra, main
 
 	#reboot
 	
-	la		ra, 0x0
+	la	ra, 0x0
 	jalr	zero, 0(ra)
 

@@ -3,14 +3,14 @@
 #include <climits>
 #include <cstdio>
 
-#include "../gfxLib/bsp.h"
-#include "../gfxLib/osAlloc.h"
-#include "../gfxLib/osFile.h"
-#include "../gfxLib/gfBitmap.h"
-#include "../gfxLib/gfDrawing.h"
-#include "../gfxLib/gfFont.h"
+#include "bsp.h"
+#include "osAlloc.h"
+#include "osFile.h"
+#include "gfBitmap.h"
+#include "gfDrawing.h"
+#include "gfFont.h"
 
-#include "../gfxLib/osUIEvents.h"
+#include "osUIEvents.h"
 
 
 extern tgfTextOverlay   con;
@@ -199,8 +199,6 @@ int main()
 
     bspInit();
 
-
-    
     setVideoMode( _VIDEOMODE_320_TEXT80_OVER_GFX );
     
     //alloc screen buffers
@@ -215,7 +213,7 @@ int main()
     
     if( screen.buffer == NULL )
     {
-        toPrint( &con, (char*)"\nCan't alloc screen\n" );
+        printf( "\nCan't alloc screen\n" );
         do{}while( 1 );
     } 
         
@@ -234,7 +232,7 @@ int main()
     rv = osFInit();
 
 
-    toPrintF( &con, (char*)"Blitter test. Blitter2D id: %08x, version: %08x\n", blt->id, blt->version );
+    printf( "Blitter test. Blitter id: %08x, version: %08x\n", blt->id, blt->version );
     
     gfLoadBitmapFS( &bmp, (char*)"0:/demos/ida.gbm" );
 
@@ -246,7 +244,7 @@ int main()
 
     waitKey();
 
-    toPrintF( &con, (char*)"done - press Pause to reboot\n" );
+    printf( "done - press Pause to reboot\n" );
 
     do
     {

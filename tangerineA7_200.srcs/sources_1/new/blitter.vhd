@@ -178,6 +178,35 @@ signal paColorOut:      std_logic_vector( 15 downto 0 );
 signal scSx:            std_logic_vector( 31 downto 0 );
 signal scSy:            std_logic_vector( 31 downto 0 );
 
+--3d
+--bounding box
+signal bbXMinReg:       std_logic_vector( 15 downto 0 );
+signal bbXMaxReg:       std_logic_vector( 15 downto 0 );
+signal bbYMinReg:       std_logic_vector( 15 downto 0 );
+signal bbYMaxReg:       std_logic_vector( 15 downto 0 );
+
+--triangle vertices
+signal aXReg:           std_logic_vector( 15 downto 0 );
+signal aYReg:           std_logic_vector( 15 downto 0 );
+signal aZReg:           std_logic_vector( 15 downto 0 );
+signal aIt0Reg:         std_logic_vector( 7 downto 0 );
+signal aIt1Reg:         std_logic_vector( 7 downto 0 );
+signal aIt2Reg:         std_logic_vector( 7 downto 0 );
+
+signal bXReg:           std_logic_vector( 15 downto 0 );
+signal bYReg:           std_logic_vector( 15 downto 0 );
+signal bZReg:           std_logic_vector( 15 downto 0 );
+signal bIt0Reg:         std_logic_vector( 7 downto 0 );
+signal bIt1Reg:         std_logic_vector( 7 downto 0 );
+signal bIt2Reg:         std_logic_vector( 7 downto 0 );
+
+signal cXReg:           std_logic_vector( 15 downto 0 );
+signal cYReg:           std_logic_vector( 15 downto 0 );
+signal cZReg:           std_logic_vector( 15 downto 0 );
+signal cIt0Reg:         std_logic_vector( 7 downto 0 );
+signal cIt1Reg:         std_logic_vector( 7 downto 0 );
+signal cIt2Reg:         std_logic_vector( 7 downto 0 );
+
 begin  
         
  
@@ -211,6 +240,37 @@ begin
         daHeightReg     <= ( others => '0' );
         dbAddressReg    <= ( others => '0' );
         dbRowWidthReg   <= ( others => '0' );
+        
+        bbXMinReg       <= ( others => '0' );
+        bbYMinReg       <= ( others => '0' );
+        
+        --319
+        bbXMaxReg       <= x"013f";
+        
+        --239
+        bbYMaxReg       <= x"00ef";
+
+        aXReg           <= ( others => '0' );
+        aYReg           <= ( others => '0' );
+        aZReg           <= ( others => '0' );
+        aIt0Reg         <= ( others => '0' );
+        aIt1Reg         <= ( others => '0' );
+        aIt2Reg         <= ( others => '0' );
+
+        bXReg           <= ( others => '0' );
+        bYReg           <= ( others => '0' );
+        bZReg           <= ( others => '0' );
+        bIt0Reg         <= ( others => '0' );
+        bIt1Reg         <= ( others => '0' );
+        bIt2Reg         <= ( others => '0' );
+
+        cXReg           <= ( others => '0' );
+        cYReg           <= ( others => '0' );
+        cZReg           <= ( others => '0' );
+        cIt0Reg         <= ( others => '0' );
+        cIt1Reg         <= ( others => '0' );
+        cIt2Reg         <= ( others => '0' );
+
         
         --clear command trigger
         
@@ -246,7 +306,7 @@ begin
 
                             ready   <= '1';
                  
-                            dout    <= x"20240919";
+                            dout    <= x"20241201";
                     
                         --0x08 rw commandReg
                         when x"02" =>
@@ -505,7 +565,271 @@ begin
                                 
                             end if;
 
-                        
+                       --0x54 rw bbXMinReg
+                       when x"15" =>
+                       
+                            ready   <= '1';
+                            dout    <= x"0000" & bbXMinReg;
+                            
+                            if wr = '1' then
+                            
+                                bbXMinReg   <= din( 15 downto 0 );
+                                
+                            end if;
+
+                       --0x58 rw bbXMaxReg
+                       when x"16" =>
+                       
+                            ready   <= '1';
+                            dout    <= x"0000" & bbXMaxReg;
+                            
+                            if wr = '1' then
+                            
+                                bbXMaxReg   <= din( 15 downto 0 );
+                                
+                            end if;
+                            
+                       --0x5c rw bbYMinReg
+                       when x"17" =>
+                       
+                            ready   <= '1';
+                            dout    <= x"0000" & bbYMinReg;
+                            
+                            if wr = '1' then
+                            
+                                bbYMinReg   <= din( 15 downto 0 );
+                                
+                            end if;
+
+                       --0x60 rw bbYMaxReg
+                       when x"18" =>
+                       
+                            ready   <= '1';
+                            dout    <= x"0000" & bbYMaxReg;
+                            
+                            if wr = '1' then
+                            
+                                bbYMaxReg   <= din( 15 downto 0 );
+                                
+                            end if;
+
+                       --0x64 rw aXReg
+                       when x"19" =>
+                       
+                            ready   <= '1';
+                            dout    <= x"0000" & aXReg;
+                            
+                            if wr = '1' then
+                            
+                                aXReg   <= din( 15 downto 0 );
+                                
+                            end if;
+                       
+                       --0x68 rw aYReg
+                       when x"1a" =>
+                       
+                            ready   <= '1';
+                            dout    <= x"0000" & aYReg;
+                            
+                            if wr = '1' then
+                            
+                                aYReg   <= din( 15 downto 0 );
+                                
+                            end if;
+
+                       --0x6c rw aZReg
+                       when x"1b" =>
+                       
+                            ready   <= '1';
+                            dout    <= x"0000" & aZReg;
+                            
+                            if wr = '1' then
+                            
+                                aZReg   <= din( 15 downto 0 );
+                                
+                            end if;
+
+                       --0x70 rw aIt0
+                       when x"1c" =>
+                       
+                            ready   <= '1';
+                            dout    <= x"000000" & aIt0Reg;
+                            
+                            if wr = '1' then
+                            
+                                aIt0Reg   <= din( 7 downto 0 );
+                                
+                            end if;
+
+                       --0x74 rw aIt1
+                       when x"1d" =>
+                       
+                            ready   <= '1';
+                            dout    <= x"000000" & aIt1Reg;
+                            
+                            if wr = '1' then
+                            
+                                aIt1Reg   <= din( 7 downto 0 );
+                                
+                            end if;
+
+                       --0x78 rw aIt2
+                       when x"1e" =>
+                       
+                            ready   <= '1';
+                            dout    <= x"000000" & aIt2Reg;
+                            
+                            if wr = '1' then
+                            
+                                aIt2Reg   <= din( 7 downto 0 );
+                                
+                            end if;
+
+                       --0x7c rw bXReg
+                       when x"1f" =>
+                       
+                            ready   <= '1';
+                            dout    <= x"0000" & bXReg;
+                            
+                            if wr = '1' then
+                            
+                                bXReg   <= din( 15 downto 0 );
+                                
+                            end if;
+                       
+                       --0x80 rw bYReg
+                       when x"20" =>
+                       
+                            ready   <= '1';
+                            dout    <= x"0000" & bYReg;
+                            
+                            if wr = '1' then
+                            
+                                bYReg   <= din( 15 downto 0 );
+                                
+                            end if;
+
+                       --0x84 rw bZReg
+                       when x"21" =>
+                       
+                            ready   <= '1';
+                            dout    <= x"0000" & bZReg;
+                            
+                            if wr = '1' then
+                            
+                                bZReg   <= din( 15 downto 0 );
+                                
+                            end if;
+
+                       --0x88 rw bIt0
+                       when x"22" =>
+                       
+                            ready   <= '1';
+                            dout    <= x"000000" & bIt0Reg;
+                            
+                            if wr = '1' then
+                            
+                                bIt0Reg   <= din( 7 downto 0 );
+                                
+                            end if;
+
+                       --0x8c rw bIt1
+                       when x"23" =>
+                       
+                            ready   <= '1';
+                            dout    <= x"000000" & bIt1Reg;
+                            
+                            if wr = '1' then
+                            
+                                bIt1Reg   <= din( 7 downto 0 );
+                                
+                            end if;
+
+                       --0x90 rw bIt2
+                       when x"24" =>
+                       
+                            ready   <= '1';
+                            dout    <= x"000000" & bIt2Reg;
+                            
+                            if wr = '1' then
+                            
+                                bIt2Reg   <= din( 7 downto 0 );
+                                
+                            end if;
+
+                       --0x94 rw cXReg
+                       when x"25" =>
+                       
+                            ready   <= '1';
+                            dout    <= x"0000" & cXReg;
+                            
+                            if wr = '1' then
+                            
+                                cXReg   <= din( 15 downto 0 );
+                                
+                            end if;
+                       
+                       --0x98 rw cYReg
+                       when x"26" =>
+                       
+                            ready   <= '1';
+                            dout    <= x"0000" & cYReg;
+                            
+                            if wr = '1' then
+                            
+                                cYReg   <= din( 15 downto 0 );
+                                
+                            end if;
+
+                       --0x9c rw cZReg
+                       when x"27" =>
+                       
+                            ready   <= '1';
+                            dout    <= x"0000" & cZReg;
+                            
+                            if wr = '1' then
+                            
+                                cZReg   <= din( 15 downto 0 );
+                                
+                            end if;
+
+                       --0xa0 rw cIt0
+                       when x"28" =>
+                       
+                            ready   <= '1';
+                            dout    <= x"000000" & cIt0Reg;
+                            
+                            if wr = '1' then
+                            
+                                cIt0Reg   <= din( 7 downto 0 );
+                                
+                            end if;
+
+                       --0xa4 rw cIt1
+                       when x"29" =>
+                       
+                            ready   <= '1';
+                            dout    <= x"000000" & cIt1Reg;
+                            
+                            if wr = '1' then
+                            
+                                cIt1Reg   <= din( 7 downto 0 );
+                                
+                            end if;
+
+                       --0xa8 rw cIt2
+                       when x"2a" =>
+                       
+                            ready   <= '1';
+                            dout    <= x"000000" & cIt2Reg;
+                            
+                            if wr = '1' then
+                            
+                                cIt2Reg   <= din( 7 downto 0 );
+                                
+                            end if;
+
+
                        when others =>
                        
                             ready <= '1';
@@ -624,8 +948,8 @@ begin
                         when x"02" =>
 
                             --translate addresses to word based, omit high address bits
-                            dmaReadAddr     <= saAddressReg( 25 downto 1 );
-                            dmaWriteAddr    <= daAddressReg( 25 downto 1 );
+                            dpSa            <= saAddressReg( 25 downto 1 );
+                            dpDa            <= daAddressReg( 25 downto 1 );
 
                             --calc transfer size
                             counterXMax     <= daWidthReg;
@@ -646,7 +970,7 @@ begin
                             dpSa            <= saAddressReg( 25 downto 1 );
                             dpSb            <= sbAddressReg( 25 downto 1 );
 
-                            dmaWriteAddr    <= daAddressReg( 25 downto 1 );
+                            dpDa            <= daAddressReg( 25 downto 1 );
 
                             --calc transfer size
                             counterXMax     <= daWidthReg;
@@ -664,7 +988,7 @@ begin
 
                             --translate addresses to word based, omit high address bits
                             dmaReadAddr     <= saAddressReg( 25 downto 1 );
-                            dmaWriteAddr    <= daAddressReg( 25 downto 1 );
+                            dpDa            <= daAddressReg( 25 downto 1 );
 
                             --calc transfer size
                             counterXMax     <= daWidthReg;
@@ -729,10 +1053,9 @@ begin
                 if counterX /= x"0000" then
                 
                     bltReturnState  <= bsCopy1;
-                    --bltState        <= bsSubRead0;
 
                     --early read
-                    bltA            <= dmaReadAddr;
+                    bltA            <= dpSa;
                     bltWr           <= '0';
                     bltDmaRequest   <= '1';
                     bltState        <= bsSubRead1;
@@ -746,8 +1069,8 @@ begin
                         counterY        <= std_logic_vector( unsigned( counterY ) - 1 );
                         counterX        <= counterXMax;
 
-                        dmaReadAddr     <= std_logic_vector( unsigned( dmaReadAddr ) + unsigned( saColAdd ) );
-                        dmaWriteAddr    <= std_logic_vector( unsigned( dmaWriteAddr ) + unsigned( daColAdd ) );
+                        dpSa            <= std_logic_vector( unsigned( dpSa ) + unsigned( saColAdd ) );
+                        dpDa            <= std_logic_vector( unsigned( dpDa ) + unsigned( daColAdd ) );
                     
                     else
                     
@@ -765,13 +1088,9 @@ begin
                     --copy
                     when x"00" =>
                     
---                        dmaWriteData    <= dmaReadData;
-                
---                        bltReturnState  <= bsCopy2;
---                        bltState        <= bsSubWrite0;
 
                         --early write
-                        bltA            <= dmaWriteAddr;
+                        bltA            <= dpDa;
                         bltDOut         <= dmaReadData;
 
                         bltWr           <= '1';
@@ -791,14 +1110,8 @@ begin
                             
                         else
 
-                            --write
---                            dmaWriteData    <= dmaReadData;
-                            
---                            bltReturnState  <= bsCopy2;
---                            bltState        <= bsSubWrite0;
-
                             --early write
-                            bltA            <= dmaWriteAddr;
+                            bltA            <= dpDa;
                             bltDOut         <= dmaReadData;
 
                             bltWr           <= '1';
@@ -811,14 +1124,8 @@ begin
                                         
                     when others =>
 
---                        write                    
---                        dmaWriteData    <= dmaReadData;
-                        
---                        bltReturnState  <= bsCopy2;
---                        bltState        <= bsSubWrite0;
-
                         --early write
-                        bltA            <= dmaWriteAddr;
+                        bltA            <= dpDa;
                         bltDOut         <= dmaReadData;
 
                         bltWr           <= '1';
@@ -834,8 +1141,8 @@ begin
             when bsCopy2 =>
             
                 counterX        <= std_logic_vector( unsigned( counterX ) - 1 );
-                dmaReadAddr     <= std_logic_vector( unsigned( dmaReadAddr ) + 1 );
-                dmaWriteAddr    <= std_logic_vector( unsigned( dmaWriteAddr ) + 1 );
+                dpSa            <= std_logic_vector( unsigned( dpSa ) + 1 );
+                dpDa            <= std_logic_vector( unsigned( dpDa ) + 1 );
                 
                 bltState        <= bsCopy0;
 
@@ -864,7 +1171,7 @@ begin
                         scSx            <= ( others => '0' );
                         
                         
-                        dmaWriteAddr    <= std_logic_vector( unsigned( dmaWriteAddr ) + unsigned( daColAdd ) );
+                        dpDa            <= std_logic_vector( unsigned( dpDa ) + unsigned( daColAdd ) );
                     
                         bltState        <= bsScaleCopy1;    --waitstates
                     else
@@ -902,11 +1209,17 @@ begin
                     --scale copy
                     when x"00" =>
                     
-                        dmaWriteData    <= dmaReadData;
-                
+
+                        --early write
+                        bltA            <= dpDa;
+                        bltDOut         <= dmaReadData;
+
+                        bltWr           <= '1';
+                        bltDmaRequest   <= '1';
+
                         bltReturnState  <= bsScaleCopy5;
-                        bltState        <= bsSubWrite0;
-                        
+                        bltState        <= bsSubWrite1;
+                                            
                     --masked scale copy
                     when x"01" =>
                                
@@ -918,28 +1231,38 @@ begin
                             
                         else
 
-                            --write
-                            dmaWriteData    <= dmaReadData;
+                            --early write
                             
+                            bltA            <= dpDa;
+                            bltDOut         <= dmaReadData;
+    
+                            bltWr           <= '1';
+                            bltDmaRequest   <= '1';
+    
                             bltReturnState  <= bsScaleCopy5;
-                            bltState        <= bsSubWrite0;
-                            
+                            bltState        <= bsSubWrite1;
+                                
                         end if;       
                     
                     when others =>
 
-                        dmaWriteData    <= dmaReadData;
-                
+                        --early write
+                            
+                        bltA            <= dpDa;
+                        bltDOut         <= dmaReadData;
+    
+                        bltWr           <= '1';
+                        bltDmaRequest   <= '1';
+    
                         bltReturnState  <= bsScaleCopy5;
-                        bltState        <= bsSubWrite0;
-                    
+                        bltState        <= bsSubWrite1;                    
                 
                 end case;
                                       
             when bsScaleCopy5 =>
             
                 dmaReadAddr     <= std_logic_vector( unsigned( dpSa ) + unsigned( scSx( 31 downto 16 ) ) );
-                dmaWriteAddr    <= std_logic_vector( unsigned( dmaWriteAddr ) + 1 );
+                dpDa            <= std_logic_vector( unsigned( dpDa ) + 1 );
                 counterX        <= std_logic_vector( unsigned( counterX ) - 1 );
                 
                 bltState        <= bsScaleCopy0;            
@@ -948,10 +1271,6 @@ begin
             
                 if counterX /= x"0000" then
                 
---                    dmaReadAddr     <= dpSa;
---                    bltReturnState  <= bsAlphaCopy1;
---                    bltState        <= bsSubRead0;
-
                     --early read
                     bltA            <= dpSa;
                     bltWr           <= '0';
@@ -969,7 +1288,7 @@ begin
 
                         dpSa            <= std_logic_vector( unsigned( dpSa ) + unsigned( saColAdd ) );
                         dpSb            <= std_logic_vector( unsigned( dpSb ) + unsigned( sbColAdd ) );
-                        dmaWriteAddr    <= std_logic_vector( unsigned( dmaWriteAddr ) + unsigned( daColAdd ) );
+                        dpDa            <= std_logic_vector( unsigned( dpDa ) + unsigned( daColAdd ) );
                     
                     else
                     
@@ -989,10 +1308,6 @@ begin
                 
                     --alpha copy
                     when x"00" =>
-
---                        read                                       
---                        bltReturnState  <= bsAlphaCopy2;
---                        bltState        <= bsSubRead0;
                         
                         --early read
                         bltA            <= dpSb;
@@ -1013,10 +1328,6 @@ begin
                         else
 
                             --continue with reading second source                            
-
---                            read
---                            bltReturnState  <= bsAlphaCopy2;
---                            bltState        <= bsSubRead0;
                                                         
                             --early read
                             bltA            <= dpSb;
@@ -1028,10 +1339,6 @@ begin
                         end if;       
                                         
                     when others =>
-
---                        read                    
---                        bltReturnState  <= bsAlphaCopy2;
---                        bltState        <= bsSubRead0;
 
                         --early read
                         bltA            <= dpSb;
@@ -1053,13 +1360,8 @@ begin
 
             when bsAlphaCopy4 =>
 
---                write
---                dmaWriteData    <= x"0000" & paColorOut;                
---                bltReturnState  <= bsAlphaCopy5;
---                bltState        <= bsSubWrite0;
-
                 --early write
-                bltA            <= dmaWriteAddr;
+                bltA            <= dpDa;
                 bltDOut         <= x"0000" & paColorOut;
 
                 bltWr           <= '1';
@@ -1074,7 +1376,7 @@ begin
                 counterX        <= std_logic_vector( unsigned( counterX ) - 1 );
                 dpSa            <= std_logic_vector( unsigned( dpSa ) + 1 );
                 dpSb            <= std_logic_vector( unsigned( dpSb ) + 1 );
-                dmaWriteAddr    <= std_logic_vector( unsigned( dmaWriteAddr ) + 1 );
+                dpDa            <= std_logic_vector( unsigned( dpDa ) + 1 );
                 
                 bltState        <= bsAlphaCopy0;
                
