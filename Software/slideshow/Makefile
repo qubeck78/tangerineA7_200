@@ -9,7 +9,7 @@
 #
 
 
-PORT = com10
+PORT = com9
 TARGET = slideshow
 
 CC = riscv-none-embed-gcc -march=rv32im -c -O2 -I. -I../gfxLib/ 

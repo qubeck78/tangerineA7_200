@@ -8,7 +8,7 @@
 #https://github.com/qubeck78/srecsend
 #
 
-PORT = com10
+PORT = com3
 TARGET = blitterTest
 
 #CC = riscv-none-embed-gcc -march=rv32im -mno-div -c -O3 
@@ -30,8 +30,8 @@ $(TARGET).disasm: $(TARGET).elf
 $(TARGET).rec: $(TARGET).elf
 	$(OBJCOPY) -O srec $(TARGET).elf $(TARGET).rec
 
-$(TARGET).elf: main.o bsp.o startup.o osAlloc.o osFile.o gfBitmap.o gfDrawing.o gfFont.o diskio.o ccsbcs.o ff.o osUIEvents.o usbHID.o
-	$(LD) startup.o main.o ../gfxLib/bsp.o ../gfxLib/diskio.o ../gfxLib/ccsbcs.o ../gfxLib/ff.o ../gfxLib/osAlloc.o ../gfxLib/osFile.o ../gfxLib/gfBitmap.o ../gfxLib/gfDrawing.o ../gfxLib/gfFont.o ../gfxLib/osUIEvents.o ../gfxLib/usbHID.o $(LIBC) $(LIBNOSYS) $(LIBM) $(LIBGCC)  -o $(TARGET).elf
+$(TARGET).elf: main.o bsp.o startup.o osAlloc.o osFile.o gfBitmap.o gfDrawing.o gfFont.o gfGouraud.o diskio.o ccsbcs.o ff.o osUIEvents.o usbHID.o
+	$(LD) startup.o main.o ../gfxLib/bsp.o ../gfxLib/diskio.o ../gfxLib/ccsbcs.o ../gfxLib/ff.o ../gfxLib/osAlloc.o ../gfxLib/osFile.o ../gfxLib/gfBitmap.o ../gfxLib/gfDrawing.o ../gfxLib/gfFont.o ../gfxLib/gfGouraud.o ../gfxLib/osUIEvents.o ../gfxLib/usbHID.o $(LIBC) $(LIBNOSYS) $(LIBM) $(LIBGCC)  -o $(TARGET).elf
 
 $(TARGET).bin: $(TARGET).elf
 	$(OBJCOPY) -O binary $(TARGET).elf $(TARGET).bin

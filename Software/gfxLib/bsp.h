@@ -189,6 +189,8 @@ typedef struct __BLITTER_REGISTERS_T
     volatile uint32_t cIt1;
     volatile uint32_t cIt2;
 
+    volatile int32_t  triangleArea;
+    
 }_BLITTER_REGISTERS_T;
 
 extern _BLITTER_REGISTERS_T *blt;

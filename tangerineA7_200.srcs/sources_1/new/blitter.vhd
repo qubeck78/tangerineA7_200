@@ -61,8 +61,7 @@ architecture Behavioral of blitter is
 
 --components
 
--- pixel alpha channel calculator
-
+--pixel alpha channel calculation
 component pixelAlpha is
 port(
 
@@ -77,13 +76,62 @@ port(
 );
 end component;
 
+--bounding box calculation
+component boundingBox is
+port( 
+   --reset
+    reset:                          in  std_logic;
+    clock:                          in  std_logic;
+    
+    bbXMinReg:                      in  std_logic_vector( 15 downto 0 );
+    bbXMaxReg:                      in  std_logic_vector( 15 downto 0 );
+    bbYMinReg:                      in  std_logic_vector( 15 downto 0 );
+    bbYMaxReg:                      in  std_logic_vector( 15 downto 0 );
+
+    aXReg:                          in  std_logic_vector( 15 downto 0 );
+    aYReg:                          in  std_logic_vector( 15 downto 0 );
+
+    bXReg:                          in  std_logic_vector( 15 downto 0 );
+    bYReg:                          in  std_logic_vector( 15 downto 0 );
+
+    cXReg:                          in  std_logic_vector( 15 downto 0 );
+    cYReg:                          in  std_logic_vector( 15 downto 0 );
+    
+    bbXMinOut:                      out std_logic_vector( 15 downto 0 );
+    bbXMaxOut:                      out std_logic_vector( 15 downto 0 );
+    bbYMinOut:                      out std_logic_vector( 15 downto 0 );
+    bbYMaxOut:                      out std_logic_vector( 15 downto 0 )
+
+);
+end component;
+
+--triangle edge calculation for gouraud
+component gouraudEdge is
+port(
+   --reset
+    reset:                          in  std_logic;
+    clock:                          in  std_logic;
+   
+    e1_x:                           in std_logic_vector( 15 downto 0 );
+    e1_y:                           in std_logic_vector( 15 downto 0 );
+    
+    e2_x:                           in std_logic_vector( 15 downto 0 );
+    e2_y:                           in std_logic_vector( 15 downto 0 );
+
+    p_x:                            in std_logic_vector( 15 downto 0 );
+    p_y:                            in std_logic_vector( 15 downto 0 );
+
+    
+    edge:                           out std_logic_vector( 31 downto 0 )
+);
+end component;
 
 --signals
 
 --registers signals
 
 type regState_T is ( rsWaitForRegAccess, rsWaitForBusCycleEnd );
-signal regState:        regState_T;
+signal  regState:       regState_T;
 
 --command/status
 
@@ -135,6 +183,7 @@ type    bltState_t is ( bsIdle,
                         bsCopy0, bsCopy1, bsCopy2, 
                         bsAlphaCopy0, bsAlphaCopy1, bsAlphaCopy2, bsAlphaCopy3, bsAlphaCopy4, bsAlphaCopy5,  
                         bsScaleCopy0, bsScaleCopy1, bsScaleCopy2, bsScaleCopy3, bsScaleCopy4, bsScaleCopy5,
+                        bsTriangle0, bsTriangle1, bsTriangle2, bsTriangle3, bsTriangle4, bsTriangle5, bsTriangle6, bsTriangle7,
                         bsSubRead0, bsSubRead1, bsSubRead2, bsSubWrite0, bsSubWrite1, bsSubWrite2, bsSubWrite3 );
 
 signal  bltState:       bltState_t;
@@ -146,66 +195,90 @@ signal  bltRun:         std_logic;
 signal  bltReady:       std_logic;
 
 --subRead
-signal dmaReadAddr:     std_logic_vector( 24 downto 0 );
-signal dmaReadData:     std_logic_vector( 31 downto 0 );
+signal  dmaReadAddr:    std_logic_vector( 24 downto 0 );
+signal  dmaReadData:    std_logic_vector( 31 downto 0 );
 
 --subWrite
-signal dmaWriteAddr:    std_logic_vector( 24 downto 0 );
-signal dmaWriteData:    std_logic_vector( 31 downto 0 );
+signal  dmaWriteAddr:   std_logic_vector( 24 downto 0 );
+signal  dmaWriteData:   std_logic_vector( 31 downto 0 );
 
 
 --counters
-signal counterX:        std_logic_vector( 15 downto 0 );
-signal counterXMax:     std_logic_vector( 15 downto 0 );
-signal counterY:        std_logic_vector( 15 downto 0 );
+signal  counterX:       std_logic_vector( 15 downto 0 );
+signal  counterXMax:    std_logic_vector( 15 downto 0 );
+signal  counterY:       std_logic_vector( 15 downto 0 );
 
 --data pointers ( for multiple source / destination modes )
-signal dpSa:            std_logic_vector( 24 downto 0 );
-signal dpSb:            std_logic_vector( 24 downto 0 );
-signal dpSc:            std_logic_vector( 24 downto 0 );
-signal dpDa:            std_logic_vector( 24 downto 0 );
-signal dpDb:            std_logic_vector( 24 downto 0 );
+signal  dpSa:           std_logic_vector( 24 downto 0 );
+signal  dpSb:           std_logic_vector( 24 downto 0 );
+signal  dpSc:           std_logic_vector( 24 downto 0 );
+signal  dpDa:           std_logic_vector( 24 downto 0 );
+signal  dpDb:           std_logic_vector( 24 downto 0 );
 
 
 --pixel alpha
-signal paColorInA:      std_logic_vector( 15 downto 0 );
-signal paColorInB:      std_logic_vector( 15 downto 0 );
-signal paAlpha:         std_logic_vector( 4 downto 0 );
-signal paColorOut:      std_logic_vector( 15 downto 0 );
+signal  paColorInA:     std_logic_vector( 15 downto 0 );
+signal  paColorInB:     std_logic_vector( 15 downto 0 );
+signal  paAlpha:        std_logic_vector( 4 downto 0 );
+signal  paColorOut:     std_logic_vector( 15 downto 0 );
 
 
 --scaler
-signal scSx:            std_logic_vector( 31 downto 0 );
-signal scSy:            std_logic_vector( 31 downto 0 );
+signal  scSx:           std_logic_vector( 31 downto 0 );
+signal  scSy:           std_logic_vector( 31 downto 0 );
 
 --3d
 --bounding box
-signal bbXMinReg:       std_logic_vector( 15 downto 0 );
-signal bbXMaxReg:       std_logic_vector( 15 downto 0 );
-signal bbYMinReg:       std_logic_vector( 15 downto 0 );
-signal bbYMaxReg:       std_logic_vector( 15 downto 0 );
+signal  bbXMinReg:      std_logic_vector( 15 downto 0 );
+signal  bbXMaxReg:      std_logic_vector( 15 downto 0 );
+signal  bbYMinReg:      std_logic_vector( 15 downto 0 );
+signal  bbYMaxReg:      std_logic_vector( 15 downto 0 );
 
 --triangle vertices
-signal aXReg:           std_logic_vector( 15 downto 0 );
-signal aYReg:           std_logic_vector( 15 downto 0 );
-signal aZReg:           std_logic_vector( 15 downto 0 );
-signal aIt0Reg:         std_logic_vector( 7 downto 0 );
-signal aIt1Reg:         std_logic_vector( 7 downto 0 );
-signal aIt2Reg:         std_logic_vector( 7 downto 0 );
+signal  aXReg:          std_logic_vector( 15 downto 0 );
+signal  aYReg:          std_logic_vector( 15 downto 0 );
+signal  aZReg:          std_logic_vector( 15 downto 0 );
+signal  aIt0Reg:        std_logic_vector( 7 downto 0 );
+signal  aIt1Reg:        std_logic_vector( 7 downto 0 );
+signal  aIt2Reg:        std_logic_vector( 7 downto 0 );
 
-signal bXReg:           std_logic_vector( 15 downto 0 );
-signal bYReg:           std_logic_vector( 15 downto 0 );
-signal bZReg:           std_logic_vector( 15 downto 0 );
-signal bIt0Reg:         std_logic_vector( 7 downto 0 );
-signal bIt1Reg:         std_logic_vector( 7 downto 0 );
-signal bIt2Reg:         std_logic_vector( 7 downto 0 );
+signal  bXReg:          std_logic_vector( 15 downto 0 );
+signal  bYReg:          std_logic_vector( 15 downto 0 );
+signal  bZReg:          std_logic_vector( 15 downto 0 );
+signal  bIt0Reg:        std_logic_vector( 7 downto 0 );
+signal  bIt1Reg:        std_logic_vector( 7 downto 0 );
+signal  bIt2Reg:        std_logic_vector( 7 downto 0 );
 
-signal cXReg:           std_logic_vector( 15 downto 0 );
-signal cYReg:           std_logic_vector( 15 downto 0 );
-signal cZReg:           std_logic_vector( 15 downto 0 );
-signal cIt0Reg:         std_logic_vector( 7 downto 0 );
-signal cIt1Reg:         std_logic_vector( 7 downto 0 );
-signal cIt2Reg:         std_logic_vector( 7 downto 0 );
+signal  cXReg:          std_logic_vector( 15 downto 0 );
+signal  cYReg:          std_logic_vector( 15 downto 0 );
+signal  cZReg:          std_logic_vector( 15 downto 0 );
+signal  cIt0Reg:        std_logic_vector( 7 downto 0 );
+signal  cIt1Reg:        std_logic_vector( 7 downto 0 );
+signal  cIt2Reg:        std_logic_vector( 7 downto 0 );
+
+--triangle bounding box ( calculated )
+signal  triangleBBXMin: std_logic_vector( 15 downto 0 );
+signal  triangleBBXMax: std_logic_vector( 15 downto 0 );
+signal  triangleBBYMin: std_logic_vector( 15 downto 0 );
+signal  triangleBBYMax: std_logic_vector( 15 downto 0 );
+
+--triangle bounding box width ( for counterX reload )
+signal triangleBBWidth: std_logic_vector( 15 downto 0 );
+
+--triangle area
+signal  triangleArea:   std_logic_vector( 31 downto 0 );
+
+--0xffffffff / triangleArea
+signal triangleAreaInv: std_logic_vector( 31 downto 0 );
+
+--triangle pixel coordinates
+signal  triangleCX:     std_logic_vector( 15 downto 0 );
+signal  triangleCY:     std_logic_vector( 15 downto 0 );
+
+--triangle cx/cy to edges
+signal  triangleEBA:    std_logic_vector( 31 downto 0 );
+signal  triangleECB:    std_logic_vector( 31 downto 0 );
+signal  triangleEAC:    std_logic_vector( 31 downto 0 );
 
 begin  
         
@@ -829,7 +902,12 @@ begin
                                 
                             end if;
 
+                       --0xac r- triangleArea
+                       when x"2b" =>
 
+                            ready   <= '1';
+                            dout    <= triangleArea;
+                                              
                        when others =>
                        
                             ready <= '1';
@@ -1002,6 +1080,33 @@ begin
                             scSy            <= input1Reg;   --delta y 
                             
                             bltState        <= bsScaleCopy0;
+                            
+                        --draw triangle
+                        when x"05" =>
+                        
+                            --translate addresses to word based, omit high address bits
+                            --texture
+                            dpSa                <= saAddressReg( 25 downto 1 );
+                            
+                            --framebuffer
+                            dpDa                <= daAddressReg( 25 downto 1 );
+
+                            --z-buffer
+                            dpDb                <= dbAddressReg( 25 downto 1 );
+
+                            triangleCX          <= triangleBBXMin;
+                            triangleCY          <= triangleBBYMin;
+                            
+                            counterX            <= ( others => '0' );
+                            -- for counterX reload
+                            triangleBBWidth     <= std_logic_vector( signed( triangleBBXMax ) - signed( triangleBBXMin ) );
+
+                            counterY            <= std_logic_vector( signed( triangleBBYMax ) - signed( triangleBBYMin ) );
+                                  
+                            
+                            --triangleAddrOffset  <= triangleBBYMin & triangleBBXMin( 8 downto 0 );
+                            
+                            bltState            <= bsTriangle0;
                             
                         when others =>
                     
@@ -1450,6 +1555,109 @@ port map(
     alpha       => paAlpha,
     colorOut    => paColorOut
 
+);
+
+--place bounding box calculator
+boundingBoxInst:boundingBox
+port map( 
+
+    reset       => reset,
+    clock       => clock,
+    
+    bbXMinReg   => bbXMinReg,
+    bbXMaxReg   => bbXMaxReg,
+    bbYMinReg   => bbYMinReg,
+    bbYMaxReg   => bbYMaxReg,
+
+    aXReg       => aXReg,
+    aYReg       => aYReg,
+
+    bXReg       => bXReg,
+    bYReg       => bYReg,
+
+    cXReg       => cXReg,
+    cYReg       => cYReg,
+    
+    bbXMinOut   => triangleBBXMin,
+    bbXMaxOut   => triangleBBXMax,
+    bbYMinOut   => triangleBBYMin,
+    bbYMaxOut   => triangleBBYMax
+    
+);
+
+--gouraud edges
+
+--area
+
+gouraudEdgeAreaInst:gouraudEdge
+port map(
+    reset       => reset,
+    clock       => clock,
+   
+    e1_x        => cXReg,
+    e1_y        => cYReg,
+    
+    e2_x        => bXReg,
+    e2_y        => bYReg,
+
+    p_x         => aXReg,
+    p_y         => aYReg,
+  
+    edge        => triangleArea
+);
+
+--eba
+gouraudEBAInst:gouraudEdge
+port map(
+    reset       => reset,
+    clock       => clock,
+   
+    e1_x        => bXReg,
+    e1_y        => bYReg,
+    
+    e2_x        => aXReg,
+    e2_y        => aYReg,
+
+    p_x         => triangleCX,
+    p_y         => triangleCY,
+  
+    edge        => triangleEBA
+);
+
+--ecb
+gouraudECBInst:gouraudEdge
+port map(
+    reset       => reset,
+    clock       => clock,
+   
+    e1_x        => cXReg,
+    e1_y        => cYReg,
+    
+    e2_x        => bXReg,
+    e2_y        => bYReg,
+
+    p_x         => triangleCX,
+    p_y         => triangleCY,
+  
+    edge        => triangleECB
+);
+
+--eac
+gouraudEACInst:gouraudEdge
+port map(
+    reset       => reset,
+    clock       => clock,
+   
+    e1_x        => aXReg,
+    e1_y        => aYReg,
+    
+    e2_x        => cXReg,
+    e2_y        => cYReg,
+
+    p_x         => triangleCX,
+    p_y         => triangleCY,
+  
+    edge        => triangleECB
 );
     
 end Behavioral;
