@@ -9,7 +9,7 @@
 #
 
 TARGET = fractal
-PORT = com7
+PORT = auto
 #CC = riscv-none-embed-gcc -march=rv32im -mno-div -c -O3 
 CC = riscv-none-embed-gcc -march=rv32im -c -O3 
 LD = riscv-none-embed-ld -T ram.ld
@@ -93,3 +93,6 @@ clean:
 send: $(TARGET).rec
 	srecsend $(TARGET).rec $(PORT) 460800
 	
+run: $(TARGET).rec
+	cp $(TARGET).rec "/f/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/bin"
+	cd "/f/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/bin" && ./tangerine.exe $(TARGET).rec

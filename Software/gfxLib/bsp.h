@@ -190,6 +190,7 @@ typedef struct __BLITTER_REGISTERS_T
     volatile uint32_t cIt2;
 
     volatile int32_t  triangleArea;
+    volatile int32_t  triangleAreaInv;
     
 }_BLITTER_REGISTERS_T;
 

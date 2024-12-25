@@ -16,6 +16,7 @@
 
 extern tgfTextOverlay   con;
 tgfBitmap               screen;
+tgfBitmap               zBuffer;
 tgfBitmap               bmp;
 
 char buf[256];
@@ -200,7 +201,6 @@ static uint32_t waitKey()
                 }
             }
         }
-
         delayMs( 10 );
 
     }while( !keyPressed );
@@ -215,7 +215,11 @@ int main()
     tgfPoint3D   pa;
     tgfPoint3D   pb;
     tgfPoint3D   pc;
-
+    uint32_t     hwTriangleArea;
+    uint32_t     hwTriangleAreaInv;
+    uint32_t     swTriangleArea;
+    uint32_t     swTriangleAreaInv;
+    
     bspInit();
 
     setVideoMode( _VIDEOMODE_320_TEXT80_OVER_GFX );
@@ -224,8 +228,7 @@ int main()
     screen.width            = 320;
     screen.rowWidth         = 512;
     screen.height           = 240;
-    
-    
+        
     screen.flags            = 0;
     screen.transparentColor = 0;
     screen.buffer           = osAlloc( screen.rowWidth * screen.height * 2, OS_ALLOC_MEMF_CHIP );
@@ -237,6 +240,20 @@ int main()
     } 
         
     
+    zBuffer.width            = 320;
+    zBuffer.rowWidth         = 512;
+    zBuffer.height           = 240;
+        
+    zBuffer.flags            = 0;
+    zBuffer.transparentColor = 0;
+    zBuffer.buffer           = osAlloc( zBuffer.rowWidth * zBuffer.height * 2, OS_ALLOC_MEMF_CHIP );
+    
+    if( zBuffer.buffer == NULL )
+    {
+        printf( "\nCan't alloc z-buffer\n" );
+        do{}while( 1 );
+    } 
+
     //display first buffer
     gfDisplayBitmap( &screen );
 
@@ -263,7 +280,11 @@ int main()
 
     waitKey();
 
-    toCls( &con );
+    //clear zbuffer
+    gfFillRect( &zBuffer, 0, 0, zBuffer.width - 1, zBuffer.height - 1, 1500 /*0xffff*/ );
+
+    blt->daAddress  = (uint32_t)screen.buffer;
+    blt->dbAddress  = (uint32_t)zBuffer.buffer;
 
     blt->bbXMin = 0;
     blt->bbXMax = 319;
@@ -273,18 +294,32 @@ int main()
     blt->aX     = 160;
     blt->aY     = 10;
     blt->aZ     = 100;
-
+    
     blt->bX     = 310;
     blt->bY     = 229;
-    blt->bZ     = 100;
+    blt->bZ     = 2000;
 
     blt->cX     = 10;
     blt->cY     = 229;
-    blt->cZ     = 100;
+    blt->cZ     = 100;          //triggers triangleArea and triangleAreaInv calculations
 
-    i = blt->triangleArea;
+    blt->aIt0   = 255;
+    blt->aIt1   = 0;
+    blt->aIt2   = 0;
 
-    printf( "hw triangleArea: %d\n", i );
+    blt->bIt0   = 0;
+    blt->bIt1   = 255;
+    blt->bIt2   = 0;
+
+    blt->cIt0   = 0;
+    blt->cIt1   = 0;
+    blt->cIt2   = 255;
+
+    hwTriangleArea = blt->triangleArea;
+
+    blt->command = 0x0510;      
+
+    printf( "hw triangleArea: %d\n", hwTriangleArea );
 
     pa.x2D      = 160;
     pa.y2D      = 10;
@@ -292,13 +327,24 @@ int main()
     pb.x2D      = 310;
     pb.y2D      = 229;
 
-    pc.x2D      = 10;
+    pc.x2D      = 10; 
     pc.y2D      = 229;
 
-    printf( "sw triangleArea: %d\n\n", gouraudEdge( &pc, &pb, &pa ) );
+    swTriangleArea = gouraudEdge( &pc, &pb, &pa );
+    printf( "sw triangleArea: %d\n\n", swTriangleArea );
+
+    hwTriangleAreaInv = blt->triangleAreaInv;
+
+    printf( "hw triangleAreaInv: %d\n", hwTriangleAreaInv );
+    
+    swTriangleAreaInv = 0xffffffff / swTriangleArea;
+
+    printf( "sw triangleAreaInv: %d\n", swTriangleAreaInv );
+
 
 
     printf( "done - press Pause to reboot\n" );
+
 
     do
     {

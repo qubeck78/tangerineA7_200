@@ -51,8 +51,10 @@ port(
     bbXMinOut:                      out std_logic_vector( 15 downto 0 );
     bbXMaxOut:                      out std_logic_vector( 15 downto 0 );
     bbYMinOut:                      out std_logic_vector( 15 downto 0 );
-    bbYMaxOut:                      out std_logic_vector( 15 downto 0 )
+    bbYMaxOut:                      out std_logic_vector( 15 downto 0 );
 
+    bbWidthOut:                     out std_logic_vector( 15 downto 0 );
+    bbHeightOut:                    out std_logic_vector( 15 downto 0 )
 );
 end boundingBox;
 
@@ -249,11 +251,18 @@ begin
         
             bbYMaxOut   <=  bbYMaxReg;
             
-       else
+        else
        
             bbYMaxOut   <= bbYMaxS3;
             
-       end if;
+        end if;
+
+
+        --triangle width/height
+
+        bbWidthOut  <= std_logic_vector( signed( bbXMaxOut ) - signed( bbXMinOut ) );
+        bbHeightOut <= std_logic_vector( signed( bbYMaxOut ) - signed( bbYMinOut ) );
+
                  
     end if; --rising_edge( clock )
 

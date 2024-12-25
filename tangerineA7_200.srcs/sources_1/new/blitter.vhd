@@ -100,7 +100,9 @@ port(
     bbXMinOut:                      out std_logic_vector( 15 downto 0 );
     bbXMaxOut:                      out std_logic_vector( 15 downto 0 );
     bbYMinOut:                      out std_logic_vector( 15 downto 0 );
-    bbYMaxOut:                      out std_logic_vector( 15 downto 0 )
+    bbYMaxOut:                      out std_logic_vector( 15 downto 0 );
+    bbWidthOut:                     out std_logic_vector( 15 downto 0 );
+    bbHeightOut:                    out std_logic_vector( 15 downto 0 )
 
 );
 end component;
@@ -123,6 +125,87 @@ port(
 
     
     edge:                           out std_logic_vector( 31 downto 0 )
+);
+end component;
+
+-- 0xffffffff / triangle area calculation
+component triangleAreaDivisor is
+port(
+
+    reset:              in  std_logic;
+    clock:              in  std_logic;
+    
+    trigger:            in  std_logic;
+    triangleArea:       in  std_logic_vector( 31 downto 0 );
+
+    triangleAreaInv:    out std_logic_vector( 31 downto 0 );
+    ready:              out std_logic
+
+);
+end component;
+
+--weight calculation
+component gouraudWeight is
+port(
+   --reset
+    reset:                          in  std_logic;
+    clock:                          in  std_logic;
+    
+    edge:                           in std_logic_vector( 31 downto 0 );
+    areaInv:                        in std_logic_vector( 31 downto 0 );
+    
+    weight:                         out std_logic_vector( 15 downto 0 )
+
+);
+end component;
+
+--gouraud iterator
+component gouraudIterator is
+port(
+   --reset
+    reset:                          in  std_logic;
+    clock:                          in  std_logic;
+       
+    weightCB:                       in  std_logic_vector( 15 downto 0 );
+    weightAC:                       in  std_logic_vector( 15 downto 0 );
+    weightBA:                       in  std_logic_vector( 15 downto 0 );
+
+    valA:                           in  std_logic_vector( 7 downto 0 );
+    valB:                           in  std_logic_vector( 7 downto 0 );
+    valC:                           in  std_logic_vector( 7 downto 0 );
+
+    valOut:                         out std_logic_vector( 7 downto 0 )
+);
+end component;
+
+component gouraudIterator16 is
+port(
+   --reset
+    reset:                          in  std_logic;
+    clock:                          in  std_logic;
+       
+    weightCB:                       in  std_logic_vector( 15 downto 0 );
+    weightAC:                       in  std_logic_vector( 15 downto 0 );
+    weightBA:                       in  std_logic_vector( 15 downto 0 );
+
+    valA:                           in  std_logic_vector( 15 downto 0 );
+    valB:                           in  std_logic_vector( 15 downto 0 );
+    valC:                           in  std_logic_vector( 15 downto 0 );
+
+    valOut:                         out std_logic_vector( 15 downto 0 )
+);
+end component;
+
+--texture shader ( light )
+component textureShader is
+port(
+   --reset
+    reset:                          in  std_logic;
+    clock:                          in  std_logic;
+       
+    colorIn:                        in  std_logic_vector( 15 downto 0 );
+    lightIn:                        in  std_logic_vector( 4 downto 0 );
+    colorOut:                       out std_logic_vector( 15 downto 0 )
 );
 end component;
 
@@ -183,7 +266,8 @@ type    bltState_t is ( bsIdle,
                         bsCopy0, bsCopy1, bsCopy2, 
                         bsAlphaCopy0, bsAlphaCopy1, bsAlphaCopy2, bsAlphaCopy3, bsAlphaCopy4, bsAlphaCopy5,  
                         bsScaleCopy0, bsScaleCopy1, bsScaleCopy2, bsScaleCopy3, bsScaleCopy4, bsScaleCopy5,
-                        bsTriangle0, bsTriangle1, bsTriangle2, bsTriangle3, bsTriangle4, bsTriangle5, bsTriangle6, bsTriangle7,
+                        bsTriangle0, bsTriangleGouraud, bsTriangleZBuffer0, bsTriangleZBuffer1,
+                        bsTriangleTextured0, bsTriangleTextured1, bsTriangleTextured2, 
                         bsSubRead0, bsSubRead1, bsSubRead2, bsSubWrite0, bsSubWrite1, bsSubWrite2, bsSubWrite3 );
 
 signal  bltState:       bltState_t;
@@ -257,28 +341,51 @@ signal  cIt1Reg:        std_logic_vector( 7 downto 0 );
 signal  cIt2Reg:        std_logic_vector( 7 downto 0 );
 
 --triangle bounding box ( calculated )
-signal  triangleBBXMin: std_logic_vector( 15 downto 0 );
-signal  triangleBBXMax: std_logic_vector( 15 downto 0 );
-signal  triangleBBYMin: std_logic_vector( 15 downto 0 );
-signal  triangleBBYMax: std_logic_vector( 15 downto 0 );
-
---triangle bounding box width ( for counterX reload )
-signal triangleBBWidth: std_logic_vector( 15 downto 0 );
+signal  triangleBBXMin:     std_logic_vector( 15 downto 0 );
+signal  triangleBBXMax:     std_logic_vector( 15 downto 0 );
+signal  triangleBBYMin:     std_logic_vector( 15 downto 0 );
+signal  triangleBBYMax:     std_logic_vector( 15 downto 0 );
+signal  triangleBBWidth:    std_logic_vector( 15 downto 0 );
+signal  triangleBBHeight:    std_logic_vector( 15 downto 0 );
 
 --triangle area
 signal  triangleArea:   std_logic_vector( 31 downto 0 );
 
 --0xffffffff / triangleArea
-signal triangleAreaInv: std_logic_vector( 31 downto 0 );
+signal triangleAreaInv:         std_logic_vector( 31 downto 0 );
+signal triangleAreaDivTrigger:  std_logic;
+signal triangleAreaInvValid:    std_logic;
+
+--counter for determining triangleArea/triangleAreaInv valid result time ( max 63 cycles )
+signal triangleAreaCalcCnt: std_logic_vector( 5 downto 0 );
 
 --triangle pixel coordinates
 signal  triangleCX:     std_logic_vector( 15 downto 0 );
 signal  triangleCY:     std_logic_vector( 15 downto 0 );
 
 --triangle cx/cy to edges
-signal  triangleEBA:    std_logic_vector( 31 downto 0 );
-signal  triangleECB:    std_logic_vector( 31 downto 0 );
-signal  triangleEAC:    std_logic_vector( 31 downto 0 );
+signal  triangleEBA:        std_logic_vector( 31 downto 0 );
+signal  triangleECB:        std_logic_vector( 31 downto 0 );
+signal  triangleEAC:        std_logic_vector( 31 downto 0 );
+signal  triangleECounter:   std_logic_vector( 3 downto 0 );
+
+--triangle weights for current CX/CY
+signal  triangleWBA:        std_logic_vector( 15 downto 0 );
+signal  triangleWCB:        std_logic_vector( 15 downto 0 );
+signal  triangleWAC:        std_logic_vector( 15 downto 0 );
+
+--triangle iterator outputs
+
+signal  triangleIt0Out:     std_logic_vector( 7 downto 0 );
+signal  triangleIt1Out:     std_logic_vector( 7 downto 0 );
+signal  triangleIt2Out:     std_logic_vector( 7 downto 0 );
+
+signal  triangleIt3Out:     std_logic_vector( 15 downto 0 );
+
+signal  triangleITCounter:  std_logic_vector( 3 downto 0 );
+
+--texture shader
+signal tsColorOut:          std_logic_vector( 15 downto 0 );
 
 begin  
         
@@ -345,9 +452,14 @@ begin
         cIt2Reg         <= ( others => '0' );
 
         
-        --clear command trigger
+        --clear command trigger 
+        bltRun                  <= '0';
         
-        bltRun          <= '0';
+        --clear triangle area calc clock
+        triangleAreaCalcCnt     <= ( others => '0' );
+        
+        --clear 0xffffffff/triangleArea div trigger
+        triangleAreaDivTrigger  <= '0';
         
     elsif rising_edge( clock ) then
       
@@ -355,6 +467,26 @@ begin
         
         bltRun          <= '0';
 
+        --decrease triangle area calc time clock
+        
+        if triangleAreaCalcCnt /= "000000"  then
+        
+            triangleAreaCalcCnt <= std_logic_vector( unsigned( triangleAreaCalcCnt ) - 1 );
+            
+        end if;
+
+        --trigger divisor when area is calculated
+        --37 - 4 = 33
+        if triangleAreaCalcCnt = "100001" then
+        
+            triangleAreaDivTrigger <= '1';
+            
+        else
+        
+            triangleAreaDivTrigger <= '0';
+            
+        end if;
+            
         case regState is
   
             when rsWaitForRegAccess =>
@@ -379,7 +511,7 @@ begin
 
                             ready   <= '1';
                  
-                            dout    <= x"20241201";
+                            dout    <= x"20241225";
                     
                         --0x08 rw commandReg
                         when x"02" =>
@@ -864,6 +996,13 @@ begin
                             
                                 cZReg   <= din( 15 downto 0 );
                                 
+                                --set triangle area calc counter
+                                --edge      - 3  clocks
+                                --divisor   - 34 clocks (tbd)
+                                --total     - 37 clocks to triangleAreaInv to be valid
+                                
+                                triangleAreaCalcCnt <= "100101";
+                                
                             end if;
 
                        --0xa0 rw cIt0
@@ -889,7 +1028,7 @@ begin
                                 cIt1Reg   <= din( 7 downto 0 );
                                 
                             end if;
-
+ 
                        --0xa8 rw cIt2
                        when x"2a" =>
                        
@@ -907,6 +1046,12 @@ begin
 
                             ready   <= '1';
                             dout    <= triangleArea;
+     
+                       --0xb0 r- triangleAreaInv
+                       when x"2c" =>
+
+                            ready   <= '1';
+                            dout    <= triangleAreaInv;
                                               
                        when others =>
                        
@@ -983,7 +1128,7 @@ begin
         paColorInA      <= ( others => '0' );
         paColorInB      <= ( others => '0' );
         paAlpha         <= ( others => '0' );
-    
+            
     elsif rising_edge( clock ) then
     
         --calculate things :)
@@ -993,7 +1138,20 @@ begin
         
         daColAdd    <= std_logic_vector( unsigned( daRowWidthReg ) - unsigned( daWidthReg ) );
         dbColAdd    <= std_logic_vector( unsigned( dbRowWidthReg ) - unsigned( daWidthReg ) );
-           
+        
+        --triangle edge counter
+        if triangleECounter /= x"0" then
+        
+            triangleECounter <= std_logic_vector( unsigned( triangleECounter ) - 1 );
+            
+        end if;   
+
+        --iterator value counter
+        if triangleITCounter /= x"0" then
+        
+            triangleITCounter   <= std_logic_vector( unsigned( triangleITCounter ) - 1 );
+
+        end if;
     
         case bltState is
         
@@ -1011,6 +1169,9 @@ begin
                         --fill rectangle ( input0Reg => da )
                         when x"01" =>
                         
+                            --16bit transfer
+                            bltDmaWordSize  <= '0';
+
                             --translate address to word based, omit high address bits
                             dpDa           <= daAddressReg( 25 downto 1 );
 
@@ -1024,6 +1185,9 @@ begin
                         
                         --copy rectangle ( sa => da )
                         when x"02" =>
+
+                            --16bit transfer
+                            bltDmaWordSize  <= '0';
 
                             --translate addresses to word based, omit high address bits
                             dpSa            <= saAddressReg( 25 downto 1 );
@@ -1040,6 +1204,9 @@ begin
                         --copy rectangle with alpha ( sa alpha sb => da )
                         when x"03" =>
     
+                            --16bit transfer
+                            bltDmaWordSize  <= '0';
+
                             paAlpha         <= input0Reg( 4 downto 0 );
     
                             --translate addresses to word based, omit high address bits
@@ -1064,6 +1231,9 @@ begin
                         
                         when x"04" =>
 
+                            --16bit transfer
+                            bltDmaWordSize  <= '0';
+
                             --translate addresses to word based, omit high address bits
                             dmaReadAddr     <= saAddressReg( 25 downto 1 );
                             dpDa            <= daAddressReg( 25 downto 1 );
@@ -1083,7 +1253,10 @@ begin
                             
                         --draw triangle
                         when x"05" =>
-                        
+                                                    
+                            --16bit transfer
+                            bltDmaWordSize  <= '0';
+
                             --translate addresses to word based, omit high address bits
                             --texture
                             dpSa                <= saAddressReg( 25 downto 1 );
@@ -1097,17 +1270,59 @@ begin
                             triangleCX          <= triangleBBXMin;
                             triangleCY          <= triangleBBYMin;
                             
-                            counterX            <= ( others => '0' );
-                            -- for counterX reload
-                            triangleBBWidth     <= std_logic_vector( signed( triangleBBXMax ) - signed( triangleBBXMin ) );
-
-                            counterY            <= std_logic_vector( signed( triangleBBYMax ) - signed( triangleBBYMin ) );
-                                  
+                            --CX/CY to edge valid counter
+                            triangleECounter    <= x"4";
+                            
+                            counterX            <= triangleBBWidth;
+                            counterY            <= triangleBBHeight;
                             
                             --triangleAddrOffset  <= triangleBBYMin & triangleBBXMin( 8 downto 0 );
                             
-                            bltState            <= bsTriangle0;
+                            if triangleBBWidth = x"0000" or triangleBBHeight = x"0000" then
+                                
+                                bltState    <= bsIdle;
+                                
+                            else
                             
+                                bltState            <= bsTriangle0;
+                                
+                            end if;
+                            
+                        --fill rectangle 32 bit ( input0Reg => da )
+                        when x"11" =>
+                        
+                            --32bit transfer
+                            bltDmaWordSize  <= '1';
+
+                            --translate address to word based, omit high address bits
+                            dpDa           <= '0' & daAddressReg( 25 downto 2 );
+
+                            --calc transfer size
+                            counterXMax     <= daWidthReg;
+                            counterX        <= daWidthReg;
+        
+                            counterY        <= std_logic_vector( unsigned( daHeightReg ) - 1 );
+             
+                            bltState        <= bsFill0;       
+
+                        --copy rectangle 32 bit ( sa => da )
+                        when x"12" =>
+
+                            --32bit transfer
+                            bltDmaWordSize  <= '1';
+
+                            --translate addresses to word based, omit high address bits
+                            dpSa            <= '0' & saAddressReg( 25 downto 2 );
+                            dpDa            <= '0' & daAddressReg( 25 downto 2 );
+
+                            --calc transfer size
+                            counterXMax     <= daWidthReg;
+                            counterX        <= daWidthReg;
+        
+                            counterY        <= std_logic_vector( unsigned( daHeightReg ) - 1 );
+             
+                            bltState        <= bsCopy0;       
+
                         when others =>
                     
                     end case;
@@ -1151,7 +1366,7 @@ begin
                 counterX    <= std_logic_vector( unsigned( counterX ) - 1 );
                 dpDa        <= std_logic_vector( unsigned( dpDa ) + 1 );
                 
-                bltState        <= bsFill0;
+                bltState    <= bsFill0;
         
             when bsCopy0 =>
                                 
@@ -1486,6 +1701,202 @@ begin
                 bltState        <= bsAlphaCopy0;
                
             
+            -- triangle
+            
+            when bsTriangle0 =>
+            
+                --end if line
+                if counterX = x"0000" then
+                                  
+                    counterX    <= triangleBBWidth;
+                    
+                    triangleCX  <= triangleBBXMin;
+                    triangleCY  <= std_logic_vector( unsigned( triangleCY ) + 1 );
+                    
+                    --CX/CY to edge valid counter
+                    triangleECounter    <= x"4";                    
+
+                    --CX/CY to iterator value counter
+                    triangleITCounter   <= x"7";
+
+                    if counterY = x"0000" then
+                    
+                        --triangle drawn                        
+                        bltState    <= bsIdle;                
+                
+                    else
+                    
+                        counterY    <= std_logic_vector( unsigned( counterY ) - 1 );
+                        
+                    end if;
+                                    
+                else
+                
+                    if triangleECounter = x"0" then
+                    
+                        --edge ready
+   
+                        --decrease x counter                 
+                        counterX    <= std_logic_vector( unsigned( counterX ) - 1 );
+                        
+                        if triangleEBA( 31 ) = '0' and triangleECB( 31 ) = '0' and triangleEAC( 31 ) = '0' then
+                        
+                            --check what kind of triangle we are drawing
+                            
+                            if commandReg( 7 downto 4 ) = x"0" then
+
+                                    bltState    <= bsTriangleGouraud;
+
+                            else
+
+                                    bltState    <= bsTriangleZBuffer0;
+                            
+                            end if;
+                            
+                        else
+                    
+                            --next pixel
+                            triangleCX  <= std_logic_vector( unsigned( triangleCX ) + 1 );
+        
+                            --CX/CY to edge valid counter
+                            triangleECounter    <= x"4";                    
+                        
+                            --CX/CY to iterator value counter
+                            triangleITCounter   <= x"7";
+                            
+                        end if;
+                        
+                   end if;
+
+                end if;
+                
+            when bsTriangleZBuffer0 =>
+            
+                --read z buffer
+                --dpDb
+                --early read
+                bltA            <= std_logic_vector( unsigned( dpDb )  + unsigned( triangleCY & triangleCX( 8 downto 0 ) ) );
+                bltWr           <= '0';
+                bltDmaRequest   <= '1';
+                bltReturnState  <= bsTriangleZBuffer1;                
+
+                bltState        <= bsSubRead1;
+
+
+            when bsTriangleZBuffer1 =>
+                
+                if triangleITCounter = x"0" then
+                
+                    if unsigned( triangleIt3Out ) < unsigned( dmaReadData( 15 downto 0 ) ) then      
+                 
+                        --write new depth to z-buffer and draw pixel
+                        
+                        --early write
+                        bltDOut         <= x"0000" &  triangleIt3Out;
+        
+                        bltWr           <= '1';
+                        bltDmaRequest   <= '1';
+        
+                        --check what kind of triangle we are drawing
+                        
+                        if commandReg( 7 downto 4 ) = x"1" then
+                        
+                            --gouraud triangle
+                                
+                            bltReturnState  <= bsTriangleGouraud;
+                            
+                        else
+                        
+                            --textured triangle
+                            bltReturnState  <= bsTriangleTextured0;
+                        
+                        end if;
+                        
+                        bltState        <= bsSubWrite1;
+                     
+                                    
+                    else
+                 
+                        --do not draw pixel
+                        
+                        --next pixel
+                        triangleCX  <= std_logic_vector( unsigned( triangleCX ) + 1 );
+            
+                        --CX/CY to edge valid counter
+                        triangleECounter    <= x"4";
+                                        
+                        --CX/CY to iterator value counter
+                        triangleITCounter   <= x"7";
+                            
+                        bltState            <= bsTriangle0;
+                        
+                    end if;
+                
+                end if;
+                
+            when bsTriangleGouraud =>
+            
+                if triangleITCounter = x"0" then
+                
+                    --next pixel
+                    triangleCX  <= std_logic_vector( unsigned( triangleCX ) + 1 );
+        
+                    --CX/CY to edge valid counter
+                    triangleECounter    <= x"4";
+                                    
+                    --CX/CY to iterator value counter
+                    triangleITCounter   <= x"7";
+                    
+                    --early write
+                    bltA            <= std_logic_vector( unsigned( dpDa )  + unsigned( triangleCY & triangleCX( 8 downto 0 ) ) );
+                    bltDOut         <= x"0000" &  triangleIt0Out( 7 downto 3 ) & triangleIt1Out( 7 downto 2 ) & triangleIt2Out( 7 downto 3 );
+    
+                    bltWr           <= '1';
+                    bltDmaRequest   <= '1';
+    
+                    bltReturnState  <= bsTriangle0;
+                    bltState        <= bsSubWrite1;
+                    
+                end if;
+                      
+            when bsTriangleTextured0 =>
+
+                if triangleITCounter = x"0" then
+            
+                    --read texture
+                    --dpSa
+                    --early read
+                    bltA            <= std_logic_vector( unsigned( dpSa )  + unsigned( triangleIt1Out( 7 downto 0 ) & triangleIt0Out( 7 downto 0 ) ) );
+                    bltWr           <= '0';
+                    bltDmaRequest   <= '1';
+                    bltReturnState  <= bsTriangleTextured1;                
+    
+                    bltState        <= bsSubRead1;
+                    
+                end if;
+
+            when bsTriangleTextured1 =>
+                        
+                --next pixel
+                triangleCX  <= std_logic_vector( unsigned( triangleCX ) + 1 );
+    
+                --CX/CY to edge valid counter
+                triangleECounter    <= x"4";
+                                
+                --CX/CY to iterator value counter
+                triangleITCounter   <= x"7";
+                
+                --early write
+                bltA            <= std_logic_vector( unsigned( dpDa )  + unsigned( triangleCY & triangleCX( 8 downto 0 ) ) );
+                bltDOut         <= x"0000" & tsColorOut;    --dmaReadData( 15 downto 0 );
+    
+                bltWr           <= '1';
+                bltDmaRequest   <= '1';
+    
+                bltReturnState  <= bsTriangle0;
+                bltState        <= bsSubWrite1;
+                
+                            
             -- subroutines
             
             -- read subroutine
@@ -1581,7 +1992,10 @@ port map(
     bbXMinOut   => triangleBBXMin,
     bbXMaxOut   => triangleBBXMax,
     bbYMinOut   => triangleBBYMin,
-    bbYMaxOut   => triangleBBYMax
+    bbYMaxOut   => triangleBBYMax,
+    bbWidthOut  => triangleBBWidth,
+    bbHeightOut => triangleBBHeight
+
     
 );
 
@@ -1657,7 +2071,142 @@ port map(
     p_x         => triangleCX,
     p_y         => triangleCY,
   
-    edge        => triangleECB
+    edge        => triangleEAC
 );
+
+-- 0xffffffff / triangle area
+
+triangleAreaDivisorInst:triangleAreaDivisor
+port map(
+
+    reset               => reset,
+    clock               => clock,
+    
+    trigger             => triangleAreaDivTrigger,
+    triangleArea        => triangleArea,
+
+    triangleAreaInv     => triangleAreaInv,
+    ready               => triangleAreaInvValid
+
+);
+
+-- weight calculation
+gouraudWeightBAInst: gouraudWeight
+port map(
+
+   --reset
+    reset   => reset,
+    clock   => clock,
+    
+    edge    => triangleEBA,
+    areaInv => triangleAreaInv,
+    weight  => triangleWBA
+);
+
+gouraudWeightCBInst: gouraudWeight
+port map(
+
+   --reset
+    reset   => reset,
+    clock   => clock,
+    
+    edge    => triangleECB,
+    areaInv => triangleAreaInv,
+    weight  => triangleWCB
+);
+
+gouraudWeightACInst: gouraudWeight
+port map(
+
+   --reset
+    reset   => reset,
+    clock   => clock,
+    
+    edge    => triangleEAC,
+    areaInv => triangleAreaInv,
+    weight  => triangleWAC
+);
+
+--gouraud iterators ( 8-bit )
+
+gouraudIterator0Inst:gouraudIterator
+port map(
+
+    reset       => reset,
+    clock       => clock,
+       
+    weightCB    => triangleWCB,
+    weightAC    => triangleWAC,
+    weightBA    => triangleWBA,
+
+    valA        => aIt0Reg,
+    valB        => bIt0Reg,
+    valC        => cIt0Reg,
+
+    valOut      => triangleIt0Out
+);
+
+gouraudIterator1Inst:gouraudIterator
+port map(
+
+    reset       => reset,
+    clock       => clock,
+       
+    weightCB    => triangleWCB,
+    weightAC    => triangleWAC,
+    weightBA    => triangleWBA,
+
+    valA        => aIt1Reg,
+    valB        => bIt1Reg,
+    valC        => cIt1Reg,
+
+    valOut      => triangleIt1Out
+);
+
+gouraudIterator2Inst:gouraudIterator
+port map(
+
+    reset       => reset,
+    clock       => clock,
+       
+    weightCB    => triangleWCB,
+    weightAC    => triangleWAC,
+    weightBA    => triangleWBA,
+
+    valA        => aIt2Reg,
+    valB        => bIt2Reg,
+    valC        => cIT2Reg,
+
+    valOut      => triangleIt2Out
+);
+
+gouraudIterator3Inst:gouraudIterator16
+port map(
+
+    reset       => reset,
+    clock       => clock,
+       
+    weightCB    => triangleWCB,
+    weightAC    => triangleWAC,
+    weightBA    => triangleWBA,
+
+    valA        => aZReg,
+    valB        => bZReg,
+    valC        => cZReg,
+
+    valOut      => triangleIt3Out
+);
+
+--texture shader ( light )
+textureShaderInst:textureShader
+port map(
+    reset       => reset,
+    clock       => clock,
+       
+    colorIn     => dmaReadData( 15 downto 0 ),
+    lightIn     => triangleIt2Out( 7 downto 3 ),
+    colorOut    => tsColorOut
+);
+
     
 end Behavioral;

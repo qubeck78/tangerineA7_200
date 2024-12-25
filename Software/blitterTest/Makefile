@@ -8,7 +8,7 @@
 #https://github.com/qubeck78/srecsend
 #
 
-PORT = com3
+PORT = auto
 TARGET = blitterTest
 
 #CC = riscv-none-embed-gcc -march=rv32im -mno-div -c -O3 

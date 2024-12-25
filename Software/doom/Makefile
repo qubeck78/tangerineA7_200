@@ -8,7 +8,7 @@
 #https://github.com/qubeck78/srecsend
 #
 
-PORT = com7
+PORT = auto
 TARGET = doom
 
 CC = riscv-none-embed-gcc -march=rv32im -c -O2 -I./ -I./doom/src

@@ -486,19 +486,44 @@ int objvCalc3d( tgfBitmap *pscr )
 
 int objvDisplayObj( tgfBitmap *pscr )
 {
-	int 			 i;
+	int 			 	 i;
 	tgfTriangle3D	*triangle;
 
 	
 
 	//copy background to screen buffer
-	gfBlitBitmap( pscr, &background, 0, 0 );
+	//gfBlitBitmap( pscr, &background, 0, 0 );
+      
+   blt->saAddress       = (uint32_t)background.buffer;
+   blt->saRowWidth      = 160;
+   blt->saWidth         = 160;
+   blt->saHeight        = 240;
+
+   blt->daAddress       = (uint32_t)pscr->buffer;
+   blt->daRowWidth      = 256;
+   blt->daWidth         = 160;
+   blt->daHeight        = 240;
+
+   blt->command         = 0x1200;
+   
+   while( ! ( blt->command & 1 ) );
+
 
 	//calc point cloud
 	objvCalc3d( pscr );
 
 	//clear zbuffer
-	gfFillRect( &zBuffer, 0, 0, 319, 239, 0xffff );
+	//gfFillRect( &zBuffer, 0, 0, 319, 239, 0xffff );
+
+   blt->daAddress       = (uint32_t)zBuffer.buffer;
+   blt->daRowWidth      = 256;
+   blt->daWidth         = 160;
+   blt->daHeight        = 240;
+   blt->input0          = 0xffffffff;
+
+   blt->command         = 0x1100;
+   
+   while( ! ( blt->command & 1 ) );
 
 
 	//draw scene
@@ -508,16 +533,14 @@ int objvDisplayObj( tgfBitmap *pscr )
 		
 		case 0:
 
-			#ifdef _GFXLIB_HW_BLITTER_3D
+			//#ifdef _GFXLIB_HW_BLITTER_3D
 
-			//bounding box calculated in hw
-
-			blt->bltTransferWidth	= 320;			//screen size
-			blt->bltTransferHeight	= 240;
-			blt->bltDstModulo		= 512;			//screen modulo
-
-			blt->bltDstAddress 				= ( uint32_t )(( ( uint32_t )pscr->buffer - _SYSTEM_MEMORY_BASE ) / 2);
-			blt->bltGouraudZBufferAddress	= ( uint32_t )(( ( uint32_t )zBuffer.buffer - _SYSTEM_MEMORY_BASE ) / 2);
+			blt->daAddress  = (uint32_t)pscr->buffer;
+    		blt->dbAddress  = (uint32_t)zBuffer.buffer;
+			blt->bbXMin = 0;
+		   blt->bbXMax = 319;
+		   blt->bbYMin = 0;
+		   blt->bbYMax = 239;
 
 			for( i = 0 ; i < numTriangles; i++ )
 			{
@@ -530,78 +553,123 @@ int objvDisplayObj( tgfBitmap *pscr )
 				{
 
 					//wait until blit complete
-					do{}while( ! ( blt->bltStatus & 1 ) );
+         		while( ! ( blt->command & 1 ) );
 
 					//pass triangle coordinates/texture coordinates to gouraud hardware
 					
-					blt->c0CX = triangle->c->x2D;
-					blt->c0CY = triangle->c->y2D;
-					blt->c0CZ = triangle->c->z2D;
-					
-					blt->c0BX = triangle->b->x2D;
-					blt->c0BY = triangle->b->y2D;
-					blt->c0BZ = triangle->b->z2D;
-					
-					blt->c0AX = triangle->a->x2D;
-					blt->c0AY = triangle->a->y2D;
-					blt->c0AZ = triangle->a->z2D;
-					
-					blt->c0it0A = triangle->aTx2D;
-					blt->c0it0B = triangle->bTx2D;
-					blt->c0it0C = triangle->cTx2D;
+					blt->aX     = triangle->a->x2D;
+    				blt->aY     = triangle->a->y2D;
+    				blt->aZ     = triangle->a->z2D;
+    
+    				blt->bX     = triangle->b->x2D;
+    				blt->bY     = triangle->b->y2D;
+    				blt->bZ     = triangle->b->z2D;
 
-					blt->c0it1A = triangle->aTy2D;
-					blt->c0it1B = triangle->bTy2D;
-					blt->c0it1C = triangle->cTy2D;
-					
-					blt->c0it2A = triangle->a->r;
-					blt->c0it2B = triangle->b->r;
-					blt->c0it2C = triangle->c->r;
+    				blt->cX     = triangle->c->x2D;
+    				blt->cY     = triangle->c->y2D;
+    				blt->cZ     = triangle->c->z2D;          //triggers triangleArea and triangleAreaInv calculations
 
-					if( blt->c0Area > 0 )
+					blt->aIt0   = triangle->aTx2D;
+    				blt->aIt1   = triangle->aTy2D;
+    				blt->aIt2   = triangle->a->r;
+
+    				blt->bIt0   = triangle->bTx2D;
+    				blt->bIt1   = triangle->bTy2D;
+    				blt->bIt2   = triangle->b->r;
+
+    				blt->cIt0   = triangle->cTx2D;
+    				blt->cIt1   = triangle->cTy2D;
+    				blt->cIt2   = triangle->c->r;
+
+
+					if( blt->triangleArea > 0 )
 					{
 						//triangle facing front
 					
-						//config blitter to draw textured triangle using gouraud iterators
-						
-						blt->bltConfig0			= 0x1405;		//blitter mode: 
-																//textured RGB triangle with light on iterator 2, 
-																//texture size 256x256 px
-																//zbuffer enabled
-																//
-																//trigger bounding box calc
-						
-
 						//set texture address
-						blt->bltSrcAddress 		= ( uint32_t )(( ( uint32_t )triangle->texture->buffer - _SYSTEM_MEMORY_BASE ) / 2);
-				
-						blt->bltStatus			= 0x1;			//run			
-						
+						blt->saAddress  = (uint32_t)triangle->texture->buffer;
+
+						//run ( textured, shaded triangle with z-buffer )
+						blt->command = 0x0520;
+
 					}
 				}
 			}
-			//wait until last blit complete
-			do{}while( ! ( blt->bltStatus & 1 ) );
+			
+			do{}while( ! ( blt->command & 1 ) );
 
-			#endif
+			//#endif
 			
 			break;
 
 		case 1:
 
-			#ifdef _GFXLIB_HW_BLITTER_3D
+			//#ifdef _GFXLIB_HW_BLITTER_3D
+
+			blt->daAddress  = (uint32_t)pscr->buffer;
+    		blt->dbAddress  = (uint32_t)zBuffer.buffer;
+			blt->bbXMin = 0;
+		   blt->bbXMax = 319;
+		   blt->bbYMin = 0;
+		   blt->bbYMax = 239;
 
 			for( i = 0 ; i < numTriangles; i++ )
 			{
+
+
+				triangle = &triangles[i];
+
 				//clip offscreen (Z) triangles
-				if( ( triangles[i].a->z2D > 0 ) && ( triangles[i].b->z2D > 0 ) && ( triangles[i].c->z2D > 0 ) )
+				if( ( triangle->a->z2D > 0 ) && ( triangle->b->z2D > 0 ) && ( triangle->c->z2D > 0 ) )
 				{
-					gfGouraudDrawTriangleZBufferBlt( pscr, &zBuffer, &triangles[i] );
+
+					//wait until blit complete
+         		while( ! ( blt->command & 1 ) );
+
+					//pass triangle coordinates/texture coordinates to gouraud hardware
+					
+					blt->aX     = triangle->a->x2D;
+    				blt->aY     = triangle->a->y2D;
+    				blt->aZ     = triangle->a->z2D;
+    
+    				blt->bX     = triangle->b->x2D;
+    				blt->bY     = triangle->b->y2D;
+    				blt->bZ     = triangle->b->z2D;
+
+    				blt->cX     = triangle->c->x2D;
+    				blt->cY     = triangle->c->y2D;
+    				blt->cZ     = triangle->c->z2D;          //triggers triangleArea and triangleAreaInv calculations
+
+					blt->aIt0   = triangle->a->r;
+    				blt->aIt1   = triangle->a->g;
+    				blt->aIt2   = triangle->a->b;
+
+    				blt->bIt0   = triangle->b->r;
+    				blt->bIt1   = triangle->b->g;
+    				blt->bIt2   = triangle->b->b;
+
+    				blt->cIt0   = triangle->c->r;
+    				blt->cIt1   = triangle->c->g;
+    				blt->cIt2   = triangle->c->b;
+
+
+					if( blt->triangleArea > 0 )
+					{
+						//triangle facing front
+					
+						//run ( gouraud triangle with z-buffer )
+						blt->command = 0x0510;
+
+					}
 				}
 			}
+			
+			do{}while( ! ( blt->command & 1 ) );
 
-			#endif			
+			//#endif
+			
 			break;
+
 
 		case 2:
 
@@ -746,7 +814,10 @@ int objvView( char* fileName )
 	rendererType = 2;
 	#endif
 
-	
+
+	//remove when blitter3d defined
+	rendererType = 0;
+
 	do
 	{
 					
@@ -790,6 +861,10 @@ int objvView( char* fileName )
 							#else
 							rendererType = 2;
 							#endif
+
+							//remove when blitter 3d defined
+							rendererType = 0;
+
 						}
 
 						break;

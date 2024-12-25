@@ -1,3 +1,4 @@
+
 #
 #to compile and send to board invoke 'make send'
 #adjust com port number in 'send' section if sending fails
@@ -12,7 +13,7 @@
 #https://github.com/qubeck78/tangyLink
 #
 
-PORT = com10
+PORT = auto
 TARGET = shell
 
 CC = riscv-none-embed-gcc -march=rv32im -c -O3
@@ -20,6 +21,7 @@ LD = riscv-none-embed-ld -T ram.ld
 NM = riscv-none-embed-nm -n 
 OBJCOPY = riscv-none-embed-objcopy
 OBJDUMP = riscv-none-embed-objdump 
+OBJSIZE = riscv-none-embed-size
 LIBGCC =   "c:\Program Files\riscv-none-gcc\lib\gcc\riscv-none-embed\8.2.0\rv32im\ilp32\libgcc.a"
 LIBSTDCC = "c:\Program Files\riscv-none-gcc\riscv-none-embed\lib\rv32im\ilp32\libstdc++.a"
 LIBC     = "c:\Program Files\riscv-none-gcc\riscv-none-embed\lib\rv32im\ilp32\libc.a"
