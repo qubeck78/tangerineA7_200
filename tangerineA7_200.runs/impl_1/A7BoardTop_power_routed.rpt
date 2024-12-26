@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date             : Wed Dec 25 23:40:28 2024
+| Date             : Thu Dec 26 22:11:56 2024
 | Host             : Desktop-qUBECk running 64-bit major release  (build 9200)
 | Command          : report_power -file A7BoardTop_power_routed.rpt -pb A7BoardTop_power_summary_routed.pb -rpx A7BoardTop_power_routed.rpx
 | Design           : A7BoardTop
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.637        |
+| Total On-Chip Power (W)  | 0.642        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.485        |
+| Dynamic (W)              | 0.490        |
 | Device Static (W)        | 0.152        |
 | Effective TJA (C/W)      | 1.9          |
 | Max Ambient (C)          | 83.8         |
@@ -53,21 +53,21 @@ Table of Contents
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
 | Clocks                  |     0.032 |       11 |       --- |             --- |
-| Slice Logic             |     0.012 |    18901 |       --- |             --- |
-|   LUT as Logic          |     0.011 |     8065 |    133800 |            6.03 |
+| Slice Logic             |     0.012 |    18932 |       --- |             --- |
+|   LUT as Logic          |     0.011 |     8079 |    133800 |            6.04 |
 |   CARRY4                |     0.001 |      630 |     33450 |            1.88 |
 |   Register              |    <0.001 |     6969 |    269200 |            2.59 |
-|   F7/F8 Muxes           |    <0.001 |      770 |    133800 |            0.58 |
+|   F7/F8 Muxes           |    <0.001 |      765 |    133800 |            0.57 |
 |   Others                |     0.000 |      983 |       --- |             --- |
 |   BUFG                  |     0.000 |        2 |        32 |            6.25 |
 |   LUT as Shift Register |     0.000 |        7 |     46200 |            0.02 |
-| Signals                 |     0.016 |    17273 |       --- |             --- |
-| Block RAM               |     0.023 |    269.5 |       365 |           73.84 |
+| Signals                 |     0.018 |    17316 |       --- |             --- |
+| Block RAM               |     0.024 |    269.5 |       365 |           73.84 |
 | MMCM                    |     0.229 |        2 |        10 |           20.00 |
-| DSPs                    |     0.016 |       42 |       740 |            5.68 |
+| DSPs                    |     0.018 |       42 |       740 |            5.68 |
 | I/O                     |     0.156 |       83 |       400 |           20.75 |
 | Static Power            |     0.152 |          |           |                 |
-| Total                   |     0.637 |          |           |                 |
+| Total                   |     0.642 |          |           |                 |
 +-------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -77,7 +77,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.137 |       0.100 |      0.038 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.143 |       0.105 |      0.038 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.158 |       0.127 |      0.031 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.051 |       0.046 |      0.005 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -154,19 +154,20 @@ Table of Contents
 +-------------------------------+-----------+
 | Name                          | Power (W) |
 +-------------------------------+-----------+
-| A7BoardTop                    |     0.485 |
+| A7BoardTop                    |     0.490 |
 |   clk_wiz_0Inst               |     0.107 |
 |     inst                      |     0.107 |
 |   clk_wiz_1Inst               |     0.123 |
 |     inst                      |     0.123 |
 |   dvidInst                    |     0.002 |
-|   tangerineSOCInst            |     0.095 |
+|   tangerineSOCInst            |     0.100 |
 |     UARTInst                  |     0.002 |
-|     blitterInst               |     0.034 |
-|       boundingBoxInst         |     0.002 |
+|     blitterInst               |     0.037 |
+|       boundingBoxInst         |     0.001 |
 |       gouraudEACInst          |     0.002 |
 |       gouraudEBAInst          |     0.002 |
 |       gouraudECBInst          |     0.002 |
+|       gouraudEdgeAreaInst     |     0.003 |
 |       gouraudIterator0Inst    |     0.001 |
 |       gouraudIterator1Inst    |     0.001 |
 |       gouraudIterator3Inst    |     0.002 |
@@ -177,9 +178,9 @@ Table of Contents
 |     fastRamInst               |     0.009 |
 |       U0                      |     0.009 |
 |     i2sControllerInst         |     0.003 |
-|     nekoRvInst                |     0.017 |
-|     pixelGenGfxInst           |     0.003 |
-|       gfxPaletteRamInst       |     0.002 |
+|     nekoRvInst                |     0.018 |
+|     pixelGenGfxInst           |     0.004 |
+|       gfxPaletteRamInst       |     0.003 |
 |     sdramDMAInst              |     0.007 |
 |       gfxBufRamInst           |     0.001 |
 |     spriteGenInst             |     0.004 |

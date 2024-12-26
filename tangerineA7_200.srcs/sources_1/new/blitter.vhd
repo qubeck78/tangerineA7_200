@@ -387,6 +387,8 @@ signal  triangleITCounter:  std_logic_vector( 3 downto 0 );
 --texture shader
 signal tsColorOut:          std_logic_vector( 15 downto 0 );
 
+signal triangleInside:      std_logic;
+
 begin  
         
  
@@ -1269,7 +1271,8 @@ begin
 
                             triangleCX          <= triangleBBXMin;
                             triangleCY          <= triangleBBYMin;
-                            
+                            triangleInside      <= '0';
+                                   
                             --CX/CY to edge valid counter
                             triangleECounter    <= x"4";
                             
@@ -1707,11 +1710,12 @@ begin
             
                 --end if line
                 if counterX = x"0000" then
-                                  
-                    counterX    <= triangleBBWidth;
+                            
+                    triangleInside  <= '0';      
+                    counterX        <= triangleBBWidth;
                     
-                    triangleCX  <= triangleBBXMin;
-                    triangleCY  <= std_logic_vector( unsigned( triangleCY ) + 1 );
+                    triangleCX      <= triangleBBXMin;
+                    triangleCY      <= std_logic_vector( unsigned( triangleCY ) + 1 );
                     
                     --CX/CY to edge valid counter
                     triangleECounter    <= x"4";                    
@@ -1741,6 +1745,7 @@ begin
                         
                         if triangleEBA( 31 ) = '0' and triangleECB( 31 ) = '0' and triangleEAC( 31 ) = '0' then
                         
+                            triangleInside  <= '1';
                             --check what kind of triangle we are drawing
                             
                             if commandReg( 7 downto 4 ) = x"0" then
@@ -1754,16 +1759,29 @@ begin
                             end if;
                             
                         else
-                    
-                            --next pixel
-                            triangleCX  <= std_logic_vector( unsigned( triangleCX ) + 1 );
-        
-                            --CX/CY to edge valid counter
-                            triangleECounter    <= x"4";                    
                         
-                            --CX/CY to iterator value counter
-                            triangleITCounter   <= x"7";
+                            --check if triangle drawn
+                            if triangleInside = '1' then
                             
+                                --go to end of line
+                                
+                                counterX <= x"0000";
+                                
+                                
+                            else
+                                --not yet
+                                
+                                --next pixel
+                                triangleCX  <= std_logic_vector( unsigned( triangleCX ) + 1 );
+        
+                                --CX/CY to edge valid counter
+                                triangleECounter    <= x"4";                    
+                        
+                                --CX/CY to iterator value counter
+                                triangleITCounter   <= x"7";
+                            
+                            end if;
+                        
                         end if;
                         
                    end if;
