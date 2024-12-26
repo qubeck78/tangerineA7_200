@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a200tfbg676-1" LaunchTime="1731493246" LaunchWriteIncrSynthDcp="true">
+<GenRun Id="synth_1" LaunchPart="xc7a200tfbg676-1" LaunchTime="1735246983" LaunchWriteIncrSynthDcp="true">
   <File Type="PA-TCL" Name="A7BoardTop.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="A7BoardTop_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="A7BoardTop_reports.tcl"/>
@@ -44,6 +44,36 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/blitter.vhd">
+      <FileInfo SFType="VHDL2019">
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/boundingBox.vhd">
+      <FileInfo SFType="VHDL2019">
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/gouraudEdge.vhd">
+      <FileInfo SFType="VHDL2019">
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/gouraudIterator.vhd">
+      <FileInfo SFType="VHDL2019">
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/gouraudIterator16.vhd">
+      <FileInfo SFType="VHDL2019">
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/gouraudWeight.vhd">
       <FileInfo SFType="VHDL2019">
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -98,6 +128,18 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/tangerineSOC.vhd">
+      <FileInfo SFType="VHDL2019">
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/textureShader.vhd">
+      <FileInfo SFType="VHDL2019">
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/triangleAreaDivisor.vhd">
       <FileInfo SFType="VHDL2019">
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>

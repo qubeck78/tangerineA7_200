@@ -3,8 +3,8 @@
 # SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Wed Nov 13 11:20:49 2024
-# Process ID: 17532
+# Start of session at: Thu Dec 26 22:03:09 2024
+# Process ID: 22088
 # Current directory: C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1
 # Command line: vivado.exe -log A7BoardTop.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source A7BoardTop.tcl
 # Log file: C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/A7BoardTop.vds
@@ -12,7 +12,7 @@
 # Running On: Desktop-qUBECk, OS: Windows, CPU Frequency: 4104 MHz, CPU Physical cores: 6, Host memory: 34266 MB
 #-----------------------------------------------------------
 source A7BoardTop.tcl -notrace
-create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 534.332 ; gain = 183.160
+create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 534.867 ; gain = 183.715
 Command: synth_design -top A7BoardTop -part xc7a200tfbg676-1
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a200t'
@@ -20,9 +20,9 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a200
 INFO: [Device 21-403] Loading part xc7a200tfbg676-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 3400
+INFO: [Synth 8-7075] Helper process launched with PID 24540
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1440.605 ; gain = 440.797
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 1439.754 ; gain = 438.918
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-6901] identifier 'dmi' is used before its declaration [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host.v:217]
 WARNING: [Synth 8-6901] identifier 'dpi' is used before its declaration [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host.v:219]
@@ -42,10 +42,10 @@ WARNING: [Synth 8-6901] identifier 'ukprdyd' is used before its declaration [C:/
 WARNING: [Synth 8-6901] identifier 'nakd' is used before its declaration [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host.v:351]
 WARNING: [Synth 8-6901] identifier 'ukprdyd' is used before its declaration [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host.v:352]
 INFO: [Synth 8-638] synthesizing module 'A7BoardTop' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/A7BoardTop.vhd:87]
-INFO: [Synth 8-3491] module 'clk_wiz_0' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17532-Desktop-qUBECk/realtime/clk_wiz_0_stub.vhdl:6' bound to instance 'clk_wiz_0Inst' of component 'clk_wiz_0' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/A7BoardTop.vhd:268]
-INFO: [Synth 8-638] synthesizing module 'clk_wiz_0' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17532-Desktop-qUBECk/realtime/clk_wiz_0_stub.vhdl:22]
-INFO: [Synth 8-3491] module 'clk_wiz_1' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17532-Desktop-qUBECk/realtime/clk_wiz_1_stub.vhdl:6' bound to instance 'clk_wiz_1Inst' of component 'clk_wiz_1' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/A7BoardTop.vhd:289]
-INFO: [Synth 8-638] synthesizing module 'clk_wiz_1' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17532-Desktop-qUBECk/realtime/clk_wiz_1_stub.vhdl:16]
+INFO: [Synth 8-3491] module 'clk_wiz_0' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-22088-Desktop-qUBECk/realtime/clk_wiz_0_stub.vhdl:6' bound to instance 'clk_wiz_0Inst' of component 'clk_wiz_0' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/A7BoardTop.vhd:268]
+INFO: [Synth 8-638] synthesizing module 'clk_wiz_0' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-22088-Desktop-qUBECk/realtime/clk_wiz_0_stub.vhdl:22]
+INFO: [Synth 8-3491] module 'clk_wiz_1' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-22088-Desktop-qUBECk/realtime/clk_wiz_1_stub.vhdl:6' bound to instance 'clk_wiz_1Inst' of component 'clk_wiz_1' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/A7BoardTop.vhd:289]
+INFO: [Synth 8-638] synthesizing module 'clk_wiz_1' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-22088-Desktop-qUBECk/realtime/clk_wiz_1_stub.vhdl:16]
 INFO: [Synth 8-113] binding component instance 'OBUFDS_blue' to cell 'OBUFDS' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/A7BoardTop.vhd:306]
 INFO: [Synth 8-113] binding component instance 'OBUFDS_green' to cell 'OBUFDS' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/A7BoardTop.vhd:307]
 INFO: [Synth 8-113] binding component instance 'OBUFDS_red' to cell 'OBUFDS' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/A7BoardTop.vhd:308]
@@ -76,12 +76,12 @@ INFO: [Synth 8-113] binding component instance 'ODDR2_clock' to cell 'ODDR2' [C:
 INFO: [Synth 8-256] done synthesizing module 'dvid' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/dvid.vhd:31]
 INFO: [Synth 8-3491] module 'tangerineSOC' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:31' bound to instance 'tangerineSOCInst' of component 'tangerineSOC' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/A7BoardTop.vhd:336]
 INFO: [Synth 8-638] synthesizing module 'tangerineSOC' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:93]
-INFO: [Synth 8-3491] module 'fontPROM' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17532-Desktop-qUBECk/realtime/fontPROM_stub.vhdl:6' bound to instance 'fontPromInst' of component 'fontPROM' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:735]
-INFO: [Synth 8-638] synthesizing module 'fontPROM' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17532-Desktop-qUBECk/realtime/fontPROM_stub.vhdl:15]
-INFO: [Synth 8-3491] module 'systemRam' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17532-Desktop-qUBECk/realtime/systemRam_stub.vhdl:6' bound to instance 'systemRamInst' of component 'systemRam' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:744]
-INFO: [Synth 8-638] synthesizing module 'systemRam' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17532-Desktop-qUBECk/realtime/systemRam_stub.vhdl:22]
-INFO: [Synth 8-3491] module 'fastRam' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17532-Desktop-qUBECk/realtime/fastRam_stub.vhdl:6' bound to instance 'fastRamInst' of component 'fastRam' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:782]
-INFO: [Synth 8-638] synthesizing module 'fastRam' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17532-Desktop-qUBECk/realtime/fastRam_stub.vhdl:17]
+INFO: [Synth 8-3491] module 'fontPROM' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-22088-Desktop-qUBECk/realtime/fontPROM_stub.vhdl:6' bound to instance 'fontPromInst' of component 'fontPROM' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:735]
+INFO: [Synth 8-638] synthesizing module 'fontPROM' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-22088-Desktop-qUBECk/realtime/fontPROM_stub.vhdl:15]
+INFO: [Synth 8-3491] module 'systemRam' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-22088-Desktop-qUBECk/realtime/systemRam_stub.vhdl:6' bound to instance 'systemRamInst' of component 'systemRam' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:744]
+INFO: [Synth 8-638] synthesizing module 'systemRam' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-22088-Desktop-qUBECk/realtime/systemRam_stub.vhdl:22]
+INFO: [Synth 8-3491] module 'fastRam' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-22088-Desktop-qUBECk/realtime/fastRam_stub.vhdl:6' bound to instance 'fastRamInst' of component 'fastRam' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:782]
+INFO: [Synth 8-638] synthesizing module 'fastRam' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-22088-Desktop-qUBECk/realtime/fastRam_stub.vhdl:17]
 INFO: [Synth 8-3491] module 'pixelGenTxt' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/pixelGenTxt.vhd:12' bound to instance 'pixelGenInst' of component 'pixelGenTxt' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:813]
 INFO: [Synth 8-638] synthesizing module 'pixelGenTxt' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/pixelGenTxt.vhd:77]
 INFO: [Synth 8-226] default block is never used [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/pixelGenTxt.vhd:113]
@@ -90,14 +90,14 @@ INFO: [Synth 8-256] done synthesizing module 'pixelGenTxt' (0#1) [C:/Users/qubec
 INFO: [Synth 8-3491] module 'pixelGenGfx' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/pixelGenGfx.vhd:6' bound to instance 'pixelGenGfxInst' of component 'pixelGenGfx' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:847]
 INFO: [Synth 8-638] synthesizing module 'pixelGenGfx' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/pixelGenGfx.vhd:60]
 INFO: [Synth 8-226] default block is never used [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/pixelGenGfx.vhd:132]
-INFO: [Synth 8-3491] module 'gfxPaletteRam' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17532-Desktop-qUBECk/realtime/gfxPaletteRam_stub.vhdl:6' bound to instance 'gfxPaletteRamInst' of component 'gfxPaletteRam' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/pixelGenGfx.vhd:844]
-INFO: [Synth 8-638] synthesizing module 'gfxPaletteRam' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17532-Desktop-qUBECk/realtime/gfxPaletteRam_stub.vhdl:22]
+INFO: [Synth 8-3491] module 'gfxPaletteRam' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-22088-Desktop-qUBECk/realtime/gfxPaletteRam_stub.vhdl:6' bound to instance 'gfxPaletteRamInst' of component 'gfxPaletteRam' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/pixelGenGfx.vhd:844]
+INFO: [Synth 8-638] synthesizing module 'gfxPaletteRam' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-22088-Desktop-qUBECk/realtime/gfxPaletteRam_stub.vhdl:22]
 INFO: [Synth 8-256] done synthesizing module 'pixelGenGfx' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/pixelGenGfx.vhd:60]
 INFO: [Synth 8-3491] module 'spriteGen' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/spriteGen.vhd:31' bound to instance 'spriteGenInst' of component 'spriteGen' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:889]
 INFO: [Synth 8-638] synthesizing module 'spriteGen' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/spriteGen.vhd:64]
 INFO: [Synth 8-226] default block is never used [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/spriteGen.vhd:142]
-INFO: [Synth 8-3491] module 'spriteDPRam' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17532-Desktop-qUBECk/realtime/spriteDPRam_stub.vhdl:6' bound to instance 'spriteDPRamInst' of component 'spriteDPRam' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/spriteGen.vhd:387]
-INFO: [Synth 8-638] synthesizing module 'spriteDPRam' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17532-Desktop-qUBECk/realtime/spriteDPRam_stub.vhdl:22]
+INFO: [Synth 8-3491] module 'spriteDPRam' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-22088-Desktop-qUBECk/realtime/spriteDPRam_stub.vhdl:6' bound to instance 'spriteDPRamInst' of component 'spriteDPRam' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/spriteGen.vhd:387]
+INFO: [Synth 8-638] synthesizing module 'spriteDPRam' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-22088-Desktop-qUBECk/realtime/spriteDPRam_stub.vhdl:22]
 INFO: [Synth 8-256] done synthesizing module 'spriteGen' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/spriteGen.vhd:64]
 INFO: [Synth 8-226] default block is never used [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:945]
 INFO: [Synth 8-3491] module 'nekoRv' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/nekoRv.vhd:22' bound to instance 'nekoRvInst' of component 'nekoRv' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:1132]
@@ -118,8 +118,8 @@ INFO: [Synth 8-3491] module 'inputSync' declared at 'C:/Users/qubec/Documents/De
 INFO: [Synth 8-638] synthesizing module 'inputSync' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/InputSync.vhd:26]
 	Parameter inputWidth bound to: 1 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'inputSync' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/InputSync.vhd:26]
-INFO: [Synth 8-3491] module 'uartFiFo' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17532-Desktop-qUBECk/realtime/uartFiFo_stub.vhdl:6' bound to instance 'rxFiFoInst' of component 'uartFiFo' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/uart.vhd:256]
-INFO: [Synth 8-638] synthesizing module 'uartFiFo' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17532-Desktop-qUBECk/realtime/uartFiFo_stub.vhdl:22]
+INFO: [Synth 8-3491] module 'uartFiFo' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-22088-Desktop-qUBECk/realtime/uartFiFo_stub.vhdl:6' bound to instance 'rxFiFoInst' of component 'uartFiFo' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/uart.vhd:256]
+INFO: [Synth 8-638] synthesizing module 'uartFiFo' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-22088-Desktop-qUBECk/realtime/uartFiFo_stub.vhdl:22]
 INFO: [Synth 8-256] done synthesizing module 'UART' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/uart.vhd:39]
 INFO: [Synth 8-3491] module 'SPI' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/spi.vhd:7' bound to instance 'SPIInst' of component 'SPI' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:1425]
 INFO: [Synth 8-638] synthesizing module 'SPI' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/spi.vhd:32]
@@ -127,8 +127,8 @@ INFO: [Synth 8-226] default block is never used [C:/Users/qubec/Documents/Develo
 INFO: [Synth 8-256] done synthesizing module 'SPI' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/spi.vhd:32]
 INFO: [Synth 8-3491] module 'i2sController' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/i2sController.vhd:9' bound to instance 'i2sControllerInst' of component 'i2sController' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:1455]
 INFO: [Synth 8-638] synthesizing module 'i2sController' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/i2sController.vhd:39]
-INFO: [Synth 8-3491] module 'i2sControllerFifo' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17532-Desktop-qUBECk/realtime/i2sControllerFifo_stub.vhdl:6' bound to instance 'i2sControllerFifoInst' of component 'i2sControllerFifo' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/i2sController.vhd:136]
-INFO: [Synth 8-638] synthesizing module 'i2sControllerFifo' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17532-Desktop-qUBECk/realtime/i2sControllerFifo_stub.vhdl:24]
+INFO: [Synth 8-3491] module 'i2sControllerFifo' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-22088-Desktop-qUBECk/realtime/i2sControllerFifo_stub.vhdl:6' bound to instance 'i2sControllerFifoInst' of component 'i2sControllerFifo' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/i2sController.vhd:136]
+INFO: [Synth 8-638] synthesizing module 'i2sControllerFifo' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-22088-Desktop-qUBECk/realtime/i2sControllerFifo_stub.vhdl:24]
 INFO: [Synth 8-226] default block is never used [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/i2sController.vhd:193]
 INFO: [Synth 8-226] default block is never used [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/i2sController.vhd:688]
 INFO: [Synth 8-256] done synthesizing module 'i2sController' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/i2sController.vhd:39]
@@ -149,21 +149,50 @@ INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/qube
 INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host.v:104]
 INFO: [Synth 8-6155] done synthesizing module 'usb_hid_host' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host.v:12]
 INFO: [Synth 8-3491] module 'usb_hid_host' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host.v:12' bound to instance 'usb_hid_host1Inst' of component 'usb_hid_host' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usbHost.vhd:428]
-INFO: [Synth 8-3491] module 'keyboardFifo' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17532-Desktop-qUBECk/realtime/keyboardFifo_stub.vhdl:6' bound to instance 'keyboardFifoinst' of component 'keyboardFifo' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usbHost.vhd:459]
-INFO: [Synth 8-638] synthesizing module 'keyboardFifo' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17532-Desktop-qUBECk/realtime/keyboardFifo_stub.vhdl:23]
+INFO: [Synth 8-3491] module 'keyboardFifo' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-22088-Desktop-qUBECk/realtime/keyboardFifo_stub.vhdl:6' bound to instance 'keyboardFifoinst' of component 'keyboardFifo' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usbHost.vhd:459]
+INFO: [Synth 8-638] synthesizing module 'keyboardFifo' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-22088-Desktop-qUBECk/realtime/keyboardFifo_stub.vhdl:23]
 INFO: [Synth 8-256] done synthesizing module 'usbHost' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usbHost.vhd:38]
 INFO: [Synth 8-3491] module 'sdramDMA' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/sdramDMA.vhd:32' bound to instance 'sdramDMAInst' of component 'sdramDMA' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:1523]
 INFO: [Synth 8-638] synthesizing module 'sdramDMA' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/sdramDMA.vhd:105]
 INFO: [Synth 8-226] default block is never used [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/sdramDMA.vhd:198]
-INFO: [Synth 8-3491] module 'gfxBufRam' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17532-Desktop-qUBECk/realtime/gfxBufRam_stub.vhdl:6' bound to instance 'gfxBufRamInst' of component 'gfxBufRam' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/sdramDMA.vhd:1536]
-INFO: [Synth 8-638] synthesizing module 'gfxBufRam' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-17532-Desktop-qUBECk/realtime/gfxBufRam_stub.vhdl:22]
+INFO: [Synth 8-3491] module 'gfxBufRam' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-22088-Desktop-qUBECk/realtime/gfxBufRam_stub.vhdl:6' bound to instance 'gfxBufRamInst' of component 'gfxBufRam' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/sdramDMA.vhd:1536]
+INFO: [Synth 8-638] synthesizing module 'gfxBufRam' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/.Xil/Vivado-22088-Desktop-qUBECk/realtime/gfxBufRam_stub.vhdl:22]
 INFO: [Synth 8-256] done synthesizing module 'sdramDMA' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/sdramDMA.vhd:105]
 INFO: [Synth 8-3491] module 'blitter' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd:29' bound to instance 'blitterInst' of component 'blitter' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:1598]
 INFO: [Synth 8-638] synthesizing module 'blitter' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd:60]
-INFO: [Synth 8-226] default block is never used [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd:225]
-INFO: [Synth 8-3491] module 'pixelAlpha' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/pixelAlpha.vhd:6' bound to instance 'pixelAlphaInst' of component 'pixelAlpha' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd:1140]
+INFO: [Synth 8-226] default block is never used [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd:492]
+INFO: [Synth 8-3491] module 'pixelAlpha' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/pixelAlpha.vhd:6' bound to instance 'pixelAlphaInst' of component 'pixelAlpha' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd:1976]
 INFO: [Synth 8-638] synthesizing module 'pixelAlpha' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/pixelAlpha.vhd:21]
 INFO: [Synth 8-256] done synthesizing module 'pixelAlpha' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/pixelAlpha.vhd:21]
+INFO: [Synth 8-3491] module 'boundingBox' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/boundingBox.vhd:31' bound to instance 'boundingBoxInst' of component 'boundingBox' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd:1990]
+INFO: [Synth 8-638] synthesizing module 'boundingBox' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/boundingBox.vhd:61]
+INFO: [Synth 8-256] done synthesizing module 'boundingBox' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/boundingBox.vhd:61]
+INFO: [Synth 8-3491] module 'gouraudEdge' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudEdge.vhd:6' bound to instance 'gouraudEdgeAreaInst' of component 'gouraudEdge' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd:2024]
+INFO: [Synth 8-638] synthesizing module 'gouraudEdge' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudEdge.vhd:26]
+INFO: [Synth 8-256] done synthesizing module 'gouraudEdge' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudEdge.vhd:26]
+INFO: [Synth 8-3491] module 'gouraudEdge' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudEdge.vhd:6' bound to instance 'gouraudEBAInst' of component 'gouraudEdge' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd:2042]
+INFO: [Synth 8-3491] module 'gouraudEdge' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudEdge.vhd:6' bound to instance 'gouraudECBInst' of component 'gouraudEdge' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd:2060]
+INFO: [Synth 8-3491] module 'gouraudEdge' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudEdge.vhd:6' bound to instance 'gouraudEACInst' of component 'gouraudEdge' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd:2078]
+INFO: [Synth 8-3491] module 'triangleAreaDivisor' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/triangleAreaDivisor.vhd:31' bound to instance 'triangleAreaDivisorInst' of component 'triangleAreaDivisor' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd:2097]
+INFO: [Synth 8-638] synthesizing module 'triangleAreaDivisor' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/triangleAreaDivisor.vhd:46]
+INFO: [Synth 8-226] default block is never used [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/triangleAreaDivisor.vhd:91]
+INFO: [Synth 8-256] done synthesizing module 'triangleAreaDivisor' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/triangleAreaDivisor.vhd:46]
+INFO: [Synth 8-3491] module 'gouraudWeight' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudWeight.vhd:8' bound to instance 'gouraudWeightBAInst' of component 'gouraudWeight' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd:2112]
+INFO: [Synth 8-638] synthesizing module 'gouraudWeight' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudWeight.vhd:24]
+INFO: [Synth 8-256] done synthesizing module 'gouraudWeight' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudWeight.vhd:24]
+INFO: [Synth 8-3491] module 'gouraudWeight' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudWeight.vhd:8' bound to instance 'gouraudWeightCBInst' of component 'gouraudWeight' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd:2124]
+INFO: [Synth 8-3491] module 'gouraudWeight' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudWeight.vhd:8' bound to instance 'gouraudWeightACInst' of component 'gouraudWeight' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd:2136]
+INFO: [Synth 8-3491] module 'gouraudIterator' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudIterator.vhd:6' bound to instance 'gouraudIterator0Inst' of component 'gouraudIterator' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd:2150]
+INFO: [Synth 8-638] synthesizing module 'gouraudIterator' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudIterator.vhd:26]
+INFO: [Synth 8-256] done synthesizing module 'gouraudIterator' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudIterator.vhd:26]
+INFO: [Synth 8-3491] module 'gouraudIterator' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudIterator.vhd:6' bound to instance 'gouraudIterator1Inst' of component 'gouraudIterator' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd:2167]
+INFO: [Synth 8-3491] module 'gouraudIterator' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudIterator.vhd:6' bound to instance 'gouraudIterator2Inst' of component 'gouraudIterator' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd:2184]
+INFO: [Synth 8-3491] module 'gouraudIterator16' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudIterator16.vhd:6' bound to instance 'gouraudIterator3Inst' of component 'gouraudIterator16' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd:2201]
+INFO: [Synth 8-638] synthesizing module 'gouraudIterator16' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudIterator16.vhd:25]
+INFO: [Synth 8-256] done synthesizing module 'gouraudIterator16' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudIterator16.vhd:25]
+INFO: [Synth 8-3491] module 'textureShader' declared at 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/textureShader.vhd:6' bound to instance 'textureShaderInst' of component 'textureShader' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd:2219]
+INFO: [Synth 8-638] synthesizing module 'textureShader' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/textureShader.vhd:20]
+INFO: [Synth 8-256] done synthesizing module 'textureShader' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/textureShader.vhd:20]
 INFO: [Synth 8-256] done synthesizing module 'blitter' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd:60]
 INFO: [Synth 8-256] done synthesizing module 'tangerineSOC' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd:93]
 INFO: [Synth 8-256] done synthesizing module 'A7BoardTop' (0#1) [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/A7BoardTop.vhd:87]
@@ -174,8 +203,20 @@ WARNING: [Synth 8-6014] Unused sequential element regs_reg[0] was removed.  [C:/
 WARNING: [Synth 8-6014] Unused sequential element regs_reg[1] was removed.  [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host.v:153]
 WARNING: [Synth 8-6014] Unused sequential element regs_reg[2] was removed.  [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host.v:153]
 WARNING: [Synth 8-6014] Unused sequential element regs_reg[3] was removed.  [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host.v:153]
-WARNING: [Synth 8-6014] Unused sequential element scColAdd_reg was removed.  [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd:590]
-WARNING: [Synth 8-6014] Unused sequential element dbColAdd_reg was removed.  [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd:593]
+WARNING: [Synth 8-3936] Found unconnected internal register 'mul1_reg' and it is trimmed from '24' to '20' bits. [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudIterator.vhd:42]
+WARNING: [Synth 8-3936] Found unconnected internal register 'mul2_reg' and it is trimmed from '24' to '20' bits. [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudIterator.vhd:43]
+WARNING: [Synth 8-3936] Found unconnected internal register 'mul3_reg' and it is trimmed from '24' to '20' bits. [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudIterator.vhd:44]
+WARNING: [Synth 8-3936] Found unconnected internal register 'mul1_reg' and it is trimmed from '32' to '28' bits. [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudIterator16.vhd:41]
+WARNING: [Synth 8-3936] Found unconnected internal register 'mul2_reg' and it is trimmed from '32' to '28' bits. [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudIterator16.vhd:42]
+WARNING: [Synth 8-3936] Found unconnected internal register 'mul3_reg' and it is trimmed from '32' to '28' bits. [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudIterator16.vhd:43]
+WARNING: [Synth 8-6014] Unused sequential element scColAdd_reg was removed.  [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd:1139]
+WARNING: [Synth 8-6014] Unused sequential element dbColAdd_reg was removed.  [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd:1142]
+WARNING: [Synth 8-7129] Port reset in module textureShader is either unconnected or has no load
+WARNING: [Synth 8-7129] Port colorIn[5] in module textureShader is either unconnected or has no load
+WARNING: [Synth 8-7129] Port reset in module gouraudIterator16 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port reset in module gouraudIterator is either unconnected or has no load
+WARNING: [Synth 8-7129] Port reset in module gouraudWeight is either unconnected or has no load
+WARNING: [Synth 8-7129] Port reset in module boundingBox is either unconnected or has no load
 WARNING: [Synth 8-7129] Port reset in module pixelAlpha is either unconnected or has no load
 WARNING: [Synth 8-7129] Port colorInA[5] in module pixelAlpha is either unconnected or has no load
 WARNING: [Synth 8-7129] Port colorInB[5] in module pixelAlpha is either unconnected or has no load
@@ -270,26 +311,20 @@ WARNING: [Synth 8-7129] Port dataMask[2] in module i2sController is either uncon
 WARNING: [Synth 8-7129] Port dataMask[1] in module i2sController is either unconnected or has no load
 WARNING: [Synth 8-7129] Port dataMask[0] in module i2sController is either unconnected or has no load
 WARNING: [Synth 8-7129] Port a[15] in module SPI is either unconnected or has no load
-WARNING: [Synth 8-7129] Port a[14] in module SPI is either unconnected or has no load
-WARNING: [Synth 8-7129] Port a[13] in module SPI is either unconnected or has no load
-WARNING: [Synth 8-7129] Port a[12] in module SPI is either unconnected or has no load
-WARNING: [Synth 8-7129] Port a[11] in module SPI is either unconnected or has no load
-WARNING: [Synth 8-7129] Port a[10] in module SPI is either unconnected or has no load
-WARNING: [Synth 8-7129] Port a[9] in module SPI is either unconnected or has no load
 INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 1642.168 ; gain = 642.359
+Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1658.637 ; gain = 657.801
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 1642.168 ; gain = 642.359
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1658.637 ; gain = 657.801
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 1642.168 ; gain = 642.359
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1658.637 ; gain = 657.801
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.147 . Memory (MB): peak = 1642.168 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.192 . Memory (MB): peak = 1658.637 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 8 Unisim elements for replacement
 WARNING: [Netlist 29-151] Pin 'C1' on instance 'dvidInst/ODDR2_blue' of cell type 'ODDR2' does not have an equivalent function on the new cell type 'ODDR'. Net 'clk_n' that is connected to this pin will not be connected to the replacement instance.
 WARNING: [Netlist 29-151] Pin 'C1' on instance 'dvidInst/ODDR2_clock' of cell type 'ODDR2' does not have an equivalent function on the new cell type 'ODDR'. Net 'clk_n' that is connected to this pin will not be connected to the replacement instance.
@@ -328,27 +363,27 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/A7BoardTop_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1748.984 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1767.219 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 8 instances were transformed.
   OBUFDS => OBUFDS: 4 instances
   ODDR2 => ODDR: 4 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.042 . Memory (MB): peak = 1748.984 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.064 . Memory (MB): peak = 1767.219 ; gain = 0.000
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'tangerineSOCInst/fastRamInst' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'tangerineSOCInst/systemRamInst' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'tangerineSOCInst/pixelGenGfxInst/gfxPaletteRamInst' at clock pin 'clkb' is different from the actual clock period '10.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'tangerineSOCInst/sdramDMAInst/gfxBufRamInst' at clock pin 'clkb' is different from the actual clock period '10.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'tangerineSOCInst/spriteGenInst/spriteDPRamInst' at clock pin 'clkb' is different from the actual clock period '10.000', this can lead to different synthesis results.
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:16 ; elapsed = 00:00:20 . Memory (MB): peak = 1749.039 ; gain = 749.230
+Finished Constraint Validation : Time (s): cpu = 00:00:18 ; elapsed = 00:00:21 . Memory (MB): peak = 1767.469 ; gain = 766.633
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a200tfbg676-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:16 ; elapsed = 00:00:20 . Memory (MB): peak = 1749.039 ; gain = 749.230
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:18 ; elapsed = 00:00:21 . Memory (MB): peak = 1767.469 ; gain = 766.633
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -365,7 +400,7 @@ Applied set_property KEEP_HIERARCHY = SOFT for tangerineSOCInst/i2sControllerIns
 Applied set_property KEEP_HIERARCHY = SOFT for tangerineSOCInst/pixelGenGfxInst/gfxPaletteRamInst. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for tangerineSOCInst/systemRamInst. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:20 . Memory (MB): peak = 1749.039 ; gain = 749.230
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:18 ; elapsed = 00:00:21 . Memory (MB): peak = 1767.469 ; gain = 766.633
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'pgState_reg' in module 'pixelGenTxt'
 INFO: [Synth 8-802] inferred FSM for state register 'regState_reg' in module 'pixelGenGfx'
@@ -620,9 +655,10 @@ INFO: [Synth 8-3354] encoded FSM with state register 'senderState_reg' using enc
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'fifoHidMouseSyncState_reg' using encoding 'one-hot' in module 'usbHost'
 WARNING: [Synth 8-327] inferring latch for variable 'sdramCKE_reg' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/sdramDMA.vhd:373]
-WARNING: [Synth 8-327] inferring latch for variable 'bltDmaWordSize_reg' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd:555]
+WARNING: [Synth 8-327] inferring latch for variable 'dmaWriteAddr_reg' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd:1114]
+WARNING: [Synth 8-327] inferring latch for variable 'dmaWriteData_reg' [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd:1115]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:21 ; elapsed = 00:00:25 . Memory (MB): peak = 1749.039 ; gain = 749.230
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:24 ; elapsed = 00:00:28 . Memory (MB): peak = 1767.469 ; gain = 766.633
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -631,25 +667,25 @@ Detailed RTL Component Info :
 +---Adders : 
 	   2 Input   64 Bit       Adders := 1     
 	   2 Input   32 Bit       Adders := 14    
-	   3 Input   32 Bit       Adders := 4     
+	   3 Input   32 Bit       Adders := 5     
 	   2 Input   25 Bit       Adders := 5     
 	   2 Input   24 Bit       Adders := 3     
-	   2 Input   16 Bit       Adders := 4     
-	   3 Input   16 Bit       Adders := 3     
+	   2 Input   16 Bit       Adders := 7     
+	   3 Input   16 Bit       Adders := 21    
 	   2 Input   14 Bit       Adders := 5     
 	   2 Input   10 Bit       Adders := 1     
 	   2 Input    9 Bit       Adders := 2     
-	   2 Input    8 Bit       Adders := 5     
+	   2 Input    8 Bit       Adders := 6     
 	   2 Input    7 Bit       Adders := 2     
-	   2 Input    6 Bit       Adders := 2     
+	   2 Input    6 Bit       Adders := 4     
 	   2 Input    5 Bit       Adders := 3     
+	   2 Input    4 Bit       Adders := 7     
 	   8 Input    4 Bit       Adders := 3     
 	   9 Input    4 Bit       Adders := 3     
 	  11 Input    4 Bit       Adders := 3     
 	   4 Input    4 Bit       Adders := 3     
 	   3 Input    4 Bit       Adders := 3     
 	  10 Input    4 Bit       Adders := 3     
-	   2 Input    4 Bit       Adders := 5     
 	   2 Input    3 Bit       Adders := 6     
 	   2 Input    2 Bit       Adders := 1     
 +---XORs : 
@@ -658,51 +694,53 @@ Detailed RTL Component Info :
 +---Registers : 
 	               66 Bit    Registers := 1     
 	               64 Bit    Registers := 4     
-	               32 Bit    Registers := 97    
+	               32 Bit    Registers := 104   
 	               25 Bit    Registers := 6     
 	               24 Bit    Registers := 12    
-	               16 Bit    Registers := 24    
+	               16 Bit    Registers := 67    
 	               14 Bit    Registers := 7     
 	               13 Bit    Registers := 1     
 	               12 Bit    Registers := 3     
 	               11 Bit    Registers := 1     
 	               10 Bit    Registers := 11    
 	                9 Bit    Registers := 5     
-	                8 Bit    Registers := 78    
+	                8 Bit    Registers := 91    
 	                7 Bit    Registers := 4     
-	                6 Bit    Registers := 4     
+	                6 Bit    Registers := 5     
 	                5 Bit    Registers := 5     
-	                4 Bit    Registers := 25    
+	                4 Bit    Registers := 27    
 	                3 Bit    Registers := 7     
 	                2 Bit    Registers := 9     
-	                1 Bit    Registers := 147   
+	                1 Bit    Registers := 152   
 +---Multipliers : 
 	              32x33  Multipliers := 1     
-	              32x32  Multipliers := 2     
+	              32x32  Multipliers := 5     
 +---ROMs : 
 	                    ROMs := 2     
 +---Muxes : 
-	  11 Input   64 Bit        Muxes := 1     
 	   2 Input   64 Bit        Muxes := 5     
 	  14 Input   64 Bit        Muxes := 1     
-	   2 Input   32 Bit        Muxes := 42    
+	  11 Input   64 Bit        Muxes := 1     
+	   2 Input   32 Bit        Muxes := 49    
 	   4 Input   32 Bit        Muxes := 10    
-	  10 Input   32 Bit        Muxes := 1     
+	  12 Input   32 Bit        Muxes := 1     
 	   3 Input   32 Bit        Muxes := 5     
+	  64 Input   32 Bit        Muxes := 1     
+	  29 Input   32 Bit        Muxes := 2     
+	  10 Input   32 Bit        Muxes := 1     
 	   8 Input   32 Bit        Muxes := 1     
 	   7 Input   32 Bit        Muxes := 1     
 	  13 Input   32 Bit        Muxes := 5     
-	  12 Input   32 Bit        Muxes := 1     
-	  64 Input   32 Bit        Muxes := 1     
-	  23 Input   32 Bit        Muxes := 1     
-	  23 Input   25 Bit        Muxes := 3     
+	  29 Input   25 Bit        Muxes := 5     
+	   7 Input   25 Bit        Muxes := 1     
 	   2 Input   24 Bit        Muxes := 2     
 	  12 Input   24 Bit        Muxes := 2     
-	   2 Input   16 Bit        Muxes := 6     
+	   2 Input   16 Bit        Muxes := 26    
 	  12 Input   16 Bit        Muxes := 1     
 	  10 Input   16 Bit        Muxes := 1     
-	   4 Input   16 Bit        Muxes := 1     
-	  23 Input   16 Bit        Muxes := 3     
+	   8 Input   16 Bit        Muxes := 2     
+	   5 Input   16 Bit        Muxes := 1     
+	  29 Input   16 Bit        Muxes := 2     
 	   2 Input   14 Bit        Muxes := 17    
 	  40 Input   14 Bit        Muxes := 2     
 	   4 Input   13 Bit        Muxes := 1     
@@ -711,24 +749,24 @@ Detailed RTL Component Info :
 	  13 Input   12 Bit        Muxes := 1     
 	   2 Input   11 Bit        Muxes := 1     
 	  40 Input   11 Bit        Muxes := 1     
-	   5 Input   10 Bit        Muxes := 6     
-	   4 Input   10 Bit        Muxes := 3     
 	   2 Input   10 Bit        Muxes := 11    
 	   3 Input   10 Bit        Muxes := 1     
+	   5 Input   10 Bit        Muxes := 6     
+	   4 Input   10 Bit        Muxes := 3     
 	   2 Input    9 Bit        Muxes := 10    
 	  47 Input    9 Bit        Muxes := 2     
-	   2 Input    8 Bit        Muxes := 68    
+	   2 Input    8 Bit        Muxes := 70    
 	  40 Input    8 Bit        Muxes := 3     
 	  47 Input    8 Bit        Muxes := 4     
 	   3 Input    8 Bit        Muxes := 7     
-	   4 Input    8 Bit        Muxes := 8     
-	  13 Input    8 Bit        Muxes := 1     
 	  10 Input    8 Bit        Muxes := 2     
 	  18 Input    8 Bit        Muxes := 2     
 	  11 Input    8 Bit        Muxes := 6     
+	   4 Input    8 Bit        Muxes := 8     
+	  13 Input    8 Bit        Muxes := 1     
 	   2 Input    7 Bit        Muxes := 4     
 	  40 Input    6 Bit        Muxes := 1     
-	   2 Input    6 Bit        Muxes := 12    
+	   2 Input    6 Bit        Muxes := 16    
 	  47 Input    6 Bit        Muxes := 1     
 	   4 Input    6 Bit        Muxes := 1     
 	   3 Input    6 Bit        Muxes := 2     
@@ -736,49 +774,52 @@ Detailed RTL Component Info :
 	  64 Input    6 Bit        Muxes := 1     
 	  18 Input    5 Bit        Muxes := 1     
 	   4 Input    5 Bit        Muxes := 1     
-	   2 Input    5 Bit        Muxes := 11    
-	   5 Input    5 Bit        Muxes := 1     
-	  23 Input    5 Bit        Muxes := 1     
-	   2 Input    4 Bit        Muxes := 31    
+	   2 Input    5 Bit        Muxes := 14    
+	   8 Input    5 Bit        Muxes := 1     
+	   3 Input    5 Bit        Muxes := 1     
+	  29 Input    5 Bit        Muxes := 1     
 	  40 Input    4 Bit        Muxes := 1     
-	   8 Input    4 Bit        Muxes := 1     
-	  11 Input    4 Bit        Muxes := 4     
-	  13 Input    4 Bit        Muxes := 2     
 	  12 Input    4 Bit        Muxes := 2     
 	  10 Input    4 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 47    
+	  11 Input    4 Bit        Muxes := 4     
 	   3 Input    4 Bit        Muxes := 5     
-	  11 Input    3 Bit        Muxes := 1     
-	   2 Input    3 Bit        Muxes := 9     
+	  29 Input    4 Bit        Muxes := 1     
+	   8 Input    4 Bit        Muxes := 2     
+	   6 Input    4 Bit        Muxes := 1     
+	  13 Input    4 Bit        Muxes := 2     
 	   4 Input    3 Bit        Muxes := 3     
+	   2 Input    3 Bit        Muxes := 9     
 	  64 Input    3 Bit        Muxes := 1     
+	  29 Input    3 Bit        Muxes := 4     
+	  11 Input    3 Bit        Muxes := 1     
 	   4 Input    2 Bit        Muxes := 4     
 	   2 Input    2 Bit        Muxes := 14    
 	  47 Input    2 Bit        Muxes := 2     
 	   3 Input    2 Bit        Muxes := 2     
-	  11 Input    2 Bit        Muxes := 1     
-	  13 Input    2 Bit        Muxes := 1     
 	   7 Input    2 Bit        Muxes := 2     
 	  64 Input    2 Bit        Muxes := 3     
-	  23 Input    2 Bit        Muxes := 3     
-	   2 Input    1 Bit        Muxes := 376   
+	  29 Input    2 Bit        Muxes := 1     
+	  11 Input    2 Bit        Muxes := 1     
+	  13 Input    2 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 460   
 	  40 Input    1 Bit        Muxes := 9     
-	   4 Input    1 Bit        Muxes := 48    
+	   4 Input    1 Bit        Muxes := 47    
 	  47 Input    1 Bit        Muxes := 8     
-	   3 Input    1 Bit        Muxes := 20    
-	   7 Input    1 Bit        Muxes := 32    
-	   8 Input    1 Bit        Muxes := 10    
-	  11 Input    1 Bit        Muxes := 47    
-	  13 Input    1 Bit        Muxes := 26    
-	   6 Input    1 Bit        Muxes := 4     
-	  10 Input    1 Bit        Muxes := 12    
+	   3 Input    1 Bit        Muxes := 22    
 	  12 Input    1 Bit        Muxes := 17    
+	  10 Input    1 Bit        Muxes := 12    
 	  18 Input    1 Bit        Muxes := 8     
+	  11 Input    1 Bit        Muxes := 47    
 	  32 Input    1 Bit        Muxes := 5     
+	   7 Input    1 Bit        Muxes := 32    
+	   6 Input    1 Bit        Muxes := 5     
+	   8 Input    1 Bit        Muxes := 17    
 	  64 Input    1 Bit        Muxes := 26    
-	  22 Input    1 Bit        Muxes := 21    
-	   5 Input    1 Bit        Muxes := 7     
-	  23 Input    1 Bit        Muxes := 21    
+	  46 Input    1 Bit        Muxes := 43    
+	  29 Input    1 Bit        Muxes := 25    
 	  14 Input    1 Bit        Muxes := 5     
+	  13 Input    1 Bit        Muxes := 26    
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -795,188 +836,357 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
-DSP Report: Generating DSP resultMuluu0, operation Mode is: A2*B2.
-DSP Report: register rs1Val_reg is absorbed into DSP resultMuluu0.
-DSP Report: register resultMuluu0 is absorbed into DSP resultMuluu0.
-DSP Report: operator resultMuluu0 is absorbed into DSP resultMuluu0.
-DSP Report: operator resultMuluu0 is absorbed into DSP resultMuluu0.
-DSP Report: Generating DSP resultMuluu0, operation Mode is: (PCIN>>17)+A2*B2.
-DSP Report: register rs2Val_reg is absorbed into DSP resultMuluu0.
-DSP Report: register rs1Val_reg is absorbed into DSP resultMuluu0.
-DSP Report: operator resultMuluu0 is absorbed into DSP resultMuluu0.
-DSP Report: operator resultMuluu0 is absorbed into DSP resultMuluu0.
-DSP Report: Generating DSP resultMuluu0, operation Mode is: A2*B2.
-DSP Report: register resultMuluu0 is absorbed into DSP resultMuluu0.
-DSP Report: register resultMuluu0 is absorbed into DSP resultMuluu0.
-DSP Report: operator resultMuluu0 is absorbed into DSP resultMuluu0.
-DSP Report: operator resultMuluu0 is absorbed into DSP resultMuluu0.
-DSP Report: Generating DSP resultMuluu0, operation Mode is: (PCIN>>17)+A2*B2.
-DSP Report: register rs2Val_reg is absorbed into DSP resultMuluu0.
-DSP Report: register resultMuluu0 is absorbed into DSP resultMuluu0.
-DSP Report: operator resultMuluu0 is absorbed into DSP resultMuluu0.
-DSP Report: operator resultMuluu0 is absorbed into DSP resultMuluu0.
-DSP Report: Generating DSP resultMulsu0, operation Mode is: A2*B2.
-DSP Report: register rs1Val_reg is absorbed into DSP resultMulsu0.
-DSP Report: register resultMulsu0 is absorbed into DSP resultMulsu0.
-DSP Report: operator resultMulsu0 is absorbed into DSP resultMulsu0.
-DSP Report: operator resultMulsu0 is absorbed into DSP resultMulsu0.
-DSP Report: Generating DSP resultMulsu0, operation Mode is: (PCIN>>17)+A2*B2.
-DSP Report: register rs1Val_reg is absorbed into DSP resultMulsu0.
-DSP Report: register rs2Val_reg is absorbed into DSP resultMulsu0.
-DSP Report: operator resultMulsu0 is absorbed into DSP resultMulsu0.
-DSP Report: operator resultMulsu0 is absorbed into DSP resultMulsu0.
-DSP Report: Generating DSP resultMulsu0, operation Mode is: A2*B2.
-DSP Report: register resultMulsu0 is absorbed into DSP resultMulsu0.
-DSP Report: register resultMulsu0 is absorbed into DSP resultMulsu0.
-DSP Report: operator resultMulsu0 is absorbed into DSP resultMulsu0.
-DSP Report: operator resultMulsu0 is absorbed into DSP resultMulsu0.
-DSP Report: Generating DSP resultMulsu0, operation Mode is: (PCIN>>17)+A2*B2.
-DSP Report: register rs2Val_reg is absorbed into DSP resultMulsu0.
-DSP Report: register resultMulsu0 is absorbed into DSP resultMulsu0.
-DSP Report: operator resultMulsu0 is absorbed into DSP resultMulsu0.
-DSP Report: operator resultMulsu0 is absorbed into DSP resultMulsu0.
-DSP Report: Generating DSP resultMul0, operation Mode is: A2*B2.
-DSP Report: register rs1Val_reg is absorbed into DSP resultMul0.
-DSP Report: register resultMul0 is absorbed into DSP resultMul0.
-DSP Report: operator resultMul0 is absorbed into DSP resultMul0.
-DSP Report: operator resultMul0 is absorbed into DSP resultMul0.
-DSP Report: Generating DSP resultMul0, operation Mode is: (PCIN>>17)+A2*B2.
-DSP Report: register rs2Val_reg is absorbed into DSP resultMul0.
-DSP Report: register rs1Val_reg is absorbed into DSP resultMul0.
-DSP Report: operator resultMul0 is absorbed into DSP resultMul0.
-DSP Report: operator resultMul0 is absorbed into DSP resultMul0.
-DSP Report: Generating DSP resultMul0, operation Mode is: A2*B2.
-DSP Report: register resultMul0 is absorbed into DSP resultMul0.
-DSP Report: register resultMul0 is absorbed into DSP resultMul0.
-DSP Report: operator resultMul0 is absorbed into DSP resultMul0.
-DSP Report: operator resultMul0 is absorbed into DSP resultMul0.
-DSP Report: Generating DSP resultMul0, operation Mode is: (PCIN>>17)+A2*B2.
-DSP Report: register rs2Val_reg is absorbed into DSP resultMul0.
-DSP Report: register resultMul0 is absorbed into DSP resultMul0.
-DSP Report: operator resultMul0 is absorbed into DSP resultMul0.
-DSP Report: operator resultMul0 is absorbed into DSP resultMul0.
 WARNING: [Synth 8-6040] Register pc_reg_rep driving address of a ROM cannot be packed in BRAM/URAM because of presence of initial value.
 WARNING: [Synth 8-6040] Register pc_reg_rep driving address of a ROM cannot be packed in BRAM/URAM because of presence of initial value.
+DSP Report: Generating DSP leftMult_reg, operation Mode is: (A2*B2)'.
+DSP Report: register b_y_reg is absorbed into DSP leftMult_reg.
+DSP Report: register a_x_reg is absorbed into DSP leftMult_reg.
+DSP Report: register leftMult_reg is absorbed into DSP leftMult_reg.
+DSP Report: operator multOp is absorbed into DSP leftMult_reg.
+DSP Report: Generating DSP edge_reg, operation Mode is: (PCIN-(A2*B2)')'.
+DSP Report: register b_x_reg is absorbed into DSP edge_reg.
+DSP Report: register a_y_reg is absorbed into DSP edge_reg.
+DSP Report: register edge_reg is absorbed into DSP edge_reg.
+DSP Report: register rightMult_reg is absorbed into DSP edge_reg.
+DSP Report: operator minusOp is absorbed into DSP edge_reg.
+DSP Report: operator multOp is absorbed into DSP edge_reg.
+DSP Report: Generating DSP leftMult_reg, operation Mode is: (A2*B2)'.
+DSP Report: register b_y_reg is absorbed into DSP leftMult_reg.
+DSP Report: register a_x_reg is absorbed into DSP leftMult_reg.
+DSP Report: register leftMult_reg is absorbed into DSP leftMult_reg.
+DSP Report: operator multOp is absorbed into DSP leftMult_reg.
+DSP Report: Generating DSP edge_reg, operation Mode is: (PCIN-(A2*B2)')'.
+DSP Report: register b_x_reg is absorbed into DSP edge_reg.
+DSP Report: register a_y_reg is absorbed into DSP edge_reg.
+DSP Report: register edge_reg is absorbed into DSP edge_reg.
+DSP Report: register rightMult_reg is absorbed into DSP edge_reg.
+DSP Report: operator minusOp is absorbed into DSP edge_reg.
+DSP Report: operator multOp is absorbed into DSP edge_reg.
+DSP Report: Generating DSP leftMult_reg, operation Mode is: (A2*B2)'.
+DSP Report: register b_y_reg is absorbed into DSP leftMult_reg.
+DSP Report: register a_x_reg is absorbed into DSP leftMult_reg.
+DSP Report: register leftMult_reg is absorbed into DSP leftMult_reg.
+DSP Report: operator multOp is absorbed into DSP leftMult_reg.
+DSP Report: Generating DSP edge_reg, operation Mode is: (PCIN-(A2*B2)')'.
+DSP Report: register b_x_reg is absorbed into DSP edge_reg.
+DSP Report: register a_y_reg is absorbed into DSP edge_reg.
+DSP Report: register edge_reg is absorbed into DSP edge_reg.
+DSP Report: register rightMult_reg is absorbed into DSP edge_reg.
+DSP Report: operator minusOp is absorbed into DSP edge_reg.
+DSP Report: operator multOp is absorbed into DSP edge_reg.
+DSP Report: Generating DSP leftMult_reg, operation Mode is: (A2*B2)'.
+DSP Report: register b_y_reg is absorbed into DSP leftMult_reg.
+DSP Report: register a_x_reg is absorbed into DSP leftMult_reg.
+DSP Report: register leftMult_reg is absorbed into DSP leftMult_reg.
+DSP Report: operator multOp is absorbed into DSP leftMult_reg.
+DSP Report: Generating DSP edge_reg, operation Mode is: (PCIN-(A2*B2)')'.
+DSP Report: register b_x_reg is absorbed into DSP edge_reg.
+DSP Report: register a_y_reg is absorbed into DSP edge_reg.
+DSP Report: register edge_reg is absorbed into DSP edge_reg.
+DSP Report: register rightMult_reg is absorbed into DSP edge_reg.
+DSP Report: operator minusOp is absorbed into DSP edge_reg.
+DSP Report: operator multOp is absorbed into DSP edge_reg.
+WARNING: [Synth 8-6014] Unused sequential element gouraudWeightBAInst/weight_reg was removed.  [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudWeight.vhd:41]
+WARNING: [Synth 8-6014] Unused sequential element gouraudWeightCBInst/weight_reg was removed.  [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudWeight.vhd:41]
+WARNING: [Synth 8-6014] Unused sequential element gouraudWeightACInst/weight_reg was removed.  [C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudWeight.vhd:41]
+DSP Report: Generating DSP gouraudWeightACInst/weight0, operation Mode is: A*B.
+DSP Report: operator gouraudWeightACInst/weight0 is absorbed into DSP gouraudWeightACInst/weight0.
+DSP Report: operator gouraudWeightACInst/weight0 is absorbed into DSP gouraudWeightACInst/weight0.
+DSP Report: Generating DSP gouraudWeightACInst/weight_reg, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: register gouraudWeightACInst/weight_reg is absorbed into DSP gouraudWeightACInst/weight_reg.
+DSP Report: operator gouraudWeightACInst/weight0 is absorbed into DSP gouraudWeightACInst/weight_reg.
+DSP Report: operator gouraudWeightACInst/weight0 is absorbed into DSP gouraudWeightACInst/weight_reg.
+DSP Report: Generating DSP gouraudWeightACInst/weight0, operation Mode is: A*B.
+DSP Report: operator gouraudWeightACInst/weight0 is absorbed into DSP gouraudWeightACInst/weight0.
+DSP Report: operator gouraudWeightACInst/weight0 is absorbed into DSP gouraudWeightACInst/weight0.
+DSP Report: Generating DSP gouraudWeightACInst/weight_reg, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: register gouraudWeightACInst/weight_reg is absorbed into DSP gouraudWeightACInst/weight_reg.
+DSP Report: operator gouraudWeightACInst/weight0 is absorbed into DSP gouraudWeightACInst/weight_reg.
+DSP Report: operator gouraudWeightACInst/weight0 is absorbed into DSP gouraudWeightACInst/weight_reg.
+DSP Report: Generating DSP gouraudWeightCBInst/weight0, operation Mode is: A*B.
+DSP Report: operator gouraudWeightCBInst/weight0 is absorbed into DSP gouraudWeightCBInst/weight0.
+DSP Report: operator gouraudWeightCBInst/weight0 is absorbed into DSP gouraudWeightCBInst/weight0.
+DSP Report: Generating DSP gouraudWeightCBInst/weight_reg, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: register gouraudWeightCBInst/weight_reg is absorbed into DSP gouraudWeightCBInst/weight_reg.
+DSP Report: operator gouraudWeightCBInst/weight0 is absorbed into DSP gouraudWeightCBInst/weight_reg.
+DSP Report: operator gouraudWeightCBInst/weight0 is absorbed into DSP gouraudWeightCBInst/weight_reg.
+DSP Report: Generating DSP gouraudWeightCBInst/weight0, operation Mode is: A*B.
+DSP Report: operator gouraudWeightCBInst/weight0 is absorbed into DSP gouraudWeightCBInst/weight0.
+DSP Report: operator gouraudWeightCBInst/weight0 is absorbed into DSP gouraudWeightCBInst/weight0.
+DSP Report: Generating DSP gouraudWeightCBInst/weight_reg, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: register gouraudWeightCBInst/weight_reg is absorbed into DSP gouraudWeightCBInst/weight_reg.
+DSP Report: operator gouraudWeightCBInst/weight0 is absorbed into DSP gouraudWeightCBInst/weight_reg.
+DSP Report: operator gouraudWeightCBInst/weight0 is absorbed into DSP gouraudWeightCBInst/weight_reg.
+DSP Report: Generating DSP gouraudWeightBAInst/weight0, operation Mode is: A*B.
+DSP Report: operator gouraudWeightBAInst/weight0 is absorbed into DSP gouraudWeightBAInst/weight0.
+DSP Report: operator gouraudWeightBAInst/weight0 is absorbed into DSP gouraudWeightBAInst/weight0.
+DSP Report: Generating DSP gouraudWeightBAInst/weight_reg, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: register gouraudWeightBAInst/weight_reg is absorbed into DSP gouraudWeightBAInst/weight_reg.
+DSP Report: operator gouraudWeightBAInst/weight0 is absorbed into DSP gouraudWeightBAInst/weight_reg.
+DSP Report: operator gouraudWeightBAInst/weight0 is absorbed into DSP gouraudWeightBAInst/weight_reg.
+DSP Report: Generating DSP gouraudWeightBAInst/weight0, operation Mode is: A*B.
+DSP Report: operator gouraudWeightBAInst/weight0 is absorbed into DSP gouraudWeightBAInst/weight0.
+DSP Report: operator gouraudWeightBAInst/weight0 is absorbed into DSP gouraudWeightBAInst/weight0.
+DSP Report: Generating DSP gouraudWeightBAInst/weight_reg, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: register gouraudWeightBAInst/weight_reg is absorbed into DSP gouraudWeightBAInst/weight_reg.
+DSP Report: operator gouraudWeightBAInst/weight0 is absorbed into DSP gouraudWeightBAInst/weight_reg.
+DSP Report: operator gouraudWeightBAInst/weight0 is absorbed into DSP gouraudWeightBAInst/weight_reg.
+DSP Report: Generating DSP gouraudIterator3Inst/mul3_reg, operation Mode is: (A*B)'.
+DSP Report: register gouraudIterator3Inst/mul3_reg is absorbed into DSP gouraudIterator3Inst/mul3_reg.
+DSP Report: operator gouraudIterator3Inst/multOp is absorbed into DSP gouraudIterator3Inst/mul3_reg.
+DSP Report: Generating DSP gouraudIterator3Inst/plusOp, operation Mode is: PCIN+(A*B)'.
+DSP Report: register gouraudIterator3Inst/mul1_reg is absorbed into DSP gouraudIterator3Inst/plusOp.
+DSP Report: operator gouraudIterator3Inst/multOp is absorbed into DSP gouraudIterator3Inst/plusOp.
+DSP Report: operator gouraudIterator3Inst/plusOp is absorbed into DSP gouraudIterator3Inst/plusOp.
+DSP Report: Generating DSP gouraudIterator3Inst/plusOp, operation Mode is: PCIN+(A*B)'.
+DSP Report: register gouraudIterator3Inst/mul2_reg is absorbed into DSP gouraudIterator3Inst/plusOp.
+DSP Report: operator gouraudIterator3Inst/multOp is absorbed into DSP gouraudIterator3Inst/plusOp.
+DSP Report: operator gouraudIterator3Inst/plusOp is absorbed into DSP gouraudIterator3Inst/plusOp.
 DSP Report: Generating DSP dpSa1, operation Mode is: A*B2.
 DSP Report: register dpSa1 is absorbed into DSP dpSa1.
 DSP Report: operator dpSa1 is absorbed into DSP dpSa1.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[47]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[46]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[45]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[44]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[43]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[42]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[41]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[40]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[39]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[38]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[37]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[36]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[35]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[34]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[33]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[32]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[31]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[30]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[29]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[28]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[27]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[26]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[25]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[24]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[23]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[22]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[21]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[20]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[19]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[18]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[17]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[47]__0) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[46]__0) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[45]__0) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[44]__0) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[43]__0) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[42]__0) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[41]__0) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[40]__0) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[39]__0) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[38]__0) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[37]__0) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[36]__0) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[35]__0) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[34]__0) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[33]__0) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[32]__0) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[31]__0) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[30]__0) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[47]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[46]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[45]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[44]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[43]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[42]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[41]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[40]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[39]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[38]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[37]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[36]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[35]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[34]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[33]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[32]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[31]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[30]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[29]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[28]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[27]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[26]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[25]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[24]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[23]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[22]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[21]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[20]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[19]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[18]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[17]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[15]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[14]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[13]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[12]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[11]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[10]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[9]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[8]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[7]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[6]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[5]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[4]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[3]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[2]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[1]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[0]__1) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMuluu_reg[47]__2) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMulsu_reg[47]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMulsu_reg[46]) is unused and will be removed from module nekoRv.
-WARNING: [Synth 8-3332] Sequential element (resultMulsu_reg[45]) is unused and will be removed from module nekoRv.
+DSP Report: Generating DSP gouraudIterator0Inst/mul3_reg, operation Mode is: (A*B)'.
+DSP Report: register gouraudIterator0Inst/mul3_reg is absorbed into DSP gouraudIterator0Inst/mul3_reg.
+DSP Report: operator gouraudIterator0Inst/multOp is absorbed into DSP gouraudIterator0Inst/mul3_reg.
+DSP Report: Generating DSP gouraudIterator0Inst/plusOp, operation Mode is: PCIN+(A*B)'.
+DSP Report: register gouraudIterator0Inst/mul1_reg is absorbed into DSP gouraudIterator0Inst/plusOp.
+DSP Report: operator gouraudIterator0Inst/multOp is absorbed into DSP gouraudIterator0Inst/plusOp.
+DSP Report: operator gouraudIterator0Inst/plusOp is absorbed into DSP gouraudIterator0Inst/plusOp.
+DSP Report: Generating DSP gouraudIterator0Inst/plusOp, operation Mode is: PCIN+(A*B)'.
+DSP Report: register gouraudIterator0Inst/mul2_reg is absorbed into DSP gouraudIterator0Inst/plusOp.
+DSP Report: operator gouraudIterator0Inst/multOp is absorbed into DSP gouraudIterator0Inst/plusOp.
+DSP Report: operator gouraudIterator0Inst/plusOp is absorbed into DSP gouraudIterator0Inst/plusOp.
+DSP Report: Generating DSP gouraudIterator1Inst/mul3_reg, operation Mode is: (A*B)'.
+DSP Report: register gouraudIterator1Inst/mul3_reg is absorbed into DSP gouraudIterator1Inst/mul3_reg.
+DSP Report: operator gouraudIterator1Inst/multOp is absorbed into DSP gouraudIterator1Inst/mul3_reg.
+DSP Report: Generating DSP gouraudIterator1Inst/plusOp, operation Mode is: PCIN+(A*B)'.
+DSP Report: register gouraudIterator1Inst/mul1_reg is absorbed into DSP gouraudIterator1Inst/plusOp.
+DSP Report: operator gouraudIterator1Inst/multOp is absorbed into DSP gouraudIterator1Inst/plusOp.
+DSP Report: operator gouraudIterator1Inst/plusOp is absorbed into DSP gouraudIterator1Inst/plusOp.
+DSP Report: Generating DSP gouraudIterator1Inst/plusOp, operation Mode is: PCIN+(A*B)'.
+DSP Report: register gouraudIterator1Inst/mul2_reg is absorbed into DSP gouraudIterator1Inst/plusOp.
+DSP Report: operator gouraudIterator1Inst/multOp is absorbed into DSP gouraudIterator1Inst/plusOp.
+DSP Report: operator gouraudIterator1Inst/plusOp is absorbed into DSP gouraudIterator1Inst/plusOp.
+DSP Report: Generating DSP gouraudIterator2Inst/mul3_reg, operation Mode is: (A*B)'.
+DSP Report: register gouraudIterator2Inst/mul3_reg is absorbed into DSP gouraudIterator2Inst/mul3_reg.
+DSP Report: operator gouraudIterator2Inst/multOp is absorbed into DSP gouraudIterator2Inst/mul3_reg.
+DSP Report: Generating DSP gouraudIterator2Inst/plusOp, operation Mode is: PCIN+(A*B)'.
+DSP Report: register gouraudIterator2Inst/mul1_reg is absorbed into DSP gouraudIterator2Inst/plusOp.
+DSP Report: operator gouraudIterator2Inst/multOp is absorbed into DSP gouraudIterator2Inst/plusOp.
+DSP Report: operator gouraudIterator2Inst/plusOp is absorbed into DSP gouraudIterator2Inst/plusOp.
+DSP Report: Generating DSP gouraudIterator2Inst/plusOp, operation Mode is: PCIN+(A*B)'.
+DSP Report: register gouraudIterator2Inst/mul2_reg is absorbed into DSP gouraudIterator2Inst/plusOp.
+DSP Report: operator gouraudIterator2Inst/multOp is absorbed into DSP gouraudIterator2Inst/plusOp.
+DSP Report: operator gouraudIterator2Inst/plusOp is absorbed into DSP gouraudIterator2Inst/plusOp.
+DSP Report: Generating DSP resultMuluu0, operation Mode is: A2*B2.
+DSP Report: register rs1Val_reg is absorbed into DSP resultMuluu0.
+DSP Report: register resultMuluu0 is absorbed into DSP resultMuluu0.
+DSP Report: operator resultMuluu0 is absorbed into DSP resultMuluu0.
+DSP Report: operator resultMuluu0 is absorbed into DSP resultMuluu0.
+DSP Report: Generating DSP resultMuluu0, operation Mode is: (PCIN>>17)+A2*B2.
+DSP Report: register rs2Val_reg is absorbed into DSP resultMuluu0.
+DSP Report: register rs1Val_reg is absorbed into DSP resultMuluu0.
+DSP Report: operator resultMuluu0 is absorbed into DSP resultMuluu0.
+DSP Report: operator resultMuluu0 is absorbed into DSP resultMuluu0.
+DSP Report: Generating DSP resultMuluu0, operation Mode is: A2*B2.
+DSP Report: register resultMuluu0 is absorbed into DSP resultMuluu0.
+DSP Report: register resultMuluu0 is absorbed into DSP resultMuluu0.
+DSP Report: operator resultMuluu0 is absorbed into DSP resultMuluu0.
+DSP Report: operator resultMuluu0 is absorbed into DSP resultMuluu0.
+DSP Report: Generating DSP resultMuluu0, operation Mode is: (PCIN>>17)+A2*B2.
+DSP Report: register rs2Val_reg is absorbed into DSP resultMuluu0.
+DSP Report: register resultMuluu0 is absorbed into DSP resultMuluu0.
+DSP Report: operator resultMuluu0 is absorbed into DSP resultMuluu0.
+DSP Report: operator resultMuluu0 is absorbed into DSP resultMuluu0.
+DSP Report: Generating DSP resultMulsu0, operation Mode is: A2*B2.
+DSP Report: register rs1Val_reg is absorbed into DSP resultMulsu0.
+DSP Report: register resultMulsu0 is absorbed into DSP resultMulsu0.
+DSP Report: operator resultMulsu0 is absorbed into DSP resultMulsu0.
+DSP Report: operator resultMulsu0 is absorbed into DSP resultMulsu0.
+DSP Report: Generating DSP resultMulsu0, operation Mode is: (PCIN>>17)+A2*B2.
+DSP Report: register rs1Val_reg is absorbed into DSP resultMulsu0.
+DSP Report: register rs2Val_reg is absorbed into DSP resultMulsu0.
+DSP Report: operator resultMulsu0 is absorbed into DSP resultMulsu0.
+DSP Report: operator resultMulsu0 is absorbed into DSP resultMulsu0.
+DSP Report: Generating DSP resultMulsu0, operation Mode is: A2*B2.
+DSP Report: register resultMulsu0 is absorbed into DSP resultMulsu0.
+DSP Report: register resultMulsu0 is absorbed into DSP resultMulsu0.
+DSP Report: operator resultMulsu0 is absorbed into DSP resultMulsu0.
+DSP Report: operator resultMulsu0 is absorbed into DSP resultMulsu0.
+DSP Report: Generating DSP resultMulsu0, operation Mode is: (PCIN>>17)+A2*B2.
+DSP Report: register rs2Val_reg is absorbed into DSP resultMulsu0.
+DSP Report: register resultMulsu0 is absorbed into DSP resultMulsu0.
+DSP Report: operator resultMulsu0 is absorbed into DSP resultMulsu0.
+DSP Report: operator resultMulsu0 is absorbed into DSP resultMulsu0.
+DSP Report: Generating DSP resultMul0, operation Mode is: A2*B2.
+DSP Report: register rs1Val_reg is absorbed into DSP resultMul0.
+DSP Report: register resultMul0 is absorbed into DSP resultMul0.
+DSP Report: operator resultMul0 is absorbed into DSP resultMul0.
+DSP Report: operator resultMul0 is absorbed into DSP resultMul0.
+DSP Report: Generating DSP resultMul0, operation Mode is: (PCIN>>17)+A2*B2.
+DSP Report: register rs2Val_reg is absorbed into DSP resultMul0.
+DSP Report: register rs1Val_reg is absorbed into DSP resultMul0.
+DSP Report: operator resultMul0 is absorbed into DSP resultMul0.
+DSP Report: operator resultMul0 is absorbed into DSP resultMul0.
+DSP Report: Generating DSP resultMul0, operation Mode is: A2*B2.
+DSP Report: register resultMul0 is absorbed into DSP resultMul0.
+DSP Report: register resultMul0 is absorbed into DSP resultMul0.
+DSP Report: operator resultMul0 is absorbed into DSP resultMul0.
+DSP Report: operator resultMul0 is absorbed into DSP resultMul0.
+DSP Report: Generating DSP resultMul0, operation Mode is: (PCIN>>17)+A2*B2.
+DSP Report: register rs2Val_reg is absorbed into DSP resultMul0.
+DSP Report: register resultMul0 is absorbed into DSP resultMul0.
+DSP Report: operator resultMul0 is absorbed into DSP resultMul0.
+DSP Report: operator resultMul0 is absorbed into DSP resultMul0.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[47]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[46]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[45]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[44]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[43]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[42]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[41]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[40]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[39]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[38]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[37]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[36]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[35]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[34]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[33]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[32]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[31]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[30]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[29]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[28]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[27]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[26]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[25]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[24]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[23]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[22]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[21]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[20]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[19]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[18]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[17]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[16]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[15]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[47]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[46]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[45]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[44]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[43]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[42]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[41]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[40]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[39]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[38]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[37]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[36]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[35]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[34]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[33]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[32]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[31]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[30]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[29]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[28]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[27]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[26]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[25]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[24]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[23]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[22]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[21]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[20]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[19]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[18]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[17]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[15]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[14]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[13]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[12]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[11]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[10]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[9]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[8]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[7]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[6]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[5]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[4]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[3]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[2]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[1]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightACInst/weight_reg[0]__0) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightCBInst/weight_reg[47]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightCBInst/weight_reg[46]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightCBInst/weight_reg[45]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightCBInst/weight_reg[44]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightCBInst/weight_reg[43]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightCBInst/weight_reg[42]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightCBInst/weight_reg[41]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightCBInst/weight_reg[40]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightCBInst/weight_reg[39]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightCBInst/weight_reg[38]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightCBInst/weight_reg[37]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightCBInst/weight_reg[36]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightCBInst/weight_reg[35]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightCBInst/weight_reg[34]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightCBInst/weight_reg[33]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightCBInst/weight_reg[32]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightCBInst/weight_reg[31]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightCBInst/weight_reg[30]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightCBInst/weight_reg[29]) is unused and will be removed from module blitter.
+WARNING: [Synth 8-3332] Sequential element (gouraudWeightCBInst/weight_reg[28]) is unused and will be removed from module blitter.
 INFO: [Common 17-14] Message 'Synth 8-3332' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:51 ; elapsed = 00:00:57 . Memory (MB): peak = 1749.039 ; gain = 749.230
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:59 ; elapsed = 00:01:08 . Memory (MB): peak = 1767.469 ; gain = 766.633
 ---------------------------------------------------------------------------------
- Sort Area is  resultMulsu0_6 : 0 0 : 2737 5549 : Used 1 time 0
- Sort Area is  resultMulsu0_6 : 0 1 : 2812 5549 : Used 1 time 0
- Sort Area is  resultMuluu0_a : 0 0 : 2737 5549 : Used 1 time 0
- Sort Area is  resultMuluu0_a : 0 1 : 2812 5549 : Used 1 time 0
- Sort Area is  resultMuluu0_b : 0 0 : 2793 5484 : Used 1 time 0
- Sort Area is  resultMuluu0_b : 0 1 : 2691 5484 : Used 1 time 0
- Sort Area is  resultMul0_0 : 0 0 : 2737 4933 : Used 1 time 0
- Sort Area is  resultMul0_0 : 0 1 : 2196 4933 : Used 1 time 0
- Sort Area is  resultMulsu0_8 : 0 0 : 2191 4765 : Used 1 time 0
- Sort Area is  resultMulsu0_8 : 0 1 : 2574 4765 : Used 1 time 0
- Sort Area is  resultMul0_3 : 0 0 : 2191 4077 : Used 1 time 0
- Sort Area is  resultMul0_3 : 0 1 : 1886 4077 : Used 1 time 0
- Sort Area is  dpSa1_e : 0 0 : 1962 1962 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 gouraudWeightACInst/weight0_11 : 0 0 : 3101 5927 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 gouraudWeightACInst/weight0_11 : 0 1 : 2826 5927 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 gouraudWeightBAInst/weight0_6 : 0 0 : 3101 5927 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 gouraudWeightBAInst/weight0_6 : 0 1 : 2826 5927 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 gouraudWeightCBInst/weight0_f : 0 0 : 3101 5927 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 gouraudWeightCBInst/weight0_f : 0 1 : 2826 5927 : Used 1 time 0
+ Sort Area is tangerineSOC__GB1 resultMulsu0_20 : 0 0 : 2737 5549 : Used 1 time 0
+ Sort Area is tangerineSOC__GB1 resultMulsu0_20 : 0 1 : 2812 5549 : Used 1 time 0
+ Sort Area is tangerineSOC__GB1 resultMuluu0_24 : 0 0 : 2737 5549 : Used 1 time 0
+ Sort Area is tangerineSOC__GB1 resultMuluu0_24 : 0 1 : 2812 5549 : Used 1 time 0
+ Sort Area is tangerineSOC__GB1 resultMuluu0_25 : 0 0 : 2793 5484 : Used 1 time 0
+ Sort Area is tangerineSOC__GB1 resultMuluu0_25 : 0 1 : 2691 5484 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 gouraudWeightACInst/weight0_12 : 0 0 : 2759 5466 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 gouraudWeightACInst/weight0_12 : 0 1 : 2707 5466 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 gouraudWeightBAInst/weight0_9 : 0 0 : 2759 5466 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 gouraudWeightBAInst/weight0_9 : 0 1 : 2707 5466 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 gouraudWeightCBInst/weight0_10 : 0 0 : 2759 5466 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 gouraudWeightCBInst/weight0_10 : 0 1 : 2707 5466 : Used 1 time 0
+ Sort Area is tangerineSOC__GB1 resultMul0_1a : 0 0 : 2737 4933 : Used 1 time 0
+ Sort Area is tangerineSOC__GB1 resultMul0_1a : 0 1 : 2196 4933 : Used 1 time 0
+ Sort Area is tangerineSOC__GB1 resultMulsu0_22 : 0 0 : 2191 4765 : Used 1 time 0
+ Sort Area is tangerineSOC__GB1 resultMulsu0_22 : 0 1 : 2574 4765 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 leftMult_reg_0 : 0 0 : 2001 4256 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 leftMult_reg_0 : 0 1 : 2255 4256 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 leftMult_reg_3 : 0 0 : 2001 4256 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 leftMult_reg_3 : 0 1 : 2255 4256 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 leftMult_reg_4 : 0 0 : 2001 4256 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 leftMult_reg_4 : 0 1 : 2255 4256 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 leftMult_reg_5 : 0 0 : 2001 4256 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 leftMult_reg_5 : 0 1 : 2255 4256 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 gouraudIterator3Inst/mul3_reg_c : 0 0 : 1353 4225 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 gouraudIterator3Inst/mul3_reg_c : 0 1 : 1436 4225 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 gouraudIterator3Inst/mul3_reg_c : 0 2 : 1436 4225 : Used 1 time 0
+ Sort Area is tangerineSOC__GB1 resultMul0_1d : 0 0 : 2191 4077 : Used 1 time 0
+ Sort Area is tangerineSOC__GB1 resultMul0_1d : 0 1 : 1886 4077 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 gouraudIterator0Inst/mul3_reg_15 : 0 0 : 686 2176 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 gouraudIterator0Inst/mul3_reg_15 : 0 1 : 745 2176 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 gouraudIterator0Inst/mul3_reg_15 : 0 2 : 745 2176 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 gouraudIterator1Inst/mul3_reg_18 : 0 0 : 686 2176 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 gouraudIterator1Inst/mul3_reg_18 : 0 1 : 745 2176 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 gouraudIterator1Inst/mul3_reg_18 : 0 2 : 745 2176 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 gouraudIterator2Inst/mul3_reg_19 : 0 0 : 686 2176 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 gouraudIterator2Inst/mul3_reg_19 : 0 1 : 745 2176 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 gouraudIterator2Inst/mul3_reg_19 : 0 2 : 745 2176 : Used 1 time 0
+ Sort Area is tangerineSOC__GB0 dpSa1_13 : 0 0 : 1962 1962 : Used 1 time 0
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
@@ -991,23 +1201,55 @@ ROM: Preliminary Mapping Report
 
 
 DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
-+------------+------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|Module Name | DSP Mapping      | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
-+------------+------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|nekoRv      | A2*B2            | 18     | 16     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|nekoRv      | (PCIN>>17)+A2*B2 | 16     | 16     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|nekoRv      | A2*B2            | 18     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|nekoRv      | (PCIN>>17)+A2*B2 | 18     | 16     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|nekoRv      | A2*B2            | 18     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|nekoRv      | (PCIN>>17)+A2*B2 | 16     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|nekoRv      | A2*B2            | 18     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|nekoRv      | (PCIN>>17)+A2*B2 | 18     | 16     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|nekoRv      | A2*B2            | 18     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|nekoRv      | (PCIN>>17)+A2*B2 | 15     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|nekoRv      | A2*B2            | 18     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|nekoRv      | (PCIN>>17)+A2*B2 | 18     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|blitter     | A*B2             | 16     | 16     | -      | -      | 32     | 0    | 1    | -    | -    | -     | 0    | 0    | 
-+------------+------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
++------------------+------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name       | DSP Mapping      | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------------+------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|gouraudEdge       | (A2*B2)'         | 16     | 16     | -      | -      | 32     | 1    | 1    | -    | -    | -     | 1    | 0    | 
+|gouraudEdge       | (PCIN-(A2*B2)')' | 16     | 16     | -      | -      | 32     | 1    | 1    | -    | -    | -     | 1    | 1    | 
+|gouraudEdge       | (A2*B2)'         | 16     | 16     | -      | -      | 32     | 1    | 1    | -    | -    | -     | 1    | 0    | 
+|gouraudEdge       | (PCIN-(A2*B2)')' | 16     | 16     | -      | -      | 32     | 1    | 1    | -    | -    | -     | 1    | 1    | 
+|gouraudEdge       | (A2*B2)'         | 16     | 16     | -      | -      | 32     | 1    | 1    | -    | -    | -     | 1    | 0    | 
+|gouraudEdge       | (PCIN-(A2*B2)')' | 16     | 16     | -      | -      | 32     | 1    | 1    | -    | -    | -     | 1    | 1    | 
+|gouraudEdge       | (A2*B2)'         | 16     | 16     | -      | -      | 32     | 1    | 1    | -    | -    | -     | 1    | 0    | 
+|gouraudEdge       | (PCIN-(A2*B2)')' | 16     | 16     | -      | -      | 32     | 1    | 1    | -    | -    | -     | 1    | 1    | 
+|blitter           | A*B              | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|blitter           | (PCIN>>17)+A*B   | 16     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|blitter           | A*B              | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|blitter           | (PCIN>>17)+A*B   | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|blitter           | A*B              | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|blitter           | (PCIN>>17)+A*B   | 16     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|blitter           | A*B              | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|blitter           | (PCIN>>17)+A*B   | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|blitter           | A*B              | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|blitter           | (PCIN>>17)+A*B   | 16     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|blitter           | A*B              | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|blitter           | (PCIN>>17)+A*B   | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|gouraudIterator16 | (A*B)'           | 16     | 12     | -      | -      | 28     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|gouraudIterator16 | PCIN+(A*B)'      | 16     | 12     | -      | -      | 28     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|gouraudIterator16 | PCIN+(A*B)'      | 16     | 12     | -      | -      | 28     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|blitter           | A*B2             | 16     | 16     | -      | -      | 32     | 0    | 1    | -    | -    | -     | 0    | 0    | 
+|gouraudIterator   | (A*B)'           | 12     | 8      | -      | -      | 20     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|gouraudIterator   | PCIN+(A*B)'      | 12     | 8      | -      | -      | 20     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|gouraudIterator   | PCIN+(A*B)'      | 12     | 8      | -      | -      | 20     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|gouraudIterator   | (A*B)'           | 12     | 8      | -      | -      | 20     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|gouraudIterator   | PCIN+(A*B)'      | 12     | 8      | -      | -      | 20     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|gouraudIterator   | PCIN+(A*B)'      | 12     | 8      | -      | -      | 20     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|gouraudIterator   | (A*B)'           | 12     | 8      | -      | -      | 20     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|gouraudIterator   | PCIN+(A*B)'      | 12     | 8      | -      | -      | 20     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|gouraudIterator   | PCIN+(A*B)'      | 12     | 8      | -      | -      | 20     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|nekoRv            | A2*B2            | 18     | 16     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|nekoRv            | (PCIN>>17)+A2*B2 | 16     | 16     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|nekoRv            | A2*B2            | 18     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|nekoRv            | (PCIN>>17)+A2*B2 | 18     | 16     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|nekoRv            | A2*B2            | 18     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|nekoRv            | (PCIN>>17)+A2*B2 | 16     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|nekoRv            | A2*B2            | 18     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|nekoRv            | (PCIN>>17)+A2*B2 | 18     | 16     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|nekoRv            | A2*B2            | 18     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|nekoRv            | (PCIN>>17)+A2*B2 | 15     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|nekoRv            | A2*B2            | 18     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|nekoRv            | (PCIN>>17)+A2*B2 | 18     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
++------------------+------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
 
 Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
 ---------------------------------------------------------------------------------
@@ -1017,21 +1259,21 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:58 ; elapsed = 00:01:05 . Memory (MB): peak = 1749.039 ; gain = 749.230
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:07 ; elapsed = 00:01:16 . Memory (MB): peak = 1767.469 ; gain = 766.633
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:03 ; elapsed = 00:01:10 . Memory (MB): peak = 1749.039 ; gain = 749.230
+Finished Timing Optimization : Time (s): cpu = 00:01:12 ; elapsed = 00:01:21 . Memory (MB): peak = 1767.469 ; gain = 766.633
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-7052] The timing for the instance usb_hid_host0Inst/ukp/ukprom/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance usb_hid_host0Inst/ukp/ukprom/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance tangerineSOCInst/usb_hid_host0Inst/ukp/ukprom/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance tangerineSOCInst/usb_hid_host0Inst/ukp/ukprom/data_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:08 ; elapsed = 00:01:15 . Memory (MB): peak = 1812.324 ; gain = 812.516
+Finished Technology Mapping : Time (s): cpu = 00:01:19 ; elapsed = 00:01:29 . Memory (MB): peak = 1799.539 ; gain = 798.703
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -1049,60 +1291,89 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:13 ; elapsed = 00:01:20 . Memory (MB): peak = 1824.660 ; gain = 824.852
+Finished IO Insertion : Time (s): cpu = 00:01:24 ; elapsed = 00:01:34 . Memory (MB): peak = 1813.367 ; gain = 812.531
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:13 ; elapsed = 00:01:20 . Memory (MB): peak = 1824.660 ; gain = 824.852
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:24 ; elapsed = 00:01:34 . Memory (MB): peak = 1813.367 ; gain = 812.531
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:14 ; elapsed = 00:01:21 . Memory (MB): peak = 1824.660 ; gain = 824.852
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:25 ; elapsed = 00:01:36 . Memory (MB): peak = 1813.367 ; gain = 812.531
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:14 ; elapsed = 00:01:21 . Memory (MB): peak = 1824.660 ; gain = 824.852
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:25 ; elapsed = 00:01:36 . Memory (MB): peak = 1813.367 ; gain = 812.531
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:14 ; elapsed = 00:01:22 . Memory (MB): peak = 1824.672 ; gain = 824.863
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:26 ; elapsed = 00:01:36 . Memory (MB): peak = 1813.406 ; gain = 812.570
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:14 ; elapsed = 00:01:22 . Memory (MB): peak = 1824.672 ; gain = 824.863
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:26 ; elapsed = 00:01:36 . Memory (MB): peak = 1813.406 ; gain = 812.570
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
 ---------------------------------------------------------------------------------
 
 DSP Final Report (the ' indicates corresponding REG is set)
-+------------+-------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|Module Name | DSP Mapping       | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
-+------------+-------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|blitter     | A*B'              | 16     | 16     | -      | -      | 32     | 0    | 1    | -    | -    | -     | 0    | 0    | 
-|nekoRv      | A'*B'             | 17     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|nekoRv      | (PCIN>>17+A'*B')' | 15     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
-|nekoRv      | A'*B'             | 17     | 17     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|nekoRv      | (PCIN>>17+A'*B')' | 17     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
-|nekoRv      | A'*B'             | 17     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|nekoRv      | (PCIN>>17+A'*B')' | 15     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
-|nekoRv      | A'*B'             | 17     | 17     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|nekoRv      | (PCIN>>17+A'*B')' | 17     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
-|nekoRv      | A'*B'             | 17     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|nekoRv      | (PCIN>>17+A'*B')' | 30     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
-|nekoRv      | A'*B'             | 17     | 17     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|nekoRv      | (PCIN>>17+A'*B')' | 17     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
-+------------+-------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
++------------------+--------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name       | DSP Mapping        | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------------+--------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|blitter           | A*B'               | 16     | 16     | -      | -      | 32     | 0    | 1    | -    | -    | -     | 0    | 0    | 
+|gouraudEdge       | (A'*B')'           | 30     | 18     | -      | -      | 0      | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|gouraudEdge       | (PCIN-((A'*B')'))' | 30     | 18     | -      | -      | 32     | 1    | 1    | -    | -    | -     | 1    | 1    | 
+|gouraudEdge       | (A'*B')'           | 30     | 18     | -      | -      | 0      | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|gouraudEdge       | (PCIN-((A'*B')'))' | 30     | 18     | -      | -      | 32     | 1    | 1    | -    | -    | -     | 1    | 1    | 
+|gouraudEdge       | (A'*B')'           | 30     | 18     | -      | -      | 0      | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|gouraudEdge       | (PCIN-((A'*B')'))' | 30     | 18     | -      | -      | 32     | 1    | 1    | -    | -    | -     | 1    | 1    | 
+|gouraudEdge       | (A'*B')'           | 30     | 18     | -      | -      | 0      | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|gouraudEdge       | (PCIN-((A'*B')'))' | 30     | 18     | -      | -      | 32     | 1    | 1    | -    | -    | -     | 1    | 1    | 
+|gouraudIterator   | (A*B)'             | 12     | 8      | -      | -      | 20     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|gouraudIterator   | PCIN+(A*B)'        | 12     | 8      | -      | -      | 20     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|gouraudIterator   | (PCIN+(A*B)')'     | 12     | 8      | -      | -      | 20     | 0    | 0    | -    | -    | -     | 1    | 1    | 
+|gouraudIterator   | (A*B)'             | 12     | 8      | -      | -      | 20     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|gouraudIterator   | PCIN+(A*B)'        | 12     | 8      | -      | -      | 20     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|gouraudIterator   | (PCIN+(A*B)')'     | 12     | 8      | -      | -      | 20     | 0    | 0    | -    | -    | -     | 1    | 1    | 
+|gouraudIterator   | (A*B)'             | 12     | 8      | -      | -      | 20     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|gouraudIterator   | PCIN+(A*B)'        | 12     | 8      | -      | -      | 20     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|gouraudIterator   | (PCIN+(A*B)')'     | 12     | 8      | -      | -      | 20     | 0    | 0    | -    | -    | -     | 1    | 1    | 
+|gouraudIterator16 | (A*B)'             | 16     | 12     | -      | -      | 28     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|gouraudIterator16 | PCIN+(A*B)'        | 16     | 12     | -      | -      | 28     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|gouraudIterator16 | (PCIN+(A*B)')'     | 16     | 12     | -      | -      | 28     | 0    | 0    | -    | -    | -     | 1    | 1    | 
+|blitter           | (A''*B)'           | 17     | 15     | -      | -      | 48     | 2    | 0    | -    | -    | -     | 0    | 1    | 
+|blitter           | A*B''              | 17     | 17     | -      | -      | 48     | 0    | 2    | -    | -    | -     | 0    | 0    | 
+|blitter           | (PCIN>>17+A*B'')'  | 0      | 15     | -      | -      | 48     | 0    | 2    | -    | -    | -     | 0    | 1    | 
+|blitter           | (A''*B)'           | 17     | 15     | -      | -      | 48     | 2    | 0    | -    | -    | -     | 0    | 1    | 
+|blitter           | A*B''              | 17     | 17     | -      | -      | 48     | 0    | 2    | -    | -    | -     | 0    | 0    | 
+|blitter           | (PCIN>>17+A*B'')'  | 0      | 15     | -      | -      | 48     | 0    | 2    | -    | -    | -     | 0    | 1    | 
+|blitter           | (A''*B)'           | 17     | 15     | -      | -      | 48     | 2    | 0    | -    | -    | -     | 0    | 1    | 
+|blitter           | A*B''              | 17     | 17     | -      | -      | 48     | 0    | 2    | -    | -    | -     | 0    | 0    | 
+|blitter           | (PCIN>>17+A*B'')'  | 0      | 15     | -      | -      | 48     | 0    | 2    | -    | -    | -     | 0    | 1    | 
+|nekoRv            | A'*B'              | 17     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|nekoRv            | (PCIN>>17+A'*B')'  | 15     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|nekoRv            | A'*B'              | 17     | 17     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|nekoRv            | (PCIN>>17+A'*B')'  | 17     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|nekoRv            | A'*B'              | 17     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|nekoRv            | (PCIN>>17+A'*B')'  | 15     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|nekoRv            | A'*B'              | 17     | 17     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|nekoRv            | (PCIN>>17+A'*B')'  | 17     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|nekoRv            | A'*B'              | 17     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|nekoRv            | (PCIN>>17+A'*B')'  | 30     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
+|nekoRv            | A'*B'              | 17     | 17     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|nekoRv            | (PCIN>>17+A'*B')'  | 17     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 1    | 
++------------------+--------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
 
 
 Report BlackBoxes: 
@@ -1138,38 +1409,38 @@ Report Cell Usage:
 |10    |systemRam_bbox         |     1|
 |11    |uartFiFo_bbox          |     1|
 |12    |BUFG                   |     2|
-|13    |CARRY4                 |   465|
-|14    |DSP48E1                |    13|
-|17    |LUT1                   |   317|
-|18    |LUT2                   |   987|
-|19    |LUT3                   |   772|
-|20    |LUT4                   |   950|
-|21    |LUT5                   |  1173|
-|22    |LUT6                   |  2819|
-|23    |MUXF7                  |   342|
-|24    |MUXF8                  |     2|
-|25    |ODDR2                  |     4|
-|26    |RAMB18E1               |     1|
-|27    |FDCE                   |  1453|
-|28    |FDPE                   |    48|
-|29    |FDRE                   |  3715|
-|30    |FDSE                   |    72|
-|31    |LD                     |     1|
-|32    |IBUF                   |     4|
-|33    |IOBUF                  |    36|
-|34    |OBUF                   |    34|
-|35    |OBUFDS                 |     4|
-|36    |OBUFT                  |     1|
+|13    |CARRY4                 |   619|
+|14    |DSP48E1                |    42|
+|25    |LUT1                   |   348|
+|26    |LUT2                   |  1404|
+|27    |LUT3                   |  1020|
+|28    |LUT4                   |  1287|
+|29    |LUT5                   |  1464|
+|30    |LUT6                   |  3102|
+|31    |MUXF7                  |   380|
+|32    |MUXF8                  |     1|
+|33    |ODDR2                  |     4|
+|34    |RAMB18E1               |     1|
+|35    |FDCE                   |  1757|
+|36    |FDPE                   |    63|
+|37    |FDRE                   |  4196|
+|38    |FDSE                   |    77|
+|39    |LD                     |     1|
+|40    |IBUF                   |     4|
+|41    |IOBUF                  |    36|
+|42    |OBUF                   |    34|
+|43    |OBUFDS                 |     4|
+|44    |OBUFT                  |     1|
 +------+-----------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:14 ; elapsed = 00:01:22 . Memory (MB): peak = 1824.672 ; gain = 824.863
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:26 ; elapsed = 00:01:36 . Memory (MB): peak = 1813.406 ; gain = 812.570
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 491 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:03 ; elapsed = 00:01:18 . Memory (MB): peak = 1824.672 ; gain = 717.992
-Synthesis Optimization Complete : Time (s): cpu = 00:01:14 ; elapsed = 00:01:22 . Memory (MB): peak = 1824.672 ; gain = 824.863
+Synthesis finished with 0 errors, 0 critical warnings and 526 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:13 ; elapsed = 00:01:32 . Memory (MB): peak = 1813.406 ; gain = 703.738
+Synthesis Optimization Complete : Time (s): cpu = 00:01:26 ; elapsed = 00:01:36 . Memory (MB): peak = 1813.406 ; gain = 812.570
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.117 . Memory (MB): peak = 1833.500 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 868 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.162 . Memory (MB): peak = 1821.453 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 1088 Unisim elements for replacement
 WARNING: [Netlist 29-151] Pin 'C1' on instance 'dvidInst/ODDR2_blue' of cell type 'ODDR2' does not have an equivalent function on the new cell type 'ODDR'. Net 'clk125ps' that is connected to this pin will not be connected to the replacement instance.
 WARNING: [Netlist 29-151] Pin 'C1' on instance 'dvidInst/ODDR2_clock' of cell type 'ODDR2' does not have an equivalent function on the new cell type 'ODDR'. Net 'clk125ps' that is connected to this pin will not be connected to the replacement instance.
 WARNING: [Netlist 29-151] Pin 'C1' on instance 'dvidInst/ODDR2_green' of cell type 'ODDR2' does not have an equivalent function on the new cell type 'ODDR'. Net 'clk125ps' that is connected to this pin will not be connected to the replacement instance.
@@ -1177,7 +1448,7 @@ WARNING: [Netlist 29-151] Pin 'C1' on instance 'dvidInst/ODDR2_red' of cell type
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1844.059 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1840.164 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 45 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 36 instances
@@ -1185,12 +1456,12 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   OBUFDS => OBUFDS_DUAL_BUF (INV, OBUFDS(x2)): 4 instances
   ODDR2 => ODDR: 4 instances
 
-Synth Design complete | Checksum: 403dc9e
+Synth Design complete | Checksum: 379fc4cf
 INFO: [Common 17-83] Releasing license: Synthesis
-156 Infos, 244 Warnings, 0 Critical Warnings and 0 Errors encountered.
+185 Infos, 254 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:20 ; elapsed = 00:01:29 . Memory (MB): peak = 1844.059 ; gain = 1296.496
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.017 . Memory (MB): peak = 1844.059 ; gain = 0.000
+synth_design: Time (s): cpu = 00:01:31 ; elapsed = 00:01:44 . Memory (MB): peak = 1840.164 ; gain = 1292.961
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.024 . Memory (MB): peak = 1840.164 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/A7BoardTop.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file A7BoardTop_utilization_synth.rpt -pb A7BoardTop_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Wed Nov 13 11:22:29 2024...
+INFO: [Common 17-206] Exiting Vivado at Thu Dec 26 22:05:05 2024...

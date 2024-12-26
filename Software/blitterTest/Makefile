@@ -8,9 +8,11 @@
 #https://github.com/qubeck78/srecsend
 #
 
+PORT = auto
 TARGET = blitterTest
+
 #CC = riscv-none-embed-gcc -march=rv32im -mno-div -c -O3 
-CC = riscv-none-embed-gcc -march=rv32im -c -O3 
+CC = riscv-none-embed-gcc -march=rv32im -c -O2 -I../gfxLib 
 LD = riscv-none-embed-ld -T ram.ld
 OBJCOPY = riscv-none-embed-objcopy
 OBJDUMP = riscv-none-embed-objdump 
@@ -28,8 +30,8 @@ $(TARGET).disasm: $(TARGET).elf
 $(TARGET).rec: $(TARGET).elf
 	$(OBJCOPY) -O srec $(TARGET).elf $(TARGET).rec
 
-$(TARGET).elf: main.o bsp.o startup.o osAlloc.o osFile.o gfBitmap.o gfDrawing.o gfFont.o diskio.o ccsbcs.o ff.o osUIEvents.o usbHID.o
-	$(LD) startup.o main.o ../gfxLib/bsp.o ../gfxLib/diskio.o ../gfxLib/ccsbcs.o ../gfxLib/ff.o ../gfxLib/osAlloc.o ../gfxLib/osFile.o ../gfxLib/gfBitmap.o ../gfxLib/gfDrawing.o ../gfxLib/gfFont.o ../gfxLib/osUIEvents.o ../gfxLib/usbHID.o $(LIBC) $(LIBNOSYS) $(LIBM) $(LIBGCC)  -o $(TARGET).elf
+$(TARGET).elf: main.o bsp.o startup.o osAlloc.o osFile.o gfBitmap.o gfDrawing.o gfFont.o gfGouraud.o diskio.o ccsbcs.o ff.o osUIEvents.o usbHID.o
+	$(LD) startup.o main.o ../gfxLib/bsp.o ../gfxLib/diskio.o ../gfxLib/ccsbcs.o ../gfxLib/ff.o ../gfxLib/osAlloc.o ../gfxLib/osFile.o ../gfxLib/gfBitmap.o ../gfxLib/gfDrawing.o ../gfxLib/gfFont.o ../gfxLib/gfGouraud.o ../gfxLib/osUIEvents.o ../gfxLib/usbHID.o $(LIBC) $(LIBNOSYS) $(LIBM) $(LIBGCC)  -o $(TARGET).elf
 
 $(TARGET).bin: $(TARGET).elf
 	$(OBJCOPY) -O binary $(TARGET).elf $(TARGET).bin
@@ -90,5 +92,8 @@ clean:
 	rm -f ../gfxLib/*.o
 
 send: $(TARGET).rec
-	srecsend $(TARGET).rec com9 460800
+	srecsend $(TARGET).rec $(PORT) 460800
 	
+run: $(TARGET).rec
+	cp $(TARGET).rec "/f/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/bin"
+	cd "/f/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/bin" && ./tangerine.exe $(TARGET).rec

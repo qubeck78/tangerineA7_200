@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Wed Nov 13 11:28:47 2024
+| Date         : Thu Dec 26 22:11:42 2024
 | Host         : Desktop-qUBECk running 64-bit major release  (build 9200)
 | Command      : report_drc -file A7BoardTop_drc_routed.rpt -pb A7BoardTop_drc_routed.pb -rpx A7BoardTop_drc_routed.rpx
 | Design       : A7BoardTop
@@ -24,14 +24,14 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 143
+             Violations found: 185
 +-----------+----------+---------------------------------+------------+
 | Rule      | Severity | Description                     | Violations |
 +-----------+----------+---------------------------------+------------+
 | CHECK-3   | Warning  | Report rule limit reached       | 1          |
-| DPIP-1    | Warning  | Input pipelining                | 25         |
-| DPOP-1    | Warning  | PREG Output pipelining          | 7          |
-| DPOP-2    | Warning  | MREG Output pipelining          | 13         |
+| DPIP-1    | Warning  | Input pipelining                | 55         |
+| DPOP-1    | Warning  | PREG Output pipelining          | 10         |
+| DPOP-2    | Warning  | MREG Output pipelining          | 22         |
 | DPOR-1    | Warning  | Asynchronous load check         | 70         |
 | PDCN-1569 | Warning  | LUT equation term check         | 3          |
 | REQP-1839 | Warning  | RAMB36 async control check      | 20         |
@@ -54,120 +54,270 @@ Related violations: <none>
 
 DPIP-1#2 Warning
 Input pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMul0 input tangerineSOCInst/nekoRvInst/resultMul0/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+DSP tangerineSOCInst/blitterInst/gouraudIterator0Inst/mul3_reg input tangerineSOCInst/blitterInst/gouraudIterator0Inst/mul3_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
 Related violations: <none>
 
 DPIP-1#3 Warning
 Input pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMul0 input tangerineSOCInst/nekoRvInst/resultMul0/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+DSP tangerineSOCInst/blitterInst/gouraudIterator0Inst/mul3_reg input tangerineSOCInst/blitterInst/gouraudIterator0Inst/mul3_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
 Related violations: <none>
 
 DPIP-1#4 Warning
 Input pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMul0__0 input tangerineSOCInst/nekoRvInst/resultMul0__0/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+DSP tangerineSOCInst/blitterInst/gouraudIterator0Inst/plusOp input tangerineSOCInst/blitterInst/gouraudIterator0Inst/plusOp/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
 Related violations: <none>
 
 DPIP-1#5 Warning
 Input pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMul0__0 input tangerineSOCInst/nekoRvInst/resultMul0__0/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+DSP tangerineSOCInst/blitterInst/gouraudIterator0Inst/plusOp input tangerineSOCInst/blitterInst/gouraudIterator0Inst/plusOp/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
 Related violations: <none>
 
 DPIP-1#6 Warning
 Input pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMul0__1 input tangerineSOCInst/nekoRvInst/resultMul0__1/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+DSP tangerineSOCInst/blitterInst/gouraudIterator0Inst/plusOp__0 input tangerineSOCInst/blitterInst/gouraudIterator0Inst/plusOp__0/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
 Related violations: <none>
 
 DPIP-1#7 Warning
 Input pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMul0__1 input tangerineSOCInst/nekoRvInst/resultMul0__1/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+DSP tangerineSOCInst/blitterInst/gouraudIterator0Inst/plusOp__0 input tangerineSOCInst/blitterInst/gouraudIterator0Inst/plusOp__0/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
 Related violations: <none>
 
 DPIP-1#8 Warning
 Input pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMul0__2 input tangerineSOCInst/nekoRvInst/resultMul0__2/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+DSP tangerineSOCInst/blitterInst/gouraudIterator1Inst/mul3_reg input tangerineSOCInst/blitterInst/gouraudIterator1Inst/mul3_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
 Related violations: <none>
 
 DPIP-1#9 Warning
 Input pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMul0__2 input tangerineSOCInst/nekoRvInst/resultMul0__2/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+DSP tangerineSOCInst/blitterInst/gouraudIterator1Inst/mul3_reg input tangerineSOCInst/blitterInst/gouraudIterator1Inst/mul3_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
 Related violations: <none>
 
 DPIP-1#10 Warning
 Input pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMulsu0 input tangerineSOCInst/nekoRvInst/resultMulsu0/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+DSP tangerineSOCInst/blitterInst/gouraudIterator1Inst/plusOp input tangerineSOCInst/blitterInst/gouraudIterator1Inst/plusOp/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
 Related violations: <none>
 
 DPIP-1#11 Warning
 Input pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMulsu0 input tangerineSOCInst/nekoRvInst/resultMulsu0/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+DSP tangerineSOCInst/blitterInst/gouraudIterator1Inst/plusOp input tangerineSOCInst/blitterInst/gouraudIterator1Inst/plusOp/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
 Related violations: <none>
 
 DPIP-1#12 Warning
 Input pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMulsu0__0 input tangerineSOCInst/nekoRvInst/resultMulsu0__0/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+DSP tangerineSOCInst/blitterInst/gouraudIterator1Inst/plusOp__0 input tangerineSOCInst/blitterInst/gouraudIterator1Inst/plusOp__0/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
 Related violations: <none>
 
 DPIP-1#13 Warning
 Input pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMulsu0__0 input tangerineSOCInst/nekoRvInst/resultMulsu0__0/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+DSP tangerineSOCInst/blitterInst/gouraudIterator1Inst/plusOp__0 input tangerineSOCInst/blitterInst/gouraudIterator1Inst/plusOp__0/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
 Related violations: <none>
 
 DPIP-1#14 Warning
 Input pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMulsu0__1 input tangerineSOCInst/nekoRvInst/resultMulsu0__1/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+DSP tangerineSOCInst/blitterInst/gouraudIterator2Inst/mul3_reg input tangerineSOCInst/blitterInst/gouraudIterator2Inst/mul3_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
 Related violations: <none>
 
 DPIP-1#15 Warning
 Input pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMulsu0__1 input tangerineSOCInst/nekoRvInst/resultMulsu0__1/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+DSP tangerineSOCInst/blitterInst/gouraudIterator2Inst/mul3_reg input tangerineSOCInst/blitterInst/gouraudIterator2Inst/mul3_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
 Related violations: <none>
 
 DPIP-1#16 Warning
 Input pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMulsu0__2 input tangerineSOCInst/nekoRvInst/resultMulsu0__2/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+DSP tangerineSOCInst/blitterInst/gouraudIterator2Inst/plusOp input tangerineSOCInst/blitterInst/gouraudIterator2Inst/plusOp/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
 Related violations: <none>
 
 DPIP-1#17 Warning
 Input pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMulsu0__2 input tangerineSOCInst/nekoRvInst/resultMulsu0__2/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+DSP tangerineSOCInst/blitterInst/gouraudIterator2Inst/plusOp input tangerineSOCInst/blitterInst/gouraudIterator2Inst/plusOp/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
 Related violations: <none>
 
 DPIP-1#18 Warning
 Input pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMuluu0 input tangerineSOCInst/nekoRvInst/resultMuluu0/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+DSP tangerineSOCInst/blitterInst/gouraudIterator2Inst/plusOp__0 input tangerineSOCInst/blitterInst/gouraudIterator2Inst/plusOp__0/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
 Related violations: <none>
 
 DPIP-1#19 Warning
 Input pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMuluu0 input tangerineSOCInst/nekoRvInst/resultMuluu0/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+DSP tangerineSOCInst/blitterInst/gouraudIterator2Inst/plusOp__0 input tangerineSOCInst/blitterInst/gouraudIterator2Inst/plusOp__0/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
 Related violations: <none>
 
 DPIP-1#20 Warning
 Input pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMuluu0__0 input tangerineSOCInst/nekoRvInst/resultMuluu0__0/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+DSP tangerineSOCInst/blitterInst/gouraudIterator3Inst/mul3_reg input tangerineSOCInst/blitterInst/gouraudIterator3Inst/mul3_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
 Related violations: <none>
 
 DPIP-1#21 Warning
 Input pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMuluu0__0 input tangerineSOCInst/nekoRvInst/resultMuluu0__0/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+DSP tangerineSOCInst/blitterInst/gouraudIterator3Inst/mul3_reg input tangerineSOCInst/blitterInst/gouraudIterator3Inst/mul3_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
 Related violations: <none>
 
 DPIP-1#22 Warning
 Input pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMuluu0__1 input tangerineSOCInst/nekoRvInst/resultMuluu0__1/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+DSP tangerineSOCInst/blitterInst/gouraudIterator3Inst/plusOp input tangerineSOCInst/blitterInst/gouraudIterator3Inst/plusOp/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
 Related violations: <none>
 
 DPIP-1#23 Warning
 Input pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMuluu0__1 input tangerineSOCInst/nekoRvInst/resultMuluu0__1/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+DSP tangerineSOCInst/blitterInst/gouraudIterator3Inst/plusOp input tangerineSOCInst/blitterInst/gouraudIterator3Inst/plusOp/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
 Related violations: <none>
 
 DPIP-1#24 Warning
 Input pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMuluu0__2 input tangerineSOCInst/nekoRvInst/resultMuluu0__2/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+DSP tangerineSOCInst/blitterInst/gouraudIterator3Inst/plusOp__0 input tangerineSOCInst/blitterInst/gouraudIterator3Inst/plusOp__0/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
 Related violations: <none>
 
 DPIP-1#25 Warning
+Input pipelining  
+DSP tangerineSOCInst/blitterInst/gouraudIterator3Inst/plusOp__0 input tangerineSOCInst/blitterInst/gouraudIterator3Inst/plusOp__0/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#26 Warning
+Input pipelining  
+DSP tangerineSOCInst/blitterInst/gouraudWeightACInst/weight0 input tangerineSOCInst/blitterInst/gouraudWeightACInst/weight0/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#27 Warning
+Input pipelining  
+DSP tangerineSOCInst/blitterInst/gouraudWeightACInst/weight0__0 input tangerineSOCInst/blitterInst/gouraudWeightACInst/weight0__0/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#28 Warning
+Input pipelining  
+DSP tangerineSOCInst/blitterInst/gouraudWeightBAInst/weight0 input tangerineSOCInst/blitterInst/gouraudWeightBAInst/weight0/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#29 Warning
+Input pipelining  
+DSP tangerineSOCInst/blitterInst/gouraudWeightBAInst/weight0__0 input tangerineSOCInst/blitterInst/gouraudWeightBAInst/weight0__0/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#30 Warning
+Input pipelining  
+DSP tangerineSOCInst/blitterInst/gouraudWeightCBInst/weight0 input tangerineSOCInst/blitterInst/gouraudWeightCBInst/weight0/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#31 Warning
+Input pipelining  
+DSP tangerineSOCInst/blitterInst/gouraudWeightCBInst/weight0__0 input tangerineSOCInst/blitterInst/gouraudWeightCBInst/weight0__0/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#32 Warning
+Input pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMul0 input tangerineSOCInst/nekoRvInst/resultMul0/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#33 Warning
+Input pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMul0 input tangerineSOCInst/nekoRvInst/resultMul0/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#34 Warning
+Input pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMul0__0 input tangerineSOCInst/nekoRvInst/resultMul0__0/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#35 Warning
+Input pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMul0__0 input tangerineSOCInst/nekoRvInst/resultMul0__0/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#36 Warning
+Input pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMul0__1 input tangerineSOCInst/nekoRvInst/resultMul0__1/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#37 Warning
+Input pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMul0__1 input tangerineSOCInst/nekoRvInst/resultMul0__1/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#38 Warning
+Input pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMul0__2 input tangerineSOCInst/nekoRvInst/resultMul0__2/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#39 Warning
+Input pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMul0__2 input tangerineSOCInst/nekoRvInst/resultMul0__2/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#40 Warning
+Input pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0 input tangerineSOCInst/nekoRvInst/resultMulsu0/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#41 Warning
+Input pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0 input tangerineSOCInst/nekoRvInst/resultMulsu0/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#42 Warning
+Input pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0__0 input tangerineSOCInst/nekoRvInst/resultMulsu0__0/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#43 Warning
+Input pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0__0 input tangerineSOCInst/nekoRvInst/resultMulsu0__0/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#44 Warning
+Input pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0__1 input tangerineSOCInst/nekoRvInst/resultMulsu0__1/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#45 Warning
+Input pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0__1 input tangerineSOCInst/nekoRvInst/resultMulsu0__1/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#46 Warning
+Input pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0__2 input tangerineSOCInst/nekoRvInst/resultMulsu0__2/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#47 Warning
+Input pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0__2 input tangerineSOCInst/nekoRvInst/resultMulsu0__2/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#48 Warning
+Input pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0 input tangerineSOCInst/nekoRvInst/resultMuluu0/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#49 Warning
+Input pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0 input tangerineSOCInst/nekoRvInst/resultMuluu0/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#50 Warning
+Input pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0__0 input tangerineSOCInst/nekoRvInst/resultMuluu0__0/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#51 Warning
+Input pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0__0 input tangerineSOCInst/nekoRvInst/resultMuluu0__0/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#52 Warning
+Input pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0__1 input tangerineSOCInst/nekoRvInst/resultMuluu0__1/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#53 Warning
+Input pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0__1 input tangerineSOCInst/nekoRvInst/resultMuluu0__1/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#54 Warning
+Input pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0__2 input tangerineSOCInst/nekoRvInst/resultMuluu0__2/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#55 Warning
 Input pipelining  
 DSP tangerineSOCInst/nekoRvInst/resultMuluu0__2 input tangerineSOCInst/nekoRvInst/resultMuluu0__2/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
 Related violations: <none>
@@ -179,30 +329,45 @@ Related violations: <none>
 
 DPOP-1#2 Warning
 PREG Output pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMul0 output tangerineSOCInst/nekoRvInst/resultMul0/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+DSP tangerineSOCInst/blitterInst/gouraudWeightACInst/weight0__0 output tangerineSOCInst/blitterInst/gouraudWeightACInst/weight0__0/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
 Related violations: <none>
 
 DPOP-1#3 Warning
 PREG Output pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMul0__1 output tangerineSOCInst/nekoRvInst/resultMul0__1/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+DSP tangerineSOCInst/blitterInst/gouraudWeightBAInst/weight0__0 output tangerineSOCInst/blitterInst/gouraudWeightBAInst/weight0__0/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
 Related violations: <none>
 
 DPOP-1#4 Warning
 PREG Output pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMulsu0 output tangerineSOCInst/nekoRvInst/resultMulsu0/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+DSP tangerineSOCInst/blitterInst/gouraudWeightCBInst/weight0__0 output tangerineSOCInst/blitterInst/gouraudWeightCBInst/weight0__0/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
 Related violations: <none>
 
 DPOP-1#5 Warning
 PREG Output pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMulsu0__1 output tangerineSOCInst/nekoRvInst/resultMulsu0__1/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+DSP tangerineSOCInst/nekoRvInst/resultMul0 output tangerineSOCInst/nekoRvInst/resultMul0/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
 Related violations: <none>
 
 DPOP-1#6 Warning
 PREG Output pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMuluu0 output tangerineSOCInst/nekoRvInst/resultMuluu0/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+DSP tangerineSOCInst/nekoRvInst/resultMul0__1 output tangerineSOCInst/nekoRvInst/resultMul0__1/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
 Related violations: <none>
 
 DPOP-1#7 Warning
+PREG Output pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0 output tangerineSOCInst/nekoRvInst/resultMulsu0/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-1#8 Warning
+PREG Output pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0__1 output tangerineSOCInst/nekoRvInst/resultMulsu0__1/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-1#9 Warning
+PREG Output pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0 output tangerineSOCInst/nekoRvInst/resultMuluu0/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-1#10 Warning
 PREG Output pipelining  
 DSP tangerineSOCInst/nekoRvInst/resultMuluu0__1 output tangerineSOCInst/nekoRvInst/resultMuluu0__1/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
 Related violations: <none>
@@ -214,60 +379,105 @@ Related violations: <none>
 
 DPOP-2#2 Warning
 MREG Output pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMul0 multiplier stage tangerineSOCInst/nekoRvInst/resultMul0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+DSP tangerineSOCInst/blitterInst/gouraudWeightACInst/weight0 multiplier stage tangerineSOCInst/blitterInst/gouraudWeightACInst/weight0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
 Related violations: <none>
 
 DPOP-2#3 Warning
 MREG Output pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMul0__0 multiplier stage tangerineSOCInst/nekoRvInst/resultMul0__0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+DSP tangerineSOCInst/blitterInst/gouraudWeightACInst/weight0__0 multiplier stage tangerineSOCInst/blitterInst/gouraudWeightACInst/weight0__0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
 Related violations: <none>
 
 DPOP-2#4 Warning
 MREG Output pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMul0__1 multiplier stage tangerineSOCInst/nekoRvInst/resultMul0__1/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+DSP tangerineSOCInst/blitterInst/gouraudWeightACInst/weight_reg multiplier stage tangerineSOCInst/blitterInst/gouraudWeightACInst/weight_reg/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
 Related violations: <none>
 
 DPOP-2#5 Warning
 MREG Output pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMul0__2 multiplier stage tangerineSOCInst/nekoRvInst/resultMul0__2/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+DSP tangerineSOCInst/blitterInst/gouraudWeightBAInst/weight0 multiplier stage tangerineSOCInst/blitterInst/gouraudWeightBAInst/weight0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
 Related violations: <none>
 
 DPOP-2#6 Warning
 MREG Output pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMulsu0 multiplier stage tangerineSOCInst/nekoRvInst/resultMulsu0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+DSP tangerineSOCInst/blitterInst/gouraudWeightBAInst/weight0__0 multiplier stage tangerineSOCInst/blitterInst/gouraudWeightBAInst/weight0__0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
 Related violations: <none>
 
 DPOP-2#7 Warning
 MREG Output pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMulsu0__0 multiplier stage tangerineSOCInst/nekoRvInst/resultMulsu0__0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+DSP tangerineSOCInst/blitterInst/gouraudWeightBAInst/weight_reg multiplier stage tangerineSOCInst/blitterInst/gouraudWeightBAInst/weight_reg/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
 Related violations: <none>
 
 DPOP-2#8 Warning
 MREG Output pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMulsu0__1 multiplier stage tangerineSOCInst/nekoRvInst/resultMulsu0__1/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+DSP tangerineSOCInst/blitterInst/gouraudWeightCBInst/weight0 multiplier stage tangerineSOCInst/blitterInst/gouraudWeightCBInst/weight0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
 Related violations: <none>
 
 DPOP-2#9 Warning
 MREG Output pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMulsu0__2 multiplier stage tangerineSOCInst/nekoRvInst/resultMulsu0__2/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+DSP tangerineSOCInst/blitterInst/gouraudWeightCBInst/weight0__0 multiplier stage tangerineSOCInst/blitterInst/gouraudWeightCBInst/weight0__0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
 Related violations: <none>
 
 DPOP-2#10 Warning
 MREG Output pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMuluu0 multiplier stage tangerineSOCInst/nekoRvInst/resultMuluu0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+DSP tangerineSOCInst/blitterInst/gouraudWeightCBInst/weight_reg multiplier stage tangerineSOCInst/blitterInst/gouraudWeightCBInst/weight_reg/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
 Related violations: <none>
 
 DPOP-2#11 Warning
 MREG Output pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMuluu0__0 multiplier stage tangerineSOCInst/nekoRvInst/resultMuluu0__0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+DSP tangerineSOCInst/nekoRvInst/resultMul0 multiplier stage tangerineSOCInst/nekoRvInst/resultMul0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
 Related violations: <none>
 
 DPOP-2#12 Warning
 MREG Output pipelining  
-DSP tangerineSOCInst/nekoRvInst/resultMuluu0__1 multiplier stage tangerineSOCInst/nekoRvInst/resultMuluu0__1/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+DSP tangerineSOCInst/nekoRvInst/resultMul0__0 multiplier stage tangerineSOCInst/nekoRvInst/resultMul0__0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
 Related violations: <none>
 
 DPOP-2#13 Warning
+MREG Output pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMul0__1 multiplier stage tangerineSOCInst/nekoRvInst/resultMul0__1/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#14 Warning
+MREG Output pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMul0__2 multiplier stage tangerineSOCInst/nekoRvInst/resultMul0__2/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#15 Warning
+MREG Output pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0 multiplier stage tangerineSOCInst/nekoRvInst/resultMulsu0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#16 Warning
+MREG Output pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0__0 multiplier stage tangerineSOCInst/nekoRvInst/resultMulsu0__0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#17 Warning
+MREG Output pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0__1 multiplier stage tangerineSOCInst/nekoRvInst/resultMulsu0__1/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#18 Warning
+MREG Output pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMulsu0__2 multiplier stage tangerineSOCInst/nekoRvInst/resultMulsu0__2/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#19 Warning
+MREG Output pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0 multiplier stage tangerineSOCInst/nekoRvInst/resultMuluu0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#20 Warning
+MREG Output pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0__0 multiplier stage tangerineSOCInst/nekoRvInst/resultMuluu0__0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#21 Warning
+MREG Output pipelining  
+DSP tangerineSOCInst/nekoRvInst/resultMuluu0__1 multiplier stage tangerineSOCInst/nekoRvInst/resultMuluu0__1/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#22 Warning
 MREG Output pipelining  
 DSP tangerineSOCInst/nekoRvInst/resultMuluu0__2 multiplier stage tangerineSOCInst/nekoRvInst/resultMuluu0__2/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
 Related violations: <none>
@@ -624,17 +834,17 @@ Related violations: <none>
 
 PDCN-1569#1 Warning
 LUT equation term check  
-Used physical LUT pin 'A2' of cell tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1 (pin tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1/I1) is not included in the LUT equation: 'O6=(A6)+((~A6)*(~A1)*A3)'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+Used physical LUT pin 'A4' of cell tangerineSOCInst/i2sControllerInst/i2sControllerFifoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1 (pin tangerineSOCInst/i2sControllerInst/i2sControllerFifoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1/I1) is not included in the LUT equation: 'O6=(A1)+((~A1)*(~A5)*A2)'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
 Related violations: <none>
 
 PDCN-1569#2 Warning
 LUT equation term check  
-Used physical LUT pin 'A4' of cell tangerineSOCInst/usbHostInst/keyboardFifoinst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1 (pin tangerineSOCInst/usbHostInst/keyboardFifoinst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1/I1) is not included in the LUT equation: 'O6=(A1)+((~A1)*(~A3)*A6)'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+Used physical LUT pin 'A5' of cell tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1 (pin tangerineSOCInst/UARTInst/rxFiFoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1/I1) is not included in the LUT equation: 'O6=(A6)+((~A6)*(~A1)*A3)'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
 Related violations: <none>
 
 PDCN-1569#3 Warning
 LUT equation term check  
-Used physical LUT pin 'A6' of cell tangerineSOCInst/i2sControllerInst/i2sControllerFifoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1 (pin tangerineSOCInst/i2sControllerInst/i2sControllerFifoInst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1/I1) is not included in the LUT equation: 'O6=(A4)+((~A4)*(~A1)*A5)'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+Used physical LUT pin 'A6' of cell tangerineSOCInst/usbHostInst/keyboardFifoinst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1 (pin tangerineSOCInst/usbHostInst/keyboardFifoinst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1/I1) is not included in the LUT equation: 'O6=(A3)+((~A3)*(~A2)*A5)'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
 Related violations: <none>
 
 REQP-1839#1 Warning

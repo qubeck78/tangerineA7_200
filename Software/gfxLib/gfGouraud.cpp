@@ -1209,14 +1209,16 @@ uint32_t gfGouraudDrawTexturedTriangleZBuffer( tgfBitmap *bmp, tgfBitmap *zBuffe
    int32_t      wcbl;
    int32_t      wacl;
 
-   int16_t      tx;
-   int16_t      ty;
+   uint8_t      tx;
+   uint8_t      ty;
    uint8_t      tl;
 
    uint32_t     cz;
 
    uint16_t    *bmpPtr;
    uint16_t    *zBufPtr;
+
+   uint32_t     insideTriangle;
 
    tgfPoint3D   p;
 
@@ -1322,8 +1324,10 @@ uint32_t gfGouraudDrawTexturedTriangleZBuffer( tgfBitmap *bmp, tgfBitmap *zBuffe
       for( y = yMin; y <= yMax; y++ )
       {
 
-         bmpPtr = NULL;
-         zBufPtr = &((uint16_t*)( zBuffer->buffer ))[ ( y * zBuffer->rowWidth ) ];
+         zBufPtr  = &((uint16_t*)( zBuffer->buffer ))[ ( y * zBuffer->rowWidth ) ];
+         bmpPtr   = &((uint16_t*)( bmp->buffer ))[ ( y * bmp->rowWidth ) ];
+
+         insideTriangle = 0;
 
          for( x = xMin; x <= xMax; x++ )
          {
@@ -1340,7 +1344,7 @@ uint32_t gfGouraudDrawTexturedTriangleZBuffer( tgfBitmap *bmp, tgfBitmap *zBuffe
             if( ( eba >= 0 ) && ( ecb >= 0 ) && ( eac >= 0 ) )
             {
 
-
+               insideTriangle = 1;
                //wbal = ( eba << 8 ) / areal;
                //wcbl = ( ecb << 8 ) / areal;
                //wacl = ( eac << 8 ) / areal;
@@ -1357,12 +1361,6 @@ uint32_t gfGouraudDrawTexturedTriangleZBuffer( tgfBitmap *bmp, tgfBitmap *zBuffe
                cz = ( ( wcbl * ( int32_t )triangle->a->z2D ) + ( wacl * ( int32_t )triangle->b->z2D ) + ( wbal * ( int32_t )triangle->c->z2D ) ) >> 12;
 
 
-               if( !bmpPtr )
-               {
-                  //pixel not yet drawn in this line
-                  bmpPtr = &((uint16_t*)( bmp->buffer ))[ x + ( y * bmp->rowWidth ) ];
-               }
-
                //current pixel is closer than existing one
                if( cz <= zBufPtr[x] )
                {
@@ -1375,20 +1373,20 @@ uint32_t gfGouraudDrawTexturedTriangleZBuffer( tgfBitmap *bmp, tgfBitmap *zBuffe
                   g = gfColorGetG( texturePixel ) * tl;
                   b = gfColorGetB( texturePixel ) * tl;
 
-                  *bmpPtr++ = gfColor( r >> 8 , g >> 8 , b >> 8  );
+
+                  bmpPtr[x] = gfColor( r >> 8 , g >> 8 , b >> 8  );
                   //gfPlotF( bmp, x, y, gfColor( r >> 8 , g >> 8 , b >> 8  ) );
 
-               }
-               else
-               {
-                  bmpPtr++;
                }
             }
             else
             {
-               if( bmpPtr )
+               if( insideTriangle )
                {
-                  //finished drawing this line, go to next one
+                  //    *
+                  //   *  * #we are here, skip to the next line
+                  //  *     *
+                  // *********
                   break;
                }
             }

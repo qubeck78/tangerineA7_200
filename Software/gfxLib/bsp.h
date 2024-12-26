@@ -124,20 +124,74 @@ typedef struct __BLITTER_REGISTERS_T
     volatile uint32_t input2;
     volatile uint32_t input3;
     volatile uint32_t saAddress;
-    volatile uint32_t saRowWidth;
-    volatile uint32_t saWidth;
-    volatile uint32_t saHeight;
+    volatile uint16_t saRowWidth;
+    volatile uint16_t unused0;
+    volatile uint16_t saWidth;
+    volatile uint16_t unused1;
+    volatile uint16_t saHeight;
+    volatile uint16_t unused2;
     volatile uint32_t sbAddress;
-    volatile uint32_t sbRowWidth;
+    volatile uint16_t sbRowWidth;
+    volatile uint16_t unused3;
     volatile uint32_t scAddress;
-    volatile uint32_t scRowWidth;
+    volatile uint16_t scRowWidth;
+    volatile uint16_t unused4;    
     volatile uint32_t daAddress;
-    volatile uint32_t daRowWidth;
-    volatile uint32_t daWidth;
-    volatile uint32_t daHeight;
+    volatile uint16_t daRowWidth;
+    volatile uint16_t unused5;
+    volatile uint16_t daWidth;
+    volatile uint16_t unused6;
+    volatile uint16_t daHeight;
+    volatile uint16_t unused7;
     volatile uint32_t dbAddress;
-    volatile uint32_t dbRowWidth;
+    volatile uint16_t dbRowWidth;
+    volatile uint16_t unused8;
+    
+    //3d
+    //bounding box min/max
+    volatile int16_t  bbXMin;
+    volatile uint16_t unused9;
+    volatile int16_t  bbXMax;
+    volatile uint16_t unused10;
+    volatile int16_t  bbYMin;
+    volatile uint16_t unused11;
+    volatile int16_t  bbYMax;
+    volatile uint16_t unused12;
 
+    //triangle vertices a,b,c
+    volatile int16_t  aX;
+    volatile uint16_t unused13;
+    volatile int16_t  aY;
+    volatile uint16_t unused14;
+    volatile int16_t  aZ;
+    volatile uint16_t unused15;
+    volatile uint32_t aIt0;
+    volatile uint32_t aIt1;
+    volatile uint32_t aIt2;
+
+    volatile int16_t  bX;
+    volatile uint16_t unused16;
+    volatile int16_t  bY;
+    volatile uint16_t unused17;
+    volatile int16_t  bZ;
+    volatile uint16_t unused18;
+    volatile uint32_t bIt0;
+    volatile uint32_t bIt1;
+    volatile uint32_t bIt2;
+
+    volatile int16_t  cX;
+    volatile uint16_t unused19;
+    volatile int16_t  cY;
+    volatile uint16_t unused20;
+    volatile int16_t  cZ;
+    volatile uint16_t unused21;
+    volatile uint32_t cIt0;
+    volatile uint32_t cIt1;
+    volatile uint32_t cIt2;
+
+    volatile int32_t  triangleArea;
+    volatile int32_t  triangleAreaInv;
+    
 }_BLITTER_REGISTERS_T;
 
 extern _BLITTER_REGISTERS_T *blt;

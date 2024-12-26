@@ -3,21 +3,38 @@
 #include <climits>
 #include <cstdio>
 
-#include "../gfxLib/bsp.h"
-#include "../gfxLib/osAlloc.h"
-#include "../gfxLib/osFile.h"
-#include "../gfxLib/gfBitmap.h"
-#include "../gfxLib/gfDrawing.h"
-#include "../gfxLib/gfFont.h"
+#include "bsp.h"
+#include "osAlloc.h"
+#include "osFile.h"
+#include "gfBitmap.h"
+#include "gfDrawing.h"
+#include "gfFont.h"
+#include "gfGouraud.h"
 
-#include "../gfxLib/osUIEvents.h"
+#include "osUIEvents.h"
 
 
 extern tgfTextOverlay   con;
 tgfBitmap               screen;
+tgfBitmap               zBuffer;
 tgfBitmap               bmp;
 
 char buf[256];
+
+int32_t gouraudEdge( tgfPoint3D *e1, tgfPoint3D *e2, tgfPoint3D *p )
+{
+   tgfPoint3D a,b;
+
+
+   a.x2D = p->x2D - e1->x2D;
+   a.y2D = p->y2D - e1->y2D;
+
+   b.x2D = e2->x2D - e1->x2D;
+   b.y2D = e2->y2D - e1->y2D;
+
+   return ( ( a.x2D * b.y2D ) - ( a.y2D * b.x2D ) );
+}
+
 
 
 static uint32_t fillTest()
@@ -184,7 +201,6 @@ static uint32_t waitKey()
                 }
             }
         }
-
         delayMs( 10 );
 
     }while( !keyPressed );
@@ -194,32 +210,50 @@ static uint32_t waitKey()
 
 int main()
 {
-    uint32_t   i;
-    uint32_t   rv;
-
+    uint32_t     i;
+    uint32_t     rv;
+    tgfPoint3D   pa;
+    tgfPoint3D   pb;
+    tgfPoint3D   pc;
+    uint32_t     hwTriangleArea;
+    uint32_t     hwTriangleAreaInv;
+    uint32_t     swTriangleArea;
+    uint32_t     swTriangleAreaInv;
+    
     bspInit();
 
-
-    
     setVideoMode( _VIDEOMODE_320_TEXT80_OVER_GFX );
     
     //alloc screen buffers
     screen.width            = 320;
     screen.rowWidth         = 512;
     screen.height           = 240;
-    
-    
+        
     screen.flags            = 0;
     screen.transparentColor = 0;
     screen.buffer           = osAlloc( screen.rowWidth * screen.height * 2, OS_ALLOC_MEMF_CHIP );
     
     if( screen.buffer == NULL )
     {
-        toPrint( &con, (char*)"\nCan't alloc screen\n" );
+        printf( "\nCan't alloc screen\n" );
         do{}while( 1 );
     } 
         
     
+    zBuffer.width            = 320;
+    zBuffer.rowWidth         = 512;
+    zBuffer.height           = 240;
+        
+    zBuffer.flags            = 0;
+    zBuffer.transparentColor = 0;
+    zBuffer.buffer           = osAlloc( zBuffer.rowWidth * zBuffer.height * 2, OS_ALLOC_MEMF_CHIP );
+    
+    if( zBuffer.buffer == NULL )
+    {
+        printf( "\nCan't alloc z-buffer\n" );
+        do{}while( 1 );
+    } 
+
     //display first buffer
     gfDisplayBitmap( &screen );
 
@@ -234,7 +268,7 @@ int main()
     rv = osFInit();
 
 
-    toPrintF( &con, (char*)"Blitter test. Blitter2D id: %08x, version: %08x\n", blt->id, blt->version );
+    printf( "Blitter test. Blitter id: %08x, version: %08x\n", blt->id, blt->version );
     
     gfLoadBitmapFS( &bmp, (char*)"0:/demos/ida.gbm" );
 
@@ -246,7 +280,71 @@ int main()
 
     waitKey();
 
-    toPrintF( &con, (char*)"done - press Pause to reboot\n" );
+    //clear zbuffer
+    gfFillRect( &zBuffer, 0, 0, zBuffer.width - 1, zBuffer.height - 1, 1500 /*0xffff*/ );
+
+    blt->daAddress  = (uint32_t)screen.buffer;
+    blt->dbAddress  = (uint32_t)zBuffer.buffer;
+
+    blt->bbXMin = 0;
+    blt->bbXMax = 319;
+    blt->bbYMin = 0;
+    blt->bbYMax = 239;
+
+    blt->aX     = 160;
+    blt->aY     = 10;
+    blt->aZ     = 100;
+    
+    blt->bX     = 310;
+    blt->bY     = 229;
+    blt->bZ     = 2000;
+
+    blt->cX     = 10;
+    blt->cY     = 229;
+    blt->cZ     = 100;          //triggers triangleArea and triangleAreaInv calculations
+
+    blt->aIt0   = 255;
+    blt->aIt1   = 0;
+    blt->aIt2   = 0;
+
+    blt->bIt0   = 0;
+    blt->bIt1   = 255;
+    blt->bIt2   = 0;
+
+    blt->cIt0   = 0;
+    blt->cIt1   = 0;
+    blt->cIt2   = 255;
+
+    hwTriangleArea = blt->triangleArea;
+
+    blt->command = 0x0510;      
+
+    printf( "hw triangleArea: %d\n", hwTriangleArea );
+
+    pa.x2D      = 160;
+    pa.y2D      = 10;
+
+    pb.x2D      = 310;
+    pb.y2D      = 229;
+
+    pc.x2D      = 10; 
+    pc.y2D      = 229;
+
+    swTriangleArea = gouraudEdge( &pc, &pb, &pa );
+    printf( "sw triangleArea: %d\n\n", swTriangleArea );
+
+    hwTriangleAreaInv = blt->triangleAreaInv;
+
+    printf( "hw triangleAreaInv: %d\n", hwTriangleAreaInv );
+    
+    swTriangleAreaInv = 0xffffffff / swTriangleArea;
+
+    printf( "sw triangleAreaInv: %d\n", swTriangleAreaInv );
+
+
+
+    printf( "done - press Pause to reboot\n" );
+
 
     do
     {

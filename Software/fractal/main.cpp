@@ -260,12 +260,12 @@ int main()
 
     bspInit();
     
-    setVideoMode( _VIDEOMODE_320_TEXT80_OVER_GFX );
+    setVideoMode( _VIDEOMODE_640_TEXT80_OVER_GFX );
     
     //alloc screen buffers
-    screen.width            = 320;
-    screen.rowWidth         = 512;
-    screen.height           = 240;
+    screen.width            = 640;
+    screen.rowWidth         = 1024;
+    screen.height           = 480;
     
     
     screen.flags            = 0;
@@ -293,18 +293,11 @@ int main()
 
     startTicks = getTicks();
 
-    ffMandelbrot( &screen, 7, -2.0f, -1.0f, 0.0085f, 0.0085f );
+    ffMandelbrot( &screen, 7, -2.0f, -1.0f, 0.00425f, 0.00425f );
 
     endTicks = getTicks();
 
     toPrintF( &con,  (char*)"Time: %d ms\n", (uint32_t)( endTicks - startTicks ) );
-
-
-/*    asm
-    (
-        "ebreak\n"
-    );
-*/
     
 
     delayMs( 30000 );

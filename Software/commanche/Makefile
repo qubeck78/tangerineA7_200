@@ -9,7 +9,7 @@
 #
 
 TARGET = commanche
-PORT = com7
+PORT = auto
 
 CC = riscv-none-embed-gcc -march=rv32im -c -O3 
 LD = riscv-none-embed-ld -T ram.ld
