@@ -19,6 +19,7 @@ _AUDIO_REGISTERS_T *aud                 = ( _AUDIO_REGISTERS_T*)            0xf0
 _SPI_REGISTERS_T *spi1                  = ( _SPI_REGISTERS_T *)             0xf0700000; //spi 1 base address
 _SDRAMDMA_REGISTERS_T *sdrdma           = ( _SDRAMDMA_REGISTERS_T *)        0xf0800000; //sdram dma base address
 _GFXPIXELGEN_REGISTERS_T *gfxPixelGen   = ( _GFXPIXELGEN_REGISTERS_T * )    0xf0900000; //gfx pixel gen base address
+_FPALU_REGISTERS_T *fpalu               = ( _FPALU_REGISTERS_T * )          0xf0a00000; //fpalu base address
 
 void (*bootLoaderEntry)(void) = (void(*)())0x0; 
 

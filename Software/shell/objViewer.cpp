@@ -4,899 +4,907 @@
 
 #include "objViewer.h"
 
-extern BSP_T 				*bsp; 
-extern tgfTextOverlay		 con;
-extern tgfBitmap		 	 screen;
-extern tgfBitmap			 background;
-extern tgfBitmap		 	 screen2;
-extern tgfBitmap		 	 zBuffer; 
-extern tgfBitmap			 texture; 
+extern BSP_T            *bsp; 
+extern tgfTextOverlay    con;
+extern tgfBitmap         screen;
+extern tgfBitmap         background;
+extern tgfBitmap         screen2;
+extern tgfBitmap         zBuffer; 
+extern tgfBitmap         texture; 
 
-float						 sinT[360];
-float 						 cosT[360];  
-uint8_t						 lightT[100];
+float                    sinT[360];
+float                    cosT[360];  
+uint8_t                  lightT[100];
 
-int							 sincosLightTablesValid;
+int                      sincosLightTablesValid;
 
-tgfPoint3D 		 	 		*points;
-tgfTriangle3D    	 		*triangles;
+tgfPoint3D              *points;
+tgfTriangle3D           *triangles;
 
-int 				 		 numTriangles;
-int 				 		 numPoints; 
-int 				 		 rotation; 
-int							 rotationCounter;
-tgfPoint3D 					 cam;
+int                      numTriangles;
+int                      numPoints; 
+int                      rotation; 
+int                      rotationCounter;
+tgfPoint3D               cam;
 
-uint16_t						 rendererType;
+uint16_t                 rendererType;
 
-char 						 buf[512];
+char                     buf[512];
 
 
 int objvInit()
 {
-	int rv;
+   int rv;
 
-	rv = 0;
+   rv = 0;
 
-	sincosLightTablesValid	= 0;
-	numPoints				= 0;
-	numTriangles			= 0;
-	points					= NULL;
-	triangles				= NULL;
+   sincosLightTablesValid  = 0;
+   numPoints            = 0;
+   numTriangles         = 0;
+   points               = NULL;
+   triangles            = NULL;
 
-	texture.buffer			= NULL;
-	texture.width			= 0;
-	texture.height			= 0;
+   texture.buffer       = NULL;
+   texture.width        = 0;
+   texture.height       = 0;
 
-	return rv;
+   return rv;
 
 }
 
 
 int objvLoadOBJFS( char *fileName, float scaleFactor, tgfBitmap *texture )
 {
-	tosFile	in;
-	char 	lineBuf[256];
-	uint32_t 	objNumPoints;
-	uint32_t 	objNumTriangles;
-	float   x;
-	float	y;
-	float	z;
-	uint16_t  lineIdx;
-	uint16_t  lineLen;
-	uint32_t   p1;
-	uint32_t   p2;
-	uint32_t   p3;
-	uint32_t   t1;
-	uint32_t   t2;
-	uint32_t   t3;
+   tosFile  in;
+   char  lineBuf[256];
+   uint32_t    objNumPoints;
+   uint32_t    objNumTriangles;
+   float   x;
+   float y;
+   float z;
+   uint16_t  lineIdx;
+   uint16_t  lineLen;
+   uint32_t   p1;
+   uint32_t   p2;
+   uint32_t   p3;
+   uint32_t   t1;
+   uint32_t   t2;
+   uint32_t   t3;
 
-	float   *tx;
-	float   *ty;
-	uint32_t   objNumTexturePoints;
-	uint32_t   texturePointIdx;
-
-
-	objNumPoints 		= 0;
-	objNumTriangles 	= 0;
-	objNumTexturePoints = 0;
-
-	tx                  = NULL;
-	ty                  = NULL;
-
-	if( osFOpen( &in, fileName, OS_FILE_READ ) )
-	{
-		return 1;
-	}
-
-	while( !osFGetS( &in, (uint8_t*)lineBuf, sizeof( lineBuf ) ) )
-	{
-
-		lineLen = strlen( lineBuf );
-
-		if( lineLen > 2 )
-		{
-			if( ( lineBuf[0] == 'v' ) && ( lineBuf[1] == ' ' ) )
-			{
-				objNumPoints++;
-			}
-
-			if( ( lineBuf[0] == 'v' ) && ( lineBuf[1] == 't' ) && ( lineBuf[2] == ' ' ) )
-			{
-				objNumTexturePoints++;
-			}
-
-			if( ( lineBuf[0] == 'f' ) && ( lineBuf[1] == ' ' ) )
-			{
-				objNumTriangles++;
-			}
-		}
-	}
-	osFClose( &in );
-
-	if( objNumPoints == 0 )
-	{
-		return 2;
-	}
-	if( objNumTriangles == 0 )
-	{
-		return 3;
-	}
-
-	numPoints 		= 0;
-	numTriangles	= 0;
-	texturePointIdx = 0;
-
-	points 		= (tgfPoint3D*)osAlloc( sizeof( tgfPoint3D ) * ( objNumPoints + 1 ), OS_ALLOC_MEMF_CHIP );
-	triangles 	= (tgfTriangle3D*)osAlloc( sizeof( tgfTriangle3D ) * ( objNumTriangles + 1 ), OS_ALLOC_MEMF_CHIP );
-
-	if( objNumTexturePoints > 0 )
-	{
-		tx = (float*)osAlloc( sizeof( float ) * ( objNumTexturePoints + 1 ), OS_ALLOC_MEMF_CHIP );
-		ty = (float*)osAlloc( sizeof( float ) * ( objNumTexturePoints + 1 ), OS_ALLOC_MEMF_CHIP );
-	}
-
-	if( osFOpen( &in, fileName, OS_FILE_READ ) )
-	{
-		return 1;
-	}
-
-	while( !osFGetS( &in, (uint8_t*)lineBuf, sizeof( lineBuf ) ) )
-	{
-
-		lineLen = strlen( lineBuf );
-
-		if( lineLen > 2 )
-		{
-			if( ( lineBuf[0] == 'v' ) && ( lineBuf[1] == ' ' ) )
-			{
-
-				 lineIdx = 2;
-				 x = atof( &lineBuf[lineIdx] );
-
-				 //find space
-				 while( lineIdx < lineLen )
-				 {
-					if( lineBuf[ lineIdx++ ] == ' ' )
-					{
-						break;
-					}
-				 }
-
-				 y = atof( &lineBuf[lineIdx] );
-				 //find space
-				 while( lineIdx < lineLen )
-				 {
-					if( lineBuf[ lineIdx++ ] == ' ' )
-					{
-						break;
-					}
-				 }
-				 z = atof( &lineBuf[lineIdx] );
-
-				 points[numPoints].x3D = x * scaleFactor;
-				 points[numPoints].y3D = y * scaleFactor;
-				 points[numPoints].z3D = z * scaleFactor;
-
-				 points[numPoints].r = randomNumber() % 0xff;
-				 points[numPoints].g = randomNumber() % 0xff;
-				 points[numPoints++].b = randomNumber() % 0xff;
-
-			}
-
-			if( ( lineBuf[0] == 'v' ) && ( lineBuf[1] == 't' ) && ( lineBuf[2] == ' ' )  )
-			{
-
-				 lineIdx = 3;
-				 x = atof( &lineBuf[lineIdx] );
-
-				 //find space
-				 while( lineIdx < lineLen )
-				 {
-					if( lineBuf[ lineIdx++ ] == ' ' )
-					{
-						break;
-					}
-				 }
-
-				 y = atof( &lineBuf[lineIdx] );
-				 //find space
-				 while( lineIdx < lineLen )
-				 {
-					if( lineBuf[ lineIdx++ ] == ' ' )
-					{
-						break;
-					}
-				 }
-
-				 tx[ texturePointIdx ] = x;
-				 ty[ texturePointIdx++ ] = y;
-			}
+   float   *tx;
+   float   *ty;
+   uint32_t   objNumTexturePoints;
+   uint32_t   texturePointIdx;
 
 
-			if( ( lineBuf[0] == 'f' ) && ( lineBuf[1] == ' ' ) )
-			{
-				 lineIdx = 2;
-				 p1 = atoi( &lineBuf[lineIdx] );
+   objNumPoints      = 0;
+   objNumTriangles   = 0;
+   objNumTexturePoints = 0;
 
-				 if( objNumTexturePoints > 0 )
-				 {
-					//find '/'
-					while( lineIdx < lineLen )
-					{
-						if( lineBuf[ lineIdx++ ] == '/' )
-						{
-							break;
-						}
-					}
-					t1 = atoi( &lineBuf[lineIdx] );
-				 }
+   tx                  = NULL;
+   ty                  = NULL;
 
-				 //find space
-				 while( lineIdx < lineLen )
-				 {
-					if( lineBuf[ lineIdx++ ] == ' ' )
-					{
-						break;
-					}
-				 }
+   if( osFOpen( &in, fileName, OS_FILE_READ ) )
+   {
+      return 1;
+   }
 
-				 p2 = atoi( &lineBuf[lineIdx] );
+   while( !osFGetS( &in, (uint8_t*)lineBuf, sizeof( lineBuf ) ) )
+   {
 
-				 if( objNumTexturePoints > 0 )
-				 {
-					//find '/'
-					while( lineIdx < lineLen )
-					{
-						if( lineBuf[ lineIdx++ ] == '/' )
-						{
-							break;
-						}
-					}
-					t2 = atoi( &lineBuf[lineIdx] );
-				 }
+      lineLen = strlen( lineBuf );
 
-				 //find space
-				 while( lineIdx < lineLen )
-				 {
-					if( lineBuf[ lineIdx++ ] == ' ' )
-					{
-						break;
-					}
-				 }
+      if( lineLen > 2 )
+      {
+         if( ( lineBuf[0] == 'v' ) && ( lineBuf[1] == ' ' ) )
+         {
+            objNumPoints++;
+         }
 
-				 p3 = atoi( &lineBuf[lineIdx] );
+         if( ( lineBuf[0] == 'v' ) && ( lineBuf[1] == 't' ) && ( lineBuf[2] == ' ' ) )
+         {
+            objNumTexturePoints++;
+         }
 
-				 if( objNumTexturePoints > 0 )
-				 {
-					//find '/'
-					while( lineIdx < lineLen )
-					{
-						if( lineBuf[ lineIdx++ ] == '/' )
-						{
-							break;
-						}
-					}
+         if( ( lineBuf[0] == 'f' ) && ( lineBuf[1] == ' ' ) )
+         {
+            objNumTriangles++;
+         }
+      }
+   }
+   osFClose( &in );
 
-					t3 = atoi( &lineBuf[lineIdx] );
-				 }
+   if( objNumPoints == 0 )
+   {
+      return 2;
+   }
+   if( objNumTriangles == 0 )
+   {
+      return 3;
+   }
+
+   numPoints      = 0;
+   numTriangles   = 0;
+   texturePointIdx = 0;
+
+   points      = (tgfPoint3D*)osAlloc( sizeof( tgfPoint3D ) * ( objNumPoints + 1 ), OS_ALLOC_MEMF_CHIP );
+   triangles   = (tgfTriangle3D*)osAlloc( sizeof( tgfTriangle3D ) * ( objNumTriangles + 1 ), OS_ALLOC_MEMF_CHIP );
+
+   if( objNumTexturePoints > 0 )
+   {
+      tx = (float*)osAlloc( sizeof( float ) * ( objNumTexturePoints + 1 ), OS_ALLOC_MEMF_CHIP );
+      ty = (float*)osAlloc( sizeof( float ) * ( objNumTexturePoints + 1 ), OS_ALLOC_MEMF_CHIP );
+   }
+
+   if( osFOpen( &in, fileName, OS_FILE_READ ) )
+   {
+      return 1;
+   }
+
+   while( !osFGetS( &in, (uint8_t*)lineBuf, sizeof( lineBuf ) ) )
+   {
+
+      lineLen = strlen( lineBuf );
+
+      if( lineLen > 2 )
+      {
+         if( ( lineBuf[0] == 'v' ) && ( lineBuf[1] == ' ' ) )
+         {
+
+             lineIdx = 2;
+             x = atof( &lineBuf[lineIdx] );
+
+             //find space
+             while( lineIdx < lineLen )
+             {
+               if( lineBuf[ lineIdx++ ] == ' ' )
+               {
+                  break;
+               }
+             }
+
+             y = atof( &lineBuf[lineIdx] );
+             //find space
+             while( lineIdx < lineLen )
+             {
+               if( lineBuf[ lineIdx++ ] == ' ' )
+               {
+                  break;
+               }
+             }
+             z = atof( &lineBuf[lineIdx] );
+
+             points[numPoints].x3D = x * scaleFactor;
+             points[numPoints].y3D = y * scaleFactor;
+             points[numPoints].z3D = z * scaleFactor;
+
+             points[numPoints].r = randomNumber() % 0xff;
+             points[numPoints].g = randomNumber() % 0xff;
+             points[numPoints++].b = randomNumber() % 0xff;
+
+         }
+
+         if( ( lineBuf[0] == 'v' ) && ( lineBuf[1] == 't' ) && ( lineBuf[2] == ' ' )  )
+         {
+
+             lineIdx = 3;
+             x = atof( &lineBuf[lineIdx] );
+
+             //find space
+             while( lineIdx < lineLen )
+             {
+               if( lineBuf[ lineIdx++ ] == ' ' )
+               {
+                  break;
+               }
+             }
+
+             y = atof( &lineBuf[lineIdx] );
+             //find space
+             while( lineIdx < lineLen )
+             {
+               if( lineBuf[ lineIdx++ ] == ' ' )
+               {
+                  break;
+               }
+             }
+
+             tx[ texturePointIdx ] = x;
+             ty[ texturePointIdx++ ] = y;
+         }
 
 
-				 triangles[ numTriangles ].a = &points[ p1 - 1 ];
-				 triangles[ numTriangles ].b = &points[ p2 - 1 ];
-				 triangles[ numTriangles ].c = &points[ p3 - 1 ];
+         if( ( lineBuf[0] == 'f' ) && ( lineBuf[1] == ' ' ) )
+         {
+             lineIdx = 2;
+             p1 = atoi( &lineBuf[lineIdx] );
 
-				 if( texture != NULL )
-				 {
-					if( objNumTexturePoints > 0 )
-					{
-						//texture coords are present in file
-						triangles[ numTriangles].aTx2D = 255.0f * tx[ t1 - 1 ];
-						triangles[ numTriangles].bTx2D = 255.0f * tx[ t2 - 1 ];
-						triangles[ numTriangles].cTx2D = 255.0f * tx[ t3 - 1 ];
+             if( objNumTexturePoints > 0 )
+             {
+               //find '/'
+               while( lineIdx < lineLen )
+               {
+                  if( lineBuf[ lineIdx++ ] == '/' )
+                  {
+                     break;
+                  }
+               }
+               t1 = atoi( &lineBuf[lineIdx] );
+             }
 
-						triangles[ numTriangles].aTy2D = 255.0f * ty[ t1 - 1 ];
-						triangles[ numTriangles].bTy2D = 255.0f * ty[ t2 - 1 ];
-						triangles[ numTriangles].cTy2D = 255.0f * ty[ t3 - 1 ];
+             //find space
+             while( lineIdx < lineLen )
+             {
+               if( lineBuf[ lineIdx++ ] == ' ' )
+               {
+                  break;
+               }
+             }
 
-					}
-					else
-					{
-						//random texture coords
-						triangles[ numTriangles].aTx2D = (float)(randomNumber() & 255 );
-						triangles[ numTriangles].bTx2D = (float)(randomNumber() & 255 );
-						triangles[ numTriangles].cTx2D = (float)(randomNumber() & 255 );
+             p2 = atoi( &lineBuf[lineIdx] );
 
-						triangles[ numTriangles].aTy2D = (float)(randomNumber() & 255 );
-						triangles[ numTriangles].bTy2D = (float)(randomNumber() & 255 );
-						triangles[ numTriangles].cTy2D = (float)(randomNumber() & 255 );
+             if( objNumTexturePoints > 0 )
+             {
+               //find '/'
+               while( lineIdx < lineLen )
+               {
+                  if( lineBuf[ lineIdx++ ] == '/' )
+                  {
+                     break;
+                  }
+               }
+               t2 = atoi( &lineBuf[lineIdx] );
+             }
 
-					}
-					triangles[ numTriangles++ ].texture = texture;
+             //find space
+             while( lineIdx < lineLen )
+             {
+               if( lineBuf[ lineIdx++ ] == ' ' )
+               {
+                  break;
+               }
+             }
 
-				 }
-				 else
-				 {
-					triangles[ numTriangles++ ].texture = NULL;
-				 }
-			}
-		}
-	}
-	osFClose( &in );
+             p3 = atoi( &lineBuf[lineIdx] );
 
-	if( tx != NULL )
-	{
-		osFree( tx );
-		tx = NULL;
-	}
-	if( ty != NULL )
-	{
-		osFree( ty );
-		ty = NULL;
-	}
+             if( objNumTexturePoints > 0 )
+             {
+               //find '/'
+               while( lineIdx < lineLen )
+               {
+                  if( lineBuf[ lineIdx++ ] == '/' )
+                  {
+                     break;
+                  }
+               }
 
-	return 0;
+               t3 = atoi( &lineBuf[lineIdx] );
+             }
+
+
+             triangles[ numTriangles ].a = &points[ p1 - 1 ];
+             triangles[ numTriangles ].b = &points[ p2 - 1 ];
+             triangles[ numTriangles ].c = &points[ p3 - 1 ];
+
+             if( texture != NULL )
+             {
+               if( objNumTexturePoints > 0 )
+               {
+                  //texture coords are present in file
+                  triangles[ numTriangles].aTx2D = 255.0f * tx[ t1 - 1 ];
+                  triangles[ numTriangles].bTx2D = 255.0f * tx[ t2 - 1 ];
+                  triangles[ numTriangles].cTx2D = 255.0f * tx[ t3 - 1 ];
+
+                  triangles[ numTriangles].aTy2D = 255.0f * ty[ t1 - 1 ];
+                  triangles[ numTriangles].bTy2D = 255.0f * ty[ t2 - 1 ];
+                  triangles[ numTriangles].cTy2D = 255.0f * ty[ t3 - 1 ];
+
+               }
+               else
+               {
+                  //random texture coords
+                  triangles[ numTriangles].aTx2D = (float)(randomNumber() & 255 );
+                  triangles[ numTriangles].bTx2D = (float)(randomNumber() & 255 );
+                  triangles[ numTriangles].cTx2D = (float)(randomNumber() & 255 );
+
+                  triangles[ numTriangles].aTy2D = (float)(randomNumber() & 255 );
+                  triangles[ numTriangles].bTy2D = (float)(randomNumber() & 255 );
+                  triangles[ numTriangles].cTy2D = (float)(randomNumber() & 255 );
+
+               }
+               triangles[ numTriangles++ ].texture = texture;
+
+             }
+             else
+             {
+               triangles[ numTriangles++ ].texture = NULL;
+             }
+         }
+      }
+   }
+   osFClose( &in );
+
+   if( tx != NULL )
+   {
+      osFree( tx );
+      tx = NULL;
+   }
+   if( ty != NULL )
+   {
+      osFree( ty );
+      ty = NULL;
+   }
+
+   return 0;
 } 
 
 
 int objvCalc3d( tgfBitmap *pscr )
 {
 
-	int 		 i;
-	float 		 xp,yp,zp;
-	uint32_t		 light;
+   int       i;
+   float        xp,yp,zp;
+   uint32_t     light;
 
-	uint16_t		 screenw2;
-	uint16_t 		 screenh2;
-	uint16_t		 rotation360;
-	
-	short		 z3DTs;
-	float		 cosRotation;
-	float		 sinRotation;
-	
-	tgfPoint3D	*point;
-
-
-	rotation360 = rotation % 360;
-	
-
-	screenw2 = pscr->width / 2;
-	screenh2 = pscr->height / 2;
-	
-	
-	for( i = 0 ; i < numPoints; i++ )
-	{
-
-		point = &points[i];
-
-		
-		//refresh non-transformed coordinates
-
-		point->x3DT = point->x3D;
-		point->y3DT = point->y3D;
-		point->z3DT = point->z3D;
-
-		//rotation X - yZ
-	
-		sinRotation = sinT[ rotation360 ];
-		cosRotation = cosT[ rotation360 ];
+   uint16_t     screenw2;
+   uint16_t        screenh2;
+   uint16_t     rotation360;
+   
+   short     z3DTs;
+   float     cosRotation;
+   float     sinRotation;
+   
+   tgfPoint3D  *point;
 
 
-		//yp = points[i].y3DT * cosT[rotation360] - points[i].z3DT * sinT[rotation360];
-		yp = ffSub( ffMul( point->y3DT, cosRotation ), ffMul( point->z3DT, sinRotation) );
+   rotation360 = rotation % 360;
+   
 
-		//zp = points[i].y3DT * sinT[rotation360] + points[i].z3DT * cosT[rotation360];
-		zp = ffAdd( ffMul( point->y3DT, sinRotation ), ffMul( point->z3DT, cosRotation ) );
+   screenw2 = pscr->width / 2;
+   screenh2 = pscr->height / 2;
+   
+   
+   for( i = 0 ; i < numPoints; i++ )
+   {
 
-		point->y3DT = yp;
-		point->z3DT = zp;
+      point = &points[i];
 
-		//rotation Y - xz
+      
+      //refresh non-transformed coordinates
 
-		//xp = points[i].x3DT * cosT[rotation360] - points[i].z3DT * sinT[rotation360];
-		xp = ffSub( ffMul( point->x3DT, cosRotation ), ffMul ( point->z3DT, sinRotation ) );
-				
+      point->x3DT = point->x3D;
+      point->y3DT = point->y3D;
+      point->z3DT = point->z3D;
 
-		//zp = points[i].x3DT * sinT[rotation360] + points[i].z3DT * cosT[rotation360];
-		zp = ffAdd( ffMul( point->x3DT, sinRotation ), ffMul( point->z3DT, cosRotation ) );
-		
-		
-		point->x3DT = xp;
-		point->z3DT = zp;
-
-		//rotation Z -xy
-
-		//xp = points[i].x3DT * cosT[rotation360] - points[i].y3DT * sinT[rotation360];
-		xp = ffSub( ffMul( point->x3DT, cosRotation ), ffMul( point->y3DT, sinRotation) );
-		
-	
-		//yp = points[i].x3DT * sinT[rotation360] + points[i].y3DT * cosT[rotation360];
-		yp = ffAdd( ffMul( point->x3DT, sinRotation ), ffMul( point->y3DT, cosRotation ) );
-		
-		point->x3DT = xp;
-		point->y3DT = yp;
-
-		
-		//light
-		z3DTs = ( short )point->z3DT + 50;
-
-		if( z3DTs < 0 )
-		{
-			light = 16;
-		}
-		else if( z3DTs >= 100 )
-		{
-			light = 255;
-		}
-		else
-		{
-			light = lightT[ z3DTs ];
-		}
-
-		point->r = light;
-		point->g = light;
-		point->b = light;
-
-		//cam
-
-		//points[i].x3DT = points[i].x3DT + cam.x3D;
-		point->x3DT = ffAdd( point->x3DT, cam.x3D );
-		
-		//points[i].y3DT = points[i].y3DT + cam.y3D;		
-		point->y3DT = ffAdd( point->y3DT, cam.y3D );
-		
-		//points[i].z3DT = points[i].z3DT + cam.z3D;
-		point->z3DT = ffAdd( point->z3DT, cam.z3D );
+      //rotation X - yZ
+   
+      sinRotation = sinT[ rotation360 ];
+      cosRotation = cosT[ rotation360 ];
 
 
-		//perspective and clipping
+      //yp = points[i].y3DT * cosT[rotation360] - points[i].z3DT * sinT[rotation360];
+      yp = ffSub( ffMul( point->y3DT, cosRotation ), ffMul( point->z3DT, sinRotation) );
 
-		z3DTs = (short)point->z3DT;
-		
+      //zp = points[i].y3DT * sinT[rotation360] + points[i].z3DT * cosT[rotation360];
+      zp = ffAdd( ffMul( point->y3DT, sinRotation ), ffMul( point->z3DT, cosRotation ) );
 
-		//clip offscreen (z) points
+      point->y3DT = yp;
+      point->z3DT = zp;
+
+      //rotation Y - xz
+
+      //xp = points[i].x3DT * cosT[rotation360] - points[i].z3DT * sinT[rotation360];
+      xp = ffSub( ffMul( point->x3DT, cosRotation ), ffMul ( point->z3DT, sinRotation ) );
+            
+
+      //zp = points[i].x3DT * sinT[rotation360] + points[i].z3DT * cosT[rotation360];
+      zp = ffAdd( ffMul( point->x3DT, sinRotation ), ffMul( point->z3DT, cosRotation ) );
+      
+      
+      point->x3DT = xp;
+      point->z3DT = zp;
+
+      //rotation Z -xy
+
+      //xp = points[i].x3DT * cosT[rotation360] - points[i].y3DT * sinT[rotation360];
+      xp = ffSub( ffMul( point->x3DT, cosRotation ), ffMul( point->y3DT, sinRotation) );
+      
+   
+      //yp = points[i].x3DT * sinT[rotation360] + points[i].y3DT * cosT[rotation360];
+      yp = ffAdd( ffMul( point->x3DT, sinRotation ), ffMul( point->y3DT, cosRotation ) );
+      
+      point->x3DT = xp;
+      point->y3DT = yp;
+
+      
+      //light
+      z3DTs = ( short )point->z3DT + 50;
+
+      if( z3DTs < 0 )
+      {
+         light = 16;
+      }
+      else if( z3DTs >= 100 )
+      {
+         light = 255;
+      }
+      else
+      {
+         light = lightT[ z3DTs ];
+      }
+
+      point->r = light;
+      point->g = light;
+      point->b = light;
+
+      //cam
+
+      //points[i].x3DT = points[i].x3DT + cam.x3D;
+      point->x3DT = ffAdd( point->x3DT, cam.x3D );
+      
+      //points[i].y3DT = points[i].y3DT + cam.y3D;    
+      point->y3DT = ffAdd( point->y3DT, cam.y3D );
+      
+      //points[i].z3DT = points[i].z3DT + cam.z3D;
+      point->z3DT = ffAdd( point->z3DT, cam.z3D );
+
+
+      //perspective and clipping
+
+      z3DTs = (short)point->z3DT;
+      
+
+      //clip offscreen (z) points
         //           znear               zfar
-		if(( z3DTs < -450 ) && ( z3DTs > -3500 ) )
-		{
-			//points[i].x2D = points[i].x3DT * 400  / ( points[i].z3DT + 400 );
-			point->x2D = ffDiv( ffMul( point->x3DT, 400.0f ) , ffAdd( point->z3DT, 400.0f ) );
-		
-			//points[i].y2D = points[i].y3DT * 400 / ( points[i].z3DT + 400 );
+      if(( z3DTs < -450 ) && ( z3DTs > -3500 ) )
+      {
+         //points[i].x2D = points[i].x3DT * 400  / ( points[i].z3DT + 400 );
+         point->x2D = ffDiv( ffMul( point->x3DT, 400.0f ) , ffAdd( point->z3DT, 400.0f ) );
+      
+         //points[i].y2D = points[i].y3DT * 400 / ( points[i].z3DT + 400 );
 
-			point->y2D = ffDiv( ffMul( point->y3DT, 400.0f ) , ffAdd( point->z3DT, 400.0f ) );
+         point->y2D = ffDiv( ffMul( point->y3DT, 400.0f ) , ffAdd( point->z3DT, 400.0f ) );
 
-			point->x2D += screenw2;
-			point->y2D += screenh2;
+         point->x2D += screenw2;
+         point->y2D += screenh2;
 
-		
-			//points[i].z2D = -points[i].z3DT;
+      
+         //points[i].z2D = -points[i].z3DT;
 
-			point->z2D = ffMul( point->z3DT, -4.0f );
+         point->z2D = ffMul( point->z3DT, -4.0f );
 
-		}
-		else
-		{
-			point->z2D = 0;  //point is off-camera
-		}
+      }
+      else
+      {
+         point->z2D = 0;  //point is off-camera
+      }
 
-	}
+   }
 
-	return 0;
+   return 0;
 } 
 
 int objvDisplayObj( tgfBitmap *pscr )
 {
-	int 			 	 i;
-	tgfTriangle3D	*triangle;
+   int             i;
+   tgfTriangle3D  *triangle;
 
-	
+   
 
-	//copy background to screen buffer
-	//gfBlitBitmap( pscr, &background, 0, 0 );
+   //copy background to screen buffer
       
-   blt->saAddress       = (uint32_t)background.buffer;
-   blt->saRowWidth      = 160;
-   blt->saWidth         = 160;
-   blt->saHeight        = 240;
-
-   blt->daAddress       = (uint32_t)pscr->buffer;
-   blt->daRowWidth      = 256;
-   blt->daWidth         = 160;
-   blt->daHeight        = 240;
-
-   blt->command         = 0x1200;
+   //todo: add 32-bit blitter to simulator
    
-   while( ! ( blt->command & 1 ) );
+   #ifdef _GFXLIB_HW_BLITTER_3D
 
+      blt->saAddress       = (uint32_t)background.buffer;
+      blt->saRowWidth      = 160;
+      blt->saWidth         = 160;
+      blt->saHeight        = 240;
 
-	//calc point cloud
-	objvCalc3d( pscr );
+      blt->daAddress       = (uint32_t)pscr->buffer;
+      blt->daRowWidth      = 256;
+      blt->daWidth         = 160;
+      blt->daHeight        = 240;
 
-	//clear zbuffer
-	//gfFillRect( &zBuffer, 0, 0, 319, 239, 0xffff );
+      blt->command         = 0x1200;
+      
+      while( ! ( blt->command & 1 ) );
 
-   blt->daAddress       = (uint32_t)zBuffer.buffer;
-   blt->daRowWidth      = 256;
-   blt->daWidth         = 160;
-   blt->daHeight        = 240;
-   blt->input0          = 0xffffffff;
+   #else
 
-   blt->command         = 0x1100;
+      gfBlitBitmap( pscr, &background, 0, 0 );
+
+   #endif
+
+   //calc point cloud
+   objvCalc3d( pscr );
+
+   //clear zbuffer
+   #ifdef _GFXLIB_HW_BLITTER_3D
+
+      blt->daAddress       = (uint32_t)zBuffer.buffer;
+      blt->daRowWidth      = 256;
+      blt->daWidth         = 160;
+      blt->daHeight        = 240;
+      blt->input0          = 0xffffffff;
+
+      blt->command         = 0x1100;
+      
+      while( ! ( blt->command & 1 ) );
+
+   #else
+
+      gfFillRect( &zBuffer, 0, 0, 319, 239, 0xffff );
    
-   while( ! ( blt->command & 1 ) );
+   #endif
 
 
-	//draw scene
 
-	switch( rendererType )
-	{
-		
-		case 0:
+   //draw scene
 
-			//#ifdef _GFXLIB_HW_BLITTER_3D
+   switch( rendererType )
+   {
+      
+      case 0:
 
-			blt->daAddress  = (uint32_t)pscr->buffer;
-    		blt->dbAddress  = (uint32_t)zBuffer.buffer;
-			blt->bbXMin = 0;
-		   blt->bbXMax = 319;
-		   blt->bbYMin = 0;
-		   blt->bbYMax = 239;
+         #ifdef _GFXLIB_HW_BLITTER_3D
 
-			for( i = 0 ; i < numTriangles; i++ )
-			{
+         blt->daAddress  = (uint32_t)pscr->buffer;
+         blt->dbAddress  = (uint32_t)zBuffer.buffer;
+         blt->bbXMin = 0;
+         blt->bbXMax = 319;
+         blt->bbYMin = 0;
+         blt->bbYMax = 239;
+
+         for( i = 0 ; i < numTriangles; i++ )
+         {
 
 
-				triangle = &triangles[i];
+            triangle = &triangles[i];
 
-				//clip offscreen (Z) triangles
-				if( ( triangle->a->z2D > 0 ) && ( triangle->b->z2D > 0 ) && ( triangle->c->z2D > 0 ) )
-				{
+            //clip offscreen (Z) triangles
+            if( ( triangle->a->z2D > 0 ) && ( triangle->b->z2D > 0 ) && ( triangle->c->z2D > 0 ) )
+            {
 
-					//wait until blit complete
-         		while( ! ( blt->command & 1 ) );
+               //wait until blit complete
+               while( ! ( blt->command & 1 ) );
 
-					//pass triangle coordinates/texture coordinates to gouraud hardware
-					
-					blt->aX     = triangle->a->x2D;
-    				blt->aY     = triangle->a->y2D;
-    				blt->aZ     = triangle->a->z2D;
+               //pass triangle coordinates/texture coordinates to gouraud hardware
+               
+               blt->aX     = triangle->a->x2D;
+               blt->aY     = triangle->a->y2D;
+               blt->aZ     = triangle->a->z2D;
     
-    				blt->bX     = triangle->b->x2D;
-    				blt->bY     = triangle->b->y2D;
-    				blt->bZ     = triangle->b->z2D;
+               blt->bX     = triangle->b->x2D;
+               blt->bY     = triangle->b->y2D;
+               blt->bZ     = triangle->b->z2D;
 
-    				blt->cX     = triangle->c->x2D;
-    				blt->cY     = triangle->c->y2D;
-    				blt->cZ     = triangle->c->z2D;          //triggers triangleArea and triangleAreaInv calculations
+               blt->cX     = triangle->c->x2D;
+               blt->cY     = triangle->c->y2D;
+               blt->cZ     = triangle->c->z2D;          //triggers triangleArea and triangleAreaInv calculations
 
-					blt->aIt0   = triangle->aTx2D;
-    				blt->aIt1   = triangle->aTy2D;
-    				blt->aIt2   = triangle->a->r;
+               blt->aIt0   = triangle->aTx2D;
+               blt->aIt1   = triangle->aTy2D;
+               blt->aIt2   = triangle->a->r;
 
-    				blt->bIt0   = triangle->bTx2D;
-    				blt->bIt1   = triangle->bTy2D;
-    				blt->bIt2   = triangle->b->r;
+               blt->bIt0   = triangle->bTx2D;
+               blt->bIt1   = triangle->bTy2D;
+               blt->bIt2   = triangle->b->r;
 
-    				blt->cIt0   = triangle->cTx2D;
-    				blt->cIt1   = triangle->cTy2D;
-    				blt->cIt2   = triangle->c->r;
-
-
-					if( blt->triangleArea > 0 )
-					{
-						//triangle facing front
-					
-						//set texture address
-						blt->saAddress  = (uint32_t)triangle->texture->buffer;
-
-						//run ( textured, shaded triangle with z-buffer )
-						blt->command = 0x0520;
-
-					}
-				}
-			}
-			
-			do{}while( ! ( blt->command & 1 ) );
-
-			//#endif
-			
-			break;
-
-		case 1:
-
-			//#ifdef _GFXLIB_HW_BLITTER_3D
-
-			blt->daAddress  = (uint32_t)pscr->buffer;
-    		blt->dbAddress  = (uint32_t)zBuffer.buffer;
-			blt->bbXMin = 0;
-		   blt->bbXMax = 319;
-		   blt->bbYMin = 0;
-		   blt->bbYMax = 239;
-
-			for( i = 0 ; i < numTriangles; i++ )
-			{
+               blt->cIt0   = triangle->cTx2D;
+               blt->cIt1   = triangle->cTy2D;
+               blt->cIt2   = triangle->c->r;
 
 
-				triangle = &triangles[i];
+               if( blt->triangleArea > 0 )
+               {
+                  //triangle facing front
+               
+                  //set texture address
+                  blt->saAddress  = (uint32_t)triangle->texture->buffer;
 
-				//clip offscreen (Z) triangles
-				if( ( triangle->a->z2D > 0 ) && ( triangle->b->z2D > 0 ) && ( triangle->c->z2D > 0 ) )
-				{
+                  //run ( textured, shaded triangle with z-buffer )
+                  blt->command = 0x0520;
 
-					//wait until blit complete
-         		while( ! ( blt->command & 1 ) );
+               }
+            }
+         }
+         
+         do{}while( ! ( blt->command & 1 ) );
 
-					//pass triangle coordinates/texture coordinates to gouraud hardware
-					
-					blt->aX     = triangle->a->x2D;
-    				blt->aY     = triangle->a->y2D;
-    				blt->aZ     = triangle->a->z2D;
+         #endif
+         
+         break;
+
+      case 1:
+
+         #ifdef _GFXLIB_HW_BLITTER_3D
+
+         blt->daAddress  = (uint32_t)pscr->buffer;
+         blt->dbAddress  = (uint32_t)zBuffer.buffer;
+         blt->bbXMin = 0;
+         blt->bbXMax = 319;
+         blt->bbYMin = 0;
+         blt->bbYMax = 239;
+
+         for( i = 0 ; i < numTriangles; i++ )
+         {
+
+
+            triangle = &triangles[i];
+
+            //clip offscreen (Z) triangles
+            if( ( triangle->a->z2D > 0 ) && ( triangle->b->z2D > 0 ) && ( triangle->c->z2D > 0 ) )
+            {
+
+               //wait until blit complete
+               while( ! ( blt->command & 1 ) );
+
+               //pass triangle coordinates/texture coordinates to gouraud hardware
+               
+               blt->aX     = triangle->a->x2D;
+               blt->aY     = triangle->a->y2D;
+               blt->aZ     = triangle->a->z2D;
     
-    				blt->bX     = triangle->b->x2D;
-    				blt->bY     = triangle->b->y2D;
-    				blt->bZ     = triangle->b->z2D;
+               blt->bX     = triangle->b->x2D;
+               blt->bY     = triangle->b->y2D;
+               blt->bZ     = triangle->b->z2D;
 
-    				blt->cX     = triangle->c->x2D;
-    				blt->cY     = triangle->c->y2D;
-    				blt->cZ     = triangle->c->z2D;          //triggers triangleArea and triangleAreaInv calculations
+               blt->cX     = triangle->c->x2D;
+               blt->cY     = triangle->c->y2D;
+               blt->cZ     = triangle->c->z2D;          //triggers triangleArea and triangleAreaInv calculations
 
-					blt->aIt0   = triangle->a->r;
-    				blt->aIt1   = triangle->a->g;
-    				blt->aIt2   = triangle->a->b;
+               blt->aIt0   = triangle->a->r;
+               blt->aIt1   = triangle->a->g;
+               blt->aIt2   = triangle->a->b;
 
-    				blt->bIt0   = triangle->b->r;
-    				blt->bIt1   = triangle->b->g;
-    				blt->bIt2   = triangle->b->b;
+               blt->bIt0   = triangle->b->r;
+               blt->bIt1   = triangle->b->g;
+               blt->bIt2   = triangle->b->b;
 
-    				blt->cIt0   = triangle->c->r;
-    				blt->cIt1   = triangle->c->g;
-    				blt->cIt2   = triangle->c->b;
-
-
-					if( blt->triangleArea > 0 )
-					{
-						//triangle facing front
-					
-						//run ( gouraud triangle with z-buffer )
-						blt->command = 0x0510;
-
-					}
-				}
-			}
-			
-			do{}while( ! ( blt->command & 1 ) );
-
-			//#endif
-			
-			break;
+               blt->cIt0   = triangle->c->r;
+               blt->cIt1   = triangle->c->g;
+               blt->cIt2   = triangle->c->b;
 
 
-		case 2:
+               if( blt->triangleArea > 0 )
+               {
+                  //triangle facing front
+               
+                  //run ( gouraud triangle with z-buffer )
+                  blt->command = 0x0510;
 
-			for( i = 0 ; i < numTriangles; i++ )
-			{
-				//clip offscreen (Z) triangles
-				if( ( triangles[i].a->z2D > 0 ) && ( triangles[i].b->z2D > 0 ) && ( triangles[i].c->z2D > 0 ) )
-				{
-					gfGouraudDrawTexturedTriangleZBuffer( pscr, &zBuffer, &triangles[i] );
-				}
-			}
+               }
+            }
+         }
+         
+         do{}while( ! ( blt->command & 1 ) );
 
-			break;
-				
-		case 3:
-			
-			for( i = 0 ; i < numTriangles; i++ )
-			{
-				//clip offscreen (Z) triangles
-				if( ( triangles[i].a->z2D > 0 ) && ( triangles[i].b->z2D > 0 ) && ( triangles[i].c->z2D > 0 ) )
-				{
-					gfGouraudDrawTriangleZBuffer( pscr, &zBuffer, &triangles[i] );
-					//gfGouraudDrawTexturedTriangleFloat( pscr, &triangles[i] );
-				}
-			}
+         #endif
+         
+         break;
 
-			break;
-			
-	}	
-	
-	return 0;
+
+      case 2:
+
+         for( i = 0 ; i < numTriangles; i++ )
+         {
+            //clip offscreen (Z) triangles
+            if( ( triangles[i].a->z2D > 0 ) && ( triangles[i].b->z2D > 0 ) && ( triangles[i].c->z2D > 0 ) )
+            {
+               gfGouraudDrawTexturedTriangleZBuffer( pscr, &zBuffer, &triangles[i] );
+            }
+         }
+
+         break;
+            
+      case 3:
+         
+         for( i = 0 ; i < numTriangles; i++ )
+         {
+            //clip offscreen (Z) triangles
+            if( ( triangles[i].a->z2D > 0 ) && ( triangles[i].b->z2D > 0 ) && ( triangles[i].c->z2D > 0 ) )
+            {
+               gfGouraudDrawTriangleZBuffer( pscr, &zBuffer, &triangles[i] );
+               //gfGouraudDrawTexturedTriangleFloat( pscr, &triangles[i] );
+            }
+         }
+
+         break;
+         
+   }  
+   
+   return 0;
 } 
 
 
 
 int objvView( char* fileName )
 {
-	int 		rv;
-	int			i;
-	tosUIEvent	event;
-	uint16_t		exitMainLoop;
-	uint16_t		lightCalc;
+   int      rv;
+   int         i;
+   tosUIEvent  event;
+   uint16_t    exitMainLoop;
+   uint16_t    lightCalc;
 
-	rv = 0;
+   rv = 0;
 
-	con.textAttributes = 0x0f;
-	toCls( &con );
+   con.textAttributes = 0x0f;
+   toCls( &con );
 
-	gfBlitBitmap( &screen, &background, 0, 0 );
-	gfBlitBitmap( &screen2, &background, 0, 0 );
-
-
-
-	if( !sincosLightTablesValid )
-	{
-		
-		for( i = 0; i < 360; i++ )
-		{
-			sinT[i] = sin( i * ( 3.14159 / 180 ) );
-			cosT[i] = cos( i * ( 3.14159 / 180 ) ); 			
-		}
+   gfBlitBitmap( &screen, &background, 0, 0 );
+   gfBlitBitmap( &screen2, &background, 0, 0 );
 
 
-		for( i = 0; i < 100; i++ )
-		{
-			lightCalc = i * 2.5f;
 
-			if( lightCalc < 16 )
-			{
-				lightCalc = 16;
-			}
-			else if( lightCalc > 255 )
-			{
-				lightCalc = 255;
-			}
-
-			lightT[ i ] = lightCalc;
-		}
-
-		sincosLightTablesValid = 1;
-	}
-
-	toPrintF( &con, (char*)"Loading %s\n ", fileName );
+   if( !sincosLightTablesValid )
+   {
+      
+      for( i = 0; i < 360; i++ )
+      {
+         sinT[i] = sin( i * ( 3.14159 / 180 ) );
+         cosT[i] = cos( i * ( 3.14159 / 180 ) );         
+      }
 
 
-	strcpy( buf, fileName );
+      for( i = 0; i < 100; i++ )
+      {
+         lightCalc = i * 2.5f;
 
-	i = strlen( buf );
+         if( lightCalc < 16 )
+         {
+            lightCalc = 16;
+         }
+         else if( lightCalc > 255 )
+         {
+            lightCalc = 255;
+         }
 
-	buf[i - 3] = 'g';
-	buf[i - 2] = 'b';
-	buf[i - 1] = 'm';
+         lightT[ i ] = lightCalc;
+      }
 
-	rv = gfLoadBitmapFS( &texture, buf ); 
- 	
- 	if( rv )
- 	{
- 		#ifdef _GFXLIB_RISCV_FATFS
-		gfLoadBitmapFS( &texture, (char*) "0:/obj/deftexture.gbm" ); 
-		#endif
-		#ifdef _GFXLIB_SDL
-		gfLoadBitmapFS( &texture, (char*) "deftexture.gbm" ); 
-		#endif
+      sincosLightTablesValid = 1;
+   }
 
-
-	}
-
-	
-	rv = objvLoadOBJFS( fileName, 2, &texture );
-	
-	cam.x3D = 0.0f;
-	cam.y3D = 0.0f;
-	cam.z3D = -1000.0f;
+   toPrintF( &con, (char*)"Loading %s\n ", fileName );
 
 
-	if( rv )
-	{
-		//free texture
+   strcpy( buf, fileName );
 
-		osFree( (void*)texture.buffer );
+   i = strlen( buf );
 
-		texture.buffer	= NULL;
-		texture.width	= 0;
-		texture.height	= 0;
+   buf[i - 3] = 'g';
+   buf[i - 2] = 'b';
+   buf[i - 1] = 'm';
 
-		return rv;
-	}
-
-	toCls( &con );
-	toPrintF( &con, (char*)"%s\n", fileName );
-	toPrintF( &con, ( char* )"P%d/T%d\n", numPoints, numTriangles ); 
-	
-	bsp->frameTimer = 0; 
-	rotation = 0;
-
-
-	exitMainLoop = 0;
-
-	#ifdef _GFXLIB_HW_BLITTER_3D
-	rendererType = 0;
-	#else
-	rendererType = 2;
-	#endif
+   rv = gfLoadBitmapFS( &texture, buf ); 
+   
+   if( rv )
+   {
+      #ifdef _GFXLIB_RISCV_FATFS
+      gfLoadBitmapFS( &texture, (char*) "0:/obj/deftexture.gbm" ); 
+      #endif
+      #ifdef _GFXLIB_SDL
+      gfLoadBitmapFS( &texture, (char*) "deftexture.gbm" ); 
+      #endif
 
 
-	//remove when blitter3d defined
-	rendererType = 0;
+   }
 
-	do
-	{
-					
-		gfDisplayBitmap( &screen2 );
-		do{}while( ! bsp->videoVSync );
-
-		rotation = (int)bsp->frameTimer;		
-
-		objvDisplayObj( &screen );
+   
+   rv = objvLoadOBJFS( fileName, 2, &texture );
+   
+   cam.x3D = 0.0f;
+   cam.y3D = 0.0f;
+   cam.z3D = -1000.0f;
 
 
-		gfDisplayBitmap( &screen );
-		do{}while( ! bsp->videoVSync );
+   if( rv )
+   {
+      //free texture
 
-		rotation = (int)bsp->frameTimer;		
+      osFree( (void*)texture.buffer );
 
-		objvDisplayObj( &screen2 );	 
+      texture.buffer = NULL;
+      texture.width  = 0;
+      texture.height = 0;
 
-		
-		while( !osGetUIEvent( &event ) )
-		{
+      return rv;
+   }
 
-			if( event.type == OS_EVENT_TYPE_KEYBOARD_KEYPRESS )
-			{
-				switch( event.arg1 )
-				{
-					case 27:
-						
-						exitMainLoop = 1;
-						
-						break;
-
-					case _KEYCODE_F1:
-						
-						rendererType++;
-
-						if( rendererType > 3 )
-						{
-							#ifdef _GFXLIB_HW_BLITTER_3D
-							rendererType = 0;
-							#else
-							rendererType = 2;
-							#endif
-
-							//remove when blitter 3d defined
-							rendererType = 0;
-
-						}
-
-						break;
-
-					case _KEYCODE_PGUP:
-
-						cam.z3D += 100;
-
-						break;
-
-					case _KEYCODE_PGDOWN:
-
-						cam.z3D -= 100;
-
-						break;
-
-				}
-			}
-		}
-			
-	}while( !exitMainLoop );
+   toCls( &con );
+   toPrintF( &con, (char*)"%s\n", fileName );
+   toPrintF( &con, ( char* )"P%d/T%d\n", numPoints, numTriangles ); 
+   
+   bsp->frameTimer = 0; 
+   rotation = 0;
 
 
-	osFree( (void*)points );
-	osFree( (void*)triangles );
-	osFree( (void*)texture.buffer );
+   exitMainLoop = 0;
 
-	numPoints 		= 0;
-	numTriangles 	= 0;
-	texture.buffer	= NULL;
-	texture.width	= 0;
-	texture.height	= 0;
+   #ifdef _GFXLIB_HW_BLITTER_3D
+   rendererType = 0;
+   #else
+   rendererType = 2;
+   #endif
 
-	return rv;
+   do
+   {
+               
+      gfDisplayBitmap( &screen2 );
+      do{}while( ! bsp->videoVSync );
+
+      rotation = (int)bsp->frameTimer;    
+
+      objvDisplayObj( &screen );
+
+
+      gfDisplayBitmap( &screen );
+      do{}while( ! bsp->videoVSync );
+
+      rotation = (int)bsp->frameTimer;    
+
+      objvDisplayObj( &screen2 );    
+
+      
+      while( !osGetUIEvent( &event ) )
+      {
+
+         if( event.type == OS_EVENT_TYPE_KEYBOARD_KEYPRESS )
+         {
+            switch( event.arg1 )
+            {
+               case 27:
+                  
+                  exitMainLoop = 1;
+                  
+                  break;
+
+               case _KEYCODE_F1:
+                  
+                  rendererType++;
+
+                  if( rendererType > 3 )
+                  {
+                     #ifdef _GFXLIB_HW_BLITTER_3D
+                     rendererType = 0;
+                     #else
+                     rendererType = 2;
+                     #endif
+
+                  }
+
+                  break;
+
+               case _KEYCODE_PGUP:
+
+                  cam.z3D += 100;
+
+                  break;
+
+               case _KEYCODE_PGDOWN:
+
+                  cam.z3D -= 100;
+
+                  break;
+
+            }
+         }
+      }
+         
+   }while( !exitMainLoop );
+
+
+   osFree( (void*)points );
+   osFree( (void*)triangles );
+   osFree( (void*)texture.buffer );
+
+   numPoints      = 0;
+   numTriangles   = 0;
+   texture.buffer = NULL;
+   texture.width  = 0;
+   texture.height = 0;
+
+   return rv;
 }
