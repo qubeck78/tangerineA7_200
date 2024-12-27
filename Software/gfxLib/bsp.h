@@ -48,10 +48,11 @@
 //x"80000002";   -- spi id
 //x"80000003";   -- sdram DMA id
 //x"80000004";   -- usb hid host id
-//x"80000005";   -- blitter2d id
+//x"80000005";   -- blitter id
 //x"80000006";   -- sprite gen id
 //x"80000007";   -- i2s id
 //x"80000008";   -- gfx pixel gen id
+//x"80000009";   -- fpalu id
 
 typedef struct _BSP_T
 {
@@ -271,6 +272,22 @@ typedef struct __SDRAMDMA_REGISTERS_T
 }_SDRAMDMA_REGISTERS_T;
 
 extern _SDRAMDMA_REGISTERS_T *sdrdma;
+
+
+typedef struct __FPALU_REGISTERS_T
+{
+    
+    volatile uint32_t   id;
+    volatile uint32_t   version;
+    volatile uint32_t   command;
+    volatile float      a;
+    volatile float      b;
+    volatile float      c;
+    volatile float      result;
+
+}_FPALU_REGISTERS_T;
+
+extern _FPALU_REGISTERS_T *fpalu;
 
 
 uint32_t    bspInit( void );

@@ -5,7 +5,7 @@
 
 //Version
 
-#define _GFXLIB_VERSION 20241017
+#define _GFXLIB_VERSION 20241227
 
 
 //Platform
@@ -18,8 +18,9 @@
 //Features
 
 #define _GFXLIB_HW_BLITTER_2D
-//#define _GFXLIB_HW_BLITTER_3D
+#define _GFXLIB_HW_BLITTER_3D
 #define _GFXLIB_USB_HOST
+//#define _GFXLIB_FPALU
 
 
 #ifndef NULL
