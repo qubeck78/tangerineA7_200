@@ -1,0 +1,2 @@
+fpAddSub.v,verilog,xil_defaultlib,../../../../tangerineA7_200.gen/sources_1/ip/fpAddSub/sim/fpAddSub.v,
+glbl.v,Verilog,xil_defaultlib,glbl.v

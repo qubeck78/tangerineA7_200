@@ -1744,8 +1744,9 @@ begin
                         counterX    <= std_logic_vector( unsigned( counterX ) - 1 );
                         
                         if triangleEBA( 31 ) = '0' and triangleECB( 31 ) = '0' and triangleEAC( 31 ) = '0' then
-                        
+
                             triangleInside  <= '1';
+
                             --check what kind of triangle we are drawing
                             
                             if commandReg( 7 downto 4 ) = x"0" then

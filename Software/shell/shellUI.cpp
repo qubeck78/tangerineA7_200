@@ -26,7 +26,7 @@ uint32_t uiDrawStatusBar()
    toSetCursorPos( &con, 0, 0 );
    con.textAttributes   = 0xf0;
 
-   toPrintF( &con, ( char* )"tangerineSOC Shell B20240925                                                     " );
+   toPrintF( &con, ( char* )"tangerineSOC Shell B20241228                                                     " );
 
 
    toSetCursorPos( &con, 0, 28 );

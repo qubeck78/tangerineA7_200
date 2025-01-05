@@ -482,6 +482,25 @@ port(
 );
 end component;
 
+--fp alu
+component fpAlu is
+port(
+
+   --cpu interface
+   reset:            in    std_logic;
+   clock:            in    std_logic;
+   a:                in    std_logic_vector( 15 downto 0 );
+   din:              in    std_logic_vector( 31 downto 0 );
+   dout:             out   std_logic_vector( 31 downto 0 );
+   
+   ce:               in    std_logic;
+   wr:               in    std_logic;
+   dataMask:         in    std_logic_vector( 3 downto 0 );
+   
+   ready:            out   std_logic
+   
+);
+end component;
 
 --signals
 
@@ -687,6 +706,11 @@ signal blitterRegsDoutForCPU:  std_logic_vector( 31 downto 0 );
 signal blitterRegsCE:          std_logic;
 signal blitterRegsReady:       std_logic;
 
+--fpalu signals
+signal fpaluClock:              std_logic;
+signal fpaluCE:                 std_logic;
+signal fpaluDoutForCPU:         std_logic_vector( 31 downto 0 );
+signal fpaluReady:              std_logic;
 
 
 begin
@@ -718,6 +742,7 @@ spriteGenClock      <= mainClock;
 
 pggRegsClock        <= mainClock;
 
+fpaluClock          <= mainClock;
 
 --no need to sync now
 
@@ -1093,6 +1118,8 @@ end process;
   
     pggRegsCE       <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f09" else '0';
     
+    fpAluCE         <= '1' when ( cpuMemValid = '1' ) and cpuAOutFull( 31 downto 20 ) = x"f0a" else '0';
+    
   
 -- bus slaves ready signals mux
    cpuMemReady       <= systemRamReady when systemRAMCE = '1'
@@ -1108,6 +1135,7 @@ end process;
 --                        else flashSpiReady when flashSpiCE = '1'
                         else sdramDmaRegsReady when sdramDmaRegsCE = '1'  
                         else pggRegsReady when pggRegsCE = '1' 
+                        else fpAluReady when fpAluCE = '1' 
                         else '1';
 
 
@@ -1125,6 +1153,7 @@ end process;
 --                        flashSpiDoutForCPU                        when cpuAOutFull( 31 downto 20 ) = x"f07" else  
                         sdramDmaRegsDoutForCPU                    when cpuAOutFull( 31 downto 20 ) = x"f08" else                        
                         pggRegsDoutForCPU                         when cpuAOutFull( 31 downto 20 ) = x"f09" else
+                        fpAluDoutForCPU                           when cpuAOutFull( 31 downto 20 ) = x"f0a" else  
                         x"00000000";
 
 -- the CPU
@@ -1246,7 +1275,7 @@ begin
                      --0x04 r- component version                       
                      when x"01" =>
                      
-                        registersDoutForCPU  <= x"20241225";
+                        registersDoutForCPU  <= x"20241228";
                                                 
                      --rw 0xf0000008 - videoMuxMode
                      when x"02" =>
@@ -1624,6 +1653,26 @@ port map(
     bltWr           => ch1Wr
     
 );
+
+-- place fpalu
+fpAluInst:fpAlu
+port map(
+
+   --cpu interface
+   reset            => reset,
+   clock            => fpAluClock,
+   a                => cpuAOut( 15 downto 0 ),
+   din              => cpuDOut,
+   dout             => fpAluDoutForCPU,
+   
+   ce               => fpAluCE,
+   wr               => cpuWr,
+   dataMask         => cpuDataMask,
+   
+   ready            => fpAluReady
+   
+);
+
 
 -- tick timer process
 tickTimer: process( all )

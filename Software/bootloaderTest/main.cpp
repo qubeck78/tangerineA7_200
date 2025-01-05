@@ -71,7 +71,7 @@ int main()
    //80 column txt mode only
    bsp->videoMuxMode = 0x04; 
 
-   displayRam = ( unsigned short * )0x6d40;
+   displayRam = ( unsigned short * )0x5a80;
    
    screenIndex = 0;  
 

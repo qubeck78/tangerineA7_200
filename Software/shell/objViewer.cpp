@@ -342,17 +342,17 @@ int objvLoadOBJFS( char *fileName, float scaleFactor, tgfBitmap *texture )
 int objvCalc3d( tgfBitmap *pscr )
 {
 
-   int       i;
+   int          i;
    float        xp,yp,zp;
    uint32_t     light;
 
    uint16_t     screenw2;
-   uint16_t        screenh2;
+   uint16_t     screenh2;
    uint16_t     rotation360;
    
-   short     z3DTs;
-   float     cosRotation;
-   float     sinRotation;
+   short        z3DTs;
+   float        cosRotation;
+   float        sinRotation;
    
    tgfPoint3D  *point;
 
