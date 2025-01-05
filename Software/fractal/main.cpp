@@ -19,6 +19,10 @@ tgfBitmap               screen;
 char buf[256];
 
 
+//sw  fp - 136035ms
+//hw  fp -  39763ms
+//hw2 fp -  15979ms
+
 int animLeds( int j )
 {   
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a200tfbg676-1" LaunchTime="1735323131" LaunchWriteIncrSynthDcp="true">
+<GenRun Id="synth_1" LaunchPart="xc7a200tfbg676-1" LaunchTime="1735393742" LaunchWriteIncrSynthDcp="true">
   <File Type="PA-TCL" Name="A7BoardTop.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="A7BoardTop_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="A7BoardTop_reports.tcl"/>
@@ -50,6 +50,12 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/boundingBox.vhd">
+      <FileInfo SFType="VHDL2019">
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/fpAlu.vhd">
       <FileInfo SFType="VHDL2019">
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -206,6 +212,7 @@
   </Strategy>
   <BlockFileSet Type="BlockSrcs" Name="i2sControllerFifo"/>
   <BlockFileSet Type="BlockSrcs" Name="fastRam"/>
+  <BlockFileSet Type="BlockSrcs" Name="fpMul"/>
   <BlockFileSet Type="BlockSrcs" Name="uartFiFo"/>
   <BlockFileSet Type="BlockSrcs" Name="clk_wiz_0"/>
   <BlockFileSet Type="BlockSrcs" Name="gfxBufRam"/>
@@ -215,4 +222,6 @@
   <BlockFileSet Type="BlockSrcs" Name="systemRam"/>
   <BlockFileSet Type="BlockSrcs" Name="fontPROM"/>
   <BlockFileSet Type="BlockSrcs" Name="gfxPaletteRam"/>
+  <BlockFileSet Type="BlockSrcs" Name="fpAddSub"/>
+  <BlockFileSet Type="BlockSrcs" Name="fpDiv"/>
 </GenRun>

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Fri Dec 27 19:14:08 2024
+| Date         : Sat Dec 28 14:50:55 2024
 | Host         : Desktop-qUBECk running 64-bit major release  (build 9200)
 | Command      : report_utilization -file A7BoardTop_utilization_synth.rpt -pb A7BoardTop_utilization_synth.pb
 | Design       : A7BoardTop
@@ -31,13 +31,13 @@ Table of Contents
 +-------------------------+------+-------+------------+-----------+-------+
 |        Site Type        | Used | Fixed | Prohibited | Available | Util% |
 +-------------------------+------+-------+------------+-----------+-------+
-| Slice LUTs*             | 7221 |     0 |          0 |    134600 |  5.36 |
-|   LUT as Logic          | 7221 |     0 |          0 |    134600 |  5.36 |
+| Slice LUTs*             | 7346 |     0 |          0 |    134600 |  5.46 |
+|   LUT as Logic          | 7346 |     0 |          0 |    134600 |  5.46 |
 |   LUT as Memory         |    0 |     0 |          0 |     46200 |  0.00 |
-| Slice Registers         | 6094 |     0 |          0 |    269200 |  2.26 |
-|   Register as Flip Flop | 6093 |     0 |          0 |    269200 |  2.26 |
+| Slice Registers         | 6261 |     0 |          0 |    269200 |  2.33 |
+|   Register as Flip Flop | 6260 |     0 |          0 |    269200 |  2.33 |
 |   Register as Latch     |    1 |     0 |          0 |    269200 | <0.01 |
-| F7 Muxes                |  380 |     0 |          0 |     67300 |  0.56 |
+| F7 Muxes                |  369 |     0 |          0 |     67300 |  0.55 |
 | F8 Muxes                |    1 |     0 |          0 |     33650 | <0.01 |
 +-------------------------+------+-------+------------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
@@ -58,8 +58,8 @@ Warning! LUT value is adjusted to account for LUT combining.
 | 0     |          Yes |           - |            - |
 | 63    |          Yes |           - |          Set |
 | 1758  |          Yes |           - |        Reset |
-| 77    |          Yes |         Set |            - |
-| 4196  |          Yes |       Reset |            - |
+| 79    |          Yes |         Set |            - |
+| 4361  |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -154,17 +154,17 @@ Warning! LUT value is adjusted to account for LUT combining.
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| FDRE     | 4196 |        Flop & Latch |
-| LUT6     | 3102 |                 LUT |
+| FDRE     | 4361 |        Flop & Latch |
+| LUT6     | 3157 |                 LUT |
 | FDCE     | 1757 |        Flop & Latch |
-| LUT5     | 1464 |                 LUT |
-| LUT2     | 1404 |                 LUT |
-| LUT4     | 1287 |                 LUT |
-| LUT3     | 1020 |                 LUT |
+| LUT5     | 1543 |                 LUT |
+| LUT2     | 1412 |                 LUT |
+| LUT4     | 1285 |                 LUT |
+| LUT3     | 1015 |                 LUT |
 | CARRY4   |  619 |          CarryLogic |
-| MUXF7    |  380 |               MuxFx |
-| LUT1     |  348 |                 LUT |
-| FDSE     |   77 |        Flop & Latch |
+| MUXF7    |  369 |               MuxFx |
+| LUT1     |  347 |                 LUT |
+| FDSE     |   79 |        Flop & Latch |
 | FDPE     |   63 |        Flop & Latch |
 | DSP48E1  |   42 |    Block Arithmetic |
 | IBUF     |   40 |                  IO |
@@ -193,6 +193,9 @@ Warning! LUT value is adjusted to account for LUT combining.
 | i2sControllerFifo |    1 |
 | gfxPaletteRam     |    1 |
 | gfxBufRam         |    1 |
+| fpMul             |    1 |
+| fpDiv             |    1 |
+| fpAddSub          |    1 |
 | fontPROM          |    1 |
 | fastRam           |    1 |
 | clk_wiz_1         |    1 |

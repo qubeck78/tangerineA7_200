@@ -280,10 +280,10 @@ typedef struct __FPALU_REGISTERS_T
     volatile uint32_t   id;
     volatile uint32_t   version;
     volatile uint32_t   command;
-    volatile float      a;
-    volatile float      b;
-    volatile float      c;
-    volatile float      result;
+    volatile float      fA;
+    volatile float      fB;
+    volatile float      fC;
+    volatile float      fResult;
 
 }_FPALU_REGISTERS_T;
 
@@ -302,55 +302,51 @@ uint32_t    setVideoMode( uint32_t videoMode );
 void        reboot( void );
 
 
+
+
+
 #ifdef _GFXLIB_FPALU
-
-float inline ffMul( float a, float b )
-{
-    volatile uint32_t j;
-
-    fpalu->fpA = a;
-    fpalu->fpB = b;
-
-    for( j = 0; j < 2; j++);
-
-
-    return fpalu->fpMulResult;
-}
 
 float inline ffAdd( float a, float b )
 {
-    volatile uint32_t j;
 
-    fpalu->fpA = a;
-    fpalu->fpB = b;
+    fpalu->fA       = a;
+    fpalu->fB       = b;
+    fpalu->command  = 0x00000001;
 
-    for( j = 0; j < 2; j++);
-        
-    return fpalu->fpAddResult;
+    return fpalu->fResult;
 }
 
 float inline ffSub( float a, float b )
 {
-    volatile uint32_t j;
 
-    fpalu->fpA = a;
-    fpalu->fpB = b;
-
-    for( j = 0; j < 2; j++);
+    fpalu->fA       = a;
+    fpalu->fB       = b;
+    fpalu->command  = 0x80000001;
         
-    return fpalu->fpSubResult;
+    return fpalu->fResult;
+}
+
+float inline ffMul( float a, float b )
+{
+
+    fpalu->fA = a;
+    fpalu->fB = b;
+
+    fpalu->command  = 0x00000002;
+
+    return fpalu->fResult;
 }
 
 float inline ffDiv( float a, float b )
 {
-    volatile uint32_t j;
 
-    fpalu->fpA = a;
-    fpalu->fpB = b;
+    fpalu->fA = a;
+    fpalu->fB = b;
 
-    for( j = 0; j < 8; j++);
-        
-    return fpalu->fpDivResult;
+    fpalu->command  = 0x00000003;
+    
+    return fpalu->fResult;
 }
 
 #else
@@ -369,6 +365,7 @@ float inline ffSub( float a, float b )
 {    
     return a - b;
 }
+
 
 float inline ffDiv( float a, float b )
 {
