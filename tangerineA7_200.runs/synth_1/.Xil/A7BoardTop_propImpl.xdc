@@ -1,4 +1,4 @@
-set_property SRC_FILE_INFO {cfile:C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/constrs_1/new/A7BoardTop.xdc rfile:../../../tangerineA7_200.srcs/constrs_1/new/A7BoardTop.xdc id:1} [current_design]
+set_property SRC_FILE_INFO {cfile:C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/constrs_1/new/A7BoardTop.xdc rfile:../../../tangerineA7_200.srcs/constrs_1/new/A7BoardTop.xdc id:1} [current_design]
 set_property src_info {type:XDC file:1 line:15 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN U22 [get_ports sysClk50]
 set_property src_info {type:XDC file:1 line:16 export:INPUT save:INPUT read:READ} [current_design]

@@ -3,12 +3,12 @@
 # SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Tue Nov 12 21:55:03 2024
-# Process ID: 24092
-# Current directory: C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/systemRam_synth_1
+# Start of session at: Sun Jan 12 18:26:29 2025
+# Process ID: 161708
+# Current directory: C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/systemRam_synth_1
 # Command line: vivado.exe -log systemRam.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source systemRam.tcl
-# Log file: C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/systemRam_synth_1/systemRam.vds
-# Journal file: C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/systemRam_synth_1\vivado.jou
-# Running On: Desktop-qUBECk, OS: Windows, CPU Frequency: 4104 MHz, CPU Physical cores: 6, Host memory: 34266 MB
+# Log file: C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/systemRam_synth_1/systemRam.vds
+# Journal file: C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/systemRam_synth_1\vivado.jou
+# Running On: DESKTOP-T3E75FC, OS: Windows, CPU Frequency: 4491 MHz, CPU Physical cores: 32, Host memory: 33513 MB
 #-----------------------------------------------------------
 source systemRam.tcl -notrace

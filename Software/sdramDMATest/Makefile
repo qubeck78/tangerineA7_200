@@ -45,3 +45,6 @@ clean:
 send: prog.rec
 	srecsend prog.rec auto 460800
 	
+run: prog.rec
+	cp prog.rec "/c/Users/qubeck/Documents/Development/ProjektyGCCWindows/tangerineSOCEmulator/bin"
+	cd "/c/Users/qubeck/Documents/Development/ProjektyGCCWindows/tangerineSOCEmulator/bin" && ./tangerine.exe prog.rec

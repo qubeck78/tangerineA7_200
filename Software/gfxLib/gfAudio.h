@@ -1,6 +1,11 @@
 #ifndef _GFAUDIO_H
 #define _GFAUDIO_H
 
+#ifdef __cplusplus
+extern "C" 
+{
+#endif
+
 #include "gfTypes.h"
 
 #include "bsp.h"
@@ -25,6 +30,10 @@ uint32_t inline gfAudioDMAStatus( void )
 {
       return aud->audioDmaStatus;
 }
+
+#ifdef __cplusplus
+}
+#endif
 
 
 #endif

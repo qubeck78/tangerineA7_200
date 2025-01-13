@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/A7BoardTop.tcl"
+  variable script "C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/synth_1/A7BoardTop.tcl"
   variable category "vivado_synth"
 }
 
@@ -70,8 +70,6 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 3
-set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a200tfbg676-1
 
@@ -79,99 +77,99 @@ set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
-set_property webtalk.parent_dir C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.cache/wt [current_project]
-set_property parent.project_path C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.xpr [current_project]
+set_property webtalk.parent_dir C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.cache/wt [current_project]
+set_property parent.project_path C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.xpr [current_project]
 set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language VHDL [current_project]
-set_property ip_output_repo c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.cache/ip [current_project]
+set_property ip_output_repo c:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-add_files C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/font.coe
-add_files C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/Software/bootloader/boot.coe
+add_files C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/font.coe
+add_files C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/Software/bootloader/boot.coe
 read_verilog -library xil_defaultlib -sv {
-  C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host.v
-  C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host_rom.v
+  C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host.v
+  C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usb_hid_host_rom.v
 }
 read_vhdl -library xil_defaultlib {
-  C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/TMDS_encoder.vhd
-  C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/dvid.vhd
+  C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/TMDS_encoder.vhd
+  C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/dvid.vhd
 }
 read_vhdl -vhdl2019 -library xil_defaultlib {
-  C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/InputSync.vhd
-  C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd
-  C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/boundingBox.vhd
-  C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/fpAlu.vhd
-  C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudEdge.vhd
-  C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudIterator.vhd
-  C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudIterator16.vhd
-  C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudWeight.vhd
-  C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/i2sController.vhd
-  C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/nekoRv.vhd
-  C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/pixelAlpha.vhd
-  C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/pixelGenGfx.vhd
-  C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/pixelGenTxt.vhd
-  C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/sdramDMA.vhd
-  C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/spi.vhd
-  C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/spriteGen.vhd
-  C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd
-  C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/textureShader.vhd
-  C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/triangleAreaDivisor.vhd
-  C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/uart.vhd
-  C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usbHost.vhd
-  C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/A7BoardTop.vhd
+  C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/InputSync.vhd
+  C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd
+  C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/boundingBox.vhd
+  C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/fpAlu.vhd
+  C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudEdge.vhd
+  C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudIterator.vhd
+  C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudIterator16.vhd
+  C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/gouraudWeight.vhd
+  C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/i2sController.vhd
+  C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/nekoRv.vhd
+  C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/pixelAlpha.vhd
+  C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/pixelGenGfx.vhd
+  C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/pixelGenTxt.vhd
+  C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/sdramDMA.vhd
+  C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/spi.vhd
+  C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/spriteGen.vhd
+  C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd
+  C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/textureShader.vhd
+  C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/triangleAreaDivisor.vhd
+  C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/uart.vhd
+  C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usbHost.vhd
+  C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/A7BoardTop.vhd
 }
-read_ip -quiet C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/uartFiFo/uartFiFo.xci
-set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/uartFiFo/uartFiFo.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/uartFiFo/uartFiFo_ooc.xdc]
+read_ip -quiet C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/uartFiFo/uartFiFo.xci
+set_property used_in_implementation false [get_files -all c:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/uartFiFo/uartFiFo.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/uartFiFo/uartFiFo_ooc.xdc]
 
-read_ip -quiet C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/gfxBufRam/gfxBufRam.xci
-set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/gfxBufRam/gfxBufRam_ooc.xdc]
+read_ip -quiet C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/gfxBufRam/gfxBufRam.xci
+set_property used_in_implementation false [get_files -all c:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/gfxBufRam/gfxBufRam_ooc.xdc]
 
-read_ip -quiet C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1.xci
-set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/clk_wiz_1/clk_wiz_1_board.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/clk_wiz_1/clk_wiz_1.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/clk_wiz_1/clk_wiz_1_ooc.xdc]
+read_ip -quiet C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/clk_wiz_1/clk_wiz_1.xci
+set_property used_in_implementation false [get_files -all c:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/clk_wiz_1/clk_wiz_1_board.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/clk_wiz_1/clk_wiz_1.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/clk_wiz_1/clk_wiz_1_ooc.xdc]
 
-read_ip -quiet C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/keyboardFifo/keyboardFifo.xci
-set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/keyboardFifo/keyboardFifo.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/keyboardFifo/keyboardFifo_clocks.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/keyboardFifo/keyboardFifo_ooc.xdc]
+read_ip -quiet C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/keyboardFifo/keyboardFifo.xci
+set_property used_in_implementation false [get_files -all c:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/keyboardFifo/keyboardFifo.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/keyboardFifo/keyboardFifo_clocks.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/keyboardFifo/keyboardFifo_ooc.xdc]
 
-read_ip -quiet C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/fastRam/fastRam.xci
-set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/fastRam/fastRam_ooc.xdc]
+read_ip -quiet C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/fastRam/fastRam.xci
+set_property used_in_implementation false [get_files -all c:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/fastRam/fastRam_ooc.xdc]
 
-read_ip -quiet C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
-set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_board.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_ooc.xdc]
+read_ip -quiet C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
+set_property used_in_implementation false [get_files -all c:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_board.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_ooc.xdc]
 
-read_ip -quiet C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/fontPROM/fontPROM.xci
-set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/fontPROM/fontPROM_ooc.xdc]
+read_ip -quiet C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/fontPROM/fontPROM.xci
+set_property used_in_implementation false [get_files -all c:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/fontPROM/fontPROM_ooc.xdc]
 
-read_ip -quiet C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/spriteDPRam/spriteDPRam.xci
-set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/spriteDPRam/spriteDPRam_ooc.xdc]
+read_ip -quiet C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/spriteDPRam/spriteDPRam.xci
+set_property used_in_implementation false [get_files -all c:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/spriteDPRam/spriteDPRam_ooc.xdc]
 
-read_ip -quiet C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/i2sControllerFifo/i2sControllerFifo.xci
-set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/i2sControllerFifo/i2sControllerFifo.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/i2sControllerFifo/i2sControllerFifo_clocks.xdc]
-set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/i2sControllerFifo/i2sControllerFifo_ooc.xdc]
+read_ip -quiet C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/i2sControllerFifo/i2sControllerFifo.xci
+set_property used_in_implementation false [get_files -all c:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/i2sControllerFifo/i2sControllerFifo.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/i2sControllerFifo/i2sControllerFifo_clocks.xdc]
+set_property used_in_implementation false [get_files -all c:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/i2sControllerFifo/i2sControllerFifo_ooc.xdc]
 
-read_ip -quiet C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/gfxPaletteRam/gfxPaletteRam.xci
-set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/gfxPaletteRam/gfxPaletteRam_ooc.xdc]
+read_ip -quiet C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/gfxPaletteRam/gfxPaletteRam.xci
+set_property used_in_implementation false [get_files -all c:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/gfxPaletteRam/gfxPaletteRam_ooc.xdc]
 
-read_ip -quiet C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/systemRam/systemRam.xci
-set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/systemRam/systemRam_ooc.xdc]
+read_ip -quiet C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/systemRam/systemRam.xci
+set_property used_in_implementation false [get_files -all c:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/systemRam/systemRam_ooc.xdc]
 
-read_ip -quiet C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/fpAddSub/fpAddSub.xci
-set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/fpAddSub/fpAddSub_ooc.xdc]
+read_ip -quiet C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/fpAddSub/fpAddSub.xci
+set_property used_in_implementation false [get_files -all c:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/fpAddSub/fpAddSub_ooc.xdc]
 
-read_ip -quiet C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/fpMul/fpMul.xci
-set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/fpMul/fpMul_ooc.xdc]
+read_ip -quiet C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/fpMul/fpMul.xci
+set_property used_in_implementation false [get_files -all c:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/fpMul/fpMul_ooc.xdc]
 
-read_ip -quiet C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/fpDiv/fpDiv.xci
-set_property used_in_implementation false [get_files -all c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/fpDiv/fpDiv_ooc.xdc]
+read_ip -quiet C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/ip/fpDiv/fpDiv.xci
+set_property used_in_implementation false [get_files -all c:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.gen/sources_1/ip/fpDiv/fpDiv_ooc.xdc]
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -182,8 +180,8 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/constrs_1/new/A7BoardTop.xdc
-set_property used_in_implementation false [get_files C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/constrs_1/new/A7BoardTop.xdc]
+read_xdc C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/constrs_1/new/A7BoardTop.xdc
+set_property used_in_implementation false [get_files C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/constrs_1/new/A7BoardTop.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]

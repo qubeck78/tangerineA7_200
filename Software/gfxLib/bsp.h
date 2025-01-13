@@ -1,6 +1,11 @@
 #ifndef _BSP_H
 #define _BSP_H
 
+#ifdef __cplusplus
+extern "C" 
+{
+#endif
+
 
 //Memory regions
 
@@ -374,4 +379,9 @@ float inline ffDiv( float a, float b )
 
 
 #endif
+
+#ifdef __cplusplus
+} 
+#endif
+
 #endif

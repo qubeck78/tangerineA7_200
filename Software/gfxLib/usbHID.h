@@ -1,6 +1,11 @@
 #ifndef _USBHID_H
 #define _USBHID_H
 
+#ifdef __cplusplus
+extern "C" 
+{
+#endif
+
 #include "bsp.h"
 #include "gfBitmap.h"
 
@@ -19,5 +24,10 @@ uint32_t usbHidSetMouseReporting( uint32_t enable );
 uint32_t usbHIDGetMouse( uint32_t *pmouseX, uint32_t *pmouseY, uint32_t *pmouseButtons );
 
 uint32_t usbHIDHandleEvents( void );
+
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

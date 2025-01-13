@@ -1,6 +1,12 @@
 #ifndef _GFFONT_H
 #define _GFFONT_H
 
+#ifdef __cplusplus
+extern "C" 
+{
+#endif
+
+
 #include "gfTypes.h"
 #include "gfBitmap.h"
 
@@ -70,5 +76,8 @@ uint32_t toPrint( tgfTextOverlay *overlay, char *string );
 uint32_t toPrintF( tgfTextOverlay *overlay, char *format, ... );
 
 
+#ifdef __cplusplus
+}
+#endif
 
 #endif

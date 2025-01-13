@@ -1,6 +1,11 @@
 #ifndef _OSALLOC_H
 #define _OSALLOC_H
 
+#ifdef __cplusplus
+extern "C" 
+{
+#endif
+
 #include "gfTypes.h"
 
 #define _OS_ALLOC_NUM_NODES         2
@@ -49,6 +54,10 @@ void     *osAlloc( uint32_t size, uint32_t memFlags );
 uint32_t  osFree( void *allocMemPtr );
 void     *osRealloc( void *allocMemPtr, uint32_t sizeNew, uint32_t memFlagsNew );
 
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
 

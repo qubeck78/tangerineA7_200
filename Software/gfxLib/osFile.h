@@ -1,9 +1,14 @@
 #ifndef _OSFILE_H
 #define _OSFILE_H
 
+#ifdef __cplusplus
+extern "C" 
+{
+#endif
+
 
 #include "gfTypes.h"
-#include <cstring>
+#include <string.h>
 
 
 #ifdef _GFXLIB_SDL
@@ -120,6 +125,10 @@ uint32_t osFSize( char *path );
 uint32_t osFDelete( char *path );
 uint32_t osMkDir( char *path );
 uint32_t osRename( char *pathOld, char *pathNew );
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
 

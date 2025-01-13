@@ -1,0 +1,963 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"p",
+				"prvMouseY"
+			],
+			[
+				"pr",
+				"prvMouseX"
+			],
+			[
+				"a",
+				"arg2"
+			],
+			[
+				"spr",
+				"spriteRam"
+			],
+			[
+				"sprit",
+				"spriteRam"
+			],
+			[
+				"toPr",
+				"toPrintF"
+			],
+			[
+				"b",
+				"background"
+			],
+			[
+				"gf",
+				"gfBlitBitmap"
+			],
+			[
+				"mo",
+				"mouseY"
+			],
+			[
+				"mouse",
+				"mouseX"
+			],
+			[
+				"toP",
+				"toPrintF"
+			],
+			[
+				"he",
+				"height"
+			],
+			[
+				"w",
+				"width"
+			],
+			[
+				"m",
+				"mouseX"
+			],
+			[
+				"cur",
+				"cursor"
+			],
+			[
+				"mou",
+				"mouseY"
+			],
+			[
+				"curso",
+				"cursorBg"
+			],
+			[
+				"text",
+				"textureBuffer"
+			],
+			[
+				"te",
+				"textureBuffer"
+			],
+			[
+				"cpu",
+				"cpurv"
+			],
+			[
+				"tgc",
+				"tgctx"
+			],
+			[
+				"re",
+				"responseMaxIdx"
+			],
+			[
+				"res",
+				"responseIdx"
+			],
+			[
+				"respon",
+				"responseMaxIdx"
+			],
+			[
+				"c",
+				"cmd"
+			],
+			[
+				"sdc",
+				"sdcsCMD1"
+			],
+			[
+				"sdcs",
+				"sdcsCMD0"
+			],
+			[
+				"sp",
+				"spiStatus"
+			],
+			[
+				"ar",
+				"argv"
+			],
+			[
+				"emu",
+				"emulator"
+			],
+			[
+				"vi",
+				"videoVSync"
+			],
+			[
+				"ch3Dma",
+				"ch3DmaPointerStart"
+			],
+			[
+				"sd",
+				"sdramDMAReadReg"
+			],
+			[
+				"fe",
+				"fetchData"
+			],
+			[
+				"r",
+				"rootRegs"
+			],
+			[
+				"RV",
+				"RV_ERROR"
+			],
+			[
+				"num",
+				"numDirEntries"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "Makefile",
+			"settings":
+			{
+				"buffer_size": 5585,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			},
+			"undo_stack":
+			[
+				[
+					6,
+					1,
+					"paste",
+					null,
+					"AgAAAC8VAAAAAAAAIRYAAAAAAAAAAAAAIRYAAAAAAAAhFgAAAAAAANAAAABydW46ICQoVEFSR0VUKS5yZWMKCWNwICQoVEFSR0VUKS5yZWMgIi9mL21zeXM2NC9ob21lL3F1YmVjL1Byb2pla3R5R0NDV2luZG93cy90YW5nZXJpbmVTT0NFbXVsYXRvci9iaW4iCgljZCAiL2YvbXN5czY0L2hvbWUvcXViZWMvUHJvamVrdHlHQ0NXaW5kb3dzL3RhbmdlcmluZVNPQ0VtdWxhdG9yL2JpbiIgJiYgLi90YW5nZXJpbmUuZXhlICQoVEFSR0VUKS5yZWMK",
+					"AQAAAAAAAAABAAAALxUAAAAAAAD/FQAAAAAAAAAAAAAAAAAA"
+				],
+				[
+					11,
+					3,
+					"left_delete",
+					null,
+					"AwAAAOAOAAAAAAAA4A4AAAAAAAABAAAAIN8OAAAAAAAA3w4AAAAAAAABAAAAcN4OAAAAAAAA3g4AAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAA4Q4AAAAAAADhDgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					13,
+					2,
+					"left_delete",
+					null,
+					"AgAAAK0OAAAAAAAArQ4AAAAAAAABAAAAcKwOAAAAAAAArA4AAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAArg4AAAAAAACuDgAAAAAAAAAAAAAAwHlA"
+				],
+				[
+					16,
+					4,
+					"left_delete",
+					null,
+					"BAAAAI0OAAAAAAAAjQ4AAAAAAAABAAAAIIwOAAAAAAAAjA4AAAAAAAABAAAAIIsOAAAAAAAAiw4AAAAAAAABAAAAcIoOAAAAAAAAig4AAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAAjg4AAAAAAACODgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					18,
+					2,
+					"left_delete",
+					null,
+					"AgAAAFcOAAAAAAAAVw4AAAAAAAABAAAAcFYOAAAAAAAAVg4AAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAAWA4AAAAAAABYDgAAAAAAAAAAAAAA0HpA"
+				],
+				[
+					21,
+					4,
+					"left_delete",
+					null,
+					"BAAAADUOAAAAAAAANQ4AAAAAAAABAAAAIDQOAAAAAAAANA4AAAAAAAABAAAAIDMOAAAAAAAAMw4AAAAAAAABAAAAcDIOAAAAAAAAMg4AAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAANg4AAAAAAAA2DgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					23,
+					2,
+					"left_delete",
+					null,
+					"AgAAAPkNAAAAAAAA+Q0AAAAAAAABAAAAcPgNAAAAAAAA+A0AAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAA+g0AAAAAAAD6DQAAAAAAAAAAAAAA4H1A"
+				],
+				[
+					26,
+					4,
+					"left_delete",
+					null,
+					"BAAAANENAAAAAAAA0Q0AAAAAAAABAAAAINANAAAAAAAA0A0AAAAAAAABAAAAIM8NAAAAAAAAzw0AAAAAAAABAAAAcM4NAAAAAAAAzg0AAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAA0g0AAAAAAADSDQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					28,
+					3,
+					"left_delete",
+					null,
+					"AwAAAJ0NAAAAAAAAnQ0AAAAAAAABAAAAIJwNAAAAAAAAnA0AAAAAAAABAAAAcJsNAAAAAAAAmw0AAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAAng0AAAAAAACeDQAAAAAAAAAAAAAAwHlA"
+				],
+				[
+					31,
+					4,
+					"left_delete",
+					null,
+					"BAAAAHwNAAAAAAAAfA0AAAAAAAABAAAAIHsNAAAAAAAAew0AAAAAAAABAAAAIHoNAAAAAAAAeg0AAAAAAAABAAAAcHkNAAAAAAAAeQ0AAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAAfQ0AAAAAAAB9DQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					33,
+					2,
+					"left_delete",
+					null,
+					"AgAAAFANAAAAAAAAUA0AAAAAAAABAAAAcE8NAAAAAAAATw0AAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAAUQ0AAAAAAABRDQAAAAAAAAAAAAAAoHVA"
+				],
+				[
+					36,
+					3,
+					"left_delete",
+					null,
+					"AwAAADgNAAAAAAAAOA0AAAAAAAABAAAAIDcNAAAAAAAANw0AAAAAAAABAAAAcDYNAAAAAAAANg0AAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAAOQ0AAAAAAAA5DQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					38,
+					2,
+					"left_delete",
+					null,
+					"AgAAAAUNAAAAAAAABQ0AAAAAAAABAAAAcAQNAAAAAAAABA0AAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAABg0AAAAAAAAGDQAAAAAAAAAAAAAAwHlA"
+				],
+				[
+					41,
+					3,
+					"left_delete",
+					null,
+					"AwAAAOUMAAAAAAAA5QwAAAAAAAABAAAAIOQMAAAAAAAA5AwAAAAAAAABAAAAcOMMAAAAAAAA4wwAAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAA5gwAAAAAAADmDAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					43,
+					2,
+					"left_delete",
+					null,
+					"AgAAALIMAAAAAAAAsgwAAAAAAAABAAAAcLEMAAAAAAAAsQwAAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAAswwAAAAAAACzDAAAAAAAAAAAAAAAwHlA"
+				],
+				[
+					46,
+					3,
+					"left_delete",
+					null,
+					"AwAAAJIMAAAAAAAAkgwAAAAAAAABAAAAIJEMAAAAAAAAkQwAAAAAAAABAAAAcJAMAAAAAAAAkAwAAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAAkwwAAAAAAACTDAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					48,
+					2,
+					"left_delete",
+					null,
+					"AgAAAF0MAAAAAAAAXQwAAAAAAAABAAAAcFwMAAAAAAAAXAwAAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAAXgwAAAAAAABeDAAAAAAAAAAAAAAA0HpA"
+				],
+				[
+					51,
+					3,
+					"left_delete",
+					null,
+					"AwAAADsMAAAAAAAAOwwAAAAAAAABAAAAIDoMAAAAAAAAOgwAAAAAAAABAAAAcDkMAAAAAAAAOQwAAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAAPAwAAAAAAAA8DAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					53,
+					2,
+					"left_delete",
+					null,
+					"AgAAAAQMAAAAAAAABAwAAAAAAAABAAAAcAMMAAAAAAAAAwwAAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAABQwAAAAAAAAFDAAAAAAAAAAAAAAA0HtA"
+				],
+				[
+					56,
+					3,
+					"left_delete",
+					null,
+					"AwAAAOALAAAAAAAA4AsAAAAAAAABAAAAIN8LAAAAAAAA3wsAAAAAAAABAAAAcN4LAAAAAAAA3gsAAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAA4QsAAAAAAADhCwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					58,
+					2,
+					"left_delete",
+					null,
+					"AgAAAK0LAAAAAAAArQsAAAAAAAABAAAAcKwLAAAAAAAArAsAAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAArgsAAAAAAACuCwAAAAAAAAAAAAAAwHlA"
+				],
+				[
+					61,
+					3,
+					"left_delete",
+					null,
+					"AwAAAIwLAAAAAAAAjAsAAAAAAAABAAAAIIsLAAAAAAAAiwsAAAAAAAABAAAAcIoLAAAAAAAAigsAAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAAjQsAAAAAAACNCwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					63,
+					2,
+					"left_delete",
+					null,
+					"AgAAAFkLAAAAAAAAWQsAAAAAAAABAAAAcFgLAAAAAAAAWAsAAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAAWgsAAAAAAABaCwAAAAAAAAAAAAAAwHlA"
+				],
+				[
+					66,
+					3,
+					"left_delete",
+					null,
+					"AwAAADkLAAAAAAAAOQsAAAAAAAABAAAAIDgLAAAAAAAAOAsAAAAAAAABAAAAcDcLAAAAAAAANwsAAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAAOgsAAAAAAAA6CwAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					68,
+					2,
+					"left_delete",
+					null,
+					"AgAAAAALAAAAAAAAAAsAAAAAAAABAAAAcP8KAAAAAAAA/woAAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAAAQsAAAAAAAABCwAAAAAAAAAAAAAA4HxA"
+				],
+				[
+					71,
+					3,
+					"left_delete",
+					null,
+					"AwAAANoKAAAAAAAA2goAAAAAAAABAAAAINkKAAAAAAAA2QoAAAAAAAABAAAAcNgKAAAAAAAA2AoAAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAA2woAAAAAAADbCgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					73,
+					2,
+					"left_delete",
+					null,
+					"AgAAAKEKAAAAAAAAoQoAAAAAAAABAAAAcKAKAAAAAAAAoAoAAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAAogoAAAAAAACiCgAAAAAAAAAAAAAA4HxA"
+				],
+				[
+					76,
+					3,
+					"left_delete",
+					null,
+					"AwAAAHoKAAAAAAAAegoAAAAAAAABAAAAIHkKAAAAAAAAeQoAAAAAAAABAAAAcHgKAAAAAAAAeAoAAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAAewoAAAAAAAB7CgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					78,
+					2,
+					"left_delete",
+					null,
+					"AgAAAEMKAAAAAAAAQwoAAAAAAAABAAAAcEIKAAAAAAAAQgoAAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAARAoAAAAAAABECgAAAAAAAAAAAAAA0HtA"
+				],
+				[
+					81,
+					1,
+					"left_delete",
+					null,
+					"AQAAAB8KAAAAAAAAHwoAAAAAAAABAAAAUw",
+					"AQAAAAAAAAABAAAAIAoAAAAAAAAgCgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					82,
+					1,
+					"insert",
+					{
+						"characters": "S"
+					},
+					"AQAAAB8KAAAAAAAAIAoAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAHwoAAAAAAAAfCgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					86,
+					3,
+					"left_delete",
+					null,
+					"AwAAAOsJAAAAAAAA6wkAAAAAAAABAAAAIOoJAAAAAAAA6gkAAAAAAAABAAAAcOkJAAAAAAAA6QkAAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAA7AkAAAAAAADsCQAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					88,
+					2,
+					"left_delete",
+					null,
+					"AgAAAL4JAAAAAAAAvgkAAAAAAAABAAAAcL0JAAAAAAAAvQkAAAAAAAABAAAAcA",
+					"AQAAAAAAAAABAAAAvwkAAAAAAAC/CQAAAAAAAAAAAAAAsHZA"
+				]
+			]
+		}
+	],
+	"build_system": "Packages/User/tangerine.sublime-build",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/C++/C++ Single File.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					""
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					"Clean"
+				]
+			],
+			[
+				"Packages/Makefile/Make.sublime-build",
+				"Clean"
+			]
+		],
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					""
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					"Clean"
+				],
+				[
+					"Packages/User/make run.sublime-build",
+					""
+				],
+				[
+					"Packages/User/make send.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/Makefile/Make.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					""
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					"Clean"
+				],
+				[
+					"Packages/User/make send.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/User/make send.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/Makefile/Make.sublime-build",
+					""
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					"Clean"
+				],
+				[
+					"Packages/ShellScript/ShellScript.sublime-build",
+					""
+				],
+				[
+					"Packages/User/make run.sublime-build",
+					""
+				],
+				[
+					"Packages/User/make send.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/Makefile/Make.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/Makefile/Make.sublime-build",
+					""
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					"Clean"
+				],
+				[
+					"Packages/User/make run.sublime-build",
+					""
+				],
+				[
+					"Packages/User/make send.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/Makefile/Make.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/Makefile/Make.sublime-build",
+					""
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					"Clean"
+				],
+				[
+					"Packages/User/make send.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/User/make send.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/Makefile/Make.sublime-build",
+					""
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					"Clean"
+				],
+				[
+					"Packages/User/tangerine.sublime-build",
+					""
+				],
+				[
+					"Packages/User/tangerine.sublime-build",
+					"make"
+				],
+				[
+					"Packages/User/tangerine.sublime-build",
+					"make clean"
+				],
+				[
+					"Packages/User/tangerine.sublime-build",
+					"make run"
+				],
+				[
+					"Packages/User/tangerine.sublime-build",
+					"make send"
+				]
+			],
+			[
+				"Packages/User/tangerine.sublime-build",
+				"make run"
+			]
+		]
+	],
+	"build_varint": "make run",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Enable Package"
+			],
+			[
+				"package control: install package",
+				"Package Control: Install Package"
+			],
+			[
+				"install package control",
+				"Install Package Control"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 141.0,
+		"history":
+		[
+			"help",
+			"dir",
+			"dire"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/Software/mp3"
+	],
+	"file_history":
+	[
+		"/C/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/Software/mouseTest/main.cpp",
+		"/C/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/Software/mouseTest/main.h",
+		"/C/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/Software/mouseTest/startup.S",
+		"/C/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/Software/mouseTest/Makefile",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/Software/mouseTest/startup.S",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/A7BoardTop.vhd",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/tangerineSOC.vhd",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/usbHost.vhd",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/blitter.vhd",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/sdramDMA.vhd",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.srcs/sources_1/new/nekoRv.vhd",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/spiSdCardRegs.cpp",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/tgVideoOut.cpp",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/tangerine.cpp",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/emul.cpp",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/main.cpp",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/memio.h",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/emul.h",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/sdCard.cpp",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/tangerine.h",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/memio.cpp",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/srec.cpp",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/sdCard.h",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/disasm.cpp",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/gfTypes.h",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/disasm.h",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/usbHost.cpp",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/usbHostRegs.cpp",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/usbHostRegs.h",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/usbHost.h",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/tgVideoOut.h",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/rootRegs.cpp",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/rootRegs.h",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/sdramDmaRegs.h",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/sdramDmaRegs.cpp",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/spiSdCardRegs.h",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/srec.h",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/Makefile",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/spiSDCardRegs.h",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/spiSDCardRegs.cpp",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/sdramDma.h",
+		"/F/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/sdramDma.cpp",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/Software/slideshow/main.cpp",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/Software/slideshow/ram.ld",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/Software/slideshow/Makefile",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/Software/gfxLib/bsp.cpp",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/Software/gfxLib/gfBitmap.cpp",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/Software/gfxLib/gfBitmap.h",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/Software/gfxLib/gfTypes.h",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/Software/gfxLib/bsp.h",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/TangNano20K/tangyRiscVSOC/tangyRiscVSOC/src/software/gfxLib/diskio.cpp",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/TangNano20K/tangyRiscVSOC/tangyRiscVSOC/src/software/gfxLib/gfBitmap.cpp",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/TangNano20K/tangyRiscVSOC/tangyRiscVSOC/src/software/gfxLib/bsp.cpp",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/TangNano20K/tangyRiscVSOC/tangyRiscVSOC/src/software/gfxLib/bsp.h",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/TangNano20K/tangyRiscVSOC/tangyRiscVSOC/src/software/gfxLib/gfTypes.h",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/TangNano20K/tangyRiscVSOC/tangyRiscVSOC/src/software/slideshow/Makefile",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/TangNano20K/tangyRiscVSOC/tangyRiscVSOC/src/software/slideshow/ram.ld",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/TangNano20K/tangyRiscVSOC/tangyRiscVSOC/src/software/slideshow/startup.S",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscVSOCQ13/sramController.vhd",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscVSOCQ13/software/gfxLib/osFile.cpp",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscVSOCQ13/software/gfxLib/bsp.h",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscVSOCQ13/software/gfxLib/bsp.cpp",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscVSOCQ13/software/slideshow/startup.S",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscVSOCQ13/software/gfxLib/diskio.h",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscVSOCQ13/software/slideshow/Makefile",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscVSOCQ13/software/slideshow/main.cpp",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscVSOCQ13/software/gfxLib/diskio.cpp",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscVSOCQ13/C4RiscVSOCTop.vhd",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/gfxLib/osUIEvents.h",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/gfxLib/usbHID.cpp",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/gfxLib/bsp.h",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/gfxLib/bsp.cpp",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/gfxLib/gfFont.h",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/gfxLib/gfFont.cpp",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/gfxLib/gfDrawing.h",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/gfxLib/gfJPEG.cpp",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/gfxLib/gfBitmap.cpp",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/gfxLibSlideshow/ram.ld",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/gfxLib/gfBitmap.h",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/gfxLib/gfDrawing.cpp",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/gfxLibSlideshow/main.cpp",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/gfxLibSlideshow/startup.S",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/gfxLibSlideshow/main.h",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/gfxLib/picojpeg.cpp",
+		"/C/Users/qubec/AppData/Roaming/Sublime Text/Packages/User/make send.sublime-build",
+		"/C/Users/qubec/AppData/Roaming/Sublime Text/Packages/User/Preferences.sublime-settings",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/gfxLibSlideshow/slideshowProject.sublime-project",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/gfxLibSlideshow/Makefile",
+		"/C/Users/qubec/Documents/Development/ProjektyVHDL/C4BaseBoard/RiscV/usbHidTest/main.cpp"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"long",
+			"ushort",
+			"ulong",
+			"4",
+			"usb2dp",
+			"usb ho",
+			"sdcCh3Read9",
+			"sdcCh1Read7",
+			"sdcCh1Write8",
+			"sdcCh1Read8",
+			"sdcCh0Write7",
+			"0110011"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": true,
+		"regex": false,
+		"replace_history":
+		[
+			"int32_t",
+			"uint16_t",
+			"uint32_t"
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "Makefile",
+					"selected": true,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5585,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2710,
+								2710
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Makefile/Makefile.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 882.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"stack_multiselect": false,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 219.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "mp3.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"F:\\msys64\\home\\qubec\\ProjektyGCCWindows\\tangerineSOCEmulator\\tangerine.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 177.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

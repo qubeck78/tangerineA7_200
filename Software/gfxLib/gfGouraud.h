@@ -1,6 +1,11 @@
 #ifndef _GFGOURAUD_H
 #define _GFGOURAUD_H
 
+#ifdef __cplusplus
+extern "C" 
+{
+#endif
+
 #include "gfTypes.h"
 #include "gfBitmap.h"
 
@@ -57,5 +62,8 @@ uint32_t gfGouraudDrawTriangle( tgfBitmap *bmp, tgfTriangle3D *triangle );
 uint32_t gfGouraudDrawTriangleZBuffer( tgfBitmap *bmp, tgfBitmap *zBuffer, tgfTriangle3D *triangle );
 uint32_t gfGouraudDrawTexturedTriangleZBuffer( tgfBitmap *bmp, tgfBitmap *zBuffer, tgfTriangle3D *triangle );
 
+#ifdef __cplusplus
+}
+#endif
 
 #endif

@@ -312,7 +312,7 @@ Disassembly of section .text:
  484:	02010113          	addi	sp,sp,32
  488:	00008067          	ret
 
-0000048c <_Z14itoaHex8DigitsmPc>:
+0000048c <itoaHex8Digits>:
  48c:	fe010113          	addi	sp,sp,-32
  490:	00112e23          	sw	ra,28(sp)
  494:	00812c23          	sw	s0,24(sp)
@@ -702,7 +702,7 @@ Disassembly of section .text:
  a6c:	000017b7          	lui	a5,0x1
  a70:	3ec78593          	addi	a1,a5,1004 # 13ec <buf>
  a74:	00070513          	mv	a0,a4
- a78:	a15ff0ef          	jal	ra,48c <_Z14itoaHex8DigitsmPc>
+ a78:	a15ff0ef          	jal	ra,48c <itoaHex8Digits>
  a7c:	01b00513          	li	a0,27
  a80:	f05ff0ef          	jal	ra,984 <_Z13spaceDistancem>
  a84:	000017b7          	lui	a5,0x1

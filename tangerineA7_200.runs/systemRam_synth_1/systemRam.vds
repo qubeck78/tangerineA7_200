@@ -3,22 +3,21 @@
 # SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Tue Nov 12 21:55:03 2024
-# Process ID: 24092
-# Current directory: C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/systemRam_synth_1
+# Start of session at: Sun Jan 12 18:26:29 2025
+# Process ID: 161708
+# Current directory: C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/systemRam_synth_1
 # Command line: vivado.exe -log systemRam.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source systemRam.tcl
-# Log file: C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/systemRam_synth_1/systemRam.vds
-# Journal file: C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/systemRam_synth_1\vivado.jou
-# Running On: Desktop-qUBECk, OS: Windows, CPU Frequency: 4104 MHz, CPU Physical cores: 6, Host memory: 34266 MB
+# Log file: C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/systemRam_synth_1/systemRam.vds
+# Journal file: C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/systemRam_synth_1\vivado.jou
+# Running On: DESKTOP-T3E75FC, OS: Windows, CPU Frequency: 4491 MHz, CPU Physical cores: 32, Host memory: 33513 MB
 #-----------------------------------------------------------
 source systemRam.tcl -notrace
-create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 533.773 ; gain = 182.062
 INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: systemRam
-INFO: [IP_Flow 19-6922] IPCACHE: Exporting cached entry 6e2a5a5e5b00ee1a to dir: C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/systemRam_synth_1
-INFO: [IP_Flow 19-6928] IPCACHE: copied cached file c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.cache/ip/2023.2/6/e/6e2a5a5e5b00ee1a/systemRam.dcp to C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/systemRam_synth_1/systemRam.dcp.
-INFO: [IP_Flow 19-6928] IPCACHE: copied cached file c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.cache/ip/2023.2/6/e/6e2a5a5e5b00ee1a/systemRam_sim_netlist.v to C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/systemRam_synth_1/systemRam_sim_netlist.v.
-INFO: [IP_Flow 19-6928] IPCACHE: copied cached file c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.cache/ip/2023.2/6/e/6e2a5a5e5b00ee1a/systemRam_sim_netlist.vhdl to C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/systemRam_synth_1/systemRam_sim_netlist.vhdl.
-INFO: [IP_Flow 19-6928] IPCACHE: copied cached file c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.cache/ip/2023.2/6/e/6e2a5a5e5b00ee1a/systemRam_stub.v to C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/systemRam_synth_1/systemRam_stub.v.
-INFO: [IP_Flow 19-6928] IPCACHE: copied cached file c:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.cache/ip/2023.2/6/e/6e2a5a5e5b00ee1a/systemRam_stub.vhdl to C:/Users/qubec/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/systemRam_synth_1/systemRam_stub.vhdl.
+INFO: [IP_Flow 19-6922] IPCACHE: Exporting cached entry 6e2a5a5e5b00ee1a to dir: C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/systemRam_synth_1
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file c:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.cache/ip/2023.2/6/e/6e2a5a5e5b00ee1a/systemRam.dcp to C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/systemRam_synth_1/systemRam.dcp.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file c:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.cache/ip/2023.2/6/e/6e2a5a5e5b00ee1a/systemRam_sim_netlist.v to C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/systemRam_synth_1/systemRam_sim_netlist.v.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file c:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.cache/ip/2023.2/6/e/6e2a5a5e5b00ee1a/systemRam_sim_netlist.vhdl to C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/systemRam_synth_1/systemRam_sim_netlist.vhdl.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file c:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.cache/ip/2023.2/6/e/6e2a5a5e5b00ee1a/systemRam_stub.v to C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/systemRam_synth_1/systemRam_stub.v.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file c:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.cache/ip/2023.2/6/e/6e2a5a5e5b00ee1a/systemRam_stub.vhdl to C:/Users/qubeck/Documents/Development/ProjektyVHDL/A7BaseBoard/tangerineA7_200/tangerineA7_200.runs/systemRam_synth_1/systemRam_stub.vhdl.
 INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP systemRam, cache-ID = 6e2a5a5e5b00ee1a.
-INFO: [Common 17-206] Exiting Vivado at Tue Nov 12 21:55:14 2024...
+INFO: [Common 17-206] Exiting Vivado at Sun Jan 12 18:26:34 2025...

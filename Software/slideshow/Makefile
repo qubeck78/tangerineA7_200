@@ -47,50 +47,50 @@ $(TARGET)_L.mif: $(TARGET).bin
 main.o: main.cpp
 	$(CC) -o main.o main.cpp 
 
-bsp.o: ../gfxLib/bsp.cpp
-	$(CC) -o ../gfxLib/bsp.o ../gfxLib/bsp.cpp 
+bsp.o: ../gfxLib/bsp.c
+	$(CC) -o ../gfxLib/bsp.o ../gfxLib/bsp.c
 
 startup.o: startup.S
 	$(CC) -o startup.o startup.S
 
-gfBitmap.o: ../gfxLib/gfBitmap.cpp
-	$(CC) -o ../gfxLib/gfBitmap.o ../gfxLib/gfBitmap.cpp 
+gfBitmap.o: ../gfxLib/gfBitmap.c
+	$(CC) -o ../gfxLib/gfBitmap.o ../gfxLib/gfBitmap.c
 	
-gfDrawing.o: ../gfxLib/gfDrawing.cpp
-	$(CC) -o ../gfxLib/gfDrawing.o ../gfxLib/gfDrawing.cpp 
+gfDrawing.o: ../gfxLib/gfDrawing.c
+	$(CC) -o ../gfxLib/gfDrawing.o ../gfxLib/gfDrawing.c
 
-gfGouraud.o: ../gfxLib/gfGouraud.cpp
-	$(CC) -o ../gfxLib/gfGouraud.o ../gfxLib/gfGouraud.cpp 
+gfGouraud.o: ../gfxLib/gfGouraud.c
+	$(CC) -o ../gfxLib/gfGouraud.o ../gfxLib/gfGouraud.c
 
-gfFont.o: ../gfxLib/gfFont.cpp
-	$(CC) -o ../gfxLib/gfFont.o ../gfxLib/gfFont.cpp 
+gfFont.o: ../gfxLib/gfFont.c
+	$(CC) -o ../gfxLib/gfFont.o ../gfxLib/gfFont.c
 	
-gfJPEG.o: ../gfxLib/gfJPEG.cpp
-	$(CC) -o ../gfxLib/gfJPEG.o ../gfxLib/gfJPEG.cpp 
+gfJPEG.o: ../gfxLib/gfJPEG.c
+	$(CC) -o ../gfxLib/gfJPEG.o ../gfxLib/gfJPEG.c
 
-picojpeg.o: ../gfxLib/picojpeg.cpp
-	$(CC) -o ../gfxLib/picojpeg.o ../gfxLib/picojpeg.cpp 
+picojpeg.o: ../gfxLib/picojpeg.c
+	$(CC) -o ../gfxLib/picojpeg.o ../gfxLib/picojpeg.c
 
-osAlloc.o: ../gfxLib/osAlloc.cpp
-	$(CC) -o ../gfxLib/osAlloc.o ../gfxLib/osAlloc.cpp 
+osAlloc.o: ../gfxLib/osAlloc.c
+	$(CC) -o ../gfxLib/osAlloc.o ../gfxLib/osAlloc.c
 
-osFile.o: ../gfxLib/osFile.cpp
-	$(CC) -o ../gfxLib/osFile.o ../gfxLib/osFile.cpp 
+osFile.o: ../gfxLib/osFile.c
+	$(CC) -o ../gfxLib/osFile.o ../gfxLib/osFile.c
 
-diskio.o: ../gfxLib/diskio.cpp
-	$(CC) -o ../gfxLib/diskio.o ../gfxLib/diskio.cpp 
+diskio.o: ../gfxLib/diskio.c
+	$(CC) -o ../gfxLib/diskio.o ../gfxLib/diskio.c
 
-ff.o: ../gfxLib/ff.cpp
-	$(CC) -o ../gfxLib/ff.o ../gfxLib/ff.cpp  
+ff.o: ../gfxLib/ff.c
+	$(CC) -o ../gfxLib/ff.o ../gfxLib/ff.c
 
-ccsbcs.o: ../gfxLib/ccsbcs.cpp 
-	$(CC) -o ../gfxLib/ccsbcs.o ../gfxLib/ccsbcs.cpp  
+ccsbcs.o: ../gfxLib/ccsbcs.c
+	$(CC) -o ../gfxLib/ccsbcs.o ../gfxLib/ccsbcs.c
 
-osUIEvents.o: ../gfxLib/osUIEvents.cpp
-	$(CC) -o ../gfxLib/osUIEvents.o ../gfxLib/osUIEvents.cpp  
+osUIEvents.o: ../gfxLib/osUIEvents.c
+	$(CC) -o ../gfxLib/osUIEvents.o ../gfxLib/osUIEvents.c
 
-usbHID.o: ../gfxLib/usbHID.cpp
-	$(CC) -o ../gfxLib/usbHID.o ../gfxLib/usbHID.cpp 
+usbHID.o: ../gfxLib/usbHID.c
+	$(CC) -o ../gfxLib/usbHID.o ../gfxLib/usbHID.c
 
 clean:
 	rm -f *.o *.rec *.disasm *.elf *.mif *.mi *.bin *.map
@@ -101,5 +101,5 @@ send: $(TARGET).rec
 	$(OBJSIZE) $(TARGET).elf
 	
 run: $(TARGET).rec
-	cp $(TARGET).rec "/f/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/bin"
-	cd "/f/msys64/home/qubec/ProjektyGCCWindows/tangerineSOCEmulator/bin" && ./tangerine.exe $(TARGET).rec
+	cp $(TARGET).rec "/c/Users/qubeck/Documents/Development/ProjektyGCCWindows/tangerineSOCEmulator/bin"
+	cd "/c/Users/qubeck/Documents/Development/ProjektyGCCWindows/tangerineSOCEmulator/bin" && ./tangerine.exe $(TARGET).rec

@@ -1,6 +1,11 @@
 #ifndef _GFBITMAP_H
 #define _GFBITMAP_H
 
+#ifdef __cplusplus
+extern "C" 
+{
+#endif
+
 #include "gfTypes.h"
 
 
@@ -42,5 +47,8 @@ uint32_t gfBlitScaledBitmap( tgfBitmap *dest, tgfBitmap *src, int16_t x, int16_t
 
 
 
+#ifdef __cplusplus
+}
+#endif
 
 #endif

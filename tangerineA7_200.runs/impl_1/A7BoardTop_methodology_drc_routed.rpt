@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Sat Dec 28 14:57:44 2024
-| Host         : Desktop-qUBECk running 64-bit major release  (build 9200)
+| Date         : Sun Jan 12 18:32:33 2025
+| Host         : DESKTOP-T3E75FC running 64-bit major release  (build 9200)
 | Command      : report_methodology -file A7BoardTop_methodology_drc_routed.rpt -pb A7BoardTop_methodology_drc_routed.pb -rpx A7BoardTop_methodology_drc_routed.rpx
 | Design       : A7BoardTop
 | Device       : xc7a200tfbg676-1

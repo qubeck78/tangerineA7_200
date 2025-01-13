@@ -1,6 +1,11 @@
 #ifndef _OSUIEVENTS_H
 #define _OSUIEVENTS_H
 
+#ifdef __cplusplus
+extern "C" 
+{
+#endif
+
 #include "gfTypes.h"
 
 #define OS_EVENT_TYPE_USB_MS_CONNECT      0x0001
@@ -87,6 +92,8 @@ uint32_t osPutUIEvent( tosUIEvent *event );
 uint32_t osGetUIEvent( tosUIEvent *event );
 
 
-
+#ifdef __cplusplus
+}
+#endif
 
 #endif
